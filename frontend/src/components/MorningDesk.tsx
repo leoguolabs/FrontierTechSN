@@ -84,7 +84,7 @@ export default function MorningDesk() {
     isFetching: outroPresetsAreLoading,
     isError: outroPresetsAreError,
   } = useQuery({ queryKey: ['outro-library'], queryFn: fetchOutroLibrary })
-  const { data: settingsSchema } = useQuery({ queryKey: ['settings-schema'], queryFn: fetchSettingsSchema })
+  const { data: settingsSchema, isPending: publishingSettingsPending } = useQuery({ queryKey: ['settings-schema'], queryFn: fetchSettingsSchema })
   const {
     data: ttsModels = [],
     isError: ttsModelsIsError,
@@ -604,14 +604,15 @@ export default function MorningDesk() {
           </div>
         </header>
 
-        {!globalPublishingEnabled && (
+        {settingsSchema && !globalPublishingEnabled && (
           <p className="morning-distribution-notice" role="status">
             Global automatic publishing is off. You can configure destinations and save the recipe; editions will remain unpublished until the global switch is enabled in Publishing &amp; Accounts below.
           </p>
         )}
         {draft.auto_publish && !publicationReady && (
           <p className="morning-distribution-notice is-warning" role="status">
-            {!settingsSchema ? 'Publishing settings could not be loaded. Reload before saving automatic dispatch.'
+            {publishingSettingsPending ? 'Loading publishing settings…'
+              : !settingsSchema ? 'Publishing settings could not be loaded. Reload before saving automatic dispatch.'
               : draft.publish_targets.length === 0 ? 'Select at least one destination before saving automatic dispatch.'
                 : `Before saving automatic dispatch, complete account setup for ${unreadyDestinations.map((destination) => destination.name).join(', ')} below, or deselect those destinations.`}
           </p>

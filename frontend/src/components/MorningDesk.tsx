@@ -17,6 +17,7 @@ import {
   type DailyAutomationSettings,
 } from '../api'
 import { IconPlay, IconStop } from './Icons'
+import PublishingPanel from './PublishingPanel'
 
 const SOURCE_LABELS: Record<string, string> = {
   zh: '中文',
@@ -183,6 +184,9 @@ export default function MorningDesk() {
 
   const patch = <K extends keyof DailyAutomationSettings>(key: K, value: DailyAutomationSettings[K]) => {
     if (!draft) return
+    save.reset()
+    runTest.reset()
+    runNow.reset()
     setDraftOverride((current) => ({ ...(current ?? draft), [key]: value }))
   }
 
@@ -217,10 +221,6 @@ export default function MorningDesk() {
     : 'Handle not configured'
   const xReady = Boolean(publicationFields.VIDEO_PUBLISH_X_ENABLED && publicationFields.VIDEO_PUBLISH_X_HANDLE)
   const podcastReady = Boolean(publicationFields.VIDEO_PUBLISH_APPLE_PODCAST_ENABLED)
-  const distributionEnabled = globalPublishingEnabled && draft.auto_publish
-  const distributionState = !globalPublishingEnabled
-    ? 'Blocked by global kill switch'
-    : draft.auto_publish ? 'Automatic dispatch armed' : 'Paused · selections retained'
   const destinations = [
     {
       target: 'youtube' as const,
@@ -250,6 +250,17 @@ export default function MorningDesk() {
       ready: podcastReady,
     },
   ]
+  const unreadyDestinations = destinations.filter((destination) => (
+    draft.publish_targets.includes(destination.target) && !destination.ready
+  ))
+  const publicationReady = !draft.auto_publish || Boolean(
+    settingsSchema && draft.publish_targets.length > 0 && unreadyDestinations.length === 0,
+  )
+  const distributionEnabled = globalPublishingEnabled && draft.auto_publish && publicationReady
+  const distributionState = !draft.auto_publish
+    ? 'Paused · selections retained'
+    : !globalPublishingEnabled ? 'Paused by global switch'
+      : !publicationReady ? 'Account setup required' : 'Automatic dispatch armed'
   const selectedModel = ttsModels.find((model) => model.id === draft.tts_model)
   const selectedMusicTrack = musicTracks.find((track) => track.id === draft.background_music_track_id)
   const selectedOutro = outroPresets.find((preset) => preset.id === draft.outro_style)
@@ -265,6 +276,7 @@ export default function MorningDesk() {
     || (!musicTracksAreLoading && Boolean(selectedMusicTrack))
   const outroSelectionReady = !outroPresetsAreLoading && Boolean(selectedOutro?.available)
   const configReady = catalogReady
+    && publicationReady
     && musicSelectionReady
     && outroSelectionReady
     && Boolean(draft.generation_time && draft.timezone.trim())
@@ -565,7 +577,7 @@ export default function MorningDesk() {
         </footer>
       </section>
 
-      <section className={`morning-distribution ${distributionEnabled ? 'is-active' : 'is-paused'}`}>
+      <section className={`morning-distribution ${distributionEnabled ? 'is-active' : 'is-paused'} ${draft.auto_publish ? '' : 'has-disabled-controls'}`}>
         <header className="morning-distribution-head">
           <div className="morning-distribution-copy">
             <span className="morning-section-label">Dispatch matrix</span>
@@ -573,11 +585,11 @@ export default function MorningDesk() {
             <p>Send every completed edition to the selected destinations. Platform choices are retained while dispatch is paused.</p>
           </div>
           <div className="morning-distribution-controls">
-            <label className={`morning-visibility ${distributionEnabled && draft.publish_targets.includes('youtube') ? '' : 'is-disabled'}`}>
+            <label className={`morning-visibility ${draft.auto_publish && draft.publish_targets.includes('youtube') ? '' : 'is-disabled'}`}>
               <span>YouTube visibility</span>
               <select
                 value={draft.publish_visibility}
-                disabled={!distributionEnabled || !draft.publish_targets.includes('youtube')}
+                disabled={!draft.auto_publish || !draft.publish_targets.includes('youtube')}
                 onChange={(event) => patch('publish_visibility', event.target.value as 'private' | 'unlisted' | 'public')}
               >
                 <option value="public">Public</option>
@@ -587,18 +599,32 @@ export default function MorningDesk() {
             </label>
             <label className={`morning-distribution-master ${distributionEnabled ? 'is-live' : ''}`}>
               <span><small>Edition dispatch</small><strong>{distributionState}</strong></span>
-              <input type="checkbox" checked={draft.auto_publish} onChange={(event) => patch('auto_publish', event.target.checked)} />
+              <input type="checkbox" aria-label="Edition dispatch" checked={draft.auto_publish} onChange={(event) => patch('auto_publish', event.target.checked)} />
             </label>
           </div>
         </header>
 
-        <div className="morning-destinations" aria-label="Automatic publication targets" aria-disabled={!distributionEnabled}>
+        {!globalPublishingEnabled && (
+          <p className="morning-distribution-notice" role="status">
+            Global automatic publishing is off. You can configure destinations and save the recipe; editions will remain unpublished until the global switch is enabled in Publishing &amp; Accounts below.
+          </p>
+        )}
+        {draft.auto_publish && !publicationReady && (
+          <p className="morning-distribution-notice is-warning" role="status">
+            {!settingsSchema ? 'Publishing settings could not be loaded. Reload before saving automatic dispatch.'
+              : draft.publish_targets.length === 0 ? 'Select at least one destination before saving automatic dispatch.'
+                : `Before saving automatic dispatch, complete account setup for ${unreadyDestinations.map((destination) => destination.name).join(', ')} below, or deselect those destinations.`}
+          </p>
+        )}
+
+        <div className="morning-destinations" aria-label="Automatic publication targets" aria-disabled={!draft.auto_publish}>
           {destinations.map((destination) => {
             const selected = draft.publish_targets.includes(destination.target)
             const ready = distributionEnabled && selected && destination.ready
-            const state = !distributionEnabled
+            const state = !draft.auto_publish
               ? 'Paused'
-              : !selected ? 'Not selected' : destination.ready ? 'Ready' : 'Setup required'
+              : !selected ? 'Not selected' : !destination.ready ? 'Setup required'
+                : !globalPublishingEnabled ? 'Configured · publishing paused' : 'Ready'
             return (
               <label
                 className={`morning-destination ${selected ? 'is-selected' : ''} ${ready ? 'is-ready' : ''}`}
@@ -610,7 +636,8 @@ export default function MorningDesk() {
                   <input
                     type="checkbox"
                     checked={selected}
-                    disabled={!distributionEnabled}
+                    aria-label={`Publish to ${destination.name}`}
+                    disabled={!draft.auto_publish}
                     onChange={() => toggleTarget(destination.target)}
                   />
                   <i aria-hidden="true" />
@@ -628,8 +655,12 @@ export default function MorningDesk() {
 
         <footer className="morning-distribution-foot">
           <p>Automatic writes require the configured account to match the active browser identity. Test runs remain private and require exact-receipt cleanup.</p>
-          <Link to="/settings?tab=publishing">Configure platform accounts →</Link>
+          <button type="button" className="btn-ghost" disabled={actionPending || !configReady} onClick={() => save.mutate(recipe)}>{save.isPending ? 'Saving…' : 'Save recipe'}</button>
         </footer>
+        <details className="morning-publishing-settings">
+          <summary>Configure platform accounts &amp; global publishing</summary>
+          <PublishingPanel />
+        </details>
       </section>
 
       <section className="morning-sources">

@@ -2958,6 +2958,90 @@ def test_initialism_repair_rejects_invalid_or_unowned_inputs(tmp_path, defect):
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize('outcome', ['pass', 'reject', 'unavailable', 'independent_reject'])
+async def test_multiple_initialism_repair_retains_source_jobs_and_checks(setup_client, monkeypatch, outcome):
+    server, script, directory, verifier, generate = setup_client
+    source = "Reports that UBTECH's Thinker-WM has taken first place."
+    script.write_text(source)
+    spellings = {'UBTECH': 'you bee tee ee see H', 'WM': 'double you M'}
+    server.pronunciation_ai.side_effect = lambda *a, **kw: json.dumps({'decisions': [
+        {**candidate, 'action': 'spell', 'spoken': spellings[candidate['source']],
+         'reason': 'Spell the source letters.'} for candidate in tts_pronunciation.candidates(source)]})
+    verifier.side_effect = tts.TtsIntegrityError('Chatterbox initialism pronunciation mismatch: wrong letters')
+    with pytest.raises(tts.TtsIntegrityError):
+        await generate()
+    stem = 'tts_input_part_001'
+    original_requests = {p: p.read_bytes() for p in directory.glob('*.request-*.json')}
+    plan_path = directory / 'tts_pronunciation.json'
+    original_plan = plan_path.read_bytes()
+    plan = json.loads(original_plan)
+    synthesis = chatterbox._render_provider_span(source, 0, len(source), plan['edits'])
+    repair = {'version': 2, 'source_sha256': hashlib.sha256(source.encode()).hexdigest(),
+              'synthesis_sha256': hashlib.sha256(synthesis.encode()).hexdigest(),
+              'reason': 'Both source initialisms failed in all three original jobs.',
+              'replacements': [{'source_start': edit['start'], 'source_end': edit['end'],
+                                'spoken': '. '.join(edit['source']) + '.',
+                                'pause_before': edit['source'] == 'UBTECH'} for edit in plan['edits']],
+              'original_request_sha256': [tts._file_sha256(directory / f'{stem}.request-{i}.json')
+                                          for i in range(3)]}
+    marker = directory / f'{stem}.initialism-repair.json'
+    marker.write_text(json.dumps(repair))
+    monkeypatch.setattr(av_sync, 'ensure_word_transcript', AsyncMock(return_value=(
+        [{'text': source}], {'passed': True})))
+    if outcome in {'pass', 'independent_reject'}:
+        verifier.side_effect = lambda *a, **kw: advisory_report()
+    if outcome == 'pass':
+        await generate()
+        await generate()
+        assert len(server.jobs) == 4
+        metadata = json.loads((directory / f'{stem}_generated.json').read_text())
+        assert metadata['identity']['text'] == source
+        assert metadata['synthesis_request']['text'] == "Reports that, U. B. T. E. C. H.'s Thinker-W. M. has taken first place."
+        assert metadata['integrity']['pronunciation']['passed']
+        assert metadata['integrity']['independent_audit']['passed']
+        marker.write_text(json.dumps({**repair, 'reason': 'Changed after activation'}))
+        with pytest.raises(RuntimeError, match='changed after activation'):
+            await generate()
+    elif outcome == 'unavailable':
+        verifier.side_effect = RuntimeError('Recognizer unavailable')
+        for _ in range(2):
+            with pytest.raises(RuntimeError, match='Recognizer unavailable'):
+                await generate()
+        assert len(server.jobs) == 4
+    else:
+        if outcome == 'independent_reject':
+            server.independent_audit.side_effect = tts.TtsIntegrityError('independent extra speech')
+        with pytest.raises(tts.TtsIntegrityError):
+            await generate()
+        with pytest.raises(tts.TtsIntegrityError, match='exhausted'):
+            await generate()
+        assert len(server.jobs) == 6
+    assert script.read_text() == source
+    assert plan_path.read_bytes() == original_plan
+    assert all(path.read_bytes() == value for path, value in original_requests.items())
+
+
+@pytest.mark.parametrize('defect', ['duplicate', 'letters', 'word', 'span', 'type', 'pause', 'base', 'empty'])
+def test_multiple_initialism_repair_rejects_unbound_replacements(defect):
+    source = 'The AI uses WM.'
+    edits = [{'start': 4, 'end': 6, 'source': 'AI', 'spoken': 'eigh eye'},
+             {'start': 12, 'end': 14, 'source': 'WM', 'spoken': 'double you M'}]
+    base = chatterbox._render_provider_span(source, 0, len(source), edits)
+    replacements = [{'source_start': edit['start'], 'source_end': edit['end'],
+                     'spoken': '. '.join(edit['source']), 'pause_before': False} for edit in edits]
+    if defect == 'duplicate': replacements[1] = replacements[0]
+    if defect == 'letters': replacements[1]['spoken'] = 'W. N.'
+    if defect == 'word': edits[1]['kind'] = 'word'
+    if defect == 'span': replacements[1]['source_end'] = 15
+    if defect == 'type': replacements[1] = None
+    if defect == 'pause': replacements[1]['pause_before'] = 'true'
+    if defect == 'base': base = base.replace('uses', 'likes')
+    if defect == 'empty': replacements.clear()
+    with pytest.raises(RuntimeError):
+        chatterbox._multiple_initialism_synthesis(source, base, edits, {'replacements': replacements})
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize('outcome', ['pass', 'reject', 'unavailable'])
 async def test_initialism_alternative_retains_first_repair_and_both_budgets(setup_client, monkeypatch, outcome):
     server, script, directory, verifier, generate = setup_client

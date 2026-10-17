@@ -197,6 +197,57 @@ def _bind_verification(directory: Path, binding: dict) -> None:
     _write_json(marker, binding)
 
 
+def _multiple_initialism_synthesis(source: str, base: str, edits: list[dict],
+                                   repair: dict) -> str:
+    """Replace several failed spellings without touching surrounding source words."""
+    replacements = repair.get('replacements')
+    if (not isinstance(replacements, list) or not 2 <= len(replacements) <= len(edits)
+            or base != _render_provider_span(source, 0, len(source), edits)):
+        raise RuntimeError('Multiple initialism repair requires the unchanged planned input')
+    spans = []
+    for item in replacements:
+        if not isinstance(item, dict):
+            raise RuntimeError('Invalid source-bound initialism replacement')
+        target = next((edit for edit in edits
+                       if type(item.get('source_start')) is int
+                       and type(item.get('source_end')) is int
+                       and edit['start'] == item['source_start']
+                       and edit['end'] == item['source_end']
+                       and edit.get('kind') in (None, 'initialism')), None)
+        if (target is None or type(item.get('pause_before')) is not bool
+                or not isinstance(item.get('spoken'), str)
+                or item['spoken'] != item['spoken'].strip()):
+            raise RuntimeError('Invalid source-bound initialism replacement')
+        start, end = target['start'], target['end']
+        letters = target['source'].replace('.', '').upper()
+        if (source[start:end] != target['source']
+                or (start > 0 and source[start - 1].isalnum())
+                or (end < len(source) and source[end].isalnum())):
+            raise RuntimeError('Initialism repair must preserve surrounding source words')
+        try:
+            if (pronunciation._spoken_letters(target['spoken']) != letters
+                    or pronunciation._spoken_letters(item['spoken']) != letters):
+                raise ValueError('Changed source letters')
+        except ValueError as exc:
+            raise RuntimeError('Initialism repair must retain every source letter') from exc
+        left = len(_render_provider_span(source, 0, start, edits))
+        right = len(base) - len(_render_provider_span(source, end, len(source), edits))
+        spoken = item['spoken']
+        if item['pause_before']:
+            if not base[:left].endswith(' ') or not base[:left].rstrip()[-1:].isalnum():
+                raise RuntimeError('Initialism repair pause must follow a source word boundary')
+            left = len(base[:left].rstrip())
+            spoken = ', ' + spoken
+        spans.append((left, right, spoken))
+    spans.sort()
+    if any(left < previous[1] for previous, (left, _, _) in zip(spans, spans[1:])):
+        raise RuntimeError('Initialism repair replacements must be distinct and nonoverlapping')
+    synthesis = base
+    for left, right, spoken in reversed(spans):
+        synthesis = synthesis[:left] + spoken + synthesis[right:]
+    return synthesis
+
+
 def _initialism_repair(directory: Path, stem: str, identity: dict,
                        edits: list[dict], *, audio_stem: str,
                        repair_kind: str = 'initialism-repair') -> tuple[dict, str]:
@@ -213,47 +264,53 @@ def _initialism_repair(directory: Path, stem: str, identity: dict,
         return identity, stem
     repair = _read_json(marker)
     source, base = identity['text'], identity['synthesis_text']
-    target = next((edit for edit in edits
-                   if type(repair.get('source_start')) is int
-                   and type(repair.get('source_end')) is int
-                   and edit['start'] == repair['source_start']
-                   and edit['end'] == repair['source_end']
-                   and edit.get('kind') in (None, 'initialism')), None)
-    if (repair.get('version') != 1 or target is None
+    if (repair.get('version') not in (1, 2)
             or (repair_kind == 'initialism-alternative' and not identity.get('initialism_repair_sha256'))
             or repair.get('source_sha256') != hashlib.sha256(source.encode()).hexdigest()
             or repair.get('synthesis_sha256') != hashlib.sha256(base.encode()).hexdigest()
-            or type(repair.get('pause_before')) is not bool
-            or not isinstance(repair.get('reason'), str) or not repair['reason'].strip()
-            or not isinstance(repair.get('spoken'), str)
-            or repair['spoken'] != repair['spoken'].strip()):
+            or not isinstance(repair.get('reason'), str) or not repair['reason'].strip()):
         raise RuntimeError('Invalid source-bound initialism repair; preserving existing jobs')
-    letters = target['source'].replace('.', '').upper()
-    prefix = _render_provider_span(source, 0, target['start'], edits)
-    suffix = _render_provider_span(source, target['end'], len(source), edits)
-    # A second, explicitly bound spelling may retain the first repair's pause.
-    # There are exactly two spelling stages, not an open-ended repair chain.
-    if (repair_kind == 'initialism-alternative' and identity.get('initialism_repair_sha256')
-            and prefix.endswith(' ') and base.startswith(prefix.rstrip() + ', ')):
-        prefix = prefix.rstrip() + ', '
-    end = len(base) - len(suffix)
-    if (source[target['start']:target['end']] != target['source']
-            or (target['start'] > 0 and source[target['start'] - 1].isalnum())
-            or (target['end'] < len(source) and source[target['end']].isalnum())
-            or not base.startswith(prefix) or not base.endswith(suffix)
-            or end <= len(prefix)):
-        raise RuntimeError('Initialism repair must preserve all surrounding source words')
-    try:
-        if (pronunciation._spoken_letters(base[len(prefix):end].replace(',', ' ')) != letters
-                or pronunciation._spoken_letters(repair['spoken']) != letters):
-            raise ValueError('Changed source letters')
-    except ValueError as exc:
-        raise RuntimeError('Initialism repair must retain every source letter') from exc
-    if repair['pause_before']:
-        if not prefix.endswith(' ') or not prefix.rstrip()[-1:].isalnum():
-            raise RuntimeError('Initialism repair pause must follow a source word boundary')
-        prefix = prefix.rstrip() + ', '
-    synthesis = prefix + repair['spoken'] + suffix
+    if repair['version'] == 2:
+        if repair_kind != 'initialism-repair':
+            raise RuntimeError('Multiple initialism repair cannot extend an existing repair chain')
+        synthesis = _multiple_initialism_synthesis(source, base, edits, repair)
+    else:
+        target = next((edit for edit in edits
+                       if type(repair.get('source_start')) is int
+                       and type(repair.get('source_end')) is int
+                       and edit['start'] == repair['source_start']
+                       and edit['end'] == repair['source_end']
+                       and edit.get('kind') in (None, 'initialism')), None)
+        if (target is None or type(repair.get('pause_before')) is not bool
+                or not isinstance(repair.get('spoken'), str)
+                or repair['spoken'] != repair['spoken'].strip()):
+            raise RuntimeError('Invalid source-bound initialism repair; preserving existing jobs')
+        letters = target['source'].replace('.', '').upper()
+        prefix = _render_provider_span(source, 0, target['start'], edits)
+        suffix = _render_provider_span(source, target['end'], len(source), edits)
+        # A second, explicitly bound spelling may retain the first repair's pause.
+        # There are exactly two spelling stages, not an open-ended repair chain.
+        if (repair_kind == 'initialism-alternative' and identity.get('initialism_repair_sha256')
+                and prefix.endswith(' ') and base.startswith(prefix.rstrip() + ', ')):
+            prefix = prefix.rstrip() + ', '
+        end = len(base) - len(suffix)
+        if (source[target['start']:target['end']] != target['source']
+                or (target['start'] > 0 and source[target['start'] - 1].isalnum())
+                or (target['end'] < len(source) and source[target['end']].isalnum())
+                or not base.startswith(prefix) or not base.endswith(suffix)
+                or end <= len(prefix)):
+            raise RuntimeError('Initialism repair must preserve all surrounding source words')
+        try:
+            if (pronunciation._spoken_letters(base[len(prefix):end].replace(',', ' ')) != letters
+                    or pronunciation._spoken_letters(repair['spoken']) != letters):
+                raise ValueError('Changed source letters')
+        except ValueError as exc:
+            raise RuntimeError('Initialism repair must retain every source letter') from exc
+        if repair['pause_before']:
+            if not prefix.endswith(' ') or not prefix.rstrip()[-1:].isalnum():
+                raise RuntimeError('Initialism repair pause must follow a source word boundary')
+            prefix = prefix.rstrip() + ', '
+        synthesis = prefix + repair['spoken'] + suffix
     if (synthesis == base or len(synthesis) > config.CHATTERBOX_TTS_MAX_CHARS
             or _synthesis_word_count(synthesis) > config.CHATTERBOX_TTS_CHUNK_WORDS):
         raise RuntimeError('Initialism repair must change input within existing chunk limits')

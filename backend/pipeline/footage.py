@@ -1640,7 +1640,7 @@ async def _revise_unfilled_shots(
     another exact sentence in the SAME story, but must earn a new frame review.
     Completed clips, their bindings, and every prior rejection remain intact.
     """
-    from backend.pipeline.review_response import parse_review_response
+    from backend.pipeline.review_response import ReviewResponseError, parse_review_response
 
     revisions = manifest.setdefault("shot_revisions", [])
     exhausted = {str(item.get("query") or "") for item in revisions if item.get("replacement")}
@@ -1664,7 +1664,7 @@ async def _revise_unfilled_shots(
         record = {"query": original, "previous": dict(shot), "created_at": _now()}
         try:
             endpoint, model, api_key = await _resolve_provider(provider_id, ai_endpoint, ai_model)
-            answer = await _chat(
+            system = (
                 "Replan ONE failed editorial B-roll shot. Return JSON only: "
                 '{"queries":[{"query":"2-6 concrete searchable words",'
                 '"purpose":"precise illustrative purpose",'
@@ -1678,29 +1678,52 @@ async def _revise_unfilled_shots(
                 "product/event, invent activity, or return bags of names. Avoid talking heads, "
                 "slides, benchmark charts and future/internal processes that cannot be filmed. "
                 "Do not repeat failed searches. Return an empty queries array if no defensible "
-                "shot exists; this does not waive the missing footage requirement.",
-                json.dumps({"story": scope, "failed_shot": shot,
-                            "failures": failures[-10:]}, ensure_ascii=False),
-                endpoint, model, api_key, log, "Footage shot revision", max_tokens=2000,
-                enable_skills=False, disable_thinking=True,
+                "shot exists; this does not waive the missing footage requirement."
             )
-            payload = parse_review_response(answer, required_fields={"queries"}, label="Footage shot revision")
-            proposals = payload["queries"]
-            if not isinstance(proposals, list) or len(proposals) != 1 or not isinstance(proposals[0], dict):
-                raise ValueError("Shot revision must propose exactly one replacement")
-            proposal = proposals[0]
-            new_excerpt = str(proposal.get("script_excerpt") or "").strip()
-            sentences = [part.strip() for part in re.split(r"(?<!\b[A-Z]\.)(?<=[.!?。！？])\s+", scope)]
-            if not new_excerpt or new_excerpt not in sentences:
-                raise ValueError("Shot revision must copy an exact sentence from the same story")
-            replacement = {"query": _sanitize_query(str(proposal.get("query") or "")),
-                           "purpose": str(proposal.get("purpose") or "").strip(),
-                           "script_excerpt": new_excerpt}
-            existing = {item["query"].casefold() for item in manifest.get("queries", [])}
-            failed_queries = {str(item.get("query") or "").casefold() for item in failures}
-            if (len(replacement["query"].split()) < 2 or not replacement["purpose"]
-                    or replacement["query"].casefold() in existing | failed_queries):
-                raise ValueError("Shot revision repeated a search or omitted its visible purpose")
+            context = {"story": scope, "failed_shot": shot, "failures": failures[-10:]}
+            for attempt in range(2):
+                # Provider failures already have bounded retries in _chat. Only
+                # a completed, invalid answer gets one explicit correction here.
+                answer = await _chat(
+                    system, json.dumps(context, ensure_ascii=False),
+                    endpoint, model, api_key, log, "Footage shot revision", max_tokens=2000,
+                    enable_skills=False, disable_thinking=True,
+                )
+                response = {"response": answer}
+                record.setdefault("attempts", []).append(response)
+                proposals = None
+                try:
+                    payload = parse_review_response(answer, required_fields={"queries"}, label="Footage shot revision")
+                    proposals = payload["queries"]
+                    if not isinstance(proposals, list) or len(proposals) != 1 or not isinstance(proposals[0], dict):
+                        raise ValueError("Shot revision must propose exactly one replacement")
+                    proposal = proposals[0]
+                    new_excerpt = str(proposal.get("script_excerpt") or "").strip()
+                    sentences = [part.strip() for part in re.split(r"(?<!\b[A-Z]\.)(?<=[.!?。！？])\s+", scope)]
+                    if not new_excerpt or new_excerpt not in sentences:
+                        raise ValueError("Shot revision must copy an exact sentence from the same story")
+                    replacement = {"query": _sanitize_query(str(proposal.get("query") or "")),
+                                   "purpose": str(proposal.get("purpose") or "").strip(),
+                                   "script_excerpt": new_excerpt}
+                    existing = {item["query"].casefold() for item in manifest.get("queries", [])}
+                    failed_queries = {str(item.get("query") or "").casefold() for item in failures}
+                    if (len(replacement["query"].split()) < 2 or not replacement["purpose"]
+                            or replacement["query"].casefold() in existing | failed_queries):
+                        raise ValueError("Shot revision repeated a search or omitted its visible purpose")
+                    break
+                except (ValueError, ReviewResponseError) as exc:
+                    response["error"] = str(exc)
+                    # An empty array is an intentional no-shot verdict, not a
+                    # schema failure to coerce into an invented replacement.
+                    if attempt or proposals == []:
+                        raise
+                    context["correction"] = {
+                        "previous_response": answer[:12000], "validation_error": str(exc),
+                        "instruction": "Return a complete replacement JSON object, not a continuation. "
+                        "Choose exactly ONE defensible shot and copy one COMPLETE sentence from story. "
+                        "Do not return alternatives, fragments, or relax the editorial constraints.",
+                    }
+                    _emit(log, f"Footage shot revision response invalid; requesting one correction: {exc}")
             record["replacement"] = replacement
             manifest["queries"] = [replacement if item["query"] == original else item
                                    for item in manifest["queries"]]

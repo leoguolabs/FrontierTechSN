@@ -84,6 +84,49 @@ def test_shot_revision_keeps_verified_clips_quota_and_audit(tmp_path):
     assert footage.read_manifest(tmp_path)['queries'][-1] == proposal
 
 
+@pytest.mark.parametrize('defect', ['malformed', 'two', 'fragment', 'other_story'])
+def test_shot_revision_corrects_one_invalid_answer_without_changing_quota(tmp_path, defect):
+    script, old, manifest, proposal = repair_fixture(tmp_path)
+    previous_clips = list(manifest['clips'])
+    invalid = dict(proposal)
+    if defect == 'fragment':
+        invalid['script_excerpt'] = 'train models on servers'
+    elif defect == 'other_story':
+        invalid['script_excerpt'] = 'Othercorp launches a telephone.'
+    answer = ('{"queries":[' if defect == 'malformed' else
+              json.dumps({'queries': [invalid] * (2 if defect == 'two' else 1)}))
+    corrected = json.dumps({'queries': [proposal]})
+    chat = AsyncMock(side_effect=[answer, corrected])
+    with (patch.object(footage, '_resolve_provider', AsyncMock(return_value=('endpoint', 'model', 'key'))),
+          patch.object(footage, '_chat', chat)):
+        assert revise(tmp_path, script, old, manifest) == [proposal]
+    assert chat.await_count == 2
+    context = json.loads(chat.await_args_list[1].args[1])
+    assert context['correction']['previous_response'] == answer
+    assert context['correction']['validation_error']
+    assert old['script_excerpt'] in context['story']
+    assert 'Othercorp' not in context['story']
+    assert manifest['clips'] == previous_clips
+    assert manifest['requested_clip_count'] == 2
+    record = footage.read_manifest(tmp_path)['shot_revisions'][0]
+    assert record['attempts'][0]['response'] == answer
+    assert record['attempts'][0]['error']
+    assert record['attempts'][1] == {'response': corrected}
+    assert record['replacement'] == proposal
+
+
+def test_shot_revision_does_not_replay_provider_failure_as_schema_correction(tmp_path):
+    script, old, manifest, _ = repair_fixture(tmp_path)
+    chat = AsyncMock(side_effect=RuntimeError('Provider exhausted its retries'))
+    with (patch.object(footage, '_resolve_provider', AsyncMock(return_value=('endpoint', 'model', 'key'))),
+          patch.object(footage, '_chat', chat)):
+        assert revise(tmp_path, script, old, manifest) == [old]
+    assert chat.await_count == 1
+    assert manifest['queries'][-1] == old
+    assert manifest['requested_clip_count'] == 2
+    assert manifest['shot_revisions'][0]['error'] == 'Provider exhausted its retries'
+
+
 @pytest.mark.parametrize('defect', ['other_story', 'invented', 'fragment', 'empty', 'repeated', 'two'])
 def test_unsafe_or_missing_replacement_does_not_waive_slot(tmp_path, defect):
     script, old, manifest, proposal = repair_fixture(tmp_path)
@@ -96,9 +139,11 @@ def test_unsafe_or_missing_replacement_does_not_waive_slot(tmp_path, defect):
     elif defect == 'repeated':
         proposal['query'] = old['query']
     proposals = [] if defect == 'empty' else [proposal] * (2 if defect == 'two' else 1)
+    chat = AsyncMock(return_value=json.dumps({'queries': proposals}))
     with (patch.object(footage, '_resolve_provider', AsyncMock(return_value=('endpoint', 'model', 'key'))),
-          patch.object(footage, '_chat', AsyncMock(return_value=json.dumps({'queries': proposals})))):
+          patch.object(footage, '_chat', chat)):
         assert revise(tmp_path, script, old, manifest) == [old]
+    assert chat.await_count == (1 if defect == 'empty' else 2)
     assert manifest['queries'][-1] == old
     assert manifest['requested_clip_count'] == 2
     assert 'error' in manifest['shot_revisions'][0]

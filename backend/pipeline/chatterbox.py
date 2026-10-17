@@ -271,9 +271,21 @@ def _initialism_repair(directory: Path, stem: str, identity: dict,
             or not isinstance(repair.get('reason'), str) or not repair['reason'].strip()):
         raise RuntimeError('Invalid source-bound initialism repair; preserving existing jobs')
     if repair['version'] == 2:
-        if repair_kind != 'initialism-repair':
-            raise RuntimeError('Multiple initialism repair cannot extend an existing repair chain')
-        synthesis = _multiple_initialism_synthesis(source, base, edits, repair)
+        planned = base
+        if repair_kind == 'initialism-alternative':
+            # Reconstruct the first immutable repair before allowing the second
+            # spelling stage. Its other changed initialisms make a single-span
+            # comparison against the original plan insufficient.
+            previous = _read_json(directory / f'{stem}.json')
+            planned = _render_provider_span(source, 0, len(source), edits)
+            if (identity.get('initialism_alternative_sha256')
+                    or previous.get('version') != 2
+                    or _digest(previous) != identity['initialism_repair_sha256']
+                    or previous.get('source_sha256') != repair['source_sha256']
+                    or previous.get('synthesis_sha256') != hashlib.sha256(planned.encode()).hexdigest()
+                    or _multiple_initialism_synthesis(source, planned, edits, previous) != base):
+                raise RuntimeError('Multiple initialism alternative requires the unchanged first repair')
+        synthesis = _multiple_initialism_synthesis(source, planned, edits, repair)
     else:
         target = next((edit for edit in edits
                        if type(repair.get('source_start')) is int

@@ -2958,8 +2958,9 @@ def test_initialism_repair_rejects_invalid_or_unowned_inputs(tmp_path, defect):
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize('alternative', [False, True])
 @pytest.mark.parametrize('outcome', ['pass', 'reject', 'unavailable', 'independent_reject'])
-async def test_multiple_initialism_repair_retains_source_jobs_and_checks(setup_client, monkeypatch, outcome):
+async def test_multiple_initialism_repair_retains_source_jobs_and_checks(setup_client, monkeypatch, outcome, alternative):
     server, script, directory, verifier, generate = setup_client
     source = "Reports that UBTECH's Thinker-WM has taken first place."
     script.write_text(source)
@@ -2986,6 +2987,24 @@ async def test_multiple_initialism_repair_retains_source_jobs_and_checks(setup_c
                                           for i in range(3)]}
     marker = directory / f'{stem}.initialism-repair.json'
     marker.write_text(json.dumps(repair))
+    expected = "Reports that, U. B. T. E. C. H.'s Thinker-W. M. has taken first place."
+    prior_jobs = 3
+    if alternative:
+        with pytest.raises(tts.TtsIntegrityError):
+            await generate()
+        original_requests.update({p: p.read_bytes() for p in directory.glob('*.request-*.json')})
+        first_marker = marker
+        first_contents = marker.read_bytes()
+        marker = directory / f'{stem}.initialism-repair.initialism-alternative.json'
+        repair = {**repair, 'synthesis_sha256': hashlib.sha256(expected.encode()).hexdigest(),
+                  'replacements': [{**item, 'spoken': 'U. B. T. E. C. aitch'}
+                                   if item['source_start'] == source.index('UBTECH') else item
+                                   for item in repair['replacements']],
+                  'original_request_sha256': [tts._file_sha256(
+                      directory / f'{stem}.initialism-repair.request-{i}.json') for i in range(3)]}
+        marker.write_text(json.dumps(repair))
+        expected = "Reports that, U. B. T. E. C. aitch's Thinker-W. M. has taken first place."
+        prior_jobs = 6
     monkeypatch.setattr(av_sync, 'ensure_word_transcript', AsyncMock(return_value=(
         [{'text': source}], {'passed': True})))
     if outcome in {'pass', 'independent_reject'}:
@@ -2993,10 +3012,12 @@ async def test_multiple_initialism_repair_retains_source_jobs_and_checks(setup_c
     if outcome == 'pass':
         await generate()
         await generate()
-        assert len(server.jobs) == 4
+        assert len(server.jobs) == prior_jobs + 1
         metadata = json.loads((directory / f'{stem}_generated.json').read_text())
         assert metadata['identity']['text'] == source
-        assert metadata['synthesis_request']['text'] == "Reports that, U. B. T. E. C. H.'s Thinker-W. M. has taken first place."
+        assert metadata['synthesis_request']['text'] == expected
+        if alternative:
+            assert metadata['identity']['initialism_alternative_sha256'] == chatterbox._digest(repair)
         assert metadata['integrity']['pronunciation']['passed']
         assert metadata['integrity']['independent_audit']['passed']
         marker.write_text(json.dumps({**repair, 'reason': 'Changed after activation'}))
@@ -3007,7 +3028,7 @@ async def test_multiple_initialism_repair_retains_source_jobs_and_checks(setup_c
         for _ in range(2):
             with pytest.raises(RuntimeError, match='Recognizer unavailable'):
                 await generate()
-        assert len(server.jobs) == 4
+        assert len(server.jobs) == prior_jobs + 1
     else:
         if outcome == 'independent_reject':
             server.independent_audit.side_effect = tts.TtsIntegrityError('independent extra speech')
@@ -3015,10 +3036,60 @@ async def test_multiple_initialism_repair_retains_source_jobs_and_checks(setup_c
             await generate()
         with pytest.raises(tts.TtsIntegrityError, match='exhausted'):
             await generate()
-        assert len(server.jobs) == 6
+        assert len(server.jobs) == prior_jobs + 3
     assert script.read_text() == source
     assert plan_path.read_bytes() == original_plan
     assert all(path.read_bytes() == value for path, value in original_requests.items())
+    if alternative:
+        assert first_marker.read_bytes() == first_contents
+
+
+@pytest.mark.parametrize('defect', ['previous', 'base', 'pending', 'identity', 'accepted', 'chain'])
+def test_multiple_initialism_alternative_rejects_changed_or_unowned_inputs(tmp_path, defect):
+    source = "AI uses UBTECH's model."
+    edits = [{'start': 0, 'end': 2, 'source': 'AI', 'spoken': 'eigh eye'},
+             {'start': 8, 'end': 14, 'source': 'UBTECH', 'spoken': 'you bee tee ee see H'}]
+    planned = chatterbox._render_provider_span(source, 0, len(source), edits)
+    previous = {'version': 2, 'source_sha256': hashlib.sha256(source.encode()).hexdigest(),
+                'synthesis_sha256': hashlib.sha256(planned.encode()).hexdigest(),
+                'replacements': [{'source_start': edit['start'], 'source_end': edit['end'],
+                                  'spoken': '. '.join(edit['source']) + '.', 'pause_before': False}
+                                 for edit in edits]}
+    base = chatterbox._multiple_initialism_synthesis(source, planned, edits, previous)
+    identity = {'text': source, 'synthesis_text': base, 'language': 'en', 'voice': 'jane',
+                'seed': 42, 'synthesis_parameters': dict(chatterbox.SYNTHESIS_PARAMETERS),
+                'initialism_repair_sha256': chatterbox._digest(previous)}
+    stem = 'part.initialism-repair'
+    (tmp_path / f'{stem}.json').write_text(json.dumps(previous))
+    for attempt in range(3):
+        payload = {'text': base, 'language_id': 'en', 'voice': 'jane', 'seed': 42 + attempt,
+                   **chatterbox.SYNTHESIS_PARAMETERS}
+        checkpoint = {'identity': chatterbox._digest({'identity': identity, 'payload': payload}),
+                      'idempotency_key': str(attempt), 'job_id': str(attempt),
+                      'rejected': 'Chatterbox initialism pronunciation mismatch: missing possessive'}
+        if attempt == 0:
+            if defect == 'pending': checkpoint.pop('rejected')
+            if defect == 'identity': checkpoint['identity'] = 'another-job'
+        (tmp_path / f'{stem}.request-{attempt}.json').write_text(json.dumps(checkpoint))
+    repair = {**previous, 'synthesis_sha256': hashlib.sha256(base.encode()).hexdigest(),
+              'reason': 'Preserve the source possessive in letter-name speech.',
+              'replacements': [previous['replacements'][0],
+                               {**previous['replacements'][1], 'spoken': 'U. B. T. E. C. aitch'}],
+              'original_request_sha256': [tts._file_sha256(tmp_path / f'{stem}.request-{i}.json')
+                                          for i in range(3)]}
+    if defect == 'previous':
+        (tmp_path / f'{stem}.json').write_text(json.dumps({**previous, 'reason': 'mutated'}))
+    if defect == 'base':
+        identity['synthesis_text'] = base.replace('model', 'product')
+        repair['synthesis_sha256'] = hashlib.sha256(identity['synthesis_text'].encode()).hexdigest()
+    if defect == 'accepted': (tmp_path / 'part_generated.wav').write_bytes(pcm_wav())
+    if defect == 'chain': identity['initialism_alternative_sha256'] = 'already-applied'
+    (tmp_path / f'{stem}.initialism-alternative.json').write_text(json.dumps(repair))
+    originals = {p.name: p.read_bytes() for p in tmp_path.iterdir()}
+    with pytest.raises(RuntimeError):
+        chatterbox._initialism_repair(tmp_path, stem, identity, edits, audio_stem='part',
+                                     repair_kind='initialism-alternative')
+    assert {p.name: p.read_bytes() for p in tmp_path.iterdir()} == originals
 
 
 @pytest.mark.parametrize('defect', ['duplicate', 'letters', 'word', 'span', 'type', 'pause', 'base', 'empty'])

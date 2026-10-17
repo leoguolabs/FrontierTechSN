@@ -486,11 +486,23 @@ async def prepare_pronunciation(text: str, directory: Path, *, policy: dict, emi
         def selected(selected_endpoint, selected_model, _selected_key):
             route.update(endpoint=selected_endpoint, model=selected_model)
 
+        plan_tokens = min(32768, max(8192, 4096 + len(found) * 180))
         for attempt in range(MAX_PLAN_ATTEMPTS):
+            repairing = "previous_response" in payload
+            if repairing:
+                # Gateways can consume the output budget on reasoning despite
+                # disable_thinking, then corrupt JSON while continuing mid-string.
+                # Give a complete replacement room to finish; never splice or
+                # accept fragments, and retain the existing bounded attempt count.
+                payload["repair_instructions"] = (
+                    "Return a complete replacement JSON object with every candidate decision, "
+                    "starting at its opening brace. Do not continue the previous response or "
+                    "return only changed decisions. Keep reasoning out of the output."
+                )
             raw = await _chat(
                 prompt, json.dumps(payload, ensure_ascii=False),
                 endpoint=endpoint, model=model, api_key=api_key, log=emit,
-                label="Chatterbox pronunciation planning", max_tokens=min(32768, max(8192, 4096 + len(found) * 180)),
+                label="Chatterbox pronunciation planning", max_tokens=min(32768, plan_tokens * (2 if repairing else 1)),
                 enable_skills=False, disable_thinking=True, route_selected=selected,
             )
             evidence = {"request": payload.copy(), "response": raw, "requested_route": requested_route, "route": route.copy()}

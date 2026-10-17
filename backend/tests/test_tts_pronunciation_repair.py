@@ -122,3 +122,52 @@ async def test_failed_word_plan_identifies_the_exact_occurrence_for_bounded_repa
     assert result['synthesis_text'] == 'The D, ram and OLED chips are ready.'
     assert result['identity']['policy'] == policy
     assert not list(tmp_path.glob('*.request-*.json'))
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('saved_failure', [False, True])
+async def test_complete_repair_gets_headroom_without_changing_source_or_candidate_set(
+        tmp_path, model, saved_failure):
+    text = 'The H3 model launched.'
+    invalid = json.dumps({'decisions': [decision('H')]})
+    valid = json.dumps({'decisions': [decision('aitch')]})
+    if saved_failure:
+        previous = save_attempt(tmp_path, text, invalid)
+        before = previous.read_bytes()
+        model.return_value = valid
+    else:
+        # Reproduce the malformed mid-string continuation returned by the SDK.
+        invalid = ':I triple E","reason":"IEEE Fellow title"}]}'
+        model.side_effect = [invalid, valid]
+
+    result = await pronunciation.prepare_pronunciation(
+        text, tmp_path, policy=pronunciation.policy_contract(), emit=lambda _: None,
+    )
+
+    call = model.await_args_list[-1]
+    payload = json.loads(call.args[1])
+    assert payload['source_text'] == text
+    assert payload['candidates'] == pronunciation.candidates(text)
+    assert payload['previous_response'] == invalid
+    assert 'complete replacement JSON object' in payload['repair_instructions']
+    assert call.kwargs['max_tokens'] == 16384
+    assert result['synthesis_text'] == 'The aitch 3 model launched.'
+    assert model.await_count == (1 if saved_failure else 2)
+    if saved_failure:
+        assert previous.read_bytes() == before
+    else:
+        assert model.await_args_list[0].kwargs['max_tokens'] == 8192
+
+
+@pytest.mark.asyncio
+async def test_large_malformed_plan_repair_stays_capped_and_fails_closed(tmp_path, model):
+    model.return_value = ':I triple E","reason":"IEEE Fellow title"}]}'
+    with pytest.raises(RuntimeError, match='failed validation'):
+        await pronunciation.prepare_pronunciation(
+            ' '.join(['AI'] * 200), tmp_path,
+            policy=pronunciation.policy_contract(), emit=lambda _: None,
+        )
+    assert model.await_count == pronunciation.MAX_PLAN_ATTEMPTS == 2
+    assert [call.kwargs['max_tokens'] for call in model.await_args_list] == [32768, 32768]
+    assert not (tmp_path / 'tts_pronunciation.json').exists()
+    assert not (tmp_path / 'tts_synthesis.txt').exists()

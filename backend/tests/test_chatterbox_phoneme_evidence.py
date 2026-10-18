@@ -842,3 +842,39 @@ def test_detailed_preserves_both_dictionary_vowels_and_complete_ending(phones, p
     assert report['passed'] is passed
     assert report['cited_body_word_references']['detailed']['source_url'] == (
         'https://dictionary.cambridge.org/pronunciation/english/detailed')
+
+
+@pytest.mark.parametrize('phones, passed', [
+    ('ɛ k s p l æ n ə t ɔːɹ i', True),
+    ('ɪ k s p l æ n ə t ɔːɹ i', True),
+    ('ɛ s p l æ n ə t ɔːɹ i', False),
+    ('ɛ k s p l æ n ə t ɔːɹ', False),
+    ('ɛ k s p l æ n ə t ɔːɹ i i', False),
+    ('iː k s p l æ n ə t ɔːɹ i', False),
+])
+def test_explanatory_preserves_cited_vowels_without_dropping_or_repeating_phones(phones, passed):
+    report = evidence.compare_source('Explanatory.', [], phones)
+    assert report['passed'] is passed
+    assert report['cited_body_word_references']['explanatory']['source_url'] == (
+        'https://www.collinsdictionary.com/dictionary/english/explanatory')
+
+
+def test_explanatory_reference_keeps_the_complete_model_name_and_sentence():
+    from backend.pipeline.tts_model_names import repair_edits
+
+    source = ('The Chinese-language AI publication Machine Heart has published '
+              'a new explanatory report on EgoWild2Dex,')
+    prepared = [{'start': source.index(term), 'end': source.index(term) + len(term),
+                 'source': term, 'spoken': spoken}
+                for term, spoken in [('AI', 'eigh eye'), ('D', 'dee')]]
+    prepared = repair_edits(source, prepared)
+    phones = ('ð ə tʃ aɪ n iː z l æ ŋ ɡ w ɪ dʒ eɪ aɪ '
+              'p ʌ b l ɪ k eɪ ʃ ə n m ə ʃ iː n h ɑːɹ t h ɐ z '
+              'p ʌ b l ɪ ʃ t ɐ n uː ɛ k s p l æ n ə t ɔːɹ i '
+              'ɹ ɪ p ɔːɹ t ɔ n iː ɡ oʊ w aɪ l d t uː d ɛ k s')
+    assert evidence.compare_source(source, prepared, phones)['passed']
+    for changed in [phones.replace('t uː', 'θ ɹ iː'),
+                    phones.replace('p ʌ b l ɪ ʃ t ', ''),
+                    phones + ' d ɛ k s',
+                    phones.replace('iː ɡ oʊ', 'iː ɡ ə l')]:
+        assert not evidence.compare_source(source, prepared, changed)['passed']

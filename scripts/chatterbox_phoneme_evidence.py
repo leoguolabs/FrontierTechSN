@@ -27,7 +27,7 @@ from scripts.chatterbox_body_phone_references import (
 
 MODEL = 'facebook/wav2vec2-lv-60-espeak-cv-ft'
 REVISION = 'ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4'
-EVIDENCE_VERSION = 33
+EVIDENCE_VERSION = 34
 # Acoustic evidence can recognize an additional independently cited reading
 # without changing any frozen synthesis/word-hint policy or request identity.
 ACOUSTIC_WORD_REFERENCES = {
@@ -36,6 +36,13 @@ ACOUSTIC_WORD_REFERENCES = {
         'ipa': ['ˈdiː.teɪld'],
         'source_url': 'https://dictionary.cambridge.org/pronunciation/english/detailed',
         'source_location': 'British pronunciation of detailed; supplements CMU D-IH-T-EY-L-D while retaining every consonant and the complete ending.',
+        'verified_on': '2026-10-18',
+    },
+    'explanatory': {
+        'variants': [['EH', 'K', 'S', 'P', 'L', 'AE', 'N', 'AH', 'T', 'AO', 'R', 'IY']],
+        'ipa': ['ɛkˈsplænəˌtɔri'],
+        'source_url': 'https://www.collinsdictionary.com/dictionary/english/explanatory',
+        'source_location': 'American English, Webster\u2019s New World College Dictionary: both initial /ɛk/ and /ɪk/ are listed; supplements CMU while retaining the complete word.',
         'verified_on': '2026-10-18',
     },
 }

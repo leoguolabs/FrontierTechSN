@@ -1,7 +1,9 @@
 import json
+import hashlib
 import subprocess
 import wave
 from types import SimpleNamespace
+from unittest.mock import AsyncMock
 
 import pytest
 
@@ -50,6 +52,51 @@ async def test_independent_cache_binds_audio_source_decisions_and_transcript(aud
     with pytest.raises(tts.TtsIntegrityError, match='unrequested speech'):
         await independent.audit_part(wav, source, edits, directory)
     assert len(calls) == 3
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('proof_kind', ['matched', 'different', 'unavailable', 'wrong_audio', 'conditioned'])
+async def test_model_name_spelling_drift_requires_bound_complete_source_phones(audit_case, monkeypatch, proof_kind):
+    from backend.pipeline import chatterbox_phonemes
+    wav, _source, _edits, directory, observed, _calls = audit_case
+    source = 'The report mentions EgoWild2Dex today.'
+    start = source.index('EgoWild2Dex')
+    edits = [{'start': start, 'end': start + 11, 'source': 'EgoWild2Dex',
+              'spoken': 'Ego Wild two Dex', 'kind': 'model_name'}]
+    observed['text'] = 'The report mentions Ego Wild two decks today.'
+    proof = {'supported': proof_kind != 'unavailable', 'passed': proof_kind != 'different',
+             'audio_sha256': tts._file_sha256(wav), 'source_sha256': hashlib.sha256(source.encode()).hexdigest(),
+             'method': 'complete_source_phone_sequence', 'conditioned_on_reference_text': False}
+    if proof_kind == 'wrong_audio':
+        proof['audio_sha256'] = 'other-waveform'
+    if proof_kind == 'conditioned':
+        proof['conditioned_on_reference_text'] = True
+    monkeypatch.setattr(chatterbox_phonemes, 'confirm', AsyncMock(return_value=proof))
+    if proof_kind == 'matched':
+        report = await independent.audit_part(wav, source, edits, directory)
+        assert report['passed']
+        assert report['asr_identifier_mismatches'][0]['asr'][-1] == 'decks'
+        assert report['identifier_mismatches'] == []
+        assert report['model_name_phone_confirmation'] == proof
+    else:
+        with pytest.raises(tts.TtsIntegrityError if proof_kind == 'different' else RuntimeError):
+            await independent.audit_part(wav, source, edits, directory)
+
+
+@pytest.mark.asyncio
+async def test_model_name_confirmation_cannot_hide_extra_closing_speech(audit_case, monkeypatch):
+    from backend.pipeline import chatterbox_phonemes
+    wav, _source, _edits, directory, observed, _calls = audit_case
+    source = 'The report mentions EgoWild2Dex today.'
+    start = source.index('EgoWild2Dex')
+    edits = [{'start': start, 'end': start + 11, 'source': 'EgoWild2Dex',
+              'spoken': 'Ego Wild two Dex', 'kind': 'model_name'}]
+    observed['text'] = 'The report mentions Ego Wild two decks today. Thank you.'
+    confirm = AsyncMock(side_effect=AssertionError('Positive tail errors must stay rejected'))
+    monkeypatch.setattr(chatterbox_phonemes, 'confirm', confirm)
+    with pytest.raises(tts.TtsIntegrityError):
+        await independent.audit_part(wav, source, edits, directory)
+    confirm.assert_not_called()
 
 
 @pytest.mark.asyncio

@@ -164,6 +164,40 @@ async def audit_part(wav: Path, text: str, edits: list[dict], directory: Path) -
     }
     if tts._file_sha256(wav) != identity['audio_sha256']:
         raise RuntimeError('Original waveform changed during independent verification')
+    from difflib import SequenceMatcher
+    model_names = {edit['source'].casefold() for edit in edits if edit.get('kind') == 'model_name'}
+    expected_tokens = tts._lexical_tokens(text)
+    observed_tokens = tts._lexical_tokens(spelling['normalized_transcript'])
+    only_model_spelling = all(
+        tag == 'equal' or (tag == 'replace' and end == start + 1
+                           and expected_tokens[start] in model_names)
+        for tag, start, end, _left, _right in SequenceMatcher(
+            a=expected_tokens, b=observed_tokens, autojunk=False).get_opcodes())
+    if (identifier_mismatches and model_names
+            and only_model_spelling
+            and all(row.get('kind') == 'replace' and len(row['source']) == 1
+                    and row['source'][0] in model_names for row in identifier_mismatches)
+            and report['tail']['passed'] and report['normalized_tail']['passed']
+            and not extra_initialisms and not report['repeated_source_phrases']
+            and report['waveform_tail']['passed']):
+        from backend.pipeline import chatterbox_phonemes
+        acoustic = await chatterbox_phonemes.confirm(wav, text, edits, target / 'model-name-phones')
+        if acoustic is None or acoustic.get('supported') is not True:
+            raise RuntimeError('Independent model-name acoustic observation unavailable; preserving the completed job')
+        if (acoustic.get('audio_sha256') != identity['audio_sha256']
+                or acoustic.get('source_sha256') != identity['source_sha256']
+                or acoustic.get('conditioned_on_reference_text') is not False
+                or acoustic.get('method') != 'complete_source_phone_sequence'):
+            raise RuntimeError('Independent model-name acoustic evidence differs from the source waveform')
+        report['model_name_phone_confirmation'] = acoustic
+        if acoustic.get('passed') is True:
+            # Keep the independent recognizer's original spelling. Only an
+            # exact complete-source, unconditioned phone observation can
+            # distinguish Dex/decks spelling drift from missing speech.
+            report['asr_identifier_mismatches'] = identifier_mismatches
+            identifier_mismatches = []
+            report['identifier_mismatches'] = []
+            report['verification_mode'] = 'complete_source_model_name_phone_sequence'
     report['passed'] = (report['tail']['passed'] and report['normalized_tail']['passed']
                         and not extra_initialisms and not identifier_mismatches
                         and not report['repeated_source_phrases']

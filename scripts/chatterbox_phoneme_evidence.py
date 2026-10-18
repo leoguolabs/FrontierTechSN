@@ -27,7 +27,7 @@ from scripts.chatterbox_body_phone_references import (
 
 MODEL = 'facebook/wav2vec2-lv-60-espeak-cv-ft'
 REVISION = 'ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4'
-EVIDENCE_VERSION = 32
+EVIDENCE_VERSION = 33
 # Acoustic evidence can recognize an additional independently cited reading
 # without changing any frozen synthesis/word-hint policy or request identity.
 ACOUSTIC_WORD_REFERENCES = {

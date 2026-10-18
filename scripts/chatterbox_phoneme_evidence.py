@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import subprocess
 from functools import lru_cache
 from pathlib import Path
 
@@ -26,7 +27,18 @@ from scripts.chatterbox_body_phone_references import (
 
 MODEL = 'facebook/wav2vec2-lv-60-espeak-cv-ft'
 REVISION = 'ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4'
-EVIDENCE_VERSION = 31
+EVIDENCE_VERSION = 32
+# Acoustic evidence can recognize an additional independently cited reading
+# without changing any frozen synthesis/word-hint policy or request identity.
+ACOUSTIC_WORD_REFERENCES = {
+    'detailed': {
+        'variants': [['D', 'IY', 'T', 'EY', 'L', 'D']],
+        'ipa': ['ˈdiː.teɪld'],
+        'source_url': 'https://dictionary.cambridge.org/pronunciation/english/detailed',
+        'source_location': 'British pronunciation of detailed; supplements CMU D-IH-T-EY-L-D while retaining every consonant and the complete ending.',
+        'verified_on': '2026-10-18',
+    },
+}
 SYMBOL_CONJUNCTION_REFERENCE_VERSION = 1
 SYMBOL_INITIALISM_RE = re.compile(r'\b([A-Z])&([A-Z])\b')
 CONTEXTUAL_CLUSTER_REFERENCE_VERSION = 1
@@ -237,7 +249,7 @@ def reference_parts(text: str, edits: list[dict], *, contextual_word_cluster=Fal
             reference = supplemental_word_references().get(word.casefold())
             if reference:
                 variants = [*variants, *reference['variants']]
-            body_reference = body_reference_for(word)
+            body_reference = body_reference_for(word) or ACOUSTIC_WORD_REFERENCES.get(word.casefold())
             if body_reference:
                 variants = (body_reference['variants'] if body_reference.get('replace_dictionary') else
                             [*variants, *body_reference['variants']])
@@ -474,6 +486,9 @@ def compare_source(text: str, edits: list[dict], phones: str) -> dict:
     body_cited = {word.casefold(): body_reference_for(word)
                   for word in ordinary_source_words(unedited)
                   if body_reference_for(word)}
+    body_cited.update({word.casefold(): ACOUSTIC_WORD_REFERENCES[word.casefold()]
+                       for word in ordinary_source_words(unedited)
+                       if word.casefold() in ACOUSTIC_WORD_REFERENCES})
     if body_cited:
         report['cited_body_word_references'] = body_cited
         report['body_reference_sha256'] = body_reference_contract()['reference_sha256']
@@ -517,9 +532,22 @@ def audit_observation(wav: Path, text: str, edits: list[dict], observation: dict
             or observation.get('model_revision') != REVISION
             or observation.get('conditioned_on_reference_text') is not False):
         raise ValueError('Phone observation differs from the pinned unconditioned waveform evidence')
+    transform = observation.get('input_transform')
+    if transform is not None:
+        decoded = subprocess.check_output(['ffmpeg', '-v', 'error', '-i', str(wav),
+                                          '-ac', '1', '-ar', '16000', '-f', 'f32le', 'pipe:1'])
+        padded = b'\x00' * 16000 + decoded + b'\x00' * 16000
+        expected = {'version': 1, 'method': 'symmetric_zero_padding', 'sample_rate': 16000,
+                    'prefix_samples': 4000, 'suffix_samples': 4000,
+                    'source_pcm_sha256': hashlib.sha256(decoded).hexdigest(),
+                    'padded_pcm_sha256': hashlib.sha256(padded).hexdigest()}
+        if transform != expected:
+            raise ValueError('Phone observer padding changed the original speech samples')
     report = compare_source(text, edits, observation['phones'])
     report.update(audio_sha256=digest, model=MODEL, model_revision=REVISION,
                   conditioned_on_reference_text=False, overall_audio_acceptance=False)
+    if transform is not None:
+        report['input_transform'] = transform
     if hashlib.sha256(wav.read_bytes()).hexdigest() != digest:
         raise ValueError('Waveform changed during its phone evidence audit')
     return report

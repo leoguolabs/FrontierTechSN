@@ -13,6 +13,7 @@ def main():
     parser.add_argument('audio', type=Path)
     parser.add_argument('output', type=Path)
     parser.add_argument('--runtime-lib', type=Path, required=True)
+    parser.add_argument('--edge-padding-ms', type=int, choices=(0, 250), default=0)
     args = parser.parse_args()
     sys.path.insert(0, str(args.runtime_lib.resolve()))
     import numpy as np
@@ -35,6 +36,14 @@ def main():
     decoded = subprocess.check_output(['ffmpeg', '-v', 'error', '-i', str(args.audio),
                                        '-ac', '1', '-ar', '16000', '-f', 'f32le', 'pipe:1'])
     samples = np.frombuffer(decoded, dtype='<f4').copy()
+    transform = None
+    if args.edge_padding_ms:
+        padding = 4000  # One fixed 250 ms of silence at 16 kHz, on both sides.
+        samples = np.pad(samples, (padding, padding))
+        transform = {'version': 1, 'method': 'symmetric_zero_padding',
+                     'sample_rate': 16000, 'prefix_samples': padding, 'suffix_samples': padding,
+                     'source_pcm_sha256': hashlib.sha256(decoded).hexdigest(),
+                     'padded_pcm_sha256': hashlib.sha256(samples.astype('<f4').tobytes()).hexdigest()}
     inputs = feature(samples, sampling_rate=16000, return_tensors='pt')
     with torch.inference_mode():
         labels = torch.argmax(model(**inputs).logits, dim=-1)
@@ -44,6 +53,8 @@ def main():
     result = {'model': model_id, 'model_revision': revision, 'audio_sha256': digest,
               'audio_path': str(args.audio.resolve()), 'phones': phones, 'sample_rate': 16000,
               'conditioned_on_reference_text': False}
+    if transform is not None:
+        result['input_transform'] = transform
     args.output.parent.mkdir(parents=True, exist_ok=True)
     temporary = args.output.with_suffix(args.output.suffix + '.tmp')
     temporary.write_text(json.dumps(result, ensure_ascii=False, indent=2))

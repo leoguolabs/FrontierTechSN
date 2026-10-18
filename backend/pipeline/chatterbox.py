@@ -1472,6 +1472,7 @@ async def _generate_chatterbox(
                 # attempt budget or changing the provider request identity.
                 acoustic_rechecking = bool(
                     str(checkpoint.get('rejected') or '').startswith((
+                        'Model-identifier audio differs from its complete source phone sequence',
                         'Chatterbox initialism pronunciation mismatch:',
                         'Independent vocabulary audit rejected speech:',
                         'Chatterbox independent part audit:',

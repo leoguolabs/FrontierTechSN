@@ -107,6 +107,64 @@ async def test_local_observation_failure_is_uncertainty_not_a_fresh_attempt(tmp_
     assert wav.read_bytes()==b'preserved'
 
 
+@pytest.mark.parametrize('tamper', [None, 'prefix_samples', 'padded_pcm_sha256', 'source_pcm_sha256'])
+def test_padding_observation_retains_every_original_pcm_sample(tmp_path, monkeypatch, tamper):
+    from scripts import chatterbox_phoneme_evidence as evidence
+    wav = tmp_path / 'audio.wav'
+    wav.write_bytes(b'provider bytes')
+    pcm = b'\x01\x02\x03\x04' * 40
+    monkeypatch.setattr(evidence.subprocess, 'check_output', lambda command: pcm)
+    transform = {'version': 1, 'method': 'symmetric_zero_padding', 'sample_rate': 16000,
+                 'prefix_samples': 4000, 'suffix_samples': 4000,
+                 'source_pcm_sha256': hashlib.sha256(pcm).hexdigest(),
+                 'padded_pcm_sha256': hashlib.sha256(b'\x00' * 16000 + pcm + b'\x00' * 16000).hexdigest()}
+    if tamper:
+        transform[tamper] = 3999 if tamper == 'prefix_samples' else 'different'
+    observation = {'audio_sha256': hashlib.sha256(wav.read_bytes()).hexdigest(),
+                   'model': MODEL, 'model_revision': REVISION, 'conditioned_on_reference_text': False,
+                   'phones': 't ə d eɪ', 'input_transform': transform}
+    if tamper:
+        with pytest.raises(ValueError, match='original speech samples'):
+            evidence.audit_observation(wav, 'Today.', [], observation)
+    else:
+        report = evidence.audit_observation(wav, 'Today.', [], observation)
+        assert report['passed'] and report['input_transform'] == transform
+    assert wav.read_bytes() == b'provider bytes'
+
+
+@pytest.mark.asyncio
+async def test_model_name_padding_is_bounded_cached_and_unconditioned(tmp_path, monkeypatch):
+    runtime = tmp_path / 'runtime'
+    runtime.mkdir()
+    monkeypatch.setattr(config, 'CHATTERBOX_PHONEME_RUNTIME_LIB', str(runtime))
+    wav = tmp_path / 'audio.wav'
+    wav.write_bytes(b'provider bytes')
+    directory = tmp_path / 'verify'
+    target = directory / 'acoustic-phones' / hashlib.sha256(wav.read_bytes()).hexdigest()
+    target.mkdir(parents=True)
+    (target / 'observation.json').write_text(json.dumps({'phones': 'missing onset'}))
+    edits = [{'start': 0, 'end': 11, 'source': 'EgoWild2Dex',
+              'spoken': 'Ego Wild two Dex', 'kind': 'model_name'}]
+    monkeypatch.setattr(chatterbox_phonemes, 'reference_parts', lambda *_: [])
+    monkeypatch.setattr(chatterbox_phonemes, 'audit_observation',
+                        lambda _wav, text, _edits, observation: proof(_wav, text, bool(observation.get('input_transform'))))
+    calls = []
+
+    def observe(command, **kwargs):
+        calls.append(command)
+        assert 'EgoWild2Dex' not in command and command[-2:] == ['--edge-padding-ms', '250']
+        assert kwargs['env']['HF_HUB_OFFLINE'] == '1'
+        from pathlib import Path
+        Path(command[3]).write_text(json.dumps({'input_transform': {'version': 1}}))
+        return SimpleNamespace(returncode=0)
+
+    monkeypatch.setattr(chatterbox_phonemes.subprocess, 'run', observe)
+    for _ in range(2):
+        assert (await chatterbox_phonemes.confirm(wav, 'EgoWild2Dex', edits, directory))['passed']
+    assert len(calls) == 1
+    assert wav.read_bytes() == b'provider bytes'
+
+
 @pytest.mark.asyncio
 async def test_hash_bound_phone_observation_reuses_same_audio_without_another_model_run(tmp_path, monkeypatch):
     runtime=tmp_path/'runtime';runtime.mkdir()

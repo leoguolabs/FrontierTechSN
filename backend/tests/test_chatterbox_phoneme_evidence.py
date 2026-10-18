@@ -831,3 +831,14 @@ def test_syllabic_l_reference_never_removes_the_stressed_named_letter_l_vowel():
     prepared=edits(source,'SSH','double ess H')
     assert evidence.compare_source(source,prepared,PREFIX+'d ʌ b l ɛ s eɪ tʃ'+ENDING)['passed']
     assert not evidence.compare_source(source,prepared,PREFIX+'d ʌ b l s eɪ tʃ'+ENDING)['passed']
+
+
+@pytest.mark.parametrize('phones, passed', [
+    ('d iː t eɪ l d', True), ('d ɪ t eɪ l d', True),
+    ('d iː t eɪ l', False), ('d iː t eɪ l d iː', False),
+])
+def test_detailed_preserves_both_dictionary_vowels_and_complete_ending(phones, passed):
+    report = evidence.compare_source('Detailed.', [], phones)
+    assert report['passed'] is passed
+    assert report['cited_body_word_references']['detailed']['source_url'] == (
+        'https://dictionary.cambridge.org/pronunciation/english/detailed')

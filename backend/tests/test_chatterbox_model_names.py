@@ -212,3 +212,37 @@ async def test_explicit_model_articulation_keeps_both_prior_budgets(setup_client
         assert len(server.jobs) == 9
     for path, contents in originals.items():
         assert path.read_bytes() == contents
+
+
+@pytest.mark.asyncio
+async def test_acoustic_reference_fix_reaudits_same_completed_model_job(setup_client, monkeypatch):
+    from scripts import chatterbox_phoneme_evidence as evidence
+    server, script, directory, verifier, generate = setup_client
+    script.write_text(SOURCE)
+    server.pronunciation_ai.side_effect = lambda *a, **kw: json.dumps({'decisions': [
+        {'id': i, 'source': edit['source'], 'action': 'spell', 'spoken': edit['spoken'],
+         'reason': 'Original contextual decision.'} for i, edit in enumerate(EDITS)]})
+    monkeypatch.setattr(evidence, 'EVIDENCE_VERSION', 31)
+    verifier.side_effect = tts.TtsIntegrityError('Chatterbox initialism pronunciation mismatch: name')
+    with pytest.raises(tts.TtsIntegrityError):
+        await generate()
+    original_requests = {p: p.read_bytes() for p in directory.glob('*.request-*.json')}
+    verifier.side_effect = tts.TtsIntegrityError('Model-identifier audio differs from its complete source phone sequence')
+    with pytest.raises(tts.TtsIntegrityError):
+        await generate()
+    assert len(server.jobs) == 6
+    verifier.side_effect = lambda *a, **kw: advisory_report()
+    monkeypatch.setattr(evidence, 'EVIDENCE_VERSION', 32)
+    monkeypatch.setattr(av_sync, 'ensure_word_transcript', AsyncMock(return_value=(
+        [{'text': SOURCE}], {'passed': True})))
+
+    async def confirm(path, text, edits, target):
+        return {'supported': True, 'passed': True, 'method': 'complete_source_phone_sequence',
+                'conditioned_on_reference_text': False, 'audio_sha256': tts._file_sha256(path),
+                'source_sha256': hashlib.sha256(text.encode()).hexdigest()}
+
+    monkeypatch.setattr(chatterbox_phonemes, 'confirm', confirm)
+    await generate()
+    assert len(server.jobs) == 6
+    for path, contents in original_requests.items():
+        assert path.read_bytes() == contents

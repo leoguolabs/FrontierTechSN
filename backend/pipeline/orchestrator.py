@@ -679,6 +679,13 @@ async def run_daily_review_resume(
         if prior_candidate.is_file():
             digest = hashlib.sha256(prior_candidate.read_bytes()).hexdigest()[:16]
             prior_candidate.replace(prior_candidate.with_name(f"candidate-before-edit-{digest}.txt"))
+        # A failed-review receipt also binds a recoverable corrected candidate.
+        # Retire it before an explicit edit, including when the new Web review
+        # raises before it can write a replacement receipt.
+        prior_report = task_dir / "review" / "fact_check_report.json"
+        if prior_report.is_file():
+            digest = hashlib.sha256(prior_report.read_bytes()).hexdigest()[:16]
+            prior_report.replace(prior_report.with_name(f"report-before-edit-{digest}.json"))
         draft_path.write_text(script_override, encoding="utf-8")
     script = draft_path.read_text(encoding="utf-8").strip()
     from backend.daily_news.freshness import refresh_review_history

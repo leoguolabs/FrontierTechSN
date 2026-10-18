@@ -193,6 +193,8 @@ async def test_review_resume_preserves_an_edit_instead_of_recovering_old_candida
     (e.root / "review").mkdir()
     candidate = e.root / "review/candidate-duration-cycle-1.txt"
     candidate.write_text(e.reviewed)
+    prior_report = e.root / "review/fact_check_report.json"
+    prior_report.write_text(json.dumps({"passed": False, "correction_count": 3}))
     edited = e.reviewed.replace("smaller chip", "more efficient chip")
     with (patch.object(orchestrator, "update_task", AsyncMock()),
           patch.object(freshness, "refresh_review_history", AsyncMock()),
@@ -203,6 +205,8 @@ async def test_review_resume_preserves_an_edit_instead_of_recovering_old_candida
     assert check.await_args.kwargs["recover_saved_candidate"] is False
     assert not candidate.exists()
     assert list((e.root / "review").glob("candidate-before-edit-*.txt"))
+    assert not prior_report.exists()
+    assert list((e.root / "review").glob("report-before-edit-*.json"))
     assert "more efficient chip" in Path(task.script_path).read_text()
     regenerate.assert_awaited_once()
 

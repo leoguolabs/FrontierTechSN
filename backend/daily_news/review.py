@@ -844,6 +844,25 @@ def _load_story_evidence(review_dir, candidate, dossier, edition_date, number):
         return None
 
 
+def _saved_failed_review_candidate(output_dir: Path, dossier: ResearchDossier) -> str | None:
+    """Resume a hash-bound corrected draft, without treating it as approved."""
+    review_dir = output_dir / "review"
+    try:
+        report = json.loads((review_dir / "fact_check_report.json").read_text())
+        contract = report["final_contract"]
+        count = report["correction_count"]
+        if (report.get("passed") is not False or contract.get("passed") is not True
+                or type(count) is not int or not 1 <= count <= 3
+                or contract["dossier_selected_ids"] != [a.id for a in dossier.selected]):
+            return None
+        candidate = (review_dir / f"candidate-cycle-{count + 1}.txt").read_text()
+        if hashlib.sha256(candidate.encode()).hexdigest() != contract["script_sha256"]:
+            return None
+        return candidate
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return None
+
+
 def _saved_full_review_candidate(
     output_dir: Path,
     dossier: ResearchDossier,
@@ -1869,12 +1888,15 @@ async def _review_daily_script(
     review_dir = output_dir / "review"
     review_dir.mkdir(parents=True, exist_ok=True)
     attempts: list[dict[str, Any]] = []
-    candidate = (_saved_full_review_candidate(output_dir, dossier, edition_date)
-                 if recover_saved_candidate else None) or script
+    candidate = (
+        (_saved_failed_review_candidate(output_dir, dossier)
+         or _saved_full_review_candidate(output_dir, dossier, edition_date))
+        if recover_saved_candidate else None
+    ) or script
     if candidate != script and log:
         log(
-            "Review resume: recovered the exact saved duration candidate and "
-            "its complete prompt-matched first-round Web reviews"
+            "Review resume: recovered the bound saved candidate; checking full "
+            "claim coverage with exact dependency-matched Web evidence"
         )
     protected_story_numbers: set[int] = set()
     max_corrections = 3
@@ -1882,7 +1904,7 @@ async def _review_daily_script(
     contract_repairs: list[dict[str, Any]] = []
     audit_round = 0
     repeated_issue_counts: dict[tuple, int] = {}
-    diagnosed_story_numbers: set[int] = set()
+    diagnosed_stories: set[tuple[int, str]] = set()
     failure_reason = ""
     all_numbers = list(range(1, len(dossier.selected) + 1))
     review_numbers = list(all_numbers)
@@ -2122,7 +2144,8 @@ async def _review_daily_script(
 
         issue_signature = tuple(sorted(
             (
-                tuple(issue.get("evidence_story_numbers", [])),
+                tuple((n, dossier.selected[n - 1].id)
+                      for n in issue.get("evidence_story_numbers", [])),
                 str(issue.get("claim", "")),
                 tuple(issue.get("claim_ids", [])),
             )
@@ -2148,9 +2171,16 @@ async def _review_daily_script(
             issue for issue in blocking
             if dossier.freshness_policy_version
             and re.search(r"audit codes [A-F]*[AF]", str(issue.get("claim", "")), re.I)
-            and not diagnosed_story_numbers.intersection(issue.get("evidence_story_numbers", []))
+            and any((n, dossier.selected[n - 1].id) not in diagnosed_stories
+                    for n in issue.get("evidence_story_numbers", []))
         ]
         if freshness_issues:
+            # Diagnosis may replace an article in place. Record the identities
+            # it actually inspected, so a replacement gets its own diagnosis.
+            diagnosed_identities = {
+                (n, dossier.selected[n - 1].id)
+                for issue in freshness_issues for n in issue["evidence_story_numbers"]
+            }
             if log:
                 log("Freshness audit disputed the saved proposal; obtaining sourced diagnosis before correction")
             try:
@@ -2162,9 +2192,7 @@ async def _review_daily_script(
             except RuntimeError as exc:
                 failure_reason = str(exc)
                 break
-            diagnosed_story_numbers.update(
-                n for issue in freshness_issues for n in issue["evidence_story_numbers"]
-            )
+            diagnosed_stories.update(diagnosed_identities)
         candidate = await revise_daily_script(
             candidate,
             dossier,

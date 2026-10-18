@@ -1,5 +1,7 @@
 import asyncio
+import hashlib
 import json
+from dataclasses import replace
 from datetime import date
 from unittest.mock import AsyncMock, patch
 
@@ -61,6 +63,70 @@ def test_freshness_failure_gets_diagnosis_once_and_still_stops_on_repeat(coverag
     report = json.loads((tmp_path / "review/fact_check_report.json").read_text())
     assert report["passed"] is False
     assert report["manual_review_required"] is True
+
+
+def test_replacement_gets_its_own_diagnosis_before_repeat_guard(coverage_case, tmp_path):
+    script, dossier, claims = coverage_case
+    dossier.freshness_policy_version = 1
+    original = dossier.selected[6].id
+    diagnosed = []
+    issue = review._batch_payload(
+        "W7AF@7.0,7.2", [7], claim_catalog=claims, require_web=True,
+    )["issues"][0]
+
+    async def verdict(_prompt, *, story_numbers, **_kwargs):
+        issues = [issue] if 7 in story_numbers else []
+        return {"approved": not issues, "issues": issues}, "[RAW]", "", "chatgpt"
+
+    async def diagnose(_script, current, *_args, **_kwargs):
+        diagnosed.append(current.selected[6].id)
+        if len(diagnosed) == 1:
+            current.selected[6] = replace(current.selected[6], id="replacement")
+
+    from backend.daily_news import freshness
+    revise = AsyncMock(return_value=script)
+    with (
+        patch.object(freshness, "refresh_review_history", AsyncMock()),
+        patch.object(review, "script_contract_report", return_value={"passed": True, "failures": []}),
+        patch.object(review, "_web_story_review", AsyncMock(side_effect=verdict)),
+        patch.object(review, "_diagnose_freshness", AsyncMock(side_effect=diagnose)),
+        patch.object(review, "revise_daily_script", revise),
+        patch.object(review, "close_opencli_site_sessions", AsyncMock()),
+    ):
+        with pytest.raises(RuntimeError, match="same claim-level blocking verdict"):
+            asyncio.run(review.review_daily_script(
+                script, dossier, date(2026, 9, 21), tmp_path, language="en",
+                closing_remarks="Goodbye.", ai_endpoint=None, ai_model=None, provider_id=None,
+            ))
+    assert diagnosed == [original, "replacement"]
+    assert revise.await_count == 2
+
+
+@pytest.mark.parametrize("mutation", ["valid", "edited", "replaced", "approved", "invalid_count"])
+def test_failed_candidate_recovery_requires_report_binding(coverage_case, tmp_path, mutation):
+    script, dossier, _ = coverage_case
+    saved = tmp_path / "review"
+    saved.mkdir()
+    candidate = saved / "candidate-cycle-4.txt"
+    candidate.write_text(script)
+    report = {
+        "passed": False, "correction_count": 3,
+        "final_contract": {
+            "passed": True, "dossier_selected_ids": [a.id for a in dossier.selected],
+            "script_sha256": hashlib.sha256(script.encode()).hexdigest(),
+        },
+    }
+    if mutation == "edited":
+        candidate.write_text(script + " changed")
+    elif mutation == "replaced":
+        dossier.selected[6] = replace(dossier.selected[6], id="replacement")
+    elif mutation == "approved":
+        report["passed"] = True
+    elif mutation == "invalid_count":
+        report["correction_count"] = "3"
+    (saved / "fact_check_report.json").write_text(json.dumps(report))
+    recovered = review._saved_failed_review_candidate(tmp_path, dossier)
+    assert recovered == (script if mutation == "valid" else None)
 
 
 def test_diagnostic_preserves_browser_rendered_newline_without_relaxing_web_gate(coverage_case):

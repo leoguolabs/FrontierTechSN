@@ -787,7 +787,7 @@ PRONUNCIATION_TOKEN_RE = re.compile(
     r"(?:[A-Za-z]\.)+[A-Za-z]\.?(?:['’][A-Za-z]+)?|[A-Za-z0-9]+(?:\.\d+)*(?:['’][A-Za-z0-9]+)?"
 )
 
-OBSERVATION_SPELLING_VERSION = 13
+OBSERVATION_SPELLING_VERSION = 14
 
 
 def _match_spoken_letters(tokens: list[str], start: int, end: int, target: str) -> int | None:
@@ -908,6 +908,10 @@ def _pronunciation_report(text: str, words: list[dict], edits: list[dict] | None
                 compound_suffixes.setdefault(suffix, []).append(
                     (expanded[0], expanded[1:], normalize(local[0]["source"]))
                 )
+        if any(edit.get('kind') == 'number' and edit['start'] < token.end()
+               and edit['end'] > token.start() for edit in (edits or [])):
+            model_identifiers.update(index for index in range(token_start, len(expected))
+                                     if re.search(r'\d', expected[index]))
     # Recognizers can omit the separator in a source model identifier.
     # Expand only an exact source-bound letter/digit pair: GPT7 cannot
     # stand in for GPT-6, nor may separate numeric groups be combined.
@@ -924,7 +928,18 @@ def _pronunciation_report(text: str, words: list[dict], edits: list[dict] | None
             model_identifiers.add(token_indexes[right.start()])
     verification_targets = targets | model_identifiers
     observed = []
-    for word in words:
+    # Whisper may place an explicit decimal point at the next word boundary:
+    # "V4 .1" or "V 4 .1". Retain that observed point only for an exact
+    # source decimal; never infer a missing point or join separate integers.
+    decimal_forms = {normalize(token[0]) for token in source if re.search(r'\d\.\d', token[0])}
+    decimal_forms.update(expected[index] for index in model_identifiers if '.' in expected[index])
+    transcript = tts._raw_transcript(words)
+    transcript = re.sub(
+        r'\b([A-Za-z]*\d+)[ \t]+(\.\d+)(?![\d.])',
+        lambda match: ''.join(match.groups()) if ''.join(match.groups()).casefold() in decimal_forms else match[0],
+        transcript,
+    )
+    for word in [{'text': transcript}]:
         for token in PRONUNCIATION_TOKEN_RE.finditer(str(word.get("text") or "").replace('&', ' and ')):
             value = normalize(token[0])
             expanded = observed_compounds.get(value)
@@ -1311,6 +1326,21 @@ async def _generate_chatterbox(
                                     max_chars=min(contract['max_chars'], int(capabilities['max_chars'])),
                                     pronunciation_edits=pronunciation_plan['edits'], legacy_short_clauses=True)
         chunks, chunk_stems = _context_chunk_layout(directory, legacy_chunks, chunks)
+        identity_base = {
+            **revisions, 'provider': 'chatterbox', 'url': base_url,
+            'deployment_fingerprint': fingerprint,
+            'voice': voice, 'voice_fingerprint': voice_info['fingerprint'], 'language': language,
+            'pronunciation_policy': contract['pronunciation_policy'],
+            'pronunciation_plan_sha256': pronunciation_plan['plan_sha256'],
+            'seed': contract['seed'], 'verifier_version': contract['verifier_version'],
+            'shared_verifier_version': contract['shared_verifier_version'],
+            'synthesis_speed_ratio': 1.0, 'synthesis_parameters': contract['synthesis_parameters'],
+        }
+        from backend.pipeline.chatterbox_numeric_repair import repair_layout
+        chunks, chunk_stems, effective_edits, numeric_bindings = repair_layout(
+            directory, normalized, chunks, chunk_stems, pronunciation_plan['edits'], identity_base,
+            max_words=contract['chunk_words'], max_chars=min(contract['max_chars'], int(capabilities['max_chars'])),
+        )
         if selected_audit_parts is not None and any(part > len(chunks) for part in selected_audit_parts):
             raise ValueError('A private audit part index exceeds the frozen source chunk count')
         if selected_audit_parts is None:
@@ -1345,28 +1375,18 @@ async def _generate_chatterbox(
             if selected_audit_parts is not None and index not in selected_audit_parts:
                 continue
             synthesis_text = _render_provider_span(
-                normalized, start, source_offset, pronunciation_plan["edits"],
+                normalized, start, source_offset, effective_edits,
             )
             chunk_edits = [{**edit, "start": edit["start"] - start, "end": edit["end"] - start}
-                           for edit in pronunciation_plan["edits"]
+                           for edit in effective_edits
                            if start <= edit["start"] and edit["end"] <= source_offset]
             stem = chunk_stems[index - 1]
             (directory / f"{stem}.txt").write_text(text, encoding="utf-8")
             (synthesis_directory / f"{stem}.txt").write_text(synthesis_text, encoding="utf-8")
             path = directory / f"{stem}_generated.wav"
-            identity = {
-                **revisions, "provider": "chatterbox", "url": base_url,
-                "deployment_fingerprint": fingerprint,
-                "voice": voice, "voice_fingerprint": voice_info["fingerprint"],
-                "language": language, "text": text,
-                "synthesis_text": synthesis_text,
-                "pronunciation_policy": contract["pronunciation_policy"],
-                "pronunciation_plan_sha256": pronunciation_plan["plan_sha256"],
-                "seed": contract["seed"], "verifier_version": contract["verifier_version"],
-                "shared_verifier_version": contract["shared_verifier_version"],
-                "synthesis_speed_ratio": 1.0,
-                "synthesis_parameters": contract["synthesis_parameters"],
-            }
+            identity = {**identity_base, 'text': text, 'synthesis_text': synthesis_text}
+            if stem in numeric_bindings:
+                identity['numeric_repair_sha256'] = numeric_bindings[stem]
             word_refs = [pronunciation.word_hint_reference(edit)
                          for edit in chunk_edits if edit.get('kind') == 'word']
             if word_refs:

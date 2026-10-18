@@ -6,7 +6,7 @@ from backend.pipeline import tts_pronunciation as pronunciation
 from backend.pipeline.tts_word_pronunciation import lexicon
 
 
-def model_name_spoken(source: str) -> str:
+def model_name_spoken(source: str, hints: dict | None = None) -> str:
     """Separate source words and spell digits without inventing a pronunciation.
 
     Single capitals, unknown words, abbreviations and punctuation are excluded.
@@ -17,8 +17,16 @@ def model_name_spoken(source: str) -> str:
             or not any(part.isdigit() for part in parts)
             or any(not lexicon().get(part.casefold()) for part in parts if part.isalpha())):
         raise ValueError('Model name lacks exact independent dictionary word boundaries')
-    return ' '.join(pronunciation.numeric_cue(part) if part.isdigit() else part
-                    for part in parts)
+    hints = {} if hints is None else hints
+    if not isinstance(hints, dict) or set(hints) - {part for part in parts if part.isalpha()}:
+        raise ValueError('Model-name hints must belong to its exact source words')
+    from backend.pipeline.tts_word_pronunciation import validate_word_hint
+    for word, hint in hints.items():
+        if not isinstance(hint, dict):
+            raise ValueError('Invalid model-name word hint')
+        validate_word_hint(word, hint.get('spoken'), hint.get('phones'))
+    return ' '.join(pronunciation.numeric_cue(part) if part.isdigit()
+                    else hints.get(part, {}).get('spoken', part) for part in parts)
 
 
 def repair_edits(text: str, edits: list[dict]) -> list[dict]:

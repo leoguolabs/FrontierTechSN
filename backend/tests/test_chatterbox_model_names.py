@@ -141,3 +141,74 @@ def test_repair_never_replaces_live_or_unowned_requests(tmp_path, defect):
         target.write_text('{}')
     with pytest.raises(RuntimeError):
         chatterbox._model_name_repair(tmp_path, 'part', identity, EDITS, audio_stem='part')
+
+
+@pytest.mark.parametrize('hint', [
+    {'spoken': 'Eagle', 'phones': ['IY', 'G', 'AH', 'L']},
+    {'spoken': 'E-go', 'phones': ['IY', 'G', 'AH', 'L']},
+    {'spoken': 'E-go go', 'phones': ['IY', 'G', 'OW']},
+])
+def test_model_articulation_cannot_change_source_phones(hint):
+    with pytest.raises(ValueError):
+        model_name_spoken('EgoWild2Dex', {'Ego': hint})
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('outcome', ['pass', 'reject', 'unavailable'])
+async def test_explicit_model_articulation_keeps_both_prior_budgets(setup_client, monkeypatch, outcome):
+    server, script, directory, verifier, generate = setup_client
+    script.write_text(SOURCE)
+    server.pronunciation_ai.side_effect = lambda *a, **kw: json.dumps({'decisions': [
+        {'id': i, 'source': edit['source'], 'action': 'spell', 'spoken': edit['spoken'],
+         'reason': 'Original contextual decision.'} for i, edit in enumerate(EDITS)]})
+    verifier.side_effect = tts.TtsIntegrityError('Chatterbox initialism pronunciation mismatch: name')
+    with pytest.raises(tts.TtsIntegrityError):
+        await generate()
+    verifier.side_effect = tts.TtsIntegrityError('Model-identifier audio differs from its complete source phone sequence')
+    with pytest.raises(tts.TtsIntegrityError):
+        await generate()
+    assert len(server.jobs) == 6
+    originals = {p: p.read_bytes() for p in directory.glob('*.request-*.json')}
+    stem = 'tts_input_part_001.model-name-repair'
+    first = json.loads((directory / f'{stem}.json').read_text())
+    marker = directory / f'{stem}.model-name-articulation-input.json'
+    hints = {'EgoWild2Dex': {'Ego': {'spoken': 'E-go', 'phones': ['IY', 'G', 'OW']}}}
+    marker.write_text(json.dumps({'version': 1, 'source_sha256': hashlib.sha256(SOURCE.encode()).hexdigest(),
+                                 'synthesis_sha256': hashlib.sha256(first['synthesis_text'].encode()).hexdigest(),
+                                 'hints': hints}))
+    monkeypatch.setattr(av_sync, 'ensure_word_transcript', AsyncMock(return_value=(
+        [{'text': SOURCE.replace('EgoWild2Dex', 'Ego Wild two Dex')}], {'passed': True})))
+    verifier.side_effect = lambda *a, **kw: advisory_report()
+
+    async def confirm(path, text, edits, target):
+        assert reference_parts(text, edits)
+        return {'supported': outcome != 'unavailable', 'passed': outcome == 'pass',
+                'method': 'complete_source_phone_sequence', 'conditioned_on_reference_text': False,
+                'audio_sha256': tts._file_sha256(path),
+                'source_sha256': hashlib.sha256(text.encode()).hexdigest()}
+
+    monkeypatch.setattr(chatterbox_phonemes, 'confirm', confirm)
+    if outcome == 'pass':
+        await generate()
+        await generate()
+        assert len(server.jobs) == 7
+        metadata = json.loads((directory / 'tts_input_part_001_generated.json').read_text())
+        assert metadata['identity']['text'] == SOURCE
+        assert metadata['synthesis_request']['text'] == 'The eigh eye team reports on E-go Wild two Dex.'
+        assert metadata['integrity']['pronunciation']['required_model_phone_confirmation']['passed']
+        assert metadata['integrity']['independent_audit']['passed']
+        marker.write_text('{}')
+        with pytest.raises(RuntimeError, match='unchanged first repair'):
+            await generate()
+    elif outcome == 'unavailable':
+        for _ in range(2):
+            with pytest.raises(RuntimeError, match='acoustic verification unavailable'):
+                await generate()
+        assert len(server.jobs) == 7
+    else:
+        for _ in range(2):
+            with pytest.raises(tts.TtsIntegrityError):
+                await generate()
+        assert len(server.jobs) == 9
+    for path, contents in originals.items():
+        assert path.read_bytes() == contents

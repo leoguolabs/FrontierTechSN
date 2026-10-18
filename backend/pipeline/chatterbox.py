@@ -177,18 +177,41 @@ def _punctuation_repair(directory: Path, stem: str, identity: dict, *,
 
 
 def _model_name_repair(directory: Path, stem: str, identity: dict,
-                       edits: list[dict], *, audio_stem: str) -> tuple[dict, str, list[dict]]:
+                       edits: list[dict], *, audio_stem: str,
+                       articulation: bool = False) -> tuple[dict, str, list[dict]]:
     """Recover a misclassified CamelCase fragment after three proven rejections.
 
     The frozen plan and previous requests stay immutable. Only this part gets
     a new bounded request namespace and a complete-source acoustic requirement.
     """
-    from backend.pipeline.tts_model_names import repair_edits
+    from backend.pipeline.tts_model_names import model_name_spoken, repair_edits
 
-    corrected = repair_edits(identity['text'], edits)
+    kind = 'model-name-articulation' if articulation else 'model-name-repair'
+    if articulation:
+        supplied = directory / f'{stem}.{kind}-input.json'
+        if not supplied.exists():
+            return identity, stem, edits
+        hint = _read_json(supplied)
+        names = {edit['source'] for edit in edits if edit.get('kind') == 'model_name'}
+        hints = hint.get('hints')
+        if (hint.get('version') != 1 or not identity.get('model_name_repair_sha256')
+                or identity.get('model_name_articulation_sha256')
+                or hint.get('source_sha256') != hashlib.sha256(identity['text'].encode()).hexdigest()
+                or hint.get('synthesis_sha256') != hashlib.sha256(identity['synthesis_text'].encode()).hexdigest()
+                or not isinstance(hints, dict) or not hints or set(hints) - names):
+            raise RuntimeError('Model-name articulation must bind the unchanged first repair')
+        try:
+            corrected = [{**edit, 'model_name_hints': hints[edit['source']],
+                          'spoken': model_name_spoken(edit['source'], hints[edit['source']])}
+                         if edit.get('kind') == 'model_name' and edit['source'] in hints else edit
+                         for edit in edits]
+        except (ValueError, TypeError) as exc:
+            raise RuntimeError('Model-name articulation must preserve every dictionary source phone') from exc
+    else:
+        corrected = repair_edits(identity['text'], edits)
     if corrected == edits:
         return identity, stem, edits
-    marker = directory / f'{stem}.model-name-repair.json'
+    marker = directory / f'{stem}.{kind}.json'
     originals = []
     for attempt in range(MAX_INTEGRITY_ATTEMPTS):
         path = directory / f'{stem}.request-{attempt}.json'
@@ -199,9 +222,12 @@ def _model_name_repair(directory: Path, stem: str, identity: dict,
         if (not checkpoint.get('job_id')
                 or checkpoint.get('identity') != _digest({'identity': identity, 'payload': payload})
                 or not str(checkpoint.get('rejected', '')).startswith(
-                    'Chatterbox initialism pronunciation mismatch:')):
+                    'Model-identifier audio differs from its complete source phone sequence'
+                    if articulation else 'Chatterbox initialism pronunciation mismatch:')):
             if marker.exists():
                 raise RuntimeError('Model-name repair lost its exhausted source requests')
+            if articulation:
+                raise RuntimeError('Model-name articulation requires exhausted rejected audio')
             return identity, stem, edits
         originals.append(tts._file_sha256(path))
     synthesis = _render_provider_span(identity['text'], 0, len(identity['text']), corrected)
@@ -214,14 +240,15 @@ def _model_name_repair(directory: Path, stem: str, identity: dict,
     if marker.exists() and _read_json(marker) != repair:
         raise RuntimeError('Model-name repair changed after activation; preserving jobs')
     digest = _digest(repair)
+    hash_field = kind.replace('-', '_') + '_sha256'
     wav = directory / f'{audio_stem}_generated.wav'
     if wav.exists() and _read_json(tts._part_metadata_path(wav)).get('identity', {}).get(
-            'model_name_repair_sha256') != digest:
+            hash_field) != digest:
         raise RuntimeError('Model-name repair cannot replace existing accepted audio')
     if not marker.exists():
         _write_json(marker, repair)
-    return ({**identity, 'synthesis_text': synthesis, 'model_name_repair_sha256': digest},
-            f'{stem}.model-name-repair', corrected)
+    return ({**identity, 'synthesis_text': synthesis, hash_field: digest},
+            f'{stem}.{kind}', corrected)
 
 
 def _bind_verification(directory: Path, binding: dict) -> None:
@@ -1366,6 +1393,11 @@ async def _generate_chatterbox(
             identity, request_stem, chunk_edits = _model_name_repair(
                 directory, request_stem, identity, chunk_edits, audio_stem=stem,
             )
+            if identity.get('model_name_repair_sha256'):
+                identity, request_stem, chunk_edits = _model_name_repair(
+                    directory, request_stem, identity, chunk_edits, audio_stem=stem,
+                    articulation=True,
+                )
             synthesis_text = identity['synthesis_text']
             if request_stem != stem:
                 (synthesis_directory / f'{request_stem}.txt').write_text(synthesis_text, encoding='utf-8')

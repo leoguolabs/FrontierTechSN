@@ -295,6 +295,15 @@ def reference_parts(text: str, edits: list[dict], *, contextual_word_cluster=Fal
         start, end = edit['start'], edit['end']
         if not cursor <= start < end <= len(text) or text[start:end] != edit['source']:
             raise ValueError('Spelling edit differs from its source span')
+        if edit.get('kind') == 'model_name':
+            from backend.pipeline.tts_model_names import model_name_spoken
+            spoken = model_name_spoken(edit['source'])
+            if edit['spoken'] != spoken:
+                raise ValueError('Model-name reading differs from its exact source words and digits')
+            ordinary(text[cursor:start])
+            ordinary(spoken)
+            cursor = end
+            continue
         if edit.get('kind') == 'programming':
             if (edit['source'] not in PROGRAMMING_REFERENCES
                     or edit['spoken'] != pronunciation.PROGRAMMING_CUES[edit['source']]):

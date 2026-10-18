@@ -176,6 +176,54 @@ def _punctuation_repair(directory: Path, stem: str, identity: dict, *,
     return repaired, f'{stem}.punctuation-repair'
 
 
+def _model_name_repair(directory: Path, stem: str, identity: dict,
+                       edits: list[dict], *, audio_stem: str) -> tuple[dict, str, list[dict]]:
+    """Recover a misclassified CamelCase fragment after three proven rejections.
+
+    The frozen plan and previous requests stay immutable. Only this part gets
+    a new bounded request namespace and a complete-source acoustic requirement.
+    """
+    from backend.pipeline.tts_model_names import repair_edits
+
+    corrected = repair_edits(identity['text'], edits)
+    if corrected == edits:
+        return identity, stem, edits
+    marker = directory / f'{stem}.model-name-repair.json'
+    originals = []
+    for attempt in range(MAX_INTEGRITY_ATTEMPTS):
+        path = directory / f'{stem}.request-{attempt}.json'
+        checkpoint = _read_request_checkpoint(path)
+        payload = {'text': identity['synthesis_text'], 'language_id': identity['language'],
+                   'voice': identity['voice'], 'seed': (identity['seed'] + attempt) % (2 ** 32),
+                   **identity['synthesis_parameters']}
+        if (not checkpoint.get('job_id')
+                or checkpoint.get('identity') != _digest({'identity': identity, 'payload': payload})
+                or not str(checkpoint.get('rejected', '')).startswith(
+                    'Chatterbox initialism pronunciation mismatch:')):
+            if marker.exists():
+                raise RuntimeError('Model-name repair lost its exhausted source requests')
+            return identity, stem, edits
+        originals.append(tts._file_sha256(path))
+    synthesis = _render_provider_span(identity['text'], 0, len(identity['text']), corrected)
+    if (synthesis == identity['synthesis_text'] or len(synthesis) > config.CHATTERBOX_TTS_MAX_CHARS
+            or _synthesis_word_count(synthesis) > config.CHATTERBOX_TTS_CHUNK_WORDS):
+        raise RuntimeError('Model-name repair exceeds the original bounded input contract')
+    repair = {'version': 1, 'identity_sha256': _digest(identity),
+              'original_request_sha256': originals, 'edits': corrected,
+              'synthesis_text': synthesis}
+    if marker.exists() and _read_json(marker) != repair:
+        raise RuntimeError('Model-name repair changed after activation; preserving jobs')
+    digest = _digest(repair)
+    wav = directory / f'{audio_stem}_generated.wav'
+    if wav.exists() and _read_json(tts._part_metadata_path(wav)).get('identity', {}).get(
+            'model_name_repair_sha256') != digest:
+        raise RuntimeError('Model-name repair cannot replace existing accepted audio')
+    if not marker.exists():
+        _write_json(marker, repair)
+    return ({**identity, 'synthesis_text': synthesis, 'model_name_repair_sha256': digest},
+            f'{stem}.model-name-repair', corrected)
+
+
 def _bind_verification(directory: Path, binding: dict) -> None:
     """Keep reports from another waveform out of the current attempt's evidence."""
     directory.mkdir(parents=True, exist_ok=True)
@@ -640,7 +688,8 @@ def _cached_part(path: Path, identity: dict, *, verify_text: bool) -> dict | Non
                 or acoustic.get('source_sha256') != hashlib.sha256(identity['text'].encode()).hexdigest()
                 or acoustic.get('word_hint_references') != identity['word_hint_references']):
             return None
-    if verify_text and guard.get('source_bound_model_repartitions'):
+    if verify_text and (guard.get('source_bound_model_repartitions')
+                        or identity.get('model_name_repair_sha256')):
         acoustic = guard.get('required_model_phone_confirmation') or {}
         if (acoustic.get('passed') is not True or acoustic.get('supported') is not True
                 or acoustic.get('conditioned_on_reference_text') is not False
@@ -1024,7 +1073,8 @@ async def _verify_pronunciation(path: Path, text: str, directory: Path, *, emit,
     if not normalized_tail['passed']:
         report['trailing_speech'] = normalized_tail
     word_hint = any(edit.get('kind') == 'word' for edit in edits)
-    model_repartition = bool(report.get('source_bound_model_repartitions'))
+    model_repartition = (bool(report.get('source_bound_model_repartitions'))
+                         or any(edit.get('kind') == 'model_name' for edit in edits))
     if word_hint:
         report['word_hint_required'] = True
     if words and (not report['passed'] or word_hint or model_repartition) and report['trailing_speech']['passed']:
@@ -1313,6 +1363,9 @@ async def _generate_chatterbox(
                     directory, request_stem, identity, chunk_edits, audio_stem=stem,
                     repair_kind='initialism-alternative',
                 )
+            identity, request_stem, chunk_edits = _model_name_repair(
+                directory, request_stem, identity, chunk_edits, audio_stem=stem,
+            )
             synthesis_text = identity['synthesis_text']
             if request_stem != stem:
                 (synthesis_directory / f'{request_stem}.txt').write_text(synthesis_text, encoding='utf-8')

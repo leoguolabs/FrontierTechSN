@@ -1,0 +1,15 @@
+1
+00:00:00,600 --> 00:00:02,484
+An AI model can give you an answer.
+
+2
+00:00:06,300 --> 00:00:08,242
+An agent can take the next step.
+
+3
+00:00:12,100 --> 00:00:15,667
+It reads a goal, uses a tool, and checks the result.
+
+4
+00:00:18,100 --> 00:00:21,955
+Then it tries again. Action. Feedback. Correction.

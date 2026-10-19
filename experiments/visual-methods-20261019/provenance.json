@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-19",
+  "authoring": "Codex session; no Opus invocation",
+  "spec": {
+    "fps": 24,
+    "frames": 576,
+    "width": 1920,
+    "height": 1080
+  },
+  "sources": {
+    "lemo-opuscar": {
+      "commit": "b5e8ef93930b6d828f352055a689320f138237b1"
+    },
+    "video-shotcraft": {
+      "commit": "43bd349a136651865ecfa6ea1cf012f6e957d304"
+    }
+  },
+  "runtime": {
+    "@motion-canvas/2d": "^3.17.2",
+    "@motion-canvas/core": "^3.17.2",
+    "@motion-canvas/ffmpeg": "^3.17.2",
+    "@motion-canvas/ui": "^3.17.2",
+    "@motion-canvas/vite-plugin": "^3.17.2",
+    "@remotion/bundler": "^4.0.536",
+    "@remotion/cli": "^4.0.536",
+    "@remotion/renderer": "^4.0.536",
+    "culori": "^4.0.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "^4.0.536",
+    "remotion-bits": "^0.2.1",
+    "three": "^0.170.0",
+    "typescript": "^5.8.3",
+    "vite": "^5.4.21"
+  },
+  "font": {
+    "name": "Archivo",
+    "license": "OFL-1.1",
+    "source": "https://github.com/google/fonts/tree/main/ofl/archivo",
+    "sha256": "0e094a7d3c7c4c25cf1310c4b30014f1dae9332220b1c2c88f4fa996f0b05053"
+  }
+}

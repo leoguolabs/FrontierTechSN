@@ -1,0 +1,40 @@
+{
+  "fps": 24,
+  "duration_frames": 576,
+  "shots": [
+    {
+      "id": "answer",
+      "start": 0,
+      "end": 144
+    },
+    {
+      "id": "action",
+      "start": 144,
+      "end": 288
+    },
+    {
+      "id": "check",
+      "start": 288,
+      "end": 432
+    },
+    {
+      "id": "loop",
+      "start": 432,
+      "end": 576
+    }
+  ],
+  "events": [
+    {
+      "id": "action",
+      "frame": 144
+    },
+    {
+      "id": "check",
+      "frame": 288
+    },
+    {
+      "id": "loop",
+      "frame": 432
+    }
+  ]
+}

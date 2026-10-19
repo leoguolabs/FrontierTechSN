@@ -1,0 +1,12 @@
+# Source and asset credits
+
+- **lemo-opuscar**, lemomo-ai, source revision recorded in `provenance.json`, [repository](https://github.com/lemomo-ai/lemo-opuscar). MIT code/documentation. The original Swiss Motion `STYLE.md` informed this original Canvas film; it was exported with Lemo's own renderer. No original demo movie/images were copied. The repository's demonstration media have a separate CC BY 4.0 license.
+- **video-shotcraft**, Vincentwei1021, [repository](https://github.com/Vincentwei1021/video-shotcraft), Apache-2.0. The generated, ignored vendor folder contains its LICENSE. `prepare_shotcraft.py` adapts `OrbitRingTitleOpen`, `ScanlineAnnotateFocus`, `WordRelayGeometry` and their `Look`/`Polish` fixtures. Changes: new text and conceptual panels, a dedicated virtual source clock, earlier final settling, larger subtitles, no Shotcraft brand mark. The bridge and feedback route are original additions. This is not an endorsed upstream demo. Preserve the upstream license when redistributing generated vendor code.
+- **HyperFrames**, heygen-com, [repository](https://github.com/heygen-com/hyperframes), Apache-2.0. Existing 0.6.99 renderer. GSAP is the existing project's dependency and remains governed by its own standard license.
+- **Remotion**, remotion-dev, [Skills](https://github.com/remotion-dev/skills) and [license](https://www.remotion.dev/license). The core sample uses original React/SVG code. Remotion's custom license applies to the runtime; consult its company-size/commercial requirements before production adoption.
+- **Remotion Bits**, av, [repository](https://github.com/av/remotion-bits), MIT. Actual package components are used, not copied screenshots. Underlying Remotion terms still apply.
+- **Motion Canvas**, motion-canvas, [repository](https://github.com/motion-canvas/motion-canvas), MIT. Original scene with official FFmpeg exporter.
+- **Archivo**, Omnibus-Type, [Google Fonts source](https://github.com/google/fonts/tree/main/ofl/archivo), SIL Open Font License 1.1. The runtime assets folder contains the font and OFL notice. Font checksum is in `provenance.json`. Other platform fonts are system fonts, not redistributed.
+- Narration: locally generated macOS Daniel voice. Original conceptual script. No background music, stock footage, third-party film, or generated-video service.
+
+All six samples were authored/adapted in this Codex task. Neither the samples nor the X posts establish a controlled comparison of language-model quality.

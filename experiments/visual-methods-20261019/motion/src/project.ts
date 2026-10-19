@@ -1,0 +1,3 @@
+import { makeProject } from '@motion-canvas/core'
+import agent from './scenes/agent?scene'
+export default makeProject({ name: 'agent-loop', scenes: [agent] })

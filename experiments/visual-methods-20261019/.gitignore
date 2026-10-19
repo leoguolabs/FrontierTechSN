@@ -1,0 +1,10 @@
+**/node_modules
+**/assets
+react/public
+react/vendor
+hyperframes/gsap.min.js
+motion/output
+motion/src/*.meta
+!motion/src/project.meta
+motion/src/scenes/*.meta
+__pycache__/

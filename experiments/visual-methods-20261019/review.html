@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh-CN">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>六种视频方法 · Bytefront 评审</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #182623;
+      --paper: #f3f1e9;
+      --line: #d5d9cd;
+      --accent: #25564b;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font:
+        16px/1.65 -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        sans-serif;
+    }
+    main {
+      max-width: 1500px;
+      margin: auto;
+      padding: 42px 32px;
+    }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 28px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #537067;
+    }
+    h1 {
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.2;
+      letter-spacing: -2px;
+      margin: 14px 0;
+    }
+    p {
+      max-width: 1000px;
+      color: #53635d;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      padding: 15px 0;
+      background: var(--paper);
+      z-index: 2;
+      border-bottom: 1px solid var(--line);
+    }
+    button,
+    a {
+      touch-action: manipulation;
+    }
+    button {
+      font: inherit;
+      border: 1px solid #b9c7bc;
+      background: transparent;
+      border-radius: 7px;
+      padding: 8px 14px;
+      cursor: pointer;
+      color: var(--ink);
+    }
+    button:hover {
+      background: #e3e8dd;
+    }
+    button.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    a {
+      color: #245c50;
+      text-underline-offset: 4px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px 26px;
+      margin-top: 28px;
+    }
+    article {
+      min-width: 0;
+    }
+    video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #152220;
+      border-radius: 7px;
+    }
+    h2 {
+      font-size: 23px;
+      line-height: 1.4;
+      margin: 14px 0 7px;
+    }
+    .meta {
+      font-size: 13px;
+      color: #66766e;
+      margin-bottom: 9px;
+    }
+    .description {
+      min-height: 52px;
+      margin: 8px 0;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 14px;
+    }
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .card-actions button {
+      font-size: 13px;
+      padding: 5px 10px;
+    }
+    aside {
+      margin-top: 50px;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+    aside h2 {
+      font-size: 24px;
+    }
+    footer {
+      margin-top: 30px;
+      color: #68756f;
+      font-size: 13px;
+    }
+    #status {
+      font-size: 13px;
+      color: #587069;
+      margin-left: auto;
+    }
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid #c88d40;
+      outline-offset: 3px;
+    }
+    @media (max-width: 850px) {
+      main {
+        padding: 24px 18px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .controls {
+        position: static;
+      }
+      #status {
+        width: 100%;
+        margin: 0;
+      }
+      .description {
+        min-height: 0;
+      }
+    }
+  </style>
+  <main>
+    <header>
+      <div class="eyebrow">BYTEFRONT / VISUAL METHODS / 2026.10.19</div>
+      <h1>同一段内容，六种视觉方法。</h1>
+      <p>
+        每条 24 秒 · 1920 × 1080 · 24 fps · 同一段英文旁白。六条均在本次 Codex
+        工作中实际制作，没有调用
+        Opus。这是风格与接入可行性样片；原作者示例、代码和本次样片分别列出。
+      </p>
+    </header>
+    <nav class="controls" aria-label="共同播放控制">
+      <button class="primary" id="play">同步播放六条</button
+      ><button id="pause">全部暂停</button
+      ><button data-time="0">00s 开场</button
+      ><button data-time="6">06s 行动</button
+      ><button data-time="12">12s 检查</button
+      ><button data-time="18">18s 闭环</button
+      ><span id="status" role="status">默认静音；点“只听这一条”开启旁白。</span>
+    </nav>
+    <section class="grid" id="grid" aria-label="六条完整样片"></section>
+    <aside>
+      <h2>我的选择：HyperFrames 做主干，Shotcraft 补镜头设计。</h2>
+      <p>
+        当前项目已经使用 HyperFrames。优先把 Shotcraft
+        的镜头、节拍、缓动和版式转换成可复用的 HTML/GSAP
+        模板；复杂空间镜头可单独用 Remotion Bits 渲染，机制图解用 Motion
+        Canvas。Lemo 的 Swiss 风格适合开场，但此次不是原推文新闻风格的复刻。
+      </p>
+      <p>
+        评审时建议重点比较：信息是否一眼可读、运动是否表达意思、6/12/18
+        秒切点是否自然，以及结尾是否留下完整可读的画面。旁白相同，无背景音乐，避免声音包装干扰视觉比较。
+      </p>
+      <p>
+        <a href="research.md">完整研究与接入判断</a> ·
+        <a href="narration.srt" download>共用字幕 SRT</a> ·
+        <a href="qa.json">成片技术检查</a>
+      </p>
+    </aside>
+    <footer>
+      源码在项目 experiments/visual-methods-20261019。影片与检查记录存于
+      outputs/visual-methods-20261019。本页只在本机提供预览。
+    </footer>
+  </main>
+  <script>
+    const notes = {
+      hyperframes:
+        '最容易接入现有项目。暖色编辑版式、空间关系与可定位的 GSAP 时间线。',
+      shotcraft:
+        '直接改编三个开源镜头配方；最值得观察镜头转换、材质层次与文字出场。',
+      lemo: '依据已公开 Swiss Motion 风格制作，并用 Lemo 自带 Canvas 渲染器导出。',
+      remotion: '原创 React/SVG 基础版本，作为不使用镜头库的对照。',
+      bits: '实际使用库中的文字、错峰动画及 3D 空间组件。',
+      motion: '原生 TypeScript generator 与路径动画，侧重把过程讲清楚。',
+    }
+    const order = [
+      'hyperframes',
+      'shotcraft',
+      'lemo',
+      'remotion',
+      'bits',
+      'motion',
+    ]
+    let videos = []
+    const status = document.querySelector('#status')
+    fetch('research.json')
+      .then((r) => r.json())
+      .then((items) => {
+        for (const id of order) {
+          const item = items.find((x) => x.id === id)
+          const card = document.createElement('article')
+          card.id = id
+          card.innerHTML = `<video controls muted playsinline preload="metadata" poster="posters/${id}.jpg" aria-label="${item.name} 完整样片"><source src="media/${id}.mp4" type="video/mp4"><track src="narration.vtt" kind="subtitles" srclang="en" label="English"></video><h2>${String(order.indexOf(id) + 1).padStart(2, '0')} / ${item.name}</h2><div class="meta">${item.license}</div><p class="description">${notes[id]}</p><div class="links"><a href="${item.demo}" target="_blank" rel="noopener">原作者效果展示</a><a href="${item.source}" target="_blank" rel="noopener">源代码</a><a href="${item.gallery}" target="_blank" rel="noopener">示例库</a><a href="media/${id}.mp4" download="${id}-24s.mp4">下载本次样片</a></div><div class="card-actions"><button class="solo">只听这一条</button><button class="mute">静音</button></div>`
+          document.querySelector('#grid').append(card)
+          const video = card.querySelector('video')
+          video.dataset.method = id
+          card.querySelector('.solo').onclick = () => {
+            videos.forEach((v) => (v.muted = true))
+            video.muted = false
+            video.play().catch(() => {
+              status.textContent = '请用播放器的播放按钮开始。'
+            })
+            status.textContent = `旁白：${item.name}`
+          }
+          card.querySelector('.mute').onclick = () => {
+            video.muted = true
+            status.textContent = '该条已静音。'
+          }
+          video.addEventListener('error', () => {
+            status.textContent = `未能加载 ${item.name}，请检查本机服务。`
+          })
+          videos.push(video)
+        }
+      })
+      .catch(() => {
+        status.textContent =
+          '研究数据加载失败，请通过 serve_review.py 打开本页。'
+      })
+    document.querySelector('#play').onclick = async () => {
+      const t = Math.min(...videos.map((v) => v.currentTime))
+      videos.forEach((v) => {
+        v.currentTime = t >= 23.9 ? 0 : t
+      })
+      const results = await Promise.allSettled(videos.map((v) => v.play()))
+      status.textContent = results.every((r) => r.status === 'fulfilled')
+        ? '六条正在播放；浏览器同步用于比较，不作逐帧测量。'
+        : '部分播放器未启动，可单独点击播放。'
+    }
+    document.querySelector('#pause').onclick = () => {
+      videos.forEach((v) => v.pause())
+      status.textContent = '全部暂停。'
+    }
+    document.querySelectorAll('[data-time]').forEach(
+      (b) =>
+        (b.onclick = () => {
+          videos.forEach((v) => {
+            v.pause()
+            v.currentTime = Number(b.dataset.time)
+          })
+          status.textContent = `全部定位到 ${b.dataset.time} 秒。`
+        }),
+    )
+  </script>
+</html>

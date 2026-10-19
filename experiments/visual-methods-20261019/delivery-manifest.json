@@ -1,0 +1,56 @@
+{
+  "lemo": {
+    "sha256": "7fcda5ba40fe875074ad8efd8dd672fad17ea144ecbcc5036d97cfe572fe941a",
+    "bytes": 944835,
+    "frames": 576,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "checks_passed": true
+  },
+  "hyperframes": {
+    "sha256": "cc1225b8bb7b00f2f8133296ae0e4af291494b63526c170a7727e01f15372d45",
+    "bytes": 2072190,
+    "frames": 576,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "checks_passed": true
+  },
+  "shotcraft": {
+    "sha256": "fc0588008fab562502c290147bbd6832afeaaa9dc9911aefe19eea662da3a025",
+    "bytes": 9803199,
+    "frames": 576,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "checks_passed": true
+  },
+  "remotion": {
+    "sha256": "ace769242629ee017ff0ac06e924cf748856794bee183213f0a1df274fa56a10",
+    "bytes": 1438355,
+    "frames": 576,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "checks_passed": true
+  },
+  "bits": {
+    "sha256": "170a4f76e5584925216f836c139a647287cb195ee570a5dc053cfb41e443ae43",
+    "bytes": 1834954,
+    "frames": 576,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "checks_passed": true
+  },
+  "motion": {
+    "sha256": "24a4ae24d87ee99305d648070e820436192f7d9884ad5b37b9d93b1c9e67bd4e",
+    "bytes": 835138,
+    "frames": 576,
+    "fps": 24.0,
+    "width": 1920,
+    "height": 1080,
+    "checks_passed": true
+  }
+}

@@ -491,7 +491,9 @@ async def _legacy_media_attribution(
 ) -> dict:
     """Supplement a legacy denial without replacing it or rendering again.
 
-    Only the failed sequences missing the shot-attribution contract are reviewed.
+    Only failed sequences with missing or v1 attribution are reviewed. The v1
+    prompt omitted factual contradictions inside captured article text, so an
+    empty v1 attribution cannot establish that those source bytes are suitable.
     A fresh match cannot clear the original denial. The supplemental review can
     only identify exact source bytes for the normal repair and full release gate.
     """
@@ -507,7 +509,7 @@ async def _legacy_media_attribution(
             and row.get("rubric_consistent") is True
             and row.get("verdict") in {"partial", "mismatch"}
             and len(row.get("sample_timestamps") or []) > 1
-            and not row.get("media_sample_contract")
+            and row.get("media_sample_contract") in {None, "source-media-mismatch-v1"}
         }
         if not legacy_ids:
             return {}

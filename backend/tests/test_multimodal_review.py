@@ -133,6 +133,8 @@ def test_review_samples_every_timed_shot_and_preserves_whole_scene_context(tmp_p
     assert "missing from the entire sequence or contradicted by any frame" in prompt
     assert "source_media_mismatches" in prompt
     assert "incorrect overlay copy" in prompt
+    assert "publisher's own headline, body text and data" in prompt
+    assert "title or caption added by our video renderer" in prompt
 
 
 @pytest.mark.parametrize("mutation", [None, "unknown_sample", "duplicate", "editorial", "blank_reason", "match", "malformed", "no_image", "missing_scene"])
@@ -164,6 +166,30 @@ def test_source_rejection_requires_explicit_valid_sample_attribution(tmp_path, m
         assert rejected == [{"sample_id": sample["id"], "timestamp": 5, "shot_sha256": "local-shot",
                              **sample["media"], "reason": "Source shows warehouse boxes"}]
         assert result["reviews"][0]["passed"] is False
+
+
+def test_article_quantity_conflict_binds_source_bytes_without_changing_narration(tmp_path):
+    scenes = [_scene("scene-08", 0, "Shares fell 6.5 percent.")]
+    frames = _frames(tmp_path, scenes)
+    sample = {"id": "scene-08-shot-01", "timestamp": 4, "shot_sha256": "captured-shot",
+              "media": {"src": "../article.png", "sha256": "captured-article", "kind": "article"}}
+    frames[0]["samples"] = [sample]
+    payload = _matching_payload(scenes, 60)
+    reason = "The publisher headline says nearly 8%, contradicting the narrated 6.5%."
+    payload["reviews"][0].update(
+        verdict="partial", issues=[reason], suggested_visual="Use a grounded financial graphic.",
+        source_media_mismatches=[{"sample_id": sample["id"], "reason": reason}],
+    )
+    result = multimodal_review.normalise_batch(payload, frames, 70)
+    assert result["contract_valid"]
+    review = result["reviews"][0]
+    assert review["passed"] is False
+    assert review["media_sample_contract"] == "source-media-mismatch-v2"
+    assert review["rejected_media_samples"] == [{
+        "sample_id": sample["id"], "timestamp": 4, "shot_sha256": "captured-shot",
+        **sample["media"], "reason": reason,
+    }]
+    assert scenes[0]["text"] == "Shares fell 6.5 percent."
 
 
 @pytest.mark.parametrize("shots", [

@@ -639,8 +639,9 @@ def test_sequence_repair_excludes_exact_attributed_media_and_preserves_denial(tm
     planner.assert_not_awaited()
 
 
+@pytest.mark.parametrize("legacy_contract", [None, "source-media-mismatch-v1"])
 @pytest.mark.parametrize("outcome", ["mismatch", "match", "unavailable", "changed_video", "changed_plan"])
-def test_legacy_attribution_reuses_pixels_and_preserves_original_denial(tmp_path, monkeypatch, outcome):
+def test_legacy_attribution_reuses_pixels_and_preserves_original_denial(tmp_path, monkeypatch, outcome, legacy_contract):
     from unittest.mock import AsyncMock
     board, digest = _attributed_sequence_candidate(tmp_path)
     path = tmp_path / "av_sync_report.next.json"
@@ -649,6 +650,8 @@ def test_legacy_attribution_reuses_pixels_and_preserves_original_denial(tmp_path
     legacy = original["multimodal"]["scenes"][0]
     legacy.pop("media_sample_contract")
     legacy.pop("rejected_media_samples")
+    if legacy_contract:
+        legacy.update(media_sample_contract=legacy_contract, rejected_media_samples=[])
     path.write_text(json.dumps(original))
     before = path.read_bytes()
     if outcome == "match":

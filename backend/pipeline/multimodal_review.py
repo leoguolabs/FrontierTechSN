@@ -46,7 +46,7 @@ SHEET_GAP = 8
 FRAME_TIMEOUT_SECONDS = 45
 FRAME_WORKERS = 4
 SAMPLING_CONTRACT = "complete-shot-sequence-v1"
-MEDIA_SAMPLE_CONTRACT = "source-media-mismatch-v1"
+MEDIA_SAMPLE_CONTRACT = "source-media-mismatch-v2"
 
 
 def shot_fingerprint(shot: dict) -> str:
@@ -326,10 +326,15 @@ def _review_prompt(
         '"alignment_reason":"why it matches or does not",'
         '"issues":["specific issue"],'
         '"source_media_mismatches":[{"sample_id":"scene-01-shot-02",'
-        '"reason":"visible source subject or setting contradicts narration"}],'
+        '"reason":"visible source content contradicts narration"}],'
         '"suggested_visual":"replacement concept when verdict is partial or mismatch"}]}. '
         "Set source_media_mismatches=[] unless a specific sampled source image/video "
-        "itself depicts the wrong subject, event, material or setting. Identify only "
+        "itself depicts the wrong subject, event, material or setting, or contains "
+        "an intrinsic factual claim or quantity that contradicts the narration. "
+        "For article captures, the publisher's own headline, body text and data are "
+        "source content: a contradictory number in the captured headline "
+        "requires source attribution, even when the subject is correct. "
+        "Distinguish that from a title or caption added by our video renderer. Identify only "
         "exact supplied sample ids and explain the visible contradiction. Do not "
         "list editorial cards, missing coverage, unreadable overlays or incorrect "
         "overlay copy here; report those in issues for editorial repair. Never "

@@ -13,6 +13,12 @@ per request. Pocket TTS then applies its native sentence/token splitting inside
 that request. This removes Orpheus-style arbitrary 12-word joins while retaining
 per-story acoustic verification and retry recovery.
 
+If Pocket TTS cannot establish a connection, Explainer preserves its original
+production and accepted scene files and retries after 1, 2, 4, 8, then 15 minutes.
+The wait survives backend restarts and yields the shared worker to other videos.
+An operator can retry immediately after restoring the service. Read timeouts,
+HTTP failures and audio-integrity failures do not enter this connection-retry path.
+
 Deploy from `/home/guoliang/pocket-tts-deploy`:
 
 ```sh

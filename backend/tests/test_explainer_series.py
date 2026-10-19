@@ -6,7 +6,7 @@ import pytest
 from PIL import Image
 
 from backend import config, explainers as studio, explainer_pipeline as pipeline
-from backend.explainer_availability import GeminiVideoDeferred, availability_reason, next_retry_at
+from backend.explainer_availability import GeminiVideoDeferred, PocketTTSDeferred, availability_reason, next_retry_at
 from backend.explainer_series import validate_motion_budget
 
 
@@ -109,6 +109,54 @@ def test_worker_catches_deferred_motion_without_marking_task_failed(isolated, mo
     assert saved["production"]["operation"] == "render"
     assert saved["provider_wait"]["scene_id"] == "scene-000"
     assert studio.production_owner() is None
+
+
+def test_pocket_outage_keeps_work_and_automatically_resumes_same_project(isolated, monkeypatch):
+    project = studio.create_project(project_input())
+    claim = {"operation": "full", "started_at": "2026-10-18T12:54:29+00:00", "sequence": 1}
+    accepted = [{"id": "scene-000", "clip_path": "accepted.mp4", "audio_hash": "unchanged"}]
+    studio.patch_project(project["id"], {"production": claim, "scene_artifacts": accepted,
+                                         "progress": {"completed": 17, "total": 746}})
+    monkeypatch.setattr(studio, "now", lambda: "2026-10-19T15:20:00+00:00")
+    monkeypatch.setattr(pipeline, "render_project", AsyncMock(side_effect=PocketTTSDeferred("Connection refused", "scene-005")))
+    asyncio.run(studio._run(project["id"], "render"))
+    saved = studio.read_project(project["id"])
+    assert saved["status"] == "waiting_provider" and saved["error"] is None
+    assert saved["production"] == claim and saved["scene_artifacts"] == accepted
+    assert saved["progress"]["completed"] == 17
+    assert saved["provider_wait"]["retry_at"] == "2026-10-19T15:21:00+00:00"
+    assert studio.production_owner() is None
+    assert studio.resume_provider_waits() == []
+    monkeypatch.setattr(studio, "now", lambda: saved["provider_wait"]["retry_at"])
+    assert studio.resume_provider_waits() == [project["id"]]
+    assert studio.resume_provider_waits() == []
+    recovered = studio.read_project(project["id"])
+    assert recovered["queue"]["sequence"] == 1 and recovered["production"] == claim
+    assert recovered["scene_artifacts"] == accepted
+    again = studio.defer_for_pocket_tts(project["id"], "render", PocketTTSDeferred("Connection refused", "scene-005"))
+    assert again["provider_wait"]["retry_at"] == "2026-10-19T15:23:00+00:00"
+    assert again["provider_wait"]["consecutive_failures"] == 2
+
+
+def test_pocket_manual_retry_does_not_expire_gemini_cooldown(isolated, monkeypatch):
+    monkeypatch.setattr(studio, "now", lambda: "2026-10-19T15:20:00+00:00")
+    project = studio.create_project(project_input())
+    studio.patch_project(project["id"], {"production": {"operation": "render", "started_at": studio.now()}})
+    cooldown = {"reason": "quota_exhausted", "retry_at": "2026-10-20T00:00:00+00:00"}
+    studio._write(studio.root_dir() / "gemini-video-availability.json", cooldown)
+    studio.defer_for_pocket_tts(project["id"], "render", PocketTTSDeferred("Connection refused", "scene-000"))
+    studio.retry_provider(project["id"])
+    assert studio.pending_gemini_wait() == cooldown
+
+
+@pytest.mark.parametrize("action", [studio.cancel, studio.pause])
+def test_pocket_wait_respects_user_cancel_or_maintenance(isolated, monkeypatch, action):
+    project = studio.create_project(project_input())
+    studio.patch_project(project["id"], {"production": {"operation": "render", "started_at": studio.now()}})
+    studio.defer_for_pocket_tts(project["id"], "render", PocketTTSDeferred("Connection refused", "scene-000"))
+    asyncio.run(action(project["id"]))
+    monkeypatch.setattr(studio, "now", lambda: "2030-01-01T00:00:00+00:00")
+    assert studio.resume_provider_waits() == []
 
 
 def test_scene_failure_does_not_block_other_projects_and_backs_off(isolated, monkeypatch):

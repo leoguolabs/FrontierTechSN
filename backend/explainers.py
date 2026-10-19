@@ -10,7 +10,7 @@ import math
 import re
 import threading
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Literal
 
@@ -18,7 +18,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 
 from backend import config
 from backend.explainer_series import MAX_GEMINI_CLIPS, validate_motion_budget
-from backend.explainer_availability import GeminiVideoDeferred, next_retry_at
+from backend.explainer_availability import GeminiVideoDeferred, PocketTTSDeferred, next_retry_at
 from backend.pipeline.gemini_watermark import WatermarkRegion
 
 logger = logging.getLogger(__name__)
@@ -185,7 +185,7 @@ def update_project(project_id: str, data: ProjectUpdate) -> dict:
     with _lock:
         project = read_project(project_id)
         if project["status"] == "waiting_provider":
-            raise ConflictError("This production is waiting for Gemini. Cancel automatic recovery before editing.")
+            raise ConflictError("This production is waiting for a provider. Cancel automatic recovery before editing.")
         if project["status"] == "queued":
             raise ConflictError("This plan is queued. Remove it from the queue before editing.")
         if project.get("priority_pause"):
@@ -482,6 +482,8 @@ async def _run(project_id: str, operation: str) -> None:
         log("Completed " + operation)
     except GeminiVideoDeferred as exc:
         defer_for_gemini(project_id, operation, exc)
+    except PocketTTSDeferred as exc:
+        defer_for_pocket_tts(project_id, operation, exc)
     except asyncio.CancelledError:
         _record_interruption(project_id)
         raise
@@ -520,6 +522,29 @@ def defer_for_gemini(project_id: str, operation: str, error: GeminiVideoDeferred
         return result
 
 
+def defer_for_pocket_tts(project_id: str, operation: str, error: PocketTTSDeferred) -> dict:
+    """Retry an unreachable voice service without replacing accepted scene assets."""
+    with _lock:
+        project = read_project(project_id)
+        stamp = now()
+        previous = project.get("provider_wait") or project.get("last_provider_wait") or {}
+        failures = (int(previous.get("consecutive_failures", 0)) + 1
+                    if previous.get("provider") == "pocket_tts"
+                    and previous.get("scene_id") == error.scene_id else 1)
+        minutes = min(15, 2 ** min(4, max(0, failures - 1)))
+        wait = {"provider": "pocket_tts", "reason": "connection_unavailable", "scene_id": error.scene_id,
+                "operation": operation, "paused_at": stamp,
+                "retry_at": (datetime.fromisoformat(stamp) + timedelta(minutes=minutes)).isoformat(),
+                "retry_policy_version": 1, "consecutive_failures": failures,
+                "timezone": config.AI_PRIMARY_RATE_LIMIT_TIMEZONE, "evidence": str(error)[-2000:]}
+        progress = dict(project.get("progress") or {})
+        progress["message"] = "Pocket TTS cannot be reached; progress saved and automatic retry scheduled."
+        result = patch_project(project_id, {"status": "waiting_provider", "provider_wait": wait,
+                               "error": None, "queue": None, "progress": progress})
+        append_log(project_id, f"Pocket TTS connection deferred until {wait['retry_at']}; original production retained")
+        return result
+
+
 def pending_gemini_wait() -> dict | None:
     path = root_dir() / "gemini-video-availability.json"
     _safe(path)
@@ -537,7 +562,7 @@ def retry_provider(project_id: str) -> dict:
         project = read_project(project_id)
         wait = project.get("provider_wait")
         if project_id in _jobs or project["status"] != "waiting_provider" or not wait:
-            raise ConflictError("This production is not waiting for Gemini")
+            raise ConflictError("This production is not waiting for a provider")
         if (not project.get("production") or project.get("cancellation_reason") or project.get("priority_pause")
                 or wait.get("operation") not in {"render", "full"}):
             raise ConflictError("This production cannot resume while cancelled or paused")
@@ -545,14 +570,15 @@ def retry_provider(project_id: str) -> dict:
         stamp = now()
         # Expire the shared cooldown, but keep other projects' scheduled waits.
         # Unknown submitted requests never enter waiting_provider in the first place.
-        shared = pending_gemini_wait()
+        shared = pending_gemini_wait() if wait.get("provider") == "gemini_video" else None
         if shared:
             _write(root_dir() / "gemini-video-availability.json", {**shared, "retry_at": stamp,
                    "manual_retry_requested_at": stamp})
         patch_project(project_id, {"provider_wait": {**wait, "retry_at": stamp,
                       "scheduled_retry_at": wait["retry_at"], "manual_retry_requested_at": stamp}})
         resume_provider_waits()
-        append_log(project_id, "Manual Gemini retry requested; original production and completed clips retained")
+        provider = "Pocket TTS" if wait.get("provider") == "pocket_tts" else "Gemini"
+        append_log(project_id, f"Manual {provider} retry requested; original production and completed clips retained")
         return read_project(project_id)
 
 
@@ -575,7 +601,8 @@ def resume_provider_waits() -> list[str]:
                      "sequence": production.get("sequence", 0),
                      "previous": {"status": "interrupted", "error": None, "progress": project.get("progress")}}
             progress = dict(project.get("progress") or {})
-            progress["message"] = "Gemini retry is ready; resuming the original production"
+            provider = "Pocket TTS" if wait.get("provider") == "pocket_tts" else "Gemini"
+            progress["message"] = f"{provider} retry is ready; resuming the original production"
             patch_project(project["id"], {"status": "queued", "queue": queue, "provider_wait": None,
                           "last_provider_wait": wait, "progress": progress})
             resumed.append(project["id"])
@@ -645,7 +672,7 @@ def start(project_id: str, operation: Operation) -> dict:
         if project_id in _jobs or project["status"] in ACTIVE | {"queued"}:
             raise ConflictError("Generation is already running or queued")
         if project.get("provider_wait"):
-            raise ConflictError("Gemini recovery is scheduled automatically. Cancel it before changing the operation.")
+            raise ConflictError("Provider recovery is scheduled automatically. Cancel it before changing the operation.")
         if project.get("priority_pause"):
             raise ConflictError("This production is waiting for Morning Desk to finish")
         ProjectInput.model_validate({key: project[key] for key in ProjectInput.model_fields})
@@ -746,7 +773,7 @@ async def queue_state() -> dict:
     elif items:
         message = "Waiting for the shared worker. Queued Explainers run before waiting Morning Desk tasks."
     elif waiting:
-        message = "Gemini video is unavailable. Saved productions retry at their scheduled time, or you can retry now; other tasks can run."
+        message = "A media provider is unavailable. Saved productions retry at their scheduled time, or you can retry now; other tasks can run."
     else:
         message = "Add topic plans to generate videos one at a time."
     reservation_project = owner or next(iter(suspended), None)

@@ -13,6 +13,14 @@ class GeminiVideoDeferred(RuntimeError):
         self.scene_id = scene_id
 
 
+class PocketTTSDeferred(RuntimeError):
+    """A connection was never established; no provider job needs reconciliation."""
+
+    def __init__(self, evidence: str, scene_id: str):
+        super().__init__(evidence)
+        self.scene_id = scene_id
+
+
 def availability_reason(error: Exception) -> str | None:
     message = str(error)
     if "GEMINI_VIDEO_QUOTA_EXHAUSTED" in message:

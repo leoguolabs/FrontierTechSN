@@ -16,11 +16,12 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
+import httpx
 from PIL import Image, ImageColor, ImageDraw, ImageFont
 
 from backend import config
 from backend.explainer_series import BRAND_VERSION, SERIES_NAME, motion_indices, validate_motion_budget, thumbnail_prompt
-from backend.explainer_availability import GeminiVideoDeferred, availability_reason
+from backend.explainer_availability import GeminiVideoDeferred, PocketTTSDeferred, availability_reason
 from backend.explainer_pacing import pacing_plan, write_paced_audio
 from backend.explainer_visual_review import (
     MAX_IMAGE_ATTEMPTS,
@@ -395,9 +396,16 @@ async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path
         )
         script_path = stage / "provider-script.txt"
         _write(script_path, provider_input, root)
-    raw = Path(await asyncio.wait_for(generate_tts(
-        str(script_path), str(stage / "provider"), voices=[voice], tts_model=model, log=log,
-    ), timeout=max(60, min(1800, config.TTS_TIMEOUT))))
+    try:
+        raw = Path(await asyncio.wait_for(generate_tts(
+            str(script_path), str(stage / "provider"), voices=[voice], tts_model=model, log=log,
+        ), timeout=max(60, min(1800, config.TTS_TIMEOUT))))
+    except RuntimeError as exc:
+        # Only the typed connection failure is safe to defer. Read timeouts,
+        # HTTP errors and rejected audio keep their existing recovery paths.
+        if model == "pocket-tts-en" and isinstance(exc.__cause__, httpx.ConnectError):
+            raise PocketTTSDeferred(str(exc), scene["id"]) from exc
+        raise
     _safe(raw, root)
     if not raw.is_file():
         raise RuntimeError("TTS returned no audio file")
@@ -1028,7 +1036,7 @@ async def render_project(project: dict, project_dir: Path,
         save_manifest("completed")
         update({"progress": {"completed": completed, "total": total, "message": "Video and narration verified"}})
         return result
-    except GeminiVideoDeferred as exc:
+    except (GeminiVideoDeferred, PocketTTSDeferred) as exc:
         save_manifest("waiting_provider", str(exc))
         raise
     except asyncio.CancelledError:

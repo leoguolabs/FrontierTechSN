@@ -32,6 +32,41 @@ def _project():
     }
 
 
+@pytest.mark.parametrize("connection_failure", [True, False])
+def test_pocket_connection_failure_defers_but_unknown_submission_does_not(
+    tmp_path, monkeypatch, connection_failure,
+):
+    import httpx
+    from backend.explainer_availability import PocketTTSDeferred
+
+    project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
+    cause = httpx.ConnectError("Connection refused") if connection_failure else httpx.ReadTimeout("Unknown response")
+
+    async def failed_audio(*args, **kwargs):
+        raise RuntimeError("Pocket TTS request failed after 3 attempts") from cause
+
+    monkeypatch.setattr(pipeline, "generate_tts", failed_audio)
+    expected = PocketTTSDeferred if connection_failure else RuntimeError
+    with pytest.raises(expected) as caught:
+        asyncio.run(pipeline._audio(project["scenes"][0], project, tmp_path, lambda _: None))
+    assert isinstance(caught.value, PocketTTSDeferred) == connection_failure
+    if connection_failure:
+        assert caught.value.scene_id == "scene-001"
+    assert not list(tmp_path.rglob("complete.json"))
+
+
+def test_pocket_accepted_audio_remains_usable_while_service_is_offline(tmp_path, providers, monkeypatch):
+    from unittest.mock import AsyncMock
+
+    project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
+    scene = project["scenes"][0]
+    accepted = asyncio.run(pipeline._audio(scene, project, tmp_path, lambda _: None))
+    offline = AsyncMock(side_effect=RuntimeError("must not call provider for accepted audio"))
+    monkeypatch.setattr(pipeline, "generate_tts", offline)
+    assert asyncio.run(pipeline._audio(scene, project, tmp_path, lambda _: None)) == accepted
+    offline.assert_not_awaited()
+
+
 class Providers:
     def __init__(self):
         self.audio_calls = []

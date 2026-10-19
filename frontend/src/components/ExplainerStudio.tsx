@@ -16,7 +16,7 @@ import './ExplainerStudio.css'
 const STATUS: Record<ExplainerStatus, string> = {
   draft: 'Draft', queued: 'Queued', writing_script: 'Writing script', script_ready: 'Script ready', generating_audio: 'Generating audio',
   generating_images: 'Generating images', generating_motion: 'Generating motion', rendering: 'Rendering video', completed: 'Completed',
-  failed: 'Failed', cancelled: 'Cancelled', interrupted: 'Interrupted', waiting_provider: 'Waiting for Gemini',
+  failed: 'Failed', cancelled: 'Cancelled', interrupted: 'Interrupted', waiting_provider: 'Waiting for provider',
 }
 
 type Draft = { form: ExplainerForm; revision?: number }
@@ -148,7 +148,7 @@ export default function ExplainerStudio({ taskDetail = false }: { taskDetail?: b
         queryClient.setQueryData(['explainer', id], cancelled)
         void queryClient.invalidateQueries({ queryKey: ['explainers'] })
         void queryClient.invalidateQueries({ queryKey: ['explainer-queue'] })
-        setNotice(action === 'retry-provider' ? 'Gemini retry queued. Your completed clips are retained.' : action === 'dequeue' ? 'Removed from the queue. Your topic and research are saved.' : 'Cancellation requested. Finishing the current step.')
+        setNotice(action === 'retry-provider' ? 'Provider retry queued. Your completed clips are retained.' : action === 'dequeue' ? 'Removed from the queue. Your topic and research are saved.' : 'Cancellation requested. Finishing the current step.')
       } else {
         savingCurrent = true
         const saved = await saveCurrent()
@@ -305,11 +305,11 @@ export default function ExplainerStudio({ taskDetail = false }: { taskDetail?: b
             {progress && progress.total > 0 && <small>{progress.completed} / {progress.total}</small>}
             {project.error && <p className="explainer-small-error">{project.error}</p>}
             {waitingProvider && project.provider_wait && <p className="explainer-provider-wait">
-              {project.provider_wait.reason === 'quota_exhausted' ? 'Gemini reported its video limit.' : project.provider_wait.reason === 'generation_failed' ? 'Gemini ended the video request with an error. This does not confirm a quota limit.' : 'Gemini’s video tool is temporarily unavailable.'}
+              {project.provider_wait.provider === 'pocket_tts' ? 'The Pocket TTS voice service cannot be reached.' : project.provider_wait.reason === 'quota_exhausted' ? 'Gemini reported its video limit.' : project.provider_wait.reason === 'generation_failed' ? 'Gemini ended the video request with an error. This does not confirm a quota limit.' : 'Gemini’s video tool is temporarily unavailable.'}
               {' '}Your completed clips are saved. Automatic retry: <strong>{new Date(project.provider_wait.retry_at).toLocaleString()}</strong>.
               {' '}Other productions can continue while this episode waits.
             </p>}
-            {waitingProvider && <button type="button" disabled={!!pending} onClick={() => void act('retry-provider')}>{pending === 'retry-provider' ? 'Queuing retry…' : 'Retry Gemini now'}</button>}
+            {waitingProvider && <button type="button" disabled={!!pending} onClick={() => void act('retry-provider')}>{pending === 'retry-provider' ? 'Queuing retry…' : 'Retry provider now'}</button>}
             {project.production && !running && !waitingProvider && <p className="explainer-muted">Your production slot is reserved through repairs. Resume this project to continue before other waiting videos, or cancel to release the slot.</p>}
             {!running && !queued && !waitingProvider && <p className="explainer-muted">Edit the research or settings, then add the topic to the queue again.</p>}
           </section>}

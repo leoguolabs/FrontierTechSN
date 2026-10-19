@@ -101,15 +101,44 @@ def test_numeric_layout_splits_only_failed_chunk_and_preserves_frozen_assets(tmp
     assert all(path.read_bytes() == contents for path, contents in before.items())
 
 
+@pytest.mark.parametrize('rejection', [
+    'Word-hint audio differs from its complete source phone sequence',
+    'Required complete-source phone sequence differs from the source',
+])
+def test_numeric_recovery_accepts_exhausted_complete_source_rejections(
+        tmp_path, failed_numeric_chunk, rejection):
+    source, edits, base, stem, marker, paths = failed_numeric_chunk
+    for path in paths:
+        request = json.loads(path.read_text())
+        request['rejected'] = rejection
+        path.write_text(json.dumps(request))
+    repair = json.loads(marker.read_text())
+    repair['original_request_sha256'] = [tts._file_sha256(path) for path in paths]
+    marker.write_text(json.dumps(repair))
+    original = {path: path.read_bytes() for path in paths}
+    chunks, names, revised, bindings = repair_layout(
+        tmp_path, source, [source], [stem], edits, base, max_words=20, max_chars=250)
+    assert ' '.join(chunks) == source
+    assert len(bindings) >= 2
+    assert all(name.startswith(f'{stem}.numeric-v1-') for name in names)
+    assert 'one thousand seventeen' in cb._render_provider_span(source, 0, len(source), revised)
+    assert all(path.read_bytes() == contents for path, contents in original.items())
+
+
 @pytest.mark.parametrize('defect', ['pending', 'identity', 'changed_request', 'accepted',
-                                   'truncated_number', 'overlap', 'wrong_source', 'changed_marker'])
+                                   'truncated_number', 'overlap', 'wrong_source', 'changed_marker',
+                                   'unavailable', 'unrelated_failure'])
 def test_numeric_recovery_rejects_unowned_or_changed_inputs(tmp_path, failed_numeric_chunk, defect):
     source, edits, base, stem, marker, paths = failed_numeric_chunk
     repair = json.loads(marker.read_text())
-    if defect in {'pending', 'identity', 'changed_request'}:
+    if defect in {'pending', 'identity', 'changed_request', 'unavailable', 'unrelated_failure'}:
         record = json.loads(paths[0].read_text())
         if defect == 'pending':
             record.pop('rejected')
+        elif defect == 'unavailable':
+            record['rejected'] = 'Required word-hint acoustic verification unavailable'
+        elif defect == 'unrelated_failure':
+            record['rejected'] = 'Pocket TTS produced an internal silence'
         else:
             record['identity'] = 'foreign'
         paths[0].write_text(json.dumps(record))
@@ -133,13 +162,19 @@ def test_numeric_recovery_rejects_unowned_or_changed_inputs(tmp_path, failed_num
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize('outcome', ['pass', 'reject', 'unavailable'])
-async def test_numeric_recovery_keeps_old_jobs_and_requires_fresh_audits(setup_client, monkeypatch, outcome):
+@pytest.mark.parametrize('rejection', [
+    'Chatterbox initialism pronunciation mismatch: numeric',
+    'Word-hint audio differs from its complete source phone sequence',
+    'Required complete-source phone sequence differs from the source',
+])
+async def test_numeric_recovery_keeps_old_jobs_and_requires_fresh_audits(
+        setup_client, monkeypatch, outcome, rejection):
     server, script, directory, verifier, generate = setup_client
     source = 'The model V4.1-Flash-1017 works today.'
     script.write_text(source)
     server.pronunciation_ai.side_effect = lambda *args, **kwargs: json.dumps({'decisions': [
         {'id': 0, 'source': 'V', 'action': 'spell', 'spoken': 'vee', 'reason': 'Model letter'}]})
-    verifier.side_effect = tts.TtsIntegrityError('Chatterbox initialism pronunciation mismatch: numeric')
+    verifier.side_effect = tts.TtsIntegrityError(rejection)
     with pytest.raises(tts.TtsIntegrityError):
         await generate()
     plan = (directory / 'tts_pronunciation.json').read_bytes()

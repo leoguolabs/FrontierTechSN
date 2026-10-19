@@ -54,7 +54,9 @@ def repair_layout(directory: Path, normalized: str, chunks: list[str], stems: li
                        'seed': (identity['seed'] + attempt) % (2 ** 32), **identity['synthesis_parameters']}
             if (request.get('identity') != cb._digest({'identity': identity, 'payload': payload})
                     or not request.get('job_id') or not str(request.get('rejected', '')).startswith(
-                        'Chatterbox initialism pronunciation mismatch:')):
+                        ('Chatterbox initialism pronunciation mismatch:',
+                         'Word-hint audio differs from its complete source phone sequence',
+                         'Required complete-source phone sequence differs from the source'))):
                 raise RuntimeError('Numeric repair requires all exhausted pronunciation jobs')
         spans = repair.get('numbers')
         if not isinstance(spans, list) or not spans:

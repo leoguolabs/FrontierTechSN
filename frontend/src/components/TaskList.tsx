@@ -15,7 +15,7 @@ const STATUS_LABELS: Record<string, string> = {
   sourcing: 'Sourcing Footage', music: 'Generating Music', publishing: 'Publishing',
   draft: 'Draft', writing_script: 'Writing Script', script_ready: 'Script Ready',
   generating_audio: 'Generating Audio', generating_images: 'Generating Images',
-  waiting_provider: 'Waiting for Gemini', generating_motion: 'Generating Motion', rendering: 'Rendering', cancelled: 'Cancelled', interrupted: 'Interrupted',
+  waiting_provider: 'Waiting for provider', generating_motion: 'Generating Motion', rendering: 'Rendering', cancelled: 'Cancelled', interrupted: 'Interrupted',
 }
 
 interface ProductionRow {

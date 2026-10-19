@@ -49,7 +49,8 @@ CREATE TABLE IF NOT EXISTS tasks (
     origin_type TEXT NOT NULL DEFAULT 'manual',
     origin_id TEXT,
     origin_label TEXT,
-    planned_publish_at TEXT
+    planned_publish_at TEXT,
+    auto_publish_pending INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS content_series (
@@ -209,6 +210,7 @@ async def _migrate_tasks(db: aiosqlite.Connection):
         "planned_publish_at": "TEXT",
         "suppress_next_auto_publish": "INTEGER NOT NULL DEFAULT 0",
         "publication_safety_hold": "INTEGER NOT NULL DEFAULT 0",
+        "auto_publish_pending": "INTEGER NOT NULL DEFAULT 0",
     }
     had_publication_safety_hold = "publication_safety_hold" in existing
     for name, definition in additions.items():
@@ -766,6 +768,7 @@ def _row_to_response(row: aiosqlite.Row) -> TaskResponse:
         origin_id=row["origin_id"],
         origin_label=row["origin_label"],
         planned_publish_at=row["planned_publish_at"],
+        auto_publish_pending=bool(row["auto_publish_pending"]),
     )
 
 
@@ -821,6 +824,20 @@ async def list_tasks() -> list[TaskResponse]:
     return [_row_to_response(r) for r in rows]
 
 
+async def list_pending_daily_publications() -> list[TaskResponse]:
+    db = await get_db()
+    try:
+        rows = await db.execute_fetchall(
+            """SELECT * FROM tasks WHERE origin_type = 'daily_news'
+               AND status = 'complete' AND auto_publish_pending = 1
+               AND publication_safety_hold = 0 AND suppress_next_auto_publish = 0
+               ORDER BY planned_publish_at, created_at"""
+        )
+        return [_row_to_response(row) for row in rows]
+    finally:
+        await db.close()
+
+
 async def update_task(task_id: str, **kwargs):
     sets = []
     vals = []
@@ -847,6 +864,7 @@ async def compare_and_set_task_status(
     expected_updated_at: str | None = None,
     suppress_next_auto_publish: bool | None = None,
     publication_safety_hold: bool | None = None,
+    auto_publish_pending: bool | None = None,
 ) -> bool:
     """Atomically claim one task state transition.
 
@@ -867,6 +885,9 @@ async def compare_and_set_task_status(
         if publication_safety_hold is not None:
             assignments.append("publication_safety_hold = ?")
             parameters.append(int(publication_safety_hold))
+        if auto_publish_pending is not None:
+            assignments.append("auto_publish_pending = ?")
+            parameters.append(int(auto_publish_pending))
         predicates = ["id = ?", "status = ?"]
         parameters.extend((task_id, expected))
         if expected_updated_at is not None:

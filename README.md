@@ -237,7 +237,11 @@ The **Morning Desk** page configures:
 - automatic report length based on each story's evidence and complexity, with no fixed minute or word quota (including test runs); saved legacy duration settings are retired automatically;
 - TTS voice/model and the public-footage switch; news imagery remains enabled, and AI chooses the media quantity;
 - Gemini or deterministic local music;
-- automatic distribution targets and YouTube visibility.
+- automatic distribution targets, daily publication time (default **20:00** in the recipe timezone), and YouTube visibility.
+
+Automatic distribution uses a separate release clock. Each new full edition saves its own release timestamp and recipe; completing production queues the finished cut without uploading or publishing it. A background check every 20 seconds claims ready editions during their scheduled release minute. Platform upload and processing can finish later. Late production or a missed slot (including downtime or a disabled global switch) stays unpublished for manual publication, with no automatic catch-up. The production Schedule switch controls generation only. Global publishing, per-edition dispatch, account identity, review, receipt, and rework safety gates still apply. Tests and historical editions without a saved release time are never enrolled retroactively. Manual publication takes over from a pending release.
+
+The pending release is stored in the task database and survives service restarts. Source changes and the additive database migration take effect on the next normal service start; do not restart active production to apply them.
 
 Use **Save & run test** for an end-to-end test edition. This saves the current desk recipe before queuing the task. A test never publishes automatically or consumes that day's scheduled edition. To publish a test, use the separate publishing action on the completed task.
 

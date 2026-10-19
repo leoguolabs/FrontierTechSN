@@ -143,6 +143,7 @@ export interface Task {
   origin_id: string | null;
   origin_label: string | null;
   planned_publish_at: string | null;
+  auto_publish_pending: boolean;
 }
 
 export interface FootageQuery {
@@ -221,6 +222,7 @@ export interface DailyAutomationSettings {
   background_music_track_id: string;
   outro_style: 'data-extraction' | 'morning-brief' | 'signal-shot';
   auto_publish: boolean;
+  publish_time: string;
   publish_targets: Array<'youtube' | 'x' | 'apple_podcast'>;
   publish_visibility: 'private' | 'unlisted' | 'public';
 }

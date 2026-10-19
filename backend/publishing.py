@@ -28,6 +28,9 @@ from typing import Any
 from urllib.parse import quote
 
 from backend import config, database
+from backend.daily_news.publication_schedule import (
+    RELEASE_WINDOW, planned_release_at,
+)
 from backend.models import TaskResponse, TaskStatus
 from backend.pipeline.opencli import OpenCLIError, first_json, run_opencli_with_retries
 
@@ -1286,7 +1289,9 @@ async def delete_test_publications(task: TaskResponse, *, targets: list[str]) ->
     return read_publication_manifest(task)
 
 
-async def run_auto_publish_pipeline(task: TaskResponse) -> PublicationResult:
+async def run_auto_publish_pipeline(
+    task: TaskResponse, *, dispatch_scheduled: bool = False, now: datetime | None = None,
+) -> PublicationResult:
     """Dispatch only publishing-workflow tasks with every safety gate open."""
     if task.origin_type not in {"daily_news", "content_plan"}:
         return PublicationResult("not_applicable", "Task did not originate from a publishing workflow")
@@ -1296,6 +1301,23 @@ async def run_auto_publish_pipeline(task: TaskResponse) -> PublicationResult:
     if task.origin_type == "daily_news":
         if not task.config.auto_publish:
             return PublicationResult("awaiting_review", "Daily automatic publication is disabled")
+        if task.config.publish_test_mode:
+            return PublicationResult("awaiting_review", "Test editions never publish automatically")
+        if task.publication_safety_hold or task.suppress_next_auto_publish:
+            return PublicationResult("awaiting_review", "Automatic publication is suppressed for this edition")
+        clock = now or datetime.now(timezone.utc)
+        try:
+            release = planned_release_at(task)
+        except ValueError as exc:
+            return PublicationResult("awaiting_review", str(exc))
+        if not dispatch_scheduled:
+            if release <= clock:
+                return PublicationResult("awaiting_review", "Publication time was missed; manual publication required")
+            return PublicationResult(
+                "scheduled", f"Waiting for publication at {release.isoformat()}",
+            )
+        if clock < release or clock >= release + RELEASE_WINDOW:
+            return PublicationResult("blocked", "Outside the scheduled publication minute")
         configuration_errors = automatic_publication_configuration_errors(
             task.config.publish_targets
         )
@@ -1329,3 +1351,75 @@ async def run_auto_publish_pipeline(task: TaskResponse) -> PublicationResult:
         "awaiting_review",
         f"No automatic publisher is configured for {item.platform}",
     )
+
+
+async def dispatch_due_daily_publications(*, now: datetime | None = None) -> None:
+    """Claim durable completed editions; never hold up the production worker."""
+    from backend.daily_news.freshness import completion_guard
+
+    for task in await database.list_pending_daily_publications():
+        # Refresh the clock per edition: a slow upload must not let a later
+        # task use an old tick to bypass its publication window.
+        clock = now or datetime.now(timezone.utc)
+        try:
+            release = planned_release_at(task)
+        except ValueError as exc:
+            await database.compare_and_set_task_status(
+                task.id, TaskStatus.COMPLETE, TaskStatus.COMPLETE,
+                expected_updated_at=task.updated_at, auto_publish_pending=False,
+                error_message=str(exc),
+            )
+            continue
+        if clock < release:
+            continue
+        if clock >= release + RELEASE_WINDOW:
+            await database.compare_and_set_task_status(
+                task.id, TaskStatus.COMPLETE, TaskStatus.COMPLETE,
+                expected_updated_at=task.updated_at,
+                auto_publish_pending=False,
+                error_message="Publication time was missed; manual publication required",
+            )
+            continue
+        if not config.VIDEO_AUTO_PUBLISH_ENABLED:
+            continue
+        claimed = await database.compare_and_set_task_status(
+            task.id, TaskStatus.COMPLETE, TaskStatus.PUBLISHING,
+            expected_updated_at=task.updated_at, auto_publish_pending=False,
+        )
+        if not claimed:
+            continue
+        current = await database.get_task(task.id)
+        if current is None:
+            continue
+        attempted = False
+        try:
+            async with completion_guard(current):
+                attempted = True
+                result = await run_auto_publish_pipeline(
+                    current, dispatch_scheduled=True, now=now,
+                )
+                if result.action in {"awaiting_review", "blocked", "not_applicable"}:
+                    attempted = False
+                if result.action == "failed":
+                    raise RuntimeError(result.reason)
+                finalized = await database.compare_and_set_task_status(
+                    task.id, TaskStatus.PUBLISHING, TaskStatus.COMPLETE,
+                    expected_updated_at=current.updated_at,
+                    error_message=None if result.action == "published" else result.reason,
+                    publication_safety_hold=False,
+                )
+                if not finalized:
+                    raise RuntimeError("Scheduled publication could not be finalized; verify destinations")
+                logger.info("Scheduled publication %s: %s — %s", task.id, result.action, result.reason)
+        except BaseException as exc:
+            # Cancellation and indeterminate provider errors must never cause
+            # an automatic duplicate on the next tick or after a restart.
+            await database.compare_and_set_task_status(
+                task.id, TaskStatus.PUBLISHING, TaskStatus.FAILED,
+                expected_updated_at=current.updated_at,
+                error_message=f"Scheduled publication stopped: {exc}",
+                publication_safety_hold=attempted,
+            )
+            if isinstance(exc, asyncio.CancelledError):
+                raise
+            logger.exception("Scheduled publication failed for %s", task.id)

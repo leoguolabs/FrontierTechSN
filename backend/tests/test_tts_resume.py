@@ -968,6 +968,7 @@ class ResumeTtsWorkerTests(unittest.IsolatedAsyncioTestCase):
                         expected_updated_at=publishing.updated_at,
                         suppress_next_auto_publish=False,
                         publication_safety_hold=False,
+                        auto_publish_pending=False,
                     ),
                 ],
             )
@@ -1072,6 +1073,7 @@ class ResumeTtsWorkerTests(unittest.IsolatedAsyncioTestCase):
                     expected_updated_at=publishing.updated_at,
                     suppress_next_auto_publish=False,
                     publication_safety_hold=False,
+                    auto_publish_pending=False,
                 ),
             )
 
@@ -1374,6 +1376,7 @@ class ResumeTtsWorkerTests(unittest.IsolatedAsyncioTestCase):
                         expected_updated_at=publishing.updated_at,
                         suppress_next_auto_publish=None,
                         publication_safety_hold=False,
+                        auto_publish_pending=False,
                     ),
                 ],
             )
@@ -1477,6 +1480,7 @@ class ResumeTtsWorkerTests(unittest.IsolatedAsyncioTestCase):
                         expected_updated_at=publishing.updated_at,
                         suppress_next_auto_publish=False,
                         publication_safety_hold=False,
+                        auto_publish_pending=False,
                     ),
                 ],
             )
@@ -1617,6 +1621,7 @@ class ResumeTtsWorkerTests(unittest.IsolatedAsyncioTestCase):
                         expected_updated_at=publishing.updated_at,
                         suppress_next_auto_publish=False,
                         publication_safety_hold=False,
+                        auto_publish_pending=False,
                     ),
                 ],
             )
@@ -1826,6 +1831,7 @@ class ManualPublicationRouteTests(unittest.IsolatedAsyncioTestCase):
                         expected_updated_at=publishing.updated_at,
                         suppress_next_auto_publish=False,
                         publication_safety_hold=False,
+                        auto_publish_pending=False,
                     ),
                 ],
             )

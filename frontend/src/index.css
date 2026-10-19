@@ -4521,6 +4521,15 @@ video {
 .morning-distribution.has-disabled-controls .morning-destination:hover { transform: none; }
 .morning-distribution-notice { margin: 18px 0 0; padding: 12px 16px; border: 1px solid var(--rule); background: var(--surface-muted); color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
 .morning-distribution-notice.is-warning { border-left: 3px solid var(--accent); }
+.morning-release-schedule { display: grid; grid-template-columns: minmax(150px, .65fr) minmax(200px, 1fr) minmax(230px, 1fr); align-items: start; gap: 20px 28px; margin-top: 24px; padding: 22px 24px; border: 1px solid var(--rule); border-left: 3px solid var(--accent-green); background: color-mix(in srgb, var(--accent-green) 4%, var(--surface)); }
+.morning-release-schedule > label > span,.morning-release-zone > span,.morning-release-policy > span { display: block; margin-bottom: 9px; color: var(--text-muted); font: 700 9px/1.2 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+.morning-release-schedule input,.morning-release-schedule select { width: 100%; min-height: 44px; }
+.morning-release-time input { color: var(--ink); font: 600 23px/1.2 var(--font-mono); }
+.morning-release-zone strong,.morning-release-policy strong { display: block; margin-top: 14px; color: var(--ink); font: 600 14px/1.3 var(--font-mono); overflow-wrap: anywhere; }
+.morning-release-zone small,.morning-release-policy small { display: block; margin-top: 7px; color: var(--text-muted); font-size: 11px; line-height: 1.45; }
+.morning-release-schedule > p { grid-column: 1 / -1; margin: 0; padding-top: 14px; border-top: 1px solid var(--rule); color: var(--text-secondary); font-size: 12px; line-height: 1.65; }
+@media (max-width: 760px) { .morning-release-schedule { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 18px; gap: 18px; } .morning-release-policy { grid-column: 1 / -1; } }
+@media (max-width: 420px) { .morning-release-schedule { grid-template-columns: 1fr; } .morning-release-zone strong { margin-top: 0; } }
 .morning-publishing-settings { margin-top: 20px; border-top: 1px solid var(--rule); }
 .morning-publishing-settings summary { padding: 16px 0; color: var(--accent-2); font-size: 13px; font-weight: 700; cursor: pointer; }
 .morning-publishing-settings .publishing-console { padding-top: 12px; }

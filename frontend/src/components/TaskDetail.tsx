@@ -325,7 +325,9 @@ export default function TaskDetail() {
             </div>
             <div>
               <dt>Delivery</dt>
-              <dd>{task.origin_type === 'daily_news' && task.config.auto_publish ? 'Automatic · identity gated' : 'Manual review'}</dd>
+              <dd>{task.auto_publish_pending ? 'Waiting for scheduled release'
+                : task.status === 'complete' && task.error_message && task.origin_type === 'daily_news' ? 'Manual publication required'
+                : task.origin_type === 'daily_news' && task.config.auto_publish ? 'Automatic · identity gated' : 'Manual review'}</dd>
             </div>
             <div>
               <dt>Spoken ending</dt>

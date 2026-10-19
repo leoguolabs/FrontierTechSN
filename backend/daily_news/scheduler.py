@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 
 from backend import config, database, explainers
 from backend.daily_news.priority import hourly_preemption_window
+from backend.daily_news.publication_schedule import daily_release_at
 from backend.models import (
     DailyAutomationResponse,
     DailyAutomationSettings,
@@ -23,6 +24,7 @@ from backend.daily_news.scriptwriter import morning_opening
 
 logger = logging.getLogger(__name__)
 _scheduler_task: asyncio.Task | None = None
+_publication_task: asyncio.Task | None = None
 # The scheduler, manual button and hourly safety check share one admission
 # boundary. In particular, a schedule tick cannot race an hourly check into
 # creating two copies of the same daily edition.
@@ -266,6 +268,7 @@ async def _create_daily_task(
         program_music_opening_gap_seconds=3.0,
         program_music_story_gap_seconds=1.5,
         auto_publish=settings.auto_publish and not test_mode,
+        publish_time=settings.publish_time,
         publish_targets=settings.publish_targets,
         publish_visibility=settings.publish_visibility,
         publish_test_mode=test_mode,
@@ -286,6 +289,10 @@ async def _create_daily_task(
         origin_type="daily_news",
         origin_id=edition_date.isoformat(),
         origin_label=f"Daily automation · {edition_date.isoformat()}",
+        planned_publish_at=(
+            daily_release_at(edition_date, settings.publish_time, settings.timezone).isoformat()
+            if settings.auto_publish and not test_mode else None
+        ),
     )
     now = datetime.now(timezone.utc).isoformat()
     state = _read_json(_state_path())
@@ -355,20 +362,36 @@ async def _scheduler_loop() -> None:
             await asyncio.sleep(30)
 
 
+async def _publication_loop() -> None:
+    from backend.publishing import dispatch_due_daily_publications
+
+    while True:
+        try:
+            await dispatch_due_daily_publications()
+        except asyncio.CancelledError:
+            raise
+        except Exception:
+            logger.exception("Daily publication scheduler iteration failed")
+        await asyncio.sleep(20)
+
+
 def start_daily_scheduler() -> None:
-    global _scheduler_task
+    global _scheduler_task, _publication_task
     if _scheduler_task is None or _scheduler_task.done():
         _scheduler_task = asyncio.create_task(_scheduler_loop(), name="daily-frontier-tech-scheduler")
+    if _publication_task is None or _publication_task.done():
+        _publication_task = asyncio.create_task(_publication_loop(), name="daily-publication-scheduler")
 
 
 async def stop_daily_scheduler() -> None:
-    global _scheduler_task
-    if _scheduler_task is None:
-        return
-    _scheduler_task.cancel()
-    try:
-        await _scheduler_task
-    except asyncio.CancelledError:
-        pass
-    finally:
-        _scheduler_task = None
+    global _scheduler_task, _publication_task
+    jobs = [job for job in (_scheduler_task, _publication_task) if job is not None]
+    for job in jobs:
+        job.cancel()
+    for job in jobs:
+        try:
+            await job
+        except asyncio.CancelledError:
+            pass
+    _scheduler_task = None
+    _publication_task = None

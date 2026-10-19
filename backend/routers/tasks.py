@@ -310,6 +310,7 @@ async def publish_task_now(task_id: str, body: TaskPublicationRequest):
             expected_updated_at=publishing_task.updated_at,
             suppress_next_auto_publish=False,
             publication_safety_hold=False,
+            auto_publish_pending=False,
         )
         if not completed:
             await _fail_closed_publication_state(

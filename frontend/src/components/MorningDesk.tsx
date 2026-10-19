@@ -94,6 +94,7 @@ export default function MorningDesk() {
   const draft = draftOverride ?? (persisted ? {
     ...persisted,
     outro_style: persisted.outro_style ?? 'morning-brief',
+    publish_time: persisted.publish_time ?? '20:00',
   } : null)
   const {
     data: voices = [],
@@ -260,7 +261,7 @@ export default function MorningDesk() {
   const distributionState = !draft.auto_publish
     ? 'Paused · selections retained'
     : !globalPublishingEnabled ? 'Paused by global switch'
-      : !publicationReady ? 'Account setup required' : 'Automatic dispatch armed'
+      : !publicationReady ? 'Account setup required' : `Scheduled · ${draft.publish_time}`
   const selectedModel = ttsModels.find((model) => model.id === draft.tts_model)
   const selectedMusicTrack = musicTracks.find((track) => track.id === draft.background_music_track_id)
   const selectedOutro = outroPresets.find((preset) => preset.id === draft.outro_style)
@@ -280,6 +281,7 @@ export default function MorningDesk() {
     && musicSelectionReady
     && outroSelectionReady
     && Boolean(draft.generation_time && draft.timezone.trim())
+    && /^([01]\d|2[0-3]):[0-5]\d$/.test(draft.publish_time)
     && draft.opening_template.length <= 500
     && draft.opening_template.split('{date}').length === 2
     && !draft.opening_template.replace('{date}', '').includes('{')
@@ -582,7 +584,7 @@ export default function MorningDesk() {
           <div className="morning-distribution-copy">
             <span className="morning-section-label">Dispatch matrix</span>
             <h2>Automatic distribution</h2>
-            <p>Send every completed edition to the selected destinations. Platform choices are retained while dispatch is paused.</p>
+            <p>Release completed editions at the saved publication time. Platform choices and timing are retained while dispatch is paused.</p>
           </div>
           <div className="morning-distribution-controls">
             <label className={`morning-visibility ${draft.auto_publish && draft.publish_targets.includes('youtube') ? '' : 'is-disabled'}`}>
@@ -603,6 +605,35 @@ export default function MorningDesk() {
             </label>
           </div>
         </header>
+
+        <div className="morning-release-schedule" aria-label="Publication schedule">
+          <label className="morning-release-time">
+            <span>Publish daily at</span>
+            <input
+              type="time"
+              required
+              step="60"
+              aria-describedby="morning-release-help"
+              value={draft.publish_time}
+              onChange={(event) => patch('publish_time', event.target.value)}
+            />
+          </label>
+          <div className="morning-release-zone">
+            <span>Recipe timezone</span>
+            <strong>{draft.timezone}</strong>
+            <small>Shared with the production schedule above</small>
+          </div>
+          <div className="morning-release-policy">
+            <span>If the time is missed</span>
+            <strong>Hold for manual publication</strong>
+            <small>No automatic catch-up</small>
+          </div>
+          <p id="morning-release-help">
+            Finished early? The edition waits. Publishing starts at {draft.publish_time || 'the saved time'} in {draft.timezone}; platform processing may take longer.
+            {' '}If production finishes late or a release slot is missed, it stays unpublished for manual review.
+            {' '}Saved changes apply to new editions.
+          </p>
+        </div>
 
         {settingsSchema && !globalPublishingEnabled && (
           <p className="morning-distribution-notice" role="status">

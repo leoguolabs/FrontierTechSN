@@ -363,6 +363,7 @@ async def _worker_loop():
                     )
                 if refreshed and refreshed.status == TaskStatus.PUBLISHING:
                     async with completion_guard(refreshed):
+                        publication = None
                         if refreshed.suppress_next_auto_publish:
                             _persist_and_publish(
                                 refreshed,
@@ -380,6 +381,7 @@ async def _worker_loop():
                                 "not_applicable",
                                 "awaiting_review",
                                 "blocked",
+                                "scheduled",
                             }:
                                 publication_attempted = False
                             _persist_and_publish(
@@ -396,7 +398,11 @@ async def _worker_loop():
                             refreshed.id,
                             TaskStatus.PUBLISHING,
                             TaskStatus.COMPLETE,
-                            error_message=None,
+                            error_message=(
+                                publication.reason
+                                if publication and publication.action in {"awaiting_review", "blocked"}
+                                else None
+                            ),
                             expected_updated_at=refreshed.updated_at,
                             suppress_next_auto_publish=(
                                 False
@@ -404,6 +410,9 @@ async def _worker_loop():
                                 else None
                             ),
                             publication_safety_hold=False,
+                            auto_publish_pending=(
+                                publication is not None and publication.action == "scheduled"
+                            ),
                         )
                         if not finalized:
                             raise RuntimeError(

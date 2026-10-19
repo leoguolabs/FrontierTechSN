@@ -160,11 +160,21 @@ class TaskConfig(BaseModel):
     # Publishing is account-agnostic: adapters use whichever OpenCLI/browser
     # session is logged in at run time, never a hard-coded handle/channel ID.
     auto_publish: bool = False
+    # None marks legacy task snapshots, which must never acquire a release
+    # schedule retroactively when a new service version starts.
+    publish_time: Optional[str] = None
     publish_targets: list[Literal["youtube", "x", "apple_podcast"]] = Field(
         default_factory=lambda: ["youtube", "x", "apple_podcast"]
     )
     publish_visibility: Literal["private", "unlisted", "public"] = "private"
     publish_test_mode: bool = False
+
+    @field_validator("publish_time")
+    @classmethod
+    def validate_publish_time(cls, value: str | None) -> str | None:
+        if value is not None and not re.fullmatch(r"([01]\d|2[0-3]):[0-5]\d", value):
+            raise ValueError("publish_time must use 24-hour HH:MM")
+        return value
 
     @field_validator("closing_remarks")
     @classmethod
@@ -252,6 +262,7 @@ class TaskResponse(BaseModel):
     origin_id: Optional[str] = None
     origin_label: Optional[str] = None
     planned_publish_at: Optional[str] = None
+    auto_publish_pending: bool = False
 
     @computed_field
     @property
@@ -710,17 +721,18 @@ class DailyAutomationSettings(BaseModel):
         "data-extraction", "morning-brief", "signal-shot"
     ] = "morning-brief"
     auto_publish: bool = True
+    publish_time: str = "20:00"
     publish_targets: list[Literal["youtube", "x", "apple_podcast"]] = Field(
         default_factory=lambda: ["youtube", "x", "apple_podcast"]
     )
     publish_visibility: Literal["private", "unlisted", "public"] = "public"
 
-    @field_validator("generation_time")
+    @field_validator("generation_time", "publish_time")
     @classmethod
     def validate_generation_time(cls, value: str) -> str:
         match = re.fullmatch(r"([01]\d|2[0-3]):([0-5]\d)", value.strip())
         if not match:
-            raise ValueError("generation_time must use 24-hour HH:MM")
+            raise ValueError("Schedule times must use 24-hour HH:MM")
         return value.strip()
 
     @model_validator(mode="before")

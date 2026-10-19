@@ -238,7 +238,7 @@ export default function TaskDetail() {
               </a>
             )}
             {task.thumbnail_path && (
-              <a href={thumbnailUrl(task.id)} download>
+              <a href={thumbnailUrl(task.id, task.updated_at)} download>
                 <button className="btn-primary" type="button">Download Thumbnail</button>
               </a>
             )}
@@ -396,9 +396,9 @@ export default function TaskDetail() {
           {task.thumbnail_path && (
             <section className="detail-panel thumbnail-result">
               <h3>Viral Thumbnail</h3>
-              <img src={thumbnailUrl(task.id)} alt={`Thumbnail for ${task.source_title || task.id}`} />
+              <img src={thumbnailUrl(task.id, task.updated_at)} alt={`Thumbnail for ${task.source_title || task.id}`} />
               <div className="actions">
-                <a href={thumbnailUrl(task.id)} download>
+                <a href={thumbnailUrl(task.id, task.updated_at)} download>
                   <button className="btn-primary" type="button">Download Thumbnail</button>
                 </a>
                 <a href={thumbnailPromptUrl(task.id)} target="_blank" rel="noopener">

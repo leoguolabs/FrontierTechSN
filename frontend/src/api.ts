@@ -803,8 +803,9 @@ export function scriptUrl(taskId: string, revision?: string): string {
   return `${BASE}/api/tasks/${taskId}/script${revision ? `?v=${encodeURIComponent(revision)}` : ''}`;
 }
 
-export function thumbnailUrl(taskId: string): string {
-  return `${BASE}/api/tasks/${taskId}/thumbnail`;
+export function thumbnailUrl(taskId: string, version?: string): string {
+  const query = version ? `?v=${encodeURIComponent(version)}` : '';
+  return `${BASE}/api/tasks/${taskId}/thumbnail${query}`;
 }
 
 export function thumbnailPromptUrl(taskId: string): string {

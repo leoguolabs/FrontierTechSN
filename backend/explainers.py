@@ -323,7 +323,14 @@ async def write_script(project: dict, directory: Path, log) -> list[dict]:
                 return validate(_parse_json(answer))
             except (ValueError, TypeError, KeyError) as exc:
                 log(f"{label}: structure repair {attempt + 1}/3: {exc}")
-                feedback = "\nRepair the prior response. Validation error: " + str(exc) + "\nPrevious response:\n" + answer[-20000:]
+                feedback = (
+                    "\nThe prior response failed validation: " + str(exc)
+                    + "\nReturn a complete replacement JSON object, not a patch or continuation. "
+                    "Recheck the narration count separately from visual descriptions and labels. "
+                    "If narration is too short, develop the supplied chapter's mechanisms, examples "
+                    "and qualifications in additional scenes; do not merely reformat the same text "
+                    "or invent facts to fill space.\nPrevious response:\n" + answer[-20000:]
+                )
         raise ValueError(f"{label} could not produce a valid structured draft")
 
     outline_file = directory / "outline.json"
@@ -353,6 +360,9 @@ async def write_script(project: dict, directory: Path, log) -> list[dict]:
     all_scenes = []
     target_per_chapter = max(100, round(total_words / chapter_count))
     scene_words = max(10, round(project["style"]["seconds_per_scene"] * words_per_minute / 60))
+    minimum_chapter_words = math.ceil(target_per_chapter * 0.65)
+    maximum_chapter_words = math.floor(target_per_chapter * 1.5)
+    target_scene_count = math.ceil(target_per_chapter / scene_words)
     for index, chapter in enumerate(outline["chapters"]):
         def validate_chapter(value):
             rows = value.get("scenes")
@@ -371,8 +381,13 @@ async def write_script(project: dict, directory: Path, log) -> list[dict]:
                 raise ValueError(f"Select at most {chapter_budget} Gemini motion scenes in this chapter")
             narration = " ".join(scene["narration"] for scene in scenes)
             count = _word_count(narration, language)
-            if count < target_per_chapter * 0.65 or count > target_per_chapter * 1.5:
-                raise ValueError(f"Chapter has {count} words/characters; target is {target_per_chapter}, accepted 65%-150%")
+            if not minimum_chapter_words <= count <= maximum_chapter_words:
+                raise ValueError(
+                    f"Chapter narration has {count} words/characters; target is {target_per_chapter}, "
+                    f"required range is {minimum_chapter_words}-{maximum_chapter_words}. "
+                    f"Only narration fields count. Aim for about {target_scene_count} scenes "
+                    f"of {scene_words} words/characters each, with longer closing beats allowed."
+                )
             if language == "en" and len(re.findall(r"[\u3400-\u9fff]", narration)) > 10:
                 raise ValueError("Narration must be English")
             if language == "zh" and len(re.findall(r"[\u3400-\u9fff]", narration)) < count * 0.5:
@@ -400,6 +415,10 @@ async def write_script(project: dict, directory: Path, log) -> list[dict]:
                 f"Write ONLY chapter {index + 1}: {json.dumps(chapter, ensure_ascii=False)}. "
                 f"Target {target_per_chapter} {'Chinese characters' if language == 'zh' else 'spoken words'}, "
                 f"split into scenes of about {scene_words} words/characters, complete sentences per scene. "
+                f"Plan about {target_scene_count} scenes. The combined narration fields MUST contain "
+                f"{minimum_chapter_words}-{maximum_chapter_words} words/characters; aim for {target_per_chapter}. "
+                "Visual descriptions, labels and JSON keys do not count toward this narration budget. "
+                "Develop the full chapter rather than a short summary. "
                 "JSON: {\"scenes\":[{\"narration\":\"exact spoken text\",\"visual_prompt\":\"concrete illustrated scene\","
                 "\"on_screen_text\":\"optional 1-5 word label\",\"motion\":false,\"ending_role\":\"\"}]}. "
                 "Every visual must illustrate that scene's exact narration, with characters, actions and props. "
@@ -418,7 +437,8 @@ async def write_script(project: dict, directory: Path, log) -> list[dict]:
                 "Do not include speaker labels, stage directions or citations in speech. Use motion=true only "
                 "where an action is needed to explain the mechanism. Select a few meaningful actions across "
                 "the story for Gemini animation; static charts and numerical claims should remain still. "
-                f"Select at most {MAX_GEMINI_CLIPS // chapter_count + (1 if index < MAX_GEMINI_CLIPS % chapter_count else 0)} motion scenes in this chapter; the episode budget is 20. "
+                f"Select at most {MAX_GEMINI_CLIPS // chapter_count + (1 if index < MAX_GEMINI_CLIPS % chapter_count else 0)} motion scenes in this chapter; the episode budget is 20 animated clips. "
+                "This limits only motion=true scenes, not the total number of narration scenes. "
                 "Keep on-screen text in narration language. "
                 + ("For this FINAL chapter, the last three scenes must have ending_role callback, action, "
                    "takeaway respectively. Give them 45-85 English words or 70-140 Chinese characters in total, "

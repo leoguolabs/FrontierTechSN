@@ -383,6 +383,45 @@ class ExplainerAsyncTests(unittest.IsolatedAsyncioTestCase):
             studio.start(realtime["id"], "render")
         self.assertEqual(studio.tts_language("vibevoice-1.5b"), "multilingual")
 
+    async def test_writer_expands_short_chapter_without_relaxing_length_gate(self):
+        project = studio.create_project(project_input(target_minutes=12))
+        outline = {"chapters": [{"title": f"Chapter {i}", "brief": "Explain the supplied research"} for i in range(4)]}
+        short = {"scenes": [scene(narration="word " * 10) for _ in range(19)] + [scene(narration="word " * 9)]}
+        full = {"scenes": [scene(narration="word " * 10) for _ in range(40)]}
+        full["scenes"] += [scene(narration="word " * 15, ending_role=role, motion=role == "action")
+                           for role in ("callback", "action", "takeaway")]
+        responses = [json.dumps(outline), json.dumps(short)] + [json.dumps(full)] * 4
+        directory = studio.project_dir(project["id"])
+        with patch("backend.pipeline.digester._resolve_provider", AsyncMock(return_value=("endpoint", "model", "key"))), patch("backend.pipeline.digester._chat", AsyncMock(side_effect=responses)) as chat:
+            result = await studio.write_script(project, directory, lambda _: None)
+            repair_prompt = chat.call_args_list[2].args[1]
+            self.assertIn("199 words/characters", repair_prompt)
+            self.assertIn("required range is 283-652", repair_prompt)
+            self.assertIn("about 44 scenes", repair_prompt)
+            self.assertIn("complete replacement JSON object", repair_prompt)
+            self.assertEqual(len(result), 172)
+            self.assertEqual(chat.await_count, 6)
+            self.assertEqual(await studio.write_script(project, directory, lambda _: None), result)
+            self.assertEqual(chat.await_count, 6)
+        for path in directory.glob("writing/*/chapter-*.json"):
+            saved = json.loads(path.read_text())
+            self.assertEqual(sum(len(s["narration"].split()) for s in saved["scenes"]), 445)
+
+    async def test_writer_exhausted_short_chapter_keeps_completed_checkpoint(self):
+        project = studio.create_project(project_input(target_minutes=6))
+        outline = {"chapters": [{"title": name, "brief": "Explain the supplied research"} for name in ("First", "Second")]}
+        full = {"scenes": [scene(narration="word " * 10) for _ in range(44)]}
+        short = {"scenes": [scene(narration="word " * 10) for _ in range(19)]}
+        directory = studio.project_dir(project["id"])
+        responses = [json.dumps(outline), json.dumps(full)] + [json.dumps(short)] * 3
+        with patch("backend.pipeline.digester._resolve_provider", AsyncMock(return_value=("endpoint", "model", "key"))), patch("backend.pipeline.digester._chat", AsyncMock(side_effect=responses)) as chat:
+            with self.assertRaisesRegex(ValueError, "chapter 2 could not produce"):
+                await studio.write_script(project, directory, lambda _: None)
+        self.assertEqual(chat.await_count, 5)
+        chapters = list(directory.glob("writing/*/chapter-*.json"))
+        self.assertEqual([path.name for path in chapters], ["chapter-01.json"])
+        self.assertEqual(len(json.loads(chapters[0].read_text())["scenes"]), 44)
+
     async def test_writer_repairs_an_abrupt_ending_before_accepting_script(self):
         project = studio.create_project(project_input(target_minutes=1))
         rows = [scene(id=f"scene-{i + 1:03d}", narration="Close the book and recall the idea before checking your answer.") for i in range(12)]

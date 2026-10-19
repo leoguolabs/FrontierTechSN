@@ -2523,13 +2523,17 @@ def write_punctuation_repair(directory, source, synthesis, position):
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize('result', ['pass', 'reject', 'unavailable'])
-@pytest.mark.parametrize('version', [1, 3])
-async def test_explicit_punctuation_repair_retains_original_jobs_and_bounded_budget(setup_client, monkeypatch, result, version):
+@pytest.mark.parametrize('version,rejection', [
+    (1, 'Chatterbox initialism pronunciation mismatch: fused boundary'),
+    (1, 'Word-hint audio differs from its complete source phone sequence'),
+    (1, 'Required complete-source phone sequence differs from the source'),
+    (3, 'Chatterbox unrequested trailing speech: ["hidden"]'),
+])
+async def test_explicit_punctuation_repair_retains_original_jobs_and_bounded_budget(
+        setup_client, monkeypatch, result, version, rejection):
     server, script, directory, verifier, generate = setup_client
     source = script.read_text()
-    verifier.side_effect = tts.TtsIntegrityError(
-        'Chatterbox unrequested trailing speech: ["hidden"]' if version == 3
-        else 'Chatterbox initialism pronunciation mismatch: fused boundary')
+    verifier.side_effect = tts.TtsIntegrityError(rejection)
     with pytest.raises(tts.TtsIntegrityError):
         await generate()
     originals = {p.name: p.read_bytes() for p in directory.glob('*.request-*.json')}

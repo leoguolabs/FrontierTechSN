@@ -128,7 +128,11 @@ def _punctuation_repair(directory: Path, stem: str, identity: dict, *,
                    **identity['synthesis_parameters']}
         checkpoint = _read_request_checkpoint(original)
         rejection = str(checkpoint.get('rejected', ''))
-        pronunciation_rejected = rejection.startswith('Chatterbox initialism pronunciation mismatch:')
+        pronunciation_rejected = rejection.startswith((
+            'Chatterbox initialism pronunciation mismatch:',
+            'Word-hint audio differs from its complete source phone sequence',
+            'Required complete-source phone sequence differs from the source',
+        ))
         pronunciation_failure |= pronunciation_rejected
         trailing_rejected = False
         if version == 3 and rejection.startswith('Chatterbox unrequested trailing speech: '):

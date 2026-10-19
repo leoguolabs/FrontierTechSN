@@ -27,10 +27,24 @@ from scripts.chatterbox_body_phone_references import (
 
 MODEL = 'facebook/wav2vec2-lv-60-espeak-cv-ft'
 REVISION = 'ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4'
-EVIDENCE_VERSION = 36
+EVIDENCE_VERSION = 37
 # Acoustic evidence can recognize an additional independently cited reading
 # without changing any frozen synthesis/word-hint policy or request identity.
 ACOUSTIC_WORD_REFERENCES = {
+    'quarter': {
+        'variants': [['K', 'W', 'AO', 'R', 'T', 'ER']],
+        'before_vowel_variants': [
+            ['K', 'W', 'AO', 'R', 'T', 'ER', 'R'],
+            ['K', 'W', 'AO', 'R', 'DX', 'ER', 'R'],
+        ],
+        'ipa': ['\u02c8kw\u0254\u02d0r.t\u032c\u025a'],
+        'source_url': 'https://dictionary.cambridge.org/pronunciation/english/quarter',
+        'source_location': 'Cambridge US quarter retains the medial rhotic, alveolar flap and final rhotic vowel. The separate observed final R is permitted only before a following vowel; every lexical phone remains required.',
+        'realization_source_url': 'https://pronuncian.com/r-controlled-vowels',
+        'realization_source_location': 'Schwa+r is a syllabic r; paired with the continuous-consonant linking reference, a separate decoder R can represent its continuation into the following vowel. This is a quarter-only reference, not a general ER/R collapse.',
+        'linking_source_url': 'https://pronuncian.com/linking-continuous-consonants-vowels/',
+        'verified_on': '2026-10-19',
+    },
     'attributes': {
         'variants': [['AE', 'T', 'R', 'IH', 'B', 'Y', 'UW', 'T', 'S']],
         'ipa': ['ˈæt.rɪ.bjuːts'],

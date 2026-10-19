@@ -927,6 +927,21 @@ def test_complete_dram_sentence_retains_named_letters_and_connected_speech():
         assert not evidence.compare_source(source, prepared, changed)['passed']
 
 
+def test_quarter_rhotic_continuation_requires_the_following_vowel():
+    report = evidence.compare_source('quarter of', [], 'k w ɔːɹ ɾ ɚ ɹ ʌ v')
+    assert report['passed']
+    assert report['cited_body_word_references']['quarter']['before_vowel_variants']
+    for source, phones in [
+        ('quarter today', 'k w ɔːɹ ɾ ɚ ɹ t ə d eɪ'),
+        ('quarter', 'k w ɔːɹ ɾ ɚ ɹ'),
+        ('quarter of', 'k w ɔːɹ ɚ ɹ ʌ v'),
+        ('quarter of', 'k w ɔːɹ ɾ ɚ ɹ ɑːɹ ʌ v'),
+        ('quarter of', 'k w ɔːɹ ɾ ɚ ɹ ʌ'),
+    ]:
+        assert not evidence.compare_source(source, [], phones)['passed']
+    assert evidence.observed_phones('ɚ ɹ') == ('ER', 'R')
+
+
 def test_ordinary_nasal_and_post_rhotic_flap_rules_do_not_change_letter_names():
     assert evidence.compare_source('Increases.', [], 'ɪ ŋ k ɹ iː s ɪ z')['passed']
     assert not evidence.compare_source('Increases.', [], 'ɪ ŋ ɹ iː s ɪ z')['passed']

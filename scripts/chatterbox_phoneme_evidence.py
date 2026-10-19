@@ -27,7 +27,7 @@ from scripts.chatterbox_body_phone_references import (
 
 MODEL = 'facebook/wav2vec2-lv-60-espeak-cv-ft'
 REVISION = 'ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4'
-EVIDENCE_VERSION = 35
+EVIDENCE_VERSION = 36
 # Acoustic evidence can recognize an additional independently cited reading
 # without changing any frozen synthesis/word-hint policy or request identity.
 ACOUSTIC_WORD_REFERENCES = {
@@ -77,6 +77,7 @@ PRERHOTIC_VOWEL_SOURCE = 'https://opentext.ku.edu/amenglishpronunciation/chapter
 ORDINARY_FLAP_SOURCE = 'https://journals.sagepub.com/doi/10.1177/0023830908098542'
 POST_RHOTIC_FLAP_SOURCE = 'https://doi.org/10.1016/j.ssaho.2022.100313'
 NASAL_PLACE_SOURCE = 'https://laits.utexas.edu/phonology/catalan/cat_clusters2.html'
+CHOICE_DIPHTHONG_SOURCE = 'https://appalachian-english.library.sc.edu/sites/default/files/Phonetics.pdf'
 LETTER_PHONES = {
     'A': [('EY',)], 'B': [('B', 'IY')], 'C': [('S', 'IY')],
     'D': [('D', 'IY')], 'E': [('IY',)], 'F': [('EH', 'F')],
@@ -92,6 +93,10 @@ LETTER_PHONES = {
 }
 IPA = {
     'eɪ': 'EY', 'aɪ': 'AY', 'oʊ': 'OW', 'aʊ': 'AW', 'ɔɪ': 'OY',
+    # The pinned eSpeak-trained observer also emits the close-mid onset of
+    # the English CHOICE diphthong. Match the complete diphthong only: a bare
+    # /o/ must retain its existing restricted pre-rhotic handling.
+    'oɪ': 'OY',
     'tʃ': 'CH', 'dʒ': 'JH', 'ɜɹ': 'ER', 'əɹ': 'ER', 'ɚ': 'ER', 'ɝ': 'ER',
     'i': 'IY', 'ɪ': 'IH', 'ᵻ': 'IH', 'ɛ': 'EH', 'æ': 'AE',
     'ɑ': 'AA', 'ɔ': 'AO', 'ʌ': 'AH', 'ə': 'AH', 'ɐ': 'AH',
@@ -494,6 +499,8 @@ def compare_source(text: str, edits: list[dict], phones: str) -> dict:
         report['source_symbol_conjunction_reference_version'] = SYMBOL_CONJUNCTION_REFERENCE_VERSION
     if re.search(r'o[ːˈˌ]*(?:\s+)?[ɹr]', phones):
         report['prerhotic_vowel_reference'] = PRERHOTIC_VOWEL_SOURCE
+    if 'oɪ' in phones:
+        report['choice_diphthong_reference'] = CHOICE_DIPHTHONG_SOURCE
     if 'ɾ' in phones:
         report['ordinary_flap_reference'] = ORDINARY_FLAP_SOURCE
         report['post_rhotic_flap_reference'] = POST_RHOTIC_FLAP_SOURCE

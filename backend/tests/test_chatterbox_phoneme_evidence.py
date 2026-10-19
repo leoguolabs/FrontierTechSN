@@ -543,6 +543,24 @@ def test_phone_token_boundaries_do_not_merge_the_schwa_with_the_next_word_r():
     assert evidence.observed_phones('ɚ') == ('ER',)
 
 
+@pytest.mark.parametrize('choice', ['ɔɪ', 'oɪ'])
+def test_choice_diphthong_keeps_complete_word_and_initialism_checks(choice):
+    source = 'Counterpoint mentions AI today.'
+    prepared = edits(source, 'AI', 'eigh eye')
+    phones = f'k aʊ n t ɚ p {choice} n t m ɛ n ʃ ə n z eɪ aɪ t ə d eɪ'
+    report = evidence.compare_source(source, prepared, phones)
+    assert report['supported'] and report['passed']
+    if choice == 'oɪ':
+        assert report['choice_diphthong_reference'] == evidence.CHOICE_DIPHTHONG_SOURCE
+    for wrong in [phones.replace(choice, 'oʊ'), phones.replace('eɪ aɪ', 'aɪ aɪ'),
+                  phones.replace(f'p {choice} n t', f'p {choice} n'),
+                  phones + f' p {choice} n t']:
+        assert not evidence.compare_source(source, prepared, wrong)['passed']
+    with pytest.raises(ValueError, match='Unsupported observed phone'):
+        evidence.observed_phones('o ɪ')
+    assert evidence.observed_phones(f'{choice} {choice}') == ('OY', 'OY')
+
+
 @pytest.mark.parametrize('prerhotic', ['oːɹ', 'oː ɹ', 'oɹ', 'o r'])
 def test_documented_prerhotic_o_preserves_the_complete_source_and_named_r(prerhotic):
     source = 'The report mentions BRB today.'

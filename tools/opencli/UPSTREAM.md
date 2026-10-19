@@ -172,6 +172,9 @@ installed package.
 
 The October 12 collage incident exposed another completed error response:
 “I couldn't generate the image in this attempt.” followed by explanatory prose.
+The October 20 Explainer response used “new illustration” and doubled spaces,
+then requested an earlier image. Normalize whitespace and recognize that wording;
+classify its explicit upload request as missing input, retaining the owned turn.
 Recognize this response alongside the existing provider-error wording, only
 after two identical idle readings from the exact owned turn with no generated
 image or canvas preview. This avoids repeatedly waiting out the response budget

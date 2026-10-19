@@ -15,6 +15,7 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
     const isLocal = value => /^https:\/\/chatgpt\.com\/c\/local-chatgpt(?::|%3a)[0-9a-f-]{36}(?:[?#]|$)/i.test(value || '');
     const isPending = value => /^https:\/\/chatgpt\.com\/(?:new\/?)?(?:[?#]|$)/i.test(value || '');
     const report = stage => options.onProgress?.(stage, conversationUrl);
+    const missingInputRequest = /(?:^|[.!?]\s+)Please upload the (?:earlier|original|reference) image\b[\s\S]*\bso I can (?:recompose|edit|redraw|correct)\b/i;
 
     while (Date.now() < deadline) {
         await page.sleep(Math.min(3, (deadline - Date.now()) / 1000));
@@ -125,11 +126,11 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
                 if (userIndex >= 0 && userIndex < messages.length - 1
                     && chatGPTPromptMatches(messages[userIndex].Text, options.prompt)
                     && latest?.Role === 'Assistant') {
-                    const text = String(latest.Text || '').trim();
+                    const text = String(latest.Text || '').replace(/\s+/g, ' ').trim();
                     if (/^I wasn['’]t able to generate the image due to an error on my side\.$/.test(text)
-                        || /^I couldn['’]t generate the image in this attempt\.(?:\s|$)/.test(text)
+                        || /^I couldn['’]t generate the (?:new )?(?:image|illustration) in this attempt\.(?:\s|$)/.test(text)
                         || /^We['’]re so sorry, but the image we created may violate our guardrails around [^.]+\.(?:\s|$)/i.test(text)
-                        || /^Please upload the (?:earlier|original|reference) image\b[\s\S]*\bso I can (?:recompose|edit|redraw)\b/i.test(text)) {
+                        || (/^Please upload /i.test(text) && missingInputRequest.test(text))) {
                         terminalText = text;
                     }
                 }
@@ -137,7 +138,7 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
             failureCount = terminalText && terminalText === failureText ? failureCount + 1 : (terminalText ? 1 : 0);
             failureText = terminalText;
             if (failureCount >= 2) {
-                const missingInput = /^Please upload /i.test(terminalText);
+                const missingInput = missingInputRequest.test(terminalText);
                 report(missingInput ? 'image_input_missing' : 'image_generation_failed');
                 throw new CommandExecutionError(
                     `${missingInput ? 'CHATGPT_IMAGE_INPUT_MISSING' : 'CHATGPT_IMAGE_GENERATION_FAILED'}: ${terminalText}`,

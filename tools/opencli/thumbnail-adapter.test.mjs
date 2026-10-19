@@ -318,7 +318,7 @@ test('completed image error ends the owned wait after two stable idle readings',
 
 test('standalone illustration failure with a reference request ends its owned wait', async () => {
   const text = "I couldn't generate the new illustration in this attempt. The image tool requires an image reference, even though your request is for a new standalone frame.\n\nPlease upload the earlier image so I can correct the magnifying glass, ensure the enlarged gauge matches the area beneath it, and show the character actively examining the clipboard."
-  for (const variant of [text, text.replaceAll(' ', '  '), text.replace("couldn't", 'couldn’t') + '\nImage generation failed\nTry again']) {
+  for (const variant of [text, text.replaceAll(' ', '  '), text.replace('\n\n', ''), text.replace("couldn't", 'couldn’t') + '\nImage generation failed\nTry again']) {
     const response = { Role: 'Assistant', Text: variant }
     const { run, state } = waiter(fixedWait, { messages: () => [ownedFailure[0], response] })
     await assert.rejects(run(420, savedUrl, { prompt: 'exact image prompt' }), /CHATGPT_IMAGE_INPUT_MISSING/)

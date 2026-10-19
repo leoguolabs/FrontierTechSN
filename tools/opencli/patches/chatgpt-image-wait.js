@@ -15,7 +15,7 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
     const isLocal = value => /^https:\/\/chatgpt\.com\/c\/local-chatgpt(?::|%3a)[0-9a-f-]{36}(?:[?#]|$)/i.test(value || '');
     const isPending = value => /^https:\/\/chatgpt\.com\/(?:new\/?)?(?:[?#]|$)/i.test(value || '');
     const report = stage => options.onProgress?.(stage, conversationUrl);
-    const missingInputRequest = /(?:^|[.!?]\s+)Please upload the (?:earlier|original|reference) image\b[\s\S]*\bso I can (?:recompose|edit|redraw|correct)\b/i;
+    const missingInputRequest = /(?:^|[.!?]\s*)Please upload the (?:earlier|original|reference) image\b[\s\S]*\bso I can (?:recompose|edit|redraw|correct)\b/i;
 
     while (Date.now() < deadline) {
         await page.sleep(Math.min(3, (deadline - Date.now()) / 1000));

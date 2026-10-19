@@ -27,10 +27,26 @@ from scripts.chatterbox_body_phone_references import (
 
 MODEL = 'facebook/wav2vec2-lv-60-espeak-cv-ft'
 REVISION = 'ae45363bf3413b374fecd9dc8bc1df0e24c3b7f4'
-EVIDENCE_VERSION = 34
+EVIDENCE_VERSION = 35
 # Acoustic evidence can recognize an additional independently cited reading
 # without changing any frozen synthesis/word-hint policy or request identity.
 ACOUSTIC_WORD_REFERENCES = {
+    'attributes': {
+        'variants': [['AE', 'T', 'R', 'IH', 'B', 'Y', 'UW', 'T', 'S']],
+        'ipa': ['ˈæt.rɪ.bjuːts'],
+        'source_url': 'https://dictionary.cambridge.org/us/pronunciation/english/attribute',
+        'source_location': 'Cambridge noun reading /ˈæt.rɪ.bjuːt/ with the regular plural /s/. Like the existing CMU alternatives, this checks lexical phones, not grammatical stress.',
+        'verified_on': '2026-10-19',
+    },
+    'turnaround': {
+        'variants': [['T', 'ER', 'N', 'ER', 'R', 'AW', 'N', 'D']],
+        'ipa': ['ˈtɝːn.ɚ.aʊnd'],
+        'source_url': 'https://dictionary.cambridge.org/pronunciation/english/turnaround',
+        'source_location': 'Cambridge US rhotic schwa /ɚ/ before /aʊ/. Retain a separately observed linking R after the rhotic vowel in this word only; no general ER/R collapse.',
+        'realization_source_url': 'https://opentext.ku.edu/amenglishpronunciation/chapter/chapter-1/',
+        'realization_source_location': 'North American r-sounds: rhotic vowels and the linking r before a following vowel.',
+        'verified_on': '2026-10-19',
+    },
     'detailed': {
         'variants': [['D', 'IY', 'T', 'EY', 'L', 'D']],
         'ipa': ['ˈdiː.teɪld'],
@@ -59,6 +75,8 @@ SOURCE_WORD_REFERENCE_POLICY_VERSION = 1
 ORDINARY_CODA_ELISION_SOURCE = 'https://downloads.bbc.co.uk/worldservice/learningenglish/pronunciation/pdf/scripts/talkaboutenglish_pron2.pdf'
 PRERHOTIC_VOWEL_SOURCE = 'https://opentext.ku.edu/amenglishpronunciation/chapter/chapter-1/'
 ORDINARY_FLAP_SOURCE = 'https://journals.sagepub.com/doi/10.1177/0023830908098542'
+POST_RHOTIC_FLAP_SOURCE = 'https://doi.org/10.1016/j.ssaho.2022.100313'
+NASAL_PLACE_SOURCE = 'https://laits.utexas.edu/phonology/catalan/cat_clusters2.html'
 LETTER_PHONES = {
     'A': [('EY',)], 'B': [('B', 'IY')], 'C': [('S', 'IY')],
     'D': [('D', 'IY')], 'E': [('IY',)], 'F': [('EH', 'F')],
@@ -277,9 +295,18 @@ def reference_parts(text: str, edits: list[dict], *, contextual_word_cluster=Fal
                 # letters never gain a flap pronunciation or lose a vowel.
                 plain = tuple(re.sub(r'\d', '', p) for p in variant)
                 for index in range(1, len(variant) - 1):
-                    if (plain[index] in {'T', 'D'} and plain[index - 1] in VOWELS
+                    if (plain[index] in {'T', 'D'}
+                            and (plain[index - 1] in VOWELS or
+                                 (plain[index - 1] == 'R' and index >= 2 and plain[index - 2] in VOWELS))
                             and plain[index + 1] in VOWELS and variant[index + 1].endswith('0')):
                         references.add((*plain[:index], 'DX', *plain[index + 1:]))
+            # Nasal place assimilation inside an ordinary dictionary word:
+            # /n/ before /k,g/ may be velar. Preserve the stop and every
+            # vowel; named letters never enter this transformation.
+            for variant in list(references):
+                for index in range(len(variant) - 1):
+                    if variant[index] == 'N' and variant[index + 1] in {'K', 'G'}:
+                        references.add((*variant[:index], 'NG', *variant[index + 1:]))
             # A word-internal nasal/fricative transition may include the
             # homorganic stop (n-sh -> n-t-sh, decoded as n-ch). Apply only
             # inside dictionary words, never to independently named letters.
@@ -469,6 +496,9 @@ def compare_source(text: str, edits: list[dict], phones: str) -> dict:
         report['prerhotic_vowel_reference'] = PRERHOTIC_VOWEL_SOURCE
     if 'ɾ' in phones:
         report['ordinary_flap_reference'] = ORDINARY_FLAP_SOURCE
+        report['post_rhotic_flap_reference'] = POST_RHOTIC_FLAP_SOURCE
+    if re.search(r'ŋ\s+[kɡg]', phones):
+        report['ordinary_nasal_place_reference'] = NASAL_PLACE_SOURCE
     word_refs = [pronunciation.word_hint_reference(edit)
                  for edit in edits if edit.get('kind') == 'word']
     programming_refs = {edit['source']: PROGRAMMING_REFERENCES[edit['source']]

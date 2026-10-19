@@ -878,3 +878,44 @@ def test_explanatory_reference_keeps_the_complete_model_name_and_sentence():
                     phones + ' d ɛ k s',
                     phones.replace('iː ɡ oʊ', 'iː ɡ ə l')]:
         assert not evidence.compare_source(source, prepared, changed)['passed']
+
+
+def test_complete_dram_sentence_retains_named_letters_and_connected_speech():
+    source = ('CXMT attributes the turnaround to surging AI computing demand, '
+              'which it says has boosted the global DRAM market, driving supply '
+              'shortages and significant price increases.')
+    prepared = [{'source': term, 'start': source.index(term),
+                 'end': source.index(term) + len(term), 'spoken': spoken}
+                for term, spoken in [('CXMT', 'see ex M tee'), ('AI', 'eigh eye')]]
+    prepared.append({'source': 'DRAM', 'start': source.index('DRAM'),
+                     'end': source.index('DRAM') + 4, 'spoken': 'D, ram',
+                     'kind': 'word', 'phones': ['D', 'IY', 'R', 'AE', 'M']})
+    phones = ('s iː ɛ k s ɛ m t i æ t ɹ ᵻ b j uː t s ð ə t ɜː n ɚ ɹ aʊ n d '
+              't ə s ɜː dʒ ɪ ŋ eɪ aɪ k ə m p j uː ɾ ɪ ŋ d ɪ m æ n d '
+              'w ɪ tʃ ɪ t s ɛ z h ɐ z b uː s t ᵻ d ð ə ɡ l oʊ b əl '
+              'd iː ɹ æ m m ɑːɹ k ɪ t d ɹ aɪ v ɪ ŋ s ə p l aɪ '
+              'ʃ ɔːɹ ɾ ɪ dʒ ᵻ z æ n d s ɪ ɡ n ɪ f ɪ k ə n t '
+              'p ɹ aɪ s ɪ ŋ k ɹ iː s ᵻ z')
+    report = evidence.compare_source(source, prepared, phones)
+    assert report['passed'] and report['word_hint_references'][0]['source'] == 'DRAM'
+    assert report['post_rhotic_flap_reference'] == evidence.POST_RHOTIC_FLAP_SOURCE
+    assert report['ordinary_nasal_place_reference'] == evidence.NASAL_PLACE_SOURCE
+    for changed in [phones.replace('s iː ɛ k', 'ð iː ɛ k'),
+                    phones.replace('k ə m p j uː', 'k ə m p uː'),
+                    phones.replace('d iː ɹ æ m', 'ɹ æ m'),
+                    phones.replace('ɪ ŋ k ɹ iː s ᵻ z', 'ɪ ŋ ɹ iː s ᵻ z'),
+                    phones.replace('ɾ ɪ dʒ ᵻ z', 'ɪ dʒ ᵻ z'),
+                    phones + ' ɛ s']:
+        assert not evidence.compare_source(source, prepared, changed)['passed']
+
+
+def test_ordinary_nasal_and_post_rhotic_flap_rules_do_not_change_letter_names():
+    assert evidence.compare_source('Increases.', [], 'ɪ ŋ k ɹ iː s ɪ z')['passed']
+    assert not evidence.compare_source('Increases.', [], 'ɪ ŋ ɹ iː s ɪ z')['passed']
+    assert evidence.compare_source('Shortages.', [], 'ʃ ɔːɹ ɾ ɪ dʒ ɪ z')['passed']
+    for term, spoken, phones in [('NK', 'N kay', 'ɛ ŋ k eɪ'),
+                                 ('RT', 'R tee', 'ɑːɹ ɾ iː')]:
+        source = f'The report mentions {term} today.'
+        assert not evidence.compare_source(source, edits(source, term, spoken), PREFIX + phones + ENDING)['passed']
+    # The linking-r reference is lexical, never a global rhotic rewrite.
+    assert evidence.observed_phones('ɚ ɹ ɑːɹ') == ('ER', 'R', 'AA', 'R')

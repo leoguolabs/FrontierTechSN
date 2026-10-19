@@ -25,6 +25,26 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
         // A bridge read can land between route transitions. Do not navigate or
         // accept image assets until the next read identifies the current page.
         if (!currentUrl) continue;
+        // The address bar can remain local even after the DOM knows the
+        // saved ID. Persist that identity before closing this owned tab;
+        // the local route cannot be reopened by a later recovery process.
+        if (isLocal(conversationUrl) && isSameChatGPTConversation(currentUrl, conversationUrl)
+            && options.prompt) {
+            const identity = await resolveChatGPTConversationIdentity(page, options.prompt);
+            if (Date.now() >= deadline) break;
+            if (identity?.localConversationUrl
+                && isSameChatGPTConversation(identity.localConversationUrl, currentUrl)
+                && !isLocal(identity.conversationUrl) && !isPending(identity.conversationUrl)) {
+                const messages = await getVisibleMessages(page, { textOnly: true });
+                if (Date.now() >= deadline) break;
+                const latestUser = [...messages].reverse().find(message => message.Role === 'User');
+                if (latestUser && chatGPTPromptMatches(latestUser.Text, options.prompt)) {
+                    localConversationUrl = currentUrl;
+                    conversationUrl = identity.conversationUrl;
+                    report('waiting');
+                }
+            }
+        }
         const sameConversation = isSameChatGPTConversation(currentUrl, conversationUrl)
             || (localConversationUrl && isSameChatGPTConversation(currentUrl, localConversationUrl));
         if (!sameConversation) {

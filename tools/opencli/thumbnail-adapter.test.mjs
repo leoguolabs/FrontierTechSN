@@ -429,6 +429,58 @@ test('known live local route remains in place while its canonical image finishes
   assert.equal(state.navigations.length, 0)
 })
 
+test('persist canonical identity even when the owned image URL stays local', async () => {
+  const { run, state } = waiter(fixedWait, { url: localUrl,
+    identity: { conversationUrl: savedUrl, localConversationUrl: localUrl },
+    images: () => [imageUrl] })
+  assert.deepEqual(Array.from(await run(30, localUrl, { prompt: 'exact image prompt' })), [imageUrl])
+  assert.equal(state.progress.at(-1).url, savedUrl)
+  assert.equal(state.navigations.length, 0)
+  for (const options of [
+    { actualPrompt: 'different prompt' },
+    { identity: { conversationUrl: savedUrl, localConversationUrl: localUrl + '-other' } },
+  ]) {
+    const unowned = waiter(fixedWait, { url: localUrl,
+      identity: { conversationUrl: savedUrl, localConversationUrl: localUrl }, ...options })
+    await unowned.run(9, localUrl, { prompt: 'exact image prompt' })
+    assert.ok(unowned.state.progress.every(row => row.url === localUrl))
+    assert.equal(unowned.state.navigations.length, 0)
+  }
+})
+
+test('long image identity expands only the latest exact-prefix user message', async () => {
+  const start = patchedUtils.indexOf('export async function getVisibleMessages(')
+  const end = patchedUtils.indexOf('function formatChatGPTDetailMessages(', start)
+  const read = vm.runInNewContext(patchedUtils.slice(start, end).replace('export ', '') + '\ngetVisibleMessages', {
+    unwrapEvaluateResult: value => value, requireArrayEvaluateResult: value => value,
+    chatgptRateLimitGuardScript: () => '',
+  })
+  const expected = 'x'.repeat(10240) + ' complete ending'
+  for (const [prefix, full, wanted] of [
+    [expected.slice(0, 10240), expected, 1],
+    ['unrelated'.repeat(1280), expected, 0],
+    [expected.slice(0, 10240), expected + ' wrong ending', 1],
+  ]) {
+    let clicks = 0; let sleeps = 0; const content = { textContent: prefix }
+    const button = { textContent: 'Show more', click() { clicks++; content.textContent = full } }
+    const user = { getAttribute: () => 'turn:0:user', querySelector: () => content,
+      querySelectorAll: () => [button] }
+    const page = {
+      async sleep() { sleeps++ },
+      async evaluate(script) {
+        if (script.includes('const expected =')) return vm.runInNewContext(script, {
+          document: { querySelectorAll: () => [user] },
+        })
+        return [{ role: 'User', text: content.textContent }]
+      },
+    }
+    const messages = await read(page, { textOnly: true, expectedPrompt: expected })
+    assert.equal(clicks, wanted); assert.equal(sleeps, wanted)
+    // Expansion only reveals evidence; it never makes a partial match exact.
+    assert.equal(messages[0].Text === expected, wanted === 1 && full === expected)
+  }
+})
+
 test('local route can naturally become saved only with the exact submitted prompt', async () => {
   const { run, state } = waiter(fixedWait, { images: () => [imageUrl],
     identity: { conversationUrl: savedUrl } })

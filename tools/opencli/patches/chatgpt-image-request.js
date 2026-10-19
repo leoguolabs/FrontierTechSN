@@ -60,7 +60,7 @@ export async function recoverChatGPTImageRequest(page, prior, prompt, timeout) {
     await page.goto(prior.conversationUrl, { settleMs: 2000 });
     const deadline = Date.now() + timeout * 1000;
     while (Date.now() < deadline) {
-        const messages = await getVisibleMessages(page, { textOnly: true });
+        const messages = await getVisibleMessages(page, { textOnly: true, expectedPrompt: prompt });
         const latestUser = [...messages].reverse().find(message => message.Role === 'User');
         if (latestUser) {
             if (!chatGPTPromptMatches(latestUser.Text, prompt)) {

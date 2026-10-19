@@ -1996,7 +1996,7 @@ export async function resolveChatGPTConversationIdentity(page, prompt = '') {
         if (local.origin !== CHATGPT_URL
             || !/^\\/c\\/local-chatgpt(?::|%3a)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(local.pathname)) return null;
     } catch { return null; }
-    const messages = await getVisibleMessages(page, { textOnly: true });
+    const messages = await getVisibleMessages(page, { textOnly: true, expectedPrompt: prompt });
     const latestUser = [...messages].reverse().find(message => message.Role === 'User');
     if (!latestUser || !chatGPTPromptMatches(latestUser.Text, prompt)) return null;
     const ids = requireArrayEvaluateResult(unwrapEvaluateResult(await page.evaluate(\`(() => {
@@ -2030,6 +2030,41 @@ chatgptUtils = replaceWithinFunction(chatgptUtils,
                 && !(role === 'User' && node.querySelector('[data-user-message-bubble] [data-search-result-target]'))) continue;`,
   'ChatGPT plain user bubble semantic unit ownership',
 )
+{
+  const start = chatgptUtils.indexOf('export async function getVisibleMessages(page, { textOnly = false, expectedPrompt')
+  const end = chatgptUtils.indexOf('    // textOnly skips', start)
+  if (start >= 0 && end > start) chatgptUtils = chatgptUtils.slice(0, start)
+    + 'export async function getVisibleMessages(page, { textOnly = false } = {}) {\n'
+    + chatgptUtils.slice(end)
+}
+chatgptUtils = replaceOnce(chatgptUtils,
+  'export async function getVisibleMessages(page, { textOnly = false } = {}) {',
+  `export async function getVisibleMessages(page, { textOnly = false, expectedPrompt = '' } = {}) {
+    if (expectedPrompt.length > 10240) {
+        const expanded = unwrapEvaluateResult(await page.evaluate(\`(() => {
+            const expected = \${JSON.stringify(expectedPrompt)};
+            const units = Array.from(document.querySelectorAll('[data-chatgpt-search-unit-key]'));
+            const user = units.reverse().find(node => /:user$/.test(node.getAttribute('data-chatgpt-search-unit-key') || ''));
+            const content = user?.querySelector('[data-user-message-bubble] [data-search-result-target]');
+            const prefix = content?.textContent || '';
+            if (prefix.length < 1024 || prefix.length >= expected.length || !expected.startsWith(prefix)) return false;
+            const button = Array.from(user.querySelectorAll('button[aria-expanded="false"]'))
+                .find(node => node.textContent.trim() === 'Show more');
+            if (!button) return false;
+            button.click();
+            return true;
+        })()\`));
+        if (expanded) await page.sleep(0.2);
+    }`,
+  'Expand only the owned truncated user prompt before exact identity verification',
+)
+// Refresh the complete owned-turn helper block when its implementation changes.
+// Matching only the old insertion anchor would duplicate exported functions.
+{
+  const start = chatgptUtils.indexOf('export function chatGPTPromptMatches(')
+  const end = chatgptUtils.indexOf('function cleanPromptText(str) {', start)
+  if (start >= 0 && end > start) chatgptUtils = chatgptUtils.slice(0, start) + chatgptUtils.slice(end)
+}
 chatgptUtils = replaceOnce(chatgptUtils,
   'function cleanPromptText(str) {',
   chatgptOwnedTurnHelpers + 'function cleanPromptText(str) {',

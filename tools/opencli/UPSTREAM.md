@@ -119,6 +119,12 @@ be truncated into `/c/local-chatgpt` or treated as evidence that submission
 failed. Recover the existing owned turn, use a verified canonical identity when
 available, and preserve pending/generating state instead of replaying the prompt.
 
+Long image prompts can be physically truncated at 10,240 characters until
+Show more is clicked. Expand only the latest user turn whose visible text is
+an exact prefix of the expected prompt, then require the complete exact match.
+While an owned image tab still has its local URL, persist a verified canonical
+ID from the DOM as soon as it becomes available so later recovery can reopen it.
+
 ## Thumbnail image response deadlines
 
 The image adapter now measures its response wait by elapsed time, including

@@ -139,7 +139,7 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   text('physics-result','better immediate test scores','physics',900,960,t(16,.1),{h:63,align:'center',color:ORANGE,duration:2})
   text('physics-not-months','immediate test does not establish months of retention','physics',900,1070,t(16,.52),{h:38,align:'center',duration:2.5})
   text('hints-result','generated help can teach; check it','physics',900,1210,t(17,.35),{h:52,align:'center',duration:2.2})
-  text('hints-errors','32% of initial help failed quality checks','physics',900,1320,t(18,.17),{h:49,align:'center',color:ORANGE,duration:2.4})
+  text('hints-errors','32% of initial help failed quality checks','physics',900,1320,t(18,.05),{h:49,align:'center',color:ORANGE,duration:2.4})
 
   // 05: Calendar makes the actual delay explicit. No pooled effect-size ranking.
   heading('delay','come back one week later',19)
@@ -219,8 +219,8 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   arr('fix-expansion','example',[640,1230],[800,1230],t(39,.46))
   text('right-expansion','2x + 6','example',880,1250,t(39,.58),{h:71,color:BLUE})
   text('example-why','multiply BOTH terms','example',1370,1270,t(39,.74),{h:41,align:'center'})
-  S.erasers.push({start:frame(t(40,.12)),end:frame(t(40,.12)+2.6),x:rmap.example.x+300,y:rmap.example.y+380,w:800,h:620})
-  S.cue('example-hide',t(40,.12),{kind:'eraser',duration:2.6})
+  S.erasers.push({start:frame(t(40,.12)),end:frame(t(40,.12)+5.2),x:rmap.example.x+300,y:rmap.example.y+380,w:800,h:620,rows:8})
+  S.cue('example-hide',t(40,.12),{kind:'eraser',duration:5.2})
 
   // 10: Near transfer and a delayed fresh attempt have different labels.
   heading('transfer','change it. return later.',41)

@@ -927,6 +927,189 @@
         }
       ],
       "observation": "All 384 consecutive decoded frames inspected in eight atlases. Arithmetic ink completes just before seventy four is spoken. The illustration-only qualifier remains visible with the formula. The flag and two learner figures remain clear; the departing terracotta marker is separate from the incoming black marker and following camera move. No visible marker collision in this bounded silent development clip."
+    },
+    {
+      "name": "eraser-tall-v2",
+      "video_sha256": "40a14ed923a3d3a7fe409eda2eb1bbfdd0b9035a3126ea61320b5ec94331b6a7",
+      "receipt": {
+        "picture_sha256": "40a14ed923a3d3a7fe409eda2eb1bbfdd0b9035a3126ea61320b5ec94331b6a7",
+        "timeline_sha256": "36c658b35da1700098915b6ed1146b370b89a6eb4a95ed834dbe7826429055b9",
+        "events_sha256": "0b1c808257748f16f08fd7080d7ba55a4500a4aa8f1441deddc871fb94be450e",
+        "first_frame": 12696,
+        "last_frame_exclusive": 13008,
+        "frames": 312,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 312,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "d120166844adf825ddce344e2f0130883a8f67b7e851c4474eb7b58dcb996bbe"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "5b52dda2eccf96c04afad3d2ebde526ecdb446fa5851c0b13d85ce7fbcaca8a0"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "2b2a68f1b2ab1304f9bab1270c88ca25c9dfcb149d5ac2906bc531072f027e76"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "d89c3d47b1ba3c248f8477345d390bef7745efe2ac9078aaf62f72cb87e20387"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "3f65e0ffa8e96feaa880fefcf8b12968e65237d66e15d04b7d434bcd99f9a157"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "39725e97cf8bfeda18146cd08bdfb97c7308efcfb9629d36706bd941b698fd53"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 311,
+          "sha256": "9964a3418e86283e9ec8a38f90aab8948bbe6f027ff91f77c4af5e7be4d6f2dc"
+        }
+      ],
+      "observation": "All 312 consecutive decoded frames inspected through seven atlases. Eight wiping passes remove the worked steps progressively without visible jumps at row turns. The question, seated learner and lower correction explanation remain. Marker departure precedes eraser arrival. Silent development clip with provisional later narration timings."
+    },
+    {
+      "name": "offload-erase",
+      "video_sha256": "37f714deee1c73b10e6bc8c1d7d2dceb2887f68000564c19475bf5fcf55dc521",
+      "receipt": {
+        "picture_sha256": "37f714deee1c73b10e6bc8c1d7d2dceb2887f68000564c19475bf5fcf55dc521",
+        "timeline_sha256": "f8d9c5fa756f1cec354a0ed9238ecfcb8b7842365a58452b30e7601d20dc50be",
+        "events_sha256": "83dcd3244533447bb67a478d3cb33bf98eee02e2e1634e5ddfb6349e9e32493a",
+        "first_frame": 7344,
+        "last_frame_exclusive": 7632,
+        "frames": 288,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 288,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "bad81dc71d937dd7cbbbb55978e8ab52111a1331c9ee52fd91a9dd1adc72edfe"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "fc96b8a269fe4a326ec2a8038de6cda0e36c695564d69a4d0d03cfb9b4e13df4"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "3182cbfb5bbc0f063ede368ec74a90dca893fc95f865ac0259d1e3cc68d9c7e4"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "09476039318fc141bf8ebc794f0776378e43bab28397b238f66362a64032545c"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "d77108ce0f7f30d0419da4c38f679af47a0bcc177aab7b8349ba97dfcfb91dba"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "e9a504dcb34e296ef726da57fe92e37653118838712730897582a0a48bc3f0ac"
+        }
+      ],
+      "observation": "All 288 consecutive decoded frames inspected through six atlases. The three-pass wipe fades the answer inside its speech bubble while preserving the border and learner. The eraser crosses in front during transit, then leaves the frame; no ink is removed from the person. No visible marker and eraser collision. Narration timing is provisional and this clip is silent."
+    },
+    {
+      "name": "quality-check-aligned",
+      "decoded_frames": 336,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "ff77683eb10dfa1e19bf793ded46e8f508004e9b2e4cc7144c1e6b5f6fed950c"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "7a0b0fa01d1c898de3d866aa8e0243bb42113fb4a9394d21f3396b9d135e6234"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "f7fcbf472600302297598b1fdc5963cc5fa3c85cdbaefdf9cf99b0bd31c62887"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "845b5c29c6a04079fb4c2f7f702ee46e843050f17b63409811416a45baae680d"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "352a6eec9988026d55b3a0ab3f90450f1dc0fc2bb330031da6e993dc0297e8e2"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "1adf71c44e12c261d4c8470c47fb878e44967a577e620faea5532c4879284929"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "f80a0141acc28ef6ad38d0d89dcf25d22ba6468afff142b1c9e1e19542e67309"
+        }
+      ],
+      "observation": "All 336 consecutive decoded frames inspected through seven atlases. The orange quality-control label starts earlier and completes during the matching quality-check caption. Book, force diagram and learner remain distinct. The outgoing orange marker leaves before the next black marker arrives. The clip is silent, with final narration timing still incomplete.",
+      "video_sha256": "062b5028465bc2f2efe5dfa9def262630809bc4f373889aa9955f5be295f3217",
+      "receipt": {
+        "picture_sha256": "062b5028465bc2f2efe5dfa9def262630809bc4f373889aa9955f5be295f3217",
+        "timeline_sha256": "eeb4feb780697bbcef5c0ef886889c53c8b1a6e5182dde553d5b38377f327584",
+        "events_sha256": "50a0add23e3f53e60923b61167bcd4ca000b52935273ab35ec5b1915f0163c19",
+        "first_frame": 5328,
+        "last_frame_exclusive": 5664,
+        "frames": 336,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      }
     }
   ],
   "native_stills": [
@@ -1001,6 +1184,33 @@
       "width": 1920,
       "height": 1080,
       "observation": "The full formula illustration only: 50 x 1.48 = 74 is readable while the caption says seventy four, not ninety eight. Country flag, laptop learner and paper learner stay separate from the percentages and explanatory lines."
+    },
+    {
+      "file": "review/development/native/eraser-tall-v2-144.png",
+      "sha256": "da84b442b1fd205195ddad5539c2895826500728403c51f3503d84530757c49b",
+      "video_sha256": "40a14ed923a3d3a7fe409eda2eb1bbfdd0b9035a3126ea61320b5ec94331b6a7",
+      "frame": 144,
+      "width": 1920,
+      "height": 1080,
+      "observation": "At mid-wipe the erased blue step remains a faint ghost, the orange answer is being removed under the physical eraser, and the original question and learner remain intact."
+    },
+    {
+      "file": "review/development/native/offload-erase-192.png",
+      "sha256": "803130af3de24d614c82151448a212cc5e6c760815308216db50871d88fbd623",
+      "video_sha256": "37f714deee1c73b10e6bc8c1d7d2dceb2887f68000564c19475bf5fcf55dc521",
+      "frame": 192,
+      "width": 1920,
+      "height": 1080,
+      "observation": "After the wipe, the answer is a faint ghost inside a complete blue bubble. The thinking figure, orange notebook, linking arrow and instruction remain distinct and readable."
+    },
+    {
+      "file": "review/development/native/quality-check-aligned-144.png",
+      "sha256": "025c70a8b2c2fbfc41a772db47dfc62d89e0b55d3f121f6fc89bf2058a9618a5",
+      "video_sha256": "062b5028465bc2f2efe5dfa9def262630809bc4f373889aa9955f5be295f3217",
+      "frame": 144,
+      "width": 1920,
+      "height": 1080,
+      "observation": "The thinking learner, book and force diagram are clear; both result and limitation labels are legible and separated. The full 32 percent quality-check line fits under the earlier findings."
     }
   ]
 }

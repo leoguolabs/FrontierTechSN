@@ -1,8 +1,8 @@
 {
   "scope": "Ink completion relative to selected source phrases timed by matching unprompted ASR. Late candidates need review. Early reveals, composition, visibility, pronunciation, and subjective synchronization are not assessed.",
   "complete_audio": false,
-  "timeline_sha256": "930c1cad29a1d358ff27e39f82526e1dbc50da9ea598eb7ade37952b5b6c44ca",
-  "composition_sha256": "1c8e41822c2321f10269f3d01c6d4e8b39fb256240b27ed2a3ca42fec369bccf",
+  "timeline_sha256": "04d52dc642eaf5b3d4bbd89c3fd58c945183f019d9b2f6cef0a472e50fcf5b0b",
+  "composition_sha256": "9647aadac72274a45cb2fa3f1900aba0e452576aab5bd63639f14893537100ae",
   "cue_plan_sha256": "2109f92037e7418e27ca18e76e96ee882cb12690e54eeaf6f60ec663206e210d",
   "cues": [
     {
@@ -38,13 +38,13 @@
       "line": "09",
       "phrase": "Turkey",
       "max_lag": 3,
-      "drawing_start": 105.99333333333333,
-      "drawing_end": 108.20166666666665,
+      "drawing_start": 106.32666666666667,
+      "drawing_end": 108.535,
       "status": "within_late_bound",
       "audio_sha256": "0c2ef92cc6800e123433ddf715f92cc7be84ddd58e34a4e3546ae5e31beb86a7",
-      "phrase_start": 105.665,
-      "phrase_end": 105.985,
-      "completion_lag": 2.2166666666666544,
+      "phrase_start": 105.99833333333333,
+      "phrase_end": 106.31833333333333,
+      "completion_lag": 2.2166666666666686,
       "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
     {
@@ -52,13 +52,13 @@
       "line": "10",
       "phrase": "forty eight percent higher",
       "max_lag": 1,
-      "drawing_start": 122.81999999999996,
-      "drawing_end": 124.6533333333333,
+      "drawing_start": 123.15333333333334,
+      "drawing_end": 124.98666666666666,
       "status": "within_late_bound",
       "audio_sha256": "02bc90dcef5863acec9748558287648ccf5506e50602a27b5be8d535a9d7f26d",
-      "phrase_start": 123.43166666666667,
-      "phrase_end": 124.57166666666667,
-      "completion_lag": 0.08166666666662081,
+      "phrase_start": 123.80666666666667,
+      "phrase_end": 124.94666666666667,
+      "completion_lag": 0.03999999999999204,
       "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
     {
@@ -66,12 +66,12 @@
       "line": "10",
       "phrase": "seventeen percent lower",
       "max_lag": 1,
-      "drawing_start": 125.95833333333333,
-      "drawing_end": 127.625,
+      "drawing_start": 126.33333333333333,
+      "drawing_end": 128,
       "status": "within_late_bound",
       "audio_sha256": "02bc90dcef5863acec9748558287648ccf5506e50602a27b5be8d535a9d7f26d",
-      "phrase_start": 127.81166666666667,
-      "phrase_end": 128.85166666666666,
+      "phrase_start": 128.18666666666667,
+      "phrase_end": 129.22666666666666,
       "completion_lag": -1.2266666666666595,
       "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
@@ -80,12 +80,12 @@
       "line": "10",
       "phrase": "relative changes",
       "max_lag": 2,
-      "drawing_start": 129.04166666666666,
-      "drawing_end": 130.625,
+      "drawing_start": 129.41666666666666,
+      "drawing_end": 131,
       "status": "within_late_bound",
       "audio_sha256": "02bc90dcef5863acec9748558287648ccf5506e50602a27b5be8d535a9d7f26d",
-      "phrase_start": 129.51166666666668,
-      "phrase_end": 130.35166666666666,
+      "phrase_start": 129.88666666666668,
+      "phrase_end": 130.72666666666666,
       "completion_lag": 0.27333333333334053,
       "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
@@ -94,12 +94,12 @@
       "line": "11",
       "phrase": "later penalty largely disappeared",
       "max_lag": 2,
-      "drawing_start": 134.875,
-      "drawing_end": 137.08333333333334,
+      "drawing_start": 135.29166666666666,
+      "drawing_end": 137.5,
       "status": "within_late_bound",
       "audio_sha256": "4ae3dc34ac94146d6eeebd9a69c49471b0b7baaf011f97c63980d68db3d4801a",
-      "phrase_start": 139.25333333333333,
-      "phrase_end": 140.89333333333335,
+      "phrase_start": 139.67,
+      "phrase_end": 141.31,
       "completion_lag": -3.8100000000000023,
       "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
@@ -108,12 +108,12 @@
       "line": "11",
       "phrase": "not statistically distinguishable",
       "max_lag": 2,
-      "drawing_start": 141.04166666666666,
-      "drawing_end": 143.125,
+      "drawing_start": 141.45833333333334,
+      "drawing_end": 143.54166666666666,
       "status": "within_late_bound",
       "audio_sha256": "4ae3dc34ac94146d6eeebd9a69c49471b0b7baaf011f97c63980d68db3d4801a",
-      "phrase_start": 142.33333333333334,
-      "phrase_end": 143.99333333333334,
+      "phrase_start": 142.75,
+      "phrase_end": 144.41,
       "completion_lag": -0.8683333333333394,
       "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
@@ -122,12 +122,12 @@
       "line": "13",
       "phrase": "seventy four",
       "max_lag": 2,
-      "drawing_start": 162.70833333333334,
-      "drawing_end": 165.08333333333334,
+      "drawing_start": 163.20833333333334,
+      "drawing_end": 165.58333333333334,
       "status": "within_late_bound",
       "audio_sha256": "f66df97ba7c681ceb0e9118959c3c5e490445f00e8e7f0f5d8188fafbd19cfc0",
-      "phrase_start": 165.09,
-      "phrase_end": 165.59,
+      "phrase_start": 165.59,
+      "phrase_end": 166.09,
       "completion_lag": -0.5066666666666606,
       "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
@@ -136,17 +136,22 @@
       "line": "18",
       "phrase": "thirty two percent",
       "max_lag": 2,
-      "drawing_start": 225.75,
-      "drawing_end": 228.125,
-      "status": "awaiting_verified_word_timing"
+      "drawing_start": 224.375,
+      "drawing_end": 226.79166666666666,
+      "status": "within_late_bound",
+      "audio_sha256": "dc3ed22962c47ad489ca5f5f240190eb080de68e47b0fdb29c3fcadb9925fe4b",
+      "phrase_start": 224.55166666666665,
+      "phrase_end": 225.19166666666666,
+      "completion_lag": 1.5999999999999943,
+      "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
     {
       "group": "example-equation",
       "line": "36",
       "phrase": "x plus three equals fourteen",
       "max_lag": 1,
-      "drawing_start": 472.9583333333333,
-      "drawing_end": 475.125,
+      "drawing_start": 473.0833333333333,
+      "drawing_end": 475.25,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -154,8 +159,8 @@
       "line": "37",
       "phrase": "x plus three equal to seven",
       "max_lag": 1,
-      "drawing_start": 487.7916666666667,
-      "drawing_end": 489.375,
+      "drawing_start": 487.9583333333333,
+      "drawing_end": 489.5416666666667,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -163,8 +168,8 @@
       "line": "37",
       "phrase": "x equals four",
       "max_lag": 1,
-      "drawing_start": 492.5,
-      "drawing_end": 494.0833333333333,
+      "drawing_start": 492.6666666666667,
+      "drawing_end": 494.25,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -172,8 +177,8 @@
       "line": "37",
       "phrase": "check it",
       "max_lag": 1,
-      "drawing_start": 496.3333333333333,
-      "drawing_end": 497.9166666666667,
+      "drawing_start": 496.5,
+      "drawing_end": 498.0833333333333,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -181,8 +186,8 @@
       "line": "39",
       "phrase": "two x plus three",
       "max_lag": 1,
-      "drawing_start": 518.2083333333334,
-      "drawing_end": 519.7916666666666,
+      "drawing_start": 518.4583333333334,
+      "drawing_end": 520.0416666666666,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -190,8 +195,8 @@
       "line": "39",
       "phrase": "two x plus six",
       "max_lag": 1,
-      "drawing_start": 523.9583333333334,
-      "drawing_end": 525.5416666666666,
+      "drawing_start": 524.2083333333334,
+      "drawing_end": 525.7916666666666,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -199,8 +204,8 @@
       "line": "41",
       "phrase": "y minus two equals fifteen",
       "max_lag": 1,
-      "drawing_start": 546.41,
-      "drawing_end": 548.41,
+      "drawing_start": 546.7433333333333,
+      "drawing_end": 548.7433333333333,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -208,8 +213,8 @@
       "line": "41",
       "phrase": "answer is seven",
       "max_lag": 1,
-      "drawing_start": 553.4583333333334,
-      "drawing_end": 555.0833333333334,
+      "drawing_start": 553.7916666666666,
+      "drawing_end": 555.4166666666666,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -217,8 +222,8 @@
       "line": "43",
       "phrase": "z plus one equals twenty",
       "max_lag": 1,
-      "drawing_start": 576.3333333333334,
-      "drawing_end": 578.3333333333334,
+      "drawing_start": 576.75,
+      "drawing_end": 578.75,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -226,8 +231,8 @@
       "line": "44",
       "phrase": "which is twenty",
       "max_lag": 1,
-      "drawing_start": 589.2083333333334,
-      "drawing_end": 591.375,
+      "drawing_start": 589.6666666666666,
+      "drawing_end": 591.8333333333334,
       "status": "awaiting_verified_word_timing"
     }
   ]

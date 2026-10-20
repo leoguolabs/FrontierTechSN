@@ -1,0 +1,52 @@
+{
+  "observed_at_utc": "2026-10-20T19:48:26.418048+00:00",
+  "scope": "Isolated local preparation only. No local model inference has run and no local audio has been accepted into the film. Remote generation remains active.",
+  "status": "runtime_ready_weights_pending",
+  "mps_available": true,
+  "runtime_versions": {
+    "torch": "2.6.0",
+    "torchaudio": "2.6.0",
+    "numpy": "1.26.4",
+    "transformers": "5.2.0",
+    "diffusers": "0.29.0",
+    "chatterbox-tts": "0.1.7",
+    "resemble-perth": "1.1.0",
+    "soundfile": "0.13.1"
+  },
+  "chatterbox_source": {
+    "url": "https://github.com/resemble-ai/chatterbox.git",
+    "vcs_info": {
+      "vcs": "git",
+      "commit_id": "5de7a54aa4e5e2baadb0182dde554908b48b85c2",
+      "requested_revision": "5de7a54aa4e5e2baadb0182dde554908b48b85c2"
+    }
+  },
+  "perth_verification": {
+    "revision": "ff1c8ac55a976971245cdd53c18d6131ca00d993",
+    "official_tree_url": "https://api.github.com/repos/resemble-ai/Perth/git/trees/ff1c8ac55a976971245cdd53c18d6131ca00d993",
+    "archive_sha256": "c783b63621bee5d28e3acbb29a53bd48dc0e930b8e91d238a9f5a62cb1b9e5b4",
+    "archive_bytes": 34577404,
+    "verified_files": 37,
+    "all_file_git_blobs_match": true
+  },
+  "alignment_patch": {
+    "alignment_sha256": "380d58d3e8decf1dcc9d32fa194f1ce576fce82ce8b34731fba32b290ebcbee7",
+    "attention_implementation": "eager",
+    "original_t3_sha256": "bfb689c9018a329aa3a1a364aaa6d03a68a97b7352cbc394a13d4711742f9a0a",
+    "patched_t3_sha256": "afb2673740f917c0c36f4e8afee8faede47269dc333191faffd3c99b368c9bf1",
+    "patcher_sha256": "625a1865fa04daba2a2cc45b4b79e107c1000c687984953fe1533b7e79f03c20",
+    "space_revision": "c612a94210c0af895d6b649850d15b7ccca36594"
+  },
+  "loader_sha256": "bbc62ef1a4b257bf0c76f8c74fff3b90948adc31bc3655339a7c95187a451137",
+  "reference_sha256": "e81950378b53827aed08d164ebd332a7b8c5805b8a97b4f79ab057071e359c72",
+  "requirements_sha256": "d2b597860c9cbc7083d506bde9ad744155e9a73a70a6be3a108a3db0e407f28d",
+  "installed_versions_sha256": "2df7233f564f4b41203bd96ea95bc86793efe678e665794dba6e13a685317b97",
+  "benchmark_script_sha256": "1449dae4fe69f933843094636fcabbc6e5c72643325343a68d5fd6dead650afc",
+  "perth_installed_source": {
+    "url": "file:///Volumes/TP-1TB/WorspacePlus/IslaProject/FrontierTechSN/codex-whiteboard-studio/media/acceleration/sources/perth-ff1c8ac55a976971245cdd53c18d6131ca00d993-verified-tree.tar.gz",
+    "archive_info": {},
+    "verified_archive_sha256": "c783b63621bee5d28e3acbb29a53bd48dc0e930b8e91d238a9f5a62cb1b9e5b4",
+    "installed_package_files_verified": 22
+  },
+  "model_revision": "5bb1f6ee58e50c3b8d408bc82a6d3740c2db6e18"
+}

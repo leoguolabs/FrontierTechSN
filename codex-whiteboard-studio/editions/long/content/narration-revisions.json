@@ -1,0 +1,58 @@
+[
+  {
+    "id": "15",
+    "previous_text": "The tutor sequenced material, asked questions, supplied feedback and used expert prepared content. Students worked at their own pace. This result describes that instructional system; it does not measure every conversation with a general chatbot.",
+    "previous_source_sha256": "09f3d557ad02deeb983744a2f929ee90fecd3886956226b12dae82f5359da3e7",
+    "previous_requests": [
+      {
+        "job_id": "cfc83fdcfd8146c1ad32cf1f6babcf5e",
+        "identity": "eb752c77807eb725e730b6062d011a04e6403ebd7d047b8ed7d0832ffb94d5e2",
+        "seed": 1234
+      },
+      {
+        "job_id": "2fc66d65aab341d78d03970ff43d8dec",
+        "identity": "3409fa2d8c9d128e60d132a9bef3e3555d1d972f0f3ce313196142ab14d6232a",
+        "seed": 234
+      },
+      {
+        "job_id": "7debf1dba8c940c2a2c4527ee75db5db",
+        "identity": "3ee293ad536ac86a4f190962e81e186717a5182b89b0b64dd820048f54508ca6",
+        "seed": 2234
+      }
+    ],
+    "previous_repair_plan": {
+      "source_sha256": "09f3d557ad02deeb983744a2f929ee90fecd3886956226b12dae82f5359da3e7",
+      "seed": 2234,
+      "reason": "Turbo, medium and small independently render the source word that as the in the first take. Preserve that WAV and observations; request a bounded second take.",
+      "replaces_audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
+      "replaces_job_id": "2fc66d65aab341d78d03970ff43d8dec",
+      "second_take": {
+        "seed": 1234,
+        "audio_sha256": "6f7501422df84204f64f600ba26b8b12f44e615d8036852b5bb58cf9e9e8647d",
+        "job_id": "cfc83fdcfd8146c1ad32cf1f6babcf5e",
+        "reason": "All three recognizers render sequenced as sequence; turbo and small also omit the initial The. Preserve this take and request the third and final take for this exact source."
+      }
+    },
+    "revised_text": "Material came in a planned sequence, with questions, feedback and expert prepared content. Students worked at their own pace. These results apply to this instructional system. They do not measure every conversation with a general chatbot.",
+    "revised_source_sha256": "1238aefc9ea566c68dbf0b0132d15676b38048f1a8812dba423e32dce29b3cb7",
+    "reason": "Three source-identical takes leave tutor sequenced unclear across independent recognizers. Rewrite the complete opening sentence with a clear word boundary and simplify the scope sentence; no new take of the old wording is requested.",
+    "claim_preserved": "C04"
+  },
+  {
+    "id": "17",
+    "previous_text": "A mathematics study compared generated help, human authored help and no help. Generated help improved learning over no help. Its difference from human authored help was not statistically significant. Correctness still needed quality control.",
+    "previous_source_sha256": "b7ec87c4f6b122a6e7c1e958f5f68a1ecd3b8c0e355f136dd65baf31c83392e5",
+    "previous_requests": [
+      {
+        "job_id": "495fe035ab4c469aa529a658203714e8",
+        "identity": "af0833042e711c4c9731c93521f5ab1ac080b81fe9dbc34da9a24679a74c5e20",
+        "seed": 236
+      }
+    ],
+    "previous_repair_plan": null,
+    "revised_text": "Another mathematics study compared generated help, human authored help, and no help. Generated help improved learning over no help. Its difference from human authored help was not statistically significant. Correctness required quality control.",
+    "revised_source_sha256": "1c3b4479c74d6473ea8e88be1f8da28ac135bf99007cf5056ce32c0fc9a53462",
+    "reason": "Three independent recognizers omit the initial A. Use the stronger initial Another and tighten the final sentence without changing the research claim.",
+    "claim_preserved": "C10"
+  }
+]

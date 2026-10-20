@@ -1,0 +1,66 @@
+{
+  "scope": "Eleven source-render compatibility probes before, during and after the accepted short eraser, using separate module instances with identical scene inputs. This is not final-encoded or complete-frame review.",
+  "previous_commit": "e9f4d56",
+  "previous_renderer_sha256": "470b421c651f27892ab1c8cb2cb4c8a2671297b8325a26308a5b02aa17588eea",
+  "current_renderer_sha256": "7b8575deabd5f120e35e9c025c08735a1eca8e7ad750f2cdbc72fc625385cb0c",
+  "initial_probe_correction": "A first probe mixed separate renderer modules with one shared scene instance, advancing independent texture stroke counters differently. The corrected comparison constructs complete films separately so their texture generation follows the same initialization path.",
+  "width": 1920,
+  "height": 1080,
+  "probes": [
+    {
+      "time": 111.39583333333333,
+      "sha256": "2cb3182705851bfdc9467a88ca04fbb2a2e3f3407c2fa7d8d35c219d210267d3",
+      "identical": true
+    },
+    {
+      "time": 111.70833333333333,
+      "sha256": "133c11c1c35356f329cb587b2101a602f5af7e78a6a9684bafcf4769480a39a7",
+      "identical": true
+    },
+    {
+      "time": 111.89583333333333,
+      "sha256": "7d2bd1dc7d591f1cc6ec285bf2f336587c7b6d958872f588949879b4cd1a5f71",
+      "identical": true
+    },
+    {
+      "time": 112.07083333333333,
+      "sha256": "642bc9d993377c872e2c84baf4c1026dabf5eca283e41026ee314a7cc09a2a7c",
+      "identical": true
+    },
+    {
+      "time": 112.15833333333333,
+      "sha256": "49c0c36a42986766de990230c0f09894c62c6b8d2735a34292d8d03485abcdc9",
+      "identical": true
+    },
+    {
+      "time": 112.33333333333333,
+      "sha256": "71076a47d3f85a2c7a2f347df7740fd5a4e428425a7f7630d3f89bfa1623d2ee",
+      "identical": true
+    },
+    {
+      "time": 112.52083333333333,
+      "sha256": "bb763117f158217d0a240fdae478a4bb08ab72fe210800f5ebc2e385dcbcaf94",
+      "identical": true
+    },
+    {
+      "time": 112.62083333333332,
+      "sha256": "973972dbdb0c9848c7eaed8b6217ecb56306da9a943ce91519f9b276d9d13ca0",
+      "identical": true
+    },
+    {
+      "time": 112.83333333333333,
+      "sha256": "8a86bbbb32c3e444ad5ad335ad5c211c8c4e72bf9de56a99b38e2506b696c6dd",
+      "identical": true
+    },
+    {
+      "time": 112.95833333333333,
+      "sha256": "b2e3c34a084125d18911db721aecf2b60dc456f425d056e6d1d13df1b21477c5",
+      "identical": true
+    },
+    {
+      "time": 113.27083333333333,
+      "sha256": "5bb43c7bfe3b194fa3c51ddf3f2c33719e15194a3048231443466e6feda45814",
+      "identical": true
+    }
+  ]
+}

@@ -86,7 +86,7 @@
   {
     "id": "15",
     "region": "physics",
-    "text": "The tutor sequenced material, asked questions, supplied feedback and used expert prepared content. Students worked at their own pace. This result describes that instructional system; it does not measure every conversation with a general chatbot.",
+    "text": "Material came in a planned sequence, with questions, feedback and expert prepared content. Students worked at their own pace. These results apply to this instructional system. They do not measure every conversation with a general chatbot.",
     "claim": "C04"
   },
   {
@@ -98,7 +98,7 @@
   {
     "id": "17",
     "region": "physics",
-    "text": "A mathematics study compared generated help, human authored help and no help. Generated help improved learning over no help. Its difference from human authored help was not statistically significant. Correctness still needed quality control.",
+    "text": "Another mathematics study compared generated help, human authored help, and no help. Generated help improved learning over no help. Its difference from human authored help was not statistically significant. Correctness required quality control.",
     "claim": "C10"
   },
   {

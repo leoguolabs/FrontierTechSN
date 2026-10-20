@@ -9,13 +9,44 @@ from pathlib import Path
 import random
 import signal
 import sys
+import tarfile
 import time
+from urllib.parse import unquote, urlsplit
 
 STUDIO = Path(__file__).resolve().parents[1]
 
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def verify_perth_source(runtime):
+    distribution = importlib.metadata.distribution("resemble-perth")
+    source = json.loads(distribution.read_text("direct_url.json"))
+    revision = "ff1c8ac55a976971245cdd53c18d6131ca00d993"
+    if source.get("vcs_info", {}).get("commit_id") == revision:
+        return source
+    archive = runtime / "sources" / f"perth-{revision}-verified-tree.tar.gz"
+    url = urlsplit(source.get("url", ""))
+    if (url.scheme != "file" or url.netloc not in ("", "localhost")
+            or Path(unquote(url.path)).resolve() != archive.resolve()):
+        raise ValueError("Perth must use the pinned Git source or its exact verified-tree archive.")
+    expected = "c783b63621bee5d28e3acbb29a53bd48dc0e930b8e91d238a9f5a62cb1b9e5b4"
+    if digest(archive) != expected:
+        raise ValueError("Perth source archive checksum changed.")
+    prefix = f"Perth-{revision}/src/"
+    verified = 0
+    with tarfile.open(archive, "r:gz") as source_tree:
+        for item in source_tree:
+            if not item.isfile() or not item.name.startswith(prefix + "perth/"):
+                continue
+            package_path = Path(distribution.locate_file(item.name[len(prefix):]))
+            if package_path.read_bytes() != source_tree.extractfile(item).read():
+                raise ValueError("Installed Perth package differs from its verified source archive.")
+            verified += 1
+    if not verified:
+        raise ValueError("The Perth source archive contained no package files.")
+    return {**source, "verified_archive_sha256": expected, "installed_package_files_verified": verified}
 
 
 def main():
@@ -44,6 +75,7 @@ def main():
     source = json.loads(importlib.metadata.distribution("chatterbox-tts").read_text("direct_url.json"))
     if source.get("vcs_info", {}).get("commit_id") != "5de7a54aa4e5e2baadb0182dde554908b48b85c2":
         raise ValueError("The benchmark requires the same pinned upstream source as the service.")
+    perth_source = verify_perth_source(runtime)
 
     import numpy as np
     import soundfile as sf
@@ -72,10 +104,15 @@ def main():
         "status": "initializing", "device": "mps",
         "scope": "Isolated local speed and output experiment. No production manifest changes or subjective listening claim.",
         "request": request, "source_sha256": hashlib.sha256(row["text"].encode()).hexdigest(),
-        "upstream_source": source, "model_revision": REVISION,
+        "upstream_source": source, "perth_source": perth_source,
+        "model_revision": REVISION,
         "model_files": FILES, "reference_sha256": digest(voice),
         "space_alignment": patch, "loader_sha256": digest(runtime / "service.py"),
         "mps_fallback_enabled": True, "cpu_threads": 4,
+        "runtime_versions": {name: importlib.metadata.version(name) for name in (
+            "torch", "torchaudio", "numpy", "transformers", "diffusers",
+            "chatterbox-tts", "resemble-perth", "soundfile",
+        )},
     }
 
     def save():

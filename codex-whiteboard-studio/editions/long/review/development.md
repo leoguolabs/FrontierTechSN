@@ -263,3 +263,42 @@ WAVs are present, with fifteen matching selected independent transcripts.
 The refreshed draft has 17,260 frames, passes structure validation with the
 remaining speech gaps reported, and has no conservative marker-body
 candidates. Nine selected speech cues are observed and eleven remain pending.
+
+## Illustrated motion and clearer speech revisions
+
+The tall worked-example eraser now makes eight passes over 5.2 seconds.
+Each pass clears a strip narrower than the physical eraser; the earlier
+three-pass default cleared overly tall strips. The three-pass motion stays
+unchanged for the short film and the smaller thought-bubble wipe. Tests
+cover continuous row turns and preserve the original trajectory exactly.
+Eleven before/during/after short-film source-render probes match the previous
+renderer byte for byte; the accepted encoded short film remains unchanged.
+The first compatibility probe incorrectly mixed scene modules with separate
+stroke counters. The recorded comparison uses isolated complete modules.
+
+The tall-panel and thought-bubble revisions were inspected through every
+frame: 312 and 288 frames respectively, plus one native encoded still each.
+The eraser fades the selected answers while preserving the question, person
+and nearby drawings. The quality-control label in line 18 was then advanced
+from 17 percent to 5 percent of the narration interval. All 336 encoded
+frames and native frame 144 were inspected. The book, force diagram, learner
+and full quality-control line remain clear. Development review now covers
+14 clips, 6,357 decoded frames and 11 native encoded stills. These are
+development clips; full final-film comparison remains outstanding.
+
+Line 15 exhausted three retained takes for its original wording. Instead of
+requesting a fourth identical source, the explanation was rewritten into
+clearer sentences with the same claim. Line 17 also received a clearer
+opening after three independent recognizers omitted its initial article.
+Both revised sources now match unprompted transcription. The first nineteen
+current WAVs match their selected independent transcripts. Original wording,
+request identities, WAVs and every observation remain preserved. No
+subjective listening claim is made.
+
+The isolated local Chatterbox runtime is installed with MPS available. Its
+Perth archive was verified against the pinned official Git tree, and all 22
+installed package files match that source. The same voice reference and
+alignment patch as the remote service are verified. Model weights are still
+downloading; three interrupted S3 ranges were resumed using their retained
+prefix bytes while the live T3 download continued. No local synthesis or
+speed improvement has yet been established.

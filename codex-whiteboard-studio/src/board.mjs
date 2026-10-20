@@ -148,14 +148,19 @@ function pointAt(stroke,u){
   const t=clamp((length-(stroke.lengths[i-1]||0))/Math.max(.001,(stroke.lengths[i]||0)-(stroke.lengths[i-1]||0)))
   return [mix(a[0],b[0],t),mix(a[1],b[1],t)]
 }
-function eraserState(e,t){
-  const p=clamp((t-e.start)/(e.end-e.start))*3.5
-  const left=e.x+140,right=e.x+e.w-140,rowHeight=e.h/3
-  if(p<=1)return {x:mix(left,right,smooth(p)),y:e.y+rowHeight*.5}
-  if(p<=1.25)return {x:right,y:e.y+rowHeight*(.5+smooth((p-1)/.25))}
-  if(p<=2.25)return {x:mix(right,left,smooth(p-1.25)),y:e.y+rowHeight*1.5}
-  if(p<=2.5)return {x:left,y:e.y+rowHeight*(1.5+smooth((p-2.25)/.25))}
-  return {x:mix(left,right,smooth(p-2.5)),y:e.y+rowHeight*2.5}
+function eraserRows(e){
+  const rows=e.rows??3
+  if(!Number.isInteger(rows)||rows<1)throw new Error('Eraser rows must be a positive integer.')
+  return rows
+}
+export function eraserState(e,t){
+  const rows=eraserRows(e),rowHeight=e.h/rows
+  const p=clamp((t-e.start)/(e.end-e.start))*(rows+(rows-1)*.25)
+  const row=Math.min(rows-1,Math.floor(p/1.25)),u=p-row*1.25
+  const left=e.x+140,right=e.x+e.w-140,reverse=row%2===1
+  if(u<=1||row===rows-1)return {
+    x:mix(reverse?right:left,reverse?left:right,smooth(u)),y:e.y+rowHeight*(row+.5)}
+  return {x:reverse?left:right,y:e.y+rowHeight*(row+.5+smooth((u-1)/.25))}
 }
 function paintStroke(ctx,s,progress=1){
   if(progress<=0)return
@@ -331,7 +336,8 @@ export class BoardRenderer {
         ink.beginPath()
         for(let i=0;i<=samples;i++){
           const p=eraserState(e,mix(e.start,t,i/samples))
-          ink.rect(p.x-140,p.y-e.h/6,280,e.h/3)
+          const rowHeight=e.h/eraserRows(e)
+          ink.rect(p.x-140,p.y-rowHeight/2,280,rowHeight)
         }
         ink.fill()
       }

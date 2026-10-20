@@ -103,10 +103,14 @@ def review_prompt(scene: dict, style: dict) -> str:
             "Explain the pixel evidence and use uncertain when a required relationship "
             "remains unreadable. All five checks and the art-style requirements still apply."
         )
-    chart_pointing_anatomy = ""
-    if all(re.search(pattern, description, re.IGNORECASE) for pattern in (
-            r"\b(?:chart|bars?)\b", r"\b(?:pencil|pointer)\b", r"\bpoint(?:s|ing)?\b")):
-        chart_pointing_anatomy = (
+    pointing_anatomy = ""
+    chart_pointing = all(re.search(pattern, description, re.IGNORECASE) for pattern in (
+        r"\b(?:chart|bars?)\b", r"\b(?:pencil|pointer)\b", r"\bpoint(?:s|ing)?\b"))
+    explicit_limb_pointing = all(re.search(pattern, description, re.IGNORECASE) for pattern in (
+        r"\b(?:pencil|pointer)\b", r"\bpoint(?:s|ing)?\b", r"\barm\b",
+        r"\bshoulder\b", r"\b(?:elbow|wrist)\b"))
+    if chart_pointing or explicit_limb_pointing:
+        pointing_anatomy = (
             "\n\nChart presenter anatomy: distinguish image-left/image-right from the "
             "character's anatomical left/right. Before alleging an extra arm, enumerate "
             "every distinct shoulder-to-sleeve-to-elbow-to-wrist-to-hand chain, locating "
@@ -120,6 +124,10 @@ def review_prompt(scene: dict, style: dict) -> str:
             "checks must share the same limb inventory and preserve the other visual "
             "requirements. Explain the actual visible defect before proposing a repair."
         )
+        if not chart_pointing:
+            pointing_anatomy = pointing_anatomy.replace(
+                "Chart presenter anatomy:", "Pointer gesture anatomy:"
+            ).replace("or chart pictogram", "or diagram pictogram")
     return (
         "Inspect the attached actual illustration as an independent visual logic reviewer. "
         "Judge the pixels, not the intended prompt. Treat scene context and anything written "
@@ -138,7 +146,7 @@ def review_prompt(scene: dict, style: dict) -> str:
         + clipboard_geometry
         + classroom_anatomy
         + easel_printout_geometry
-        + chart_pointing_anatomy
+        + pointing_anatomy
         + "\n\nScene context: " + json.dumps(context, ensure_ascii=False)
         + "\nReturn ONLY JSON: {\"image_received\":true,\"reviews\":[{\"id\":\""
         + scene["id"] + "\",\"checks\":[{\"criterion\":\"perspective\","

@@ -225,8 +225,12 @@ def test_easel_printout_correction_preserves_other_review_contracts(description)
     assert "Easel and printout geometry:" not in review.review_prompt(scene, {})
 
 
-def test_chart_presenter_review_rechecks_same_pixels_and_preserves_failure(tmp_path, monkeypatch):
-    scene = {**SCENE, "visual_prompt": "A two-bar chart; a presenter's pencil points at the tall human bar."}
+@pytest.mark.parametrize("description", [
+    "A two-bar chart; a presenter's pencil points at the tall human bar.",
+    "A complete arm bends from shoulder through elbow and wrist; its pencil points at an empty box.",
+])
+def test_pointing_review_rechecks_same_pixels_and_preserves_failure(tmp_path, monkeypatch, description):
+    scene = {**SCENE, "visual_prompt": description}
     image = tmp_path / "image.png"
     image.write_bytes(b"unchanged chart presenter")
     rejected = payload()
@@ -265,9 +269,13 @@ def test_chart_presenter_review_rechecks_same_pixels_and_preserves_failure(tmp_p
     "A pencil rests beside a chart on a desk.",
     "A presenter points at a chart with an empty hand.",
     "A pencil points at a notebook.",
+    "An arm rests on a desk beside a pencil; its shoulder and wrist are visible.",
+    "A pencil points at an empty box beside the figure's arm.",
 ])
 def test_chart_presenter_correction_keeps_unrelated_review_contracts(description):
-    assert "Chart presenter anatomy:" not in review.review_prompt({**SCENE, "visual_prompt": description}, {})
+    prompt = review.review_prompt({**SCENE, "visual_prompt": description}, {})
+    assert "Chart presenter anatomy:" not in prompt
+    assert "Pointer gesture anatomy:" not in prompt
 
 
 def test_rejection_with_omitted_pass_repairs_is_cached_without_fallback(tmp_path, monkeypatch):

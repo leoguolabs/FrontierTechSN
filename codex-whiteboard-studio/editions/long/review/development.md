@@ -252,3 +252,14 @@ actual model device, request parameters and output hash. Its output is marked
 unaccepted and never written into the film's audio manifest. At this
 checkpoint, dependencies and model downloads are still being prepared; no
 local synthesis result or speed improvement has been established.
+
+Line 16 then arrived and matched its unprompted transcript. Line 15's second
+take resolved "that", but all three recognizers rendered "sequenced" as
+"sequence"; turbo and small also omitted its initial "The". A third take,
+seed 2234, is now requested within the three-attempt limit for this exact
+source. Both earlier WAVs and all observations are retained. The client
+preserved the already submitted line-17 job when resuming. Sixteen current
+WAVs are present, with fifteen matching selected independent transcripts.
+The refreshed draft has 17,260 frames, passes structure validation with the
+remaining speech gaps reported, and has no conservative marker-body
+candidates. Nine selected speech cues are observed and eleven remain pending.

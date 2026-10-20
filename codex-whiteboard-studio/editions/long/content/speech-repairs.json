@@ -15,9 +15,15 @@
   },
   "15": {
     "source_sha256": "09f3d557ad02deeb983744a2f929ee90fecd3886956226b12dae82f5359da3e7",
-    "seed": 1234,
+    "seed": 2234,
     "reason": "Turbo, medium and small independently render the source word that as the in the first take. Preserve that WAV and observations; request a bounded second take.",
     "replaces_audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
-    "replaces_job_id": "2fc66d65aab341d78d03970ff43d8dec"
+    "replaces_job_id": "2fc66d65aab341d78d03970ff43d8dec",
+    "second_take": {
+      "seed": 1234,
+      "audio_sha256": "6f7501422df84204f64f600ba26b8b12f44e615d8036852b5bb58cf9e9e8647d",
+      "job_id": "cfc83fdcfd8146c1ad32cf1f6babcf5e",
+      "reason": "All three recognizers render sequenced as sequence; turbo and small also omit the initial The. Preserve this take and request the third and final take for this exact source."
+    }
   }
 }

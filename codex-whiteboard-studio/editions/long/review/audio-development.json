@@ -143,12 +143,22 @@
     },
     {
       "id": "15",
-      "path": "media/audio/15-3409fa2d8c9d.wav",
-      "job_id": "2fc66d65aab341d78d03970ff43d8dec",
-      "audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
+      "path": "media/audio/15-eb752c77807e.wav",
+      "job_id": "cfc83fdcfd8146c1ad32cf1f6babcf5e",
+      "audio_sha256": "6f7501422df84204f64f600ba26b8b12f44e615d8036852b5bb58cf9e9e8647d",
       "source_sha256": "09f3d557ad02deeb983744a2f929ee90fecd3886956226b12dae82f5359da3e7",
-      "duration": 12.52,
+      "duration": 13.44,
       "independent_transcript_matches": false,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "16",
+      "path": "media/audio/16-e1c8f5041f46.wav",
+      "job_id": "d729b653e75649328655270db1071dc3",
+      "audio_sha256": "9f8ecedee0deb16c374222124b80f863e6703ebad774740522a384989204846c",
+      "source_sha256": "71d62fe8c9f4db1d151e17974a3c2fa205d447dd2b0cf27a648048dbbed4e0a0",
+      "duration": 11.2,
+      "independent_transcript_matches": true,
       "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
     }
   ],
@@ -234,7 +244,7 @@
     },
     {
       "id": "15",
-      "status": "Second take requested; generation is ongoing. No subjective listening claim.",
+      "status": "Third and final take for this exact source requested. No subjective listening claim.",
       "source_sha256": "09f3d557ad02deeb983744a2f929ee90fecd3886956226b12dae82f5359da3e7",
       "original_audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
       "original_job_id": "2fc66d65aab341d78d03970ff43d8dec",
@@ -337,7 +347,97 @@
           ]
         }
       ],
-      "decision": "All three recognizers replace the source that with the. Retain the first take and source wording; request a second take using seed 1234."
+      "decision": "All three recognizers replace the source that with the. Retain the first take and source wording; request a second take using seed 1234.",
+      "second_take": {
+        "audio_sha256": "6f7501422df84204f64f600ba26b8b12f44e615d8036852b5bb58cf9e9e8647d",
+        "job_id": "cfc83fdcfd8146c1ad32cf1f6babcf5e",
+        "duration": 13.44,
+        "observations": [
+          {
+            "file": "media/asr/15-6f7501422df8-second-medium.json",
+            "sha256": "1844945ee0ac46913253c52c17c87a85246fe22d30beea430ba2da7ae3f26572",
+            "audio_sha256": "6f7501422df84204f64f600ba26b8b12f44e615d8036852b5bb58cf9e9e8647d",
+            "model": "mlx-community/whisper-medium-mlx",
+            "normalized_changes": [
+              {
+                "kind": "replace",
+                "expected": [
+                  "sequenced"
+                ],
+                "heard": [
+                  "sequence"
+                ]
+              },
+              {
+                "kind": "replace",
+                "expected": [
+                  "chatbot"
+                ],
+                "heard": [
+                  "chat",
+                  "bot"
+                ]
+              }
+            ]
+          },
+          {
+            "file": "media/asr/15-6f7501422df8-third-small.json",
+            "sha256": "a0425a03fb8e1cd03e56a0eb0df95ff5bc6a0cb118207097c9612dffb704b966",
+            "audio_sha256": "6f7501422df84204f64f600ba26b8b12f44e615d8036852b5bb58cf9e9e8647d",
+            "model": "mlx-community/whisper-small-mlx",
+            "normalized_changes": [
+              {
+                "kind": "delete",
+                "expected": [
+                  "the"
+                ],
+                "heard": []
+              },
+              {
+                "kind": "replace",
+                "expected": [
+                  "sequenced"
+                ],
+                "heard": [
+                  "sequence"
+                ]
+              },
+              {
+                "kind": "delete",
+                "expected": [
+                  "it"
+                ],
+                "heard": []
+              }
+            ]
+          },
+          {
+            "file": "media/asr/15-6f7501422df8.json",
+            "sha256": "59aeafc56aab89e920eebab1bec3e2f82a0c3401e3d3c4b090d1be703f0d1ef9",
+            "audio_sha256": "6f7501422df84204f64f600ba26b8b12f44e615d8036852b5bb58cf9e9e8647d",
+            "model": "mlx-community/whisper-large-v3-turbo-q4",
+            "normalized_changes": [
+              {
+                "kind": "delete",
+                "expected": [
+                  "the"
+                ],
+                "heard": []
+              },
+              {
+                "kind": "replace",
+                "expected": [
+                  "sequenced"
+                ],
+                "heard": [
+                  "sequence"
+                ]
+              }
+            ]
+          }
+        ],
+        "decision": "All three recognizers render sequenced as sequence. Turbo and small also omit initial The. Request seed 2234 within the three-attempt bound; retain both takes and all observations."
+      }
     }
   ]
 }

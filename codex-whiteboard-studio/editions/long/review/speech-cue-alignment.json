@@ -1,7 +1,7 @@
 {
   "scope": "Ink completion relative to selected source phrases timed by matching unprompted ASR. Late candidates need review. Early reveals, composition, visibility, pronunciation, and subjective synchronization are not assessed.",
   "complete_audio": false,
-  "timeline_sha256": "87ec65fb0f70e8328d93cf795117518b24dc38c4ef9e1f3e48d4ca7623620479",
+  "timeline_sha256": "930c1cad29a1d358ff27e39f82526e1dbc50da9ea598eb7ade37952b5b6c44ca",
   "composition_sha256": "1c8e41822c2321f10269f3d01c6d4e8b39fb256240b27ed2a3ca42fec369bccf",
   "cue_plan_sha256": "2109f92037e7418e27ca18e76e96ee882cb12690e54eeaf6f60ec663206e210d",
   "cues": [
@@ -136,8 +136,8 @@
       "line": "18",
       "phrase": "thirty two percent",
       "max_lag": 2,
-      "drawing_start": 225.5,
-      "drawing_end": 227.875,
+      "drawing_start": 225.75,
+      "drawing_end": 228.125,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -145,8 +145,8 @@
       "line": "36",
       "phrase": "x plus three equals fourteen",
       "max_lag": 1,
-      "drawing_start": 472.7083333333333,
-      "drawing_end": 474.875,
+      "drawing_start": 472.9583333333333,
+      "drawing_end": 475.125,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -154,8 +154,8 @@
       "line": "37",
       "phrase": "x plus three equal to seven",
       "max_lag": 1,
-      "drawing_start": 487.5416666666667,
-      "drawing_end": 489.125,
+      "drawing_start": 487.7916666666667,
+      "drawing_end": 489.375,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -163,8 +163,8 @@
       "line": "37",
       "phrase": "x equals four",
       "max_lag": 1,
-      "drawing_start": 492.25,
-      "drawing_end": 493.8333333333333,
+      "drawing_start": 492.5,
+      "drawing_end": 494.0833333333333,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -172,8 +172,8 @@
       "line": "37",
       "phrase": "check it",
       "max_lag": 1,
-      "drawing_start": 496.0833333333333,
-      "drawing_end": 497.6666666666667,
+      "drawing_start": 496.3333333333333,
+      "drawing_end": 497.9166666666667,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -181,8 +181,8 @@
       "line": "39",
       "phrase": "two x plus three",
       "max_lag": 1,
-      "drawing_start": 517.9583333333334,
-      "drawing_end": 519.5416666666666,
+      "drawing_start": 518.2083333333334,
+      "drawing_end": 519.7916666666666,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -190,8 +190,8 @@
       "line": "39",
       "phrase": "two x plus six",
       "max_lag": 1,
-      "drawing_start": 523.7083333333334,
-      "drawing_end": 525.2916666666666,
+      "drawing_start": 523.9583333333334,
+      "drawing_end": 525.5416666666666,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -199,8 +199,8 @@
       "line": "41",
       "phrase": "y minus two equals fifteen",
       "max_lag": 1,
-      "drawing_start": 546.16,
-      "drawing_end": 548.16,
+      "drawing_start": 546.41,
+      "drawing_end": 548.41,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -208,8 +208,8 @@
       "line": "41",
       "phrase": "answer is seven",
       "max_lag": 1,
-      "drawing_start": 553.2083333333334,
-      "drawing_end": 554.8333333333334,
+      "drawing_start": 553.4583333333334,
+      "drawing_end": 555.0833333333334,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -217,8 +217,8 @@
       "line": "43",
       "phrase": "z plus one equals twenty",
       "max_lag": 1,
-      "drawing_start": 576.0833333333334,
-      "drawing_end": 578.0833333333334,
+      "drawing_start": 576.3333333333334,
+      "drawing_end": 578.3333333333334,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -226,8 +226,8 @@
       "line": "44",
       "phrase": "which is twenty",
       "max_lag": 1,
-      "drawing_start": 588.9583333333334,
-      "drawing_end": 591.125,
+      "drawing_start": 589.2083333333334,
+      "drawing_end": 591.375,
       "status": "awaiting_verified_word_timing"
     }
   ]

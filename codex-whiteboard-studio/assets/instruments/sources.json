@@ -1,0 +1,28 @@
+[
+  {
+    "file": "marimba-c4.wav",
+    "root_midi": 72,
+    "url": "https://raw.githubusercontent.com/sgossner/VCSL/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/Idiophones/Struck%20Idiophones/Marimba/Marimba_hit_Outrigger_C4_med_01.wav",
+    "sha256": "3e88c006eef05e8f7891f8f6027042006199a4ec3b53a0ad7308f9782a52d4df",
+    "license": "CC0-1.0",
+    "pitch_evidence": "Publisher Marimba.sfz: pitch_keycenter=72 for Outrigger_C4; observed dominant mode 524.62 Hz.",
+    "pitch_source": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/SFZ/Marimba.sfz"
+  },
+  {
+    "file": "glock-c5.wav",
+    "root_midi": 84,
+    "url": "https://raw.githubusercontent.com/sgossner/VCSL/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/Idiophones/Struck%20Idiophones/Glockenspiel/glock_medium_C5_01.wav",
+    "sha256": "635f898e0bcb6975b96b18efd9c896f6f1b97ff12174a339ada4814e49675660",
+    "license": "CC0-1.0",
+    "pitch_evidence": "Observed dominant fundamental 1053.62 Hz, near MIDI 84 (C6); library filenames use C5 for this octave."
+  },
+  {
+    "file": "cello-pizz-g1.wav",
+    "root_midi": 43,
+    "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Cello%20Section/pizzT/pizzT_G1_v1_RR1.wav",
+    "sha256": "4bfeddd80e7dd07d71f627d16b7458231c6b14118b8b8b3fe039ba8b73d88236",
+    "license": "CC0-1.0",
+    "pitch_evidence": "Publisher CelloEnsPizz.sfz: pitch_keycenter=43 for pizzT_G1_v1_RR1.",
+    "pitch_source": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/SFZ/CelloEnsPizz.sfz"
+  }
+]

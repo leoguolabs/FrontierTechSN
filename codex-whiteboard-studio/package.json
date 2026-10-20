@@ -1,0 +1,17 @@
+{
+  "name": "codex-whiteboard-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Independent deterministic whiteboard film studio and complete-frame review",
+  "scripts": {
+    "fonts": "node scripts/prepare-fonts.mjs",
+    "render": "node scripts/render.mjs",
+    "preview": "python3 scripts/serve.py"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "1.0.11",
+    "hersheytext": "2.0.0",
+    "svg-path-properties": "2.0.2"
+  }
+}

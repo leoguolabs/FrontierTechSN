@@ -1,0 +1,49 @@
+{
+  "status": "Three-minute edition prepared and internally reviewed. User approval pending; not published.",
+  "title": "I asked Codex to rebuild a whiteboard film from scratch",
+  "subtitle": "A three-minute experiment in turning a visual reference into a reproducible film project.",
+  "author": "LeoGuoLabs",
+  "paragraphs": [
+    "I gave Codex a demanding brief: study the Whiteboard Explainer film in LemoLab's lemo-opuscar, then make a new film about AI and learning. It could reuse my Chatterbox speech service. The drawing engine, story, camera, sound and production workflow had to be built independently.",
+    "The reference was Einstein in Your Pocket, a 111-second film with a deceptively simple surface: three colors of ink, floating markers and a whiteboard. What makes it work is the relationship between them. The nib creates the line. The shadow changes when the pen lifts. The camera follows an argument that remains physically present on the board.",
+    "The new subject was Does AI Help You Learn—or Just Finish? I asked for a three-minute edition first, with a longer version only after I had seen the finished short film. I also asked Codex to do its own revisions instead of stopping after every draft to ask for approval.",
+    "The story begins with a familiar success: the formula works and the deadline is saved. Then the answer disappears. Can you build it again? From there, the board separates four questions: performance with help, performance alone, retention and transfer.",
+    "The research needed the same care as the pictures. A mathematics experiment reported better assisted practice grades but worse subsequent unaided exam grades for an unrestricted chatbot group. A guarded tutor largely removed that penalty. A separate physics experiment found stronger immediate learning outcomes with a carefully designed tutor. Those results concern different designs and measurements. They do not justify a single verdict on all AI-assisted learning.",
+    "The first visual implementation had ordinary, revealing failures. Lettering was scaled against the wrong font metric. A reused drawing ID could retrieve the wrong cached heading. Two pieces of writing could compete for the same pen. These were easy to miss in a polished still and conspicuous when the picture moved.",
+    "The renderer now treats every mark as a timed path. Each pen has one queue. The camera and ink use the same board coordinates. The sound track receives the same stroke events, so the felt sound follows the writing rather than an unrelated timer. Seeking backward must reproduce the same frame.",
+    "The reference was decoded in full: 2,664 frames at 24 frames per second. The final three-minute film contains 4,320 frames. Codex inspected every one through 135 consecutive paired atlases, comparing moments by visual function, and opened 19 final stills at their original 1080p resolution. The records distinguish complete atlas coverage from full-resolution inspection. The two stories differ in timing and layout; this is not a claim of pixel identity.",
+    "That process changed the film. The title needed a stronger hierarchy. A circle crossed a line of text. Two markers shared a departure path. The eraser briefly jumped between rows. A later full-resolution pass caught a study divider touching its label and A/B labels crowding document rules. Those layouts were corrected, the whole film was rebuilt, and all 4,320 final frames were reviewed again. Explicit BT.709 color conversion repaired an encoding issue separately from the visual design.",
+    "Speech had its own evidence trail. Chatterbox generated natural-speed WAVs with retained job IDs and hashes. Independent transcription flagged words that needed attention. Repairs preserved the original audio and created new source-bound requests. Captions kept the finalized source wording while using the observed speech timing. An ASR match was recorded as an ASR match; it was not relabeled as a listening review.",
+    "The deliverable is a small studio containing the editable composition, licensed fonts, speech client, original score, sound design, renderer, source claims, review scripts and a local showcase. The frame lab lets a viewer step through the reference and the new film side by side.",
+    "This single production is a case study. It cannot establish which model is better overall. What it shows is a practical process: turn a reference into explicit constraints, implement them, inspect the film and revise what fails. The code and review record make those decisions visible.",
+    "The film ends where the learning question began: what can you do when the answer is gone? That is also a useful way to judge an AI production workflow. After the first impressive output, can you explain it, repair it and make the next one?"
+  ],
+  "references": [
+    {
+      "label": "LemoLab / lemo-opuscar",
+      "url": "https://github.com/lemomo-ai/lemo-opuscar"
+    },
+    {
+      "label": "Bastani et al., PNAS",
+      "url": "https://doi.org/10.1073/pnas.2422633122"
+    },
+    {
+      "label": "Kestin et al., Scientific Reports",
+      "url": "https://doi.org/10.1038/s41598-025-97652-6"
+    }
+  ],
+  "publication": {
+    "destination": "X / LeoGuoLabs",
+    "state": "not_published",
+    "public_url": null
+  },
+  "paragraph_sources": {
+    "0": [
+      0
+    ],
+    "4": [
+      1,
+      2
+    ]
+  }
+}

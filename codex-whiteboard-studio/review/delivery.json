@@ -1,0 +1,19 @@
+{
+  "video_sha256": "170b4e1df4c1467246a89365bab4443972a2208ec6837fc4c84ce631db623936",
+  "reference_sha256": "4455a67e655c6359d9b322c03c9a0ca5584699a268f832691ad47558ba5ffa8a",
+  "mapping_sha256": "4f2345e1b5f789f846ec4ba2904e7e8cc06df69a30995eb4d3347f40854cbdb3",
+  "status_label": "Frame review complete",
+  "decoded_frames": 4320,
+  "duration": 180.0,
+  "fps": 24,
+  "complete_frame_review": true,
+  "paired_atlases_inspected": 135,
+  "full_resolution_stills_inspected": 19,
+  "reference_frames_reviewed": 2664,
+  "scope": "Every consecutive paired atlas; 320x180 generated tiles. Full-resolution inspection is separately listed.",
+  "visual_judgment": "See visual-review.md for observations and remaining stylistic differences.",
+  "pixel_identity_claimed": false,
+  "audio_evidence": "Independent transcription, provider bindings, final-mix waveform placement and loudness checks; subjective listening is not established.",
+  "user_approval": "Pending short-edition review; long edition not started.",
+  "publication": "Process article prepared locally; not published."
+}

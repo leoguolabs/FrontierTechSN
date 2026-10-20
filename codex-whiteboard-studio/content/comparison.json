@@ -1,0 +1,13 @@
+[
+  ["hook", "Opening / object & reveal", 0, 9, "Compare object landing, surface, ink reveal and camera pullback."],
+  ["title", "Title / lettering & underline", 9, 15, "Compare stroke texture, letter spacing, pen scale and cast shadows."],
+  ["measures", "Diagram / one idea at a time", 15, 34, "Compare the progressive construction of a diagram and connecting lines."],
+  ["study", "Comparison / two scoreboards", 46, 56, "Compare parallel structures, pen choreography and readable holds."],
+  ["counter", "Evidence / annotate the result", 56, 69, "Compare sequential annotations and the pause that lets the result register."],
+  ["offload", "Erase / leave a trace", 78, 89, "Compare the physical eraser, its wipe footprint and residual ink."],
+  ["guidance", "Sequence / change the support", 34, 46, "Compare progressive marks and revisiting a stable board."],
+  ["practice", "Correction / explain & check", 89, 96, "Compare correction marks and the learner's visible action."],
+  ["transfer", "Return / revisit an earlier idea", 69, 78, "Compare camera travel over existing drawings and short written labels."],
+  ["closing", "Closing / return to the question", 103, 111, "Compare final handwriting, pen departure and a settled camera."],
+  ["wide", "Whole board / frame & tray", 96, 103, "Compare pullback, the physical frame, tray and the whole argument."]
+]

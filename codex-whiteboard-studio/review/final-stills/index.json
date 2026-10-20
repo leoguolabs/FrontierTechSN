@@ -1,0 +1,120 @@
+{
+  "video_sha256": "170b4e1df4c1467246a89365bab4443972a2208ec6837fc4c84ce631db623936",
+  "purpose": "Original-resolution spot inspection, separate from complete atlas coverage.",
+  "stills": [
+    {
+      "file": "still-001.png",
+      "frame": 207,
+      "seconds": 8.625,
+      "sha256": "3a7bf61d49ce281f354acaa880522a28a9a855e27724ace255131347c3d1aad1"
+    },
+    {
+      "file": "still-002.png",
+      "frame": 381,
+      "seconds": 15.875,
+      "sha256": "6ba23b88f6ac988e5bb0087112e149ea2407b4b1bce30b296489383413fb4250"
+    },
+    {
+      "file": "still-003.png",
+      "frame": 598,
+      "seconds": 24.916666666666668,
+      "sha256": "1a6637daa304f4a3af8a0d0bf1cadf4e4db9f470c1bd5e75da7248bd8d2f0a1c"
+    },
+    {
+      "file": "still-004.png",
+      "frame": 797,
+      "seconds": 33.208333333333336,
+      "sha256": "769ecef5cf7c66b4c34729693a515d93032972f6abcee339541248ab1ae5c627"
+    },
+    {
+      "file": "still-005.png",
+      "frame": 1053,
+      "seconds": 43.875,
+      "sha256": "14510937ffd62e65c7fb77824fe02cdc460e24e34c28f3293c7764d973a35525"
+    },
+    {
+      "file": "still-006.png",
+      "frame": 1263,
+      "seconds": 52.625,
+      "sha256": "320745977e44ce687b8355e14b16246c9f8e689691eacab8807f29d3a50bbd57"
+    },
+    {
+      "file": "still-007.png",
+      "frame": 1544,
+      "seconds": 64.33333333333333,
+      "sha256": "529328c229c8fd76c37dbaaa3453a8939cc8988c3f75873a0edd156644133cbe"
+    },
+    {
+      "file": "still-008.png",
+      "frame": 1766,
+      "seconds": 73.58333333333333,
+      "sha256": "eb3e613db9ba018759012516f9545b6c2836b08b4148ed6528b3ba8cbc932f4a"
+    },
+    {
+      "file": "still-009.png",
+      "frame": 1974,
+      "seconds": 82.25,
+      "sha256": "2feab620cdc9566f789477d5eb36bb2ae08ea83d14d3b1190e85c7b87ad55d56"
+    },
+    {
+      "file": "still-010.png",
+      "frame": 2239,
+      "seconds": 93.29166666666667,
+      "sha256": "6a69ec1f6e32923f019dde82bf05b83d2f6727837ba6963115bd9b4eae4415e3"
+    },
+    {
+      "file": "still-011.png",
+      "frame": 2514,
+      "seconds": 104.75,
+      "sha256": "40dbe2786505ffae924496b95782a432d701ef0ddb35b81e44e8a177b72bbd65"
+    },
+    {
+      "file": "still-012.png",
+      "frame": 2728,
+      "seconds": 113.66666666666667,
+      "sha256": "5d9077e3d4b3206ea6ded04d78436afd1f0371fcf50a4e89129f42a042d06fe1"
+    },
+    {
+      "file": "still-013.png",
+      "frame": 2974,
+      "seconds": 123.91666666666667,
+      "sha256": "6a57e918ba45b8a2d2bdaa1f16791cb08c21c4252f12ae8e8bfd567aacaebeab"
+    },
+    {
+      "file": "still-014.png",
+      "frame": 3210,
+      "seconds": 133.75,
+      "sha256": "8cefc13fe0bde35626dd95d0546207a7e9103e9717850784c12b70ce58df42ed"
+    },
+    {
+      "file": "still-015.png",
+      "frame": 3419,
+      "seconds": 142.45833333333334,
+      "sha256": "ea1d274cf4d33a4b29a6dc06f553a47fface5c54a95a35dc9fe3fb118ea64526"
+    },
+    {
+      "file": "still-016.png",
+      "frame": 3689,
+      "seconds": 153.70833333333334,
+      "sha256": "76d926ecf43d7d7aa404c89c04fda95dd5a0776c95694f039e36747bd0ec4706"
+    },
+    {
+      "file": "still-017.png",
+      "frame": 3875,
+      "seconds": 161.45833333333334,
+      "sha256": "ef0568eaabced774acd8a7b358320b7af0faf80d66c0de54493c39eeee8449af"
+    },
+    {
+      "file": "still-018.png",
+      "frame": 4105,
+      "seconds": 171.04166666666666,
+      "sha256": "4813b120f37372bd2b2792d8455e05704072c59c845429d360b7b67f52c08bb3"
+    },
+    {
+      "file": "still-019.png",
+      "frame": 4319,
+      "seconds": 179.95833333333334,
+      "sha256": "312b1327a26676d67c5b0178c14aa0bf7e1541639e92dbdd7d94435f02edb239"
+    }
+  ]
+}

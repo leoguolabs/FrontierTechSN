@@ -1,0 +1,113 @@
+{
+  "timing": "Exact frame positions are generated from accepted natural-speed narration in media/timeline.json.",
+  "shots": [
+    {
+      "region": "hook",
+      "lines": [
+        "01"
+      ],
+      "purpose": "A successful answer leaves an unresolved ability question.",
+      "visible_action": "Magnet lands; a laptop and spreadsheet are drawn; the success marker moves into the result cell.",
+      "camera": "Pull back from the magnet; blue connector leads to the title.",
+      "sound": "Magnet impact, black and blue felt strokes."
+    },
+    {
+      "region": "title",
+      "lines": [
+        "02"
+      ],
+      "purpose": "State the film question.",
+      "visible_action": "Large AI: LEARN line, smaller OR JUST FINISH? line, orange underline.",
+      "camera": "Settle on the title, then follow the blue line right.",
+      "sound": "Sparse mallet motif under speech."
+    },
+    {
+      "region": "measures",
+      "lines": [
+        "03",
+        "04"
+      ],
+      "purpose": "Separate four outcomes that are often conflated.",
+      "visible_action": "Four boxes: help, alone, later, new problem. Add measurement labels and a shared brace.",
+      "camera": "Hold for sequence; travel diagonally to the two scoreboards.",
+      "sound": "Distinct pen lifts and drawing sounds."
+    },
+    {
+      "region": "study",
+      "lines": [
+        "05",
+        "06",
+        "07"
+      ],
+      "purpose": "Show the assisted-performance reversal and the guarded-tutor qualification.",
+      "visible_action": "Blue +48% practice and orange -17% exam; relative-control label; guarded tutor annotation.",
+      "camera": "Reframe downward as each part develops.",
+      "sound": "Music briefly drops at the unaided-exam reversal."
+    },
+    {
+      "region": "counter",
+      "lines": [
+        "08",
+        "09",
+        "10"
+      ],
+      "purpose": "Limit the first result and supply a successful instructional design.",
+      "visible_action": "Open physics book, equation, bulb, immediate-result label, three tutor ingredients and retention caveat.",
+      "camera": "Progressively widen and reframe to preserve the complete explanation.",
+      "sound": "Quiet pizzicato and bell accents."
+    },
+    {
+      "region": "offload",
+      "lines": [
+        "11",
+        "12"
+      ],
+      "purpose": "Make recognition and production visibly different.",
+      "visible_action": "Answer bubble points to the learner\u2019s page; recognition and production labels; a physical eraser removes the answer.",
+      "camera": "Small downward reframe keeps heading and erased answer together.",
+      "sound": "Felt eraser follows the continuous wipe path."
+    },
+    {
+      "region": "guidance",
+      "lines": [
+        "13"
+      ],
+      "purpose": "Prevent the advice from becoming unguided struggle.",
+      "visible_action": "Three pages move from worked example to hint to independent attempt.",
+      "camera": "Travel down to the example sequence.",
+      "sound": "Pen queues preserve distinct physical markers."
+    },
+    {
+      "region": "practice",
+      "lines": [
+        "14",
+        "15"
+      ],
+      "purpose": "Turn the argument into a usable, qualified routine.",
+      "visible_action": "Attempt page, useful hint, hidden answer, recall question, feedback check.",
+      "camera": "Travel left; hold while the routine builds.",
+      "sound": "Felt marks and low music continue under speech."
+    },
+    {
+      "region": "transfer",
+      "lines": [
+        "16"
+      ],
+      "purpose": "Keep transfer and delayed retention separate.",
+      "visible_action": "Two problem pages A and B; a clock; separate transfer and retention labels.",
+      "camera": "Travel left to the final test region.",
+      "sound": "Sparse bell phrase supports the later-return idea."
+    },
+    {
+      "region": "closing",
+      "lines": [
+        "17",
+        "18"
+      ],
+      "purpose": "Return to what the learner can do independently.",
+      "visible_action": "Return to the title; add principle and circle the final question; reveal the physical framed board and tray.",
+      "camera": "Return upward, hold, then pull back to the whole board.",
+      "sound": "Cap impact, three-second music fade; no black flash."
+    }
+  ]
+}

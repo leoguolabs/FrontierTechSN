@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An independently built whiteboard film about AI and learning, with a frame-by-frame review desk.">
+  <title>Codex Whiteboard Studio — Does AI Help You Learn?</title>
+  <link rel="stylesheet" href="showcase.css">
+  <script type="module" src="showcase.mjs"></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="#film"><span class="brand-mark" aria-hidden="true">↗</span> CODEX<br>WHITEBOARD STUDIO</a>
+    <nav aria-label="Main"><a href="#film">The film</a><a href="#frame-lab">Frame lab</a><a href="#notes">Build notes</a></nav>
+    <span class="edition">FIELD NOTE 001 / LEOGUOLABS</span>
+  </header>
+  <main>
+    <section id="film" class="hero">
+      <div class="eyebrow"><span class="dot"></span> A FILM ABOUT LEARNING</div>
+      <div class="hero-copy">
+        <h1>What remains<br>when the answer<br>is <em>gone?</em></h1>
+        <div class="intro">
+          <p class="handwritten">The work is finished.<br>What did you learn?</p>
+          <p>An AI tool can improve your result today. Whether that becomes knowledge you can use tomorrow is a different question.</p>
+          <p class="film-title">Does AI Help You Learn—or Just Finish?</p>
+          <div class="film-meta"><span id="film-duration">~3 MIN</span><span>1080P</span><span>24 FPS</span><span>CHATTERBOX VOICE</span></div>
+          <a class="watch-link" href="#screen">Watch the film <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+      <figure id="screen" class="screen">
+        <video id="film-player" controls playsinline preload="metadata" poster="media/poster.jpg" aria-label="Does AI Help You Learn—or Just Finish?">
+          <source src="media/does-ai-help-you-learn-3min.mp4" type="video/mp4">
+          <track kind="subtitles" src="media/captions.vtt" srclang="en" label="English">
+        </video>
+        <figcaption><span>ONE BOARD. THREE INKS. A QUESTION WORTH KEEPING.</span><a href="media/does-ai-help-you-learn-3min.mp4" download>Download film ↗</a></figcaption>
+      </figure>
+      <div class="chapter-strip" id="chapters" aria-label="Film chapters"></div>
+    </section>
+
+    <section id="frame-lab" class="lab">
+      <div class="section-heading"><div><span class="eyebrow">02 / LOOK CLOSER</span><h2>The frame lab.</h2></div>
+        <p>The same visual language, a new story. Compare the reference and the independent film by visual function. Step through every frame.</p>
+      </div>
+      <div class="lab-toolbar">
+        <label>Compare a moment <select id="beat-select" aria-label="Comparison moment"></select></label>
+        <div class="legend"><span class="ink black"></span> explanation <span class="ink blue"></span> support <span class="ink orange"></span> independent work</div>
+      </div>
+      <div class="comparison">
+        <figure><div class="video-label"><b>01</b><span>THE REFERENCE<br><small>LemoLab / Einstein in Your Pocket</small></span></div>
+          <video id="reference-player" muted playsinline preload="metadata" aria-label="Whiteboard style reference"><source src="reference/whiteboard.mp4" type="video/mp4"></video>
+          <figcaption id="reference-frame">REFERENCE FRAME —</figcaption>
+        </figure>
+        <figure><div class="video-label"><b>02</b><span>THE NEW FILM<br><small>Codex Whiteboard Studio / AI & learning</small></span></div>
+          <video id="candidate-player" muted playsinline preload="metadata" aria-label="Independent film comparison"><source src="media/does-ai-help-you-learn-3min.mp4" type="video/mp4"></video>
+          <figcaption id="candidate-frame">CANDIDATE FRAME —</figcaption>
+        </figure>
+      </div>
+      <div class="frame-controls">
+        <button id="previous-frame" aria-label="Previous frame">←</button>
+        <button id="play-comparison">Play moment</button>
+        <button id="next-frame" aria-label="Next frame">→</button>
+        <input id="frame-slider" type="range" min="0" max="4319" value="0" step="1" aria-label="Candidate frame">
+        <label class="frame-entry">Frame <input id="frame-number" type="number" min="0" max="4319" value="0" aria-label="Go to candidate frame"></label>
+      </div>
+      <p id="beat-note" class="lab-note">Ink, pen contact, camera, surface and readable holds are reviewed separately.</p>
+      <div class="evidence" id="evidence">
+        <div><strong>2,664</strong><span>reference frames decoded</span></div>
+        <div><strong id="candidate-count">—</strong><span>delivery frames decoded</span></div>
+        <div><strong id="review-state">In review</strong><span>current evidence status</span></div>
+        <div class="review-links"><a href="review/visual-review.md">Delivery review ↗</a><a href="review/reference-review.md">Reference review ↗</a></div>
+      </div>
+      <p class="fineprint">The two stories differ in content and duration. Moment mapping supports style inspection; it does not imply pixel identity. Complete-frame measurements, atlas inspection and full-resolution spot checks are recorded as separate evidence.</p>
+    </section>
+
+    <section id="notes" class="notes">
+      <div class="section-heading"><div><span class="eyebrow">03 / INSIDE THE STUDIO</span><h2>Built from the<br>tip of a pen.</h2></div><p>A reusable local film project: write a story, place it on one board, give every mark a time, and inspect the resulting motion.</p></div>
+      <div class="note-grid">
+        <article><span class="note-number">01</span><h3>A physical surface</h3><p>Subtle old ink, pooled strokes, scuffs and shifting light give the board a history. The drawings stay where they were written.</p></article>
+        <article><span class="note-number">02</span><h3>One shared clock</h3><p>Letter strokes, camera movement, pen lifts, captions and felt sounds follow the same timeline. Every frame can be reproduced.</p></article>
+        <article><span class="note-number">03</span><h3>Evidence before polish</h3><p>The script separates assisted grades from unaided exams, immediate tests from retention, and a helpful tutor from a ready-made answer.</p></article>
+      </div>
+      <div class="build-links"><a href="README.md">Rebuild the project ↗</a><a href="article/">Read the process article ↗</a><a href="review/revisions.md">Revision log ↗</a><a href="CREDITS.md">Credits & licenses ↗</a></div>
+    </section>
+
+    <section class="sources"><span class="eyebrow">04 / THE RESEARCH BEHIND THE FILM</span><div id="source-list"></div></section>
+    <footer><div class="brand">CODEX<br>WHITEBOARD STUDIO</div><p>Independent story, renderer and sound.<br>Whiteboard style study inspired by <a href="https://github.com/lemomo-ai/lemo-opuscar">LemoLab's lemo-opuscar</a>.</p><span>Made for LeoGuoLabs<br>2026 · Edition 01</span></footer>
+  </main>
+</body>
+</html>

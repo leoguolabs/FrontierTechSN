@@ -1,0 +1,20 @@
+[
+  {"id":"01","region":"hook","text":"The formula works. The deadline is saved. You can follow every step on the screen. Then the answer disappears. Can you build it again?","claim":"Illustrative scenario, not a reported participant."},
+  {"id":"02","region":"title","text":"Does artificial intelligence help you learn, or just finish? The difference shows up when the help goes away.","claim":"Editorial question."},
+  {"id":"03","region":"measures","text":"There are four different questions. Can you finish with help? Can you do it alone? Can you still do it later? And can you solve a new problem?","claim":"C01"},
+  {"id":"04","region":"measures","text":"Those measure assisted performance, independence, retention, and transfer. One successful session cannot answer all four.","claim":"C01"},
+  {"id":"05","region":"study","text":"In a randomized study of nearly a thousand high school mathematics students in Turkey, an unrestricted chatbot improved practice grades by forty eight percent, compared with the control group.","claim":"C02"},
+  {"id":"06","region":"study","text":"But on the exam without the tool, that group scored seventeen percent lower. Better homework performance had hidden weaker independent performance.","claim":"C02"},
+  {"id":"07","region":"study","text":"A tutor designed around teacher supplied hints largely removed that penalty. It did not produce a statistically significant exam improvement over the control group.","claim":"C03"},
+  {"id":"08","region":"counter","text":"That is one subject, one setting, and a short term exam. It does not show permanent damage, or that artificial intelligence cannot teach.","claim":"C02 scope"},
+  {"id":"09","region":"counter","text":"In a separate college physics experiment, a carefully designed tutor led to higher immediate test scores than an active classroom lesson.","claim":"C04"},
+  {"id":"10","region":"counter","text":"The tutor used questions, feedback, and expert prepared material. That was encouraging evidence for that design. An immediate test still cannot establish months of retention.","claim":"C04 scope"},
+  {"id":"11","region":"offload","text":"The useful question is: what thinking remains yours? Tools can remove busywork. But if choosing the method is the skill you need, handing over that choice also removes an opportunity to practise.","claim":"C05; editorial application"},
+  {"id":"12","region":"offload","text":"An explanation can feel obvious while it is visible. Recognizing the steps is easier than producing them with the answer covered.","claim":"C01"},
+  {"id":"13","region":"guidance","text":"This does not mean beginners should struggle without guidance. A worked example can be exactly what a novice needs. Then the support can change as understanding grows.","claim":"C06"},
+  {"id":"14","region":"practice","text":"Try this. Make a first attempt if you know enough to start. If the topic is new, study one clear example. Ask for a hint that addresses the step you cannot explain.","claim":"Editorial synthesis; C06"},
+  {"id":"15","region":"practice","text":"Now hide the answer. Explain the method from memory. Check your explanation and correct the mistake. Retrieval is useful; accurate feedback matters too.","claim":"C07"},
+  {"id":"16","region":"transfer","text":"Change the numbers, the constraints, or the situation. Try again without help. Come back later for another fresh problem. That is how you check transfer and retention separately.","claim":"C01; editorial synthesis"},
+  {"id":"17","region":"closing","text":"This is a practical check, not a universally proven recipe. The right amount of help depends on the learner and the task.","claim":"Editorial scope"},
+  {"id":"18","region":"closing","text":"Use artificial intelligence to make the next independent attempt better. The question at the end is simple. What can you do when the answer is gone?","claim":"Editorial conclusion"}
+]

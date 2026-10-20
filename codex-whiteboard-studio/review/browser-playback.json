@@ -1,0 +1,25 @@
+{
+  "video_sha256": "170b4e1df4c1467246a89365bab4443972a2208ec6837fc4c84ce631db623936",
+  "browser": "Codex in-app browser",
+  "observed_at": "2026-10-20T14:33:06.194Z",
+  "first_playback_time": 34.855994,
+  "advanced_playback": {
+    "currentTime": 45.120064,
+    "duration": 180,
+    "error": null,
+    "height": 1080,
+    "paused": false,
+    "ready": 4,
+    "src": "http://127.0.0.1:8246/media/does-ai-help-you-learn-3min.mp4",
+    "width": 1920
+  },
+  "single_frame_seek": {
+    "frame": 837,
+    "time": 34.895833
+  },
+  "last_frame_seek": {
+    "frame": 4319,
+    "time": 179.979166
+  },
+  "subjective_audio_listening": false
+}

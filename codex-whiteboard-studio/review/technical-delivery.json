@@ -1,0 +1,117 @@
+{
+  "video_sha256": "170b4e1df4c1467246a89365bab4443972a2208ec6837fc4c84ce631db623936",
+  "checks_passed": true,
+  "errors": [],
+  "decoded_frames": 4320,
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "pixel_format": "yuv420p",
+  "color_range": "tv",
+  "color_space": "bt709",
+  "color_transfer": "bt709",
+  "color_primaries": "bt709",
+  "duration": 180.0,
+  "audio_duration": 180.0,
+  "timestamp_cadence_max_error_seconds": 3.333333342681044e-07,
+  "full_decode_passed": true,
+  "audio": {
+    "input_i": "-14.01",
+    "input_tp": "-1.39",
+    "input_lra": "5.30"
+  },
+  "voice_placement": [
+    {
+      "id": "01",
+      "active_samples": 181021,
+      "zero_lag_voice_correlation": 0.9965397247497368
+    },
+    {
+      "id": "02",
+      "active_samples": 146188,
+      "zero_lag_voice_correlation": 0.999117170503765
+    },
+    {
+      "id": "03",
+      "active_samples": 205198,
+      "zero_lag_voice_correlation": 0.9992882587977395
+    },
+    {
+      "id": "04",
+      "active_samples": 177250,
+      "zero_lag_voice_correlation": 0.998181581469274
+    },
+    {
+      "id": "05",
+      "active_samples": 239777,
+      "zero_lag_voice_correlation": 0.9993177411165304
+    },
+    {
+      "id": "06",
+      "active_samples": 195115,
+      "zero_lag_voice_correlation": 0.9995990689183601
+    },
+    {
+      "id": "07",
+      "active_samples": 243912,
+      "zero_lag_voice_correlation": 0.9994803814352059
+    },
+    {
+      "id": "08",
+      "active_samples": 208784,
+      "zero_lag_voice_correlation": 0.9990778701764371
+    },
+    {
+      "id": "09",
+      "active_samples": 204707,
+      "zero_lag_voice_correlation": 0.9991853200631216
+    },
+    {
+      "id": "10",
+      "active_samples": 249705,
+      "zero_lag_voice_correlation": 0.999252473876901
+    },
+    {
+      "id": "11",
+      "active_samples": 260808,
+      "zero_lag_voice_correlation": 0.9995554760681404
+    },
+    {
+      "id": "12",
+      "active_samples": 187081,
+      "zero_lag_voice_correlation": 0.9988531802312456
+    },
+    {
+      "id": "13",
+      "active_samples": 232295,
+      "zero_lag_voice_correlation": 0.9987246315564642
+    },
+    {
+      "id": "14",
+      "active_samples": 210872,
+      "zero_lag_voice_correlation": 0.9994016808712076
+    },
+    {
+      "id": "15",
+      "active_samples": 178357,
+      "zero_lag_voice_correlation": 0.9994382212059163
+    },
+    {
+      "id": "16",
+      "active_samples": 260161,
+      "zero_lag_voice_correlation": 0.9987997307829104
+    },
+    {
+      "id": "17",
+      "active_samples": 168951,
+      "zero_lag_voice_correlation": 0.9995978460856998
+    },
+    {
+      "id": "18",
+      "active_samples": 217247,
+      "zero_lag_voice_correlation": 0.9966044166703176
+    }
+  ],
+  "visual_review": "Not established by technical checks.",
+  "audio_listening": "Not established by waveform or ASR checks."
+}

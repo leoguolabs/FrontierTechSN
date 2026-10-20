@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Rebuilding a whiteboard film — LeoGuoLabs</title>
+  <link rel="stylesheet" href="../showcase.css">
+  <style>
+    .essay{max-width:830px;margin:80px auto;padding:0 28px 80px}
+    .essay h1{font-size:clamp(40px,6vw,70px);line-height:1.02;letter-spacing:-.045em;margin:28px 0}
+    .essay .dek{font-size:24px;color:#69675f;line-height:1.4}
+    .essay p{font-size:20px;line-height:1.7;margin:1.5em 0}
+    .essay .status{font:12px/1.5 monospace;color:#99604b;border-left:3px solid #d97757;padding-left:15px}
+    .essay img{width:100%;margin:35px 0 5px;border:1px solid #d9d7d1}
+    .essay .references{border-top:1px solid #d9d7d1;padding-top:25px;margin-top:50px}
+    .essay .references a{display:block;margin:15px 0}
+  </style>
+</head>
+<body>
+  <header class="masthead"><a class="brand" href="../">↗ CODEX<br>WHITEBOARD STUDIO</a><span class="edition">PROCESS NOTE / LEOGUOLABS</span></header>
+  <main class="essay">
+    <span class="eyebrow">MAKING THE FILM</span>
+    <h1 id="title"></h1><p class="dek" id="subtitle"></p>
+    <p class="status" id="status"></p><img src="../media/poster.jpg" alt="The title written on the new whiteboard film">
+    <div id="body"></div><div class="references" id="references"></div>
+  </main>
+  <script type="module">
+    const data=await (await fetch('./process.json')).json()
+    for(const key of ['title','subtitle','status'])document.getElementById(key).textContent=data[key]
+    for(const [index,text] of data.paragraphs.entries()){
+      const p=document.createElement('p');p.textContent=text
+      for(const sourceIndex of data.paragraph_sources?.[index]||[]){
+        const source=data.references[sourceIndex],a=document.createElement('a')
+        a.href=source.url;a.textContent=` [${source.label}]`;p.append(a)
+      }
+      document.getElementById('body').append(p)
+    }
+    for(const source of data.references){const a=document.createElement('a');a.href=source.url;a.textContent=source.label+' ↗';document.getElementById('references').append(a)}
+  </script>
+</body>
+</html>

@@ -1,0 +1,1243 @@
+{
+  "video_sha256": "170b4e1df4c1467246a89365bab4443972a2208ec6837fc4c84ce631db623936",
+  "reference_sha256": "4455a67e655c6359d9b322c03c9a0ca5584699a268f832691ad47558ba5ffa8a",
+  "mapping_sha256": "4f2345e1b5f789f846ec4ba2904e7e8cc06df69a30995eb4d3347f40854cbdb3",
+  "reviewer": "Codex visual inspection",
+  "method": "Every consecutive paired atlas; 320x180 generated tiles. Full-resolution inspection is separately listed.",
+  "sheets": {
+    "0": {
+      "file": "pair-0000.jpg",
+      "first": 0,
+      "last": 31,
+      "sha256": "745811b9f3026459028305d24a39300e4b95db94b31c6a4bb876968bb9d91a87",
+      "observation": "Frames 0-63: every tile inspected at 1967x1248 displayed atlas size (320x180 source tiles). Magnet descends continuously and shadow contracts; first handwriting and laptop edge remain attached to the nib. Surface, pen silhouette and short caption card track the reference grammar; circular check magnet intentionally replaces map pin.",
+      "recorded_at": "2026-10-20T14:04:45.867625+00:00"
+    },
+    "1": {
+      "file": "pair-0001.jpg",
+      "first": 32,
+      "last": 63,
+      "sha256": "09028814e1b651ad3322cbf83d6f7a23cb54cf3725a4887b329899ad7adcf5e8",
+      "observation": "Frames 0-63: every tile inspected at 1967x1248 displayed atlas size (320x180 source tiles). Magnet descends continuously and shadow contracts; first handwriting and laptop edge remain attached to the nib. Surface, pen silhouette and short caption card track the reference grammar; circular check magnet intentionally replaces map pin.",
+      "recorded_at": "2026-10-20T14:04:45.870399+00:00"
+    },
+    "2": {
+      "file": "pair-0002.jpg",
+      "first": 64,
+      "last": 95,
+      "sha256": "19a34233ba8405cadbf9f4945fc7015d1a3a0d7c9d4729ef42e73cce4243fcda",
+      "observation": "Frames 64-127: inspected every tile. Laptop grid builds progressively under one black pen; blue pen arrives for formula. Pullback remains continuous, strokes stay registered, and shutter trails replace separated pen exposures. Captions remain sharp during movement.",
+      "recorded_at": "2026-10-20T14:05:01.789278+00:00"
+    },
+    "3": {
+      "file": "pair-0003.jpg",
+      "first": 96,
+      "last": 127,
+      "sha256": "b3318681ef5b936a88533f02c415211dcd3e30eae3508768586aa253b56a2384",
+      "observation": "Frames 64-127: inspected every tile. Laptop grid builds progressively under one black pen; blue pen arrives for formula. Pullback remains continuous, strokes stay registered, and shutter trails replace separated pen exposures. Captions remain sharp during movement.",
+      "recorded_at": "2026-10-20T14:05:01.792806+00:00"
+    },
+    "4": {
+      "file": "pair-0004.jpg",
+      "first": 128,
+      "last": 159,
+      "sha256": "cb035289186f4b544831a3ef803ff0b1468d94489b1feb3916751547e1762fd6",
+      "observation": "Frames 128-191: every tile inspected. Selected cell and orange question build cleanly; blue pen departs as orange arrives. Completed grid stays fixed through the hold. Handwritten caption switches remain separate from board text; no clipping or flash.",
+      "recorded_at": "2026-10-20T14:05:19.092052+00:00"
+    },
+    "5": {
+      "file": "pair-0005.jpg",
+      "first": 160,
+      "last": 191,
+      "sha256": "b8f1cbcbe1a03cefbe1883835de010f2d5f075a1d8ee59e35176bd983d9bc9cc",
+      "observation": "Frames 128-191: every tile inspected. Selected cell and orange question build cleanly; blue pen departs as orange arrives. Completed grid stays fixed through the hold. Handwritten caption switches remain separate from board text; no clipping or flash.",
+      "recorded_at": "2026-10-20T14:05:19.095560+00:00"
+    },
+    "6": {
+      "file": "pair-0006.jpg",
+      "first": 192,
+      "last": 223,
+      "sha256": "2a2a327dbd4eedb5c16acaa843bd450e4959542c3989dc8f628fcaa60885cfc5",
+      "observation": "Frames 192-255: question mark finishes and pen lifts; magnet travels continuously into the selected laptop cell and settles. Blue connector and camera whip lead into the title. Incoming title pen and early lettering remain continuous under shutter blur, with no flash or teleport.",
+      "recorded_at": "2026-10-20T14:08:17.613820+00:00"
+    },
+    "7": {
+      "file": "pair-0007.jpg",
+      "first": 224,
+      "last": 255,
+      "sha256": "08e4e056f13a85061a50d9bd246bf50cfa9d4b0505d37f50fb143a49f76fc1e8",
+      "observation": "Frames 192-255: question mark finishes and pen lifts; magnet travels continuously into the selected laptop cell and settles. Blue connector and camera whip lead into the title. Incoming title pen and early lettering remain continuous under shutter blur, with no flash or teleport.",
+      "recorded_at": "2026-10-20T14:08:17.616690+00:00"
+    },
+    "8": {
+      "file": "pair-0008.jpg",
+      "first": 256,
+      "last": 287,
+      "sha256": "97dc4392f59fe377a4cadeac867abb907fcca842198ecbdc5237be3430288a8d",
+      "observation": "Title letter strokes grow under the black nib; blue pen clears the left edge. Learn completes before pen lifts and returns to the smaller second line. Caption switches cleanly during the hold. Reference and new film share single-line handwriting and raised-pen shadows; new title is intentionally two levels.",
+      "recorded_at": "2026-10-20T14:08:28.438021+00:00"
+    },
+    "9": {
+      "file": "pair-0009.jpg",
+      "first": 288,
+      "last": 319,
+      "sha256": "19e099744a87fd010bc542b9fed887613beefe2e092916f2d39b8079605f4d67",
+      "observation": "Title letter strokes grow under the black nib; blue pen clears the left edge. Learn completes before pen lifts and returns to the smaller second line. Caption switches cleanly during the hold. Reference and new film share single-line handwriting and raised-pen shadows; new title is intentionally two levels.",
+      "recorded_at": "2026-10-20T14:08:28.440799+00:00"
+    },
+    "10": {
+      "file": "pair-0010.jpg",
+      "first": 320,
+      "last": 351,
+      "sha256": "40935a9fa215f79ceb68e7e9cdedd466c3528294fec1c5a58569a7834c4859dc",
+      "observation": "Second title line and question mark complete; orange underline travels left to right while black nib writes the small descriptor. Both pens depart without marks during lift. The completed title holds steady; orange underline and caption accent match the reference hierarchy.",
+      "recorded_at": "2026-10-20T14:08:38.255805+00:00"
+    },
+    "11": {
+      "file": "pair-0011.jpg",
+      "first": 352,
+      "last": 383,
+      "sha256": "41073ff0c049fe66865fdc35a3282dd11d3f280813d1e0af415df1361bc977f8",
+      "observation": "Second title line and question mark complete; orange underline travels left to right while black nib writes the small descriptor. Both pens depart without marks during lift. The completed title holds steady; orange underline and caption accent match the reference hierarchy.",
+      "recorded_at": "2026-10-20T14:08:38.259890+00:00"
+    },
+    "12": {
+      "file": "pair-0012.jpg",
+      "first": 384,
+      "last": 415,
+      "sha256": "074ef1cd2ec754bf40d09c82b9fc1dbfd5dbc34795adb8128a568f0537521b34",
+      "observation": "Title holds, then blue connector guides a continuous rightward whip into the four-question area. Black pen writes the heading while blue lifts across the board. Blur is confined to moving pens/board; captions remain stable. No discontinuous geometry or blank flash.",
+      "recorded_at": "2026-10-20T14:08:52.588829+00:00"
+    },
+    "13": {
+      "file": "pair-0013.jpg",
+      "first": 416,
+      "last": 447,
+      "sha256": "0152d8e3e5d98591aacb33b1537cc141ea0f4ccc85c62342aa99965597e905b0",
+      "observation": "Title holds, then blue connector guides a continuous rightward whip into the four-question area. Black pen writes the heading while blue lifts across the board. Blur is confined to moving pens/board; captions remain stable. No discontinuous geometry or blank flash.",
+      "recorded_at": "2026-10-20T14:08:52.591736+00:00"
+    },
+    "14": {
+      "file": "pair-0014.jpg",
+      "first": 448,
+      "last": 479,
+      "sha256": "c0f398b15452d2ba1c7b2e526fe97b1595da25f19ec52b12732d87e929a5e085",
+      "observation": "Question heading finishes; blue chat-window icon builds stroke by stroke, then orange solo-work icon begins. Each pen lifts between shapes and labels, with distinct colored nibs and grounded shadows. Arrows connect the questions without crossing text; caption changes align to the next question.",
+      "recorded_at": "2026-10-20T14:09:07.776784+00:00"
+    },
+    "15": {
+      "file": "pair-0015.jpg",
+      "first": 480,
+      "last": 511,
+      "sha256": "f7c1e8c6e56c15c895574b7cdb827b06bb48dad20aacc47a09a020a8ff61beb6",
+      "observation": "Question heading finishes; blue chat-window icon builds stroke by stroke, then orange solo-work icon begins. Each pen lifts between shapes and labels, with distinct colored nibs and grounded shadows. Arrows connect the questions without crossing text; caption changes align to the next question.",
+      "recorded_at": "2026-10-20T14:09:07.780041+00:00"
+    },
+    "16": {
+      "file": "pair-0016.jpg",
+      "first": 512,
+      "last": 543,
+      "sha256": "3e4acab82b3410bb8f65c5c7d34377076b230e3b950b738454cdb48aed6303ff",
+      "observation": "Orange solo pencil and calendar icons construct continuously; black arrow joins the next box. Lower labels remain separated from borders. Reference satellite/clock outlines and new simple icons use similarly sparse colored linework; the new chart stays in a static wider frame for comprehension.",
+      "recorded_at": "2026-10-20T14:09:19.423231+00:00"
+    },
+    "17": {
+      "file": "pair-0017.jpg",
+      "first": 544,
+      "last": 575,
+      "sha256": "3eb10beae344a228a04f9e1dec895c6fb60123e346b56699345770c349772a6f",
+      "observation": "Orange solo pencil and calendar icons construct continuously; black arrow joins the next box. Lower labels remain separated from borders. Reference satellite/clock outlines and new simple icons use similarly sparse colored linework; the new chart stays in a static wider frame for comprehension.",
+      "recorded_at": "2026-10-20T14:09:19.426742+00:00"
+    },
+    "18": {
+      "file": "pair-0018.jpg",
+      "first": 576,
+      "last": 607,
+      "sha256": "ee7b8e7b3b6e51f1ed7780d6558060b46b6e2b7d04245a222c41ea0dfba3da6c",
+      "observation": "Calendar completes, orange nib travels to fourth box and draws the stepped puzzle symbol. All four questions finish by 26.3s and hold. Pen exit is continuous; new-problem label stays within its box width. No missing or popping strokes across the construction.",
+      "recorded_at": "2026-10-20T14:09:29.322861+00:00"
+    },
+    "19": {
+      "file": "pair-0019.jpg",
+      "first": 608,
+      "last": 639,
+      "sha256": "3f85351c2dd0417e122c89837c726fb7909f79ffd8d68a10fdbce23aa19116ce",
+      "observation": "Calendar completes, orange nib travels to fourth box and draws the stepped puzzle symbol. All four questions finish by 26.3s and hold. Pen exit is continuous; new-problem label stays within its box width. No missing or popping strokes across the construction.",
+      "recorded_at": "2026-10-20T14:09:29.326292+00:00"
+    },
+    "20": {
+      "file": "pair-0020.jpg",
+      "first": 640,
+      "last": 671,
+      "sha256": "f520a20172c1cbe84344e8d5690c8fe91b38ba88588e93a8689b8a6e82bd7db2",
+      "observation": "Black nib adds performance, independence, retention and transfer labels in left-to-right order below the icons. Existing colored marks remain stable under passing shadows. All four label baselines clear the caption and each other; no motion discontinuity.",
+      "recorded_at": "2026-10-20T14:09:41.389794+00:00"
+    },
+    "21": {
+      "file": "pair-0021.jpg",
+      "first": 672,
+      "last": 703,
+      "sha256": "37be6d16d29965bb54493dfc30abc59a1cc982310531525d4f68316cdbe3e5df",
+      "observation": "Black nib adds performance, independence, retention and transfer labels in left-to-right order below the icons. Existing colored marks remain stable under passing shadows. All four label baselines clear the caption and each other; no motion discontinuity.",
+      "recorded_at": "2026-10-20T14:09:41.392946+00:00"
+    },
+    "22": {
+      "file": "pair-0022.jpg",
+      "first": 704,
+      "last": 735,
+      "sha256": "40afa26424f8747c21443fd810792688e6f29641a13aec8285e8d02b9a0e05e0",
+      "observation": "Blue bracket grows beneath all four outcomes, clears lower labels, then black pen writes the qualifying sentence below it. Raised pen shadows move consistently across existing ink. Reference shifts into its formula; candidate retains the overview while adding the equivalent conceptual qualification.",
+      "recorded_at": "2026-10-20T14:09:52.993419+00:00"
+    },
+    "23": {
+      "file": "pair-0023.jpg",
+      "first": 736,
+      "last": 767,
+      "sha256": "e8716ac9ffb7a44a125e245c784ad77fb42b6707c21f806ab2b42e749552be76",
+      "observation": "Blue bracket grows beneath all four outcomes, clears lower labels, then black pen writes the qualifying sentence below it. Raised pen shadows move consistently across existing ink. Reference shifts into its formula; candidate retains the overview while adding the equivalent conceptual qualification.",
+      "recorded_at": "2026-10-20T14:09:52.996908+00:00"
+    },
+    "24": {
+      "file": "pair-0024.jpg",
+      "first": 768,
+      "last": 799,
+      "sha256": "4b2ebe90b47962a4136d21401706baf7a4c9e5954893273e8a9bb813feec75f7",
+      "observation": "Qualification finishes with ample caption clearance. Blue pen returns to bracket start then pulls connector into the next evidence panel; board moves continuously with controlled blur. Black pen arrives after the whip begins, without appearing detached from the camera movement.",
+      "recorded_at": "2026-10-20T14:10:03.297508+00:00"
+    },
+    "25": {
+      "file": "pair-0025.jpg",
+      "first": 800,
+      "last": 831,
+      "sha256": "24000aa309f27121944813ccaf749a4e81e5b58332163ea9972613184848e003",
+      "observation": "Qualification finishes with ample caption clearance. Blue pen returns to bracket start then pulls connector into the next evidence panel; board moves continuously with controlled blur. Black pen arrives after the whip begins, without appearing detached from the camera movement.",
+      "recorded_at": "2026-10-20T14:10:03.300637+00:00"
+    },
+    "26": {
+      "file": "pair-0026.jpg",
+      "first": 832,
+      "last": 863,
+      "sha256": "28d2502acaf2c45533177189f8b3d65d90de298625399414be0b1c0bcad9230c",
+      "observation": "Evidence-panel camera settles before the one-study/two-scoreboards heading completes. Small sample-size line begins below. Functional reference switches to paired clocks at candidate frame 836; this is a comparison-map boundary, not a candidate-video cut. Paper-like scuffs and warm surface remain stable.",
+      "recorded_at": "2026-10-20T14:10:16.545973+00:00"
+    },
+    "27": {
+      "file": "pair-0027.jpg",
+      "first": 864,
+      "last": 895,
+      "sha256": "fe2548dd43046fdc1ceeb8c7c40f0d372ae1c11ea878d35ec0cff763986b4615",
+      "observation": "Evidence-panel camera settles before the one-study/two-scoreboards heading completes. Small sample-size line begins below. Functional reference switches to paired clocks at candidate frame 836; this is a comparison-map boundary, not a candidate-video cut. Paper-like scuffs and warm surface remain stable.",
+      "recorded_at": "2026-10-20T14:10:16.548414+00:00"
+    },
+    "28": {
+      "file": "pair-0028.jpg",
+      "first": 896,
+      "last": 927,
+      "sha256": "b5a01b5b43b2037fc036fe952e28b10bd9df5c2ea97adafa07d4756347cb7e41",
+      "observation": "Study scope line and practice-with-AI label write cleanly. Blue document outline and three rules construct under nib; black separator ends above future control label. No line jump, text collision, or texture shimmer. Paired reference clock construction confirms similar pen-to-ink contact grammar.",
+      "recorded_at": "2026-10-20T14:10:27.734006+00:00"
+    },
+    "29": {
+      "file": "pair-0029.jpg",
+      "first": 928,
+      "last": 959,
+      "sha256": "bbd2ae1bf8efdd34e51950ccfca3ae72129aaeedeb5d6a3e220ba52cc2f57475",
+      "observation": "Study scope line and practice-with-AI label write cleanly. Blue document outline and three rules construct under nib; black separator ends above future control label. No line jump, text collision, or texture shimmer. Paired reference clock construction confirms similar pen-to-ink contact grammar.",
+      "recorded_at": "2026-10-20T14:10:27.737242+00:00"
+    },
+    "30": {
+      "file": "pair-0030.jpg",
+      "first": 960,
+      "last": 991,
+      "sha256": "8280b727fd6b2351ff8e4db6ddbdb7076db5185f66a4a394b0afd1a64949bc58",
+      "observation": "Blue +48% is written stroke by stroke after a short hold; nib lifts between numerals and percent mark. Figure stays clear of the separator and document. Pen then travels beneath it to start upward arrow; no glyph substitution, pop, or caption overlap.",
+      "recorded_at": "2026-10-20T14:10:41.159507+00:00"
+    },
+    "31": {
+      "file": "pair-0031.jpg",
+      "first": 992,
+      "last": 1023,
+      "sha256": "634390e99b440bbb4911a48d65bdc2de5ea8b605530e586bcb4b0963d6ccc298",
+      "observation": "Blue +48% is written stroke by stroke after a short hold; nib lifts between numerals and percent mark. Figure stays clear of the separator and document. Pen then travels beneath it to start upward arrow; no glyph substitution, pop, or caption overlap.",
+      "recorded_at": "2026-10-20T14:10:41.162781+00:00"
+    },
+    "32": {
+      "file": "pair-0032.jpg",
+      "first": 1024,
+      "last": 1055,
+      "sha256": "798afc0b2e925b9b6eee2d7baf2b9303bdaf2e689659cd65550ab3f6e745fc5f",
+      "observation": "Up arrow finishes to the left of +48%, without colliding with number or document. Blue pen exits and evidence holds through the narration gap; orange pen arrives for the unaided condition. The held candidate is intentionally slower than the reference numeric diagram construction.",
+      "recorded_at": "2026-10-20T14:10:53.170876+00:00"
+    },
+    "33": {
+      "file": "pair-0033.jpg",
+      "first": 1056,
+      "last": 1087,
+      "sha256": "6fd3b1a6516176a38d4522bfe4310ca859731d9e4794f8aa8175e14a1a705e50",
+      "observation": "Up arrow finishes to the left of +48%, without colliding with number or document. Blue pen exits and evidence holds through the narration gap; orange pen arrives for the unaided condition. The held candidate is intentionally slower than the reference numeric diagram construction.",
+      "recorded_at": "2026-10-20T14:10:53.174167+00:00"
+    },
+    "34": {
+      "file": "pair-0034.jpg",
+      "first": 1088,
+      "last": 1119,
+      "sha256": "579df1c0f150304feba84d43628ba928cb8218fe443e932d215a4430b0f23cc4",
+      "observation": "Orange exam-without-AI heading and matching document construct on the right. Black divider stays distinct from both conditions. Orange pen exits and returns for the percentage, with no unintended ink on travel; full labels and boxes remain inside the camera safe area.",
+      "recorded_at": "2026-10-20T14:11:03.379501+00:00"
+    },
+    "35": {
+      "file": "pair-0035.jpg",
+      "first": 1120,
+      "last": 1151,
+      "sha256": "ea191713248bce7b11afd8c4210b846a919e687edbaa26111f161779bf69e62d",
+      "observation": "Orange exam-without-AI heading and matching document construct on the right. Black divider stays distinct from both conditions. Orange pen exits and returns for the percentage, with no unintended ink on travel; full labels and boxes remain inside the camera safe area.",
+      "recorded_at": "2026-10-20T14:11:03.382811+00:00"
+    },
+    "36": {
+      "file": "pair-0036.jpg",
+      "first": 1152,
+      "last": 1183,
+      "sha256": "216df8ad3dddfc26ce50e651be2bd3a0ac76a8b6cf26010ae061e71ad7c79af1",
+      "observation": "Minus seventeen percent and downward arrow complete on orange side; minus sign and percent remain distinct. Blue side stays unchanged. Orange pen lifts out as black enters toward lower annotation; moving pen occlusion is brief and reveals intact marks afterward.",
+      "recorded_at": "2026-10-20T14:11:14.069049+00:00"
+    },
+    "37": {
+      "file": "pair-0037.jpg",
+      "first": 1184,
+      "last": 1215,
+      "sha256": "04c205d6a3e044410cbaae23ac07a6c62507e3f1e9f6883d893c5f9df2bc749a",
+      "observation": "Minus seventeen percent and downward arrow complete on orange side; minus sign and percent remain distinct. Blue side stays unchanged. Orange pen lifts out as black enters toward lower annotation; moving pen occlusion is brief and reveals intact marks afterward.",
+      "recorded_at": "2026-10-20T14:11:14.070112+00:00"
+    },
+    "38": {
+      "file": "pair-0038.jpg",
+      "first": 1216,
+      "last": 1247,
+      "sha256": "1ff327541b3ad7efc00dfa9bf13a2964b2e2261d217b9c19827b47cfbd5a6545",
+      "observation": "Relative-to-no-AI-control annotation is written and revealed fully as black pen departs. Repaired separator ends clearly above this line throughout. Both result columns remain stable during the hold; blue/orange polarity follows the reference paired-comparison treatment.",
+      "recorded_at": "2026-10-20T14:11:24.266950+00:00"
+    },
+    "39": {
+      "file": "pair-0039.jpg",
+      "first": 1248,
+      "last": 1279,
+      "sha256": "8c39347a691562528bcc17dc34d737aaa718dabbcbf26b80a06a07c252ceaab1",
+      "observation": "Relative-to-no-AI-control annotation is written and revealed fully as black pen departs. Repaired separator ends clearly above this line throughout. Both result columns remain stable during the hold; blue/orange polarity follows the reference paired-comparison treatment.",
+      "recorded_at": "2026-10-20T14:11:24.267478+00:00"
+    },
+    "40": {
+      "file": "pair-0040.jpg",
+      "first": 1280,
+      "last": 1311,
+      "sha256": "a59337d9ee1f05c19acda91011a179b512a7551b7854ce0e4b22065c1f73345f",
+      "observation": "Camera gradually opens downwards to provide annotation space while keeping both percentages visible. Blue pen writes guarded-tutor note under the chart; no elements slide independently of the board. Reference clock ticks remain in counterpart region; candidate keeps longer reading holds.",
+      "recorded_at": "2026-10-20T14:11:37.289866+00:00"
+    },
+    "41": {
+      "file": "pair-0041.jpg",
+      "first": 1312,
+      "last": 1343,
+      "sha256": "888ad0928c42029e236be3a413233e9c3f48eb027af774b37ec1c746d3d5cbb6",
+      "observation": "Camera gradually opens downwards to provide annotation space while keeping both percentages visible. Blue pen writes guarded-tutor note under the chart; no elements slide independently of the board. Reference clock ticks remain in counterpart region; candidate keeps longer reading holds.",
+      "recorded_at": "2026-10-20T14:11:37.291074+00:00"
+    },
+    "42": {
+      "file": "pair-0042.jpg",
+      "first": 1344,
+      "last": 1375,
+      "sha256": "f3025662d9d952c61e5fe33a14712ce11be941c0f1ffc30040c8ebd969527363",
+      "observation": "Blue guarded-tutor arrow leads to orange penalty-largely-removed phrase. Pen paths remain separated while both colors work near the lower chart. Orange annotation completes before pen clears; contrast and spacing remain stable throughout the hold.",
+      "recorded_at": "2026-10-20T14:11:47.917683+00:00"
+    },
+    "43": {
+      "file": "pair-0043.jpg",
+      "first": 1376,
+      "last": 1407,
+      "sha256": "ef1fb023338293f820fbcdf44602e6ab555355aed8c87cd86af70a2e3e690c64",
+      "observation": "Blue guarded-tutor arrow leads to orange penalty-largely-removed phrase. Pen paths remain separated while both colors work near the lower chart. Orange annotation completes before pen clears; contrast and spacing remain stable throughout the hold.",
+      "recorded_at": "2026-10-20T14:11:47.918189+00:00"
+    },
+    "44": {
+      "file": "pair-0044.jpg",
+      "first": 1408,
+      "last": 1439,
+      "sha256": "1e5decf5e255b324715a3fd502fe426682ff4c8159f93d46b6496976d7722737",
+      "observation": "Result panel holds without flicker, then black pen adds the no-significant-exam-gain qualification below the guarded tutor arrow. The two annotation rows remain separate. Reference continues clock tick accumulation; new board retains steady framing for the spoken limitation.",
+      "recorded_at": "2026-10-20T14:11:58.580651+00:00"
+    },
+    "45": {
+      "file": "pair-0045.jpg",
+      "first": 1440,
+      "last": 1471,
+      "sha256": "8420a88adcf42ecca79bfabc9a6d0c6b28aa3cc75d16ce30b93ca86b14f0a87a",
+      "observation": "Result panel holds without flicker, then black pen adds the no-significant-exam-gain qualification below the guarded tutor arrow. The two annotation rows remain separate. Reference continues clock tick accumulation; new board retains steady framing for the spoken limitation.",
+      "recorded_at": "2026-10-20T14:11:58.581201+00:00"
+    },
+    "46": {
+      "file": "pair-0046.jpg",
+      "first": 1472,
+      "last": 1503,
+      "sha256": "9251a2a4d2325bac16f64783b29bea50d5f8a3c765b6dd8921a3fcfa12a748f3",
+      "observation": "Black qualification completes, then the study credit is handwritten on a third lower line. All lower lines stay distinct and clear of captions. The revised separator remains clear of the control annotation even as camera gently pulls back; no compression shimmer on narrow rules.",
+      "recorded_at": "2026-10-20T14:12:09.799360+00:00"
+    },
+    "47": {
+      "file": "pair-0047.jpg",
+      "first": 1504,
+      "last": 1535,
+      "sha256": "def0a1971fc49c0ded014814b9b4dcb34824955dd911c824dc48d7db2ccb3647",
+      "observation": "Black qualification completes, then the study credit is handwritten on a third lower line. All lower lines stay distinct and clear of captions. The revised separator remains clear of the control annotation even as camera gently pulls back; no compression shimmer on narrow rules.",
+      "recorded_at": "2026-10-20T14:12:09.799889+00:00"
+    },
+    "48": {
+      "file": "pair-0048.jpg",
+      "first": 1536,
+      "last": 1567,
+      "sha256": "5bcd68a2c8ac59cdc01c4dd1575ff9c5f27f8ce37964962aad3b4b4944c77cf2",
+      "observation": "Citation completes and black pen leaves. Blue connector leads a smooth rightward transition into design-matters counterexample. Existing evidence panel slides out as one surface with coherent blur; incoming black heading appears only under its nib. No clipping on held evidence before transition.",
+      "recorded_at": "2026-10-20T14:12:22.489407+00:00"
+    },
+    "49": {
+      "file": "pair-0049.jpg",
+      "first": 1568,
+      "last": 1599,
+      "sha256": "058c439b514969544d2aaae08572860753e70605b0b2a0a23a9151217da80416",
+      "observation": "Citation completes and black pen leaves. Blue connector leads a smooth rightward transition into design-matters counterexample. Existing evidence panel slides out as one surface with coherent blur; incoming black heading appears only under its nib. No clipping on held evidence before transition.",
+      "recorded_at": "2026-10-20T14:12:22.489878+00:00"
+    },
+    "50": {
+      "file": "pair-0050.jpg",
+      "first": 1600,
+      "last": 1631,
+      "sha256": "e8b58cf699911d4cf61df824fadfb19b825f98c4e2b30f439c728d2987aba676",
+      "observation": "Design-changes-the-result heading completes under black nib and holds; blue connector remains above and left of text without crossing glyphs. Pen exits right. The sparse hold leaves space for the upcoming opposing evidence; no unexpected motion during narration.",
+      "recorded_at": "2026-10-20T14:12:33.225291+00:00"
+    },
+    "51": {
+      "file": "pair-0051.jpg",
+      "first": 1632,
+      "last": 1663,
+      "sha256": "8f5ae21d148d09f9f0892e155203474a46de4265af3999769fb8a75423650a59",
+      "observation": "Design-changes-the-result heading completes under black nib and holds; blue connector remains above and left of text without crossing glyphs. Pen exits right. The sparse hold leaves space for the upcoming opposing evidence; no unexpected motion during narration.",
+      "recorded_at": "2026-10-20T14:12:33.225769+00:00"
+    },
+    "52": {
+      "file": "pair-0052.jpg",
+      "first": 1664,
+      "last": 1695,
+      "sha256": "996f359a74f51b806996b02d1739da741b50ebad7973fe94f18035df606cd9d2",
+      "observation": "Black scope statement writes continuously beneath heading: short-term evidence, not permanent damage. Pen then lifts leftward to start the classroom document. Connector lies safely above heading, no accidental underline collision; the transition from hold to new drawing is continuous.",
+      "recorded_at": "2026-10-20T14:12:45.345807+00:00"
+    },
+    "53": {
+      "file": "pair-0053.jpg",
+      "first": 1696,
+      "last": 1727,
+      "sha256": "2f034d0d6590ee0f09697ada4328f61f1a15b66ed0e08e77d45fb416b1402066",
+      "observation": "Black scope statement writes continuously beneath heading: short-term evidence, not permanent damage. Pen then lifts leftward to start the classroom document. Connector lies safely above heading, no accidental underline collision; the transition from hold to new drawing is continuous.",
+      "recorded_at": "2026-10-20T14:12:45.348767+00:00"
+    },
+    "54": {
+      "file": "pair-0054.jpg",
+      "first": 1728,
+      "last": 1759,
+      "sha256": "a550b2a5e4e393d15d10a041e08de4d29c7b705069e08bab1a32100a86042364",
+      "observation": "Open-book outline closes, center fold is added, black pen exits. Book holds with consistent geometry and sharp edges while narration explains study limits. There is deliberate negative space for the physics counterexample; no full-frame brightness or texture change.",
+      "recorded_at": "2026-10-20T14:12:59.374602+00:00"
+    },
+    "55": {
+      "file": "pair-0055.jpg",
+      "first": 1760,
+      "last": 1791,
+      "sha256": "a088c262f08bad68cf3e39117ac23cbc5945f1351e52a89b33ce8672959f6fc3",
+      "observation": "Open-book outline closes, center fold is added, black pen exits. Book holds with consistent geometry and sharp edges while narration explains study limits. There is deliberate negative space for the physics counterexample; no full-frame brightness or texture change.",
+      "recorded_at": "2026-10-20T14:12:59.377326+00:00"
+    },
+    "56": {
+      "file": "pair-0056.jpg",
+      "first": 1792,
+      "last": 1823,
+      "sha256": "9b58640112980d4014ce278c6c0f998100e5f9db1682e9aff3d114464c74b3bf",
+      "observation": "Book hold ends with incoming blue pen, which writes F=ma inside the left page and travels to right page. Formula stays inside book margins; pen lift casts shadow without adding travel strokes. Captions change cleanly from study caveat to separate physics experiment.",
+      "recorded_at": "2026-10-20T14:13:12.333314+00:00"
+    },
+    "57": {
+      "file": "pair-0057.jpg",
+      "first": 1824,
+      "last": 1855,
+      "sha256": "7a359e13ecfc394d02fd4b07728e32554eff6f88bd18451c6e66a4e2019122ed",
+      "observation": "Book hold ends with incoming blue pen, which writes F=ma inside the left page and travels to right page. Formula stays inside book margins; pen lift casts shadow without adding travel strokes. Captions change cleanly from study caveat to separate physics experiment.",
+      "recorded_at": "2026-10-20T14:13:12.336259+00:00"
+    },
+    "58": {
+      "file": "pair-0058.jpg",
+      "first": 1856,
+      "last": 1887,
+      "sha256": "c5b9c0fb939e1fc1be2d955f9097bb9cd9986c752caed4bd061942765a3d49a4",
+      "observation": "Orange bulb contour, base and radiating rays appear continuously; blue arrow connects book to bulb without entering either icon. Blue and orange pens cross at different lifted phases, then clear finished marks. Reference uses sparse formula annotations; new uses equally sparse illustrative counterexample.",
+      "recorded_at": "2026-10-20T14:13:23.703238+00:00"
+    },
+    "59": {
+      "file": "pair-0059.jpg",
+      "first": 1888,
+      "last": 1919,
+      "sha256": "dab74edd5a780bc80463209fd557b650530497cab56fbeb0d2a36dfeb0b9d62b",
+      "observation": "Orange bulb contour, base and radiating rays appear continuously; blue arrow connects book to bulb without entering either icon. Blue and orange pens cross at different lifted phases, then clear finished marks. Reference uses sparse formula annotations; new uses equally sparse illustrative counterexample.",
+      "recorded_at": "2026-10-20T14:13:23.707008+00:00"
+    },
+    "60": {
+      "file": "pair-0060.jpg",
+      "first": 1920,
+      "last": 1951,
+      "sha256": "5f6fb36c5a62ea7a2202601629709a4e10bdc16cf575b79e9c0ac98dd83fe7da",
+      "observation": "Orange better-immediate-learning annotation writes below book/bulb and clears both icons. Pen leaves at lower right, followed by a stable hold. The supporting immediate-test wording remains in captions; no caption overflow or line collision appears in consecutive frames.",
+      "recorded_at": "2026-10-20T14:13:36.151206+00:00"
+    },
+    "61": {
+      "file": "pair-0061.jpg",
+      "first": 1952,
+      "last": 1983,
+      "sha256": "6612b2993a8cde06d2d426b764d184d62c4fecdf4bb6e62d435f06b7f1239a92",
+      "observation": "Orange better-immediate-learning annotation writes below book/bulb and clears both icons. Pen leaves at lower right, followed by a stable hold. The supporting immediate-test wording remains in captions; no caption overflow or line collision appears in consecutive frames.",
+      "recorded_at": "2026-10-20T14:13:36.154332+00:00"
+    },
+    "62": {
+      "file": "pair-0062.jpg",
+      "first": 1984,
+      "last": 2015,
+      "sha256": "9022f174c3f83facfa8c95a950f448114add4896fd1a47beb5913ee00b093721",
+      "observation": "Completed counterexample holds while camera eases slightly wider; all shapes move together. Blue pen enters to write the tutor-design explanation below the orange outcome. Label starts at safe left margin and remains separate from book and captions; no frozen partial stroke.",
+      "recorded_at": "2026-10-20T14:13:49.774968+00:00"
+    },
+    "63": {
+      "file": "pair-0063.jpg",
+      "first": 2016,
+      "last": 2047,
+      "sha256": "217aff18e3d28c2f985bf9b7542a1aae498799f981ed18186af913adbd5ff981",
+      "observation": "Completed counterexample holds while camera eases slightly wider; all shapes move together. Blue pen enters to write the tutor-design explanation below the orange outcome. Label starts at safe left margin and remains separate from book and captions; no frozen partial stroke.",
+      "recorded_at": "2026-10-20T14:13:49.778177+00:00"
+    },
+    "64": {
+      "file": "pair-0064.jpg",
+      "first": 2048,
+      "last": 2079,
+      "sha256": "b13e439db97db33645940cb6f80aa2e791709c7d1af29895a707939fe8087083",
+      "observation": "Blue questions and feedback labels each receive a check mark. Check marks draw after their labels, with clean lifts between columns. Existing orange outcome remains readable after transient pen passage. The restrained three-color palette and fine handwritten annotations stay consistent with reference.",
+      "recorded_at": "2026-10-20T14:14:00.095981+00:00"
+    },
+    "65": {
+      "file": "pair-0065.jpg",
+      "first": 2080,
+      "last": 2111,
+      "sha256": "a4193d2c7e93cadf7d6b47876851d52d02bd5ae611705ad9262b02ce6fc462da",
+      "observation": "Blue questions and feedback labels each receive a check mark. Check marks draw after their labels, with clean lifts between columns. Existing orange outcome remains readable after transient pen passage. The restrained three-color palette and fine handwritten annotations stay consistent with reference.",
+      "recorded_at": "2026-10-20T14:14:00.099391+00:00"
+    },
+    "66": {
+      "file": "pair-0066.jpg",
+      "first": 2112,
+      "last": 2143,
+      "sha256": "b422831e76f889383524dd93b13c826325989c8f203842cf01a9049456fd94a6",
+      "observation": "Expert-material label and check complete in third column. Blue pen departs while black begins the retention limitation beneath all three features. Third column remains inside the frame, check marks do not merge with labels; shadows and nib contact stay continuous.",
+      "recorded_at": "2026-10-20T14:14:10.109724+00:00"
+    },
+    "67": {
+      "file": "pair-0067.jpg",
+      "first": 2144,
+      "last": 2175,
+      "sha256": "f5b42f661af868ae990e1cd0b88e1d372b0efd15f1e37ba6018edefcca240892",
+      "observation": "Expert-material label and check complete in third column. Blue pen departs while black begins the retention limitation beneath all three features. Third column remains inside the frame, check marks do not merge with labels; shadows and nib contact stay continuous.",
+      "recorded_at": "2026-10-20T14:14:10.113382+00:00"
+    },
+    "68": {
+      "file": "pair-0068.jpg",
+      "first": 2176,
+      "last": 2207,
+      "sha256": "22cf6575564b13b58e68e6b6f90b2ba9067e28000d2ee6bcf2d2adb301509353",
+      "observation": "Black pen completes immediate-test retention limitation and Kestin credit. It briefly overlaps expert-material label while departing near 93.1-93.3s; label had already held unobstructed for several seconds and ink remains intact. Continue next sheet to confirm full clearance before transition.",
+      "recorded_at": "2026-10-20T14:14:21.938656+00:00"
+    },
+    "69": {
+      "file": "pair-0069.jpg",
+      "first": 2208,
+      "last": 2239,
+      "sha256": "7d2d15cbce6006aed2f8d11637276d044c910b62f11a98fdc3347113908a0545",
+      "observation": "Black pen completes immediate-test retention limitation and Kestin credit. It briefly overlaps expert-material label while departing near 93.1-93.3s; label had already held unobstructed for several seconds and ink remains intact. Continue next sheet to confirm full clearance before transition.",
+      "recorded_at": "2026-10-20T14:14:21.942207+00:00"
+    },
+    "70": {
+      "file": "pair-0070.jpg",
+      "first": 2240,
+      "last": 2271,
+      "sha256": "269c908cbcf8a3a34fd39774f0d50046af719cc00701d52f0ffad29c9a62385b",
+      "observation": "Resolved still-010 concern: black pen clears expert-material completely by 93.33s and leaves frame before the camera transition. No persistent obstruction. Blue connector then guides the next whip; incoming heading begins under black nib. Reference mapping changes to erased-map mechanism at frame 2278, candidate remains continuous.",
+      "recorded_at": "2026-10-20T14:14:32.859279+00:00"
+    },
+    "71": {
+      "file": "pair-0071.jpg",
+      "first": 2272,
+      "last": 2303,
+      "sha256": "ced5ba748a97a908f7dd266f7c02d87fe673b19295187e9fba4565ed7067a1ff",
+      "observation": "Resolved still-010 concern: black pen clears expert-material completely by 93.33s and leaves frame before the camera transition. No persistent obstruction. Blue connector then guides the next whip; incoming heading begins under black nib. Reference mapping changes to erased-map mechanism at frame 2278, candidate remains continuous.",
+      "recorded_at": "2026-10-20T14:14:32.862473+00:00"
+    },
+    "72": {
+      "file": "pair-0072.jpg",
+      "first": 2304,
+      "last": 2335,
+      "sha256": "7889d68c03bb3ddcddcdf864b9f8a7db99ca309dfcfb406f01772b02a191252e",
+      "observation": "What-thinking-remains-yours heading completes. Blue speech bubble draws clockwise with a distinct tail, then answer text begins inside. All ink grows from nib contact; border remains clear of text. Reference mobile-map route and candidate answer bubble share the conceptual setup for erasure.",
+      "recorded_at": "2026-10-20T14:14:43.557438+00:00"
+    },
+    "73": {
+      "file": "pair-0073.jpg",
+      "first": 2336,
+      "last": 2367,
+      "sha256": "1c22a0033752dbdcff7735ec3b9fbf4cc57c7b8e586d7fd5ca1c223159de9586",
+      "observation": "What-thinking-remains-yours heading completes. Blue speech bubble draws clockwise with a distinct tail, then answer text begins inside. All ink grows from nib contact; border remains clear of text. Reference mobile-map route and candidate answer bubble share the conceptual setup for erasure.",
+      "recorded_at": "2026-10-20T14:14:43.560576+00:00"
+    },
+    "74": {
+      "file": "pair-0074.jpg",
+      "first": 2368,
+      "last": 2399,
+      "sha256": "48f57a4ebf88cb775f27f853697450ad05400bc3b270a67ef9f78462331ea0ed",
+      "observation": "Frames 2368\u20132431: blue answer lettering completes, the blue pen lifts and exits, then the black pen draws the arrow, document outline, and three rules continuously. No lift connector, stroke pop, or caption collision. The reference shows the orange route pin; this is a functional scene mapping, not matching subject matter.",
+      "recorded_at": "2026-10-20T14:17:01.555841+00:00"
+    },
+    "75": {
+      "file": "pair-0075.jpg",
+      "first": 2400,
+      "last": 2431,
+      "sha256": "1f6ff6e9beffbf608f54e4145907046558c41abdddc6f8e342f85cf8bd7ff110",
+      "observation": "Frames 2368\u20132431: blue answer lettering completes, the blue pen lifts and exits, then the black pen draws the arrow, document outline, and three rules continuously. No lift connector, stroke pop, or caption collision. The reference shows the orange route pin; this is a functional scene mapping, not matching subject matter.",
+      "recorded_at": "2026-10-20T14:17:01.559249+00:00"
+    },
+    "76": {
+      "file": "pair-0076.jpg",
+      "first": 2432,
+      "last": 2463,
+      "sha256": "6405f4b9c849034bd82f93aec31b94c9fd93635ad86a5636df104aa4e3018480",
+      "observation": "Frames 2432\u20132495: orange choose the method label writes smoothly below the document, lifts without a connecting stroke, and clears the right edge by 103.33 seconds. Stable caption and board hold; reference route motion is continuous at its slower mapped rate.",
+      "recorded_at": "2026-10-20T14:17:10.676025+00:00"
+    },
+    "77": {
+      "file": "pair-0077.jpg",
+      "first": 2464,
+      "last": 2495,
+      "sha256": "649efc4ffe2ccdb4eacbc2dad304437a7eef90009d20a192e0443cb93ca57353",
+      "observation": "Frames 2432\u20132495: orange choose the method label writes smoothly below the document, lifts without a connecting stroke, and clears the right edge by 103.33 seconds. Stable caption and board hold; reference route motion is continuous at its slower mapped rate.",
+      "recorded_at": "2026-10-20T14:17:10.679686+00:00"
+    },
+    "78": {
+      "file": "pair-0078.jpg",
+      "first": 2496,
+      "last": 2527,
+      "sha256": "7f03fe4dcc1ee16260d277466223e06993313a2dc802e070a1c739314b01c70e",
+      "observation": "Frames 2496\u20132559: clean static reasoning hold and caption disappearance/reappearance. Blue pen enters from right at 106.38 seconds with motion blur; existing bubble/document strokes remain stable. Reference route and water strokes continue, so motion density is deliberately different during the reading hold.",
+      "recorded_at": "2026-10-20T14:17:20.109178+00:00"
+    },
+    "79": {
+      "file": "pair-0079.jpg",
+      "first": 2528,
+      "last": 2559,
+      "sha256": "bdfbd259ae103407d36329c736a06cc96dbba3cd95a3146d7427c7b18e8e2e20",
+      "observation": "Frames 2496\u20132559: clean static reasoning hold and caption disappearance/reappearance. Blue pen enters from right at 106.38 seconds with motion blur; existing bubble/document strokes remain stable. Reference route and water strokes continue, so motion density is deliberately different during the reading hold.",
+      "recorded_at": "2026-10-20T14:17:20.110328+00:00"
+    },
+    "80": {
+      "file": "pair-0080.jpg",
+      "first": 2560,
+      "last": 2591,
+      "sha256": "72a6691ddbb17a86a75dc3bf3ca7d079a19d24d292af1c46b9dfb215a98de973",
+      "observation": "Frames 2560\u20132623: recognize writes in blue beneath the answer bubble; its pen exits cleanly before the orange pen arrives under the document to begin produce. Shadow and lift blur are continuous; text and caption have distinct vertical clearance. Reference has simultaneous pen choreography whereas candidate uses one writing pen.",
+      "recorded_at": "2026-10-20T14:17:30.118817+00:00"
+    },
+    "81": {
+      "file": "pair-0081.jpg",
+      "first": 2592,
+      "last": 2623,
+      "sha256": "f44f0bee1decc742b9b7ba956a6c87e210991a792364310cf89bd0c611af4f9f",
+      "observation": "Frames 2560\u20132623: recognize writes in blue beneath the answer bubble; its pen exits cleanly before the orange pen arrives under the document to begin produce. Shadow and lift blur are continuous; text and caption have distinct vertical clearance. Reference has simultaneous pen choreography whereas candidate uses one writing pen.",
+      "recorded_at": "2026-10-20T14:17:30.120007+00:00"
+    },
+    "82": {
+      "file": "pair-0082.jpg",
+      "first": 2624,
+      "last": 2655,
+      "sha256": "fe1c9275c5138c86d7b6c0b5ee3518be85e22965f5d8ee4d038f6442c0d86def",
+      "observation": "Frames 2624\u20132687: orange produce completes, then the not-equal sign is drawn in the clear gap. The pen departs as the felt eraser enters and settles over the answer text. Eraser shadow, orange inset, and horizontal blur resemble the reference eraser; no accidental deletion outside the answer area is visible.",
+      "recorded_at": "2026-10-20T14:17:41.360951+00:00"
+    },
+    "83": {
+      "file": "pair-0083.jpg",
+      "first": 2656,
+      "last": 2687,
+      "sha256": "a6b90348d7320c99e3d25ee00b5350c9514134e1f9a9089dcb61d2052eae6e7a",
+      "observation": "Frames 2624\u20132687: orange produce completes, then the not-equal sign is drawn in the clear gap. The pen departs as the felt eraser enters and settles over the answer text. Eraser shadow, orange inset, and horizontal blur resemble the reference eraser; no accidental deletion outside the answer area is visible.",
+      "recorded_at": "2026-10-20T14:17:41.362065+00:00"
+    },
+    "84": {
+      "file": "pair-0084.jpg",
+      "first": 2688,
+      "last": 2719,
+      "sha256": "55fa25565d8c1f87eba9f17f5d08fe04f2c72c8a07790df97f20664afcc943b4",
+      "observation": "Frames 2688\u20132751: three-pass erasure reduces the answer to a faint ghost while preserving the blue bubble boundary, arrow, labels, and document. Felt eraser moves continuously and exits right without a rectangular clearing artifact. Blue connector pen then enters; vertical camera move starts smoothly. Reference eraser similarly leaves faint traces but traverses a larger area.",
+      "recorded_at": "2026-10-20T14:17:54.237609+00:00"
+    },
+    "85": {
+      "file": "pair-0085.jpg",
+      "first": 2720,
+      "last": 2751,
+      "sha256": "5ceda1bc2ae1ddc2f57c6fe691652df18bec9213898af0f40474e1edd26d18ae",
+      "observation": "Frames 2688\u20132751: three-pass erasure reduces the answer to a faint ghost while preserving the blue bubble boundary, arrow, labels, and document. Felt eraser moves continuously and exits right without a rectangular clearing artifact. Blue connector pen then enters; vertical camera move starts smoothly. Reference eraser similarly leaves faint traces but traverses a larger area.",
+      "recorded_at": "2026-10-20T14:17:54.238800+00:00"
+    },
+    "86": {
+      "file": "pair-0086.jpg",
+      "first": 2752,
+      "last": 2783,
+      "sha256": "16e5165179fcaedefe7a58a8eae445f7358997fd4789357b1f7839c33ff13648",
+      "observation": "Frames 2752\u20132815: vertical move follows the blue connector and settles on help that changes with you. Black handwriting remains continuous through the settle, then starts the first scaffold. Pens can coexist during approach/exit, without duplicate writing tips. Reference mapping resets at candidate 2767 to its guidance scene; candidate has no cut there.",
+      "recorded_at": "2026-10-20T14:18:04.492793+00:00"
+    },
+    "87": {
+      "file": "pair-0087.jpg",
+      "first": 2784,
+      "last": 2815,
+      "sha256": "cad01d227ed98a3c2cb41fbe2facdc39080d15fb3c028454d88714aee7a30a7a",
+      "observation": "Frames 2752\u20132815: vertical move follows the blue connector and settles on help that changes with you. Black handwriting remains continuous through the settle, then starts the first scaffold. Pens can coexist during approach/exit, without duplicate writing tips. Reference mapping resets at candidate 2767 to its guidance scene; candidate has no cut there.",
+      "recorded_at": "2026-10-20T14:18:04.496130+00:00"
+    },
+    "88": {
+      "file": "pair-0088.jpg",
+      "first": 2816,
+      "last": 2847,
+      "sha256": "77c48768c8fa16c1ecda3d5cdaf41757ebe6ff2962d996058d01f594b811fc08",
+      "observation": "Frames 2816\u20132879: first example box and its three blue rules build in order, followed by the connecting arrow and second box with fewer rules. Black/blue pen handoffs briefly overlap spatially but preserve one active stroke and show lifts; no stray joining strokes or clipping. The reference also uses coordinated multi-pen motion.",
+      "recorded_at": "2026-10-20T14:18:14.258272+00:00"
+    },
+    "89": {
+      "file": "pair-0089.jpg",
+      "first": 2848,
+      "last": 2879,
+      "sha256": "33b4d20ef2cf144fdb793731d4495cf7ed6b69e2c7eef1800e11c967029f1529",
+      "observation": "Frames 2816\u20132879: first example box and its three blue rules build in order, followed by the connecting arrow and second box with fewer rules. Black/blue pen handoffs briefly overlap spatially but preserve one active stroke and show lifts; no stray joining strokes or clipping. The reference also uses coordinated multi-pen motion.",
+      "recorded_at": "2026-10-20T14:18:14.262226+00:00"
+    },
+    "90": {
+      "file": "pair-0090.jpg",
+      "first": 2880,
+      "last": 2911,
+      "sha256": "67007a8148134135dc4ed7e57a2b506bc4083423783f3722767513f53c36c065",
+      "observation": "Frames 2880\u20132943: example and hint labels write below their boxes, third box retains one blue rule to show fading support, and orange your attempt begins. Clear spacing between diagrams, arrows, labels, and captions. Pen handoff does not leave marks on existing lettering; reference map diagram is denser than this educational scaffold.",
+      "recorded_at": "2026-10-20T14:18:25.138483+00:00"
+    },
+    "91": {
+      "file": "pair-0091.jpg",
+      "first": 2912,
+      "last": 2943,
+      "sha256": "f2d15f78a23fc166787fd0c987dfda5c044afa5fa7c74a123f5ca4b4d33c3c29",
+      "observation": "Frames 2880\u20132943: example and hint labels write below their boxes, third box retains one blue rule to show fading support, and orange your attempt begins. Clear spacing between diagrams, arrows, labels, and captions. Pen handoff does not leave marks on existing lettering; reference map diagram is denser than this educational scaffold.",
+      "recorded_at": "2026-10-20T14:18:25.142402+00:00"
+    },
+    "92": {
+      "file": "pair-0092.jpg",
+      "first": 2944,
+      "last": 2975,
+      "sha256": "2c70ba157213d671cd2a6376282ce7a4579d453458ad1e3cbb1213ffbfd90626",
+      "observation": "Frames 2944\u20133007: your attempt finishes and orange pen clears before the complete scaffold hold. Blue connector travels left; the camera follows with continuous horizontal blur, and the next black pen approaches. Labels remain unobstructed during the reading hold; no abrupt board reset occurs.",
+      "recorded_at": "2026-10-20T14:18:34.541550+00:00"
+    },
+    "93": {
+      "file": "pair-0093.jpg",
+      "first": 2976,
+      "last": 3007,
+      "sha256": "9616ff41a32db5b0359b428ce0312271f02761a2a164543c35640080aaa6f6de",
+      "observation": "Frames 2944\u20133007: your attempt finishes and orange pen clears before the complete scaffold hold. Blue connector travels left; the camera follows with continuous horizontal blur, and the next black pen approaches. Labels remain unobstructed during the reading hold; no abrupt board reset occurs.",
+      "recorded_at": "2026-10-20T14:18:34.542800+00:00"
+    },
+    "94": {
+      "file": "pair-0094.jpg",
+      "first": 3008,
+      "last": 3039,
+      "sha256": "57c3ad3ba9bfb55d9649f768b760538ed12ad2ec4809d6a684539d1c3fbc096c",
+      "observation": "Frames 3008\u20133071: horizontal move settles, try / hide / explain / check writes across the top, and first document icon starts below. Connector pen exits at right without clipping focal text. Reference jumps to its practice-range mapping at frame 3013; candidate motion stays continuous and captions remain sharp through motion.",
+      "recorded_at": "2026-10-20T14:18:44.285926+00:00"
+    },
+    "95": {
+      "file": "pair-0095.jpg",
+      "first": 3040,
+      "last": 3071,
+      "sha256": "9cf53a7cbe65d932c5852c11761d79bf04b3bdc5cd6761be1f067fdb8e87bb12",
+      "observation": "Frames 3008\u20133071: horizontal move settles, try / hide / explain / check writes across the top, and first document icon starts below. Connector pen exits at right without clipping focal text. Reference jumps to its practice-range mapping at frame 3013; candidate motion stays continuous and captions remain sharp through motion.",
+      "recorded_at": "2026-10-20T14:18:44.289379+00:00"
+    },
+    "96": {
+      "file": "pair-0096.jpg",
+      "first": 3072,
+      "last": 3103,
+      "sha256": "366a05e18721b14cba7178bad33d321e92d5c5a11f88375af4b0347823b01139",
+      "observation": "Frames 3072\u20133135: first-attempt document and label complete; blue speech bubble outline and tail are drawn without premature fills. Blue pen begins one example text after a visible lift. Caption cards remain separated from the diagram. Reference erases and redraws its timeline with similar prop scale and warm board treatment.",
+      "recorded_at": "2026-10-20T14:18:54.479783+00:00"
+    },
+    "97": {
+      "file": "pair-0097.jpg",
+      "first": 3104,
+      "last": 3135,
+      "sha256": "9a59a335d5f8b1bfe3245d906b4684eee4e3d1a08b230b363f6fcfc5ae1e9172",
+      "observation": "Frames 3072\u20133135: first-attempt document and label complete; blue speech bubble outline and tail are drawn without premature fills. Blue pen begins one example text after a visible lift. Caption cards remain separated from the diagram. Reference erases and redraws its timeline with similar prop scale and warm board treatment.",
+      "recorded_at": "2026-10-20T14:18:54.483012+00:00"
+    },
+    "98": {
+      "file": "pair-0098.jpg",
+      "first": 3136,
+      "last": 3167,
+      "sha256": "7aaa2795f29b16739e3b3574d18cacc90ca19ebb591b9b8fddf3647db0d885c9",
+      "observation": "Frames 3136\u20133199: speech-bubble text resolves as one useful hint (correcting the provisional reading in the 96\u201397 note). Black arrow joins the first attempt to the hint, both pens depart, then a clean reading hold. No caption collision or raster flicker; reference timeline redraw remains more active.",
+      "recorded_at": "2026-10-20T14:19:05.893885+00:00"
+    },
+    "99": {
+      "file": "pair-0099.jpg",
+      "first": 3168,
+      "last": 3199,
+      "sha256": "3d6e8b66f4955b661a15ea8cfb076738ae2ea0eb6673c9af4c8dfdead7d2645c",
+      "observation": "Frames 3136\u20133199: speech-bubble text resolves as one useful hint (correcting the provisional reading in the 96\u201397 note). Black arrow joins the first attempt to the hint, both pens depart, then a clean reading hold. No caption collision or raster flicker; reference timeline redraw remains more active.",
+      "recorded_at": "2026-10-20T14:19:05.897097+00:00"
+    },
+    "100": {
+      "file": "pair-0100.jpg",
+      "first": 3200,
+      "last": 3231,
+      "sha256": "c792adaa16e80a8e4ef88a902bec2b53adf5d380d75ebbd07630c9aa9fff99a9",
+      "observation": "Frames 3200\u20133263: uninterrupted reading hold, caption clears, then orange pen approaches for the third exercise icon as Now hide the answer appears. Texture and line weights remain stable, with no unintended camera drift. Reference keeps drawing timeline ticks during this hold; pacing is not frame-identical.",
+      "recorded_at": "2026-10-20T14:19:16.420597+00:00"
+    },
+    "101": {
+      "file": "pair-0101.jpg",
+      "first": 3232,
+      "last": 3263,
+      "sha256": "b69ac8b9d5250128472a2d8c52a56a3bb530232e0dcaf5e5cc7a8597eb9fd5de",
+      "observation": "Frames 3200\u20133263: uninterrupted reading hold, caption clears, then orange pen approaches for the third exercise icon as Now hide the answer appears. Texture and line weights remain stable, with no unintended camera drift. Reference keeps drawing timeline ticks during this hold; pacing is not frame-identical.",
+      "recorded_at": "2026-10-20T14:19:16.424087+00:00"
+    },
+    "102": {
+      "file": "pair-0102.jpg",
+      "first": 3264,
+      "last": 3295,
+      "sha256": "b9c9cf3af9c1a4ad234efd78791740dd50ba251cfe486c4f3eaa41ffdc8ba22e",
+      "observation": "Frames 3264\u20133327: orange recall box closes, hint is crossed out with two discrete strokes, then question mark and answer-hidden label form. Black arrow joins the third box and the lower feedback label begins. Pen lifts are visible between each unrelated mark; crossout remains inside the hint region, and caption changes are clean.",
+      "recorded_at": "2026-10-20T14:19:26.264684+00:00"
+    },
+    "103": {
+      "file": "pair-0103.jpg",
+      "first": 3296,
+      "last": 3327,
+      "sha256": "2b47b3de97f09722191ef2d61e25965ef2bc3b9d95b7feac60b06775a391bd96",
+      "observation": "Frames 3264\u20133327: orange recall box closes, hint is crossed out with two discrete strokes, then question mark and answer-hidden label form. Black arrow joins the third box and the lower feedback label begins. Pen lifts are visible between each unrelated mark; crossout remains inside the hint region, and caption changes are clean.",
+      "recorded_at": "2026-10-20T14:19:26.266021+00:00"
+    },
+    "104": {
+      "file": "pair-0104.jpg",
+      "first": 3328,
+      "last": 3359,
+      "sha256": "15d146040b1a831e972c39159199b57ef0937b762e57e071cc5735cc1e07a108",
+      "observation": "Frames 3328\u20133391: answer hidden completes; explain it, then check and correct writes across the lower line and black pen fully exits. All three icons and labels remain clear of captions, including the feedback qualification. No line appears ahead of the pen; warm board highlights remain stable.",
+      "recorded_at": "2026-10-20T14:19:39.099223+00:00"
+    },
+    "105": {
+      "file": "pair-0105.jpg",
+      "first": 3360,
+      "last": 3391,
+      "sha256": "09ee278dbf3f4d004674cace6b62617cc656560a1e28f8f4f7f7158596e74486",
+      "observation": "Frames 3328\u20133391: answer hidden completes; explain it, then check and correct writes across the lower line and black pen fully exits. All three icons and labels remain clear of captions, including the feedback qualification. No line appears ahead of the pen; warm board highlights remain stable.",
+      "recorded_at": "2026-10-20T14:19:39.102995+00:00"
+    },
+    "106": {
+      "file": "pair-0106.jpg",
+      "first": 3392,
+      "last": 3423,
+      "sha256": "a3eec93e915e1c0bbd532837b61c99df8959a8374b274ab90edfc44976eb9e40",
+      "observation": "Frames 3392\u20133455: small orange feedback check draws beside the lower sentence and lifts. Blue pen crosses toward the left connector; camera accelerates left after the reading hold, carrying completed diagrams out without popping. Reference uses a matching check motif; its camera is stationary in this mapped interval.",
+      "recorded_at": "2026-10-20T14:19:50.581901+00:00"
+    },
+    "107": {
+      "file": "pair-0107.jpg",
+      "first": 3424,
+      "last": 3455,
+      "sha256": "d1cafec001ea0254ea79837a40060e34245f8efa6348330f29cc965b0ecf7487",
+      "observation": "Frames 3392\u20133455: small orange feedback check draws beside the lower sentence and lifts. Blue pen crosses toward the left connector; camera accelerates left after the reading hold, carrying completed diagrams out without popping. Reference uses a matching check motif; its camera is stationary in this mapped interval.",
+      "recorded_at": "2026-10-20T14:19:50.586035+00:00"
+    },
+    "108": {
+      "file": "pair-0108.jpg",
+      "first": 3456,
+      "last": 3487,
+      "sha256": "c269db9af817b644e9764b7322f928c68272cc9bafde36abf6dd852d1aa8343b",
+      "observation": "Frames 3456\u20133519: transfer scene settles; change it. return later. writes clearly above A/B document positions. First black document completes while orange pen approaches second. Candidate has continuous camera/pen trajectories; only reference mapping changes at frame 3458. No overlap between heading and permanent diagram ink.",
+      "recorded_at": "2026-10-20T14:20:01.686221+00:00"
+    },
+    "109": {
+      "file": "pair-0109.jpg",
+      "first": 3488,
+      "last": 3519,
+      "sha256": "8028113b2639764b5891708c2fc89200f64c4a36704d5f4704979477716acd6b",
+      "observation": "Frames 3456\u20133519: transfer scene settles; change it. return later. writes clearly above A/B document positions. First black document completes while orange pen approaches second. Candidate has continuous camera/pen trajectories; only reference mapping changes at frame 3458. No overlap between heading and permanent diagram ink.",
+      "recorded_at": "2026-10-20T14:20:01.689164+00:00"
+    },
+    "110": {
+      "file": "pair-0110.jpg",
+      "first": 3520,
+      "last": 3551,
+      "sha256": "88b10aa0320652f1d67115f3a7427969eabfd554bd1fa658bed9ded5063e825e",
+      "observation": "Frames 3520\u20133583: A and B labels now sit visibly below all three document rules with clear whitespace, confirming the repaired baseline at every writing stage. Orange arrow connects A to B; transfer label begins below. No rule/letter collision remains, including during pen departure. Reference black formula writing uses a similar line weight.",
+      "recorded_at": "2026-10-20T14:20:11.862253+00:00"
+    },
+    "111": {
+      "file": "pair-0111.jpg",
+      "first": 3552,
+      "last": 3583,
+      "sha256": "7f9095ecfc1330c4b11b4c8a6c0e96d4f7d6791c0a450b08ac3b7b0e1a235a29",
+      "observation": "Frames 3520\u20133583: A and B labels now sit visibly below all three document rules with clear whitespace, confirming the repaired baseline at every writing stage. Orange arrow connects A to B; transfer label begins below. No rule/letter collision remains, including during pen departure. Reference black formula writing uses a similar line weight.",
+      "recorded_at": "2026-10-20T14:20:11.866886+00:00"
+    },
+    "112": {
+      "file": "pair-0112.jpg",
+      "first": 3584,
+      "last": 3615,
+      "sha256": "960876fa160c5485e8b7824c2ac772ef3b4af78da883b515881a8175b1bb1868",
+      "observation": "Frames 3584\u20133647: transfer label finishes, orange pen draws the clock circle and two hands, then retention label. Black pen enters for the unaided test qualification. Clock and document spacing stays clear; pen shadows and curved strokes remain smooth. Reference has an arithmetic result in this role, with the same restrained orange emphasis.",
+      "recorded_at": "2026-10-20T14:20:21.780694+00:00"
+    },
+    "113": {
+      "file": "pair-0113.jpg",
+      "first": 3616,
+      "last": 3647,
+      "sha256": "586b3b3b872546c50775e7de408d25ad0d813e0b6cb845257244a50aa0a4f70e",
+      "observation": "Frames 3584\u20133647: transfer label finishes, orange pen draws the clock circle and two hands, then retention label. Black pen enters for the unaided test qualification. Clock and document spacing stays clear; pen shadows and curved strokes remain smooth. Reference has an arithmetic result in this role, with the same restrained orange emphasis.",
+      "recorded_at": "2026-10-20T14:20:21.782330+00:00"
+    },
+    "114": {
+      "file": "pair-0114.jpg",
+      "first": 3648,
+      "last": 3679,
+      "sha256": "cb4ba3dffb6540e0fa659d9f417badff58019d8c74c968cbace6106543c54adb",
+      "observation": "Frames 3648\u20133711: fresh problem / no help qualification completes and both pens leave, exposing clean A/B and retention layout. Following hold is stable. Camera begins diagonal upward move with consistent shutter blur; completed artwork moves together without layer separation. No unresolved text/rule overlap.",
+      "recorded_at": "2026-10-20T14:20:33.471853+00:00"
+    },
+    "115": {
+      "file": "pair-0115.jpg",
+      "first": 3680,
+      "last": 3711,
+      "sha256": "901b9e40158f9ea1a5a4308f431e4a350a6ab0c801ca1b907a247f50bb0cb878",
+      "observation": "Frames 3648\u20133711: fresh problem / no help qualification completes and both pens leave, exposing clean A/B and retention layout. Following hold is stable. Camera begins diagonal upward move with consistent shutter blur; completed artwork moves together without layer separation. No unresolved text/rule overlap.",
+      "recorded_at": "2026-10-20T14:20:33.475132+00:00"
+    },
+    "116": {
+      "file": "pair-0116.jpg",
+      "first": 3712,
+      "last": 3743,
+      "sha256": "86812e0e58d817867539a16528944380e0c063293a5ec647e3c0edbc9bd2a87d",
+      "observation": "Frames 3712\u20133775: fast diagonal return traverses earlier board panels with coherent motion blur, settles back at the title, and orange closing sentence begins below the subtitle. Reference closing mapping starts at 3728; candidate remains a single continuous board. Title is fully in frame after settle and caption stays sharp.",
+      "recorded_at": "2026-10-20T14:20:43.334080+00:00"
+    },
+    "117": {
+      "file": "pair-0117.jpg",
+      "first": 3744,
+      "last": 3775,
+      "sha256": "b71b29434fc904ef74002070d7753ef0086f8c56567be73d8035bf927957f0c8",
+      "observation": "Frames 3712\u20133775: fast diagonal return traverses earlier board panels with coherent motion blur, settles back at the title, and orange closing sentence begins below the subtitle. Reference closing mapping starts at 3728; candidate remains a single continuous board. Title is fully in frame after settle and caption stays sharp.",
+      "recorded_at": "2026-10-20T14:20:43.337391+00:00"
+    },
+    "118": {
+      "file": "pair-0118.jpg",
+      "first": 3776,
+      "last": 3807,
+      "sha256": "d003df5bef358add8a2a270a8bc8496875eae979fa924af1266d65712d4b7626",
+      "observation": "Frames 3776\u20133839: orange make the next independent attempt better completes and pen clears by 157.96 seconds. Closing title hold remains clean through qualification captions. Reference zooms toward its handwritten title while candidate stays steady; hierarchy, underline, board hue, and handwriting style align without identical framing.",
+      "recorded_at": "2026-10-20T14:20:56.701394+00:00"
+    },
+    "119": {
+      "file": "pair-0119.jpg",
+      "first": 3808,
+      "last": 3839,
+      "sha256": "e7ba88b9de78cdeebc52bc69e3830b13b7352a9501fa0798a04c5f3d79d3e750",
+      "observation": "Frames 3776\u20133839: orange make the next independent attempt better completes and pen clears by 157.96 seconds. Closing title hold remains clean through qualification captions. Reference zooms toward its handwritten title while candidate stays steady; hierarchy, underline, board hue, and handwriting style align without identical framing.",
+      "recorded_at": "2026-10-20T14:20:56.705890+00:00"
+    },
+    "120": {
+      "file": "pair-0120.jpg",
+      "first": 3840,
+      "last": 3871,
+      "sha256": "9efc2a5b5582809e2b4d8b66046340ac262d7d4d25413d8c931e180ea2e5e8d4",
+      "observation": "Frames 3840\u20133903: closing qualification holds on title, captions progress and then disappear. No unintended changes to text or texture, no pen obstruction. This longer contemplative hold is a documented pacing difference from the reference credit-writing movement, not evidence of pixel or timing equivalence.",
+      "recorded_at": "2026-10-20T14:21:09.472819+00:00"
+    },
+    "121": {
+      "file": "pair-0121.jpg",
+      "first": 3872,
+      "last": 3903,
+      "sha256": "ad007e5d16d5a1b012eabca80d5456665431a05498b41b3e109e27b20faa0237",
+      "observation": "Frames 3840\u20133903: closing qualification holds on title, captions progress and then disappear. No unintended changes to text or texture, no pen obstruction. This longer contemplative hold is a documented pacing difference from the reference credit-writing movement, not evidence of pixel or timing equivalence.",
+      "recorded_at": "2026-10-20T14:21:09.476589+00:00"
+    },
+    "122": {
+      "file": "pair-0122.jpg",
+      "first": 3904,
+      "last": 3935,
+      "sha256": "5aadc6e545cc598ff9b4a341a63250dcd082e628208d0dd3d51f6e9c63baa82b",
+      "observation": "Frames 3904\u20133967: final takeaway caption enters, black pen approaches with blur and starts the closing question on a separate lower line. Main title and orange takeaway retain clear hierarchy; pen does not alter existing strokes. Reference credit block holds, exposing comparable static board texture and warm shadows.",
+      "recorded_at": "2026-10-20T14:21:22.442926+00:00"
+    },
+    "123": {
+      "file": "pair-0123.jpg",
+      "first": 3936,
+      "last": 3967,
+      "sha256": "1f62e0924db3c32e3e7b685ac955006a2ee0dc9aba4f1fb50f0864c76b2342fe",
+      "observation": "Frames 3904\u20133967: final takeaway caption enters, black pen approaches with blur and starts the closing question on a separate lower line. Main title and orange takeaway retain clear hierarchy; pen does not alter existing strokes. Reference credit block holds, exposing comparable static board texture and warm shadows.",
+      "recorded_at": "2026-10-20T14:21:22.446979+00:00"
+    },
+    "124": {
+      "file": "pair-0124.jpg",
+      "first": 3968,
+      "last": 3999,
+      "sha256": "13915935f2cffcbd1e1fdec4e60e6273e06025644e9a8f4a3f5cf804882f5015",
+      "observation": "Frames 3968\u20134031: what can you do when the answer is gone? finishes in black; pen lifts and clears before orange ellipse starts below the question. All strokes develop progressively, title remains stable, and no lower caption overlap occurs. Reference final credit hold has matching understated board aesthetic but different content density.",
+      "recorded_at": "2026-10-20T14:21:34.966092+00:00"
+    },
+    "125": {
+      "file": "pair-0125.jpg",
+      "first": 4000,
+      "last": 4031,
+      "sha256": "045a90738d004cb7c00e8cb5bf28e1cc3d1c8f6f9feb5210ed459f0829963d03",
+      "observation": "Frames 3968\u20134031: what can you do when the answer is gone? finishes in black; pen lifts and clears before orange ellipse starts below the question. All strokes develop progressively, title remains stable, and no lower caption overlap occurs. Reference final credit hold has matching understated board aesthetic but different content density.",
+      "recorded_at": "2026-10-20T14:21:34.967246+00:00"
+    },
+    "126": {
+      "file": "pair-0126.jpg",
+      "first": 4032,
+      "last": 4063,
+      "sha256": "14f2425fcb5344ce967eca595c81235a3518d92f6119785a9bed06dbcf8cba5c",
+      "observation": "Frames 4032\u20134095: orange ellipse closes around the final question with clear top/bottom clearance, avoiding the earlier text strike-through problem. Pen exits; question holds unobstructed with matching spoken caption. Reference and candidate both use restrained final-title holds; no end-frame flash or ink pop.",
+      "recorded_at": "2026-10-20T14:21:46.757655+00:00"
+    },
+    "127": {
+      "file": "pair-0127.jpg",
+      "first": 4064,
+      "last": 4095,
+      "sha256": "24c6689b30d00896ccfdbf84c124713b8d7a76041c41a5f5501fdf11d571f86a",
+      "observation": "Frames 4032\u20134095: orange ellipse closes around the final question with clear top/bottom clearance, avoiding the earlier text strike-through problem. Pen exits; question holds unobstructed with matching spoken caption. Reference and candidate both use restrained final-title holds; no end-frame flash or ink pop.",
+      "recorded_at": "2026-10-20T14:21:46.761734+00:00"
+    },
+    "128": {
+      "file": "pair-0128.jpg",
+      "first": 4096,
+      "last": 4127,
+      "sha256": "5614a791e68db774b15514f8950a6d9d2eed6c6bfa6bc55ea0cd62adedf40cbd",
+      "observation": "Frames 4096\u20134159: final subtitle clears before zoom-out. Entire existing board progressively reappears with continuous scale and aligned ink; no objects pop in. Aluminum edges enter smoothly by 172.8 seconds. Reference mapping switches to its wide-reveal range at 4134; candidate zoom is continuous across that bookkeeping boundary.",
+      "recorded_at": "2026-10-20T14:25:00.014848+00:00"
+    },
+    "129": {
+      "file": "pair-0129.jpg",
+      "first": 4128,
+      "last": 4159,
+      "sha256": "040f0daf2a7dfd27ab424056bd1227c54bdb0818b9bf64309c7803f19862674f",
+      "observation": "Frames 4096\u20134159: final subtitle clears before zoom-out. Entire existing board progressively reappears with continuous scale and aligned ink; no objects pop in. Aluminum edges enter smoothly by 172.8 seconds. Reference mapping switches to its wide-reveal range at 4134; candidate zoom is continuous across that bookkeeping boundary.",
+      "recorded_at": "2026-10-20T14:25:00.018685+00:00"
+    },
+    "130": {
+      "file": "pair-0130.jpg",
+      "first": 4160,
+      "last": 4191,
+      "sha256": "79176728651f0945c0a5f88bb46b56e610b2f099811a32573060d37196bbf8db",
+      "observation": "Frames 4160\u20134223: zoom completes, all board edges and tray fit inside the picture, and camera settles without oscillation. Complete storyboard is balanced around the title with continuous blue connectors; text is intentionally miniature at overview scale. Reference wide shot develops later in its mapped range. No clipping or final-stage asset pop.",
+      "recorded_at": "2026-10-20T14:25:53.401107+00:00"
+    },
+    "131": {
+      "file": "pair-0131.jpg",
+      "first": 4192,
+      "last": 4223,
+      "sha256": "f6c97cb7534ad62c34d01a9ecdc93d042d102c5b3641d5806b30c7b2543f20ce",
+      "observation": "Frames 4160\u20134223: zoom completes, all board edges and tray fit inside the picture, and camera settles without oscillation. Complete storyboard is balanced around the title with continuous blue connectors; text is intentionally miniature at overview scale. Reference wide shot develops later in its mapped range. No clipping or final-stage asset pop.",
+      "recorded_at": "2026-10-20T14:25:53.405340+00:00"
+    },
+    "132": {
+      "file": "pair-0132.jpg",
+      "first": 4224,
+      "last": 4255,
+      "sha256": "eefe1e80cf3e02eeeb5530d73995475f02f07d878ef913ebeb6a081cbc2bcf65",
+      "observation": "Frames 4224\u20134287: final whole-board hold is stable with complete frame/tray and all scene groups visible. Reference reaches its own framed overview; wall warmth, glossy board, and sparse three-color diagrams correspond closely, although candidate has a centered title and denser three-row layout. No flicker, crop change, or disappearing marks.",
+      "recorded_at": "2026-10-20T14:26:35.811930+00:00"
+    },
+    "133": {
+      "file": "pair-0133.jpg",
+      "first": 4256,
+      "last": 4287,
+      "sha256": "25217496c3e34efe70171d572ec2b2099d03fa73bdf8b891f49dce8f27e0a948",
+      "observation": "Frames 4224\u20134287: final whole-board hold is stable with complete frame/tray and all scene groups visible. Reference reaches its own framed overview; wall warmth, glossy board, and sparse three-color diagrams correspond closely, although candidate has a centered title and denser three-row layout. No flicker, crop change, or disappearing marks.",
+      "recorded_at": "2026-10-20T14:26:35.815191+00:00"
+    },
+    "134": {
+      "file": "pair-0134.jpg",
+      "first": 4288,
+      "last": 4319,
+      "sha256": "bfa3d52fe13625df86cb30b323c08446d029e613ea9a4aab3977ed9090453f19",
+      "observation": "Frames 4288\u20134319: last 32 encoded frames hold the complete whiteboard, aluminum frame, tray, and diagram network without crop, flash, missing ink, or sudden final-frame change. Compared with the reference overview, the material and three-color handwriting language are close; layout and pacing remain original.",
+      "recorded_at": "2026-10-20T14:27:28.882731+00:00"
+    }
+  },
+  "full_resolution_stills": [
+    {
+      "file": "still-001.png",
+      "frame": 207,
+      "seconds": 8.625,
+      "sha256": "3a7bf61d49ce281f354acaa880522a28a9a855e27724ace255131347c3d1aad1",
+      "observation": "Encoded 1920x1080 stills inspected. Title hierarchy, four distinct outcomes, and relative percentages are legible. Shortened divider clears the control label; +48% clears its arrow. Still 3 intentionally captures the fourth icon being written.",
+      "recorded_at": "2026-10-20T14:03:19.902735+00:00"
+    },
+    {
+      "file": "still-002.png",
+      "frame": 381,
+      "seconds": 15.875,
+      "sha256": "6ba23b88f6ac988e5bb0087112e149ea2407b4b1bce30b296489383413fb4250",
+      "observation": "Encoded 1920x1080 stills inspected. Title hierarchy, four distinct outcomes, and relative percentages are legible. Shortened divider clears the control label; +48% clears its arrow. Still 3 intentionally captures the fourth icon being written.",
+      "recorded_at": "2026-10-20T14:03:19.904733+00:00"
+    },
+    {
+      "file": "still-003.png",
+      "frame": 598,
+      "seconds": 24.916666666666668,
+      "sha256": "1a6637daa304f4a3af8a0d0bf1cadf4e4db9f470c1bd5e75da7248bd8d2f0a1c",
+      "observation": "Encoded 1920x1080 stills inspected. Title hierarchy, four distinct outcomes, and relative percentages are legible. Shortened divider clears the control label; +48% clears its arrow. Still 3 intentionally captures the fourth icon being written.",
+      "recorded_at": "2026-10-20T14:03:19.906754+00:00"
+    },
+    {
+      "file": "still-004.png",
+      "frame": 797,
+      "seconds": 33.208333333333336,
+      "sha256": "769ecef5cf7c66b4c34729693a515d93032972f6abcee339541248ab1ae5c627",
+      "observation": "Encoded 1920x1080 stills inspected. Title hierarchy, four distinct outcomes, and relative percentages are legible. Shortened divider clears the control label; +48% clears its arrow. Still 3 intentionally captures the fourth icon being written.",
+      "recorded_at": "2026-10-20T14:03:19.908887+00:00"
+    },
+    {
+      "file": "still-005.png",
+      "frame": 1053,
+      "seconds": 43.875,
+      "sha256": "14510937ffd62e65c7fb77824fe02cdc460e24e34c28f3293c7764d973a35525",
+      "observation": "Encoded 1920x1080 stills inspected. Title hierarchy, four distinct outcomes, and relative percentages are legible. Shortened divider clears the control label; +48% clears its arrow. Still 3 intentionally captures the fourth icon being written.",
+      "recorded_at": "2026-10-20T14:03:19.910898+00:00"
+    },
+    {
+      "file": "still-006.png",
+      "frame": 1263,
+      "seconds": 52.625,
+      "sha256": "320745977e44ce687b8355e14b16246c9f8e689691eacab8807f29d3a50bbd57",
+      "observation": "Encoded 1920x1080 stills inspected. Title hierarchy, four distinct outcomes, and relative percentages are legible. Shortened divider clears the control label; +48% clears its arrow. Still 3 intentionally captures the fourth icon being written.",
+      "recorded_at": "2026-10-20T14:03:19.912982+00:00"
+    },
+    {
+      "file": "still-007.png",
+      "frame": 1544,
+      "seconds": 64.33333333333333,
+      "sha256": "529328c229c8fd76c37dbaaa3453a8939cc8988c3f75873a0edd156644133cbe",
+      "observation": "Encoded full-resolution evidence pages preserve scope and citations. Divider now clears the control label at the wider framing. Offloading answer is faint after erasure while box and surrounding marks remain intact. Pen departure briefly passes over expert-material label; check its clearance in the continuous atlas.",
+      "recorded_at": "2026-10-20T14:03:48.041624+00:00"
+    },
+    {
+      "file": "still-008.png",
+      "frame": 1766,
+      "seconds": 73.58333333333333,
+      "sha256": "eb3e613db9ba018759012516f9545b6c2836b08b4148ed6528b3ba8cbc932f4a",
+      "observation": "Encoded full-resolution evidence pages preserve scope and citations. Divider now clears the control label at the wider framing. Offloading answer is faint after erasure while box and surrounding marks remain intact. Pen departure briefly passes over expert-material label; check its clearance in the continuous atlas.",
+      "recorded_at": "2026-10-20T14:03:48.043320+00:00"
+    },
+    {
+      "file": "still-009.png",
+      "frame": 1974,
+      "seconds": 82.25,
+      "sha256": "2feab620cdc9566f789477d5eb36bb2ae08ea83d14d3b1190e85c7b87ad55d56",
+      "observation": "Encoded full-resolution evidence pages preserve scope and citations. Divider now clears the control label at the wider framing. Offloading answer is faint after erasure while box and surrounding marks remain intact. Pen departure briefly passes over expert-material label; check its clearance in the continuous atlas.",
+      "recorded_at": "2026-10-20T14:03:48.045400+00:00"
+    },
+    {
+      "file": "still-010.png",
+      "frame": 2239,
+      "seconds": 93.29166666666667,
+      "sha256": "6a69ec1f6e32923f019dde82bf05b83d2f6727837ba6963115bd9b4eae4415e3",
+      "observation": "Encoded full-resolution evidence pages preserve scope and citations. Divider now clears the control label at the wider framing. Offloading answer is faint after erasure while box and surrounding marks remain intact. Pen departure briefly passes over expert-material label; check its clearance in the continuous atlas.",
+      "recorded_at": "2026-10-20T14:03:48.047523+00:00"
+    },
+    {
+      "file": "still-011.png",
+      "frame": 2514,
+      "seconds": 104.75,
+      "sha256": "40dbe2786505ffae924496b95782a432d701ef0ddb35b81e44e8a177b72bbd65",
+      "observation": "Encoded full-resolution evidence pages preserve scope and citations. Divider now clears the control label at the wider framing. Offloading answer is faint after erasure while box and surrounding marks remain intact. Pen departure briefly passes over expert-material label; check its clearance in the continuous atlas.",
+      "recorded_at": "2026-10-20T14:03:48.048976+00:00"
+    },
+    {
+      "file": "still-012.png",
+      "frame": 2728,
+      "seconds": 113.66666666666667,
+      "sha256": "5d9077e3d4b3206ea6ded04d78436afd1f0371fcf50a4e89129f42a042d06fe1",
+      "observation": "Encoded full-resolution evidence pages preserve scope and citations. Divider now clears the control label at the wider framing. Offloading answer is faint after erasure while box and surrounding marks remain intact. Pen departure briefly passes over expert-material label; check its clearance in the continuous atlas.",
+      "recorded_at": "2026-10-20T14:03:48.050711+00:00"
+    },
+    {
+      "file": "still-013.png",
+      "frame": 2974,
+      "seconds": 123.91666666666667,
+      "sha256": "6a57e918ba45b8a2d2bdaa1f16791cb08c21c4252f12ae8e8bfd567aacaebeab",
+      "observation": "Encoded full-resolution late scenes inspected. Scaffolding and recall diagrams remain legible; A/B labels now clearly separate from document rules. Closing ellipse clears its question. Final board, frame and tray fit inside the image with no clipping.",
+      "recorded_at": "2026-10-20T14:04:28.084357+00:00"
+    },
+    {
+      "file": "still-014.png",
+      "frame": 3210,
+      "seconds": 133.75,
+      "sha256": "8cefc13fe0bde35626dd95d0546207a7e9103e9717850784c12b70ce58df42ed",
+      "observation": "Encoded full-resolution late scenes inspected. Scaffolding and recall diagrams remain legible; A/B labels now clearly separate from document rules. Closing ellipse clears its question. Final board, frame and tray fit inside the image with no clipping.",
+      "recorded_at": "2026-10-20T14:04:28.085930+00:00"
+    },
+    {
+      "file": "still-015.png",
+      "frame": 3419,
+      "seconds": 142.45833333333334,
+      "sha256": "ea1d274cf4d33a4b29a6dc06f553a47fface5c54a95a35dc9fe3fb118ea64526",
+      "observation": "Encoded full-resolution late scenes inspected. Scaffolding and recall diagrams remain legible; A/B labels now clearly separate from document rules. Closing ellipse clears its question. Final board, frame and tray fit inside the image with no clipping.",
+      "recorded_at": "2026-10-20T14:04:28.088011+00:00"
+    },
+    {
+      "file": "still-016.png",
+      "frame": 3689,
+      "seconds": 153.70833333333334,
+      "sha256": "76d926ecf43d7d7aa404c89c04fda95dd5a0776c95694f039e36747bd0ec4706",
+      "observation": "Encoded full-resolution late scenes inspected. Scaffolding and recall diagrams remain legible; A/B labels now clearly separate from document rules. Closing ellipse clears its question. Final board, frame and tray fit inside the image with no clipping.",
+      "recorded_at": "2026-10-20T14:04:28.089637+00:00"
+    },
+    {
+      "file": "still-017.png",
+      "frame": 3875,
+      "seconds": 161.45833333333334,
+      "sha256": "ef0568eaabced774acd8a7b358320b7af0faf80d66c0de54493c39eeee8449af",
+      "observation": "Encoded full-resolution late scenes inspected. Scaffolding and recall diagrams remain legible; A/B labels now clearly separate from document rules. Closing ellipse clears its question. Final board, frame and tray fit inside the image with no clipping.",
+      "recorded_at": "2026-10-20T14:04:28.091552+00:00"
+    },
+    {
+      "file": "still-018.png",
+      "frame": 4105,
+      "seconds": 171.04166666666666,
+      "sha256": "4813b120f37372bd2b2792d8455e05704072c59c845429d360b7b67f52c08bb3",
+      "observation": "Encoded full-resolution late scenes inspected. Scaffolding and recall diagrams remain legible; A/B labels now clearly separate from document rules. Closing ellipse clears its question. Final board, frame and tray fit inside the image with no clipping.",
+      "recorded_at": "2026-10-20T14:04:28.093986+00:00"
+    },
+    {
+      "file": "still-019.png",
+      "frame": 4319,
+      "seconds": 179.95833333333334,
+      "sha256": "312b1327a26676d67c5b0178c14aa0bf7e1541639e92dbdd7d94435f02edb239",
+      "observation": "Encoded full-resolution late scenes inspected. Scaffolding and recall diagrams remain legible; A/B labels now clearly separate from document rules. Closing ellipse clears its question. Final board, frame and tray fit inside the image with no clipping.",
+      "recorded_at": "2026-10-20T14:04:28.096596+00:00"
+    }
+  ]
+}

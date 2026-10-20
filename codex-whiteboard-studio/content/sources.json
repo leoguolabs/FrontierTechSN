@@ -1,0 +1,59 @@
+{
+  "checked_on": "2026-10-20",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "Assisted performance, unassisted performance, delayed retention and transfer are distinct outcomes; current fluency can mislead learning judgments.",
+      "source": "https://bjorklab.psych.ucla.edu/research/",
+      "type": "Primary laboratory research overview",
+      "verified": "Retrieved official research overview; no new experimental effect claimed."
+    },
+    {
+      "id": "C02",
+      "claim": "Bastani et al.: GPT Base practice grades +48% relative to control; subsequent unassisted exam grades -17%. Nearly 1,000 high-school students in Turkey.",
+      "source": "https://doi.org/10.1073/pnas.2422633122",
+      "author_copy": "https://hamsabastani.github.io/education_llm.pdf",
+      "type": "Peer-reviewed randomized field experiment",
+      "verified": "Publisher indexed full text and author PDF located; relative changes, not percentage points."
+    },
+    {
+      "id": "C03",
+      "claim": "GPT Tutor largely mitigated the unassisted-exam penalty; its exam performance was not statistically distinguishable from control.",
+      "source": "https://doi.org/10.1073/pnas.2422633122",
+      "type": "Same experiment",
+      "verified": "Publisher indexed results; do not label this a positive exam gain."
+    },
+    {
+      "id": "C04",
+      "claim": "Kestin et al.: a structured AI tutor improved an immediate college physics post-test relative to active classroom instruction.",
+      "source": "https://doi.org/10.1038/s41598-025-97652-6",
+      "type": "Peer-reviewed randomized crossover experiment",
+      "verified": "Publisher PDF full text retrieved. Pages 2, 4–5 and 7 verify post-lesson testing, sequential scaffolding, instructor-authored prompts and feedback. No numeric effect in narration.",
+      "retrieved_source": "https://www.nature.com/articles/s41598-025-97652-6.pdf"
+    },
+    {
+      "id": "C05",
+      "claim": "Offloading delegates cognitive work to an external tool; whether it helps learning depends on the target process and task.",
+      "source": "https://doi.org/10.1016/j.tics.2016.07.002",
+      "type": "Review",
+      "verified": "Fresh author abstract and manuscript record retrieved from UCL. Practical learning advice is editorial synthesis, not an effect size from this review.",
+      "retrieved_source": "https://discovery.ucl.ac.uk/id/eprint/1508770/"
+    },
+    {
+      "id": "C06",
+      "claim": "Worked examples can help novices; no universal superiority of withholding answers is established here.",
+      "source": "https://doi.org/10.1080/01443410.2023.2273762",
+      "type": "Peer-reviewed experiment",
+      "verified": "Publisher indexed full text retrieved, including randomized Year-7 novice experiment, retention and near-transfer outcomes. No effect size used.",
+      "retrieved_source": "https://doi.org/10.1080/01443410.2023.2273762"
+    },
+    {
+      "id": "C07",
+      "claim": "Retrieval practice benefits depend on the comparator and corrective feedback; recall is not uniformly superior.",
+      "source": "https://doi.org/10.1007/s10648-025-10076-6",
+      "type": "Systematic review and meta-analysis",
+      "verified": "Fresh publisher abstract retrieved: 44 studies, 142 comparisons; benefits depend on feedback and comparator. No numeric effect used.",
+      "retrieved_source": "https://link.springer.com/article/10.1007/s10648-025-10076-6"
+    }
+  ]
+}

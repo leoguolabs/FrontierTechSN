@@ -15,7 +15,7 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
     const isLocal = value => /^https:\/\/chatgpt\.com\/c\/local-chatgpt(?::|%3a)[0-9a-f-]{36}(?:[?#]|$)/i.test(value || '');
     const isPending = value => /^https:\/\/chatgpt\.com\/(?:new\/?)?(?:[?#]|$)/i.test(value || '');
     const report = stage => options.onProgress?.(stage, conversationUrl);
-    const missingInputRequest = /(?:^|[.!?]\s*)Please upload the (?:earlier|original|reference|previous|preceding) (?:image|illustration)\b[\s\S]*\bso I can (?:recompose|edit|redraw|correct|preserve)\b/i;
+    const missingInputRequest = /(?:^|[.!?]\s*)Please upload the (?:earlier|original|reference|previous|preceding) (?:image|illustration|frame)\b[\s\S]*\bso I can (?:recompose|edit|redraw|correct|preserve|create)\b/i;
 
     while (Date.now() < deadline) {
         await page.sleep(Math.min(3, (deadline - Date.now()) / 1000));
@@ -104,6 +104,8 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
                     || (!stillRendering && (
                         /^I wasn['’]t able to generate the image due to an error on my side\.$/.test(text)
                         || /^I couldn['’]t generate the (?:new )?(?:image|illustration) in this attempt\.(?:\s|$)/.test(text)
+                        || (/^I couldn['’]t generate the (?:image|illustration) because\b/i.test(text)
+                            && missingInputRequest.test(text))
                         || /^We['’]re so sorry, but the image we created may violate our guardrails (?:around|concerning) [^.]+\.(?:\s|$)/i.test(text)
                         || (/^Please upload /i.test(text) && missingInputRequest.test(text))
                     ))) terminalText = text;

@@ -313,6 +313,7 @@ test('missing reference upload is a terminal owned response, never a fresh submi
 test('a request for the preceding illustration to preserve continuity ends only its owned idle wait', async () => {
   const text = 'Please upload the preceding illustration so I can preserve the exact floral tile motif, character design, and visual continuity while creating this frame.'
   for (const variant of [text, text.replaceAll(' ', '  '), text.replace('preceding', 'previous'),
+    'I couldn’t generate the illustration because the image tool requires an existing image reference for this request. Please upload the reference frame so I can create the scene with the repeating floral tiles, empty dashed gap, and single hovering star tile.',
     text + '\nImage generation failed\nTry again']) {
     const response = { Role: 'Assistant', Text: variant }
     const { run, state } = waiter(fixedWait, { messages: () => [ownedFailure[0], response] })

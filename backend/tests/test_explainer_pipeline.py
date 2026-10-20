@@ -389,6 +389,117 @@ def test_terminal_missing_input_consumes_candidate_without_replaying_request(
         pipeline._existing_image_candidates(stage, prompt, tmp_path)
 
 
+@pytest.mark.parametrize("outcome", ["pass", "interrupted", "missing", "unknown"])
+def test_confirmed_missing_input_can_use_previous_accepted_image_without_replaying(
+    tmp_path, providers, monkeypatch, outcome,
+):
+    scene, style = _project()["scenes"][1], _project()["style"]
+    reference = tmp_path / "previous-accepted.png"
+    Image.new("RGB", (512, 288), "#C56545").save(reference)
+    original = reference.read_bytes()
+    calls = []
+
+    async def generate(request, directory, *, reference_image=None):
+        calls.append((directory, reference_image))
+        if len(calls) == 1 and outcome == "unknown":
+            raise RuntimeError("response timeout; outcome unknown")
+        if reference_image is None or outcome == "missing":
+            prefix = "Generate an image of: " if reference_image is None else "Edit the attached image: "
+            (directory / "chatgpt-image-request.json").write_text(json.dumps({
+                "prompt": prefix + request, "conversationUrl": "https://chatgpt.com/c/owned-image-request",
+            }))
+            raise RuntimeError("CHATGPT_IMAGE_INPUT_MISSING: Please upload the reference frame so I can create it.")
+        assert reference_image == directory / "reference.png"
+        assert reference_image.read_bytes() == original
+        if outcome == "interrupted" and len(calls) == 2:
+            raise asyncio.CancelledError()
+        return await providers.image(request, directory)
+
+    monkeypatch.setattr(pipeline, "_generate_still", generate)
+    if outcome == "unknown":
+        with pytest.raises(RuntimeError, match="outcome unknown"):
+            asyncio.run(pipeline._image(scene, style, tmp_path, reference_image=reference))
+        assert len(calls) == 1
+        assert not list(tmp_path.rglob("reference.json"))
+        return
+    if outcome == "missing":
+        for _ in range(2):
+            with pytest.raises(RuntimeError, match="after 3 image candidates"):
+                asyncio.run(pipeline._image(scene, style, tmp_path, reference_image=reference))
+        assert len(calls) == 3
+        assert calls[0][1] is None
+        assert all(path is not None for _, path in calls[1:])
+        return
+    if outcome == "interrupted":
+        with pytest.raises(asyncio.CancelledError):
+            asyncio.run(pipeline._image(scene, style, tmp_path, reference_image=reference))
+    path, record = asyncio.run(pipeline._image(scene, style, tmp_path, reference_image=reference))
+    assert path.is_file()
+    assert reference.read_bytes() == original
+    assert len(calls) == (3 if outcome == "interrupted" else 2)
+    if outcome == "interrupted":
+        assert calls[1] == calls[2]
+    assert asyncio.run(pipeline._image(scene, style, tmp_path, reference_image=reference))[1] == record
+    receipt = next(tmp_path.rglob("reference.json"))
+    metadata = json.loads(receipt.read_text())
+    assert metadata == {"source_path": reference.name, "sha256": pipeline._sha(reference)}
+    candidate = receipt.parent
+    expected = pipeline._image_candidate_key((candidate / "prompt.txt").read_text(), 2, candidate / "reference.png")
+    assert expected[:12] in candidate.name
+    complete = json.loads((candidate / "complete.json").read_text())
+    assert complete["files"]["reference.png"] == pipeline._sha(reference)
+
+
+@pytest.mark.parametrize("tamper", ["source", "copy"])
+def test_interrupted_reference_recovery_rejects_changed_pixels(tmp_path, providers, monkeypatch, tamper):
+    scene, style = _project()["scenes"][1], _project()["style"]
+    reference = tmp_path / "previous-accepted.png"
+    Image.new("RGB", (512, 288)).save(reference)
+
+    async def generate(request, directory, *, reference_image=None):
+        if reference_image is None:
+            (directory / "chatgpt-image-request.json").write_text(json.dumps({
+                "prompt": "Generate an image of: " + request,
+                "conversationUrl": "https://chatgpt.com/c/owned-image-request",
+            }))
+            raise RuntimeError("CHATGPT_IMAGE_INPUT_MISSING: missing reference")
+        raise asyncio.CancelledError()
+
+    monkeypatch.setattr(pipeline, "_generate_still", generate)
+    with pytest.raises(asyncio.CancelledError):
+        asyncio.run(pipeline._image(scene, style, tmp_path, reference_image=reference))
+    target = reference if tamper == "source" else next(tmp_path.rglob("reference.png"))
+    target.write_bytes(b"changed pixels")
+    with pytest.raises(RuntimeError, match="reference binding differs"):
+        asyncio.run(pipeline._image(scene, style, tmp_path, reference_image=reference))
+
+
+def test_render_supplies_only_the_previous_accepted_scene_after_missing_input(tmp_path, providers, monkeypatch):
+    references = []
+
+    async def generate(request, directory, *, reference_image=None):
+        second_scene = "scene-002" in directory.parts
+        if second_scene and reference_image is None:
+            (directory / "chatgpt-image-request.json").write_text(json.dumps({
+                "prompt": "Generate an image of: " + request,
+                "conversationUrl": "https://chatgpt.com/c/owned-image-request",
+            }))
+            raise RuntimeError("CHATGPT_IMAGE_INPUT_MISSING: Please upload the reference frame so I can create it.")
+        if reference_image is not None:
+            assert second_scene
+            receipt = json.loads((directory / "reference.json").read_text())
+            source = tmp_path / receipt["source_path"]
+            assert "scene-001" in source.parts
+            assert (source.parent / "visual-review.json").is_file()
+            assert reference_image.read_bytes() == source.read_bytes()
+            references.append(reference_image)
+        return await providers.image(request, directory)
+
+    monkeypatch.setattr(pipeline, "_generate_still", generate)
+    asyncio.run(pipeline.render_project(_project(), tmp_path, lambda _: None, lambda _: None))
+    assert len(references) == 1
+
+
 def test_rejected_illustration_never_reaches_scene_render_and_retries_are_bounded(tmp_path, providers):
     async def run():
         providers.review_failures = 100

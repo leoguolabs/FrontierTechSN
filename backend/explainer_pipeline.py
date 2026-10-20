@@ -468,6 +468,26 @@ def _image_input_failure(directory: Path, key: str, root: Path) -> dict | None:
     return record
 
 
+def _image_reference(directory: Path, root: Path) -> Path | None:
+    receipt = _safe(directory / "reference.json", root)
+    if not receipt.exists():
+        return None
+    record = json.loads(receipt.read_text())
+    reference = _safe(directory / "reference.png", root)
+    source = _safe(root / record["source_path"], root)
+    if (not reference.is_file() or not source.is_file()
+            or _sha(reference) != record["sha256"] or _sha(source) != record["sha256"]):
+        raise RuntimeError("Image reference binding differs; preserve the original request")
+    return reference
+
+
+def _image_candidate_key(request: str, attempt: int, reference: Path | None = None) -> str:
+    inputs = {"prompt": request, "attempt": attempt}
+    if reference is not None:
+        inputs["reference_sha256"] = _sha(reference)
+    return _hash(inputs)
+
+
 def _existing_image_candidates(stage: Path, prompt: str, root: Path) -> list[tuple[int, Path, str, str]]:
     """Keep generation attempts and submitted requests across review-only revisions."""
     candidates = {}
@@ -484,7 +504,7 @@ def _existing_image_candidates(stage: Path, prompt: str, root: Path) -> list[tup
                 raise RuntimeError("Existing image attempt has no prompt; preserve its request")
             request = request_path.read_text()
             attempt = int(match[1])
-            key = _hash({"prompt": request, "attempt": attempt})
+            key = _image_candidate_key(request, attempt, _image_reference(directory, root))
             if (not 1 <= attempt <= MAX_IMAGE_ATTEMPTS or key[:12] != match[2]
                     or not (request == prompt or request.startswith(prompt + _IMAGE_REPAIR_PREFIX))):
                 raise RuntimeError("Existing image attempt inputs differ; preserve its request")
@@ -500,7 +520,8 @@ def _existing_image_candidates(stage: Path, prompt: str, root: Path) -> list[tup
     return list(sorted(candidates.values()))
 
 
-async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None) -> tuple[Path, dict]:
+async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None, *,
+                 reference_image: Path | None = None) -> tuple[Path, dict]:
     prompt = _image_prompt(scene, style)
     key = _hash({"version": CONTRACT_VERSION, "prompt": prompt,
                  "review_version": REVIEW_VERSION, "review": review_prompt(scene, style)})
@@ -567,16 +588,34 @@ async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None
     # Re-review the latest exact-input candidate under the current review contract.
     # Older rejections stay immutable; a reviewer change never grants extra images.
     first_attempt = existing[-1][0] if existing else 1
+    reference_needed = False
     for attempt in range(first_attempt, MAX_IMAGE_ATTEMPTS + 1):
         request = prompt
         if feedback:
-            request += _IMAGE_REPAIR_PREFIX + _image_repair_feedback(feedback)
-        candidate_key = _hash({"prompt": request, "attempt": attempt})
+            repairs = _image_repair_feedback(feedback)
+            if reference_needed:
+                repairs = repairs.replace(
+                    "No earlier image or attachment is available or needed; do not ask for an upload. ",
+                    "Use the attached accepted scene only for visual continuity. ",
+                )
+            request += _IMAGE_REPAIR_PREFIX + repairs
+        reference = _safe(reference_image, root) if reference_needed and reference_image is not None else None
+        candidate_key = _image_candidate_key(request, attempt, reference)
         candidate_stage = _safe(stage / f"attempt-{attempt:02d}-{candidate_key[:12]}", root)
         if existing and attempt == first_attempt:
             _, candidate_stage, request, candidate_key = existing[-1]
+            reference = _image_reference(candidate_stage, root)
+            reference_needed = reference is not None
             log(f"{scene['id']}: retaining illustration candidate {attempt}/{MAX_IMAGE_ATTEMPTS}")
         candidate_stage.mkdir(exist_ok=True)
+        if reference is not None and not (candidate_stage / "reference.json").exists():
+            source = reference
+            reference = _safe(candidate_stage / "reference.png", root)
+            shutil.copyfile(source, reference)
+            _json(candidate_stage / "reference.json", {
+                "source_path": str(source.relative_to(root)), "sha256": _sha(reference),
+            }, root)
+        reference = _image_reference(candidate_stage, root)
         candidate = candidate_stage / "image.png"
         async with owned_media_session(candidate_stage, "chatgpt", recover_only=True):
             pass
@@ -587,11 +626,14 @@ async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None
             failure = _image_input_failure(candidate_stage, candidate_key, root)
             if failure:
                 feedback = failure["feedback"]
+                reference_needed = reference_image is not None
                 continue
             log(f"{scene['id']}: generating illustration candidate {attempt}/{MAX_IMAGE_ATTEMPTS}")
             _write(candidate_stage / "prompt.txt", request, root)
             try:
-                raw, conversation = await _generate_still(request, candidate_stage)
+                raw, conversation = await _generate_still(
+                    request, candidate_stage, **({"reference_image": reference} if reference is not None else {}),
+                )
             except Exception as exc:
                 # Only a confirmed, owned terminal missing-input response can
                 # consume a candidate. Timeouts and unknown outcomes still stop.
@@ -599,7 +641,8 @@ async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None
                     raise
                 state_path = _safe(candidate_stage / "chatgpt-image-request.json", root)
                 state = json.loads(state_path.read_text())
-                if (state.get("prompt") != "Generate an image of: " + request
+                submitted_prefix = "Edit the attached image: " if reference is not None else "Generate an image of: "
+                if (state.get("prompt") != submitted_prefix + request
                         or not re.fullmatch(r"https://chatgpt\.com/c/[\w-]+", state.get("conversationUrl", ""))):
                     raise RuntimeError("Missing-input response is not bound to the owned image request") from exc
                 # A legacy pending candidate may contain raw review JSON. Keep
@@ -612,6 +655,7 @@ async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None
                     "input_hash": candidate_key, "code": "CHATGPT_IMAGE_INPUT_MISSING",
                     "request_sha256": _sha(state_path), "error": str(exc), "feedback": feedback,
                 }, root)
+                reference_needed = reference_image is not None
                 log(f"{scene['id']}: candidate {attempt}/{MAX_IMAGE_ATTEMPTS} requires unavailable input; "
                     "terminal request retained, continuing within the same candidate budget")
                 continue
@@ -622,7 +666,8 @@ async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None
                 artwork.convert("RGB").save(candidate_stage / "image.partial.png")
             (candidate_stage / "image.partial.png").replace(candidate)
             record = _complete(candidate_stage, candidate_key,
-                               list(dict.fromkeys([candidate, raw, candidate_stage / "prompt.txt"])), root,
+                               list(dict.fromkeys([candidate, raw, candidate_stage / "prompt.txt",
+                                   *([reference, candidate_stage / "reference.json"] if reference is not None else [])])), root,
                                conversation_url=conversation)
         accepted, report = await accept(candidate, record.get("conversation_url", ""),
                                         {"kind": "generated", "candidate": str(candidate_stage.relative_to(root))})
@@ -947,6 +992,7 @@ async def render_project(project: dict, project_dir: Path,
         update({"artifacts": thumbnail})
         completed += 1
         selected_motion = set(motion_indices(scenes, style))
+        previous_image = None
         for index, saved_scene in enumerate(scenes):
             scene = {**saved_scene, "_brand_role": "intro" if index == 0 else "outro" if index == len(scenes) - 1 else ""}
             prefix = f"Scene {index + 1}/{len(scenes)}"
@@ -960,7 +1006,8 @@ async def render_project(project: dict, project_dir: Path,
             )
             completed += 1
             progress("generating_images", f"{prefix}: generating or reusing ChatGPT illustration")
-            image_path, illustration = await _image(scene, style, root, log)
+            image_path, illustration = await _image(scene, style, root, log, reference_image=previous_image)
+            previous_image = image_path
             completed += 1
             motion_path, motion = None, None
             if index in selected_motion:

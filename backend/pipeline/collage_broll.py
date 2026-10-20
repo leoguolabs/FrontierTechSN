@@ -1163,7 +1163,7 @@ def _chatgpt_image_composer_not_ready_signature(
     return None
 
 
-async def _generate_still(prompt: str, item_dir: Path) -> tuple[Path, str]:
+async def _generate_still(prompt: str, item_dir: Path, *, reference_image: Path | None = None) -> tuple[Path, str]:
     still_dir = item_dir / "stills"
     still_dir.mkdir(parents=True, exist_ok=True)
     before = {path.resolve() for path in still_dir.iterdir() if path.is_file()}
@@ -1171,6 +1171,7 @@ async def _generate_still(prompt: str, item_dir: Path) -> tuple[Path, str]:
     result = await _run_opencli_retry(
         [
             "chatgpt", "image", prompt,
+            *(["--image", str(reference_image.resolve())] if reference_image is not None else []),
             "--state-file", str((item_dir / "chatgpt-image-request.json").resolve()),
             "--op", str(still_dir.resolve()),
             "--timeout", str(timeout),

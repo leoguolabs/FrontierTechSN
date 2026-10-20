@@ -1175,6 +1175,17 @@ def test_still_retries_reuse_one_durable_request_checkpoint(tmp_path: Path, monk
         args = call.args[0]
         assert args[args.index("--state-file") + 1] == str(tmp_path / "chatgpt-image-request.json")
 
+def test_still_reference_upload_uses_the_bound_local_copy(tmp_path: Path, monkeypatch):
+    reference = tmp_path / "reference.png"
+    Image.new("RGB", (64, 64)).save(reference)
+    run = AsyncMock(side_effect=collage_broll.OpenCLIError("CHATGPT_IMAGE_INPUT_MISSING: provider rejected input"))
+    monkeypatch.setattr(collage_broll, "_run_opencli_retry", run)
+    with pytest.raises(collage_broll.OpenCLIError):
+        asyncio.run(collage_broll._generate_still("owned prompt", tmp_path, reference_image=reference))
+    args = run.await_args.args[0]
+    assert args[args.index("--image") + 1] == str(reference.resolve())
+    assert args[args.index("--state-file") + 1] == str(tmp_path / "chatgpt-image-request.json")
+
 
 def _stuck_chatgpt_image_composer_error() -> collage_broll.OpenCLIError:
     return collage_broll.OpenCLIError(

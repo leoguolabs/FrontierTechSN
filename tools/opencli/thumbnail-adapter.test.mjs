@@ -310,6 +310,37 @@ test('missing reference upload is a terminal owned response, never a fresh submi
   }
 })
 
+test('a request for the preceding illustration to preserve continuity ends only its owned idle wait', async () => {
+  const text = 'Please upload the preceding illustration so I can preserve the exact floral tile motif, character design, and visual continuity while creating this frame.'
+  for (const variant of [text, text.replaceAll(' ', '  '), text.replace('preceding', 'previous'),
+    text + '\nImage generation failed\nTry again']) {
+    const response = { Role: 'Assistant', Text: variant }
+    const { run, state } = waiter(fixedWait, { messages: () => [ownedFailure[0], response] })
+    await assert.rejects(run(420, savedUrl, { prompt: 'exact image prompt' }), /CHATGPT_IMAGE_INPUT_MISSING/)
+    assert.equal(state.clock, 6000)
+    assert.equal(state.progress.at(-1).stage, 'image_input_missing')
+    assert.equal(state.navigations.length, 0)
+  }
+  const response = { Role: 'Assistant', Text: text }
+  for (const options of [
+    { messages: () => [{ Role: 'User', Text: 'other prompt' }, response] },
+    { messages: () => [response, ownedFailure[0]] },
+    { messages: () => [ownedFailure[0], { ...response, Text: 'The previous response said: ' + text }] },
+    { messages: () => [ownedFailure[0], response], generating: () => true },
+    { messages: () => [ownedFailure[0], response], images: () => ['data:image/png;base64,preview'] },
+  ]) {
+    const { run, state } = waiter(fixedWait, options)
+    try { await run(12, savedUrl, { prompt: 'exact image prompt' }) }
+    catch (error) { assert.doesNotMatch(error.message, /CHATGPT_IMAGE_(INPUT_MISSING|GENERATION_FAILED)/) }
+    assert.equal(state.progress.at(-1).stage, 'image_wait_timeout')
+  }
+  const completed = waiter(fixedWait, {
+    messages: () => [ownedFailure[0], response],
+    images: state => state.clock >= 6000 ? [imageUrl] : [],
+  })
+  assert.deepEqual(Array.from(await completed.run(30, savedUrl, { prompt: 'exact image prompt' })), [imageUrl])
+})
+
 test('completed image error ends the owned wait after two stable idle readings', async () => {
   const { run, state } = waiter(fixedWait, { messages: () => ownedFailure })
   await assert.rejects(run(420, savedUrl, { prompt: 'exact image prompt' }),

@@ -83,6 +83,14 @@ A bounded narration repair preserves every other audio row:
 .venv/bin/python scripts/transcribe.py
 ```
 
+For a confirmed synthesis fault with unchanged narration, record the line's
+source SHA-256, replacement seed and reason in `content/speech-repairs.json`.
+The speech client applies that source-bound override on every resumption,
+retains prior provider requests and allows at most three distinct takes per
+line and source. A local writer lock prevents competing manifest updates.
+Before submitting any selected line, the client checks the whole selection
+against the service's advertised character limit.
+
 Build from the current, reviewed local audio:
 
 ```sh
@@ -105,12 +113,20 @@ visual acceptance or subjective listening quality.
 node scripts/render.mjs --stills
 node scripts/render.mjs --draft --start 0 --end 18 --out media/opening.mp4
 node scripts/validate.mjs --draft
+node scripts/inspect_motion.mjs --edition long
 .venv/bin/python scripts/analyze_frames.py media/opening.mp4 --out review/opening
 ```
 
 Draft mode allows missing audio and estimated durations. A final render
 requires current audio for every narration row. Captions in a final build
 must use source-bound independent ASR timing.
+
+The motion inspector checks conservative marker-body rectangles at every
+frame and reports candidate intersections. Inspect the rendered intervals
+before accepting a fix; an empty candidate list does not establish visual
+quality. The long composition declares local marker handoffs in
+`src/long-film.mjs`. Its scheduler preserves each pen's drawing order while
+allowing time for one pen to leave before another approaches.
 
 Keep a reference film at `reference/whiteboard.mp4` for the comparison lab
 and paired atlases. The exact source is:

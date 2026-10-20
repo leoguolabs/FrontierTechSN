@@ -26,7 +26,7 @@
   {
     "id": "05",
     "region": "measures",
-    "text": "Start with four separate questions. First, can you complete the task while help is available? Second, can you solve it independently? Those are already different tests. A correct answer copied from a screen can satisfy the first without settling the second.",
+    "text": "Start with four questions. First, can you complete the task while help is available? Second, can you solve it independently? Those are already different tests. A correct answer copied from a screen can satisfy the first without settling the second.",
     "claim": "C01; original explanatory example"
   },
   {
@@ -38,7 +38,7 @@
   {
     "id": "07",
     "region": "measures",
-    "text": "Here is an everyday example. Repeating yesterday's spreadsheet formula checks something narrower than adapting it to a table with missing entries. Both can be useful exercises. Label the test honestly so that the result answers the question you actually care about.",
+    "text": "Repeating yesterday's spreadsheet formula checks something narrower than adapting it to a table with missing entries. Both can be useful exercises. Label the test honestly so that its result answers the question you care about.",
     "claim": "Original illustrative application"
   },
   {
@@ -74,19 +74,19 @@
   {
     "id": "13",
     "region": "turkey",
-    "text": "For a separate arithmetic illustration, suppose a baseline score is fifty. A forty eight percent relative increase would make it seventy four, not ninety eight. Those are invented numbers to explain the calculation, not the experiment's reported average scores.",
+    "text": "For an arithmetic illustration, start at fifty. A forty eight percent relative increase would make it seventy four, not ninety eight. These are invented numbers to explain the calculation, not the experiment's reported average scores.",
     "claim": "Original arithmetic illustration; not participant data"
   },
   {
     "id": "14",
     "region": "physics",
-    "text": "Now turn to a different experiment. In college physics, a carefully designed artificial intelligence tutor produced higher immediate test scores than an active classroom lesson. A chatbot can support learning when the teaching design makes that happen.",
+    "text": "Now consider college physics. A carefully designed artificial intelligence tutor produced higher immediate test scores than an active classroom lesson. A chatbot can support learning when the teaching design makes that happen.",
     "claim": "C04"
   },
   {
     "id": "15",
     "region": "physics",
-    "text": "The tutor sequenced the material, asked questions, supplied feedback and used expert prepared content. Students could work at their own pace. The result belongs to that instructional system; it is not a measurement of every conversation with a general chatbot.",
+    "text": "The tutor sequenced material, asked questions, supplied feedback and used expert prepared content. Students worked at their own pace. This result describes that instructional system; it does not measure every conversation with a general chatbot.",
     "claim": "C04"
   },
   {
@@ -98,7 +98,7 @@
   {
     "id": "17",
     "region": "physics",
-    "text": "A separate mathematics study compared generated help, human authored help and no help. Generated help improved learning relative to no help, while the comparison with human authored help was not statistically significant. Correctness still needed careful quality control.",
+    "text": "A mathematics study compared generated help, human authored help and no help. Generated help improved learning over no help. Its difference from human authored help was not statistically significant. Correctness still needed quality control.",
     "claim": "C10"
   },
   {
@@ -110,25 +110,25 @@
   {
     "id": "19",
     "region": "delay",
-    "text": "What happens when the test comes later? A twenty twenty six working paper studied more than six thousand middle school students, comparing artificial intelligence support with conventional computer practice. It also varied whether students had to demonstrate mastery before progressing.",
+    "text": "A twenty twenty six working paper studied over six thousand middle school students. It compared artificial intelligence with conventional computer practice and varied whether students had to demonstrate mastery. Tests followed one week later.",
     "claim": "C08"
   },
   {
     "id": "20",
     "region": "delay",
-    "text": "The researchers returned one week later with practiced and unpracticed material. During practice, artificial intelligence users attempted fewer questions and moved more slowly, but answered more accurately once they made an attempt. Error recovery also improved.",
+    "text": "The tests used practiced and unpracticed material. During practice, artificial intelligence users attempted fewer questions and moved more slowly, but answered more accurately once they made an attempt. Error recovery also improved.",
     "claim": "C08"
   },
   {
     "id": "21",
     "region": "delay",
-    "text": "The delayed benefit was more limited. The most encouraging result appeared with artificial intelligence inside the mastery workflow, concentrated on practiced material and only marginally statistically significant. This remains working paper evidence, not a settled general finding.",
+    "text": "The delayed benefit was narrower. Artificial intelligence within the mastery workflow showed a gain on practiced material that was only marginally statistically significant. This working paper does not establish a general benefit.",
     "claim": "C08"
   },
   {
     "id": "22",
     "region": "delay",
-    "text": "So keep three labels beside any learning claim: the population, the comparison, and the test. A result for middle school mathematics a week later answers a different question from an immediate college physics test. Putting both on one universal scorecard would conceal those differences.",
+    "text": "Keep three labels: population, comparison and test. Middle school mathematics tested a week later differs from a college physics test taken immediately. Putting both on a universal scorecard would conceal those differences.",
     "claim": "Editorial synthesis"
   },
   {
@@ -140,13 +140,13 @@
   {
     "id": "24",
     "region": "offload",
-    "text": "But first name the skill you want to acquire. If your goal is to reason about a formula, outsourcing every choice of formula removes an opportunity to make those choices. If the formula is routine bookkeeping, outsourcing it may serve a different goal.",
+    "text": "Name the skill you want to acquire. If your goal is to reason about a formula, outsourcing each formula choice removes an opportunity to make those choices. If the formula is routine bookkeeping, outsourcing it may serve a different goal.",
     "claim": "C05; original editorial application"
   },
   {
     "id": "25",
     "region": "offload",
-    "text": "A recent preregistered experiment with seven hundred and four adults tested feedback about their use of assistance during fraction arithmetic. The feedback reduced requests for complete answers and improved a subsequent unaided test. An effort reward did not show the same effects.",
+    "text": "A preregistered experiment with seven hundred and four adults studied help with fraction arithmetic. Feedback on help-seeking reduced requests for full answers and improved a later unaided test. Rewarding effort did not show the same effects.",
     "claim": "C09"
   },
   {
@@ -164,13 +164,13 @@
   {
     "id": "28",
     "region": "guidance",
-    "text": "In one randomized study of novice secondary mathematics students, worked examples beat unguided problem solving on tests of the practiced procedure and near transfer, given just after learning. The task was opening algebraic brackets. This supports useful initial guidance.",
+    "text": "In a randomized study of novice secondary mathematics students, worked examples beat unguided problem solving on practiced procedures and near transfer, tested just after learning. The task was opening algebraic brackets. Initial guidance helped.",
     "claim": "C06"
   },
   {
     "id": "29",
     "region": "guidance",
-    "text": "There is evidence for trying first as well. A meta analysis of fifty three studies favored problem solving followed by instruction overall, with important differences across ages, tasks and implementation. It studied teaching sequences, not a universal rule for artificial intelligence.",
+    "text": "Trying first also has evidence. A meta analysis of fifty three studies favored problem solving followed by instruction, with differences across ages, tasks and implementation. It studied teaching sequences, not a universal rule for using a chatbot.",
     "claim": "C11"
   },
   {
@@ -194,7 +194,7 @@
   {
     "id": "33",
     "region": "retrieval",
-    "text": "Retrieval practice can support learning, but the comparison matters. A review of forty four studies found its advantage over other substantial learning activities depended on the activity and on corrective feedback. Recalling something is not automatically the best choice in every situation.",
+    "text": "A review of forty four studies compared retrieval practice with other substantial learning activities. Its advantage depended on the activity and corrective feedback. Recall can help, but it is not automatically the best choice for every situation.",
     "claim": "C07"
   },
   {
@@ -224,7 +224,7 @@
   {
     "id": "38",
     "region": "example",
-    "text": "If you already know the basics, try before opening that solution. Suppose you stop at the brackets. A useful hint could ask which operation would remove the outside factor. It leaves you a decision to make, then gives you a way to check that decision.",
+    "text": "If you know the basics, try before opening that solution. Suppose you stop at the brackets. A useful hint could ask which operation would remove the outside factor. It leaves you a decision to make, then gives you a way to check that decision.",
     "claim": "Original checked mathematical example"
   },
   {
@@ -272,7 +272,7 @@
   {
     "id": "46",
     "region": "labels",
-    "text": "A small recent study of fifty participants learning nuclear safety found larger immediate gains with unrestricted chat than with its constrained alternatives. Its limited size, specialized task and immediate test make it a caution against easy rankings, not a general winner.",
+    "text": "A study of fifty people learning nuclear safety found larger immediate gains with unrestricted chat than with constrained alternatives. Its small sample, specialized task and immediate test caution against declaring a general winner.",
     "claim": "C12"
   },
   {
@@ -284,7 +284,7 @@
   {
     "id": "48",
     "region": "labels",
-    "text": "If the tutor gives a full solution anyway, you still have choices. Study it deliberately, cover it, and test a fresh case. If the feedback seems wrong, check a trusted reference or teacher before rehearsing it. The interface does not remove your judgment.",
+    "text": "A full solution still leaves you choices. Study it, cover it, and test a fresh case. If the feedback seems wrong, check a trusted reference or teacher before rehearsing it. The interface does not remove your judgment.",
     "claim": "Original editorial recommendation"
   },
   {
@@ -302,13 +302,13 @@
   {
     "id": "51",
     "region": "closing",
-    "text": "The evidence supports neither a blanket ban nor an automatic promise. Different learners, tools, teaching designs and tests produce different results. When the goal is learning, watch what the person is required to do and measure what remains after the help is removed.",
+    "text": "The evidence supports neither a blanket ban nor an automatic promise. Results vary with learners, tools, teaching and tests. When learning is the goal, watch what the person must do, then measure what remains after help is removed.",
     "claim": "Editorial synthesis of cited evidence"
   },
   {
     "id": "52",
     "region": "closing",
-    "text": "Return to the spreadsheet at the beginning. The first formula solved today's problem. Your next independent attempt tells you something about tomorrow. Use artificial intelligence to make that next attempt better. What can you do when the answer is gone?",
+    "text": "Return to the opening spreadsheet. The first formula solved today's problem. Your next independent attempt tells you something about tomorrow. Use artificial intelligence to make that attempt better. What can you do when the answer is gone?",
     "claim": "Original editorial conclusion"
   }
 ]

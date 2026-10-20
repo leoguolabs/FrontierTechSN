@@ -49,3 +49,67 @@ submitted to Chatterbox. The local polling client was stopped and resumed
 with the revised source, preserving jobs
 `e7fd8b789f1643a795ae4a114812b8c6` and
 `a96c7682cfbc4f9dab4b42e923c0f438` and the original line-01 WAV.
+
+## Motion and speech repair
+
+A 288-frame study-to-physics test revealed the departing blue marker crossing
+the black marker while the learner's head was drawn. A 384-frame second
+pass separated the notebook's arrival but retained that earlier collision.
+The third pass separated the book diagram, person and notebook. All 432
+frames of that silent clip were visually inspected through nine consecutive
+atlases. The exact clips, atlas hashes, coverage and observations are in
+`development-motion.json`. This is bounded development evidence, not
+full-film acceptance.
+
+A conservative marker-rectangle scan then exposed similar timing risks in
+other illustrated scenes. The long composition now declares local handoffs,
+preserving each pen's queue and accounting for departure and approach time.
+The scan has been used to select further rendered motion tests. It does not
+replace those tests or the final comparison against the reference.
+
+The original line-02 WAV said the requested sentence and then added
+"We're reset to". Two unprompted recognizers, Whisper turbo and medium,
+independently reported that tail. The original WAV and provider job are
+retained. A source-bound second take, job
+`65b1fc54a17848e19bfbe0225c0fa697`, has no word differences in the current
+unprompted turbo transcript. Lines 01–03 now have matching transcripts.
+This establishes transcription agreement, not subjective listening quality.
+
+The speech client now retains the selected repair seed across resumptions,
+rejects a repair if its source text changes, bounds each source to three
+distinct requests and prevents concurrent writers from updating the same
+edition's manifest. The previously submitted line-03 job was recovered
+unchanged; the remote service was not restarted.
+
+The service advertises a 250-character request limit. After downloading
+line 04, the first client reached an overlong line 05 and stopped before
+submitting it. Twenty unsubmitted lines were shortened, reducing the script
+from 2,037 to 1,939 words while retaining study populations, comparisons,
+numbers, timing and qualifications. Every line now fits; the maximum length
+is 249 characters. A whole-selection preflight now reports every oversized
+line before any generation request. The client resumed the existing first
+four jobs and submitted the revised line 05. No completed audio was replaced
+for this copy edit. Earlier motion clips retain their original timing receipts
+and remain development evidence from the earlier provisional script.
+
+Seven development clips have now been inspected through all of their
+consecutive atlases, totaling 3,453 decoded frames, including the two
+superseded collision passes. The added Turkey, physics, retrieval and closing
+clips contain 921, 408, 380 and 640 frames respectively. No visible marker
+collision remains in these bounded sequences. Four native 1920 × 1080 frames
+were also opened: flag and scoreboards, physics book and learner, crossed
+solution and independent learner, and the completed learning-log table.
+Their exact source-video and image hashes are recorded in
+`development-motion.json`.
+
+The Turkey percentages appear later than their provisional caption phrases.
+That timing is not accepted: the final Chatterbox words must drive the
+score reveals after the corresponding audio is available. The geometric
+triage pass currently reports zero marker-body intersections across 17,286
+provisional frames; it excludes shadows, erasers and subframe motion and
+does not establish final visual quality.
+
+The first five current WAVs now have matching unprompted transcripts. Their
+source, provider-job and audio hashes are retained in `audio-development.json`.
+All remaining audio, complete-film rendering, reference comparison and
+playback review are still pending.

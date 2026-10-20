@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Direct, resumable Chatterbox client. No project tasks or pipeline imports."""
 import argparse
+import fcntl
 import hashlib
 import json
 import os
@@ -27,6 +28,37 @@ def save(path, obj):
     tmp.replace(path)
 
 
+def speech_seed(line, index, repairs):
+    repair = repairs.get(line["id"])
+    if repair is None:
+        return 220 + index
+    if repair["source_sha256"] != digest(line["text"].encode()):
+        raise ValueError(f"Repair plan belongs to older narration: {line['id']}")
+    seed = repair["seed"]
+    if type(seed) is not int or not 0 <= seed < 2**32:
+        raise ValueError(f"Invalid repair seed: {line['id']}")
+    return seed
+
+
+def check_attempt_budget(directory, line, identity):
+    source = digest(line["text"].encode())
+    attempts = {identity}
+    for path in directory.glob(f"{line['id']}-*.request.json"):
+        checkpoint = json.loads(path.read_text())
+        if checkpoint["source_sha256"] == source:
+            attempts.add(checkpoint["identity"])
+    if len(attempts) > 3:
+        raise ValueError(f"Three-attempt bound reached for line {line['id']}; inspect retained evidence.")
+
+
+def preflight_text(lines, selected, max_chars):
+    oversized = [(line["id"], len(line["text"])) for line in lines
+                 if line["id"] in selected and len(line["text"]) > max_chars]
+    if oversized:
+        details = ", ".join(f"{line_id}: {length}" for line_id, length in oversized)
+        raise ValueError(f"Narration exceeds the service's {max_chars}-character bound ({details}).")
+
+
 def main():
     global ROOT
     parser = argparse.ArgumentParser()
@@ -46,7 +78,19 @@ def main():
         raise SystemExit("Set CHATTERBOX_TTS_URL or use --frontier-config.")
     directory = ROOT / "media/audio"
     directory.mkdir(parents=True, exist_ok=True)
+    writer_lock = (directory/".speech.lock").open("a")
+    try:
+        fcntl.flock(writer_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        raise SystemExit("A speech writer is already active for this edition.")
     lines = json.loads((ROOT / "content/narration.json").read_text())
+    repair_path = ROOT/"content/speech-repairs.json"
+    repairs = json.loads(repair_path.read_text()) if repair_path.exists() else {}
+    if set(repairs) - {line["id"] for line in lines}:
+        raise ValueError("Repair plan contains an unknown narration ID.")
+    selected = set(args.only.split(",")) if args.only else {line["id"] for line in lines}
+    if selected - {line["id"] for line in lines}:
+        raise ValueError("Unknown line selected for repair.")
 
     def request(path, payload=None, idem=None, binary=False):
         headers = {"X-API-Key": key}
@@ -69,22 +113,18 @@ def main():
 
     cap = request("/v1/capabilities")
     save(directory / "capabilities.json", cap)
+    preflight_text(lines, selected, cap["max_chars"])
     voice = "space-en-f1"
     voice_info = next(v for v in cap["voices"] if v["id"] == voice)
     manifest_path = directory / "manifest.json"
     existing = json.loads(manifest_path.read_text()) if manifest_path.exists() else []
     manifest = {row["id"]: row for row in existing}
-    selected = set(args.only.split(",")) if args.only else {line["id"] for line in lines}
-    if selected - {line["id"] for line in lines}:
-        raise ValueError("Unknown line selected for repair.")
     for index, line in enumerate(lines):
         if line["id"] not in selected:
             continue
-        if len(line["text"]) > cap["max_chars"]:
-            raise ValueError(f"Line {line['id']} exceeds the service's character bound.")
         payload = {
             "text": line["text"], "language_id": "en", "voice": voice,
-            "seed": 220 + index, "exaggeration": 0.5, "cfg_weight": 0.5,
+            "seed": speech_seed(line, index, repairs), "exaggeration": 0.5, "cfg_weight": 0.5,
             "temperature": 0.8, "repetition_penalty": 2.0,
             "min_p": 0.05, "top_p": 1.0, "speed": 1.0,
         }
@@ -98,6 +138,7 @@ def main():
                             "source_sha256": digest(line["text"].encode()), "binding": binding})
         if checkpoint["identity"] != identity:
             raise ValueError("Checkpoint identity mismatch.")
+        check_attempt_budget(directory, line, identity)
         save(checkpoint_path, checkpoint)
         if "job_id" not in checkpoint:
             job = request("/v1/jobs", payload, checkpoint["idempotency_key"])

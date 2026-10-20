@@ -1,0 +1,634 @@
+{
+  "scope": "Development clips only; not final-film review. Every listed consecutive atlas was visually inspected. Source tiles are 320x180; 2560x1224 sheets displayed at 2048x979. Native still inspection is separate. Clips are silent and timings include provisional narration rows.",
+  "clips": [
+    {
+      "name": "study-physics",
+      "video_sha256": "59463a805873f2ea399f9675805fe4bb9f85d935befc9f2263f844016b009b66",
+      "receipt": {
+        "picture_sha256": "59463a805873f2ea399f9675805fe4bb9f85d935befc9f2263f844016b009b66",
+        "timeline_sha256": "f55581616a139761f379a303113a78e43a294faa511915e61ac393a63b4b9871",
+        "events_sha256": "1d5a084d96422848d77da9ccfa1840572fcd940a562b9455afcbd86acfb2f75b",
+        "first_frame": 4204,
+        "last_frame_exclusive": 4492,
+        "frames": 288,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 288,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "e072623abeaf0a7bacaf13e111c1d475bbbc9e53e0f855833d723e9ad61cbff9"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "2694e3dcb7d2d2e6e7c5a73d28908da19dad0470cefdf0281775af272a581f8e"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "399f90744d0219d817a14e375934ffeb80088a780fdf1df24198ff783ad050da"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "db1921e94433e7bac65ce57d7734c14b4a8e387a3d8914fefd667c0e71874382"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "dd19d4a3e11a5f1a0cc9f58ad475402b26429a48ff296ce0b749df976e5fd3b6"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "12fdb0aa571653f7acc17aafdef0c2f069e4d9702291d282d690a778805255b8"
+        }
+      ],
+      "observation": "Black and blue markers overlap while the learner head is being drawn; revise."
+    },
+    {
+      "name": "study-physics-v2",
+      "video_sha256": "ca24f5dced456ff197b54b59527a1b3d423821a9474e861e7f46f41a32cf75af",
+      "receipt": {
+        "picture_sha256": "ca24f5dced456ff197b54b59527a1b3d423821a9474e861e7f46f41a32cf75af",
+        "timeline_sha256": "f55581616a139761f379a303113a78e43a294faa511915e61ac393a63b4b9871",
+        "events_sha256": "0442d83269e881dd41e79f9e0748a90175fb0423f20d887b888d36ae42e03699",
+        "first_frame": 4204,
+        "last_frame_exclusive": 4588,
+        "frames": 384,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 384,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "e072623abeaf0a7bacaf13e111c1d475bbbc9e53e0f855833d723e9ad61cbff9"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "2694e3dcb7d2d2e6e7c5a73d28908da19dad0470cefdf0281775af272a581f8e"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "399f90744d0219d817a14e375934ffeb80088a780fdf1df24198ff783ad050da"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "80f3011561bd7a395cec2d40b36e7d8ace56faa274e572474002de961a5c75b7"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "5bdde7196e05afc671f64443f48e53d06bf7a389e59bd69748c35099134cd9d1"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "d26c5308f16717928a6eace90267dee865723eb2716401d7890b7796b66d122b"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "c260b39d6490ee61f53f6b5f6d4dcee57395248b2bb5ab8a53db49b220b42c26"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 383,
+          "sha256": "395ae943c971cf4bf6813ff927c6255068e67779acdf585711b24d8f1dbed5a3"
+        }
+      ],
+      "observation": "Notebook handoff is improved, but the blue book-diagram departure still crosses the black head drawing; revise."
+    },
+    {
+      "name": "study-physics-v3",
+      "video_sha256": "358048742c22a4e3e4456da284737961a3f3d04b59fea5459ec8e2bf474d789a",
+      "receipt": {
+        "picture_sha256": "358048742c22a4e3e4456da284737961a3f3d04b59fea5459ec8e2bf474d789a",
+        "timeline_sha256": "f55581616a139761f379a303113a78e43a294faa511915e61ac393a63b4b9871",
+        "events_sha256": "d0a18872295081925a7aa284d14d03b3d2e7efb6d21c558589a2340c2a487465",
+        "first_frame": 4204,
+        "last_frame_exclusive": 4636,
+        "frames": 432,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 432,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "e072623abeaf0a7bacaf13e111c1d475bbbc9e53e0f855833d723e9ad61cbff9"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "2694e3dcb7d2d2e6e7c5a73d28908da19dad0470cefdf0281775af272a581f8e"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "399f90744d0219d817a14e375934ffeb80088a780fdf1df24198ff783ad050da"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "b02ce23645dd43d8945683d7175795394c208a1d9da31e0621871382d47891c4"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "a74f6a81e3d59c034c644e232c42382ff83701466611a17ccedbdbf6e7c73efe"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "350f4c50d8a9b1f8551d0794f67b57a7ac8fcc4cf4ba80e297229beafcea3a83"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "e797e061cc29f59b616a7576e187383631d8313973c8c068dd535322ee2d6d60"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 383,
+          "sha256": "64918e978389738425d0b0727d824391644e910ddd02cd818fc8ffaefbdad4f5"
+        },
+        {
+          "file": "atlas-0008.jpg",
+          "first": 384,
+          "last": 431,
+          "sha256": "af86670657dc87606a2342409b5c33c0ca0b9dadfb2545447c3f090a36506198"
+        }
+      ],
+      "observation": "All 432 frames inspected through nine consecutive atlases. Book-diagram departure, head drawing and notebook arrival are separated. No visible collision remains in this bounded draft sequence."
+    },
+    {
+      "name": "turkey-handoffs",
+      "video_sha256": "f492d70936b2b458c3b7931c50a27dd557dabc9c803418579b3fce2bb31e2c96",
+      "receipt": {
+        "picture_sha256": "f492d70936b2b458c3b7931c50a27dd557dabc9c803418579b3fce2bb31e2c96",
+        "timeline_sha256": "27086e5e763a5504ca497b36a379f84f89122e225c50b71036be5a711346d2dd",
+        "events_sha256": "fedd76f1695d5bccbd6c2ab80fe9d433a158b895b14fd1ec7e84973c610ac530",
+        "first_frame": 2583,
+        "last_frame_exclusive": 3504,
+        "frames": 921,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 921,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "0134923222e887ea4265d669e49d0f18faa305d1e0c54737a7b8ec8a33b132ef"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "95a1a00e741ba63a28ea1a041823d8b30a85ab8cbc02104f41d4f9997afdf9db"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "ac93cdb800be08ef7ca88f998ff51e45f0284a754d945b48433aaec7fa12291b"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "8cf6dbefea5b12419d5293ae0c38536878c70edad4db7e53193df2059320cc27"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "d51a00498eb50b0f88772a38ffc6359a502f1d3350eb926bc63340d2f98bddec"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "6f679b41293a7c58151699e98c2e511ff4e8c10dd4951e014ed9f6f75b23e66e"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "8dc913b931dbbb60e525798a27d10cf24c3f94e79c865724feaba47f17f88105"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 383,
+          "sha256": "46dd0cf181589a5ebcff0aaa000b40357bcbf846b3a4770348e90b2d10a5d995"
+        },
+        {
+          "file": "atlas-0008.jpg",
+          "first": 384,
+          "last": 431,
+          "sha256": "3d02b7ea3ec3193f1fbe5dcf0dc613d696d004a4e5e31a49aee10c4fa841078e"
+        },
+        {
+          "file": "atlas-0009.jpg",
+          "first": 432,
+          "last": 479,
+          "sha256": "f0af9c6724a767673263ca2a69c370c96264118b30815edda6c2773a1352e6b8"
+        },
+        {
+          "file": "atlas-0010.jpg",
+          "first": 480,
+          "last": 527,
+          "sha256": "399da46046f49aaeda330a7fd0eed23e3697658cc6bb8e69ae9f214d0aa02624"
+        },
+        {
+          "file": "atlas-0011.jpg",
+          "first": 528,
+          "last": 575,
+          "sha256": "6f85f349b493cd0ab354539e602ad3a4be0a35822b4de11fb1ad7cce0cf8821b"
+        },
+        {
+          "file": "atlas-0012.jpg",
+          "first": 576,
+          "last": 623,
+          "sha256": "b07246622d4fafcf250cf2566e98fe812f0cd237079a4d3ac6b2f107cf43cb21"
+        },
+        {
+          "file": "atlas-0013.jpg",
+          "first": 624,
+          "last": 671,
+          "sha256": "f35b5ccfa6030d97d3ebbbd287b31586b2fe78cf845ca63196a6601a28230570"
+        },
+        {
+          "file": "atlas-0014.jpg",
+          "first": 672,
+          "last": 719,
+          "sha256": "daf93f91b2c2f172b5fa6f6371368bd5aa5e0fa3ce392459be00192cc29af394"
+        },
+        {
+          "file": "atlas-0015.jpg",
+          "first": 720,
+          "last": 767,
+          "sha256": "d1b3f10d0fc291ac9ae89142fcb167f5275001accacf280cf96df9ad8bd407da"
+        },
+        {
+          "file": "atlas-0016.jpg",
+          "first": 768,
+          "last": 815,
+          "sha256": "97f511f3128a0b3b7c3e2c8e45a5d1796ee90186006ea8cd81f71d4422cf0208"
+        },
+        {
+          "file": "atlas-0017.jpg",
+          "first": 816,
+          "last": 863,
+          "sha256": "7fb1276b946646e6bf9820251a0388bbe57c124026bcd38701441ec5c9fd2148"
+        },
+        {
+          "file": "atlas-0018.jpg",
+          "first": 864,
+          "last": 911,
+          "sha256": "c71f772047116701670625462124b095533bf7b13235163ca70fa1eec2034349"
+        },
+        {
+          "file": "atlas-0019.jpg",
+          "first": 912,
+          "last": 920,
+          "sha256": "b6865a83f276cf1e21b114e4abce17e6d59ae9787e5625473a9b4150ae9f7b8f"
+        }
+      ],
+      "observation": "All 921 consecutive frames inspected in 20 atlases. Flag, assisted learner, unaided learner and score labels remain recognizable; no visible pen collision. The percentages lag the provisional captions, so final speech-to-drawing alignment remains required."
+    },
+    {
+      "name": "physics-handoffs",
+      "video_sha256": "527bc06b25f0d4fe015b7398152853bc047e01ca44879cc87d9f65deeaf98109",
+      "receipt": {
+        "picture_sha256": "527bc06b25f0d4fe015b7398152853bc047e01ca44879cc87d9f65deeaf98109",
+        "timeline_sha256": "27086e5e763a5504ca497b36a379f84f89122e225c50b71036be5a711346d2dd",
+        "events_sha256": "fedd76f1695d5bccbd6c2ab80fe9d433a158b895b14fd1ec7e84973c610ac530",
+        "first_frame": 4147,
+        "last_frame_exclusive": 4555,
+        "frames": 408,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 408,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "8ba921615d629fca12c7d08360b954ed6d68ae8dd745bd2c335fdbd5cc746866"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "949d97a8b2cd6f85b805fda805e8b058f964af8261ac28af03709026ee1c1044"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "0bd09fd688ea27541440eb8307178e246b6480efe2dacb0460ade2a7e9c01dbd"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "aad901318c326d3f79ef6367e742854a2ed5cb2473909d31c0eb73887d1fffaf"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "ae4bb7a5cef41f40d297b718818bc20a638fcadb4bebb3530461debb236ac65c"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "2e476908b2b6cf22abbf651ebc74951aed8b16581e32ea23e49113f226485057"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "20e9b8083e2998d656a159cfb1068a93b40eb26b1a0fdde85d577e3d6b143c46"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 383,
+          "sha256": "076bf59982eccb8475f758042ea3a371721afa31094f5cfdfbc41d6c32482ff6"
+        },
+        {
+          "file": "atlas-0008.jpg",
+          "first": 384,
+          "last": 407,
+          "sha256": "31c028734c0a6de64da7908b72a8146378b3705f7467d9c2b485fdcb045213bc"
+        }
+      ],
+      "observation": "All 408 consecutive frames inspected in nine atlases. The book, page diagram, learner and notebook are drawn with distinct marker handoffs; no visible collision. No final audio timing or listening claim."
+    },
+    {
+      "name": "retrieval-handoffs",
+      "video_sha256": "5d55b97d2bae8610be9febb11d289c388a439229b833717f6d3893140e6377a0",
+      "receipt": {
+        "picture_sha256": "5d55b97d2bae8610be9febb11d289c388a439229b833717f6d3893140e6377a0",
+        "timeline_sha256": "27086e5e763a5504ca497b36a379f84f89122e225c50b71036be5a711346d2dd",
+        "events_sha256": "fedd76f1695d5bccbd6c2ab80fe9d433a158b895b14fd1ec7e84973c610ac530",
+        "first_frame": 10439,
+        "last_frame_exclusive": 10819,
+        "frames": 380,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 380,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "1878fd44c098976de13d02950f112af6e2cf2496c88117f457dc6f3c86dd2002"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "689a7ab10fdf3e4f8f36080aad8c4d42079759bd3a3b4f33a763f0a2ba5f7997"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "df32d05738ede35957837881086cbe4b4b08d3a5a09100c23ca409862aa73efa"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "95e2b7b33f6ae2bac619eb1993741ee2d185a08f4525a97c452371ee4f0baff0"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "23fb0b2b037d4555a2190081c6ea7f8d92dab3f328efe26a7731e16c62179825"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "a5ba30fbc5d8f3148966dc2ae46ece82acf42f86706f8498e076f4cd1e013e41"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "4e14eb5b37960f741622b1cb4ee2e0426ec628058b2ca83dce65f6fa3435e4da"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 379,
+          "sha256": "9524c7b0175271eca3664cfb7666b578d5536f793a6ad2bfc6f1bbc378a4963e"
+        }
+      ],
+      "observation": "All 380 consecutive frames inspected in eight atlases. The solution is drawn, crossed, and followed by a learner writing independently. Markers leave before the following drawing approaches; no visible collision. This is the earlier provisional narration timeline, not final speech alignment."
+    },
+    {
+      "name": "closing-handoffs",
+      "video_sha256": "1cdaebc931e57f32b9f1613c86cfef6e5a2671cd4dde1dfd92706c005f5df812",
+      "receipt": {
+        "picture_sha256": "1cdaebc931e57f32b9f1613c86cfef6e5a2671cd4dde1dfd92706c005f5df812",
+        "timeline_sha256": "50d989d87d38357526390d0c765751c485f338654762cb676e43608a0aef7412",
+        "events_sha256": "8abedc6d42cb20ca5a0e520b682aa90d7fd60815293485c73f2427617fc8e723",
+        "first_frame": 15713,
+        "last_frame_exclusive": 16353,
+        "frames": 640,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 640,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "08033bad7ec1316b3e392a765040dec71e68ceab9dd40ae34d6744346a616e77"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "d581bdfe1d61600f6e32fd09880ce120425ca8112b613ca25f236420c2cd45f2"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "4612b5ba5f1506957dccd3c711cd3be90dd085e5dcb25077ad71397bdbd4979f"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "ac6eed696091bcce30bc1f48ba956fc7129e6a9f7a692430cf2c799e286e3250"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "8165a43f1b2b9958e07480a7c355855dd9cc2defc9ca210867934721882e7d57"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "4b3e80684194b4a10297fb10ff898b85473dddd1744163738daeb633b5b36e82"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "a202ddbb24e87aac3b8296113eff4f3b87ce109a89501397be98911711f45f7a"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 383,
+          "sha256": "316347d48603dbf63c4296ef3de30c1d49e087e343bec7e2dae23d86b15065a2"
+        },
+        {
+          "file": "atlas-0008.jpg",
+          "first": 384,
+          "last": 431,
+          "sha256": "a559aedbfc5f457935effc9fb72a8ceccff44522f9c27cc3e55277bb57def7fd"
+        },
+        {
+          "file": "atlas-0009.jpg",
+          "first": 432,
+          "last": 479,
+          "sha256": "d817d155d702ac698af64641f9fda19e51ea1aa91edfe89bd10cf2600993cf7b"
+        },
+        {
+          "file": "atlas-0010.jpg",
+          "first": 480,
+          "last": 527,
+          "sha256": "c46ab9310d8c64964dc43066677d362759f50e5841e3e814323bad8f87ccd388"
+        },
+        {
+          "file": "atlas-0011.jpg",
+          "first": 528,
+          "last": 575,
+          "sha256": "21526711c8704a8aee57849bc9f71bb13e0856c2311277a354e567125499eec5"
+        },
+        {
+          "file": "atlas-0012.jpg",
+          "first": 576,
+          "last": 623,
+          "sha256": "1720cf9d3303ea6c5e43268302c584b196a78fb8f0713446f2e8c5b8bee060b3"
+        },
+        {
+          "file": "atlas-0013.jpg",
+          "first": 624,
+          "last": 639,
+          "sha256": "ac8ed112abc911b7d9d89909c65efe52ba3ce1e5cec3156c11ff97eeeaaec21c"
+        }
+      ],
+      "observation": "All 640 consecutive frames inspected in 14 atlases. Border, dividers, column labels and entries are drawn in separated marker handoffs. No visible marker collision. Narration is provisional and this silent clip does not establish speech synchronization."
+    }
+  ],
+  "native_stills": [
+    {
+      "file": "review/development/native/turkey-handoffs-600.png",
+      "sha256": "d69180de9e5fa3b71b3695a79c470b9ec1f86e1a83d92915bdb3084f29bfbab9",
+      "video_sha256": "f492d70936b2b458c3b7931c50a27dd557dabc9c803418579b3fce2bb31e2c96",
+      "frame": 600,
+      "width": 1920,
+      "height": 1080,
+      "observation": "Flag crescent and star, learner poses, laptop and paper are recognizable. Percentages have clear space beside the figures; speech timing still needs alignment."
+    },
+    {
+      "file": "review/development/native/physics-handoffs-405.png",
+      "sha256": "7e68a5208b4e494fa7362674d06c4ca3d1f76b97f28013f7d30afc52425a5445",
+      "video_sha256": "527bc06b25f0d4fe015b7398152853bc047e01ca44879cc87d9f65deeaf98109",
+      "frame": 405,
+      "width": 1920,
+      "height": 1080,
+      "observation": "Formula stays on the left page, force diagram on the right. Learner and notebook are separate and fully visible."
+    },
+    {
+      "file": "review/development/native/retrieval-handoffs-376.png",
+      "sha256": "402ffc7334b52dce61bcae288df74af410eef7993cd469c0c88800258ed7cbee",
+      "video_sha256": "5d55b97d2bae8610be9febb11d289c388a439229b833717f6d3893140e6377a0",
+      "frame": 376,
+      "width": 1920,
+      "height": 1080,
+      "observation": "Crossed solution and learner writing at a desk remain distinct and legible."
+    },
+    {
+      "file": "review/development/native/closing-handoffs-639.png",
+      "sha256": "17b2ad2e0647224bdeb54573b979de43f78ca0b4dfee737cee00d37c63703d2c",
+      "video_sha256": "1cdaebc931e57f32b9f1613c86cfef6e5a2671cd4dde1dfd92706c005f5df812",
+      "frame": 639,
+      "width": 1920,
+      "height": 1080,
+      "observation": "Table labels and entries are legible and fit their columns. The next learner is still being drawn at this selected frame."
+    }
+  ]
+}

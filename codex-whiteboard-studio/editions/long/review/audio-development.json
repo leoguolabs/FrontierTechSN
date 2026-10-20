@@ -1,0 +1,55 @@
+{
+  "scope": "Current source-bound provider WAVs and unprompted transcript evidence. No subjective listening claim. More segments remain in generation.",
+  "rows": [
+    {
+      "id": "01",
+      "path": "media/audio/01-e863a5c086b5.wav",
+      "job_id": "e7fd8b789f1643a795ae4a114812b8c6",
+      "audio_sha256": "330caef2784876d1c4280db4c5a2635ac01421cd60e7981e6a95a8fd403358c0",
+      "source_sha256": "940d14ac55cd991442b179464e76a150b7ff0c577d0eeba90cf9e22cd5e26c1e",
+      "duration": 10.52,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "02",
+      "path": "media/audio/02-def5dc6e6d68.wav",
+      "job_id": "65b1fc54a17848e19bfbe0225c0fa697",
+      "audio_sha256": "947778e7c3b8e9b5dfd702f2b98a34423b72e3e08c0407a20148e54dd0bb4f55",
+      "source_sha256": "935857a7380d49c64611ea681e2edc1a8262cdf512cedbd20d4c6d82b13e77de",
+      "duration": 10.92,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "03",
+      "path": "media/audio/03-45415c5b5d4b.wav",
+      "job_id": "38c712de5345447a84511f7b0dede664",
+      "audio_sha256": "0b6a9f248f41ac021756f2ff50aed92c62cc851ff4b486fd040fef3849e87b4a",
+      "source_sha256": "53ed5c7065cb4515bf391f380dffee698bdf1556544cd2cfbe4baf55eb00e45c",
+      "duration": 11.88,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "04",
+      "path": "media/audio/04-676c58b9769e.wav",
+      "job_id": "44f14f62b37c44c3a3974d4ccbae8b74",
+      "audio_sha256": "158d83a42669790783e635fa083644998563f7d63223313be89da9a2998b694d",
+      "source_sha256": "d26396f1a43b58c722fbf363eeda4f28e4ee4b228fbeac6c5314c8043bebe3e7",
+      "duration": 12.92,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "05",
+      "path": "media/audio/05-911fec4526d0.wav",
+      "job_id": "31a070de32854ab9ac8a1e488b6431bb",
+      "audio_sha256": "7bd6fb96b4f19810add868ab3645997b2f833903b6987310005660e8098bdb7b",
+      "source_sha256": "e7b5ceb51d5ac8c8e29ef71a007357bb60d4aee01107967406eb820c80b8125e",
+      "duration": 11.8,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    }
+  ]
+}

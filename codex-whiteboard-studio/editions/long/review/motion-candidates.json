@@ -1,0 +1,11 @@
+{
+  "edition": "long",
+  "complete_audio": false,
+  "fps": 24,
+  "frames": 17286,
+  "scope": "Conservative marker-body rectangles at each exact frame. Candidate defects require rendered visual review. Shadows, erasers and subframe motion are not assessed.",
+  "timeline_sha256": "7ecf0d6c4924aeff399a1f8b3f2b673897c8bc6c0d7facf418e4f9d68d1095a7",
+  "composition_sha256": "b35432d6d6e1287c5846403b8c3d13f43b67696a59bcb2ccbd8af43a97651b24",
+  "renderer_sha256": "470b421c651f27892ab1c8cb2cb4c8a2671297b8325a26308a5b02aa17588eea",
+  "events": []
+}

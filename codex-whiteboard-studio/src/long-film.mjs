@@ -1,6 +1,7 @@
 import {Score, Camera, BoardRenderer, createLettering, line, poly, rect, circle, curve,
   arrow, check, marker, beginDrawing, INK, BLUE, ORANGE} from './board.mjs'
 import {learnerAtDesk,thinkingLearner,turkishFlag} from './illustrations.mjs'
+import {compileSequence} from './choreography.mjs'
 import {makeTimeline,FPS} from './film.mjs'
 export {FPS}
 
@@ -17,6 +18,8 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   beginDrawing()
   const timeline=makeTimeline(narration,audio,alignments,{targetDuration:720,minimumRoom:42})
   const S=new Score(),L=createLettering(font)
+  const handoffs=[]
+  const after=(before,following,gap=1.25)=>handoffs.push({before,after:following,gap})
   const row=id=>timeline.lines.find(r=>r.id===String(id).padStart(2,'0'))
   const t=(id,f=0)=>row(id).start+row(id).duration*f
   const pen=c=>c===BLUE?'blue':c===ORANGE?'orange':'black'
@@ -44,10 +47,13 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
     const p=rmap[region],a=learnerAtDesk(p.x+dx,p.y+dy,{scale,mode,accent})
     d(`${id}-body`,[...a.body,...a.desk],at,2.6)
     d(`${id}-task`,a.task,at+1.1,1.5,accent)
+    after(`${id}-body`,`${id}-task`)
   }
   const thinker=(id,region,dx,dy,at,accent=BLUE,facing='right',scale=1)=>{
     const p=rmap[region],a=thinkingLearner(p.x+dx,p.y+dy,{scale,accent,facing})
-    d(`${id}-body`,a.body,at,2.8);d(`${id}-book`,a.notebook,at+1.2,.9,accent)
+    // Let the black marker leave before the colored marker approaches the notebook.
+    d(`${id}-body`,a.body,at,2.8);d(`${id}-book`,a.notebook,at+4,.9,accent)
+    after(`${id}-body`,`${id}-book`)
   }
   const arr=(id,region,a,b,at,color=INK)=>{
     const p=rmap[region]
@@ -111,6 +117,7 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   d('physics-page-notes',[...rect(cx+380,cy+355,75,65,{color:BLUE,width:6}),
     ...arrow(cx+417,cy+460,cx+505,cy+460,{color:BLUE,width:6,head:14})],t(14,.43),1,BLUE)
   thinker('physics-thinker','physics',1230,235,t(14,.5),BLUE,'left',1.25)
+  after('physics-page-notes','physics-thinker-body')
   arr('physics-understanding','physics',[650,410],[1120,410],t(15,.08),BLUE)
   text('physics-design','questions / feedback / pacing','physics',900,810,t(15,.32),{h:60,align:'center',color:BLUE,duration:2.3})
   text('physics-result','better immediate test scores','physics',900,960,t(16,.1),{h:63,align:'center',color:ORANGE,duration:2})
@@ -236,6 +243,31 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   const ellipse=Array.from({length:65},(_,i)=>[fx+900+870*Math.cos(i/64*Math.PI*2),fy+1320+90*Math.sin(i/64*Math.PI*2)])
   d('closing-ellipse',poly(ellipse,{color:ORANGE,width:7}),t(52,.70),1.6,ORANGE)
 
+  // Local handoffs identified by frame review and conservative motion triage.
+  after('measure-laptop','measure-help')
+  after('measure-alone-body','measure-alone-label')
+  after('turkey-context','turkey-flag')
+  after('turkey-flag','turkey-assisted-body')
+  after('turkey-assisted-task','turkey-practice')
+  after('turkey-unaided-task','turkey-practice')
+  after('turkey-unaided-task','turkey-exam')
+  after('turkey-practice','turkey-exam')
+  after('turkey-exam','relative')
+  after('relative','guarded')
+  after('guarded','guarded-scope')
+  after('physics-book','physics-equation')
+  after('delayed-practice-task','week-calendar')
+  after('week-study','week-result')
+  after('attempt-label','guidance-gap')
+  after('retrieval-heading','retrieval-solution')
+  after('retrieval-solution','retrieval-hide')
+  after('retrieval-hide-2','retrieval-person-body')
+  after('right-expansion','example-why')
+  after('help-word-1','help-choice-2')
+  const logOrder=['log-column-2','log-heading-0','log-heading-1','log-heading-2',
+    'log-entry-0','log-entry-1','log-entry-2']
+  logOrder.slice(1).forEach((id,i)=>after(logOrder[i],id))
+
   // Leave a quiet route between chapters so the final board reads as an argument.
   regions.slice(1).forEach(([region,x,y],index)=>{
     const [,px,py]=regions[index]
@@ -273,7 +305,7 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   keys.push({t:last.end+3.0,x:5900,y:2850,z:.145,roll:0},
     {t:timeline.duration,x:5900,y:2850,z:.145,roll:0})
   S.cue('closing-cap',last.end+4,{kind:'cap'})
-  S.compile()
+  compileSequence(S,handoffs)
   const camera=new Camera(keys)
   const props=(ctx,time)=>{
     if(time>last.end+3.8){

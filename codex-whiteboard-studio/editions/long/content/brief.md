@@ -9,7 +9,8 @@ Takeaway: Identify the skill, choose suitable help, then explain, correct,
 change the problem and return later to check independent performance.
 
 Target: approximately twelve minutes, 1920 × 1080, 24 fps. The 52 narration
-segments contain 2,037 words. Natural-speed Chatterbox audio determines the
+segments contain 1,939 words, each within the service's 250-character request
+limit. Natural-speed Chatterbox audio determines the
 final duration. The timeline reserves room for visual pauses and the closing
 pullback; an estimated draft runtime is not the final runtime.
 

@@ -1,0 +1,9 @@
+{
+  "02": {
+    "source_sha256": "935857a7380d49c64611ea681e2edc1a8262cdf512cedbd20d4c6d82b13e77de",
+    "seed": 1221,
+    "replaces_audio_sha256": "d32ce330b3e7baf4f27a2b095974526b488d2f8c16b9ca934739d098eaf88dbc",
+    "replaces_job_id": "a96c7682cfbc4f9dab4b42e923c0f438",
+    "reason": "Both unprompted Whisper turbo and medium transcriptions found the extra trailing words \"We're reset to\" after the complete requested sentence. Retain the original WAV and generate a second natural-speed take."
+  }
+}

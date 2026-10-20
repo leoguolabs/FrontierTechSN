@@ -36,7 +36,8 @@ def edition_files(project):
     for folder in ["reference", "candidate", "comparison", "final-stills"]:
         files.extend(p for p in (root/"review"/folder).rglob("*") if p.is_file())
     for folder in ["audio", "asr"]:
-        files.extend(p for p in (root/"media"/folder).rglob("*") if p.is_file())
+        files.extend(p for p in (root/"media"/folder).rglob("*")
+                     if p.is_file() and p.name != ".speech.lock")
     for name in [
         project.movie_name, "poster.jpg", "captions.srt", "captions.vtt",
         "timeline.json", "events.json", "delivery-timeline.json", "audio-mix-provenance.json",

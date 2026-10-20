@@ -245,30 +245,33 @@ export function magnet(ctx,x,y,{r=42,color=ORANGE,lift=0,mark=true}={}){
 }
 
 export class BoardRenderer {
-  constructor({createCanvas,score,camera,lettering,props=()=>{},captions=[]}){
+  constructor({createCanvas,score,camera,lettering,props=()=>{},captions=[],
+    boardWidth=BOARD_W,boardHeight=BOARD_H}){
     this.createCanvas=createCanvas;this.score=score;this.camera=camera
+    this.boardWidth=boardWidth;this.boardHeight=boardHeight
     this.lettering=lettering;this.props=props;this.captions=captions;this.cache=new Map()
     this.surface=this.makeSurface()
     this.inkCanvas=createCanvas(WIDTH,HEIGHT)
   }
   makeSurface(){
-    const c=this.createCanvas(2050,1225),ctx=c.getContext('2d')
-    const g=ctx.createLinearGradient(0,0,2050,1225)
+    const width=this.boardWidth/4,height=this.boardHeight/4
+    const c=this.createCanvas(width,height),ctx=c.getContext('2d')
+    const g=ctx.createLinearGradient(0,0,width,height)
     g.addColorStop(0,'#f7f6f3');g.addColorStop(1,'#eae9e5')
-    ctx.fillStyle=g;ctx.fillRect(0,0,2050,1225)
+    ctx.fillStyle=g;ctx.fillRect(0,0,width,height)
     for(let i=0;i<12000;i++){
-      const x=hash(i+21)*2050,y=hash(i+36)*1225
+      const x=hash(i+21)*width,y=hash(i+36)*height
       ctx.strokeStyle=`rgba(110,116,120,${.012+hash(i+90)*.012})`;ctx.lineWidth=.2+hash(i+81)*.5
       ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+hash(i+8)*17,y+(hash(i+12)-.5)*4);ctx.stroke()
     }
     for(let i=0;i<190;i++){
-      const x=hash(i*4+2)*2050,y=hash(i*4+3)*1225
+      const x=hash(i*4+2)*width,y=hash(i*4+3)*height
       ctx.strokeStyle='rgba(135,142,146,.034)';ctx.lineWidth=2+hash(i+88)*4;ctx.lineCap='round'
       ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+50+hash(i+48)*80,y+(hash(i+62)-.5)*28);ctx.stroke()
     }
     ctx.save();ctx.scale(.25,.25)
     for(let i=0;i<35;i++){
-      const x=hash(i*7+13)*BOARD_W,y=hash(i*7+29)*BOARD_H
+      const x=hash(i*7+13)*this.boardWidth,y=hash(i*7+29)*this.boardHeight
       const color=i%3?'#9aa0a8':'#8aa0c8'
       const shapes=i%4===0?this.lettering.text(['x + y','pH 7','f(x)','E = mc2','a = b'][i%5],x,y,{h:80,color})
         :i%3===0?[circle(x,y,110,{width:9,color})]:arrow(x,y,x+160,y-30,{width:8,color})
@@ -289,17 +292,18 @@ export class BoardRenderer {
   transform(ctx,cam){ctx.translate(960,500);ctx.rotate(cam.roll);ctx.scale(cam.z,cam.z);ctx.translate(-cam.x,-cam.y)}
   drawBoard(ctx,t){
     const cam=this.camera.at(t)
+    const boardWidth=this.boardWidth,boardHeight=this.boardHeight
     ctx.fillStyle='#dddcd6';ctx.fillRect(0,0,WIDTH,HEIGHT)
     ctx.save();this.transform(ctx,cam)
     ctx.shadowColor='rgba(35,35,31,.23)';ctx.shadowBlur=65;ctx.shadowOffsetY=35
-    ctx.fillStyle='#b7babb';ctx.fillRect(-43,-43,BOARD_W+86,BOARD_H+86)
+    ctx.fillStyle='#b7babb';ctx.fillRect(-43,-43,boardWidth+86,boardHeight+86)
     ctx.shadowColor='transparent'
-    ctx.fillStyle='#e4e7e7';ctx.fillRect(-25,-25,BOARD_W+50,BOARD_H+50)
-    ctx.drawImage(this.surface,0,0,BOARD_W,BOARD_H)
+    ctx.fillStyle='#e4e7e7';ctx.fillRect(-25,-25,boardWidth+50,boardHeight+50)
+    ctx.drawImage(this.surface,0,0,boardWidth,boardHeight)
     // Frame lip and tray visible only during the final wide camera.
-    const tray=ctx.createLinearGradient(0,BOARD_H+32,0,BOARD_H+135)
+    const tray=ctx.createLinearGradient(0,boardHeight+32,0,boardHeight+135)
     tray.addColorStop(0,'#747e83');tray.addColorStop(.35,'#dce1e2');tray.addColorStop(1,'#abb1b3')
-    ctx.fillStyle=tray;ctx.fillRect(1450,BOARD_H+28,5300,100)
+    ctx.fillStyle=tray;ctx.fillRect(boardWidth/BOARD_W*1450,boardHeight+28,boardWidth/BOARD_W*5300,100)
     ctx.restore()
     const ink=this.inkCanvas.getContext('2d')
     ink.clearRect(0,0,WIDTH,HEIGHT)

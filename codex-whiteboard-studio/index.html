@@ -24,6 +24,12 @@
           <p>An AI tool can improve your result today. Whether that becomes knowledge you can use tomorrow is a different question.</p>
           <p class="film-title">Does AI Help You Learn—or Just Finish?</p>
           <div class="film-meta"><span id="film-duration">~3 MIN</span><span>1080P</span><span>24 FPS</span><span>CHATTERBOX VOICE</span></div>
+          <label id="edition-picker" class="edition-picker" hidden>Edition
+            <select id="edition-select" aria-label="Film edition">
+              <option value="short">Three-minute film</option>
+              <option value="long">Full-length film</option>
+            </select>
+          </label>
           <a class="watch-link" href="#screen">Watch the film <span aria-hidden="true">↘</span></a>
         </div>
       </div>
@@ -32,7 +38,7 @@
           <source src="media/does-ai-help-you-learn-3min.mp4?edition=illustrated-v2" type="video/mp4">
           <track kind="subtitles" src="media/captions.vtt" srclang="en" label="English">
         </video>
-        <figcaption><span>ONE BOARD. DRAWN BY HAND. A QUESTION WORTH KEEPING.</span><a href="media/does-ai-help-you-learn-3min.mp4" download>Download film ↗</a></figcaption>
+        <figcaption><span>ONE BOARD. DRAWN BY HAND. A QUESTION WORTH KEEPING.</span><a id="download-film" href="media/does-ai-help-you-learn-3min.mp4" download>Download film ↗</a></figcaption>
       </figure>
       <div class="chapter-strip" id="chapters" aria-label="Film chapters"></div>
     </section>
@@ -67,7 +73,7 @@
         <div><strong>2,664</strong><span>reference frames decoded</span></div>
         <div><strong id="candidate-count">—</strong><span>delivery frames decoded</span></div>
         <div><strong id="review-state">In review</strong><span>current evidence status</span></div>
-        <div class="review-links"><a href="review/visual-review.md">Delivery review ↗</a><a href="review/reference-review.md">Reference review ↗</a></div>
+        <div class="review-links"><a id="delivery-review" href="review/visual-review.md">Delivery review ↗</a><a href="review/reference-review.md">Reference review ↗</a></div>
       </div>
       <p class="fineprint">The two stories differ in content and duration. Moment mapping supports style inspection; it does not imply pixel identity. Complete-frame measurements, atlas inspection and full-resolution spot checks are recorded as separate evidence.</p>
     </section>

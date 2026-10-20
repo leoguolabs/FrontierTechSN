@@ -6,19 +6,21 @@ import {createHash} from 'node:crypto'
 import {once} from 'node:events'
 import {fileURLToPath} from 'node:url'
 import path from 'node:path'
-import {createFilm,FPS} from '../src/film.mjs'
-
-const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
-process.chdir(ROOT)
 const argv=process.argv.slice(2)
 const option=(name,fallback)=>argv.includes(name)?argv[argv.indexOf(name)+1]:fallback
+const edition=option('--edition','short')
+if(!['short','long'].includes(edition))throw new Error(`Unknown edition: ${edition}`)
+const STUDIO=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
+const ROOT=edition==='short'?STUDIO:path.join(STUDIO,'editions',edition)
+const {createFilm,FPS}=await import(edition==='short'?'../src/film.mjs':'../src/long-film.mjs')
+process.chdir(ROOT)
 const out=option('--out','media/picture-v1.mp4')
 const width=+option('--width','1920'),height=Math.round(width*9/16)
-const font=JSON.parse(await readFile('fonts/ems-tech.json','utf8'))
+const font=JSON.parse(await readFile(path.join(STUDIO,'fonts/ems-tech.json'),'utf8'))
 const narration=JSON.parse(await readFile('content/narration.json','utf8'))
 const audio=existsSync('media/audio/manifest.json')?JSON.parse(await readFile('media/audio/manifest.json','utf8')):[]
 const alignments=existsSync('media/asr/review.json')?JSON.parse(await readFile('media/asr/review.json','utf8')):[]
-GlobalFonts.registerFromPath('fonts/ArchitectsDaughter-Regular.ttf','Architects Daughter')
+GlobalFonts.registerFromPath(path.join(STUDIO,'fonts/ArchitectsDaughter-Regular.ttf'),'Architects Daughter')
 const film=createFilm({font,narration,audio,alignments,createCanvas})
 const {timeline,score,camera,renderer}=film
 const digest=data=>createHash('sha256').update(data).digest('hex')
@@ -58,12 +60,22 @@ function render(t,blur=true){
 }
 if(argv.includes('--stills')){
   const times=option('--times',null)?.split(',').map(Number)||timeline.lines.map(l=>l.start+l.duration*.76)
+  const folder=option('--still-dir','review/stills')
+  await mkdir(folder,{recursive:true})
+  const stills=[]
   for(const [i,t] of times.entries()){
     render(t,false)
-    const filename=`review/stills/frame-${String(i).padStart(2,'0')}-${t.toFixed(2)}.jpg`
-    await writeFile(filename,canvas.toBuffer('image/jpeg',93))
+    const filename=`${folder}/frame-${String(i).padStart(2,'0')}-${t.toFixed(2)}.jpg`
+    const bytes=canvas.toBuffer('image/jpeg',93)
+    await writeFile(filename,bytes)
+    stills.push({file:path.basename(filename),time:t,sha256:digest(bytes)})
     console.log(filename)
   }
+  await writeFile(`${folder}/index.json`,JSON.stringify({
+    edition,timeline_sha256:digest(timelineJSON),events_sha256:digest(eventsJSON),
+    complete_audio:timeline.complete_audio,width:1920,height:1080,stills,
+    scope:'Selected source-render stills; not final-encoded or consecutive-frame review.'
+  },null,2)+'\n')
   console.log(`Timeline ${timeline.duration.toFixed(3)}s, ${timeline.duration_frames} frames, complete audio: ${timeline.complete_audio}`)
   process.exit(0)
 }

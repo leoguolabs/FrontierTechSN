@@ -8,7 +8,8 @@ from pathlib import Path
 import re
 import time
 
-ROOT = Path(__file__).resolve().parents[1]
+STUDIO = Path(__file__).resolve().parents[1]
+ROOT = STUDIO
 
 
 def words(text):
@@ -47,10 +48,13 @@ def align_source(text, recognized):
 
 
 def main():
+    global ROOT
     parser = argparse.ArgumentParser()
+    parser.add_argument("--edition", choices=["short", "long"], default="short")
     parser.add_argument("--follow", action="store_true")
     parser.add_argument("--model", default="mlx-community/whisper-large-v3-turbo-q4")
     args = parser.parse_args()
+    ROOT = STUDIO if args.edition == "short" else STUDIO/"editions"/args.edition
     import mlx_whisper
     directory = ROOT / "media/asr"
     directory.mkdir(parents=True, exist_ok=True)

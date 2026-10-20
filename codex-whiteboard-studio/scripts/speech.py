@@ -11,7 +11,8 @@ import urllib.error
 import urllib.request
 import wave
 
-ROOT = Path(__file__).resolve().parents[1]
+STUDIO = Path(__file__).resolve().parents[1]
+ROOT = STUDIO
 
 
 def digest(data):
@@ -27,15 +28,18 @@ def save(path, obj):
 
 
 def main():
+    global ROOT
     parser = argparse.ArgumentParser()
+    parser.add_argument("--edition", choices=["short", "long"], default="short")
     parser.add_argument("--frontier-config", action="store_true",
                         help="Read the parent app's existing service credentials only.")
     parser.add_argument("--only", help="Comma-separated line IDs for a bounded repair; preserve other manifest rows.")
     args = parser.parse_args()
+    ROOT = STUDIO if args.edition == "short" else STUDIO/"editions"/args.edition
     url = os.environ.get("CHATTERBOX_TTS_URL", "")
     key = os.environ.get("CHATTERBOX_TTS_API_KEY", "")
     if args.frontier_config:
-        sys.path.insert(0, str(ROOT.parent))
+        sys.path.insert(0, str(STUDIO.parent))
         from backend import config
         url, key = config.CHATTERBOX_TTS_URL, config.CHATTERBOX_TTS_API_KEY
     if not url:

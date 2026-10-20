@@ -7,3 +7,5 @@
 
 .review-links{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
 @media(max-width:900px){.review-links{grid-column:1/-1;align-items:flex-start}}
+.edition-picker { margin: 1.1rem 0; font-size: .8rem; letter-spacing: .04em; }
+.edition-picker select { margin-left: .7rem; padding: .45rem .6rem; font: inherit; color: inherit; background: transparent; border: 1px solid #b8b3a8; border-radius: 3px; }

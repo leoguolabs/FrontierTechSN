@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify the encoded artifact, frame cadence and the placement of every voice line."""
+import argparse
 from fractions import Fraction
 import hashlib
 import json
@@ -9,6 +10,7 @@ import subprocess
 
 import numpy as np
 from scipy.io import wavfile
+from production import add_edition_argument, production
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -20,7 +22,12 @@ def run(*args, binary=False):
 
 
 def main():
-    video = ROOT/"media/does-ai-help-you-learn-3min.mp4"
+    global ROOT
+    parser = argparse.ArgumentParser()
+    add_edition_argument(parser)
+    project = production(parser.parse_args().edition)
+    ROOT = project.root
+    video = project.video
     timeline = json.loads((ROOT/"media/timeline.json").read_text())
     meta = json.loads(run("ffprobe", "-v", "error", "-count_frames", "-show_streams",
                           "-show_format", "-of", "json", video).stdout)

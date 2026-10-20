@@ -27,6 +27,8 @@ audio service with resumable, source-bound requests.
 - `reference/`: original reference media (ignored by Git)
 - `review/`: measurements, comparison evidence, and revision log
 - `article/`: the process article and publication receipt
+- `editions/long/`: full-length narration, source ledger, media and review
+- `src/long-film.mjs`: the full-length composition on the shared drawing engine
 
 ## Run the showcase
 
@@ -146,8 +148,9 @@ and are excluded from Git. Source and curated evidence are versioned.
 The final delivery is also copied into the user's lemo-opuscar clone under
 `films/codex-whiteboard-studio/`, with the reference attribution retained.
 
-The three-minute edition is the current checkpoint. The twelve-minute
-edition follows the user's approval of this film. Public X delivery has a
+The three-minute edition was accepted in principle and its illustrated
+refinement has been delivered. The full-length edition is in production.
+Public X delivery has a
 separate publication receipt; a draft article is not a published post.
 
 ## Illustrated edition
@@ -165,3 +168,33 @@ Use poses and objects to explain the script; avoid filling every empty space.
 
 The first delivered edition, including its exact film, source and review
 evidence, is retained in the export folder at `versions/01-reviewed-short/`.
+
+## Full-length edition
+
+Every build and review command defaults to the short edition. Add
+`--edition long` to use the separate long-edition artifact directory:
+
+```sh
+.venv/bin/python scripts/speech.py --edition long
+.venv/bin/python scripts/transcribe.py --edition long --follow
+node scripts/validate.mjs --edition long --draft
+node scripts/render.mjs --edition long --stills
+.venv/bin/python scripts/build.py --edition long
+.venv/bin/python scripts/record_review.py --edition long --sheets 0-3 --note "Actual inspection."
+.venv/bin/python scripts/record_review.py --edition long --finalize
+```
+
+The final long movie is named `does-ai-help-you-learn-long.mp4`; its measured
+duration is authoritative. Fonts, instrument samples and the reference
+remain shared. Provider WAVs, captions, picture, sound and acceptance records
+are edition-specific. Do not run two speech writers for the same edition.
+
+The showcase enables its edition selector when the long edition's complete
+delivery record exists. To include both reviewed editions in the export:
+
+```sh
+.venv/bin/python scripts/export_project.py /absolute/path/to/delivery-folder --include-long
+```
+
+This command rejects an edition whose current video has not passed its own
+technical and complete-frame review.

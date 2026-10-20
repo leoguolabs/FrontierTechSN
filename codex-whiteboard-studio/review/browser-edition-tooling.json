@@ -1,0 +1,20 @@
+{
+  "checked_on": "2026-10-21",
+  "url": "http://127.0.0.1:8246/",
+  "scope": "Development showcase after edition routing; delivered short media unchanged.",
+  "short_video_sha256": "9db8ae139d3ccbc7e576bb40a790ab8baded687fed897d6a9a43325f8b431df9",
+  "observed": {
+    "duration_seconds": 180,
+    "chapter_button": "0:34 Two scoreboards",
+    "playback_times_seconds": [39.965262, 52.248344],
+    "paused": false,
+    "video_error": null,
+    "frame_entry": 1200,
+    "after_next_frame": 1201,
+    "mapped_reference_frame": 1221,
+    "unreviewed_long_option_visible": false
+  },
+  "screenshot": "browser-edition-tooling.png",
+  "long_playback": "Pending final video and complete delivery review.",
+  "audio_listening": "Not established by browser state."
+}

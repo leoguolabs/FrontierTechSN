@@ -12,6 +12,7 @@ from functools import lru_cache
 import numpy as np
 from scipy.io import wavfile
 from scipy.signal import butter, resample_poly, sosfilt
+from production import STUDIO, add_edition_argument, production
 
 ROOT = Path(__file__).resolve().parents[1]
 SR = 48000
@@ -46,7 +47,7 @@ def sampled_note(midi, duration, kind):
     """Pitch a licensed real instrument; preserve its natural attack and decay."""
     names = {"marimba": "marimba-c4.wav", "bell": "glock-c5.wav",
              "pluck": "cello-pizz-g1.wav"}
-    folder = ROOT/"assets/instruments"
+    folder = STUDIO/"assets/instruments"
     entries = json.loads((folder/"sources.json").read_text())
     entry = next(row for row in entries if row["file"] == names[kind])
     path = folder/entry["file"]
@@ -93,12 +94,17 @@ def write(name, signal):
 
 
 def main():
+    global ROOT
     parser = argparse.ArgumentParser()
+    add_edition_argument(parser)
     parser.add_argument("--draft", action="store_true")
     parser.add_argument("--picture", default="media/picture-v1.mp4")
-    parser.add_argument("--out", default="media/does-ai-help-you-learn-3min.mp4")
+    parser.add_argument("--out", help="Output path relative to the selected edition.")
     parser.add_argument("--stems-only", action="store_true")
     args = parser.parse_args()
+    project = production(args.edition)
+    ROOT = project.root
+    args.out = args.out or f"media/{project.movie_name}"
     timeline = json.loads((ROOT/"media/timeline.json").read_text())
     events = json.loads((ROOT/"media/events.json").read_text())
     if not timeline["complete_audio"] and not args.draft:
@@ -199,7 +205,7 @@ def main():
     (ROOT/"media/audio-mix-provenance.json").write_text(json.dumps({
         "sample_rate": SR, "duration": n/SR, "voice": provenance,
         "score": "Original 88 BPM composition with CC0 VCSL/VSCO-2-CE instrument samples",
-        "instrument_sources": json.loads((ROOT/"assets/instruments/sources.json").read_text()),
+        "instrument_sources": json.loads((STUDIO/"assets/instruments/sources.json").read_text()),
         "foley": "Original filtered noise and modal impacts on shared stroke/cue timeline",
         "unmastered_peak": float(np.abs(mixed).max())
     }, indent=2)+"\n")

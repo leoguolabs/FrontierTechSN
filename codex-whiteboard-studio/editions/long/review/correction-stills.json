@@ -1,0 +1,32 @@
+{
+  "edition": "long",
+  "timeline_sha256": "14e35afa499b46126149b29d244fe40cc487302b1f0e3d71f0f3b74fb6224f86",
+  "events_sha256": "2e80461630e0a17f1908a0bbce1d727e03547c48315277088bc5942188dc45bc",
+  "complete_audio": false,
+  "width": 1920,
+  "height": 1080,
+  "stills": [
+    {
+      "file": "frame-00-134.60.jpg",
+      "time": 134.60043859649122,
+      "sha256": "bd1a1ab95697576d491955cdcdc34917f62bcba90b9689b78c984a0bf300e2a6"
+    },
+    {
+      "file": "frame-01-188.90.jpg",
+      "time": 188.90219298245614,
+      "sha256": "e9a868eeb1abf7b82030afd3f78c1be62b41939e17965ad17f3f01f006572ae9"
+    },
+    {
+      "file": "frame-02-380.09.jpg",
+      "time": 380.08903508771925,
+      "sha256": "52fb207b68bb68480cc42dda29edc9ad9db29f47b2dd0253ab2094a4f454ca69"
+    },
+    {
+      "file": "frame-03-755.17.jpg",
+      "time": 755.175,
+      "sha256": "f6f55118a298b3709888728e76365bdd912298c39ae13d247d83beb4cdbb2ad2"
+    }
+  ],
+  "scope": "Selected source-render stills; not final-encoded or consecutive-frame review.",
+  "inspection": "Opened all four listed stills individually at their native 1920x1080 size. Later chapter-link source revision is separate."
+}

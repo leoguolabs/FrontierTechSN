@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 """Extract original-resolution review stills from the encoded delivery itself."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
 import subprocess
+from production import add_edition_argument, production
 
-ROOT = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser()
+add_edition_argument(parser)
+project = production(parser.parse_args().edition)
+ROOT = project.root
 timeline = json.loads((ROOT/"media/timeline.json").read_text())
-video = ROOT/"media/does-ai-help-you-learn-3min.mp4"
+video = project.video
 folder = ROOT/"review/final-stills"
 folder.mkdir(exist_ok=True)
 frames = sorted(set([round((row["end"]-.2)*24) for row in timeline["lines"]]

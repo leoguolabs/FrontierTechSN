@@ -1,0 +1,1122 @@
+{
+  "status": "draft checks passed",
+  "duration": 754.6666666666666,
+  "frames": 18112,
+  "audio_lines": 1,
+  "focal_labels": [
+    {
+      "id": "hook-heading",
+      "text": "AI: LEARN OR JUST FINISH?",
+      "time": 3.4,
+      "bounds": [
+        454.0834607638272,
+        138.2224369692172,
+        1475.5953819505867,
+        205.4374150682599
+      ],
+      "clipped": false
+    },
+    {
+      "id": "deadline",
+      "text": "today: it works",
+      "time": 8.775,
+      "bounds": [
+        285.72218411033475,
+        744.5576204499023,
+        782.067481742198,
+        830.8617214856444
+      ],
+      "clipped": false
+    },
+    {
+      "id": "tomorrow",
+      "text": "tomorrow: can you rebuild it?",
+      "time": 22.191666666666666,
+      "bounds": [
+        1015.805989725658,
+        761.1484281709606,
+        1672.3366998901683,
+        819.9639263970344
+      ],
+      "clipped": false
+    },
+    {
+      "id": "first-question",
+      "text": "what remains when help disappears?",
+      "time": 31.9,
+      "bounds": [
+        546.1517111197677,
+        765.7372974676211,
+        1380.0004629246343,
+        827.423828935527
+      ],
+      "clipped": false
+    },
+    {
+      "id": "measures-heading",
+      "text": "four different questions",
+      "time": 56.4,
+      "bounds": [
+        485.6305437516568,
+        151.21912825759648,
+        1444.4103012208363,
+        255.1355642492965
+      ],
+      "clipped": false
+    },
+    {
+      "id": "measure-help",
+      "text": "with help",
+      "time": 60.31666666666666,
+      "bounds": [
+        294.15602405532013,
+        704.2924705956649,
+        571.2928826610541,
+        786.0400657669807
+      ],
+      "clipped": false
+    },
+    {
+      "id": "measure-alone-label",
+      "text": "alone",
+      "time": 67.525,
+      "bounds": [
+        1189.809971091961,
+        705.602744393037,
+        1346.5853833597753,
+        762.6023631510171
+      ],
+      "clipped": false
+    },
+    {
+      "id": "later-label",
+      "text": "later",
+      "time": 74.9,
+      "bounds": [
+        569.8878503303445,
+        785.6506538546562,
+        653.1790357578652,
+        818.4220100670782
+      ],
+      "clipped": false
+    },
+    {
+      "id": "changed-label",
+      "text": "changed problem",
+      "time": 81.35833333333333,
+      "bounds": [
+        1018.2139473754786,
+        786.1482287923043,
+        1313.8683142095067,
+        833.92715148351
+      ],
+      "clipped": false
+    },
+    {
+      "id": "one-test-limits",
+      "text": "one test cannot answer all four",
+      "time": 104.69166666666668,
+      "bounds": [
+        730.9885252309182,
+        803.5848459848332,
+        1193.4436900632081,
+        830.0093158701842
+      ],
+      "clipped": false
+    },
+    {
+      "id": "turkey-heading",
+      "text": "one study, two scoreboards",
+      "time": 113.94166666666668,
+      "bounds": [
+        430.1936807561309,
+        148.0904833914442,
+        1502.3614554237336,
+        251.68983357047827
+      ],
+      "clipped": false
+    },
+    {
+      "id": "turkey-context",
+      "text": "nearly 1,000 students / mathematics",
+      "time": 116.51166666666667,
+      "bounds": [
+        659.584979560142,
+        326.7307786991739,
+        1456.462377909818,
+        386.14458793019827
+      ],
+      "clipped": false
+    },
+    {
+      "id": "turkey-practice",
+      "text": "practice: +48%",
+      "time": 126.775,
+      "bounds": [
+        570.5525150332799,
+        530.8573225465311,
+        1002.0281405873449,
+        604.3925773554474
+      ],
+      "clipped": false
+    },
+    {
+      "id": "turkey-exam",
+      "text": "exam: -17%",
+      "time": 130.85833333333335,
+      "bounds": [
+        1360.5202047337257,
+        536.4859467994548,
+        1614.458044683263,
+        582.1265466004719
+      ],
+      "clipped": false
+    },
+    {
+      "id": "relative",
+      "text": "relative to the control group",
+      "time": 133.98333333333335,
+      "bounds": [
+        659.769794008424,
+        747.1975084472674,
+        1266.792206878732,
+        804.0715312166017
+      ],
+      "clipped": false
+    },
+    {
+      "id": "guarded",
+      "text": "guarded tutor: penalty largely removed",
+      "time": 140.23333333333335,
+      "bounds": [
+        628.1932426605576,
+        706.2696826793792,
+        1296.1328780090448,
+        753.0892856058911
+      ],
+      "clipped": false
+    },
+    {
+      "id": "guarded-scope",
+      "text": "no significant positive exam gain",
+      "time": 145.35833333333335,
+      "bounds": [
+        714.0632421879174,
+        785.514336494063,
+        1209.2990534497735,
+        826.5738237551038
+      ],
+      "clipped": false
+    },
+    {
+      "id": "study-scope",
+      "text": "short-term exam / not permanent damage",
+      "time": 155.73333333333335,
+      "bounds": [
+        674.8260204892952,
+        795.2732039740896,
+        1249.4267894254003,
+        831.7907338462134
+      ],
+      "clipped": false
+    },
+    {
+      "id": "relative-example",
+      "text": "illustration only: 50 x 1.48 = 74",
+      "time": 170.69166666666666,
+      "bounds": [
+        775.0972872280831,
+        805.0523458624342,
+        1150.1271091554813,
+        839.3657630745201
+      ],
+      "clipped": false
+    },
+    {
+      "id": "physics-heading",
+      "text": "design changes the result",
+      "time": 179.10833333333335,
+      "bounds": [
+        499.6696465278262,
+        138.57269754468888,
+        1430.3929395276691,
+        238.43684397377297
+      ],
+      "clipped": false
+    },
+    {
+      "id": "physics-equation",
+      "text": "F = ma",
+      "time": 183.4,
+      "bounds": [
+        266.5388570098718,
+        469.06262555735685,
+        406.3859836641748,
+        503.34098429633417
+      ],
+      "clipped": false
+    },
+    {
+      "id": "physics-design",
+      "text": "questions / feedback / pacing",
+      "time": 197.525,
+      "bounds": [
+        616.2494958500454,
+        746.6783138062525,
+        1310.3512720073043,
+        809.5963729655123
+      ],
+      "clipped": false
+    },
+    {
+      "id": "physics-result",
+      "text": "better immediate test scores",
+      "time": 208.60833333333335,
+      "bounds": [
+        676.8022541941396,
+        708.6588227651554,
+        1250.7304353734858,
+        744.1690732070964
+      ],
+      "clipped": false
+    },
+    {
+      "id": "physics-not-months",
+      "text": "immediate test does not establish months of retention",
+      "time": 214.10833333333335,
+      "bounds": [
+        646.7244107861982,
+        792.81265999395,
+        1278.466968274628,
+        814.4656422299759
+      ],
+      "clipped": false
+    },
+    {
+      "id": "hints-result",
+      "text": "generated help can teach; check it",
+      "time": 224.81666666666666,
+      "bounds": [
+        714.3545952071089,
+        801.2518509834424,
+        1210.152315329546,
+        840.7239705197297
+      ],
+      "clipped": false
+    },
+    {
+      "id": "hints-errors",
+      "text": "32% of initial help failed quality checks",
+      "time": 236.73333333333335,
+      "bounds": [
+        715.673263395475,
+        811.0047778809046,
+        1208.06055975361,
+        846.2380683434402
+      ],
+      "clipped": false
+    },
+    {
+      "id": "delay-heading",
+      "text": "come back one week later",
+      "time": 248.9,
+      "bounds": [
+        465.53530276671006,
+        138.0434804135262,
+        1465.5530375595858,
+        208.55458219354927
+      ],
+      "clipped": false
+    },
+    {
+      "id": "week-number",
+      "text": "7 days",
+      "time": 264.19166666666666,
+      "bounds": [
+        901.6320029947493,
+        466.3319134503362,
+        1098.1398053774772,
+        544.6481940665727
+      ],
+      "clipped": false
+    },
+    {
+      "id": "week-study",
+      "text": "6,000+ students / working paper",
+      "time": 272.275,
+      "bounds": [
+        646.1803889313143,
+        680.2407876043321,
+        1280.199455296872,
+        732.5558548482777
+      ],
+      "clipped": false
+    },
+    {
+      "id": "week-result",
+      "text": "better error recovery during practice",
+      "time": 274.1083333333333,
+      "bounds": [
+        595.0795222355805,
+        753.4706531693173,
+        1331.5944635489454,
+        803.6789505030869
+      ],
+      "clipped": false
+    },
+    {
+      "id": "week-limits",
+      "text": "delayed gains: limited and conditional",
+      "time": 280.3583333333333,
+      "bounds": [
+        653.409090689752,
+        781.764675929945,
+        1269.5129593080596,
+        828.3525895536443
+      ],
+      "clipped": false
+    },
+    {
+      "id": "three-labels",
+      "text": "population / comparison / test",
+      "time": 296.19166666666666,
+      "bounds": [
+        710.7342516719323,
+        798.0495074286644,
+        1214.1875465011096,
+        841.3501663873183
+      ],
+      "clipped": false
+    },
+    {
+      "id": "offload-heading",
+      "text": "what thinking remains yours?",
+      "time": 306.525,
+      "bounds": [
+        439.4778744491663,
+        136.46317557124394,
+        1490.0526664742185,
+        234.73858772185827
+      ],
+      "clipped": false
+    },
+    {
+      "id": "offload-answer",
+      "text": "the answer",
+      "time": 311.19166666666666,
+      "bounds": [
+        326.7381567447061,
+        496.4691287819029,
+        754.1018527927749,
+        565.0617787576404
+      ],
+      "clipped": false
+    },
+    {
+      "id": "offload-target",
+      "text": "name the skill you want to practise",
+      "time": 326.69166666666666,
+      "bounds": [
+        559.1886472930073,
+        751.9305855202559,
+        1365.8899611308393,
+        813.7173986537798
+      ],
+      "clipped": false
+    },
+    {
+      "id": "meta-feedback",
+      "text": "feedback on help-seeking changed behavior",
+      "time": 342.3583333333333,
+      "bounds": [
+        627.3180241313601,
+        780.6620294367157,
+        1296.4738220460279,
+        821.4233706722252
+      ],
+      "clipped": false
+    },
+    {
+      "id": "meta-scope",
+      "text": "704 adults / arithmetic / recent preprint",
+      "time": 354.69166666666666,
+      "bounds": [
+        699.456472484193,
+        712.2170615587459,
+        1224.0470838995882,
+        745.1703844323079
+      ],
+      "clipped": false
+    },
+    {
+      "id": "meta-question",
+      "text": "what can you choose without it?",
+      "time": 362.775,
+      "bounds": [
+        709.9853705340657,
+        801.3799627821263,
+        1214.332553738147,
+        842.985228353492
+      ],
+      "clipped": false
+    },
+    {
+      "id": "guidance-heading",
+      "text": "help that changes with you",
+      "time": 368.3583333333333,
+      "bounds": [
+        455.73201995926024,
+        162.23556944651568,
+        1478.664126809249,
+        265.72132161210527
+      ],
+      "clipped": false
+    },
+    {
+      "id": "example-label",
+      "text": "worked example",
+      "time": 386.15,
+      "bounds": [
+        259.3601624782067,
+        732.438433478532,
+        651.0933977278216,
+        795.55681677642
+      ],
+      "clipped": false
+    },
+    {
+      "id": "partial-label",
+      "text": "complete a step",
+      "time": 404.8583333333333,
+      "bounds": [
+        781.5571877334272,
+        735.5370685068698,
+        1152.966774450359,
+        795.6266648621336
+      ],
+      "clipped": false
+    },
+    {
+      "id": "attempt-label",
+      "text": "fresh attempt",
+      "time": 419.6083333333333,
+      "bounds": [
+        1232.8107128617798,
+        613.743479966395,
+        1497.6050766289923,
+        660.1825590296578
+      ],
+      "clipped": false
+    },
+    {
+      "id": "guidance-gap",
+      "text": "find the specific gap",
+      "time": 422.69166666666666,
+      "bounds": [
+        702.822313501767,
+        764.1534417811656,
+        1222.7607391310453,
+        828.3097972977823
+      ],
+      "clipped": false
+    },
+    {
+      "id": "guidance-scope",
+      "text": "a practical synthesis / no universal schedule",
+      "time": 436.06666666666666,
+      "bounds": [
+        677.8247781834596,
+        801.4415995660581,
+        1245.602187914537,
+        836.5175077308049
+      ],
+      "clipped": false
+    },
+    {
+      "id": "retrieval-heading",
+      "text": "hide it. explain it. check it.",
+      "time": 441.275,
+      "bounds": [
+        493.54374091621463,
+        137.90366793801383,
+        1436.5964736057679,
+        234.32772216937605
+      ],
+      "clipped": false
+    },
+    {
+      "id": "retrieval-feedback",
+      "text": "corrective feedback matters",
+      "time": 476.31666666666666,
+      "bounds": [
+        605.233288562345,
+        756.5223865473369,
+        1322.1573976981279,
+        800.692214977429
+      ],
+      "clipped": false
+    },
+    {
+      "id": "retrieval-mistake",
+      "text": "record the operation you missed",
+      "time": 486.8583333333333,
+      "bounds": [
+        688.9415785475364,
+        721.5962912483556,
+        1235.1244309336084,
+        766.2415778950449
+      ],
+      "clipped": false
+    },
+    {
+      "id": "retrieval-review",
+      "text": "44-study review / comparator matters",
+      "time": 492.2333333333333,
+      "bounds": [
+        711.8701350088025,
+        805.3049782429612,
+        1211.7956264218865,
+        839.9844738835814
+      ],
+      "clipped": false
+    },
+    {
+      "id": "example-heading",
+      "text": "one small worked example",
+      "time": 498.15,
+      "bounds": [
+        471.30413525380646,
+        189.03145253517084,
+        1459.4406081192824,
+        291.6306620066581
+      ],
+      "clipped": false
+    },
+    {
+      "id": "example-equation",
+      "text": "2(x + 3) = 14",
+      "time": 502.1083333333333,
+      "bounds": [
+        447.6096098239899,
+        357.2919546528252,
+        1110.0007072931753,
+        477.5932738132584
+      ],
+      "clipped": false
+    },
+    {
+      "id": "example-step-1",
+      "text": "x + 3 = 7",
+      "time": 516.4,
+      "bounds": [
+        664.9972871945783,
+        447.0222697600364,
+        970.6456035115498,
+        509.8006679838601
+      ],
+      "clipped": false
+    },
+    {
+      "id": "example-step-2",
+      "text": "x = 4",
+      "time": 521.1083333333333,
+      "bounds": [
+        724.1973028726546,
+        589.0365509027602,
+        913.7044177806557,
+        656.5573591081932
+      ],
+      "clipped": false
+    },
+    {
+      "id": "example-check",
+      "text": "check: 2(4 + 3) = 14",
+      "time": 524.9416666666666,
+      "bounds": [
+        608.5312355362878,
+        754.831797967461,
+        1025.3121463092757,
+        801.4323743181333
+      ],
+      "clipped": false
+    },
+    {
+      "id": "hint-question",
+      "text": "which operation removes the factor?",
+      "time": 535.7333333333333,
+      "bounds": [
+        651.4766122070441,
+        783.0982689052025,
+        1273.1920602290693,
+        826.4209829454435
+      ],
+      "clipped": false
+    },
+    {
+      "id": "wrong-expansion",
+      "text": "2x + 3",
+      "time": 547.2333333333333,
+      "bounds": [
+        600.7642092418027,
+        782.168463816251,
+        716.427466383769,
+        815.9094616135717
+      ],
+      "clipped": false
+    },
+    {
+      "id": "right-expansion",
+      "text": "2x + 6",
+      "time": 552.9833333333333,
+      "bounds": [
+        950.2973627946781,
+        783.2815558601699,
+        1072.5073807330587,
+        816.0413037092644
+      ],
+      "clipped": false
+    },
+    {
+      "id": "example-why",
+      "text": "multiply BOTH terms",
+      "time": 555.1083333333333,
+      "bounds": [
+        1113.1856741149065,
+        806.4389100401308,
+        1340.6058315827818,
+        836.1265247563501
+      ],
+      "clipped": false
+    },
+    {
+      "id": "transfer-heading",
+      "text": "change it. return later.",
+      "time": 573.9,
+      "bounds": [
+        543.5688763315194,
+        139.80883357843186,
+        1385.0530889867443,
+        242.2210307005463
+      ],
+      "clipped": false
+    },
+    {
+      "id": "transfer-equation",
+      "text": "3(y - 2) = 15",
+      "time": 575.935,
+      "bounds": [
+        659.3143175794576,
+        298.3733744828959,
+        1276.5233229059345,
+        451.9455412032815
+      ],
+      "clipped": false
+    },
+    {
+      "id": "transfer-step",
+      "text": "y - 2 = 5",
+      "time": 578.6916666666666,
+      "bounds": [
+        785.5956549400956,
+        515.9252006034851,
+        1147.1972694179203,
+        628.9255430472546
+      ],
+      "clipped": false
+    },
+    {
+      "id": "transfer-answer",
+      "text": "y = 7",
+      "time": 582.6083333333333,
+      "bounds": [
+        844.4599852560093,
+        683.2804900259789,
+        1086.7030228396816,
+        811.2816101861849
+      ],
+      "clipped": false
+    },
+    {
+      "id": "near-transfer",
+      "text": "near transfer / not every equation",
+      "time": 591.5666666666666,
+      "bounds": [
+        612.7488331086308,
+        755.2808126931842,
+        1312.0103061673146,
+        808.6509922221592
+      ],
+      "clipped": false
+    },
+    {
+      "id": "delay-new",
+      "text": "later: 4(z + 1) = 20",
+      "time": 605.9416666666666,
+      "bounds": [
+        742.8134072711925,
+        761.2074106104417,
+        1187.0481814031207,
+        813.9047543955255
+      ],
+      "clipped": false
+    },
+    {
+      "id": "delay-answer",
+      "text": "z = 4; check: 4 x 5 = 20",
+      "time": 619.025,
+      "bounds": [
+        746.0816849465872,
+        786.8054823063237,
+        1179.3320157886633,
+        825.3781232271892
+      ],
+      "clipped": false
+    },
+    {
+      "id": "labels-heading",
+      "text": "a label is not a learning test",
+      "time": 630.4,
+      "bounds": [
+        494.08481112912017,
+        133.68305384895183,
+        1436.1961418832177,
+        225.7235664158586
+      ],
+      "clipped": false
+    },
+    {
+      "id": "help-word-0",
+      "text": "answer",
+      "time": 634.5116666666667,
+      "bounds": [
+        1050.783152881743,
+        377.31812413836474,
+        1263.6342755673454,
+        417.37497245647114
+      ],
+      "clipped": false
+    },
+    {
+      "id": "help-word-1",
+      "text": "hint",
+      "time": 636.9833333333333,
+      "bounds": [
+        1104.243488324408,
+        540.074445204266,
+        1212.8452119418662,
+        593.7212064561825
+      ],
+      "clipped": false
+    },
+    {
+      "id": "help-word-2",
+      "text": "question",
+      "time": 639.7333333333333,
+      "bounds": [
+        1038.2778935452945,
+        717.3948806986616,
+        1276.4900609649253,
+        795.5648229784555
+      ],
+      "clipped": false
+    },
+    {
+      "id": "small-study",
+      "text": "50 participants / immediate test",
+      "time": 649.275,
+      "bounds": [
+        647.4755163487152,
+        772.5241530549417,
+        1278.2044483924637,
+        822.4771435071548
+      ],
+      "clipped": false
+    },
+    {
+      "id": "ask-specific",
+      "text": "show the attempt; name the stuck step",
+      "time": 663.9,
+      "bounds": [
+        645.4407233827271,
+        789.1495566220714,
+        1280.2692394374476,
+        831.8153327261085
+      ],
+      "clipped": false
+    },
+    {
+      "id": "check-hint",
+      "text": "check the feedback before rehearsing it",
+      "time": 679.9,
+      "bounds": [
+        670.25306659688,
+        803.1202747970385,
+        1253.7540603552059,
+        840.905419629544
+      ],
+      "clipped": false
+    },
+    {
+      "id": "closing-heading",
+      "text": "make the next attempt better",
+      "time": 689.3583333333333,
+      "bounds": [
+        462.6455336085512,
+        133.2040585587477,
+        1468.0651836788916,
+        220.5636798263427
+      ],
+      "clipped": false
+    },
+    {
+      "id": "log-heading-0",
+      "text": "attempt",
+      "time": 693.15,
+      "bounds": [
+        431.071156118786,
+        396.24592067456217,
+        596.813543465637,
+        448.4567817425813
+      ],
+      "clipped": false
+    },
+    {
+      "id": "log-heading-1",
+      "text": "help used",
+      "time": 694.9833333333333,
+      "bounds": [
+        858.1682138841769,
+        395.7139845883283,
+        1043.9980363307955,
+        449.0790292605015
+      ],
+      "clipped": false
+    },
+    {
+      "id": "log-heading-2",
+      "text": "alone afterward",
+      "time": 696.8166666666666,
+      "bounds": [
+        1218.2674748969594,
+        395.27328334373857,
+        1557.7061364422425,
+        433.48567542028786
+      ],
+      "clipped": false
+    },
+    {
+      "id": "log-entry-0",
+      "text": "first try",
+      "time": 695.6916666666666,
+      "bounds": [
+        429.74162823149595,
+        553.9223680680439,
+        596.3021754152857,
+        603.0359355332248
+      ],
+      "clipped": false
+    },
+    {
+      "id": "log-entry-1",
+      "text": "one hint",
+      "time": 697.4,
+      "bounds": [
+        878.7944907279782,
+        553.3697738507948,
+        1023.2676595611712,
+        586.5583365758455
+      ],
+      "clipped": false
+    },
+    {
+      "id": "log-entry-2",
+      "text": "solved + checked",
+      "time": 699.0666666666666,
+      "bounds": [
+        1231.417989117439,
+        553.4709603139258,
+        1545.0213768710041,
+        586.5985142542378
+      ],
+      "clipped": false
+    },
+    {
+      "id": "log-scope",
+      "text": "a personal check / not a controlled experiment",
+      "time": 701.1016666666666,
+      "bounds": [
+        569.6742486110209,
+        748.1290753646873,
+        1355.5447214052488,
+        792.8326406116728
+      ],
+      "clipped": false
+    },
+    {
+      "id": "closing-method",
+      "text": "attempt / explain / correct",
+      "time": 709.4833333333333,
+      "bounds": [
+        840.4285480915012,
+        681.3268622690093,
+        1342.7461471446943,
+        728.9030048641164
+      ],
+      "clipped": false
+    },
+    {
+      "id": "closing-return",
+      "text": "change the problem; return later",
+      "time": 722.525,
+      "bounds": [
+        846.5585805211304,
+        757.5004284936686,
+        1335.1220788463404,
+        798.1347118467502
+      ],
+      "clipped": false
+    },
+    {
+      "id": "closing-question",
+      "text": "what can you do when the answer is gone?",
+      "time": 738.7333333333333,
+      "bounds": [
+        679.724978986199,
+        792.7915765262458,
+        1243.8065033462926,
+        828.316292187095
+      ],
+      "clipped": false
+    }
+  ],
+  "pen_rescheduling": [
+    {
+      "id": "opening-worker-body",
+      "delay": 0.7850000000000001
+    },
+    {
+      "id": "measure-laptop",
+      "delay": 0.5766666666666609
+    },
+    {
+      "id": "turkey-pole",
+      "delay": 1.1183333333333394
+    },
+    {
+      "id": "turkey-context",
+      "delay": 0.3199999999999932
+    },
+    {
+      "id": "physics-book",
+      "delay": 0.0766666666666822
+    },
+    {
+      "id": "delayed-practice-body",
+      "delay": 0.3683333333333394
+    },
+    {
+      "id": "retrieval-person-task",
+      "delay": 1.535000000000025
+    },
+    {
+      "id": "transfer-equation",
+      "delay": 0.7433333333333394
+    },
+    {
+      "id": "labels-thinker-body",
+      "delay": 0.40999999999996817
+    },
+    {
+      "id": "learning-log",
+      "delay": 0.6183333333333394
+    },
+    {
+      "id": "log-scope",
+      "delay": 1.201666666666597
+    },
+    {
+      "id": "physics-page-notes",
+      "delay": 0.7433333333333394
+    },
+    {
+      "id": "help-choice-0",
+      "delay": 0.3683333333333394
+    },
+    {
+      "id": "help-word-0",
+      "delay": 0.27833333333330756
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "Missing current audio: 02",
+    "Missing current audio: 03",
+    "Missing current audio: 04",
+    "Missing current audio: 05",
+    "Missing current audio: 06",
+    "Missing current audio: 07",
+    "Missing current audio: 08",
+    "Missing current audio: 09",
+    "Missing current audio: 10",
+    "Missing current audio: 11",
+    "Missing current audio: 12",
+    "Missing current audio: 13",
+    "Missing current audio: 14",
+    "Missing current audio: 15",
+    "Missing current audio: 16",
+    "Missing current audio: 17",
+    "Missing current audio: 18",
+    "Missing current audio: 19",
+    "Missing current audio: 20",
+    "Missing current audio: 21",
+    "Missing current audio: 22",
+    "Missing current audio: 23",
+    "Missing current audio: 24",
+    "Missing current audio: 25",
+    "Missing current audio: 26",
+    "Missing current audio: 27",
+    "Missing current audio: 28",
+    "Missing current audio: 29",
+    "Missing current audio: 30",
+    "Missing current audio: 31",
+    "Missing current audio: 32",
+    "Missing current audio: 33",
+    "Missing current audio: 34",
+    "Missing current audio: 35",
+    "Missing current audio: 36",
+    "Missing current audio: 37",
+    "Missing current audio: 38",
+    "Missing current audio: 39",
+    "Missing current audio: 40",
+    "Missing current audio: 41",
+    "Missing current audio: 42",
+    "Missing current audio: 43",
+    "Missing current audio: 44",
+    "Missing current audio: 45",
+    "Missing current audio: 46",
+    "Missing current audio: 47",
+    "Missing current audio: 48",
+    "Missing current audio: 49",
+    "Missing current audio: 50",
+    "Missing current audio: 51",
+    "Missing current audio: 52"
+  ],
+  "deterministic_frame_sha256": "73a22bc2e81af2d818a0123f16e465c9faf3b5566eb7f56259dcab75e1add750",
+  "deterministic_frames": {
+    "14": "73a22bc2e81af2d818a0123f16e465c9faf3b5566eb7f56259dcab75e1add750",
+    "127.625": "be54ac034cba05f971cd7ca2bd4d358ae34b7f227397bdc9b86b9d0dcd22ef54",
+    "354.125": "62ba40a1b68f68fc18f13776cc8d8995add901e0104790467aa1b25e2240c04a",
+    "561.4583333333334": "9ea35bfa233533e113a790e64643a552b8a6f272384077bd453d85ce4753829d"
+  },
+  "checks": [
+    "source and audio hashes",
+    "independent transcript",
+    "one stroke per pen",
+    "focal label safe area",
+    "caption coverage, width and timing",
+    "every-frame reference mapping",
+    "backward seek determinism",
+    "fresh film determinism",
+    "duplicate drawing regression"
+  ]
+}

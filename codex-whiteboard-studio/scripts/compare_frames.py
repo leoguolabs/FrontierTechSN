@@ -49,6 +49,7 @@ def main():
     p.add_argument("candidate", type=Path)
     p.add_argument("--reference", type=Path, default=ROOT/"reference/whiteboard.mp4")
     p.add_argument("--timeline", type=Path, default=ROOT/"media/timeline.json")
+    p.add_argument("--definitions", type=Path, default=ROOT/"content/comparison.json")
     p.add_argument("--candidate-analysis", type=Path, required=True)
     p.add_argument("--reference-analysis", type=Path, default=ROOT/"review/reference")
     p.add_argument("--out", type=Path, required=True)
@@ -57,7 +58,7 @@ def main():
     sheets = args.out/"contact-sheets"
     sheets.mkdir(exist_ok=True)
     timeline = json.loads(args.timeline.read_text())
-    definitions = json.loads((ROOT/"content/comparison.json").read_text())
+    definitions = json.loads(args.definitions.read_text())
     beats = []
     for identifier, label, rs, re, note in definitions:
         rows = [r for r in timeline["lines"] if r["region"] == identifier]
@@ -132,6 +133,7 @@ def main():
     summary = dict(
         candidate_sha256=digest(args.candidate), reference_sha256=digest(args.reference),
         timeline_sha256=digest(args.timeline), candidate_frames=len(records),
+        definitions_sha256=digest(args.definitions),
         reference_frames=len(references), pairs=len(records), fps=24, beats=beats, atlases=atlases,
         tile_dimensions=[WIDTH, HEIGHT], atlas_dimensions=[WIDTH*COLUMNS, cell_h*rows_per_sheet],
         coverage="Every candidate frame paired; no skipped candidate frames.",

@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+from production import STUDIO, add_edition_argument, production
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -24,15 +25,19 @@ def numbers(value):
 
 
 def main():
+    global ROOT
     parser = argparse.ArgumentParser()
+    add_edition_argument(parser)
     parser.add_argument("--sheets", help="Inspected zero-based sheets, e.g. 0-3,8")
     parser.add_argument("--stills", help="Inspected one-based final stills, e.g. 1-19")
     parser.add_argument("--note", default="")
     parser.add_argument("--finalize", action="store_true")
     args = parser.parse_args()
-    movie = ROOT/"media/does-ai-help-you-learn-3min.mp4"
+    project = production(args.edition)
+    ROOT = project.root
+    movie = project.video
     binding = {"video_sha256": sha(movie),
-               "reference_sha256": sha(ROOT/"reference/whiteboard.mp4"),
+               "reference_sha256": sha(STUDIO/"reference/whiteboard.mp4"),
                "mapping_sha256": sha(ROOT/"review/comparison/pairs.csv")}
     ledger_path = ROOT/"review/visual-ledger.json"
     ledger = json.loads(ledger_path.read_text()) if ledger_path.exists() else {
@@ -110,8 +115,9 @@ def main():
             "pixel_identity_claimed": False,
             "audio_evidence": "Independent transcription, provider bindings, final-mix waveform placement "
                               "and loudness checks; subjective listening is not established.",
-            "user_approval": "Initial short accepted in principle; user requested the illustrated refinement. "
-                             "Long edition remains a separate production.",
+            "user_approval": ("Initial short accepted in principle; user requested the illustrated refinement."
+                              if args.edition == "short" else
+                              "Long edition prepared following the short-edition checkpoint; no final user review recorded."),
             "publication": "Process article prepared locally; not published."
         }
         (ROOT/"review/delivery.json").write_text(json.dumps(delivery, indent=2)+"\n")

@@ -5,7 +5,7 @@ import {learnerAtDesk,thinkingLearner,turkishFlag} from './illustrations.mjs'
 export const FPS=24
 const frame=t=>Math.round(t*FPS)/FPS
 
-function captionsFor(lines,alignments=[]){
+export function captionsFor(lines,alignments=[]){
   const cues=[]
   for(const row of lines){
     const words=row.text.split(/\s+/)
@@ -45,12 +45,12 @@ function captionsFor(lines,alignments=[]){
   return cues
 }
 
-export function makeTimeline(narration,audio=[],alignments=[]){
+export function makeTimeline(narration,audio=[],alignments=[],{targetDuration=180,minimumRoom=26}={}){
   const audioMap=new Map(audio.filter(a=>narration.some(n=>n.id===a.id&&n.text===a.text)).map(a=>[a.id,a]))
   const complete=narration.every(n=>audioMap.has(n.id))
   const durations=narration.map(n=>audioMap.get(n.id)?.duration||n.text.split(/\s+/).length/2.85)
   const totalVoice=durations.reduce((a,b)=>a+b,0)
-  const total=Math.max(180,Math.ceil(totalVoice+26))
+  const total=Math.max(targetDuration,Math.ceil(totalVoice+minimumRoom))
   const gap=(total-totalVoice-10)/(narration.length-1)
   let cursor=1.25
   const lines=narration.map((n,i)=>{

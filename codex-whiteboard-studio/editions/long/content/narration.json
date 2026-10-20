@@ -1,0 +1,314 @@
+[
+  {
+    "id": "01",
+    "region": "hook",
+    "text": "Imagine this. A spreadsheet is broken, a deadline is close, and an artificial intelligence tool writes the formula you need. The result is correct. You read the explanation, and every step seems to make sense.",
+    "claim": "Illustrative scenario"
+  },
+  {
+    "id": "02",
+    "region": "hook",
+    "text": "Tomorrow, the table changes. The value you need is in a different column. This time, close the chat window and build the formula yourself. Where would you start? What would you check if the result looked wrong?",
+    "claim": "Illustrative scenario"
+  },
+  {
+    "id": "03",
+    "region": "hook",
+    "text": "That pause is the subject of this film. A successful output tells you something about the task you just finished. To find out what you learned, you need another observation: what you can do after the support disappears.",
+    "claim": "C01; editorial framing"
+  },
+  {
+    "id": "04",
+    "region": "hook",
+    "text": "Does artificial intelligence help you learn, or just finish? We will look at experiments with different answers, then work through a small example you can adapt to your own learning. Keep one question in view: what work remains yours?",
+    "claim": "Editorial framing"
+  },
+  {
+    "id": "05",
+    "region": "measures",
+    "text": "Start with four separate questions. First, can you complete the task while help is available? Second, can you solve it independently? Those are already different tests. A correct answer copied from a screen can satisfy the first without settling the second.",
+    "claim": "C01; original explanatory example"
+  },
+  {
+    "id": "06",
+    "region": "measures",
+    "text": "Third, can you still do it after time has passed? That is retention. Fourth, can you use the idea in a changed problem? That is transfer. Remembering a particular answer and choosing a method for a new situation ask different things.",
+    "claim": "C01"
+  },
+  {
+    "id": "07",
+    "region": "measures",
+    "text": "Here is an everyday example. Repeating yesterday's spreadsheet formula checks something narrower than adapting it to a table with missing entries. Both can be useful exercises. Label the test honestly so that the result answers the question you actually care about.",
+    "claim": "Original illustrative application"
+  },
+  {
+    "id": "08",
+    "region": "measures",
+    "text": "On this board, blue marks the help that is available. Orange marks the learner's independent work. Watch how those two can separate. The first experiment gives us an unusually clear view of that split.",
+    "claim": "Editorial transition"
+  },
+  {
+    "id": "09",
+    "region": "turkey",
+    "text": "Researchers studied nearly a thousand high school mathematics students in Turkey. Classes received ordinary study resources, an unrestricted chat interface, or a guarded tutor. Practice was followed by an exam without resources.",
+    "claim": "C02"
+  },
+  {
+    "id": "10",
+    "region": "turkey",
+    "text": "The unrestricted chatbot group earned practice grades forty eight percent higher than the control group. On the subsequent unaided exam, its grades were seventeen percent lower. These are relative changes, not percentage point differences.",
+    "claim": "C02"
+  },
+  {
+    "id": "11",
+    "region": "turkey",
+    "text": "The guarded tutor used teacher prepared solutions, common mistakes and hints. Its practice gain was larger, and the later penalty largely disappeared. Its exam result was not statistically distinguishable from the control group's.",
+    "claim": "C03"
+  },
+  {
+    "id": "12",
+    "region": "turkey",
+    "text": "The study supports a warning about that design in that setting. It measured a short term exam, not permanent damage or years of forgetting. The unrestricted interface allowed answer seeking; it did not force everyone to use one strategy.",
+    "claim": "C02 scope"
+  },
+  {
+    "id": "13",
+    "region": "turkey",
+    "text": "For a separate arithmetic illustration, suppose a baseline score is fifty. A forty eight percent relative increase would make it seventy four, not ninety eight. Those are invented numbers to explain the calculation, not the experiment's reported average scores.",
+    "claim": "Original arithmetic illustration; not participant data"
+  },
+  {
+    "id": "14",
+    "region": "physics",
+    "text": "Now turn to a different experiment. In college physics, a carefully designed artificial intelligence tutor produced higher immediate test scores than an active classroom lesson. A chatbot can support learning when the teaching design makes that happen.",
+    "claim": "C04"
+  },
+  {
+    "id": "15",
+    "region": "physics",
+    "text": "The tutor sequenced the material, asked questions, supplied feedback and used expert prepared content. Students could work at their own pace. The result belongs to that instructional system; it is not a measurement of every conversation with a general chatbot.",
+    "claim": "C04"
+  },
+  {
+    "id": "16",
+    "region": "physics",
+    "text": "The test was immediate. We cannot stretch that into a claim about remembering the material months later. It does, however, rule out the simple story that receiving an artificial intelligence explanation must prevent learning.",
+    "claim": "C04 scope"
+  },
+  {
+    "id": "17",
+    "region": "physics",
+    "text": "A separate mathematics study compared generated help, human authored help and no help. Generated help improved learning relative to no help, while the comparison with human authored help was not statistically significant. Correctness still needed careful quality control.",
+    "claim": "C10"
+  },
+  {
+    "id": "18",
+    "region": "physics",
+    "text": "In that study, thirty two percent of the initially generated help failed quality checks. A friendly hint is only useful if its content holds up. For your own work, choose an example whose answer you can check against a trusted source.",
+    "claim": "C10; editorial application"
+  },
+  {
+    "id": "19",
+    "region": "delay",
+    "text": "What happens when the test comes later? A twenty twenty six working paper studied more than six thousand middle school students, comparing artificial intelligence support with conventional computer practice. It also varied whether students had to demonstrate mastery before progressing.",
+    "claim": "C08"
+  },
+  {
+    "id": "20",
+    "region": "delay",
+    "text": "The researchers returned one week later with practiced and unpracticed material. During practice, artificial intelligence users attempted fewer questions and moved more slowly, but answered more accurately once they made an attempt. Error recovery also improved.",
+    "claim": "C08"
+  },
+  {
+    "id": "21",
+    "region": "delay",
+    "text": "The delayed benefit was more limited. The most encouraging result appeared with artificial intelligence inside the mastery workflow, concentrated on practiced material and only marginally statistically significant. This remains working paper evidence, not a settled general finding.",
+    "claim": "C08"
+  },
+  {
+    "id": "22",
+    "region": "delay",
+    "text": "So keep three labels beside any learning claim: the population, the comparison, and the test. A result for middle school mathematics a week later answers a different question from an immediate college physics test. Putting both on one universal scorecard would conceal those differences.",
+    "claim": "Editorial synthesis"
+  },
+  {
+    "id": "23",
+    "region": "offload",
+    "text": "The idea of cognitive offloading helps explain what to look for. You move some mental work into an external aid: a note, a calculator, a calendar or a chatbot. Doing that can be a sensible way to accomplish a task.",
+    "claim": "C05"
+  },
+  {
+    "id": "24",
+    "region": "offload",
+    "text": "But first name the skill you want to acquire. If your goal is to reason about a formula, outsourcing every choice of formula removes an opportunity to make those choices. If the formula is routine bookkeeping, outsourcing it may serve a different goal.",
+    "claim": "C05; original editorial application"
+  },
+  {
+    "id": "25",
+    "region": "offload",
+    "text": "A recent preregistered experiment with seven hundred and four adults tested feedback about their use of assistance during fraction arithmetic. The feedback reduced requests for complete answers and improved a subsequent unaided test. An effort reward did not show the same effects.",
+    "claim": "C09"
+  },
+  {
+    "id": "26",
+    "region": "offload",
+    "text": "That evidence is a preprint on a narrow task. It is promising, but it does not establish years of skill loss or a universal remedy. Its practical question is useful: can you notice when help has started doing the part you intended to practise?",
+    "claim": "C09 scope; editorial application"
+  },
+  {
+    "id": "27",
+    "region": "guidance",
+    "text": "This is where a rigid rule can go wrong. If you know nothing about a procedure, hiding every answer may simply leave you lost. A clear worked example can give you a structure to understand and a starting point for the next attempt.",
+    "claim": "C06; editorial application"
+  },
+  {
+    "id": "28",
+    "region": "guidance",
+    "text": "In one randomized study of novice secondary mathematics students, worked examples beat unguided problem solving on tests of the practiced procedure and near transfer, given just after learning. The task was opening algebraic brackets. This supports useful initial guidance.",
+    "claim": "C06"
+  },
+  {
+    "id": "29",
+    "region": "guidance",
+    "text": "There is evidence for trying first as well. A meta analysis of fifty three studies favored problem solving followed by instruction overall, with important differences across ages, tasks and implementation. It studied teaching sequences, not a universal rule for artificial intelligence.",
+    "claim": "C11"
+  },
+  {
+    "id": "30",
+    "region": "guidance",
+    "text": "Treat a first attempt as a way to reveal a specific gap. You might know the goal but not the operation. You might choose the right operation and make an arithmetic error. Those problems call for different help.",
+    "claim": "Original editorial application"
+  },
+  {
+    "id": "31",
+    "region": "guidance",
+    "text": "As understanding grows, change the support. Study a complete example, finish an incomplete one, then attempt a fresh problem. This sequence is a practical synthesis. The studies do not prescribe one exact schedule that works for every learner.",
+    "claim": "C06/C11; explicitly editorial synthesis"
+  },
+  {
+    "id": "32",
+    "region": "retrieval",
+    "text": "Now cover the explanation. Can you produce the method without seeing it? This gives you information that another comfortable reread cannot provide: where your own explanation stops, and which step you were borrowing from the page.",
+    "claim": "C01; original explanatory application"
+  },
+  {
+    "id": "33",
+    "region": "retrieval",
+    "text": "Retrieval practice can support learning, but the comparison matters. A review of forty four studies found its advantage over other substantial learning activities depended on the activity and on corrective feedback. Recalling something is not automatically the best choice in every situation.",
+    "claim": "C07"
+  },
+  {
+    "id": "34",
+    "region": "retrieval",
+    "text": "After an attempt, check it. Otherwise you may only discover that you can repeat your own error. For a calculation, substitute the result back. For an explanation, compare the missing steps with a reliable worked solution.",
+    "claim": "C07; original editorial application"
+  },
+  {
+    "id": "35",
+    "region": "retrieval",
+    "text": "Keep the correction specific. Instead of writing that you are bad at this topic, write the operation you missed and why it matters. Then give yourself another chance to use that operation. The next attempt is where the correction becomes testable.",
+    "claim": "Original editorial application"
+  },
+  {
+    "id": "36",
+    "region": "example",
+    "text": "Let us make that concrete with an invented algebra example. Two times the quantity x plus three equals fourteen. Our goal is to find x and explain why each operation preserves the equation. The example is simple so the learning choices stay visible.",
+    "claim": "Original checked mathematical example"
+  },
+  {
+    "id": "37",
+    "region": "example",
+    "text": "If you are new to equations, start with a worked solution. Divide both sides by two. That leaves x plus three equal to seven. Subtract three from both sides. Now x equals four. Substitute four into the original equation to check it.",
+    "claim": "Original checked mathematical example"
+  },
+  {
+    "id": "38",
+    "region": "example",
+    "text": "If you already know the basics, try before opening that solution. Suppose you stop at the brackets. A useful hint could ask which operation would remove the outside factor. It leaves you a decision to make, then gives you a way to check that decision.",
+    "claim": "Original checked mathematical example"
+  },
+  {
+    "id": "39",
+    "region": "example",
+    "text": "Suppose you instead write two x plus three equals fourteen. The mistake is specific: multiplying the bracket means multiplying both terms. The expansion is two x plus six. Correct that step and explain the distributive rule before proceeding.",
+    "claim": "Original checked mathematical example"
+  },
+  {
+    "id": "40",
+    "region": "example",
+    "text": "Now hide the worked answer. Solve the original equation again and say why you divide or subtract. A memorized final value is too little evidence. We want to see the method you can generate while the solution is unavailable.",
+    "claim": "Original illustrative check"
+  },
+  {
+    "id": "41",
+    "region": "transfer",
+    "text": "Next, change the problem. Three times the quantity y minus two equals fifteen. Divide both sides by three, then add two. The answer is seven. The numbers and sign changed, but the equality-preserving idea is the same.",
+    "claim": "Original checked mathematical example"
+  },
+  {
+    "id": "42",
+    "region": "transfer",
+    "text": "This is a small transfer check, close to the original. Do not turn one successful variation into proof that you can solve every equation. A substantially different problem may require another idea, and we should test that idea separately.",
+    "claim": "C01; original illustrative scope"
+  },
+  {
+    "id": "43",
+    "region": "transfer",
+    "text": "Bring back a fresh problem later. For example, four times the quantity z plus one equals twenty. Solve it with the earlier answer hidden. If you want a delayed check, leave a real interval between practice and this attempt.",
+    "claim": "Original checked mathematical example"
+  },
+  {
+    "id": "44",
+    "region": "transfer",
+    "text": "For this problem, z equals four. Checking the result gives four times five, which is twenty. The point is not how many examples you viewed. It is whether you can select, explain and verify the operations on another occasion.",
+    "claim": "Original checked mathematical example; editorial conclusion"
+  },
+  {
+    "id": "45",
+    "region": "labels",
+    "text": "There is no magic label for the right tutor. Calling an interface Socratic tells you that it uses questions and hints. It does not establish what a learner retains, or whether the learner can solve an unfamiliar problem alone.",
+    "claim": "C12; editorial interpretation"
+  },
+  {
+    "id": "46",
+    "region": "labels",
+    "text": "A small recent study of fifty participants learning nuclear safety found larger immediate gains with unrestricted chat than with its constrained alternatives. Its limited size, specialized task and immediate test make it a caution against easy rankings, not a general winner.",
+    "claim": "C12"
+  },
+  {
+    "id": "47",
+    "region": "labels",
+    "text": "A useful tutor request is concrete: here is my attempt, here is the step I cannot justify, and here is the kind of help I need. Ask it to diagnose that step, then try the revised method yourself.",
+    "claim": "Original editorial recommendation"
+  },
+  {
+    "id": "48",
+    "region": "labels",
+    "text": "If the tutor gives a full solution anyway, you still have choices. Study it deliberately, cover it, and test a fresh case. If the feedback seems wrong, check a trusted reference or teacher before rehearsing it. The interface does not remove your judgment.",
+    "claim": "Original editorial recommendation"
+  },
+  {
+    "id": "49",
+    "region": "closing",
+    "text": "You can keep a small learning record with three columns: what I attempted, what help I used, and what I could do alone afterward. Add a later attempt when retention matters. This is a personal check, not a standardized experiment.",
+    "claim": "Original editorial recommendation"
+  },
+  {
+    "id": "50",
+    "region": "closing",
+    "text": "Choose one skill and one fresh problem. Use enough guidance to move forward, then make space for your own explanation and correction. Change the problem when you want to check transfer. Return later when you want to check retention.",
+    "claim": "Original editorial synthesis"
+  },
+  {
+    "id": "51",
+    "region": "closing",
+    "text": "The evidence supports neither a blanket ban nor an automatic promise. Different learners, tools, teaching designs and tests produce different results. When the goal is learning, watch what the person is required to do and measure what remains after the help is removed.",
+    "claim": "Editorial synthesis of cited evidence"
+  },
+  {
+    "id": "52",
+    "region": "closing",
+    "text": "Return to the spreadsheet at the beginning. The first formula solved today's problem. Your next independent attempt tells you something about tomorrow. Use artificial intelligence to make that next attempt better. What can you do when the answer is gone?",
+    "claim": "Original editorial conclusion"
+  }
+]

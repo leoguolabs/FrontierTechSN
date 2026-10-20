@@ -1,0 +1,186 @@
+[
+  {
+    "id": "hook",
+    "title": "The finished task",
+    "narration_ids": [
+      "01",
+      "02",
+      "03",
+      "04"
+    ],
+    "word_count": 149,
+    "estimated_voice_seconds": 49.67,
+    "visible_action": "One worker at a laptop becomes a worker at a blank worksheet; return to the question.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "measures",
+    "title": "Four different tests",
+    "narration_ids": [
+      "05",
+      "06",
+      "07",
+      "08"
+    ],
+    "word_count": 157,
+    "estimated_voice_seconds": 52.33,
+    "visible_action": "Laptop, independent worksheet, calendar and changed document appear in sequence.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "turkey",
+    "title": "Two scoreboards",
+    "narration_ids": [
+      "09",
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "word_count": 177,
+    "estimated_voice_seconds": 59.0,
+    "visible_action": "Draw Turkey flag and two matching learners; distinguish observed results from invented arithmetic illustration.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "physics",
+    "title": "Teaching design",
+    "narration_ids": [
+      "14",
+      "15",
+      "16",
+      "17",
+      "18"
+    ],
+    "word_count": 190,
+    "estimated_voice_seconds": 63.33,
+    "visible_action": "Physics book and thinking learner connect with arrows; accurate-help checkpoint appears below.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "delay",
+    "title": "One week later",
+    "narration_ids": [
+      "19",
+      "20",
+      "21",
+      "22"
+    ],
+    "word_count": 157,
+    "estimated_voice_seconds": 52.33,
+    "visible_action": "Learner, seven-day calendar and fresh test; add limited delayed result and three scope labels.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "offload",
+    "title": "What remains yours",
+    "narration_ids": [
+      "23",
+      "24",
+      "25",
+      "26"
+    ],
+    "word_count": 169,
+    "estimated_voice_seconds": 56.33,
+    "visible_action": "Answer bubble points to thinking learner; answer is erased while person and notebook remain.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "guidance",
+    "title": "Guidance that changes",
+    "narration_ids": [
+      "27",
+      "28",
+      "29",
+      "30",
+      "31"
+    ],
+    "word_count": 199,
+    "estimated_voice_seconds": 66.33,
+    "visible_action": "Book to partial worksheet to independent learner; arrows develop after each source of support is explained.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "retrieval",
+    "title": "Explain and correct",
+    "narration_ids": [
+      "32",
+      "33",
+      "34",
+      "35"
+    ],
+    "word_count": 155,
+    "estimated_voice_seconds": 51.67,
+    "visible_action": "Cross the visible solution, draw learner attempt and checked page; record specific correction.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "example",
+    "title": "A worked algebra example",
+    "narration_ids": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "word_count": 207,
+    "estimated_voice_seconds": 69.0,
+    "visible_action": "Reveal exact operations, identify deliberately wrong expansion and correct it; erase solution for independent attempt.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "transfer",
+    "title": "Change and return",
+    "narration_ids": [
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "word_count": 154,
+    "estimated_voice_seconds": 51.33,
+    "visible_action": "Changed equation, solution, near-transfer scope, later fresh equation and substitution check.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "labels",
+    "title": "An interface label is not evidence",
+    "narration_ids": [
+      "45",
+      "46",
+      "47",
+      "48"
+    ],
+    "word_count": 161,
+    "estimated_voice_seconds": 53.67,
+    "visible_action": "Thinking learner beside answer, hint and question choices; mark concrete help request and feedback check.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  },
+  {
+    "id": "closing",
+    "title": "The next independent attempt",
+    "narration_ids": [
+      "49",
+      "50",
+      "51",
+      "52"
+    ],
+    "word_count": 162,
+    "estimated_voice_seconds": 54.0,
+    "visible_action": "Learning log, independent learner, final question and whole-board pullback.",
+    "camera": "Travel on one board; progressively pull back to retain the heading and whole character as the argument accumulates. Exact timing follows provider WAVs.",
+    "sound": "Shared stroke and eraser foley; restrained sampled music ducked under natural-speed narration."
+  }
+]

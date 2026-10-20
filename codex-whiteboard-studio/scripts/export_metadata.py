@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Export captions, chapter timing, poster and a frame-based delivery timeline."""
+import argparse
 import json
 from pathlib import Path
 import subprocess
+from production import add_edition_argument, production
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -13,6 +15,11 @@ def stamp(t, separator="."):
 
 
 def main():
+    global ROOT
+    parser = argparse.ArgumentParser()
+    add_edition_argument(parser)
+    project = production(parser.parse_args().edition)
+    ROOT = project.root
     timeline = json.loads((ROOT/"media/timeline.json").read_text())
     cues = timeline["captions"]
     for extension, separator, header in [("vtt", ".", "WEBVTT\n\n"), ("srt", ",", "")]:
@@ -34,7 +41,7 @@ def main():
     (ROOT/"media/delivery-timeline.json").write_text(json.dumps(delivery, indent=2)+"\n")
     title_time = rows[1]["end"]-.25
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(title_time),
-                    "-i", str(ROOT/"media/does-ai-help-you-learn-3min.mp4"),
+                    "-i", str(project.video),
                     "-frames:v", "1", "-q:v", "2", str(ROOT/"media/poster.jpg")], check=True)
     print(f"Exported {len(cues)} caption cues and {len(shots)} editorial beats.")
 

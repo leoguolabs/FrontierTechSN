@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 import subprocess
 import sys
+from production import add_edition_argument, production
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -15,25 +16,32 @@ def run(*args):
 
 def main():
     p = argparse.ArgumentParser()
+    add_edition_argument(p)
     p.add_argument("--speech", action="store_true", help="Generate or resume provider audio before building.")
     p.add_argument("--frontier-config", action="store_true", help="Read only the parent app's Chatterbox credentials.")
     p.add_argument("--skip-atlases", action="store_true", help="Skip evidence generation, never mark visual review complete.")
     args = p.parse_args()
+    project = production(args.edition)
+    edition = ["--edition", args.edition]
     python = sys.executable
     if args.speech:
-        run(python, "scripts/speech.py", *(["--frontier-config"] if args.frontier_config else []))
-        run(python, "scripts/transcribe.py")
-    run("node", "scripts/validate.mjs")
-    run("node", "scripts/render.mjs")
-    run(python, "scripts/mix_audio.py")
-    run(python, "scripts/export_metadata.py")
-    run(python, "scripts/verify_delivery.py")
-    run(python, "scripts/review_stills.py")
+        run(python, "scripts/speech.py", *edition,
+            *(["--frontier-config"] if args.frontier_config else []))
+        run(python, "scripts/transcribe.py", *edition)
+    run("node", "scripts/validate.mjs", *edition)
+    run("node", "scripts/render.mjs", *edition)
+    run(python, "scripts/mix_audio.py", *edition)
+    run(python, "scripts/export_metadata.py", *edition)
+    run(python, "scripts/verify_delivery.py", *edition)
+    run(python, "scripts/review_stills.py", *edition)
     if not args.skip_atlases:
-        run(python, "scripts/analyze_frames.py", "media/does-ai-help-you-learn-3min.mp4",
-            "--out", "review/candidate")
-        run(python, "scripts/compare_frames.py", "media/does-ai-help-you-learn-3min.mp4",
-            "--candidate-analysis", "review/candidate", "--out", "review/comparison")
+        run(python, "scripts/analyze_frames.py", project.video,
+            "--out", project.root/"review/candidate")
+        run(python, "scripts/compare_frames.py", project.video,
+            "--timeline", project.root/"media/timeline.json",
+            "--definitions", project.root/"content/comparison.json",
+            "--candidate-analysis", project.root/"review/candidate",
+            "--out", project.root/"review/comparison")
     print("\nBuild complete. Visual inspection and playback review remain separate human/agent review steps.")
 
 

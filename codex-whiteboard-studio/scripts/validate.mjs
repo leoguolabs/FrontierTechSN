@@ -5,21 +5,24 @@ import {createCanvas,GlobalFonts} from '@napi-rs/canvas'
 import {fileURLToPath} from 'node:url'
 import path from 'node:path'
 import assert from 'node:assert/strict'
-import {createFilm} from '../src/film.mjs'
 import {Score,line,PENS} from '../src/board.mjs'
 import {comparisonBeats,referenceFrame} from '../src/comparison.mjs'
 
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
+const studio=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
+const edition=process.argv.includes('--edition')?process.argv[process.argv.indexOf('--edition')+1]:'short'
+if(!['short','long'].includes(edition))throw new Error(`Unknown edition: ${edition}`)
+const {createFilm}=await import(edition==='short'?'../src/film.mjs':'../src/long-film.mjs')
+const root=edition==='short'?studio:path.join(studio,'editions',edition)
 process.chdir(root)
 const read=async p=>JSON.parse(await readFile(p,'utf8'))
 const sha=data=>createHash('sha256').update(data).digest('hex')
 const draft=process.argv.includes('--draft')
 const narration=await read('content/narration.json')
-const font=await read('fonts/ems-tech.json')
+const font=await read(path.join(studio,'fonts/ems-tech.json'))
 const audio=existsSync('media/audio/manifest.json')?await read('media/audio/manifest.json'):[]
 const alignments=existsSync('media/asr/review.json')?await read('media/asr/review.json'):[]
 const definitions=await read('content/comparison.json')
-GlobalFonts.registerFromPath('fonts/ArchitectsDaughter-Regular.ttf','Architects Daughter')
+GlobalFonts.registerFromPath(path.join(studio,'fonts/ArchitectsDaughter-Regular.ttf'),'Architects Daughter')
 const input={font,narration,audio,alignments,createCanvas}
 const film=createFilm(input)
 const {score,timeline,camera}=film
@@ -69,10 +72,11 @@ for(let f=0;f<timeline.duration_frames;f++){
 // A seek backwards must reproduce the same image, regardless of cache state.
 const canvas=createCanvas(1920,1080),context=canvas.getContext('2d')
 const deterministicFrames={}
-for(const t of [14,41.5,104.7,142.4]){
+const inspectionTimes=edition==='short'?[14,41.5,104.7,142.4]:[14,...[9,25,39].map(i=>timeline.lines[i].start+4)]
+for(const t of inspectionTimes){
   film.renderer.render(context,t)
   const expected=sha(canvas.toBuffer('image/png'))
-  film.renderer.render(context,179.95)
+  film.renderer.render(context,timeline.duration-.05)
   film.renderer.render(context,t)
   assert.equal(sha(canvas.toBuffer('image/png')),expected,`Backward seek changed frame at ${t}`)
   const fresh=createFilm(input)

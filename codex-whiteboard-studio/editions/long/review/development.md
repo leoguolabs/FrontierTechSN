@@ -113,3 +113,22 @@ The first five current WAVs now have matching unprompted transcripts. Their
 source, provider-job and audio hashes are retained in `audio-development.json`.
 All remaining audio, complete-film rendering, reference comparison and
 playback review are still pending.
+
+The opening learner's laptop originally contained generic text lines although
+the script names a spreadsheet. The long composition now draws a perspective
+grid inside that screen. The resulting 360-frame, 15-second silent clip was
+inspected through all eight atlases, followed by a native frame at 12 seconds.
+The grid remains inside the screen and is recognizable. It finishes after
+the spoken formula phrase in the current draft, so the opening is another
+explicit final speech-alignment check. The cumulative development inspection
+now covers 3,813 frames in eight clips, plus five native encoded stills.
+
+Line 06 has an unresolved pronunciation observation: unprompted Whisper turbo
+and small produce "ID" for the source word "idea"; medium produces "idea".
+All three observations and the original WAV
+`d7388694386dc0576b3f1b0f72839c28acca3395e588927f27edd888568ed8f4`
+are retained. A source-bound second take uses seed 1225. This is a clarity
+repair, not a claim that the ASR disagreement proves a lexical substitution.
+The local speech client was restarted with this decision while preserving
+the already-running line-07 job
+`7ff3bfbce122419a86e00c8cccfbd63e`; the service was not restarted.

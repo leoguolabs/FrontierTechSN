@@ -5,5 +5,12 @@
     "replaces_audio_sha256": "d32ce330b3e7baf4f27a2b095974526b488d2f8c16b9ca934739d098eaf88dbc",
     "replaces_job_id": "a96c7682cfbc4f9dab4b42e923c0f438",
     "reason": "Both unprompted Whisper turbo and medium transcriptions found the extra trailing words \"We're reset to\" after the complete requested sentence. Retain the original WAV and generate a second natural-speed take."
+  },
+  "06": {
+    "source_sha256": "ea1299f0dd7e6614727e4f26edb807b7b8ce25295f0682a812afc9119ab5a807",
+    "seed": 1225,
+    "replaces_audio_sha256": "d7388694386dc0576b3f1b0f72839c28acca3395e588927f27edd888568ed8f4",
+    "replaces_job_id": "3d0e22fc7c124175b90c52a2f4841f80",
+    "reason": "Unprompted Whisper turbo and small transcribe the source word idea as ID; medium transcribes idea. This disagreement leaves pronunciation clarity unresolved. Retain the original WAV and all three observations, and generate a second natural-speed take without changing the script."
   }
 }

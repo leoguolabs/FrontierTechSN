@@ -591,6 +591,75 @@
         }
       ],
       "observation": "All 640 consecutive frames inspected in 14 atlases. Border, dividers, column labels and entries are drawn in separated marker handoffs. No visible marker collision. Narration is provisional and this silent clip does not establish speech synchronization."
+    },
+    {
+      "name": "opening-spreadsheet",
+      "video_sha256": "7025a6c2048e0ef64e4f32c4217f917fc0516c6d67c8eb82b3a70b7e59739be9",
+      "receipt": {
+        "picture_sha256": "7025a6c2048e0ef64e4f32c4217f917fc0516c6d67c8eb82b3a70b7e59739be9",
+        "timeline_sha256": "0dc7d15aff3c0e4d8f286373bc4ddc8cf4e1b4327e81330e73cefd700be03032",
+        "events_sha256": "1b8b6c000a66770a099219eed24920ef6da1c8d179c9cfe1ac87762c5266e006",
+        "first_frame": 0,
+        "last_frame_exclusive": 360,
+        "frames": 360,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 360,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "c7f88851daa9423a3cdd62585367b577ee2816e1bebe5200c23afc378f25c362"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "b570e3c5e19d38387f00e411cc69caa271b39c7432340ebd093ae6c968a795a3"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "deef04bf698eef648ce3beaed14392bcb3d7ac98546e4356a97c19c9f3bb86da"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "7dad4f3977c1d9dce29bdc101c824635bb0a832402fe29b71fdfbabac3b12877"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "258ab2f25341d073e1e4745b9c9546c9151d8485aa121ed9cbf317765e524b13"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "ec4a2d62eaf11b85b9678769e699950567ff862aa216ec0c750ad97431c9d0c1"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "b1903d60e93fd83e24cea7f380ff8d48b2b07e35b05c95ccf1fe4af588a668f3"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 359,
+          "sha256": "c8f4c087de9aaa9024d0febe98f35202fc256aa87ab01c6c06b5271592d3332a"
+        }
+      ],
+      "observation": "All 360 consecutive frames inspected through eight atlases. The opening learner uses a laptop with a drawn spreadsheet grid. The grid stays inside the screen and marker handoffs remain separated. The laptop completes after the spoken formula phrase; final cue alignment remains required."
     }
   ],
   "native_stills": [
@@ -629,6 +698,15 @@
       "width": 1920,
       "height": 1080,
       "observation": "Table labels and entries are legible and fit their columns. The next learner is still being drawn at this selected frame."
+    },
+    {
+      "file": "review/development/native/opening-spreadsheet-288.png",
+      "sha256": "14ddabf38a3600ee12c69b6de9130835af028d9988adcfad4d731956e706ccd4",
+      "video_sha256": "7025a6c2048e0ef64e4f32c4217f917fc0516c6d67c8eb82b3a70b7e59739be9",
+      "frame": 288,
+      "width": 1920,
+      "height": 1080,
+      "observation": "Grid rows and columns are clear inside the laptop screen. The learner, desk and caption are separate and legible."
     }
   ]
 }

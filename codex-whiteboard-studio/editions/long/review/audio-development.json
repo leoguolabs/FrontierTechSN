@@ -51,5 +51,58 @@
       "independent_transcript_matches": true,
       "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
     }
+  ],
+  "pronunciation_rechecks": [
+    {
+      "id": "06",
+      "status": "Second take requested; not accepted yet. Original source and WAV retained.",
+      "source_sha256": "ea1299f0dd7e6614727e4f26edb807b7b8ce25295f0682a812afc9119ab5a807",
+      "original_audio_sha256": "d7388694386dc0576b3f1b0f72839c28acca3395e588927f27edd888568ed8f4",
+      "original_job_id": "3d0e22fc7c124175b90c52a2f4841f80",
+      "observations": [
+        {
+          "file": "media/asr/06-d7388694386d-second-medium.json",
+          "sha256": "7c57403fe5a9950f26b675bc1de74d8add044091c4ca44185fe8abb1d58f788a",
+          "audio_sha256": "d7388694386dc0576b3f1b0f72839c28acca3395e588927f27edd888568ed8f4",
+          "model": "mlx-community/whisper-medium-mlx",
+          "normalized_changes": []
+        },
+        {
+          "file": "media/asr/06-d7388694386d-third-small.json",
+          "sha256": "ded752d37d8e5e344b4d1f0fe04fad198e199c1ba64049d721536b715d9d89f3",
+          "audio_sha256": "d7388694386dc0576b3f1b0f72839c28acca3395e588927f27edd888568ed8f4",
+          "model": "mlx-community/whisper-small-mlx",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "idea"
+              ],
+              "heard": [
+                "id"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "media/asr/06-d7388694386d.json",
+          "sha256": "9353475a5de68fc90c658ac21c8a0af3209b8b7ea75421bae3ad2cdb629bf556",
+          "audio_sha256": "d7388694386dc0576b3f1b0f72839c28acca3395e588927f27edd888568ed8f4",
+          "model": "mlx-community/whisper-large-v3-turbo-q4",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "idea"
+              ],
+              "heard": [
+                "id"
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "Two unprompted recognizers produce ID where the source says idea; one produces idea. A second natural-speed take is requested to resolve clarity, without asserting a proven lexical substitution or subjective listening."
+    }
   ]
 }

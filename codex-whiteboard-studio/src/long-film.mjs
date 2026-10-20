@@ -44,7 +44,19 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
     poly([[x,y+h],[x-45,y+h+52],[x+w+45,y+h+52],[x+w,y+h]],{width:8}),
     line(x+w*.38,y+h+30,x+w*.62,y+h+30,{width:5})]
   const desk=(id,region,dx,dy,at,mode='laptop',accent=BLUE,scale=1)=>{
-    const p=rmap[region],a=learnerAtDesk(p.x+dx,p.y+dy,{scale,mode,accent})
+    const p=rmap[region],x=p.x+dx,y=p.y+dy
+    const a=learnerAtDesk(x,y,{scale,mode:mode==='spreadsheet'?'laptop':mode,accent})
+    if(mode==='spreadsheet'){
+      const point=([px,py])=>[x+px*scale,y+py*scale]
+      const gridStyle={color:accent,width:2.8*scale,wobble:.35*scale}
+      const gridLine=(a,b)=>line(...point(a),...point(b),gridStyle)
+      a.task=[
+        ...a.task.slice(0,2),
+        poly([[193,104],[275,104],[284,155],[202,155],[193,104]].map(point),gridStyle),
+        ...[1/3,2/3].map(q=>gridLine([193+82*q,104],[202+82*q,155])),
+        ...[1/3,2/3].map(q=>gridLine([193+9*q,104+51*q],[275+9*q,104+51*q])),
+      ]
+    }
     d(`${id}-body`,[...a.body,...a.desk],at,2.6)
     d(`${id}-task`,a.task,at+1.1,1.5,accent)
     after(`${id}-body`,`${id}-task`)
@@ -66,7 +78,7 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
 
   // 01: The same worker succeeds with help, then faces an independent attempt.
   heading('hook','AI: LEARN OR JUST FINISH?',1)
-  desk('opening-worker','hook',180,235,t(1,.12),'laptop',BLUE,1.35)
+  desk('opening-worker','hook',180,235,t(1,.12),'spreadsheet',BLUE,1.35)
   text('deadline','today: it works','hook',160,735,t(1,.55),{color:BLUE,h:76})
   arr('opening-change','hook',[690,470],[990,470],t(2,.08),ORANGE)
   desk('opening-alone','hook',1110,235,t(2,.25),'paper',ORANGE,1.35)

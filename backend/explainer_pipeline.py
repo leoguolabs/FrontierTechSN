@@ -331,6 +331,18 @@ async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path
                  "provider": provider_model, "seed": config.TTS_RANDOM_SEED,
                  "endpoint": config.ORPHEUS_TTS_URL if model == "orpheus-en" else config.POCKET_TTS_URL if model == "pocket-tts-en" else None,
                  "provider_revision": config.POCKET_TTS_MODEL_REVISION if model == "pocket-tts-en" else None}
+    synthesis_narration = scene["narration"]
+    if model == "pocket-tts-en":
+        from backend.spoken_numbers import normalize_spoken_decades
+        from backend.pipeline.tts import _lexical_tokens
+
+        synthesis_narration = normalize_spoken_decades(scene["narration"])
+        if synthesis_narration != scene["narration"]:
+            if _lexical_tokens(synthesis_narration) != _lexical_tokens(scene["narration"]):
+                raise ValueError("Pocket decade pronunciation changed the source narration")
+            # Invalidate only affected audio, retaining the original waveform,
+            # script and provider evidence in the preceding cache directory.
+            inputs["pocket_decade_pronunciation"] = {"version": 1, "text": synthesis_narration}
     if provider_model.get("kind") == "chatterbox_http":
         from backend.pipeline.chatterbox import cache_contract
 
@@ -380,12 +392,11 @@ async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path
             return stage / "narration.wav", record
     _write(stage / "script.txt", scene["narration"], root)
     script_path = stage / "script.txt"
-    if requires_labels:
-        # Dialogue-capable models need metadata on every nonempty input line.
-        # Keep the canonical script, captions and scene narration untouched.
+    if requires_labels or synthesis_narration != scene["narration"]:
+        # Provider-only metadata/readings leave the canonical narration intact.
         provider_input = "\n".join(
             f"Speaker 1: {line.strip()}" for line in scene["narration"].splitlines() if line.strip()
-        )
+        ) if requires_labels else synthesis_narration
         script_path = stage / "provider-script.txt"
         _write(script_path, provider_input, root)
     try:
@@ -415,11 +426,13 @@ async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path
     await _verify(temporary, duration=duration, video=False, audio=True)
     final = stage / "narration.wav"
     temporary.replace(final)
-    input_paths = [stage / "script.txt", script_path] if requires_labels else [script_path]
+    input_paths = list(dict.fromkeys([stage / "script.txt", script_path]))
     record = _complete(stage, key, [final, *input_paths], root,
                        narration_duration_seconds=measured, duration_seconds=duration, frames=frames,
                        provider="existing_generate_tts", model=model, voice=voice,
-                       input_policy="speaker_1_metadata" if requires_labels else "plain_narration")
+                       input_policy=("speaker_1_metadata" if requires_labels else
+                                     "source_bound_decade_pronunciation" if synthesis_narration != scene["narration"]
+                                     else "plain_narration"))
     return final, record
 
 

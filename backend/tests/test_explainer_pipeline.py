@@ -67,6 +67,41 @@ def test_pocket_accepted_audio_remains_usable_while_service_is_offline(tmp_path,
     offline.assert_not_awaited()
 
 
+@pytest.mark.parametrize("source", [
+    "In early-2020s systems, the model scored fifty-eight percent truthful.",
+    "In 2020, the model scored fifty-eight percent truthful.",
+])
+def test_pocket_decade_repair_preserves_source_and_old_waveform_cache(tmp_path, providers, monkeypatch, source):
+    from backend import spoken_numbers
+
+    project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
+    scene = {**project["scenes"][0], "narration": source}
+    normalize = spoken_numbers.normalize_spoken_decades
+
+    async def run():
+        monkeypatch.setattr(spoken_numbers, "normalize_spoken_decades", lambda text: text)
+        old_path, old_record = await pipeline._audio(scene, project, tmp_path, lambda _: None)
+        originals = {p: p.read_bytes() for p in tmp_path.rglob("*") if p.is_file()}
+        monkeypatch.setattr(spoken_numbers, "normalize_spoken_decades", normalize)
+        new_path, record = await pipeline._audio(scene, project, tmp_path, lambda _: None)
+        changed = normalize(source) != source
+        assert (new_path != old_path) is changed
+        assert len(providers.audio_calls) == (2 if changed else 1)
+        assert (new_path.parent / "script.txt").read_text() == source
+        if changed:
+            assert providers.audio_calls[-1][0] == normalize(source)
+            assert record["input_policy"] == "source_bound_decade_pronunciation"
+            assert "provider-script.txt" in record["files"]
+        else:
+            assert record == old_record
+        assert all(path.read_bytes() == contents for path, contents in originals.items())
+        assert await pipeline._audio(scene, project, tmp_path, lambda _: None) == (new_path, record)
+        assert len(providers.audio_calls) == (2 if changed else 1)
+        assert scene["narration"] == source
+
+    asyncio.run(run())
+
+
 class Providers:
     def __init__(self):
         self.audio_calls = []

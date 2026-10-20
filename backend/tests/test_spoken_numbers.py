@@ -7,7 +7,43 @@ import pytest
 
 from backend.daily_news.scriptwriter import enforce_script_contract
 from backend.pipeline import digester, tts
-from backend.spoken_numbers import normalize_spoken_quantities
+from backend.spoken_numbers import normalize_spoken_decades, normalize_spoken_quantities
+
+
+@pytest.mark.parametrize(("source", "expected"), [
+    ("early-2020s systems", "early twenty twenties systems"),
+    ("The late 1990s.", "The late nineteen nineties."),
+    ("mid-1980s tools", "mid nineteen eighties tools"),
+    ("1920s and 2030s", "nineteen twenties and twenty thirties"),
+])
+def test_explicit_decades_preserve_plural_value_and_asr_indexes(source, expected):
+    assert normalize_spoken_decades(source) == expected
+    assert normalize_spoken_decades(expected) == expected
+    assert tts._lexical_tokens(source) == tts._lexical_tokens(expected)
+    words = [{"text": word, "start": i * .2, "end": i * .2 + .1}
+             for i, word in enumerate(expected.split())]
+    observed, indexes = tts._transcript_tokens(words)
+    assert observed == tts._lexical_tokens(source)
+    assert len(observed) == len(indexes)
+    assert indexes == sorted(indexes)
+
+
+@pytest.mark.parametrize("source", [
+    "2020 systems", "2000s", "1900s", "the 20s", "the 2021s",
+    "XY-2020s", "v2020s", "2020s-R2", "2020s.1", "2020s/AB",
+])
+def test_decade_spelling_leaves_years_ambiguous_periods_and_identifiers_unchanged(source):
+    assert normalize_spoken_decades(source) == source
+
+
+@pytest.mark.parametrize("wrong", ["2020", "twenty twenty", "twenty thirties", "nineteen twenties"])
+def test_decade_matching_rejects_lost_plural_or_changed_decade(wrong):
+    source = "In early-2020s systems, the best model scored fifty-eight percent truthful."
+    observed = source.replace("2020s", wrong)
+    assert tts._lexical_tokens(source) != tts._lexical_tokens(observed)
+    words = [{"text": word, "start": i * .3, "end": i * .3 + .2}
+             for i, word in enumerate(observed.split())]
+    assert not tts._orpheus_transcript_report(source, words)["verified"]
 
 
 @pytest.mark.parametrize(("source", "expected"), [

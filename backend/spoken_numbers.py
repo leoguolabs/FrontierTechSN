@@ -22,6 +22,13 @@ _SMALL = (
     "sixteen", "seventeen", "eighteen", "nineteen",
 )
 _TENS = ("", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety")
+_DECADE_WORDS = {word[:-1] + "ies": value * 10
+                 for value, word in enumerate(_TENS) if word}
+_DECADE_LITERAL = re.compile(
+    r"(?<![\w./-])(?P<qualifier>(?:early|mid|late)[ -])?"
+    r"(?P<century>19|20)(?P<decade>[2-9]0)s(?![\w/-]|\.\w)",
+    re.IGNORECASE,
+)
 NUMBER_WORDS = {
     **{word: str(value) for value, word in enumerate(_SMALL)},
     **{word: str(value * 10) for value, word in enumerate(_TENS) if word},
@@ -83,6 +90,22 @@ def normalize_grouped_integer_literals(text: str) -> str:
             return literal
         return digits
     return _GROUPED_LITERAL.sub(replace, text)
+
+
+def normalize_spoken_decades(text: str) -> str:
+    """Spell explicit modern decades without changing years or identifiers.
+
+    Use two-part readings such as nineteen nineties and twenty twenties.
+    Century/millennium forms (1900s/2000s), abbreviated decades, and identifier
+    fragments stay untouched. Retain early/mid/late temporal qualifiers.
+    """
+    def replace(match: re.Match) -> str:
+        qualifier = (match["qualifier"] or "").replace("-", " ")
+        century = "nineteen" if match["century"] == "19" else "twenty"
+        decade = _TENS[int(match["decade"]) // 10][:-1] + "ies"
+        return f"{qualifier}{century} {decade}"
+
+    return _DECADE_LITERAL.sub(replace, text)
 
 
 def _coefficient(tokens: list[str], start: int) -> tuple[int, int, bool] | None:
@@ -192,6 +215,12 @@ def canonicalize_integer_tokens(
         parsed = _scaled_integer(tokens, index)
         if parsed is not None:
             value, end = parsed
+        elif (tokens[index] in {"19", "20"} and index + 1 < len(tokens)
+              and tokens[index + 1] in _DECADE_WORDS):
+            # A plural decade remains distinct from its starting year:
+            # twenty twenties == 2020s, but twenty twenty == 2020.
+            value = str(int(tokens[index]) * 100 + _DECADE_WORDS[tokens[index + 1]]) + "s"
+            end = index + 2
         # Retain the established spoken-year convention independently of
         # quantity grammar: "eighteen ninety-five" / "nineteen oh five".
         elif (

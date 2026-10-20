@@ -1,0 +1,14 @@
+{
+  "observed_date_utc": "2026-10-20",
+  "account": "@LeoGuoLabs",
+  "browser": "Codex in-app browser",
+  "profile": "https://x.com/LeoGuoLabs",
+  "article_index": "https://x.com/compose/articles",
+  "observations": [
+    "The account menu identifies Leo Guo and @LeoGuoLabs.",
+    "The Articles page exposes Drafts, Published, and a create button.",
+    "Two unrelated drafts were visible and were not edited."
+  ],
+  "publication_state": "not_published",
+  "scope": "Read-only account and article-index check. No article was created, uploaded, or published. Recheck the account and editor when publishing the completed process article."
+}

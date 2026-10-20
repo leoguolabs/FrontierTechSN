@@ -17,7 +17,7 @@ export const regions=[
 export function createFilm({font,narration,audio=[],alignments=[],createCanvas}){
   beginDrawing()
   const timeline=makeTimeline(narration,audio,alignments,{
-    targetDuration:720,minimumRoom:42,leadIn:4.75,
+    targetDuration:720,minimumRoom:42,leadIn:4.75,extraGaps:{'09':6},
   })
   const S=new Score(),L=createLettering(font)
   const handoffs=[]
@@ -45,7 +45,7 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
     ...rect(x,y,w,h,{width:8}),
     poly([[x,y+h],[x-45,y+h+52],[x+w+45,y+h+52],[x+w,y+h]],{width:8}),
     line(x+w*.38,y+h+30,x+w*.62,y+h+30,{width:5})]
-  const desk=(id,region,dx,dy,at,mode='laptop',accent=BLUE,scale=1)=>{
+  const desk=(id,region,dx,dy,at,mode='laptop',accent=BLUE,scale=1,pace=1)=>{
     const p=rmap[region],x=p.x+dx,y=p.y+dy
     const a=learnerAtDesk(x,y,{scale,mode:mode==='spreadsheet'?'laptop':mode,accent})
     if(mode==='spreadsheet'){
@@ -59,8 +59,8 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
         ...[1/3,2/3].map(q=>gridLine([193+9*q,104+51*q],[275+9*q,104+51*q])),
       ]
     }
-    d(`${id}-body`,[...a.body,...a.desk],at,2.6)
-    d(`${id}-task`,a.task,at+1.1,1.5,accent)
+    d(`${id}-body`,[...a.body,...a.desk],at,2.6/pace)
+    d(`${id}-task`,a.task,at+1.1,1.5/pace,accent)
     after(`${id}-body`,`${id}-task`)
   }
   const thinker=(id,region,dx,dy,at,accent=BLUE,facing='right',scale=1)=>{
@@ -107,14 +107,15 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   text('one-test-limits','one test cannot answer all four','measures',900,1320,t(8,.25),{h:57,align:'center',duration:2.3})
 
   // 03: Keep measured percentages separate from the explicitly invented calculation.
-  heading('turkey','one study, two scoreboards',9)
+  text('turkey-heading','one study, two scoreboards','turkey',900,80,t(9),
+    {h:86,align:'center',duration:1.6})
   const {x:sx,y:sy}=rmap.turkey
   const flag=turkishFlag(sx+20,sy+130,{height:115})
   d('turkey-pole',flag.pole,t(9,.08),.5)
-  S.draw('turkey-flag',flag.field,frame(t(9,.10)),frame(t(9,.10)+2.6),{pen:'red'})
+  S.draw('turkey-flag',flag.field,frame(t(9,.10)),frame(t(9,.10)+2.2),{pen:'red'})
   text('turkey-context','nearly 1,000 students / mathematics','turkey',1000,240,t(9,.2),{h:49,align:'center',duration:2})
-  desk('turkey-assisted','turkey',90,360,t(9,.48),'laptop',BLUE,.95)
-  desk('turkey-unaided','turkey',1030,360,t(9,.76),'paper',ORANGE,.95)
+  desk('turkey-assisted','turkey',90,360,t(9,.48),'laptop',BLUE,.95,1.3)
+  desk('turkey-unaided','turkey',1030,360,t(9,.76),'paper',ORANGE,.95,1.3)
   text('turkey-practice','practice: +48%','turkey',420,560,t(10,.10),{h:76,color:BLUE,duration:1.8})
   text('turkey-exam','exam: -17%','turkey',1390,560,t(10,.45),{h:65,color:ORANGE,duration:1.7})
   text('relative','relative to the control group','turkey',900,810,t(10,.72),{h:55,align:'center'})
@@ -261,8 +262,9 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   // Local handoffs identified by frame review and conservative motion triage.
   after('measure-laptop','measure-help')
   after('measure-alone-body','measure-alone-label')
-  after('turkey-context','turkey-flag')
-  after('turkey-flag','turkey-assisted-body')
+  after('turkey-pole','turkey-flag')
+  after('turkey-flag','turkey-context')
+  after('turkey-assisted-task','turkey-unaided-body')
   after('turkey-assisted-task','turkey-practice')
   after('turkey-unaided-task','turkey-practice')
   after('turkey-unaided-task','turkey-exam')

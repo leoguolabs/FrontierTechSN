@@ -80,6 +80,36 @@
       "duration": 10.84,
       "independent_transcript_matches": true,
       "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "09",
+      "path": "media/audio/09-02e0ebcba83f.wav",
+      "job_id": "9dcb670793a9409d889f551437ed1e12",
+      "audio_sha256": "0c2ef92cc6800e123433ddf715f92cc7be84ddd58e34a4e3546ae5e31beb86a7",
+      "source_sha256": "fbe49ffb10a18df1c9390145e68aa9d8f71b05e0d65d244e4fc6dfb0483212bd",
+      "duration": 11.6,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "10",
+      "path": "media/audio/10-1da8db49a1b1.wav",
+      "job_id": "e25703cbba12410c83099358a5d3b749",
+      "audio_sha256": "02bc90dcef5863acec9748558287648ccf5506e50602a27b5be8d535a9d7f26d",
+      "source_sha256": "c3b63e5c2cd6602f391d8879ea525df054e94e72efe9743dc23cb858deec34f8",
+      "duration": 11.44,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "11",
+      "path": "media/audio/11-626a9202465e.wav",
+      "job_id": "f699a39c603e45f5ad0b19f7877baa86",
+      "audio_sha256": "4ae3dc34ac94146d6eeebd9a69c49471b0b7baaf011f97c63980d68db3d4801a",
+      "source_sha256": "b346c036fa016fb908782fc57dd95ce4cc101f000cb96b09d84470f26907206e",
+      "duration": 13.68,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
     }
   ],
   "pronunciation_rechecks": [

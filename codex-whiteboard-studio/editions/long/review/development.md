@@ -157,3 +157,43 @@ not assess early reveals or on-screen visibility. Eight Python tests and
 two choreography tests pass; draft validation passes with the remaining
 44 missing WAVs explicitly reported. Final speech alignment, full rendering,
 complete reference comparison, listening and playback review remain pending.
+
+With lines 09 and 10 available, the Turkey setup was revised again. The flag
+now follows its pole and precedes the context label. The two students draw
+in sequence at a slightly quicker stroke pace, with separate marker
+departures. Six additional seconds after line 09 give that setup room to
+finish. This redistributes the existing silence; it does not accelerate or
+stretch any speech. The timeline extends if there is insufficient silence,
+instead of overlapping voice lines. Three timing tests cover this behavior,
+and the four short-edition compatibility probes still match.
+
+In the encoded ten-voice development revision, the flag completes 2.217 seconds after "Turkey";
+the practice score completes 0.040 seconds after "forty eight percent higher";
+the exam score completes 1.227 seconds before the end of "seventeen percent
+lower"; and the qualifier completes 0.273 seconds after "relative changes".
+The 31-second encoded revision was inspected through all sixteen consecutive
+atlases, covering every one of its 744 frames. Native frame 720 was opened
+separately. The figures, flag and both score labels remain clear, and no
+visible pen collision remains in that interval. The cumulative development
+record is ten clips, 5,037 decoded frames and seven native encoded stills.
+
+Ten current voice rows match their independent transcripts. Six selected
+speech cues now have observed timing within their late bounds; fourteen
+remain pending. Draft structure validation passes with 42 voice rows still
+missing, and the conservative motion scan reports no marker-body candidates
+in that draft. These development observations do not replace final-film
+review after all voice rows are available.
+
+The bounded 31-second preview was also muxed with the original-speed lines
+09 and 10 and played in the in-app browser. Playback advanced from 16.748
+seconds to the 31-second end, at 1.0x, unmuted, 1920 × 1080, without a media
+error. `development-playback.json` records this separately from visual review
+and subjective listening.
+
+Line 11 subsequently arrived. Its recognizer wrote "groups" where the source
+has "group's"; the two spellings carry the same spoken sounds. Apostrophes
+between letters are now normalized without deleting the surrounding letters.
+Regression checks keep a missing final "s" and a missing negation detectable.
+The raw observation is retained, and this normalization did not request or
+modify any audio. Eleven current rows now match; eight selected drawing cues
+have observed timing within their late bounds and twelve remain pending.

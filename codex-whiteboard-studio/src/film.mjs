@@ -46,18 +46,25 @@ export function captionsFor(lines,alignments=[]){
 }
 
 export function makeTimeline(narration,audio=[],alignments=[],{
-  targetDuration=180,minimumRoom=26,leadIn=1.25,tailOut=8.75,
+  targetDuration=180,minimumRoom=26,leadIn=1.25,tailOut=8.75,extraGaps={},
 }={}){
+  const eligibleGaps=new Set(narration.slice(0,-1).map(n=>n.id))
+  for(const [id,seconds] of Object.entries(extraGaps)){
+    if(!eligibleGaps.has(id)||!Number.isFinite(seconds)||seconds<0)
+      throw new Error(`Invalid extra narration gap: ${id}`)
+  }
+  const extraRoom=Object.values(extraGaps).reduce((a,b)=>a+b,0)
   const audioMap=new Map(audio.filter(a=>narration.some(n=>n.id===a.id&&n.text===a.text)).map(a=>[a.id,a]))
   const complete=narration.every(n=>audioMap.has(n.id))
   const durations=narration.map(n=>audioMap.get(n.id)?.duration||n.text.split(/\s+/).length/2.85)
   const totalVoice=durations.reduce((a,b)=>a+b,0)
-  const total=Math.max(targetDuration,Math.ceil(totalVoice+minimumRoom))
-  const gap=(total-totalVoice-leadIn-tailOut)/(narration.length-1)
+  const total=Math.max(targetDuration,Math.ceil(totalVoice+
+    Math.max(minimumRoom,leadIn+tailOut+extraRoom)))
+  const gap=(total-totalVoice-leadIn-tailOut-extraRoom)/Math.max(1,narration.length-1)
   let cursor=leadIn
   const lines=narration.map((n,i)=>{
     const start=frame(cursor),duration=durations[i],end=frame(start+duration)
-    cursor=end+gap
+    cursor=end+gap+(extraGaps[n.id]||0)
     return {...n,start,end,duration,audio:audioMap.get(n.id)||null}
   })
   const durationFrames=Math.ceil((lines.at(-1).end+tailOut)*FPS)

@@ -2,7 +2,7 @@
 import hashlib
 import unittest
 
-from transcribe import recognizer_for
+from transcribe import recognizer_for, words
 
 
 class RecognizerDecisionTests(unittest.TestCase):
@@ -28,6 +28,14 @@ class RecognizerDecisionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "another WAV"):
             recognizer_for({**self.row, "audio_sha256": "take-three"},
                            "default", self.decisions)
+
+    def test_apostrophe_spelling_does_not_imply_an_audio_difference(self):
+        self.assertEqual(words("the control group's"), words("the control groups"))
+        self.assertEqual(words("the control group’s"), words("the control groups"))
+
+    def test_apostrophe_normalization_keeps_missing_sounds_visible(self):
+        self.assertNotEqual(words("the control group's"), words("the control group"))
+        self.assertNotEqual(words("it doesn't help"), words("it does help"))
 
 
 if __name__ == "__main__":

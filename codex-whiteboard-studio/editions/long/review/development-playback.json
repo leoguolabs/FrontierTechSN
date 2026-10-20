@@ -1,0 +1,28 @@
+{
+  "scope": "Bounded development preview with narration lines 09 and 10 only; not final mastering or subjective listening acceptance.",
+  "video_sha256": "7bfb03f3dd09da56aa2aca5c8cd938984d043203dedbe20ebf656d4e1f6b6c41",
+  "browser": "Codex in-app browser",
+  "observed_at": "2026-10-20T18:38:43.516Z",
+  "first_observation": {
+    "time": 16.747774,
+    "duration": 31,
+    "paused": false,
+    "muted": false,
+    "rate": 1,
+    "width": 1920,
+    "height": 1080,
+    "error": null
+  },
+  "last_observation": {
+    "duration": 31,
+    "ended": true,
+    "error": null,
+    "height": 1080,
+    "muted": false,
+    "paused": true,
+    "rate": 1,
+    "time": 31,
+    "width": 1920
+  },
+  "subjective_listening": false
+}

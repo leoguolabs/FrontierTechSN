@@ -143,6 +143,13 @@ transcripts remain pending. This report does not assess early reveals,
 on-screen visibility, or subjective synchronization; inspect the rendered
 intervals as well.
 
+The composition can reserve drawing time with `makeTimeline`'s `extraGaps`
+map, keyed by the preceding narration ID. These pauses redistribute the
+available silence; speech remains at its original speed. If the requested
+pauses exceed the available room, the timeline grows rather than overlapping
+voice lines. The long study setup currently reserves six extra seconds after
+line 09 to complete its two learners before the score comparison.
+
 Keep a reference film at `reference/whiteboard.mp4` for the comparison lab
 and paired atlases. The exact source is:
 <https://github.com/lemomo-ai/lemo-opuscar/releases/download/films/whiteboard.mp4>

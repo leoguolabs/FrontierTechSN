@@ -741,6 +741,123 @@
         }
       ],
       "observation": "All 480 consecutive frames inspected through ten atlases. The title and learner establish the board before narration. The spreadsheet finishes before the observed formula phrase. Caption timing is derived from current provider audio; this clip is silent and does not establish subjective listening or full-film synchronization."
+    },
+    {
+      "name": "turkey-aligned",
+      "video_sha256": "35712e4d8db9d3b63bfa46e0996f76cef08abc26f99e0f776e9954145c803c77",
+      "receipt": {
+        "picture_sha256": "35712e4d8db9d3b63bfa46e0996f76cef08abc26f99e0f776e9954145c803c77",
+        "timeline_sha256": "b40598116bc1b0b87097e121ad48713c5a3cc114aa000604adf70f8d5fa4d091",
+        "events_sha256": "76d4f2a5815d56d775c916d934c0da8c7fcc1928c6b7ba88b38d6becb7d5f4bc",
+        "first_frame": 2448,
+        "last_frame_exclusive": 3192,
+        "frames": 744,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 744,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "9200be3d657f27b4bc439e486142c4beee5a434b11817ece9a968f66a4d782a6"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "7ed7976fb116171c8d33b8f42225ec85e9ad051ff05005ac625d622ff55dec27"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "d12715d6f5375de971ff94632adb001ff057a2c38025163bba165892d28b0171"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "11b4f77dc699c9db8749ef063fcb48dd12a8e4c67080a5e61c84c935933b0faf"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "c523a90f8363648e3875c9ec5502116840e82c55787d6fc36922f7ce0033e5cc"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "cb9ab4e0aa33099ce754725c0f5e015cb13bb857ffc82bd39ea1fd456c571147"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "a3b5d6c5257913b5855358e7a4602cf424a7b2585eccaca741052ce00001b83a"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 383,
+          "sha256": "796cac1eec118ec870873effa10ccb7efab7a433208bff2bb7f8761e5a375a40"
+        },
+        {
+          "file": "atlas-0008.jpg",
+          "first": 384,
+          "last": 431,
+          "sha256": "6a2e4c2557cdca6c1a8ceec7ce91d5febdc50d0a488f68706ae5f0b766ccefb8"
+        },
+        {
+          "file": "atlas-0009.jpg",
+          "first": 432,
+          "last": 479,
+          "sha256": "af08f0ed786b1ecfa2a27ef60b2ad7732bcb78e3aaee16f63bb99e51a71d0320"
+        },
+        {
+          "file": "atlas-0010.jpg",
+          "first": 480,
+          "last": 527,
+          "sha256": "09c118a13db3dce4e23c79502c85a3a85193784cf9cd369f183de1a81c9211e4"
+        },
+        {
+          "file": "atlas-0011.jpg",
+          "first": 528,
+          "last": 575,
+          "sha256": "7fe907d28a3400404d5e5844432411bc7bb1239971ec0813298445784a91ef8a"
+        },
+        {
+          "file": "atlas-0012.jpg",
+          "first": 576,
+          "last": 623,
+          "sha256": "1a41a08e72fb26000788d89607a56d5168a99a353574d1c469131f6253c12566"
+        },
+        {
+          "file": "atlas-0013.jpg",
+          "first": 624,
+          "last": 671,
+          "sha256": "2775406585a74ef709ee3d136a6b7f4d18aac82fe92ad9ac457bec0a4240241d"
+        },
+        {
+          "file": "atlas-0014.jpg",
+          "first": 672,
+          "last": 719,
+          "sha256": "84f858bfef664e6d29a97ca1168f44497b6f1561613b83ae82100b133efb8c16"
+        },
+        {
+          "file": "atlas-0015.jpg",
+          "first": 720,
+          "last": 743,
+          "sha256": "48fe7ba6f2d3cbfddd33d85780537dbe01c4c1c8cb69827316437b1922744a4c"
+        }
+      ],
+      "observation": "All 744 consecutive decoded frames inspected. Flag, context, assisted learner and unaided learner draw in a clear order. No visible marker collision. The +48% and -17% labels are readable beside separate figures and arrive with their observed speech cues. The six-second extra pause contains active illustration drawing; final-film timing remains provisional until all voice rows exist."
     }
   ],
   "native_stills": [
@@ -797,6 +914,15 @@
       "width": 1920,
       "height": 1080,
       "observation": "The spreadsheet is fully drawn while the caption names the formula, with the learner and screen clearly separated."
+    },
+    {
+      "file": "review/development/native/turkey-aligned-720.png",
+      "sha256": "0ada5a1bba413720462fafeb9def7a63147a0bcb1fd1f7163d96c3cdbf12be75",
+      "video_sha256": "35712e4d8db9d3b63bfa46e0996f76cef08abc26f99e0f776e9954145c803c77",
+      "frame": 720,
+      "width": 1920,
+      "height": 1080,
+      "observation": "Completed Turkish flag, two learners, distinct laptop and paper, both percentages and the control-group qualifier are clearly separated and readable."
     }
   ]
 }

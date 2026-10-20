@@ -28,6 +28,7 @@ def recognizer_for(row, default_model, overrides):
 def words(text):
     text = re.sub(r"\bai\b", "a i", text.lower())
     # Orthography only: these pairs are pronounced identically.
+    text = re.sub(r"(?<=[a-z])['’](?=[a-z])", "", text)
     text = re.sub(r"\bbusywork\b", "busy work", text)
     text = re.sub(r"\bpractise\b", "practice", text)
     replacements = {"48": "forty eight", "17": "seventeen", "1000": "one thousand",

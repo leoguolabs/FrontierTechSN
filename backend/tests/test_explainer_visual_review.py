@@ -7,7 +7,7 @@ from unittest.mock import AsyncMock
 import pytest
 
 from backend import explainer_visual_review as review
-from backend.pipeline.opencli import OpenCLIResult
+from backend.pipeline.opencli import OpenCLIError, OpenCLIResult
 from backend.pipeline import multimodal_review, opencli_session
 
 
@@ -215,6 +215,45 @@ def test_unavailable_review_blocks_image_instead_of_passing(tmp_path, monkeypatc
     with pytest.raises(RuntimeError, match="cannot be accepted"):
         asyncio.run(review.review_image(image, SCENE, {}, tmp_path, lambda _: None))
     assert calls == ["gemini", "chatgpt"]
+
+
+def test_submitted_timeout_survives_failed_read_and_resumes_without_new_ask(tmp_path, monkeypatch):
+    calls = []
+    url = "https://chatgpt.com/c/6aa23493-b274-83ec-a248-e34aa77a2410"
+    receipt = OpenCLIResult((), 1, "", "CHATGPT_TURN_PENDING: The prompt was submitted; "
+                           "preserve its owned turn and do not replay. Saved conversation:\n"
+                           f"    {url}; current URL:\n    {url}; cause: chatgpt ask timed out after 180s")
+    value = payload()
+    value["reviews"][0]["checks"][0].update(verdict="fail", repair="Correct the perspective")
+
+    async def ask(args, **kwargs):
+        calls.append(args[0])
+        if args[0] == "gemini": raise RuntimeError("Model unavailable")
+        raise OpenCLIError("submitted timeout", result=receipt)
+
+    async def detail(args, **kwargs):
+        assert args[:3] == ["chatgpt", "detail", "6aa23493-b274-83ec-a248-e34aa77a2410"]
+        saved = json.loads(next(tmp_path.glob("response-*-chatgpt.json")).read_text())
+        assert saved["stderr"] == receipt.stderr  # Durable before awaiting recovery.
+        return OpenCLIResult(tuple(args), 0, json.dumps([
+            {"Role": "User", "Text": review.review_prompt(SCENE, {})},
+            {"Role": "Assistant", "Text": json.dumps(value), "Generating": False, "StableSeconds": 12},
+        ]), "")
+
+    monkeypatch.setattr(review, "run_opencli", ask)
+    monkeypatch.setattr(review.config, "AV_SYNC_REVIEW_FALLBACK_PROVIDER", "chatgpt")
+    monkeypatch.setattr(multimodal_review, "run_opencli", AsyncMock(side_effect=RuntimeError("read unavailable")))
+    image = tmp_path / "image.png"
+    image.write_bytes(b"original pixels")
+    with pytest.raises(RuntimeError, match="cannot be accepted"):
+        asyncio.run(review.review_image(image, SCENE, {}, tmp_path, lambda _: None))
+    saved = next(tmp_path.glob("response-*-chatgpt.json")).read_bytes()
+    monkeypatch.setattr(multimodal_review, "run_opencli", detail)
+    result, _ = asyncio.run(review.review_image(image, SCENE, {}, tmp_path, lambda _: None))
+    assert result["passed"] is False  # The original denial remains authoritative.
+    assert calls == ["gemini", "chatgpt"]
+    assert next(tmp_path.glob("response-*-chatgpt.json")).read_bytes() == saved
+    assert image.read_bytes() == b"original pixels"
 
 
 @pytest.mark.parametrize("provider", ["gemini", "chatgpt"])

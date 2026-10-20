@@ -369,6 +369,24 @@ def _response_payload(stdout: str) -> dict:
     )
 
 
+def _pending_chatgpt_conversation(result) -> str | None:
+    """Recognize only the adapter's bound, already-submitted timeout receipt."""
+    if result is None:
+        return None
+    text = re.sub(r"\s+", " ", f"{result.stdout}\n{result.stderr}")
+    match = re.search(
+        r"CHATGPT_TURN_PENDING: The prompt was submitted; preserve its owned turn and do not replay\. "
+        r"Saved conversation: https://chatgpt\.com/c/([0-9a-f-]{36}); "
+        r"current URL: https://chatgpt\.com/c/([0-9a-f-]{36}); cause:", text,
+    )
+    if not match or match[1] != match[2]:
+        return None
+    try:
+        return str(uuid.UUID(match[1]))
+    except ValueError:
+        return None
+
+
 async def _review_result_payload(
     result, *, provider: str, prompt: str, sheet: Path, timeout: int,
     phase: str, batch_index: int, attempt: int, log: LogCallback | None,
@@ -381,13 +399,15 @@ async def _review_result_payload(
         # Never replace an ambiguous complete answer with a later verdict.
         if provider != "chatgpt" or error.complete_count != 0:
             raise
-        try:
-            envelope = json.loads(result.stdout)
-            if not isinstance(envelope, list) or len(envelope) != 1:
-                raise ValueError("not one conversation receipt")
-            conversation_id = str(uuid.UUID(envelope[0]["conversationId"]))
-        except (ValueError, TypeError, KeyError, AttributeError):
-            raise error
+        conversation_id = _pending_chatgpt_conversation(result)
+        if conversation_id is None:
+            try:
+                envelope = json.loads(result.stdout)
+                if not isinstance(envelope, list) or len(envelope) != 1:
+                    raise ValueError("not one conversation receipt")
+                conversation_id = str(uuid.UUID(envelope[0]["conversationId"]))
+            except (ValueError, TypeError, KeyError, AttributeError):
+                raise error
         _emit(log, "Visual review: reading the unfinished ChatGPT reply from its original conversation")
         detail = None
         try:

@@ -9,11 +9,12 @@ from pathlib import Path
 
 from backend import config
 from backend.pipeline.multimodal_review import (
+    _pending_chatgpt_conversation,
     _persist_provider_response,
     _review_command,
     _review_result_payload,
 )
-from backend.pipeline.opencli import run_opencli
+from backend.pipeline.opencli import OpenCLIError, OpenCLIResult, run_opencli
 from backend.pipeline.opencli_session import owned_media_session
 
 CHECKS = ("perspective", "object_structure", "body_object_interaction",
@@ -187,9 +188,24 @@ async def review_image(image: Path, scene: dict, style: dict, directory: Path, l
     providers = ["gemini"]
     if config.AV_SYNC_REVIEW_FALLBACK_PROVIDER == "chatgpt":
         providers.append("chatgpt")
+    # This response filename is bound to the exact pixels and review prompt.
+    # Recover an unknown submitted outcome before asking either provider again.
+    pending = None
+    pending_path = directory / f"response-{phase}-01-attempt-02-chatgpt.json"
+    if pending_path.exists():
+        saved = json.loads(pending_path.read_text())
+        if saved.get("provider") == "chatgpt":
+            candidate = OpenCLIResult((), 1, saved.get("stdout", ""), saved.get("stderr", ""))
+            if _pending_chatgpt_conversation(candidate):
+                pending = candidate
+                providers = ["chatgpt"]
+            elif "CHATGPT_TURN_PENDING" in candidate.stdout + candidate.stderr:
+                raise RuntimeError("Submitted visual review has ambiguous ownership; preserve its original receipt")
     errors = []
     timeout = config.AV_SYNC_GEMINI_TIMEOUT
     for attempt, provider in enumerate(providers, 1):
+        if pending is not None:
+            attempt = 2  # Preserve the original fallback receipt and its identity.
         log(f"{scene['id']}: reviewing actual illustration logic with {provider}")
         result = None
         try:
@@ -201,8 +217,22 @@ async def review_image(image: Path, scene: dict, style: dict, directory: Path, l
             async with owned_media_session(owner, provider) as namespace:
                 args = _review_command(provider, prompt, image, timeout)
                 args[args.index("--site-session") + 1] = "persistent"
-                result = await run_opencli(
-                    args, timeout=timeout + 90, site_session_namespace=namespace)
+                if pending is not None:
+                    result = pending
+                    log(f"{scene['id']}: recovering the original submitted ChatGPT review")
+                else:
+                    try:
+                        result = await run_opencli(
+                            args, timeout=timeout + 90, site_session_namespace=namespace)
+                    except OpenCLIError as exc:
+                        if provider != "chatgpt" or not _pending_chatgpt_conversation(exc.result):
+                            raise
+                        result = exc.result
+                # Persist before the recovery await so interruption cannot lose
+                # the conversation or authorize a duplicate review on resume.
+                _persist_provider_response(
+                    image, phase=phase, batch_index=1, attempt=attempt, provider=provider,
+                    stdout=result.stdout, stderr=result.stderr)
                 payload = await _review_result_payload(
                     result, provider=provider, prompt=prompt, sheet=image, timeout=timeout,
                     phase=phase, batch_index=1, attempt=attempt, log=log,

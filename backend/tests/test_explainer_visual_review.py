@@ -172,6 +172,59 @@ def test_classroom_anatomy_preserves_other_review_contracts(description):
     assert "Multi-person desk anatomy:" not in review.review_prompt(scene, {})
 
 
+def test_easel_printout_review_revision_rechecks_same_pixels_and_retains_rejection(
+        tmp_path, monkeypatch):
+    scene = {**SCENE, "visual_prompt":
+             "A researcher props a printout of question-card icons against an easel."}
+    image = tmp_path / "image.png"
+    image.write_bytes(b"unchanged candidate pixels")
+    rejected = payload()
+    rejected["reviews"][0]["checks"][1].update(
+        verdict="fail", evidence="The mast disappears behind the opaque board.",
+        repair="Expose the hidden mast.")
+    calls = []
+    corrected_prompt = review.review_prompt
+    old_prompt = corrected_prompt(SCENE, {})
+
+    async def provider(args, **kwargs):
+        calls.append(args)
+        return OpenCLIResult(tuple(args), 0, json.dumps(rejected), "")
+
+    monkeypatch.setattr(review, "run_opencli", provider)
+
+    async def run():
+        monkeypatch.setattr(review, "review_prompt", lambda *_: old_prompt)
+        before, before_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        original_receipt = before_path.read_bytes()
+        monkeypatch.setattr(review, "review_prompt", corrected_prompt)
+        after, after_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        assert before_path != after_path
+        assert before_path.read_bytes() == original_receipt
+        assert before["image_sha256"] == after["image_sha256"]
+        # A prompt correction never overrides the provider's fail or adds a fallback.
+        assert not before["passed"] and not after["passed"]
+        assert len(calls) == 2
+        assert await review.review_image(image, scene, {}, tmp_path, lambda _: None) == (after, after_path)
+        assert len(calls) == 2
+
+    asyncio.run(run())
+    prompt = corrected_prompt(scene, {})
+    assert "parts occluded by the opaque sheet" in prompt
+    assert "enumerate the visible shoulder-to-sleeve-to-elbow-to-wrist-to-hand" in prompt
+    assert "Do not assume either interpretation solely from the prompt" in prompt
+    assert "use uncertain when a required relationship" in prompt
+
+
+@pytest.mark.parametrize("description", [
+    "A researcher draws a diagram on an easel.",
+    "A printout lies flat on a desk.",
+    "A magnifying-glass icon overlaps question cards on a screen.",
+])
+def test_easel_printout_correction_preserves_other_review_contracts(description):
+    scene = {**SCENE, "visual_prompt": description}
+    assert "Easel and printout geometry:" not in review.review_prompt(scene, {})
+
+
 def test_rejection_with_omitted_pass_repairs_is_cached_without_fallback(tmp_path, monkeypatch):
     value = payload()
     for check in value["reviews"][0]["checks"]:

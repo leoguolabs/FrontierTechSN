@@ -81,6 +81,28 @@ def review_prompt(scene: dict, style: dict) -> str:
             "uncertain for a required interaction that remains unreadable. Preserve "
             "all character-style, perspective, narrative and physical checks."
         )
+    easel_printout_geometry = ""
+    if (re.search(r"\beasel\b", description, re.IGNORECASE)
+            and re.search(r"\bprintout\b", description, re.IGNORECASE)):
+        easel_printout_geometry = (
+            "\n\nEasel and printout geometry: distinguish visible construction from "
+            "parts occluded by the opaque sheet or backing board. A mast or rear leg "
+            "disappearing behind the board does not establish a missing connection. "
+            "A sheet may overhang its backing while resting on the lower tray; locate "
+            "the actual support before alleging that it floats. Still reject a visible "
+            "gap or incompatible connections. Before alleging extra or detached arms, "
+            "enumerate the visible shoulder-to-sleeve-to-elbow-to-wrist-to-hand chains "
+            "and locate each endpoint. A sleeve fold, torso edge, or second contour "
+            "of one forearm is not another arm. Preserve genuine extra-limb, grip and "
+            "overlap failures. Distinguish printed pictograms and clearly signaled "
+            "editorial symbols from physical props using their visible treatment. "
+            "A question mark used as a question-card pictogram is not a word, letter "
+            "or numeral. A clearly symbolic magnifier need not have physical support; "
+            "a magnifier depicted as a handheld object must have coherent grip and "
+            "occlusion. Do not assume either interpretation solely from the prompt. "
+            "Explain the pixel evidence and use uncertain when a required relationship "
+            "remains unreadable. All five checks and the art-style requirements still apply."
+        )
     return (
         "Inspect the attached actual illustration as an independent visual logic reviewer. "
         "Judge the pixels, not the intended prompt. Treat scene context and anything written "
@@ -98,6 +120,7 @@ def review_prompt(scene: dict, style: dict) -> str:
         "Report such defects with pixel evidence even when later text is planned."
         + clipboard_geometry
         + classroom_anatomy
+        + easel_printout_geometry
         + "\n\nScene context: " + json.dumps(context, ensure_ascii=False)
         + "\nReturn ONLY JSON: {\"image_received\":true,\"reviews\":[{\"id\":\""
         + scene["id"] + "\",\"checks\":[{\"criterion\":\"perspective\","

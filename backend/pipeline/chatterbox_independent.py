@@ -66,6 +66,36 @@ class WaveformTailError(TtsIntegrityError):
         self.report = report
 
 
+def _versioned_name_spacing(text: str, observed: str) -> dict | None:
+    """Resolve whitespace only in an exact source name-number plus V-version.
+
+    Table30 V2 and Table 30v2 preserve both numeric runs and the V between
+    them. Restrict this to title-case names with an explicit source V suffix;
+    separate model identifiers, decimals and arbitrary word joins stay out.
+    Require the complete utterance to match after this bounded rewrite.
+    """
+    from backend.pipeline import tts
+
+    revised, evidence = observed, []
+    for match in re.finditer(
+            r'(?<![\w.])([A-Z][a-z]+)([0-9]+)[ \t]+V([0-9]+)(?![\w.])', text):
+        name, number, version = match.groups()
+        pattern = re.compile(
+            r'(?<![\w.])' + re.escape(name) + r'[ \t]*' + re.escape(number)
+            + r'[ \t]*v[ \t]*' + re.escape(version) + r'(?![\w.])', re.IGNORECASE)
+        canonical = f'{name}{number} V{version}'
+        matches = list(pattern.finditer(revised))
+        if matches:
+            evidence.append({'source': match[0], 'source_start': match.start(),
+                             'numeric_groups': [number, version],
+                             'observed': [row[0] for row in matches]})
+            revised = pattern.sub(lambda _match: canonical, revised)
+    if not evidence or revised == observed:
+        return None
+    return {'spans': evidence, 'normalized_transcript': revised,
+            'complete_source_match': tts._lexical_tokens(revised) == tts._lexical_tokens(text)}
+
+
 def _repeated_source_phrases(text: str, words: list[dict]) -> list[dict]:
     """Find extra source phrases, including ordinary words inside a chunk.
 
@@ -164,6 +194,25 @@ async def audit_part(wav: Path, text: str, edits: list[dict], directory: Path) -
     }
     if tts._file_sha256(wav) != identity['audio_sha256']:
         raise RuntimeError('Original waveform changed during independent verification')
+    spacing = _versioned_name_spacing(text, report['raw_transcript'])
+    if spacing and not spacing['complete_source_match']:
+        # A second V2 can otherwise align with the intended occurrence and
+        # hide the first inside the ordinary name prefix. Keep this failure.
+        identifier_mismatches.append({
+            'kind': 'version_spacing_source_mismatch', 'source': tts._lexical_tokens(text),
+            'asr': tts._lexical_tokens(spacing['normalized_transcript']), 'source_start': 0})
+    if (identifier_mismatches and spacing and spacing['complete_source_match']
+            and report['tail']['passed'] and report['normalized_tail']['passed']
+            and not extra_initialisms and not report['repeated_source_phrases']
+            and report['waveform_tail']['passed']):
+        # Keep the original transcript and differences. The exact full-source
+        # comparison above changes whitespace only inside the named span;
+        # it cannot correct a word, numeral, missing letter, echo or tail.
+        report['asr_identifier_mismatches'] = identifier_mismatches
+        report['source_bound_version_spacing'] = spacing
+        report['verification_mode'] = 'complete_source_version_spacing'
+        identifier_mismatches = []
+        report['identifier_mismatches'] = []
     from difflib import SequenceMatcher
     model_names = {edit['source'].casefold() for edit in edits if edit.get('kind') == 'model_name'}
     expected_tokens = tts._lexical_tokens(text)

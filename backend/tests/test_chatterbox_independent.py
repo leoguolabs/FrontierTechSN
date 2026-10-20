@@ -54,6 +54,70 @@ async def test_independent_cache_binds_audio_source_decisions_and_transcript(aud
     assert len(calls) == 3
 
 
+@pytest.mark.parametrize('observed', [
+    'Table 30v2', 'Table30V2', 'Table 30 V 2', 'Table30 v2',
+])
+@pytest.mark.asyncio
+async def test_versioned_name_spacing_requires_the_exact_complete_source(audit_case, observed):
+    wav, _source, _edits, directory, observation, _calls = audit_case
+    source = 'RoboChallenge Table30 V2 leads today.'
+    edits = tts_pronunciation.candidates(source)
+    observation['text'] = f'RoboChallenge {observed} leads today.'
+    original = wav.read_bytes()
+    report = await independent.audit_part(wav, source, edits, directory)
+    assert report['passed'] and wav.read_bytes() == original
+    if report.get('source_bound_version_spacing'):
+        assert report['source_bound_version_spacing']['spans'][0]['numeric_groups'] == ['30', '2']
+        assert report['asr_identifier_mismatches']
+        assert report['raw_transcript'] == observation['text']
+
+
+@pytest.mark.parametrize('observed', [
+    'RoboChallenge Table 31v2 leads today.',
+    'RoboChallenge Table 30v3 leads today.',
+    'RoboChallenge Table 030v2 leads today.',
+    'RoboChallenge Table 30v02 leads today.',
+    'RoboChallenge Table 30v2.1 leads today.',
+    'RoboChallenge Table 302 leads today.',
+    'RoboChallenge Table 30vv2 leads today.',
+    'RoboChallenge Table 30v2 V2 leads today.',
+    'RoboChallenge Table 30v2 leads today. Thank you.',
+    'Robot Challenge Table 30v2 leads today.',
+    'RoboChallenge Table 30v2 leads.',
+])
+@pytest.mark.asyncio
+async def test_version_spacing_never_repairs_changed_words_values_or_extra_speech(audit_case, observed):
+    wav, _source, _edits, directory, observation, _calls = audit_case
+    source = 'RoboChallenge Table30 V2 leads today.'
+    observation['text'] = observed
+    with pytest.raises(tts.TtsIntegrityError):
+        await independent.audit_part(wav, source, tts_pronunciation.candidates(source), directory)
+
+
+@pytest.mark.parametrize(('source', 'observed'), [
+    ('ALDH3 B2 leads.', 'ALDH3B2 leads.'),
+    ('DDR5 B2 leads.', 'DDR5B2 leads.'),
+    ('Table3 0 V2 leads.', 'Table30V2 leads.'),
+    ('Table30 and V2 leads.', 'Table30V2 leads.'),
+    ('Table30 V2.1 leads.', 'Table30V21 leads.'),
+    ('The Rapist30 V2 leads.', 'Therapist30V2 leads.'),
+])
+def test_version_spacing_does_not_merge_unrelated_source_identifiers(source, observed):
+    proof = independent._versioned_name_spacing(source, observed)
+    assert not proof or not proof['complete_source_match']
+
+
+@pytest.mark.asyncio
+async def test_version_spacing_cannot_hide_waveform_tail(audit_case, monkeypatch):
+    from backend.pipeline import tts_tail_guard
+    wav, _source, _edits, directory, observed, _calls = audit_case
+    source = 'RoboChallenge Table30 V2 leads today.'
+    observed['text'] = 'RoboChallenge Table 30v2 leads today.'
+    monkeypatch.setattr(tts_tail_guard, 'inspect_tail', lambda *_: {'passed': False})
+    with pytest.raises(tts.TtsIntegrityError):
+        await independent.audit_part(wav, source, tts_pronunciation.candidates(source), directory)
+
+
 @pytest.mark.asyncio
 @pytest.mark.parametrize('proof_kind', ['matched', 'different', 'unavailable', 'wrong_audio', 'conditioned'])
 async def test_model_name_spelling_drift_requires_bound_complete_source_phones(audit_case, monkeypatch, proof_kind):

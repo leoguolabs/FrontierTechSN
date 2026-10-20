@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url'
 import path from 'node:path'
 import assert from 'node:assert/strict'
 import {createFilm} from '../src/film.mjs'
-import {Score,line} from '../src/board.mjs'
+import {Score,line,PENS} from '../src/board.mjs'
 import {comparisonBeats,referenceFrame} from '../src/comparison.mjs'
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
@@ -34,7 +34,7 @@ for(const row of timeline.lines){
     (draft?warnings:errors).push(`Unresolved independent transcript: ${row.id}`)
   }
 }
-for(const pen of ['black','blue','orange']){
+for(const pen of Object.keys(PENS)){
   const strokes=score.strokes.filter(s=>s.pen===pen)
   for(let i=1;i<strokes.length;i++)
     if(strokes[i].start<strokes[i-1].end-.000001)errors.push(`Pen writes two strokes at once: ${pen}`)
@@ -68,14 +68,18 @@ for(let f=0;f<timeline.duration_frames;f++){
 }
 // A seek backwards must reproduce the same image, regardless of cache state.
 const canvas=createCanvas(1920,1080),context=canvas.getContext('2d')
-film.renderer.render(context,14)
-const first=sha(canvas.toBuffer('image/png'))
-film.renderer.render(context,110)
-film.renderer.render(context,14)
-assert.equal(sha(canvas.toBuffer('image/png')),first,'Backward seek changed the rendered frame')
-const fresh=createFilm(input)
-fresh.renderer.render(context,14)
-assert.equal(sha(canvas.toBuffer('image/png')),first,'Fresh film changed deterministic ink')
+const deterministicFrames={}
+for(const t of [14,41.5,104.7,142.4]){
+  film.renderer.render(context,t)
+  const expected=sha(canvas.toBuffer('image/png'))
+  film.renderer.render(context,179.95)
+  film.renderer.render(context,t)
+  assert.equal(sha(canvas.toBuffer('image/png')),expected,`Backward seek changed frame at ${t}`)
+  const fresh=createFilm(input)
+  fresh.renderer.render(context,t)
+  assert.equal(sha(canvas.toBuffer('image/png')),expected,`Fresh film changed frame at ${t}`)
+  deterministicFrames[t]=expected
+}
 // Regression for cache-key substitution and impossible pen concurrency.
 const regression=new Score()
 regression.draw('first',line(0,0,10,10),0,1)
@@ -86,7 +90,8 @@ assert.ok(regression.groups[1].start>=regression.groups[0].end)
 const report={status:errors.length?'failed':draft?'draft checks passed':'passed',
   duration:timeline.duration,frames:timeline.duration_frames,audio_lines:audio.length,
   focal_labels:focal,pen_rescheduling:score.rescheduled,errors,warnings,
-  deterministic_frame_sha256:first,
+  deterministic_frame_sha256:deterministicFrames[14],
+  deterministic_frames:deterministicFrames,
   checks:['source and audio hashes','independent transcript','one stroke per pen',
     'focal label safe area','caption coverage, width and timing','every-frame reference mapping',
     'backward seek determinism','fresh film determinism','duplicate drawing regression']}

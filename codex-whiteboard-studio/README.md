@@ -17,6 +17,8 @@ audio service with resumable, source-bound requests.
 ## Layout
 
 - `src/`: deterministic whiteboard renderer and film composition
+- `src/illustrations.mjs`: reusable learners at a desk, thinking learners and
+  a hand-drawn Turkish flag; every contour uses the timed pen engine
 - `scripts/`: rendering, speech, sound design, and complete-frame analysis
 - `content/`: director brief, narration, source claims, shot plan
 - `fonts/`: licensed stroke lettering and subtitle type
@@ -147,3 +149,19 @@ The final delivery is also copied into the user's lemo-opuscar clone under
 The three-minute edition is the current checkpoint. The twelve-minute
 edition follows the user's approval of this film. Public X delivery has a
 separate publication receipt; a draft article is not a published post.
+
+## Illustrated edition
+
+The user accepted the first short in principle and requested people and
+recognizable place cues. The revised short replaces several generic document
+icons with a learner using a laptop, answering an exam and making a first
+attempt. Thinking learners carry the physics and cognitive-offloading scenes.
+A red-hatched Turkish flag locates the mathematics study.
+
+Black, blue and orange remain the explanatory palette. Red is used for the
+flag, with board-white crescent and star preserved between the strokes. The
+people are illustrative figures, not depictions of actual study participants.
+Use poses and objects to explain the script; avoid filling every empty space.
+
+The first delivered edition, including its exact film, source and review
+evidence, is retained in the export folder at `versions/01-reviewed-short/`.

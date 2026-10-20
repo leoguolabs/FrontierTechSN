@@ -1,25 +1,34 @@
 {
-  "video_sha256": "170b4e1df4c1467246a89365bab4443972a2208ec6837fc4c84ce631db623936",
+  "edition": "illustrated-v2",
+  "recorded_at": "2026-10-20T16:37:07.478674+00:00",
+  "video_sha256": "9db8ae139d3ccbc7e576bb40a790ab8baded687fed897d6a9a43325f8b431df9",
   "browser": "Codex in-app browser",
-  "observed_at": "2026-10-20T14:33:06.194Z",
-  "first_playback_time": 34.855994,
-  "advanced_playback": {
-    "currentTime": 45.120064,
-    "duration": 180,
-    "error": null,
-    "height": 1080,
+  "url": "http://127.0.0.1:8246/",
+  "media_url": "http://127.0.0.1:8246/media/does-ai-help-you-learn-3min.mp4?edition=illustrated-v2",
+  "advancing_playback": {
+    "start_seconds": 34.865333,
+    "later_seconds": 80.853945,
     "paused": false,
-    "ready": 4,
-    "src": "http://127.0.0.1:8246/media/does-ai-help-you-learn-3min.mp4",
-    "width": 1920
+    "duration": 180,
+    "width": 1920,
+    "height": 1080,
+    "error": null
   },
-  "single_frame_seek": {
-    "frame": 837,
-    "time": 34.895833
-  },
-  "last_frame_seek": {
-    "frame": 4319,
-    "time": 179.979166
-  },
-  "subjective_audio_listening": false
+  "frame_steps": [
+    {
+      "frame": 837,
+      "decoded_frame_center_seconds": 34.895833
+    },
+    {
+      "frame": 4319,
+      "decoded_frame_center_seconds": 179.979166
+    },
+    {
+      "frame": 4318,
+      "decoded_frame_center_seconds": 179.9375
+    }
+  ],
+  "frame_input": "Number field is hidden at the narrow browser width; the visible frame slider End key selects the final frame.",
+  "visual_observation": "Playback showed the physics learner beside the book and bulb. Frame stepping and final-frame selection succeeded without media errors.",
+  "audio_listening_claimed": false
 }

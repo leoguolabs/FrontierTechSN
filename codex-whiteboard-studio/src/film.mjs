@@ -1,5 +1,6 @@
 import {Score, Camera, BoardRenderer, createLettering, line, poly, rect, circle, curve,
   arrow, check, magnet, marker, clamp, smooth, mix, beginDrawing, INK, BLUE, ORANGE} from './board.mjs'
+import {learnerAtDesk,thinkingLearner,turkishFlag} from './illustrations.mjs'
 
 export const FPS=24
 const frame=t=>Math.round(t*FPS)/FPS
@@ -134,13 +135,20 @@ export function createFilm({font,narration,audio,alignments=[],createCanvas}){
   const sx=570,sy=2350
   text('study-title','one study, two scoreboards',sx+750,sy-240,94,t(5)-.1,1.8,INK,'center')
   text('study-context','nearly 1,000 students / mathematics / Turkey',sx+750,sy-125,48,t(5,.15),1.8,INK,'center')
+  const flag=turkishFlag(sx-125,sy-180,{height:120})
+  draw('turkey-flag-pole',flag.pole,t(5,.40),.4)
+  draw('turkey-flag',flag.field,t(5,.08),2.7,'red')
   text('study-practice-title','practice with AI',sx+325,sy+15,67,t(5,.30),1.0,BLUE,'center')
   text('exam-title','exam without AI',sx+1180,sy+15,67,t(6)-.3,1.0,ORANGE,'center')
   draw('study-division',line(sx+750,sy+80,sx+750,sy+475,{width:5}),t(5,.42),.6)
-  draw('practice-paper',iconDoc(sx+60,sy+115,220,280,BLUE),t(5,.40),.9,'blue')
+  const assistedLearner=learnerAtDesk(sx-65,sy+105,{scale:1.05,accent:BLUE})
+  draw('assisted-learner',[...assistedLearner.body,...assistedLearner.desk],t(5,.43),2.15)
+  draw('assisted-laptop',assistedLearner.task,t(5,.59),1.05,'blue')
   text('practice-gain','+48%',sx+360,sy+330,145,t(5,.64),1.1,BLUE)
   draw('practice-up',arrow(sx+335,sy+410,sx+335,sy+90,{color:BLUE,width:10}),t(5,.81),.7,'blue')
-  draw('exam-paper',iconDoc(sx+890,sy+115,220,280,ORANGE),t(6,.1),.85,'orange')
+  const examLearner=learnerAtDesk(sx+765,sy+105,{scale:1.05,accent:ORANGE,mode:'paper'})
+  draw('independent-learner',[...examLearner.body,...examLearner.desk],t(6,.12),2.15)
+  draw('independent-paper',examLearner.task,t(6,.34),.8,'orange')
   text('exam-loss','-17%',sx+1220,sy+330,145,t(6,.35),1.0,ORANGE)
   draw('exam-down',arrow(sx+1160,sy+90,sx+1160,sy+430,{color:ORANGE,width:10}),t(6,.55),.7,'orange')
   text('relative-control','relative to the no-AI control',sx+750,sy+535,48,t(6,.69),1.6,INK,'center')
@@ -160,6 +168,9 @@ export function createFilm({font,narration,audio,alignments=[],createCanvas}){
   draw('physics-equation',L.text('F = ma',cx+170,cy+250,{h:61,color:BLUE}),t(9)+1.1,.9,'blue')
   draw('physics-light',bulb(cx+1100,cy+215),t(9,.34),1.2,'orange')
   draw('book-to-light',arrow(cx+720,cy+270,cx+930,cy+270,{color:BLUE,width:9}),t(9,.48),.65,'blue')
+  const physicsLearner=thinkingLearner(cx+1300,cy+55,{scale:.95,accent:BLUE,facing:'left'})
+  draw('physics-learner',physicsLearner.body,t(9,.10),2.1)
+  draw('physics-notebook',physicsLearner.notebook,t(9,.62),.6,'blue')
   text('physics-result','better immediate learning',cx+820,cy+565,68,t(9,.65),1.6,ORANGE,'center')
   const words=['questions','feedback','expert material']
   words.forEach((word,i)=>{
@@ -176,7 +187,9 @@ export function createFilm({font,narration,audio,alignments=[],createCanvas}){
     poly([[ox+130,oy+370],[ox+130,oy+440],[ox+220,oy+370]],{color:BLUE,width:9})],t(11,.18),1,'blue')
   text('answer-label','the answer',ox+335,oy+205,82,t(11,.29),1.0,BLUE,'center')
   draw('offload-arrow',arrow(ox+710,oy+220,ox+960,oy+220,{width:8}),t(11,.42),.65)
-  draw('offload-paper',iconDoc(ox+1080,oy+55,340,390),t(11,.49),1.0)
+  const choosingLearner=thinkingLearner(ox+1100,oy+45,{scale:1.08,accent:ORANGE})
+  draw('choosing-learner',choosingLearner.body,t(11,.49),1.75)
+  draw('choosing-notebook',choosingLearner.notebook,t(11,.65),.55,'orange')
   text('offload-choice','choose the method',ox+1230,oy+550,63,t(11,.68),1.2,ORANGE,'center')
   text('recognize','recognize',ox+340,oy+620,82,t(12,.05),.85,BLUE,'center')
   text('produce','produce',ox+1230,oy+700,82,t(12,.34),.85,ORANGE,'center')
@@ -199,7 +212,8 @@ export function createFilm({font,narration,audio,alignments=[],createCanvas}){
   // 8. A concrete learning loop, not a list of slogans.
   const px=3040,py=4050
   text('practice-title','try / hide / explain / check',px+850,py-280,85,t(14)-.2,1.9,INK,'center')
-  draw('attempt-page',iconDoc(px+50,py-100,280,320),t(14,.05),.8)
+  const attemptLearner=learnerAtDesk(px+5,py-100,{scale:1,accent:INK,mode:'paper'})
+  draw('attempt-learner',[...attemptLearner.body,...attemptLearner.desk,...attemptLearner.task],t(14,.05),2.2)
   text('attempt-label','first attempt',px+190,py+345,60,t(14,.18),1,INK,'center')
   draw('hint-bubble',[...rect(px+590,py-100,390,230,{color:BLUE,width:9}),
     poly([[px+660,py+130],[px+650,py+180],[px+715,py+130]],{color:BLUE,width:8})],t(14,.4),.8,'blue')

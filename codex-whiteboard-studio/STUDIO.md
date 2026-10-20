@@ -22,6 +22,14 @@ lettering, pressure ribbons, dry ink, primitive shapes, physical props,
 single-pen stroke queues, erasing, inverse-scale camera interpolation and
 caption rendering. `src/film.mjs` is this film's editable composition.
 
+`src/illustrations.mjs` supplies semantic drawings rather than decorative
+icons. Match a person to the action in the narration: using a laptop, writing
+alone or choosing a method. Preserve character identity across related shots.
+Use recognizable national symbols when the setting is material to a claim.
+Flag colors and symbols are factual details; document their source. People
+represent a scenario unless a real person's identity is explicitly sourced.
+Draw illustrations through the same timed stroke queues as the lettering.
+
 Place the entire argument on one board. Every drawing has a unique ID.
 Use black for explanation, blue for support and terracotta for independent
 work. Give each physical pen one chronological queue. `Score.compile()`

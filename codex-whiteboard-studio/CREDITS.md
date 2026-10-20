@@ -46,3 +46,10 @@ stated in the narration.
 
 Third-party runtime packages retain their respective licenses. This local
 project does not assert ownership of the reference film or its fonts.
+
+The illustrated edition adds original procedural learner drawings and a
+hand-drawn Turkish flag. The flag's red field, white crescent and five-point
+star follow the [Republic of Türkiye Ministry of Foreign Affairs description](https://www.mfa.gov.tr/the-turkish-flag-and-the-turkish-national-anthem.en.mfa).
+The simplified drawing is not an official production template. No flag
+image or external character artwork is embedded. The figures illustrate
+learning situations and do not depict identifiable study participants.

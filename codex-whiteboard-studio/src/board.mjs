@@ -2,6 +2,8 @@
 export const INK = '#23262c'
 export const BLUE = '#2a5cb3'
 export const ORANGE = '#d97757'
+export const RED = '#ce2637'
+export const PENS = {black:INK,blue:BLUE,orange:ORANGE,red:RED}
 export const WIDTH = 1920
 export const HEIGHT = 1080
 export const BOARD_W = 8200
@@ -94,6 +96,7 @@ export function createLettering(font){
 export class Score {
   constructor(){this.groups=[];this.strokes=[];this.labels=[];this.cues=[];this.erasers=[]}
   draw(id,shapes,start,end,{pen='black',label=null}={}){
+    if(!Object.hasOwn(PENS,pen))throw new Error(`Unknown pen: ${pen}`)
     if(this.groups.some(g=>g.id===id))throw new Error(`Duplicate drawing id: ${id}`)
     shapes=[shapes].flat(Infinity).filter(Boolean)
     const length=shapes.reduce((sum,s)=>sum+Math.max(7,s.length),0)
@@ -115,7 +118,7 @@ export class Score {
     // Each physical pen has a single chronological queue. A second stroke
     // cannot appear elsewhere while that pen is already touching the board.
     this.rescheduled=[]
-    for(const pen of ['black','blue','orange']){
+    for(const pen of Object.keys(PENS)){
       let free=0
       for(const g of this.groups.filter(g=>g.pen===pen).sort((a,b)=>a.start-b.start)){
         const delta=Math.max(0,free-g.start)
@@ -356,8 +359,8 @@ export class BoardRenderer {
   }
   penStates(t){
     const result=[]
-    for(const pen of ['black','blue','orange']){
-      const dock={black:[2100,1130],blue:[2250,780],orange:[2100,1400]}[pen]
+    for(const pen of Object.keys(PENS)){
+      const dock={black:[2100,1130],blue:[2250,780],orange:[2100,1400],red:[2230,400]}[pen]
       const strokes=this.score.strokes.filter(s=>s.pen===pen)
       let previous=null,next=null,active=null
       for(const s of strokes){
@@ -385,7 +388,7 @@ export class BoardRenderer {
   }
   pens(ctx,t,cam){
     for(const {pen,x,y,lift,alpha} of this.penStates(t)){
-      marker(ctx,x,y,{black:INK,blue:BLUE,orange:ORANGE}[pen],
+      marker(ctx,x,y,PENS[pen],
         {scale:clamp(cam.z*1.27,.32,1.5),lift,alpha,angle:.56+Math.sin(t*1.4)*.035})
     }
   }

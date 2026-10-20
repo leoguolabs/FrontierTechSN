@@ -110,7 +110,8 @@ def main():
             "pixel_identity_claimed": False,
             "audio_evidence": "Independent transcription, provider bindings, final-mix waveform placement "
                               "and loudness checks; subjective listening is not established.",
-            "user_approval": "Pending short-edition review; long edition not started.",
+            "user_approval": "Initial short accepted in principle; user requested the illustrated refinement. "
+                             "Long edition remains a separate production.",
             "publication": "Process article prepared locally; not published."
         }
         (ROOT/"review/delivery.json").write_text(json.dumps(delivery, indent=2)+"\n")

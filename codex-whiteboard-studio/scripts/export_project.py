@@ -61,10 +61,12 @@ def main():
         relative = source.relative_to(ROOT)
         target = destination/relative
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, target)
+        temporary = target.with_name(f".{target.name}.exporting")
+        shutil.copy2(source, temporary)
         source_hash = digest(source)
-        if digest(target) != source_hash:
+        if digest(temporary) != source_hash:
             raise IOError(f"Export hash mismatch: {relative}")
+        temporary.replace(target)
         records.append({"path": str(relative), "bytes": source.stat().st_size,
                         "sha256": source_hash})
     tracked = subprocess.run(

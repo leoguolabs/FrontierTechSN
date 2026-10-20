@@ -1,120 +1,120 @@
 {
-  "video_sha256": "170b4e1df4c1467246a89365bab4443972a2208ec6837fc4c84ce631db623936",
+  "video_sha256": "9db8ae139d3ccbc7e576bb40a790ab8baded687fed897d6a9a43325f8b431df9",
   "purpose": "Original-resolution spot inspection, separate from complete atlas coverage.",
   "stills": [
     {
       "file": "still-001.png",
       "frame": 207,
       "seconds": 8.625,
-      "sha256": "3a7bf61d49ce281f354acaa880522a28a9a855e27724ace255131347c3d1aad1"
+      "sha256": "9d6bc0bb090ff600de75b2404addc2c4943945bb0e0509545c3708d5bc893151"
     },
     {
       "file": "still-002.png",
       "frame": 381,
       "seconds": 15.875,
-      "sha256": "6ba23b88f6ac988e5bb0087112e149ea2407b4b1bce30b296489383413fb4250"
+      "sha256": "181ca68bf5edbc071e85c4f4351681f225c554ffc4d4d64dfe87a91c42ef9835"
     },
     {
       "file": "still-003.png",
       "frame": 598,
       "seconds": 24.916666666666668,
-      "sha256": "1a6637daa304f4a3af8a0d0bf1cadf4e4db9f470c1bd5e75da7248bd8d2f0a1c"
+      "sha256": "d77ac0229891820a2bca1d5d3141e3ec326eb06ca56cea924ab7c2c7a0b911ce"
     },
     {
       "file": "still-004.png",
       "frame": 797,
       "seconds": 33.208333333333336,
-      "sha256": "769ecef5cf7c66b4c34729693a515d93032972f6abcee339541248ab1ae5c627"
+      "sha256": "75e4268a7cab60a554c56211f55d82ecee6e3f6b0e028dbc5c9ae63f39f3df55"
     },
     {
       "file": "still-005.png",
       "frame": 1053,
       "seconds": 43.875,
-      "sha256": "14510937ffd62e65c7fb77824fe02cdc460e24e34c28f3293c7764d973a35525"
+      "sha256": "1359984eda5ab64278750d6277ae0382b2d7f53046ae54f7d0279510c30aa377"
     },
     {
       "file": "still-006.png",
       "frame": 1263,
       "seconds": 52.625,
-      "sha256": "320745977e44ce687b8355e14b16246c9f8e689691eacab8807f29d3a50bbd57"
+      "sha256": "f09b114db99e07003a5d33b42fcb6f4729285c7e0b7a26cd2e0a64572ffe1ef3"
     },
     {
       "file": "still-007.png",
       "frame": 1544,
       "seconds": 64.33333333333333,
-      "sha256": "529328c229c8fd76c37dbaaa3453a8939cc8988c3f75873a0edd156644133cbe"
+      "sha256": "0408043e396ebc1844fa34a6f9ed575c44bdcef054005189715cbece84a1a463"
     },
     {
       "file": "still-008.png",
       "frame": 1766,
       "seconds": 73.58333333333333,
-      "sha256": "eb3e613db9ba018759012516f9545b6c2836b08b4148ed6528b3ba8cbc932f4a"
+      "sha256": "e0439f982a0c2fcf34522fd66d97ec7f4654baef305b03d1abe0262c484dcaae"
     },
     {
       "file": "still-009.png",
       "frame": 1974,
       "seconds": 82.25,
-      "sha256": "2feab620cdc9566f789477d5eb36bb2ae08ea83d14d3b1190e85c7b87ad55d56"
+      "sha256": "b6afb9f2378c130cb61953f99556f2456f6a9a7fd983430c9f3e40e25c06b555"
     },
     {
       "file": "still-010.png",
       "frame": 2239,
       "seconds": 93.29166666666667,
-      "sha256": "6a69ec1f6e32923f019dde82bf05b83d2f6727837ba6963115bd9b4eae4415e3"
+      "sha256": "77c15ddf59f38c8f8f06afe8f4fcbbe2914a5c91bacffc9bd167bc68716af035"
     },
     {
       "file": "still-011.png",
       "frame": 2514,
       "seconds": 104.75,
-      "sha256": "40dbe2786505ffae924496b95782a432d701ef0ddb35b81e44e8a177b72bbd65"
+      "sha256": "f920107d2d000e563dffa480d78f34272935cbc1559ee8815f2f579da2cb2d23"
     },
     {
       "file": "still-012.png",
       "frame": 2728,
       "seconds": 113.66666666666667,
-      "sha256": "5d9077e3d4b3206ea6ded04d78436afd1f0371fcf50a4e89129f42a042d06fe1"
+      "sha256": "f4a6da981765539ad8a44ef152bd67647af017c384d815371571ac65c210a4c9"
     },
     {
       "file": "still-013.png",
       "frame": 2974,
       "seconds": 123.91666666666667,
-      "sha256": "6a57e918ba45b8a2d2bdaa1f16791cb08c21c4252f12ae8e8bfd567aacaebeab"
+      "sha256": "158149956c68ffb96da3758b8234b5d9f7a0265aaa9dddf5ce7eb82490285f38"
     },
     {
       "file": "still-014.png",
       "frame": 3210,
       "seconds": 133.75,
-      "sha256": "8cefc13fe0bde35626dd95d0546207a7e9103e9717850784c12b70ce58df42ed"
+      "sha256": "3ed3b377a9194b8539d096c9139ca67e3c5d83d408449d40ef4fa607b9f8bf2e"
     },
     {
       "file": "still-015.png",
       "frame": 3419,
       "seconds": 142.45833333333334,
-      "sha256": "ea1d274cf4d33a4b29a6dc06f553a47fface5c54a95a35dc9fe3fb118ea64526"
+      "sha256": "d537df5fb07191e57ec018e20ad520681fd63336a163fc2da697b6fba6049c6a"
     },
     {
       "file": "still-016.png",
       "frame": 3689,
       "seconds": 153.70833333333334,
-      "sha256": "76d926ecf43d7d7aa404c89c04fda95dd5a0776c95694f039e36747bd0ec4706"
+      "sha256": "b942f85b0438d055e0a1e8c8759e5bf28488ce915a1aa17d53bcea5237d5e28b"
     },
     {
       "file": "still-017.png",
       "frame": 3875,
       "seconds": 161.45833333333334,
-      "sha256": "ef0568eaabced774acd8a7b358320b7af0faf80d66c0de54493c39eeee8449af"
+      "sha256": "a15218a82b98dc0b2b645407cb53821e69f78a7a1c2d79df412e892652fe6e79"
     },
     {
       "file": "still-018.png",
       "frame": 4105,
       "seconds": 171.04166666666666,
-      "sha256": "4813b120f37372bd2b2792d8455e05704072c59c845429d360b7b67f52c08bb3"
+      "sha256": "2197ee703db134774ad33d4de63486635d8f38b69d1cc1e67bd43d52e4e7e076"
     },
     {
       "file": "still-019.png",
       "frame": 4319,
       "seconds": 179.95833333333334,
-      "sha256": "312b1327a26676d67c5b0178c14aa0bf7e1541639e92dbdd7d94435f02edb239"
+      "sha256": "ae5810e18663a7403076725342edaec9d1b8dd189564f2b150661448f0d247ec"
     }
   ]
 }

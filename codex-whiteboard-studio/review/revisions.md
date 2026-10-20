@@ -123,3 +123,42 @@ media error. Verify single-frame stepping and the last-frame seek against
 the encoded movie. Save the observations in `browser-playback.json` and the
 whole-board comparison in `browser-frame-lab.png`. These playback observations
 do not establish subjective audio listening.
+
+## Illustrated short refinement
+
+The user accepted the three-minute edition in principle and requested line
+characters and recognizable national flags. Add an original reusable
+illustration module. Replace generic paper icons with a seated learner using
+a laptop, answering an exam and making a first attempt. Add a thinking learner
+to the physics and offloading scenes. Use a red-hatched Turkish flag with
+untouched board-white crescent and five-point star beside the study context.
+
+Full-resolution development inspection caught a notebook crossing the standing
+figure's torso and laptop hands stopping too far from the keyboard. Move the
+notebook outside the body contour, bring the hands toward the keyboard and
+turn the physics learner toward the book and lightbulb. Inspect the revised
+full-board composition and dense study scene before rendering. Keep narration
+and all accepted Chatterbox WAVs unchanged. Rebuild picture and synchronized
+foley, then repeat the final encoded-file review. Preserve the first delivered
+project at `versions/01-reviewed-short/` in the export folder.
+
+## Illustrated final encode review
+
+The rebuilt 180-second movie contains 4,320 decoded 1080p frames at 24 fps.
+Inspect all 135 paired consecutive-frame atlases again and all 19 native final
+stills; record their hashes in the new visual ledger. The five learner drawings
+and the flag persist through the whole-board hold. Figures, tools, data and
+captions remain separated. Drawing and eraser transitions are continuous.
+
+Current video SHA-256:
+`9db8ae139d3ccbc7e576bb40a790ab8baded687fed897d6a9a43325f8b431df9`.
+Technical checks confirm BT.709, no black frames, all 18 retained narration
+segments aligned in the final mix, −14.01 LUFS and −1.42 dBTP. Deterministic
+seeking, unique drawing identifiers and four independent pen queues pass
+structural validation. This review makes no pixel-identity or listening claim.
+
+The new encode played in the Codex in-app browser from 34.865 to 80.854
+seconds, with 1920 × 1080 dimensions, a 180-second duration and no media error.
+Single-frame stepping reached frame 837; the visible slider selected final
+frame 4319 and stepped back to 4318. Save these observations against this
+movie hash in `browser-playback.json`.

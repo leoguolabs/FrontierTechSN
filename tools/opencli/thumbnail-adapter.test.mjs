@@ -163,7 +163,10 @@ function waiter(source = fixedWait, options = {}) {
       return options.images?.(state) || []
     },
     async resolveChatGPTConversationIdentity() { return options.identity || null },
-    async getVisibleMessages() { return options.messages?.(state) ?? [{ Role: 'User', Text: options.actualPrompt || 'exact image prompt' }] },
+    async getVisibleMessages(_page, readOptions) {
+      state.messageReadOptions = readOptions
+      return options.messages?.(state) ?? [{ Role: 'User', Text: options.actualPrompt || 'exact image prompt' }]
+    },
     chatGPTPromptMatches: (actual, expected) => actual === expected,
   }
   const wait = vm.runInNewContext(source + '\nwaitForChatGPTImages', context)
@@ -314,6 +317,63 @@ test('completed image error ends the owned wait after two stable idle readings',
   assert.equal(state.clock, 6000)
   assert.equal(state.navigations.length, 0)
   assert.equal(state.progress.at(-1).stage, 'image_generation_failed')
+})
+
+const failedImageWidget = 'Something went wrong while generating your image. Sorry about that.'
+
+test('fixed image failure widget overrides a stale Stop button only in its owned empty turn', async () => {
+  for (const generating of [false, true]) {
+    for (const text of [failedImageWidget, failedImageWidget.replaceAll(' ', '  ')]) {
+      const { run, state } = waiter(fixedWait, {
+        generating: () => generating,
+        messages: () => [ownedFailure[0], { Role: 'Assistant', Text: text }],
+      })
+      await assert.rejects(run(420, savedUrl, { prompt: 'exact image prompt' }),
+        /CHATGPT_IMAGE_GENERATION_FAILED/)
+      assert.equal(state.clock, 6000)
+      assert.equal(state.navigations.length, 0)
+      assert.equal(state.progress.at(-1).stage, 'image_generation_failed')
+      assert.equal(state.messageReadOptions.expectedPrompt, 'exact image prompt')
+    }
+  }
+})
+
+test('failure widget cannot end an unrelated turn, a quoted error, or an image with output', async () => {
+  const response = { Role: 'Assistant', Text: failedImageWidget }
+  for (const options of [
+    { messages: () => [{ Role: 'User', Text: 'different prompt' }, response] },
+    { messages: () => [response, ownedFailure[0]] },
+    { messages: () => [response] },
+    { messages: () => [ownedFailure[0], { ...response, Text: 'The prior response said: ' + failedImageWidget }] },
+    { messages: () => [ownedFailure[0], { ...response, Text: failedImageWidget + ' I am trying again.' }] },
+    { messages: () => [ownedFailure[0], response], images: () => ['data:image/png;base64,preview'] },
+    { messages: () => [ownedFailure[0], response], images: () => [imageUrl] },
+  ]) {
+    const { run, state } = waiter(fixedWait, { generating: () => true, ...options })
+    await assert.rejects(run(12, savedUrl, { prompt: 'exact image prompt' }), /No stable finished image/)
+    assert.equal(state.progress.at(-1).stage, 'image_wait_timeout')
+  }
+})
+
+test('one failure widget reading cannot prevent a subsequent image from completing', async () => {
+  const { run, state } = waiter(fixedWait, {
+    generating: state => state.clock < 6000,
+    messages: () => [ownedFailure[0], { Role: 'Assistant', Text: failedImageWidget }],
+    images: state => state.clock >= 6000 ? [imageUrl] : [],
+  })
+  assert.deepEqual(Array.from(await run(30, savedUrl, { prompt: 'exact image prompt' })), [imageUrl])
+  assert.equal(state.clock, 9000)
+})
+
+test('a disappearing failure widget resets its confirmation even when Stop remains visible', async () => {
+  const { run, state } = waiter(fixedWait, {
+    generating: () => true,
+    messages: state => [ownedFailure[0], {
+      Role: 'Assistant', Text: state.clock === 6000 ? 'Creating image' : failedImageWidget,
+    }],
+  })
+  await assert.rejects(run(30, savedUrl, { prompt: 'exact image prompt' }), /CHATGPT_IMAGE_GENERATION_FAILED/)
+  assert.equal(state.clock, 12000)
 })
 
 test('standalone illustration failure with a reference request ends its owned wait', async () => {

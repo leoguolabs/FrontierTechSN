@@ -83,6 +83,46 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
 
         stillRendering = await isGenerating(page);
         if (Date.now() >= deadline) break;
+        // Without an owned prompt no terminal override is possible.
+        const candidates = stillRendering && !options.prompt ? []
+            : (await getChatGPTVisibleImageUrls(page)).filter(url => !beforeSet.has(url));
+        if (Date.now() >= deadline) break;
+        // The provider's fixed failure widget can retain a stale Stop button.
+        // Only that exact message may override it, after two identical reads
+        // of the owned turn with neither a finished image nor a canvas preview.
+        let terminalText = '';
+        if (!candidates.length && options.prompt) {
+            const messages = await getVisibleMessages(page, { textOnly: true, expectedPrompt: options.prompt });
+            if (Date.now() >= deadline) break;
+            const userIndex = messages.findLastIndex(message => message.Role === 'User');
+            const latest = messages.at(-1);
+            if (userIndex >= 0 && userIndex < messages.length - 1
+                && chatGPTPromptMatches(messages[userIndex].Text, options.prompt)
+                && latest?.Role === 'Assistant') {
+                const text = String(latest.Text || '').replace(/\s+/g, ' ').trim();
+                if (/^Something went wrong while generating your image\. Sorry about that\.$/.test(text)
+                    || (!stillRendering && (
+                        /^I wasn['’]t able to generate the image due to an error on my side\.$/.test(text)
+                        || /^I couldn['’]t generate the (?:new )?(?:image|illustration) in this attempt\.(?:\s|$)/.test(text)
+                        || /^We['’]re so sorry, but the image we created may violate our guardrails (?:around|concerning) [^.]+\.(?:\s|$)/i.test(text)
+                        || (/^Please upload /i.test(text) && missingInputRequest.test(text))
+                    ))) terminalText = text;
+            }
+        }
+        failureCount = terminalText && terminalText === failureText ? failureCount + 1 : (terminalText ? 1 : 0);
+        failureText = terminalText;
+        if (failureCount >= 2) {
+            const missingInput = missingInputRequest.test(terminalText);
+            report(missingInput ? 'image_input_missing' : 'image_generation_failed');
+            options.onDiagnostic?.({
+                terminal_error: missingInput ? 'CHATGPT_IMAGE_INPUT_MISSING' : 'CHATGPT_IMAGE_GENERATION_FAILED',
+                provider_message: terminalText,
+            }, conversationUrl);
+            throw new CommandExecutionError(
+                `${missingInput ? 'CHATGPT_IMAGE_INPUT_MISSING' : 'CHATGPT_IMAGE_GENERATION_FAILED'}: ${terminalText}`,
+                `Inspect the original request at ${conversationUrl}; the image prompt was not replayed.`,
+            );
+        }
         if (stillRendering) {
             // A stalled provider can keep its Stop button forever. Record the
             // state already read above, without extra browser reads, replay,
@@ -100,13 +140,9 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
             }
             lastUrls = [];
             stableCount = 0;
-            failureText = '';
-            failureCount = 0;
             continue;
         }
 
-        const candidates = (await getChatGPTVisibleImageUrls(page)).filter(url => !beforeSet.has(url));
-        if (Date.now() >= deadline) break;
         // Canvas snapshots can freeze while a background tab is still drawing.
         // Only a stable backend/blob image can complete this command.
         const urls = candidates.filter(url => !/^data:/i.test(url));
@@ -114,41 +150,6 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
         if (!urls.length) {
             lastUrls = [];
             stableCount = 0;
-            // A completed provider error is not a slow image. Bind it to the
-            // exact submitted turn, and require two idle, identical readings.
-            // Canvas previews and unrelated/older assistant text cannot fail it.
-            let terminalText = '';
-            if (!stillRendering && options.prompt) {
-                const messages = await getVisibleMessages(page, { textOnly: true });
-                if (Date.now() >= deadline) break;
-                const userIndex = messages.findLastIndex(message => message.Role === 'User');
-                const latest = messages.at(-1);
-                if (userIndex >= 0 && userIndex < messages.length - 1
-                    && chatGPTPromptMatches(messages[userIndex].Text, options.prompt)
-                    && latest?.Role === 'Assistant') {
-                    const text = String(latest.Text || '').replace(/\s+/g, ' ').trim();
-                    if (/^I wasn['’]t able to generate the image due to an error on my side\.$/.test(text)
-                        || /^I couldn['’]t generate the (?:new )?(?:image|illustration) in this attempt\.(?:\s|$)/.test(text)
-                        || /^We['’]re so sorry, but the image we created may violate our guardrails (?:around|concerning) [^.]+\.(?:\s|$)/i.test(text)
-                        || (/^Please upload /i.test(text) && missingInputRequest.test(text))) {
-                        terminalText = text;
-                    }
-                }
-            }
-            failureCount = terminalText && terminalText === failureText ? failureCount + 1 : (terminalText ? 1 : 0);
-            failureText = terminalText;
-            if (failureCount >= 2) {
-                const missingInput = missingInputRequest.test(terminalText);
-                report(missingInput ? 'image_input_missing' : 'image_generation_failed');
-                options.onDiagnostic?.({
-                    terminal_error: missingInput ? 'CHATGPT_IMAGE_INPUT_MISSING' : 'CHATGPT_IMAGE_GENERATION_FAILED',
-                    provider_message: terminalText,
-                }, conversationUrl);
-                throw new CommandExecutionError(
-                    `${missingInput ? 'CHATGPT_IMAGE_INPUT_MISSING' : 'CHATGPT_IMAGE_GENERATION_FAILED'}: ${terminalText}`,
-                    `Inspect the original request at ${conversationUrl}; the image prompt was not replayed.`,
-                );
-            }
             // Observe missing output without navigating, replaying the request,
             // or granting a placeholder permission to complete generation.
             // Use the existing deadline; never add a browser read after timeout.

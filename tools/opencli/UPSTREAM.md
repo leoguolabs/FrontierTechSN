@@ -182,6 +182,15 @@ on a known failure; it neither retries generation nor establishes why the
 provider failed. Optional collage failures continue through the existing
 asset replanning path, preserving their original request checkpoints.
 
+The thumbnail incident later on October 20 displayed the fixed provider error
+“Something went wrong while generating your image. Sorry about that.” while
+the Stop button remained visible. That exact normalized response can override
+the generation flag after two identical readings of the owned turn, with no
+image or canvas candidate. Other prose errors still require an idle turn.
+Long prompts are expanded only for exact ownership verification. The adapter
+reports the terminal failure without sending again; a confirmed failed request
+must be retained as evidence before an operator starts its replacement attempt.
+
 Thumbnail requests persist their prompt and `--state-file` checkpoint under
 `thumbnail/requests/<script-and-title-hash>/`. Repeating the same request reuses
 its checkpoint, and an already completed, valid local image returns without a

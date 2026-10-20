@@ -11,6 +11,18 @@ import time
 STUDIO = Path(__file__).resolve().parents[1]
 ROOT = STUDIO
 DEFAULT_MODEL = "mlx-community/whisper-large-v3-turbo-q4"
+# Exact numeric spellings used in these films. Unlisted digits remain visible
+# in the comparison instead of being silently discarded by tokenization.
+NUMBER_WORDS = dict(enumerate((
+    "zero one two three four five six seven eight nine ten eleven twelve "
+    "thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty"
+).split()))
+NUMBER_WORDS.update({
+    32: "thirty two", 44: "forty four", 48: "forty eight", 50: "fifty",
+    53: "fifty three", 74: "seventy four", 98: "ninety eight",
+    704: "seven hundred and four", 1000: "one thousand", 6000: "six thousand",
+    2026: "twenty twenty six",  # The narration explicitly speaks this as a year.
+})
 
 
 def recognizer_for(row, default_model, overrides):
@@ -31,11 +43,11 @@ def words(text):
     text = re.sub(r"(?<=[a-z])['’](?=[a-z])", "", text)
     text = re.sub(r"\bbusywork\b", "busy work", text)
     text = re.sub(r"\bpractise\b", "practice", text)
-    replacements = {"48": "forty eight", "17": "seventeen", "1000": "one thousand",
-                    "%": " percent"}
-    for a, b in replacements.items():
-        text = text.replace(a, b)
-    return re.findall(r"[a-z]+", text)
+    text = re.sub(r"\b\d+(?:,\d{3})*(?:\.\d+)?\b",
+                  lambda m: (m[0] if "." in m[0] else
+                             NUMBER_WORDS.get(int(m[0].replace(",", "")), m[0])), text)
+    text = text.replace("%", " percent")
+    return re.findall(r"[a-z]+|\d+(?:\.\d+)?", text)
 
 def align_source(text, recognized):
     """Preserve source copy; use ASR spans only as timing observations."""

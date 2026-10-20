@@ -1,8 +1,8 @@
 {
   "scope": "Ink completion relative to selected source phrases timed by matching unprompted ASR. Late candidates need review. Early reveals, composition, visibility, pronunciation, and subjective synchronization are not assessed.",
   "complete_audio": false,
-  "timeline_sha256": "4add2904d40c79ec6ed392dff774ac42a60b618968c25a5de944f4d46c316b97",
-  "composition_sha256": "490e705a7d0427c95eac99aaf3be0d536f9d9390b605839834407e1b44ac57a5",
+  "timeline_sha256": "87ec65fb0f70e8328d93cf795117518b24dc38c4ef9e1f3e48d4ca7623620479",
+  "composition_sha256": "1c8e41822c2321f10269f3d01c6d4e8b39fb256240b27ed2a3ca42fec369bccf",
   "cue_plan_sha256": "2109f92037e7418e27ca18e76e96ee882cb12690e54eeaf6f60ec663206e210d",
   "cues": [
     {
@@ -122,17 +122,22 @@
       "line": "13",
       "phrase": "seventy four",
       "max_lag": 2,
-      "drawing_start": 166.25,
-      "drawing_end": 168.625,
-      "status": "awaiting_verified_word_timing"
+      "drawing_start": 162.70833333333334,
+      "drawing_end": 165.08333333333334,
+      "status": "within_late_bound",
+      "audio_sha256": "f66df97ba7c681ceb0e9118959c3c5e490445f00e8e7f0f5d8188fafbd19cfc0",
+      "phrase_start": 165.09,
+      "phrase_end": 165.59,
+      "completion_lag": -0.5066666666666606,
+      "asr_model": "mlx-community/whisper-large-v3-turbo-q4"
     },
     {
       "group": "hints-errors",
       "line": "18",
       "phrase": "thirty two percent",
       "max_lag": 2,
-      "drawing_start": 226.33333333333334,
-      "drawing_end": 228.70833333333334,
+      "drawing_start": 225.5,
+      "drawing_end": 227.875,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -140,8 +145,8 @@
       "line": "36",
       "phrase": "x plus three equals fourteen",
       "max_lag": 1,
-      "drawing_start": 473.5416666666667,
-      "drawing_end": 475.7083333333333,
+      "drawing_start": 472.7083333333333,
+      "drawing_end": 474.875,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -149,8 +154,8 @@
       "line": "37",
       "phrase": "x plus three equal to seven",
       "max_lag": 1,
-      "drawing_start": 488.375,
-      "drawing_end": 489.9583333333333,
+      "drawing_start": 487.5416666666667,
+      "drawing_end": 489.125,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -158,8 +163,8 @@
       "line": "37",
       "phrase": "x equals four",
       "max_lag": 1,
-      "drawing_start": 493.0833333333333,
-      "drawing_end": 494.6666666666667,
+      "drawing_start": 492.25,
+      "drawing_end": 493.8333333333333,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -167,8 +172,8 @@
       "line": "37",
       "phrase": "check it",
       "max_lag": 1,
-      "drawing_start": 496.9166666666667,
-      "drawing_end": 498.5,
+      "drawing_start": 496.0833333333333,
+      "drawing_end": 497.6666666666667,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -176,8 +181,8 @@
       "line": "39",
       "phrase": "two x plus three",
       "max_lag": 1,
-      "drawing_start": 518.7916666666666,
-      "drawing_end": 520.375,
+      "drawing_start": 517.9583333333334,
+      "drawing_end": 519.5416666666666,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -185,8 +190,8 @@
       "line": "39",
       "phrase": "two x plus six",
       "max_lag": 1,
-      "drawing_start": 524.5416666666666,
-      "drawing_end": 526.125,
+      "drawing_start": 523.7083333333334,
+      "drawing_end": 525.2916666666666,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -194,8 +199,8 @@
       "line": "41",
       "phrase": "y minus two equals fifteen",
       "max_lag": 1,
-      "drawing_start": 546.9933333333333,
-      "drawing_end": 548.9933333333333,
+      "drawing_start": 546.16,
+      "drawing_end": 548.16,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -203,8 +208,8 @@
       "line": "41",
       "phrase": "answer is seven",
       "max_lag": 1,
-      "drawing_start": 554.0416666666666,
-      "drawing_end": 555.6666666666666,
+      "drawing_start": 553.2083333333334,
+      "drawing_end": 554.8333333333334,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -212,8 +217,8 @@
       "line": "43",
       "phrase": "z plus one equals twenty",
       "max_lag": 1,
-      "drawing_start": 576.9166666666666,
-      "drawing_end": 578.9166666666666,
+      "drawing_start": 576.0833333333334,
+      "drawing_end": 578.0833333333334,
       "status": "awaiting_verified_word_timing"
     },
     {
@@ -221,8 +226,8 @@
       "line": "44",
       "phrase": "which is twenty",
       "max_lag": 1,
-      "drawing_start": 589.7916666666666,
-      "drawing_end": 591.9583333333334,
+      "drawing_start": 588.9583333333334,
+      "drawing_end": 591.125,
       "status": "awaiting_verified_word_timing"
     }
   ]

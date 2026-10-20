@@ -197,3 +197,58 @@ Regression checks keep a missing final "s" and a missing negation detectable.
 The raw observation is retained, and this normalization did not request or
 modify any audio. Eleven current rows now match; eight selected drawing cues
 have observed timing within their late bounds and twelve remain pending.
+
+## Arithmetic timing and numeric transcription
+
+Line 13's recognizer uses digits for the spoken values fifty, forty eight,
+seventy four and ninety eight. Numeric normalization now compares complete
+values, including thousands separators, without discarding unknown numbers
+or decimal points. Regression checks distinguish 74 from 98, 48 from 148,
+and 1.5 from separate values 1 and 5. No audio was changed for this spelling
+difference.
+
+The illustrative calculation now starts earlier in line 13. In the encoded
+revision it finishes at 165.583 seconds, just before the observed phrase
+"seventy four" at 165.590–166.090 seconds. All 384 frames of the 16-second
+revision were inspected through eight consecutive atlases. Native frame 192
+was inspected separately: the formula, illustration-only qualifier, learners
+and flag are readable, and the completed formula accompanies the subtitle
+"seventy four, not ninety eight." The transition to the physics region keeps
+the departing and arriving markers separated. The cumulative development
+record now contains eleven clips, 5,421 decoded frames and eight native
+encoded stills.
+
+The first fifteen WAVs have arrived; fourteen currently match their selected
+independent transcripts. Turbo, medium and small all render line 15's source
+word "that" as "the". Its first WAV and all three observations remain saved.
+A source-bound second take uses seed 1234. The polling client resumed the
+existing queue, preserving the already submitted line-16 job. These records
+do not establish subjective listening.
+
+The latest fifteen-voice draft passes structural checks with the unresolved
+line-15 transcript and missing later audio explicitly reported. Nine selected
+speech cues have observed timing within their late bounds; eleven are still
+pending. The conservative marker-body scan finds no candidates in this
+17,254-frame draft. Neither check accepts the unfinished final film.
+
+## Isolated Chatterbox acceleration experiment
+
+Remote speech generation remains active. A separate local environment under
+ignored `media/acceleration` is being prepared to measure MPS generation on
+this Mac. It uses the same pinned Chatterbox source, model revision, voice
+reference and alignment patch as the existing service. Original provider
+audio and the production manifest are unchanged by this experiment.
+
+The initial Torch download was progressing slowly. Its 32,378,880-byte
+prefix was preserved, the remaining ranges were downloaded from the
+official PyPI file URL, and the assembled wheel passed its complete published
+SHA256. The isolated dependency installation then continued with uv.
+Model downloads retain their partial bytes and require complete SHA256
+verification before use.
+
+`scripts/benchmark_chatterbox_mps.py` is a bounded single-line trial, not a
+production replacement. It records initialization time, generation time,
+actual model device, request parameters and output hash. Its output is marked
+unaccepted and never written into the film's audio manifest. At this
+checkpoint, dependencies and model downloads are still being prepared; no
+local synthesis result or speed improvement has been established.

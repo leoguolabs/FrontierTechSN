@@ -110,6 +110,46 @@
       "duration": 13.68,
       "independent_transcript_matches": true,
       "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "12",
+      "path": "media/audio/12-b71c14d3a359.wav",
+      "job_id": "71839eff153542979fc15cdd58f31ca3",
+      "audio_sha256": "bdba0b07ed6717d72235af24a8d326b1241f90d1d95c7c029d234b6a74aef37f",
+      "source_sha256": "790415b0ad44611f7a212fa7da5269b61dafca1bbbc47778d0d861cbbebf2882",
+      "duration": 12.6,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "13",
+      "path": "media/audio/13-dd6ee849c9e9.wav",
+      "job_id": "9f07bdf962ad4dba90c416ca6801466d",
+      "audio_sha256": "f66df97ba7c681ceb0e9118959c3c5e490445f00e8e7f0f5d8188fafbd19cfc0",
+      "source_sha256": "8c6db4348e1d818306435722ff4b344c754ae2f448309bb036b3ab8350795efb",
+      "duration": 12.24,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "14",
+      "path": "media/audio/14-b26ef1a36982.wav",
+      "job_id": "883ceba64eac496cafe58ea9fa92d9d0",
+      "audio_sha256": "514d7d8d6c959ea82cbe6ac61c1ff18084353df9560349a18fc1fa17d129c458",
+      "source_sha256": "e410a0038250a634f7753b72d464466e5e2495963ec8523a30230f4ba39171db",
+      "duration": 11.28,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "15",
+      "path": "media/audio/15-3409fa2d8c9d.wav",
+      "job_id": "2fc66d65aab341d78d03970ff43d8dec",
+      "audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
+      "source_sha256": "09f3d557ad02deeb983744a2f929ee90fecd3886956226b12dae82f5359da3e7",
+      "duration": 12.52,
+      "independent_transcript_matches": false,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
     }
   ],
   "pronunciation_rechecks": [
@@ -191,6 +231,113 @@
           }
         ]
       }
+    },
+    {
+      "id": "15",
+      "status": "Second take requested; generation is ongoing. No subjective listening claim.",
+      "source_sha256": "09f3d557ad02deeb983744a2f929ee90fecd3886956226b12dae82f5359da3e7",
+      "original_audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
+      "original_job_id": "2fc66d65aab341d78d03970ff43d8dec",
+      "observations": [
+        {
+          "file": "media/asr/15-3b85faaf7994-second-medium.json",
+          "sha256": "b2366a82486996975957c7f2af587b7f3fb619ce0fe2f5f0dc591df2a51321b7",
+          "audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
+          "model": "mlx-community/whisper-medium-mlx",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "that"
+              ],
+              "heard": [
+                "the"
+              ]
+            },
+            {
+              "kind": "replace",
+              "expected": [
+                "chatbot"
+              ],
+              "heard": [
+                "chat",
+                "bot"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "media/asr/15-3b85faaf7994-third-small.json",
+          "sha256": "d8332613b3a62f90b912616dc566eabd1d87da86ce53248e766110795b838739",
+          "audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
+          "model": "mlx-community/whisper-small-mlx",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "sequenced"
+              ],
+              "heard": [
+                "sequence"
+              ]
+            },
+            {
+              "kind": "replace",
+              "expected": [
+                "asked"
+              ],
+              "heard": [
+                "asks"
+              ]
+            },
+            {
+              "kind": "replace",
+              "expected": [
+                "worked"
+              ],
+              "heard": [
+                "work"
+              ]
+            },
+            {
+              "kind": "replace",
+              "expected": [
+                "that"
+              ],
+              "heard": [
+                "the"
+              ]
+            },
+            {
+              "kind": "replace",
+              "expected": [
+                "a"
+              ],
+              "heard": [
+                "the"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "media/asr/15-3b85faaf7994.json",
+          "sha256": "e801be83ee778605d90a6f83c8cd3d1f425826240c0e797d7ffff86c7c484980",
+          "audio_sha256": "3b85faaf799425edc312c6de57663863e655ecd55018531640127529d7d2dcfc",
+          "model": "mlx-community/whisper-large-v3-turbo-q4",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "that"
+              ],
+              "heard": [
+                "the"
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "All three recognizers replace the source that with the. Retain the first take and source wording; request a second take using seed 1234."
     }
   ]
 }

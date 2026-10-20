@@ -858,6 +858,75 @@
         }
       ],
       "observation": "All 744 consecutive decoded frames inspected. Flag, context, assisted learner and unaided learner draw in a clear order. No visible marker collision. The +48% and -17% labels are readable beside separate figures and arrive with their observed speech cues. The six-second extra pause contains active illustration drawing; final-film timing remains provisional until all voice rows exist."
+    },
+    {
+      "name": "arithmetic-aligned",
+      "video_sha256": "1a6950f5554483809c0ad6b488477a798c58d1c20c38ddeabcf067135ea89328",
+      "receipt": {
+        "picture_sha256": "1a6950f5554483809c0ad6b488477a798c58d1c20c38ddeabcf067135ea89328",
+        "timeline_sha256": "e33a6e93a039161ce23d5684377a1b9a87695f7119050c10a5d49740d6c3c4e4",
+        "events_sha256": "a7e80c3e1ecb488bf700359b963bde0ec6560b53bfc7b4ef8fec82d9b1c43cc4",
+        "first_frame": 3792,
+        "last_frame_exclusive": 4176,
+        "frames": 384,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 384,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "7df9969791e29613fc5f73621b638f7e66a1b3e5585ca47f82b46a609734bd5c"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "48ef3018046da2729e7ae4a5dc0b7c87e5aa80379bf31a9ec6a25fbfc142ec04"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "d0334489231866627bd2f84cd177ad882f03e4954309bac21e1f759a7544d103"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "24cd83002638732881aa6c5f3c150028601dfeb9b7818339844ec78f4c36f079"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "48b8300a5010b4aeddff6f019f2edf1740527512b17988925eb21c6ad2983546"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "fef390eb1129688d4850cac264cb8e6664e123b52c63e8645ea4f4d039e4caa2"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "4f0442a7564f482538aebf9d1b47d6175bd0833e93b9d0bf8d7f7568c668e8d1"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 383,
+          "sha256": "a44d229a9c1f2384486f9b98d82878a4b65d3cec97d96042c320bf00b597ac20"
+        }
+      ],
+      "observation": "All 384 consecutive decoded frames inspected in eight atlases. Arithmetic ink completes just before seventy four is spoken. The illustration-only qualifier remains visible with the formula. The flag and two learner figures remain clear; the departing terracotta marker is separate from the incoming black marker and following camera move. No visible marker collision in this bounded silent development clip."
     }
   ],
   "native_stills": [
@@ -923,6 +992,15 @@
       "width": 1920,
       "height": 1080,
       "observation": "Completed Turkish flag, two learners, distinct laptop and paper, both percentages and the control-group qualifier are clearly separated and readable."
+    },
+    {
+      "file": "review/development/native/arithmetic-aligned-192.png",
+      "sha256": "89854ada4b8d285173541319fca199d1db1199a70c10cbf3c04ce06c168cd395",
+      "video_sha256": "1a6950f5554483809c0ad6b488477a798c58d1c20c38ddeabcf067135ea89328",
+      "frame": 192,
+      "width": 1920,
+      "height": 1080,
+      "observation": "The full formula illustration only: 50 x 1.48 = 74 is readable while the caption says seventy four, not ninety eight. Country flag, laptop learner and paper learner stay separate from the percentages and explanatory lines."
     }
   ]
 }

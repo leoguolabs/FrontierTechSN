@@ -122,7 +122,7 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   text('guarded','guarded tutor: penalty largely removed','turkey',900,940,t(11,.15),{h:55,align:'center',color:BLUE,duration:2.2})
   text('guarded-scope','no significant positive exam gain','turkey',900,1055,t(11,.60),{h:49,align:'center',duration:2.1})
   text('study-scope','short-term exam / not permanent damage','turkey',900,1170,t(12,.36),{h:48,align:'center',duration:2.3})
-  text('relative-example','illustration only: 50 x 1.48 = 74','turkey',900,1300,t(13,.4),{h:49,align:'center',color:ORANGE,duration:2.4})
+  text('relative-example','illustration only: 50 x 1.48 = 74','turkey',900,1300,t(13,.2),{h:49,align:'center',color:ORANGE,duration:2.4})
   S.cue('study-reversal',t(10,.40),{kind:'silence',duration:1.7})
 
   // 04: Teaching design and correctness, with a book, learner and checked feedback.

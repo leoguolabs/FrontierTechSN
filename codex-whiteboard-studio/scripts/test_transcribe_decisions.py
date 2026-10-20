@@ -37,6 +37,17 @@ class RecognizerDecisionTests(unittest.TestCase):
         self.assertNotEqual(words("the control group's"), words("the control group"))
         self.assertNotEqual(words("it doesn't help"), words("it does help"))
 
+    def test_observed_numeric_transcripts_match_spelled_source_values(self):
+        self.assertEqual(words("50 plus 48 percent gives 74, not 98"),
+                         words("fifty plus forty eight percent gives seventy four, not ninety eight"))
+        self.assertEqual(words("6,000 students"), words("six thousand students"))
+
+    def test_wrong_and_unknown_numbers_remain_detectable(self):
+        self.assertNotEqual(words("74"), words("98"))
+        self.assertNotEqual(words("48 percent"), words("148 percent"))
+        self.assertEqual(words("12345"), ["12345"])
+        self.assertNotEqual(words("1.5"), words("1 5"))
+
 
 if __name__ == "__main__":
     unittest.main()

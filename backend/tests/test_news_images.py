@@ -4423,3 +4423,162 @@ async def test_automatic_picture_plan_does_not_cache_provider_fallback(tmp_path,
     await news_images.acquire_news_images(board(), tmp_path, count=None)
     await news_images.acquire_news_images(board(), tmp_path, count=None)
     assert planner.await_count == 2
+
+
+def _mercury_picture_board():
+    return {"scenes": [{
+        "id": "scene-05", "duration": 23.46, "keywords": [],
+        "text": (
+            "Inception has launched Mercury 3, a diffusion-based large language model "
+            "that the company claims is comparable to Luna and Haiku models."
+        ),
+    }]}
+
+
+def _mercury_picture_plan(subject):
+    return news_images._normalise_plan({"images": [{
+        "scene_id": "scene-05", "expected_subject": subject,
+        "search_query": f"{subject} logo", "news_query": subject,
+        "kind": "logo", "display_mode": "inline",
+        "purpose": "Identify the model developer", "caption": subject,
+    }]}, eligible_scene_ids=["scene-05"], count=None)
+
+
+@pytest.mark.asyncio
+async def test_failed_automatic_acquisition_replans_from_actual_errors_and_retains_evidence(
+    tmp_path, monkeypatch,
+):
+    initial = _mercury_picture_plan("Inception Labs")
+    planner = AsyncMock(side_effect=[
+        (initial, "opencli:chatgpt-picture-editor", "https://chatgpt.com/c/original"),
+        ([], "opencli:chatgpt-picture-editor", "https://chatgpt.com/c/revision"),
+    ])
+    monkeypatch.setattr(news_images, "plan_news_images", planner)
+    monkeypatch.setattr(news_images, "_discover_shot_candidates", AsyncMock(return_value=[]))
+    result = await news_images.acquire_news_images(_mercury_picture_board(), tmp_path, count=None)
+    assert result["status"] == "not_needed"
+    assert result["requested_image_count"] == 0
+    assert result["planner_conversation_url"] == "https://chatgpt.com/c/revision"
+    feedback = planner.await_args.kwargs["failure_feedback"]
+    assert feedback["previous_plan"] == initial
+    assert "contiguous identity" in feedback["subject_validation"][0]["error"]
+    assert feedback["failed_queries"][0]["search_query"] == "Luna logo"
+    assert any(row["stage"] == "inventory" for row in feedback["acquisition_errors"])
+    prompt = news_images._planner_prompt(
+        _mercury_picture_board()["scenes"], None, failure_feedback=feedback,
+    )
+    assert "no image quota" in prompt
+    assert "Luna logo" in prompt and "contiguous identity" in prompt
+    saved = json.loads(next((tmp_path / "news_images").glob("picture-plan-*.json")).read_text())
+    assert saved["initial_images"] == initial
+    assert saved["initial_conversation_url"] == "https://chatgpt.com/c/original"
+    entry = saved["repair_history"][0]
+    evidence = (tmp_path / entry["failed_manifest_path"]).read_bytes()
+    assert hashlib.sha256(evidence).hexdigest() == entry["failed_manifest_sha256"]
+    assert json.loads(evidence)["status"] == "no_results"
+    assert entry["status"] == "accepted"
+    await news_images.acquire_news_images(_mercury_picture_board(), tmp_path, count=None)
+    assert planner.await_count == 2
+
+
+@pytest.mark.asyncio
+async def test_automatic_image_plan_revisions_are_bounded_across_restarts(tmp_path, monkeypatch):
+    planner = AsyncMock(side_effect=[
+        (_mercury_picture_plan(subject), "opencli:chatgpt-picture-editor", f"https://chatgpt.com/c/{i}")
+        for i, subject in enumerate(["Inception Labs", "Mercury", "Luna"])
+    ])
+    discover = AsyncMock(return_value=[])
+    monkeypatch.setattr(news_images, "plan_news_images", planner)
+    monkeypatch.setattr(news_images, "_discover_shot_candidates", discover)
+    for _ in range(2):
+        result = await news_images.acquire_news_images(_mercury_picture_board(), tmp_path, count=None)
+        assert result["status"] == "no_results"
+    assert planner.await_count == 3
+    saved = json.loads(next((tmp_path / "news_images").glob("picture-plan-*.json")).read_text())
+    assert len(saved["repair_history"]) == news_images.MAX_AUTOMATIC_PLAN_REVISIONS
+    assert all(row["status"] == "accepted" for row in saved["repair_history"])
+    # Each revised plan reached acquisition before another revision was requested.
+    subjects = [call.kwargs["shot"]["expected_subject"] for call in discover.await_args_list]
+    assert "Mercury" in subjects and "Luna" in subjects
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("revision,provider,expected_status", [
+    ([], "deterministic-fallback", "provider_unavailable"),
+    (_mercury_picture_plan("Unmentioned Company"), "opencli:chatgpt-picture-editor", "ungrounded_revision"),
+    (_mercury_picture_plan("Inception Labs"), "opencli:chatgpt-picture-editor", "ungrounded_revision"),
+])
+async def test_image_plan_repair_never_accepts_provider_fallback_or_ungrounded_decision(
+    tmp_path, monkeypatch, revision, provider, expected_status,
+):
+    initial = _mercury_picture_plan("Inception Labs")
+    planner = AsyncMock(side_effect=[
+        (initial, "opencli:chatgpt-picture-editor", "https://chatgpt.com/c/original"),
+        (revision, provider, "https://chatgpt.com/c/revision"),
+    ])
+    monkeypatch.setattr(news_images, "plan_news_images", planner)
+    monkeypatch.setattr(news_images, "_discover_shot_candidates", AsyncMock(return_value=[]))
+    result = await news_images.acquire_news_images(_mercury_picture_board(), tmp_path, count=None)
+    assert result["status"] == "no_results"
+    assert result["requested_image_count"] == 1
+    saved = json.loads(next((tmp_path / "news_images").glob("picture-plan-*.json")).read_text())
+    assert saved["images"] == initial
+    assert saved["repair_history"][0]["status"] == expected_status
+
+
+@pytest.mark.asyncio
+async def test_explicit_image_count_is_not_reduced_by_plan_repair(tmp_path, monkeypatch):
+    planner = AsyncMock(return_value=(
+        _mercury_picture_plan("Inception Labs"), "opencli:chatgpt-picture-editor", "https://chatgpt.com/c/a",
+    ))
+    monkeypatch.setattr(news_images, "plan_news_images", planner)
+    monkeypatch.setattr(news_images, "_discover_shot_candidates", AsyncMock(return_value=[]))
+    result = await news_images.acquire_news_images(_mercury_picture_board(), tmp_path, count=1)
+    assert result["status"] == "no_results"
+    assert result["requested_image_count"] == 1
+    assert planner.await_count == 1
+    assert not list((tmp_path / "news_images").glob("failed-acquisition-*"))
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("override", [
+    {"status": "searching"},
+    {"status": "partial", "images": [{"id": "accepted"}]},
+    {"images": [{"id": "accepted"}]},
+    {"collage_sets": [{"assets": [{"id": "accepted"}]}]},
+    {"cache_contract_sha256": "different"},
+    {"storyboard_sha256": "different"},
+    {"selection_mode": "explicit"},
+])
+async def test_image_repair_requires_exact_failed_empty_automatic_acquisition(
+    tmp_path, monkeypatch, override,
+):
+    planner = AsyncMock()
+    monkeypatch.setattr(news_images, "plan_news_images", planner)
+    data = _mercury_picture_board()
+    manifest = {
+        "status": "no_results", "selection_mode": "ai",
+        "storyboard_sha256": news_images.storyboard_fingerprint(data),
+        "cache_contract_sha256": "contract", "images": [], "collage_sets": [], **override,
+    }
+    assert not await news_images._revise_empty_automatic_plan(
+        data, tmp_path, manifest=manifest, contract_sha256="contract",
+        plan_path=tmp_path / "must-not-read.json", planning_prompt="prompt",
+        eligible=["scene-05"], scene_hints=None, log=None,
+    )
+    planner.assert_not_awaited()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("payload", [{}, {"images": None}, {"images": [{"scene_id": "missing"}]}])
+async def test_malformed_repair_response_is_not_an_empty_editorial_decision(monkeypatch, payload):
+    monkeypatch.setattr(news_images, "run_opencli_with_retries", AsyncMock(
+        return_value=SimpleNamespace(stdout=json.dumps([{
+            "Response": json.dumps(payload), "ConversationUrl": "https://chatgpt.com/c/bad",
+        }])),
+    ))
+    _plan, provider, _url = await news_images.plan_news_images(
+        _mercury_picture_board(), eligible_scene_ids=["scene-05"], count=None,
+        failure_feedback={"acquisition_errors": ["No licensed candidate"]},
+    )
+    assert provider == "deterministic-fallback"

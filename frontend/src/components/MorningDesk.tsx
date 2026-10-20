@@ -18,6 +18,7 @@ import {
 } from '../api'
 import { IconPlay, IconStop } from './Icons'
 import PublishingPanel from './PublishingPanel'
+import { OUTRO_PRESET_COPY } from '../outroPresets'
 
 const SOURCE_LABELS: Record<string, string> = {
   zh: '中文',
@@ -265,6 +266,7 @@ export default function MorningDesk() {
   const selectedModel = ttsModels.find((model) => model.id === draft.tts_model)
   const selectedMusicTrack = musicTracks.find((track) => track.id === draft.background_music_track_id)
   const selectedOutro = outroPresets.find((preset) => preset.id === draft.outro_style)
+  const selectedOutroCopy = selectedOutro ? OUTRO_PRESET_COPY[selectedOutro.id] : null
   const selectedVoiceIsValid = voices.some((voice) => voice.name === draft.voice)
   const effectiveVoice = selectedVoiceIsValid ? draft.voice : (voices[0]?.name ?? draft.voice)
   const effectiveVoiceIsValid = voices.some((voice) => voice.name === effectiveVoice)
@@ -490,21 +492,22 @@ export default function MorningDesk() {
             </div>
             <div className="morning-outro-stack">
               <label className="morning-music-field">
-                <span>ByteFront Espresso opening + outro</span>
+                <span>Opening &amp; closing</span>
                 <select
                   value={draft.outro_style}
                   disabled={outroPresetsAreLoading || outroPresetsAreError}
                   onChange={(event) => patch('outro_style', event.target.value as DailyAutomationSettings['outro_style'])}
                 >
                   {outroPresets.map((preset) => (
-                    <option value={preset.id} key={preset.id} disabled={!preset.available}>{preset.label}</option>
+                    <option value={preset.id} key={preset.id} disabled={!preset.available}>{OUTRO_PRESET_COPY[preset.id].name}</option>
                   ))}
                 </select>
               </label>
-              {selectedOutro && (
+              {selectedOutro && selectedOutroCopy && (
                 <div className="morning-outro-preview">
                   <video
                     key={selectedOutro.id}
+                    aria-label={`${selectedOutroCopy.name} motion preview`}
                     src={outroBackgroundVideoUrl(selectedOutro.id)}
                     muted
                     loop
@@ -513,14 +516,12 @@ export default function MorningDesk() {
                     preload="metadata"
                   />
                   <div>
-                    <strong>{selectedOutro.label}</strong>
-                    <small>{selectedOutro.description} · Opening date and weekday are injected by HyperFrames.</small>
-                    <span>Gemini motion · {selectedOutro.duration_seconds.toFixed(0)}s opening + {selectedOutro.duration_seconds.toFixed(0)}s final scene</span>
-                    <p>The video-editing agent can refine both HyperFrames overlays while the opening keeps its task date and weekday variables and the ending keeps its English message and Like / Comment / Share actions.</p>
+                    <strong>{selectedOutroCopy.tone}</strong>
+                    <small>{selectedOutroCopy.description}</small>
                   </div>
                 </div>
               )}
-              {outroPresetsAreError && <p className="morning-panel-warning">The outro catalog could not be loaded. Saving is blocked until the three backgrounds are available.</p>}
+              {outroPresetsAreError && <p className="morning-panel-warning">Styles unavailable. Reload to try again before saving.</p>}
             </div>
             <div className="morning-music-stack">
               <label className="morning-music-field">

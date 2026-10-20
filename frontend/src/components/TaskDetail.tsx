@@ -23,6 +23,7 @@ import FootagePanel from './FootagePanel'
 import PublicationPanel from './PublicationPanel'
 import { IconChevronLeft, IconChevronRight } from './Icons'
 import { countdown, formatStart, isPendingStart, localInputToIso, toLocalInputValue } from '../schedule'
+import { OUTRO_PRESET_COPY } from '../outroPresets'
 
 const STAGES = ['researching', 'digesting', 'reviewing', 'sourcing', 'tts', 'music', 'composing', 'publishing', 'complete'] as const
 const STAGE_LABELS: Record<string, string> = {
@@ -38,11 +39,6 @@ const STAGE_LABELS: Record<string, string> = {
   composing: 'Compose',
   publishing: 'Publish',
   complete: 'Done',
-}
-const OUTRO_LABELS: Record<string, string> = {
-  'data-extraction': '1. 数据萃取｜深色、科技感',
-  'morning-brief': '2. 晨间简报｜温暖、编辑感',
-  'signal-shot': '3. 信号快讯｜克制、播报感',
 }
 
 function stageState(current: string, stage: string): 'done' | 'active' | '' {
@@ -335,7 +331,7 @@ export default function TaskDetail() {
             </div>
             <div>
               <dt>Video bookends</dt>
-              <dd>{OUTRO_LABELS[task.config.outro_style || 'morning-brief']} · dynamic date intro + editable outro</dd>
+              <dd>{OUTRO_PRESET_COPY[task.config.outro_style || 'morning-brief'].name}</dd>
             </div>
           </dl>
           <LogPanel key={task.id} taskId={task.id} taskStatus={task.status} />

@@ -40,12 +40,31 @@ export async function waitForChatGPTImageComposer(page) {
     // The navigation can finish before the editor mounts. This is strictly
     // before submission; keep the same page and the original request slot.
     const deadline = Date.now() + 30000;
+    const refreshAt = Date.now() + 10000;
+    let recoveryAttempted = false;
     while (true) {
         try {
             return await ensureChatGPTComposer(page);
         } catch (error) {
-            if (error?.message !== 'ChatGPT composer is not available on the current page.'
+            if (error?.code === 'AUTH_REQUIRED' || error?.name === 'AuthRequiredError'
+                || error?.message !== 'ChatGPT composer is not available on the current page.'
                 || Date.now() >= deadline) throw error;
+            if (!recoveryAttempted && Date.now() >= refreshAt) {
+                recoveryAttempted = true;
+                // Refresh a stalled empty home shell once, before uploads or
+                // submission. Never reload a conversation or discard a draft.
+                await page.evaluate(`(() => {
+                    const url = new URL(window.location.href);
+                    if (url.origin !== 'https://chatgpt.com'
+                        || !['/', '/new'].includes(url.pathname)) return false;
+                    if (document.querySelector('[data-message-author-role], [data-turn="user"], [data-turn="assistant"], article[data-testid^="conversation-turn-"]')) return false;
+                    const editors = Array.from(document.querySelectorAll('#prompt-textarea, textarea, [contenteditable="true"]'));
+                    if (editors.some(editor => String(editor.value || editor.textContent || '').trim())) return false;
+                    window.location.reload();
+                    return true;
+                })()`);
+            }
+            if (Date.now() >= deadline) throw error;
             await page.sleep(Math.min(1, (deadline - Date.now()) / 1000));
         }
     }

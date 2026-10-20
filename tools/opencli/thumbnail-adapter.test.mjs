@@ -836,7 +836,10 @@ test('image composer waits for hydration in the same slot and fails within a bou
         return { hasComposer: true }
       },
     })
-    const result = wait({ async sleep(seconds) { clock += seconds * 1000 } })
+    const result = wait({
+      async sleep(seconds) { clock += seconds * 1000 },
+      async evaluate() { return false },
+    })
     if (readyAt === Infinity) await assert.rejects(result, /composer is not available/)
     else assert.equal((await result).hasComposer, true)
     assert.equal(clock, Math.min(readyAt, 30000))
@@ -845,6 +848,70 @@ test('image composer waits for hydration in the same slot and fails within a bou
     Date, async ensureChatGPTComposer() { throw new Error('AUTH_REQUIRED') },
   })
   await assert.rejects(wait({}), /AUTH_REQUIRED/)
+})
+
+test('image composer recovers only an empty home once within the original deadline', async () => {
+  const helper = fs.readFileSync(path.join(runtime, 'patches/chatgpt-image-request.js'), 'utf8').replaceAll('export ', '')
+  for (const options of [
+    { url: 'https://chatgpt.com/', readyAfterReload: true },
+    { url: 'https://chatgpt.com/new', readyAfterReload: true },
+    { url: 'https://chatgpt.com/', readyAfterReload: false },
+    { url: savedUrl, readyAfterReload: true },
+    { url: 'https://example.com/', readyAfterReload: true },
+    { url: 'https://chatgpt.com/', messages: true, readyAfterReload: true },
+    { url: 'https://chatgpt.com/', draft: 'unsent user text', readyAfterReload: true },
+  ]) {
+    let clock = 0; let reloads = 0; let evaluations = 0
+    const wait = vm.runInNewContext(helper + '\nwaitForChatGPTImageComposer', {
+      Date: { now: () => clock },
+      async ensureChatGPTComposer() {
+        if (reloads && options.readyAfterReload) return { hasComposer: true }
+        throw new Error('ChatGPT composer is not available on the current page.')
+      },
+    })
+    const result = wait({
+      async sleep(seconds) { clock += seconds * 1000 },
+      async evaluate(script) {
+        evaluations++
+        return vm.runInNewContext(script, {
+          URL,
+          window: { location: { href: options.url, reload() { reloads++ } } },
+          document: {
+            querySelector() { return options.messages ? {} : null },
+            querySelectorAll() { return options.draft ? [{ textContent: options.draft }] : [] },
+          },
+        })
+      },
+    })
+    const freshHome = ['https://chatgpt.com/', 'https://chatgpt.com/new'].includes(options.url)
+      && !options.messages && !options.draft
+    if (freshHome && options.readyAfterReload) {
+      assert.equal((await result).hasComposer, true)
+      assert.ok(clock >= 10000 && clock < 30000)
+    } else {
+      await assert.rejects(result, /composer is not available/)
+      assert.equal(clock, 30000)
+    }
+    assert.equal(reloads, freshHome ? 1 : 0, JSON.stringify(options))
+    assert.equal(evaluations, 1, JSON.stringify(options))
+  }
+})
+
+test('image composer does not retry authentication errors with the generic composer message', async () => {
+  const helper = fs.readFileSync(path.join(runtime, 'patches/chatgpt-image-request.js'), 'utf8').replaceAll('export ', '')
+  let clock = 0
+  const authError = Object.assign(new Error('ChatGPT composer is not available on the current page.'), {
+    code: 'AUTH_REQUIRED',
+  })
+  const wait = vm.runInNewContext(helper + '\nwaitForChatGPTImageComposer', {
+    Date: { now: () => clock },
+    async ensureChatGPTComposer() { throw authError },
+  })
+  await assert.rejects(wait({
+    async sleep(seconds) { clock += seconds * 1000 },
+    async evaluate() { assert.fail('Authentication failure must not reload') },
+  }), error => error === authError)
+  assert.equal(clock, 0)
 })
 
 test('image recovery rejects a different visible user prompt and never submits', async () => {

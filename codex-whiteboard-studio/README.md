@@ -91,6 +91,13 @@ line and source. A local writer lock prevents competing manifest updates.
 Before submitting any selected line, the client checks the whole selection
 against the service's advertised character limit.
 
+When recognizers disagree, retain each observation. A reviewed choice of
+recognizer can be recorded in `content/recognizer-decisions.json`, bound to
+both source-text and WAV hashes, with its supporting evidence. This changes
+the transcript used for timing; it does not edit the audio or establish a
+listening review. An explicit `transcribe.py --model` runs that recognizer
+for every row and ignores these per-WAV choices.
+
 Build from the current, reviewed local audio:
 
 ```sh
@@ -114,6 +121,7 @@ node scripts/render.mjs --stills
 node scripts/render.mjs --draft --start 0 --end 18 --out media/opening.mp4
 node scripts/validate.mjs --draft
 node scripts/inspect_motion.mjs --edition long
+node scripts/inspect_cues.mjs
 .venv/bin/python scripts/analyze_frames.py media/opening.mp4 --out review/opening
 ```
 
@@ -127,6 +135,13 @@ before accepting a fix; an empty candidate list does not establish visual
 quality. The long composition declares local marker handoffs in
 `src/long-film.mjs`. Its scheduler preserves each pen's drawing order while
 allowing time for one pen to leave before another approaches.
+
+The long edition's `content/speech-cues.json` identifies important spoken
+phrases and their drawings. `inspect_cues.mjs` compares ink completion with
+the observed word times and reports late candidates. Missing or unresolved
+transcripts remain pending. This report does not assess early reveals,
+on-screen visibility, or subjective synchronization; inspect the rendered
+intervals as well.
 
 Keep a reference film at `reference/whiteboard.mp4` for the comparison lab
 and paired atlases. The exact source is:

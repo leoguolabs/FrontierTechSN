@@ -660,6 +660,87 @@
         }
       ],
       "observation": "All 360 consecutive frames inspected through eight atlases. The opening learner uses a laptop with a drawn spreadsheet grid. The grid stays inside the screen and marker handoffs remain separated. The laptop completes after the spoken formula phrase; final cue alignment remains required."
+    },
+    {
+      "name": "opening-aligned",
+      "video_sha256": "10d22cc40df376bc26d42e879d2ec389b9b21990dea57151214dfc088577d8c1",
+      "receipt": {
+        "picture_sha256": "10d22cc40df376bc26d42e879d2ec389b9b21990dea57151214dfc088577d8c1",
+        "timeline_sha256": "649c9929af1cfcbf1dad2437cadea0141f45632487ecd3586e037a48aa8708d7",
+        "events_sha256": "0736ed8cd57d7ed7ace9caa3ec2cbcafaa0b11045bfad29055d00b971309f284",
+        "first_frame": 0,
+        "last_frame_exclusive": 480,
+        "frames": 480,
+        "fps": 24,
+        "width": 1920,
+        "height": 1080,
+        "complete_audio": false,
+        "motion_blur": true
+      },
+      "decoded_frames": 480,
+      "inspected_atlases": [
+        {
+          "file": "atlas-0000.jpg",
+          "first": 0,
+          "last": 47,
+          "sha256": "818639ecb713bac8cacc3af5d4aad37bccfb4de8974e63e00a14c58ce44bdc19"
+        },
+        {
+          "file": "atlas-0001.jpg",
+          "first": 48,
+          "last": 95,
+          "sha256": "efc6570a66a87a4fa4b329e57957d054e32e97c30d1d56e7a558b2871d8eb6ed"
+        },
+        {
+          "file": "atlas-0002.jpg",
+          "first": 96,
+          "last": 143,
+          "sha256": "675073d979152747432952c0afac9b5a72fa4fbbca5d99ac072cea1848697aa1"
+        },
+        {
+          "file": "atlas-0003.jpg",
+          "first": 144,
+          "last": 191,
+          "sha256": "2e794120ff72409f68c99ced26d2b9df35328cb8866f14f860f414df4007a642"
+        },
+        {
+          "file": "atlas-0004.jpg",
+          "first": 192,
+          "last": 239,
+          "sha256": "367e7c09a72a127e8b234c8e0f8669ee0d139f33e9a78373d4b1845fa73307c5"
+        },
+        {
+          "file": "atlas-0005.jpg",
+          "first": 240,
+          "last": 287,
+          "sha256": "240c6ded4cb08cc31f5246b5fa4e6c213c68f3dce430f3c8b8bc28058dfdc2a5"
+        },
+        {
+          "file": "atlas-0006.jpg",
+          "first": 288,
+          "last": 335,
+          "sha256": "16fa4c9d33d7e845053c9bc6c4034924b06e95e227d9b47f2e76df66f3e14b07"
+        },
+        {
+          "file": "atlas-0007.jpg",
+          "first": 336,
+          "last": 383,
+          "sha256": "93738d10cfecccbf5ecede626a6479ff5ea2b016e806183eeb88e91574253e47"
+        },
+        {
+          "file": "atlas-0008.jpg",
+          "first": 384,
+          "last": 431,
+          "sha256": "413915f1c028e2d9aac81fba08178d244ad5fced8c09a1bfebd6e7075492266d"
+        },
+        {
+          "file": "atlas-0009.jpg",
+          "first": 432,
+          "last": 479,
+          "sha256": "5549cfad0a22ee5d54c4bce76546fd6a06d4792b4de963b2fbf75d0f5fd02da8"
+        }
+      ],
+      "observation": "All 480 consecutive frames inspected through ten atlases. The title and learner establish the board before narration. The spreadsheet finishes before the observed formula phrase. Caption timing is derived from current provider audio; this clip is silent and does not establish subjective listening or full-film synchronization."
     }
   ],
   "native_stills": [
@@ -707,6 +788,15 @@
       "width": 1920,
       "height": 1080,
       "observation": "Grid rows and columns are clear inside the laptop screen. The learner, desk and caption are separate and legible."
+    },
+    {
+      "file": "review/development/native/opening-aligned-234.png",
+      "sha256": "e7fe37a3657423bb2c9ac95ccd36ac400356fc7bfd691f05a3635c52b9ba9023",
+      "video_sha256": "10d22cc40df376bc26d42e879d2ec389b9b21990dea57151214dfc088577d8c1",
+      "frame": 234,
+      "width": 1920,
+      "height": 1080,
+      "observation": "The spreadsheet is fully drawn while the caption names the formula, with the learner and screen clearly separated."
     }
   ]
 }

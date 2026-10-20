@@ -10,6 +10,19 @@ import time
 
 STUDIO = Path(__file__).resolve().parents[1]
 ROOT = STUDIO
+DEFAULT_MODEL = "mlx-community/whisper-large-v3-turbo-q4"
+
+
+def recognizer_for(row, default_model, overrides):
+    decision = overrides.get(row["id"])
+    if decision is None:
+        return default_model
+    source_sha = hashlib.sha256(row["text"].encode()).hexdigest()
+    if decision["source_sha256"] != source_sha:
+        raise ValueError(f"Recognizer decision belongs to older narration: {row['id']}")
+    if decision["audio_sha256"] != row["audio_sha256"]:
+        raise ValueError(f"Recognizer decision belongs to another WAV: {row['id']}")
+    return decision["model"]
 
 
 def words(text):
@@ -52,7 +65,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--edition", choices=["short", "long"], default="short")
     parser.add_argument("--follow", action="store_true")
-    parser.add_argument("--model", default="mlx-community/whisper-large-v3-turbo-q4")
+    parser.add_argument("--model", help="Use this recognizer for every row, ignoring per-WAV decisions.")
     args = parser.parse_args()
     ROOT = STUDIO if args.edition == "short" else STUDIO/"editions"/args.edition
     import mlx_whisper
@@ -61,24 +74,28 @@ def main():
     expected_count = len(json.loads((ROOT / "content/narration.json").read_text()))
     while True:
         manifest = json.loads((ROOT / "media/audio/manifest.json").read_text())
+        decisions_path = ROOT / "content/recognizer-decisions.json"
+        overrides = (json.loads(decisions_path.read_text())
+                     if decisions_path.exists() and not args.model else {})
         reviews = []
         for row in manifest:
             audio = ROOT / row["path"]
             sha = hashlib.sha256(audio.read_bytes()).hexdigest()
             if sha != row["audio_sha256"]:
                 raise ValueError("Audio changed since provider retrieval")
+            model = recognizer_for(row, args.model or DEFAULT_MODEL, overrides)
             target = directory / f"{row['id']}-{sha[:12]}.json"
-            if target.exists() and json.loads(target.read_text()).get("model") != args.model:
+            if target.exists() and json.loads(target.read_text()).get("model") != model:
                 # A second recognizer gets its own record; retain the first observation.
-                model_key = re.sub(r"[^a-zA-Z0-9_-]", "-", args.model)
+                model_key = re.sub(r"[^a-zA-Z0-9_-]", "-", model)
                 target = directory / f"{row['id']}-{sha[:12]}-{model_key}.json"
             if target.exists():
                 review = json.loads(target.read_text())
-                if review.get("model") != args.model or review.get("audio_sha256") != sha:
+                if review.get("model") != model or review.get("audio_sha256") != sha:
                     raise ValueError("Cached transcription belongs to another model or audio.")
             else:
                 result = mlx_whisper.transcribe(
-                    str(audio), path_or_hf_repo=args.model, language="en",
+                    str(audio), path_or_hf_repo=model, language="en",
                     word_timestamps=True, temperature=0, initial_prompt=None,
                     condition_on_previous_text=False, verbose=False)
                 expected, actual = words(row["text"]), words(result["text"])
@@ -86,7 +103,7 @@ def main():
                            for tag, i, j, k, l in difflib.SequenceMatcher(
                                None, expected, actual, autojunk=False).get_opcodes()
                            if tag != "equal"]
-                review = {"id": row["id"], "audio_sha256": sha, "model": args.model,
+                review = {"id": row["id"], "audio_sha256": sha, "model": model,
                           "expected": row["text"], "transcript": result["text"],
                           "normalized_changes": changes,
                           "words": [w for seg in result["segments"] for w in seg.get("words", [])],

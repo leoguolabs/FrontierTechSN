@@ -50,12 +50,42 @@
       "duration": 11.8,
       "independent_transcript_matches": true,
       "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "06",
+      "path": "media/audio/06-7a3643742b78.wav",
+      "job_id": "6f2958a0387148d5b19937eb6adee671",
+      "audio_sha256": "a534dbcad646107e2d7da1b2da6500ca9330e9b0bb65ff1bf79737248f90b131",
+      "source_sha256": "ea1299f0dd7e6614727e4f26edb807b7b8ce25295f0682a812afc9119ab5a807",
+      "duration": 12.92,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-medium-mlx"
+    },
+    {
+      "id": "07",
+      "path": "media/audio/07-ae7b38d43555.wav",
+      "job_id": "7ff3bfbce122419a86e00c8cccfbd63e",
+      "audio_sha256": "e954c1181f8a816aaad4d9c4fc2260b7d596d7765c9faebe0a63cc6d410390bb",
+      "source_sha256": "7ad7305124b99f06fe3c877a5ee8e916ea4e0878eea4eedf2907dcfdd72623fa",
+      "duration": 11.44,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+    },
+    {
+      "id": "08",
+      "path": "media/audio/08-2e522fd851d2.wav",
+      "job_id": "2d9111d4989e4eb4a9a886d69a8f66de",
+      "audio_sha256": "ef1ff6a7e5cb4e11256f048264ad042bb4e4ca69ee33769d660f92156bc01a36",
+      "source_sha256": "d67c89796d69e2ec0cd3fb5691cb34c05333d44192df4a3fba755a10e6898661",
+      "duration": 10.84,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
     }
   ],
   "pronunciation_rechecks": [
     {
       "id": "06",
-      "status": "Second take requested; not accepted yet. Original source and WAV retained.",
+      "status": "Second take selected for production with a source-and-WAV-bound medium recognizer decision. No subjective listening claim.",
       "source_sha256": "ea1299f0dd7e6614727e4f26edb807b7b8ce25295f0682a812afc9119ab5a807",
       "original_audio_sha256": "d7388694386dc0576b3f1b0f72839c28acca3395e588927f27edd888568ed8f4",
       "original_job_id": "3d0e22fc7c124175b90c52a2f4841f80",
@@ -102,7 +132,35 @@
           ]
         }
       ],
-      "decision": "Two unprompted recognizers produce ID where the source says idea; one produces idea. A second natural-speed take is requested to resolve clarity, without asserting a proven lexical substitution or subjective listening."
+      "decision": "The first take remains retained. The second take resolves idea in all three recognizers. Medium and small match the whole source; turbo changes ask to asks. Select medium timing while preserving the disagreement and both independently matching observations.",
+      "selected_take": {
+        "id": "06",
+        "path": "media/audio/06-7a3643742b78.wav",
+        "job_id": "6f2958a0387148d5b19937eb6adee671",
+        "audio_sha256": "a534dbcad646107e2d7da1b2da6500ca9330e9b0bb65ff1bf79737248f90b131",
+        "source_sha256": "ea1299f0dd7e6614727e4f26edb807b7b8ce25295f0682a812afc9119ab5a807",
+        "duration": 12.92,
+        "independent_transcript_matches": true,
+        "recognizer": "mlx-community/whisper-medium-mlx"
+      },
+      "recognizer_decision": {
+        "source_sha256": "ea1299f0dd7e6614727e4f26edb807b7b8ce25295f0682a812afc9119ab5a807",
+        "audio_sha256": "a534dbcad646107e2d7da1b2da6500ca9330e9b0bb65ff1bf79737248f90b131",
+        "model": "mlx-community/whisper-medium-mlx",
+        "reason": "The second take resolves idea consistently in turbo, medium and small. Turbo renders the later source word ask as asks, while independent medium and small transcripts match the complete source. Use the medium observation for timing; retain all transcripts and the original take. This is a transcription decision, not a subjective listening claim.",
+        "evidence": [
+          {
+            "file": "media/asr/06-a534dbcad646-second-medium.json",
+            "sha256": "0538e0d4618a945b9246a85b801e7e7130ae73ed313a9203e0d80501e307f4d3",
+            "model": "mlx-community/whisper-medium-mlx"
+          },
+          {
+            "file": "media/asr/06-a534dbcad646-third-small.json",
+            "sha256": "83bce5608e41239dcfd877e34b1051948368db27dbfeb6553378547a42a3068e",
+            "model": "mlx-community/whisper-small-mlx"
+          }
+        ]
+      }
     }
   ]
 }

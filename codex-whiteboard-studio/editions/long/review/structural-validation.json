@@ -1,13 +1,13 @@
 {
   "status": "draft checks passed",
-  "duration": 719.8333333333334,
-  "frames": 17276,
-  "audio_lines": 6,
+  "duration": 720.25,
+  "frames": 17286,
+  "audio_lines": 8,
   "focal_labels": [
     {
       "id": "hook-heading",
       "text": "AI: LEARN OR JUST FINISH?",
-      "time": 3.4,
+      "time": 2.9,
       "bounds": [
         454.0834607638272,
         138.2224369692172,
@@ -19,7 +19,7 @@
     {
       "id": "deadline",
       "text": "today: it works",
-      "time": 10.428333333333333,
+      "time": 12.275,
       "bounds": [
         285.72259603278417,
         744.5634677733086,
@@ -31,7 +31,7 @@
     {
       "id": "tomorrow",
       "text": "tomorrow: can you rebuild it?",
-      "time": 22.39333333333333,
+      "time": 25.89333333333333,
       "bounds": [
         1015.8060048870418,
         761.1511503058342,
@@ -43,7 +43,7 @@
     {
       "id": "first-question",
       "text": "what remains when help disappears?",
-      "time": 29.691666666666666,
+      "time": 33.19166666666666,
       "bounds": [
         546.3869799818804,
         765.682766324122,
@@ -55,7 +55,7 @@
     {
       "id": "measures-heading",
       "text": "four different questions",
-      "time": 52.608333333333334,
+      "time": 56.108333333333334,
       "bounds": [
         485.5426392549645,
         151.1864077516811,
@@ -67,7 +67,7 @@
     {
       "id": "measure-help",
       "text": "with help",
-      "time": 57.47666666666667,
+      "time": 60.97666666666667,
       "bounds": [
         293.6869736442602,
         704.2835515343027,
@@ -79,7 +79,7 @@
     {
       "id": "measure-alone-label",
       "text": "alone",
-      "time": 64.435,
+      "time": 67.935,
       "bounds": [
         1109.3196398580972,
         479.26212627552326,
@@ -91,7 +91,7 @@
     {
       "id": "later-label",
       "text": "later",
-      "time": 68.56666666666668,
+      "time": 71.73333333333333,
       "bounds": [
         569.802274153398,
         785.6522790458419,
@@ -103,7 +103,7 @@
     {
       "id": "changed-label",
       "text": "changed problem",
-      "time": 74.9,
+      "time": 77.56666666666668,
       "bounds": [
         1018.1962864149591,
         786.1474758771569,
@@ -115,7 +115,7 @@
     {
       "id": "one-test-limits",
       "text": "one test cannot answer all four",
-      "time": 96.31666666666668,
+      "time": 97.525,
       "bounds": [
         730.8834524799333,
         803.583937489638,
@@ -127,7 +127,7 @@
     {
       "id": "turkey-heading",
       "text": "one study, two scoreboards",
-      "time": 105.69166666666668,
+      "time": 106.10833333333333,
       "bounds": [
         429.72621528141565,
         148.09517639454447,
@@ -139,7 +139,7 @@
     {
       "id": "turkey-context",
       "text": "nearly 1,000 students / mathematics",
-      "time": 108.26166666666667,
+      "time": 108.67833333333333,
       "bounds": [
         659.5658090154654,
         326.7353088510822,
@@ -151,7 +151,7 @@
     {
       "id": "turkey-practice",
       "text": "practice: +48%",
-      "time": 124.38000000000001,
+      "time": 124.79666666666667,
       "bounds": [
         570.5308105965465,
         530.5252514846339,
@@ -163,19 +163,19 @@
     {
       "id": "turkey-exam",
       "text": "exam: -17%",
-      "time": 127.33833333333334,
+      "time": 127.755,
       "bounds": [
-        1359.0819995408622,
-        534.6687932754038,
-        1612.1911006703176,
-        580.2514021904515
+        1359.0819995408633,
+        534.6687932754052,
+        1612.1911006703194,
+        580.251402190453
       ],
       "clipped": false
     },
     {
       "id": "relative",
       "text": "relative to the control group",
-      "time": 130.21333333333334,
+      "time": 130.63,
       "bounds": [
         716.4788204290036,
         621.1107276506143,
@@ -187,7 +187,7 @@
     {
       "id": "guarded",
       "text": "guarded tutor: penalty largely removed",
-      "time": 133.63000000000002,
+      "time": 134.04666666666665,
       "bounds": [
         628.1344481785685,
         706.2699183532466,
@@ -199,7 +199,7 @@
     {
       "id": "guarded-scope",
       "text": "no significant positive exam gain",
-      "time": 137.35833333333335,
+      "time": 137.775,
       "bounds": [
         714.094943692063,
         785.4086102442523,
@@ -211,7 +211,7 @@
     {
       "id": "study-scope",
       "text": "short-term exam / not permanent damage",
-      "time": 147.85833333333335,
+      "time": 148.275,
       "bounds": [
         674.733333766985,
         795.2848338463759,
@@ -223,7 +223,7 @@
     {
       "id": "relative-example",
       "text": "illustration only: 50 x 1.48 = 74",
-      "time": 162.35833333333335,
+      "time": 162.775,
       "bounds": [
         775.0978282555707,
         805.0340546370546,
@@ -235,7 +235,7 @@
     {
       "id": "physics-heading",
       "text": "design changes the result",
-      "time": 170.10833333333335,
+      "time": 170.525,
       "bounds": [
         499.30665718355107,
         138.57090371217544,
@@ -247,7 +247,7 @@
     {
       "id": "physics-equation",
       "text": "F = ma",
-      "time": 174.89333333333335,
+      "time": 175.31000000000003,
       "bounds": [
         266.50005028788576,
         469.08525266582893,
@@ -259,7 +259,7 @@
     {
       "id": "physics-design",
       "text": "questions / feedback / pacing",
-      "time": 186.31666666666666,
+      "time": 186.73333333333335,
       "bounds": [
         616.4271900816889,
         746.5225177933398,
@@ -271,7 +271,7 @@
     {
       "id": "physics-result",
       "text": "better immediate test scores",
-      "time": 196.31666666666666,
+      "time": 196.73333333333335,
       "bounds": [
         676.7278233391017,
         708.6551737848333,
@@ -283,7 +283,7 @@
     {
       "id": "physics-not-months",
       "text": "immediate test does not establish months of retention",
-      "time": 201.81666666666666,
+      "time": 202.23333333333335,
       "bounds": [
         646.7241149058519,
         792.8970876159099,
@@ -295,7 +295,7 @@
     {
       "id": "hints-result",
       "text": "generated help can teach; check it",
-      "time": 212.15,
+      "time": 212.56666666666666,
       "bounds": [
         714.47356929217,
         801.2501034251768,
@@ -307,7 +307,7 @@
     {
       "id": "hints-errors",
       "text": "32% of initial help failed quality checks",
-      "time": 223.275,
+      "time": 223.69166666666666,
       "bounds": [
         715.6861050566425,
         811.1134155383368,
@@ -319,7 +319,7 @@
     {
       "id": "delay-heading",
       "text": "come back one week later",
-      "time": 235.56666666666666,
+      "time": 235.98333333333335,
       "bounds": [
         464.9283181049187,
         138.04286011995845,
@@ -331,7 +331,7 @@
     {
       "id": "week-number",
       "text": "7 days",
-      "time": 248.73333333333335,
+      "time": 249.15,
       "bounds": [
         901.6401194217414,
         466.4470188701314,
@@ -343,7 +343,7 @@
     {
       "id": "week-study",
       "text": "6,000+ students / working paper",
-      "time": 255.9,
+      "time": 256.31666666666666,
       "bounds": [
         645.999076582859,
         680.2344796291588,
@@ -355,7 +355,7 @@
     {
       "id": "week-result",
       "text": "better error recovery during practice",
-      "time": 259.35833333333335,
+      "time": 259.775,
       "bounds": [
         623.4660189141293,
         701.0765370114183,
@@ -367,7 +367,7 @@
     {
       "id": "week-limits",
       "text": "delayed gains: limited and conditional",
-      "time": 263.31666666666666,
+      "time": 263.7333333333333,
       "bounds": [
         653.3046920927418,
         781.7649437251873,
@@ -379,7 +379,7 @@
     {
       "id": "three-labels",
       "text": "population / comparison / test",
-      "time": 276.4,
+      "time": 276.81666666666666,
       "bounds": [
         710.7610051001582,
         798.0472926648088,
@@ -391,7 +391,7 @@
     {
       "id": "offload-heading",
       "text": "what thinking remains yours?",
-      "time": 284.1083333333333,
+      "time": 284.525,
       "bounds": [
         438.82664122207814,
         135.89486007737344,
@@ -403,7 +403,7 @@
     {
       "id": "offload-answer",
       "text": "the answer",
-      "time": 288.775,
+      "time": 289.19166666666666,
       "bounds": [
         326.7453215382469,
         496.48073959954843,
@@ -415,7 +415,7 @@
     {
       "id": "offload-target",
       "text": "name the skill you want to practise",
-      "time": 304.025,
+      "time": 304.44166666666666,
       "bounds": [
         559.3347795262302,
         751.9224190500177,
@@ -427,7 +427,7 @@
     {
       "id": "meta-feedback",
       "text": "feedback on help-seeking changed behavior",
-      "time": 318.4,
+      "time": 318.81666666666666,
       "bounds": [
         627.3311710271854,
         780.6619795923548,
@@ -439,7 +439,7 @@
     {
       "id": "meta-scope",
       "text": "704 adults / arithmetic / recent preprint",
-      "time": 329.4833333333333,
+      "time": 329.9,
       "bounds": [
         699.4579172577608,
         712.2205807082216,
@@ -451,7 +451,7 @@
     {
       "id": "meta-question",
       "text": "what can you choose without it?",
-      "time": 337.56666666666666,
+      "time": 337.9833333333333,
       "bounds": [
         709.9018308142295,
         801.3759174368441,
@@ -463,7 +463,7 @@
     {
       "id": "guidance-heading",
       "text": "help that changes with you",
-      "time": 343.275,
+      "time": 343.69166666666666,
       "bounds": [
         455.8201991639456,
         162.24259203048928,
@@ -475,7 +475,7 @@
     {
       "id": "example-label",
       "text": "worked example",
-      "time": 360.8583333333333,
+      "time": 361.275,
       "bounds": [
         259.5992486714599,
         732.4402730562217,
@@ -487,7 +487,7 @@
     {
       "id": "partial-label",
       "text": "complete a step",
-      "time": 377.6083333333333,
+      "time": 378.025,
       "bounds": [
         781.7881957237807,
         735.536754937647,
@@ -499,7 +499,7 @@
     {
       "id": "attempt-label",
       "text": "fresh attempt",
-      "time": 392.10166666666663,
+      "time": 392.5183333333334,
       "bounds": [
         1232.8219220002513,
         613.7476464740716,
@@ -511,7 +511,7 @@
     {
       "id": "guidance-gap",
       "text": "find the specific gap",
-      "time": 395.35166666666663,
+      "time": 395.7683333333334,
       "bounds": [
         702.8121037814317,
         764.4036292781786,
@@ -523,7 +523,7 @@
     {
       "id": "guidance-scope",
       "text": "a practical synthesis / no universal schedule",
-      "time": 408.3583333333333,
+      "time": 408.775,
       "bounds": [
         677.9327006480764,
         801.4392945819325,
@@ -535,7 +535,7 @@
     {
       "id": "retrieval-heading",
       "text": "hide it. explain it. check it.",
-      "time": 413.69166666666666,
+      "time": 414.1083333333333,
       "bounds": [
         494.02302989159773,
         137.88468179250088,
@@ -547,7 +547,7 @@
     {
       "id": "retrieval-feedback",
       "text": "corrective feedback matters",
-      "time": 447.2333333333333,
+      "time": 447.65,
       "bounds": [
         605.4113406281044,
         756.2544732979702,
@@ -559,7 +559,7 @@
     {
       "id": "retrieval-mistake",
       "text": "record the operation you missed",
-      "time": 457.9,
+      "time": 458.31666666666666,
       "bounds": [
         688.958572113779,
         721.5944233374648,
@@ -571,7 +571,7 @@
     {
       "id": "retrieval-review",
       "text": "44-study review / comparator matters",
-      "time": 463.275,
+      "time": 463.69166666666666,
       "bounds": [
         711.8713758788322,
         805.308801126952,
@@ -583,7 +583,7 @@
     {
       "id": "example-heading",
       "text": "one small worked example",
-      "time": 469.31666666666666,
+      "time": 469.7333333333333,
       "bounds": [
         470.71044724174305,
         189.02506644611412,
@@ -595,7 +595,7 @@
     {
       "id": "example-equation",
       "text": "2(x + 3) = 14",
-      "time": 473.275,
+      "time": 473.69166666666666,
       "bounds": [
         446.8762843146882,
         357.1306461063974,
@@ -607,7 +607,7 @@
     {
       "id": "example-step-1",
       "text": "x + 3 = 7",
-      "time": 487.69166666666666,
+      "time": 488.1083333333333,
       "bounds": [
         665.4477492682292,
         446.8387534233622,
@@ -619,7 +619,7 @@
     {
       "id": "example-step-2",
       "text": "x = 4",
-      "time": 492.4,
+      "time": 492.81666666666666,
       "bounds": [
         723.7968641219417,
         589.0486858647512,
@@ -631,7 +631,7 @@
     {
       "id": "example-check",
       "text": "check: 2(4 + 3) = 14",
-      "time": 496.2333333333333,
+      "time": 496.65,
       "bounds": [
         608.3262527552245,
         754.7012534875023,
@@ -643,7 +643,7 @@
     {
       "id": "hint-question",
       "text": "which operation removes the factor?",
-      "time": 507.025,
+      "time": 507.44166666666666,
       "bounds": [
         651.3580974203464,
         783.1009008761139,
@@ -655,7 +655,7 @@
     {
       "id": "wrong-expansion",
       "text": "2x + 3",
-      "time": 518.4416666666666,
+      "time": 518.8583333333333,
       "bounds": [
         600.6732758767935,
         782.1991379605136,
@@ -667,7 +667,7 @@
     {
       "id": "right-expansion",
       "text": "2x + 6",
-      "time": 524.1916666666666,
+      "time": 524.6083333333333,
       "bounds": [
         950.1831912108759,
         783.2734235370699,
@@ -679,7 +679,7 @@
     {
       "id": "example-why",
       "text": "multiply BOTH terms",
-      "time": 527.0249999999999,
+      "time": 527.4416666666667,
       "bounds": [
         1113.1045826345976,
         806.437684635876,
@@ -691,7 +691,7 @@
     {
       "id": "transfer-heading",
       "text": "change it. return later.",
-      "time": 545.3583333333333,
+      "time": 545.775,
       "bounds": [
         543.8474182159293,
         139.7914740552045,
@@ -703,7 +703,7 @@
     {
       "id": "transfer-equation",
       "text": "3(y - 2) = 15",
-      "time": 547.3933333333333,
+      "time": 547.81,
       "bounds": [
         659.2604662277615,
         298.44488634537714,
@@ -715,7 +715,7 @@
     {
       "id": "transfer-step",
       "text": "y - 2 = 5",
-      "time": 550.15,
+      "time": 550.5666666666666,
       "bounds": [
         785.6295140925498,
         515.8972123295873,
@@ -727,7 +727,7 @@
     {
       "id": "transfer-answer",
       "text": "y = 7",
-      "time": 554.0666666666666,
+      "time": 554.4833333333333,
       "bounds": [
         844.604305910378,
         683.6119588898706,
@@ -739,7 +739,7 @@
     {
       "id": "near-transfer",
       "text": "near transfer / not every equation",
-      "time": 563.15,
+      "time": 563.5666666666666,
       "bounds": [
         612.7456215289925,
         755.2763695780474,
@@ -751,7 +751,7 @@
     {
       "id": "delay-new",
       "text": "later: 4(z + 1) = 20",
-      "time": 577.65,
+      "time": 578.0666666666666,
       "bounds": [
         742.5360097672617,
         761.0115556836529,
@@ -763,7 +763,7 @@
     {
       "id": "delay-answer",
       "text": "z = 4; check: 4 x 5 = 20",
-      "time": 590.8583333333333,
+      "time": 591.275,
       "bounds": [
         746.080654020496,
         786.8103625077076,
@@ -775,7 +775,7 @@
     {
       "id": "labels-heading",
       "text": "a label is not a learning test",
-      "time": 602.3583333333333,
+      "time": 602.775,
       "bounds": [
         494.3624052883539,
         133.6859431914378,
@@ -787,7 +787,7 @@
     {
       "id": "help-word-0",
       "text": "answer",
-      "time": 606.1916666666666,
+      "time": 606.6083333333333,
       "bounds": [
         1051.1702200976058,
         377.0310360938738,
@@ -799,7 +799,7 @@
     {
       "id": "help-word-1",
       "text": "hint",
-      "time": 609.7966666666665,
+      "time": 610.2133333333333,
       "bounds": [
         1103.8594181671492,
         540.0786801210489,
@@ -811,7 +811,7 @@
     {
       "id": "help-word-2",
       "text": "question",
-      "time": 613.4149999999997,
+      "time": 613.8316666666666,
       "bounds": [
         1038.506690413559,
         717.3904404388253,
@@ -823,7 +823,7 @@
     {
       "id": "small-study",
       "text": "50 participants / immediate test",
-      "time": 620.4833333333333,
+      "time": 620.9,
       "bounds": [
         647.4270093809422,
         772.5605297049176,
@@ -835,7 +835,7 @@
     {
       "id": "ask-specific",
       "text": "show the attempt; name the stuck step",
-      "time": 633.3166666666666,
+      "time": 633.7333333333333,
       "bounds": [
         645.5374106683907,
         789.1468303121701,
@@ -847,7 +847,7 @@
     {
       "id": "check-hint",
       "text": "check the feedback before rehearsing it",
-      "time": 648.5666666666666,
+      "time": 648.9833333333333,
       "bounds": [
         670.3841505917685,
         803.0983676726951,
@@ -859,7 +859,7 @@
     {
       "id": "closing-heading",
       "text": "make the next attempt better",
-      "time": 656.9416666666666,
+      "time": 657.3583333333333,
       "bounds": [
         462.1672460043779,
         133.18118245592206,
@@ -871,7 +871,7 @@
     {
       "id": "log-heading-0",
       "text": "attempt",
-      "time": 663.9,
+      "time": 664.3166666666667,
       "bounds": [
         431.20589151845684,
         396.2490752616263,
@@ -883,7 +883,7 @@
     {
       "id": "log-heading-1",
       "text": "help used",
-      "time": 666.7333333333332,
+      "time": 667.1500000000001,
       "bounds": [
         858.2542977611101,
         395.7111638670723,
@@ -895,19 +895,19 @@
     {
       "id": "log-heading-2",
       "text": "alone afterward",
-      "time": 669.5666666666666,
+      "time": 669.9833333333333,
       "bounds": [
-        1150.984096170429,
-        313.3055474286971,
-        1402.3622061843218,
-        341.566866915444
+        1150.9840961704267,
+        313.30554742869435,
+        1402.3622061843166,
+        341.5668669154409
       ],
       "clipped": false
     },
     {
       "id": "log-entry-0",
       "text": "first try",
-      "time": 672.4,
+      "time": 672.8166666666666,
       "bounds": [
         569.0693868327504,
         429.3873634676863,
@@ -919,7 +919,7 @@
     {
       "id": "log-entry-1",
       "text": "one hint",
-      "time": 675.275,
+      "time": 675.6916666666666,
       "bounds": [
         900.2104637532698,
         428.9770824730892,
@@ -931,7 +931,7 @@
     {
       "id": "log-entry-2",
       "text": "solved + checked",
-      "time": 678.1083333333333,
+      "time": 678.5249999999999,
       "bounds": [
         1160.1862118346344,
         429.0547030467019,
@@ -943,7 +943,7 @@
     {
       "id": "log-scope",
       "text": "a personal check / not a controlled experiment",
-      "time": 680.1433333333333,
+      "time": 680.5599999999998,
       "bounds": [
         671.2995786816775,
         574.3267004534807,
@@ -955,7 +955,7 @@
     {
       "id": "closing-method",
       "text": "attempt / explain / correct",
-      "time": 684.8383333333333,
+      "time": 685.2549999999998,
       "bounds": [
         840.3400358407314,
         681.3308777263549,
@@ -967,7 +967,7 @@
     {
       "id": "closing-return",
       "text": "change the problem; return later",
-      "time": 689.9,
+      "time": 690.3166666666666,
       "bounds": [
         846.6668060523324,
         757.5006873810119,
@@ -979,7 +979,7 @@
     {
       "id": "closing-question",
       "text": "what can you do when the answer is gone?",
-      "time": 704.6083333333333,
+      "time": 705.025,
       "bounds": [
         679.7851480312171,
         792.6366380176325,
@@ -992,15 +992,11 @@
   "pen_rescheduling": [
     {
       "id": "opening-worker-body",
-      "delay": 0.7850000000000001
+      "delay": 1.0350000000000001
     },
     {
       "id": "opening-worker-task",
-      "delay": 3.535
-    },
-    {
-      "id": "deadline",
-      "delay": 1.6533333333333333
+      "delay": 3.7849999999999997
     },
     {
       "id": "opening-alone-task",
@@ -1020,15 +1016,19 @@
     },
     {
       "id": "measure-alone-task",
-      "delay": 2.75
+      "delay": 2.749999999999993
     },
     {
       "id": "measure-alone-label",
-      "delay": 2.7849999999999966
+      "delay": 2.7849999999999895
+    },
+    {
+      "id": "later-calendar",
+      "delay": 0.028333333333321775
     },
     {
       "id": "turkey-pole",
-      "delay": 1.1183333333333394
+      "delay": 1.1183333333333252
     },
     {
       "id": "turkey-flag",
@@ -1040,11 +1040,11 @@
     },
     {
       "id": "turkey-assisted-body",
-      "delay": 4.278333333333322
+      "delay": 4.278333333333336
     },
     {
       "id": "turkey-assisted-task",
-      "delay": 7.028333333333322
+      "delay": 7.028333333333336
     },
     {
       "id": "turkey-unaided-body",
@@ -1056,19 +1056,19 @@
     },
     {
       "id": "turkey-practice",
-      "delay": 5.730000000000004
+      "delay": 5.72999999999999
     },
     {
       "id": "turkey-exam",
-      "delay": 4.605000000000004
+      "delay": 4.60499999999999
     },
     {
       "id": "relative",
-      "delay": 4.355000000000004
+      "delay": 4.35499999999999
     },
     {
       "id": "guarded",
-      "delay": 1.3966666666666754
+      "delay": 1.396666666666647
     },
     {
       "id": "physics-book",
@@ -1076,7 +1076,7 @@
     },
     {
       "id": "physics-equation",
-      "delay": 1.1599999999999966
+      "delay": 1.160000000000025
     },
     {
       "id": "physics-page-notes",
@@ -1084,11 +1084,11 @@
     },
     {
       "id": "physics-thinker-body",
-      "delay": 3.444999999999993
+      "delay": 3.4450000000000216
     },
     {
       "id": "physics-thinker-book",
-      "delay": 3.4866666666666504
+      "delay": 3.486666666666679
     },
     {
       "id": "physics-understanding",
@@ -1096,15 +1096,15 @@
     },
     {
       "id": "delayed-practice-body",
-      "delay": 0.618333333333311
+      "delay": 0.6183333333333394
     },
     {
       "id": "delayed-practice-task",
-      "delay": 3.368333333333311
+      "delay": 3.3683333333333394
     },
     {
       "id": "week-calendar",
-      "delay": 2.951666666666654
+      "delay": 2.951666666666682
     },
     {
       "id": "week-result",
@@ -1112,7 +1112,7 @@
     },
     {
       "id": "offload-person-book",
-      "delay": 0.08333333333337123
+      "delay": 0.08333333333331439
     },
     {
       "id": "guidance-learner-task",
@@ -1120,11 +1120,11 @@
     },
     {
       "id": "attempt-label",
-      "delay": 0.3266666666666538
+      "delay": 0.3266666666667106
     },
     {
       "id": "guidance-gap",
-      "delay": 0.4933333333333394
+      "delay": 0.49333333333339624
     },
     {
       "id": "retrieval-solution",
@@ -1132,19 +1132,19 @@
     },
     {
       "id": "retrieval-hide",
-      "delay": 1.7083333333333712
+      "delay": 1.7083333333333144
     },
     {
       "id": "retrieval-hide-2",
-      "delay": 1.2850000000000819
+      "delay": 1.285000000000025
     },
     {
       "id": "retrieval-person-body",
-      "delay": 2.0766666666667675
+      "delay": 2.076666666666654
     },
     {
       "id": "retrieval-person-task",
-      "delay": 4.8266666666667675
+      "delay": 4.826666666666654
     },
     {
       "id": "example-person-task",
@@ -1152,7 +1152,7 @@
     },
     {
       "id": "example-why",
-      "delay": 0.7083333333332575
+      "delay": 0.7083333333333712
     },
     {
       "id": "transfer-equation",
@@ -1164,11 +1164,11 @@
     },
     {
       "id": "labels-thinker-book",
-      "delay": 0.4933333333332257
+      "delay": 0.4933333333333394
     },
     {
       "id": "help-choice-1",
-      "delay": 0.9033333333331939
+      "delay": 0.9033333333333076
     },
     {
       "id": "help-word-1",
@@ -1176,27 +1176,27 @@
     },
     {
       "id": "help-choice-2",
-      "delay": 1.813333333333162
+      "delay": 1.8133333333332757
     },
     {
       "id": "help-word-2",
-      "delay": 1.7233333333331302
+      "delay": 1.723333333333244
     },
     {
       "id": "learning-log",
-      "delay": 0.6183333333332257
+      "delay": 0.6183333333333394
     },
     {
       "id": "log-heading-0",
-      "delay": 3.1666666666666288
+      "delay": 3.1666666666667425
     },
     {
       "id": "log-heading-1",
-      "delay": 4.166666666666629
+      "delay": 4.1666666666667425
     },
     {
       "id": "log-heading-2",
-      "delay": 5.166666666666629
+      "delay": 5.1666666666667425
     },
     {
       "id": "log-entry-0",
@@ -1208,30 +1208,27 @@
     },
     {
       "id": "log-entry-2",
-      "delay": 11.458333333333371
+      "delay": 11.458333333333258
     },
     {
       "id": "log-scope",
-      "delay": 12.659999999999968
+      "delay": 12.659999999999854
     },
     {
       "id": "closing-learner-body",
-      "delay": 8.403333333333308
+      "delay": 8.403333333333194
     },
     {
       "id": "closing-learner-task",
-      "delay": 11.153333333333308
+      "delay": 11.153333333333194
     },
     {
       "id": "closing-method",
-      "delay": 7.646666666666647
+      "delay": 7.64666666666642
     }
   ],
   "errors": [],
   "warnings": [
-    "Unresolved independent transcript: 06",
-    "Missing current audio: 07",
-    "Missing current audio: 08",
     "Missing current audio: 09",
     "Missing current audio: 10",
     "Missing current audio: 11",
@@ -1277,12 +1274,12 @@
     "Missing current audio: 51",
     "Missing current audio: 52"
   ],
-  "deterministic_frame_sha256": "8092304b90655c98ae5fc6ba6c82164adfad5bcc033dcff200226219df396014",
+  "deterministic_frame_sha256": "16a62b339511eefb7dddbdd3b2a9aedcb34f3e0f8b8e09aa78495162f259d571",
   "deterministic_frames": {
-    "14": "8092304b90655c98ae5fc6ba6c82164adfad5bcc033dcff200226219df396014",
-    "119.5": "a38709ed7aca5182990a1a621ee2ea530c9677e384d743f4fb58c8d45e919743",
-    "328.9166666666667": "b3944829cc61ed6b1c06b7d316307f4e71bc3dc5850f322022fc320662c7a6dd",
-    "532.7916666666666": "09d2b6525e0de89b36e6414d845875eba3a9951f74960490b09860523fd815cb"
+    "14": "16a62b339511eefb7dddbdd3b2a9aedcb34f3e0f8b8e09aa78495162f259d571",
+    "119.91666666666667": "081d9d91360c1a410ac699bcaddfc47f5d622c4cfca374ebef7df108a85bdd07",
+    "329.3333333333333": "459ab7c160d9680ca09a614c902257aef19b056dcafc49134e22be9149810c58",
+    "533.2083333333334": "09d2b6525e0de89b36e6414d845875eba3a9951f74960490b09860523fd815cb"
   },
   "checks": [
     "source and audio hashes",

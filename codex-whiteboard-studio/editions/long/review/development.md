@@ -132,3 +132,28 @@ repair, not a claim that the ASR disagreement proves a lexical substitution.
 The local speech client was restarted with this decision while preserving
 the already-running line-07 job
 `7ff3bfbce122419a86e00c8cccfbd63e`; the service was not restarted.
+
+The opening now has a 4.75-second lead-in. Its spreadsheet ink finishes at
+8.118 seconds, before the observed word "formula" at 9.61–9.89 seconds.
+The complete 480-frame opening revision was inspected through all ten
+consecutive atlases, then at native frame 234. This brings the development
+record to nine clips, 4,293 decoded frames and six native encoded stills.
+The shared timeline's defaults remain unchanged: the short timeline is
+identical, and four source-render probes at 2, 34, 88 and 179 seconds match
+the prior source pixel hashes. These probes establish compatibility, not a
+new full-film review.
+
+The second line-06 take consistently yields "idea" in all three recognizers.
+Turbo produces an additional "s" in "asks"; medium and small both match the
+complete source. The selected medium observation is bound to source and WAV
+hashes in `content/recognizer-decisions.json`; all independent observations
+remain available. The first eight current WAVs now have matching transcripts.
+This is transcription evidence and does not establish subjective listening.
+
+Twenty important speech-to-drawing anchors are recorded in
+`content/speech-cues.json`. The current inspection has two observed anchors,
+both within their late bounds, and eighteen pending further audio. It does
+not assess early reveals or on-screen visibility. Eight Python tests and
+two choreography tests pass; draft validation passes with the remaining
+44 missing WAVs explicitly reported. Final speech alignment, full rendering,
+complete reference comparison, listening and playback review remain pending.

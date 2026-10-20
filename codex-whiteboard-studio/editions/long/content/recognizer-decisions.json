@@ -1,0 +1,20 @@
+{
+  "06": {
+    "source_sha256": "ea1299f0dd7e6614727e4f26edb807b7b8ce25295f0682a812afc9119ab5a807",
+    "audio_sha256": "a534dbcad646107e2d7da1b2da6500ca9330e9b0bb65ff1bf79737248f90b131",
+    "model": "mlx-community/whisper-medium-mlx",
+    "reason": "The second take resolves idea consistently in turbo, medium and small. Turbo renders the later source word ask as asks, while independent medium and small transcripts match the complete source. Use the medium observation for timing; retain all transcripts and the original take. This is a transcription decision, not a subjective listening claim.",
+    "evidence": [
+      {
+        "file": "media/asr/06-a534dbcad646-second-medium.json",
+        "sha256": "0538e0d4618a945b9246a85b801e7e7130ae73ed313a9203e0d80501e307f4d3",
+        "model": "mlx-community/whisper-medium-mlx"
+      },
+      {
+        "file": "media/asr/06-a534dbcad646-third-small.json",
+        "sha256": "83bce5608e41239dcfd877e34b1051948368db27dbfeb6553378547a42a3068e",
+        "model": "mlx-community/whisper-small-mlx"
+      }
+    ]
+  }
+}

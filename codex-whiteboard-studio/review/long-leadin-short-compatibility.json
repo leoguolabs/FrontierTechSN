@@ -1,0 +1,24 @@
+{
+  "scope": "Default short-edition timeline equality and four deterministic source-render probes. This does not replace the accepted final-video review.",
+  "before_composition_sha256": "f1c54aff89954e944012cc8abbe915068049125f458e3bc0f7565c59bac94ebc",
+  "after_composition_sha256": "924174806388b86209bcc05d394ce59d1fa2ffb757942f8e5280ecdb708b3892",
+  "timeline_equal": true,
+  "frames": [
+    {
+      "time": 2,
+      "sha256": "166a81c3e5a2b0ecd4fb26bac0f4bd3cd002a1aaf8722727dfbf132f60f6c79d"
+    },
+    {
+      "time": 34,
+      "sha256": "81cbbb0f5d4c44277998e691a83cc5a4763f10432794c6365e494ec24245df9c"
+    },
+    {
+      "time": 88,
+      "sha256": "04af58984ec0d0c479bda1fa5d61e647ae8f5124b1c04f5f364fcf870b02be1d"
+    },
+    {
+      "time": 179,
+      "sha256": "a644f7672c0d567c28de4fc04a6c7e0c9493cf1725d5d81e41e9ffdd316760eb"
+    }
+  ]
+}

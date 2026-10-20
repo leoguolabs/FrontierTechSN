@@ -16,7 +16,9 @@ export const regions=[
 
 export function createFilm({font,narration,audio=[],alignments=[],createCanvas}){
   beginDrawing()
-  const timeline=makeTimeline(narration,audio,alignments,{targetDuration:720,minimumRoom:42})
+  const timeline=makeTimeline(narration,audio,alignments,{
+    targetDuration:720,minimumRoom:42,leadIn:4.75,
+  })
   const S=new Score(),L=createLettering(font)
   const handoffs=[]
   const after=(before,following,gap=1.25)=>handoffs.push({before,after:following,gap})
@@ -77,8 +79,9 @@ export function createFilm({font,narration,audio=[],alignments=[],createCanvas})
   }
 
   // 01: The same worker succeeds with help, then faces an independent attempt.
-  heading('hook','AI: LEARN OR JUST FINISH?',1)
-  desk('opening-worker','hook',180,235,t(1,.12),'spreadsheet',BLUE,1.35)
+  text('hook-heading','AI: LEARN OR JUST FINISH?','hook',900,80,.75,
+    {h:86,align:'center',duration:2})
+  desk('opening-worker','hook',180,235,1.75,'spreadsheet',BLUE,1.35)
   text('deadline','today: it works','hook',160,735,t(1,.55),{color:BLUE,h:76})
   arr('opening-change','hook',[690,470],[990,470],t(2,.08),ORANGE)
   desk('opening-alone','hook',1110,235,t(2,.25),'paper',ORANGE,1.35)

@@ -1,0 +1,22 @@
+[
+  {"group": "opening-worker-task", "line": "01", "phrase": "formula", "max_lag": 0.5},
+  {"group": "deadline", "line": "01", "phrase": "result is correct", "max_lag": 1.0},
+  {"group": "turkey-flag", "line": "09", "phrase": "Turkey", "max_lag": 3.0},
+  {"group": "turkey-practice", "line": "10", "phrase": "forty eight percent higher", "max_lag": 1.0},
+  {"group": "turkey-exam", "line": "10", "phrase": "seventeen percent lower", "max_lag": 1.0},
+  {"group": "relative", "line": "10", "phrase": "relative changes", "max_lag": 2.0},
+  {"group": "guarded", "line": "11", "phrase": "later penalty largely disappeared", "max_lag": 2.0},
+  {"group": "guarded-scope", "line": "11", "phrase": "not statistically distinguishable", "max_lag": 2.0},
+  {"group": "relative-example", "line": "13", "phrase": "seventy four", "max_lag": 2.0},
+  {"group": "hints-errors", "line": "18", "phrase": "thirty two percent", "max_lag": 2.0},
+  {"group": "example-equation", "line": "36", "phrase": "x plus three equals fourteen", "max_lag": 1.0},
+  {"group": "example-step-1", "line": "37", "phrase": "x plus three equal to seven", "max_lag": 1.0},
+  {"group": "example-step-2", "line": "37", "phrase": "x equals four", "max_lag": 1.0},
+  {"group": "example-check", "line": "37", "phrase": "check it", "max_lag": 1.0},
+  {"group": "wrong-expansion", "line": "39", "phrase": "two x plus three", "max_lag": 1.0},
+  {"group": "right-expansion", "line": "39", "phrase": "two x plus six", "max_lag": 1.0},
+  {"group": "transfer-equation", "line": "41", "phrase": "y minus two equals fifteen", "max_lag": 1.0},
+  {"group": "transfer-answer", "line": "41", "phrase": "answer is seven", "max_lag": 1.0},
+  {"group": "delay-new", "line": "43", "phrase": "z plus one equals twenty", "max_lag": 1.0},
+  {"group": "delay-answer", "line": "44", "phrase": "which is twenty", "max_lag": 1.0}
+]

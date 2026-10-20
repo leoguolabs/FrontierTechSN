@@ -45,20 +45,22 @@ export function captionsFor(lines,alignments=[]){
   return cues
 }
 
-export function makeTimeline(narration,audio=[],alignments=[],{targetDuration=180,minimumRoom=26}={}){
+export function makeTimeline(narration,audio=[],alignments=[],{
+  targetDuration=180,minimumRoom=26,leadIn=1.25,tailOut=8.75,
+}={}){
   const audioMap=new Map(audio.filter(a=>narration.some(n=>n.id===a.id&&n.text===a.text)).map(a=>[a.id,a]))
   const complete=narration.every(n=>audioMap.has(n.id))
   const durations=narration.map(n=>audioMap.get(n.id)?.duration||n.text.split(/\s+/).length/2.85)
   const totalVoice=durations.reduce((a,b)=>a+b,0)
   const total=Math.max(targetDuration,Math.ceil(totalVoice+minimumRoom))
-  const gap=(total-totalVoice-10)/(narration.length-1)
-  let cursor=1.25
+  const gap=(total-totalVoice-leadIn-tailOut)/(narration.length-1)
+  let cursor=leadIn
   const lines=narration.map((n,i)=>{
     const start=frame(cursor),duration=durations[i],end=frame(start+duration)
     cursor=end+gap
     return {...n,start,end,duration,audio:audioMap.get(n.id)||null}
   })
-  const durationFrames=Math.ceil((lines.at(-1).end+8.75)*FPS)
+  const durationFrames=Math.ceil((lines.at(-1).end+tailOut)*FPS)
   return {fps:FPS,duration_frames:durationFrames,duration:durationFrames/FPS,complete_audio:complete,
     lines,captions:captionsFor(lines,alignments)}
 }

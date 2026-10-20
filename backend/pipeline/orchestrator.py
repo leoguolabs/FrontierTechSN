@@ -577,8 +577,10 @@ async def run_tts_resume(task: TaskResponse, log: LogCallback | None = None):
     """Resume only TTS and its normal post-audio path from a saved script.
 
     Unlike ``run_regenerate``, this recovery path deliberately preserves the
-    existing publication title and thumbnail. It is intended for a failed TTS
-    run whose upstream editorial artifacts are already complete.
+    existing publication title and accepted thumbnail. A failed, missing cover
+    can recover its original request while remote speech continues.
+    It is intended for a failed TTS run whose upstream editorial artifacts are
+    already complete.
     """
     task_dir = task_output_dir(task)
     task_dir.mkdir(parents=True, exist_ok=True)
@@ -612,8 +614,22 @@ async def run_tts_resume(task: TaskResponse, log: LogCallback | None = None):
         # Remote synthesis and browser footage are independent. Reuse the
         # normal prerequisite and join both before composition, preserving all
         # saved editorial artifacts and completed audio parts on recovery.
+        async def prepare_media():
+            thumbnail_manifest = task_dir / "thumbnail" / "manifest.json"
+            if task.config.thumbnail_enabled and not task.thumbnail_path and thumbnail_manifest.is_file():
+                try:
+                    saved = json.loads(thumbnail_manifest.read_text(encoding="utf-8"))
+                    if saved.get("status") == "failed":
+                        task_log("TTS resume: recovering the failed thumbnail request")
+                        await _generate_task_thumbnail(
+                            task, task_dir, task_log, title=task.generated_title or task.source_title or "",
+                        )
+                except Exception as exc:
+                    task_log(f"TTS resume: thumbnail recovery failed; request evidence retained: {exc}")
+            await _ensure_task_footage(task, task_dir, task_log)
+
         branches = [
-            asyncio.create_task(_ensure_task_footage(task, task_dir, task_log)),
+            asyncio.create_task(prepare_media()),
             asyncio.create_task(prepare_audio()),
         ]
         try:

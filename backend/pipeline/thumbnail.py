@@ -36,6 +36,8 @@ _IMAGE_SIGNATURES = (
     b"GIF87a",
     b"GIF89a",
 )
+MAX_PROMPT_REVISIONS = 2
+_TERMINAL_IMAGE_ERRORS = {"CHATGPT_IMAGE_GENERATION_FAILED", "CHATGPT_IMAGE_INPUT_MISSING"}
 
 
 @dataclass(frozen=True)
@@ -153,6 +155,19 @@ def _record_command_diagnostics(manifest: dict[str, Any], result: OpenCLIResult)
             manifest["last_stage"] = str(progress["stage"])
         if progress.get("conversation_url"):
             manifest["conversation_url"] = str(progress["conversation_url"])
+        observation = progress.get("observation")
+        if (
+            isinstance(observation, dict)
+            and observation.get("terminal_error") in _TERMINAL_IMAGE_ERRORS
+            and isinstance(observation.get("provider_message"), str)
+            and observation["provider_message"].strip()
+            and re.fullmatch(r"https://chatgpt\.com/c/[A-Za-z0-9_-]{8,}", str(progress.get("conversation_url", "")))
+        ):
+            manifest["provider_error"] = {
+                "code": observation["terminal_error"],
+                "message": observation["provider_message"],
+                "conversation_url": progress["conversation_url"],
+            }
 
 
 def _write_manifest(path: Path, data: dict[str, Any]) -> None:
@@ -214,6 +229,121 @@ async def generate_thumbnail_prompt(
     return _clean_model_prompt(result)
 
 
+def _source_request_hash(title: str, script: str) -> str:
+    return hashlib.sha256(json.dumps(
+        {"title": title, "script": script}, sort_keys=True, ensure_ascii=False,
+    ).encode("utf-8")).hexdigest()
+
+
+def _prompt_revision_state(root: Path) -> tuple[Path, list[dict[str, Any]]]:
+    """Find the persisted active revision without resetting its attempt budget."""
+    state = _read_manifest(root / "prompt-revisions.json")
+    revisions = state.get("revisions", [])
+    if not isinstance(revisions, list) or len(revisions) > MAX_PROMPT_REVISIONS:
+        raise RuntimeError("Invalid thumbnail prompt revision history")
+    directory = root
+    for number, revision in enumerate(revisions, 1):
+        if (
+            not isinstance(revision, dict) or revision.get("number") != number
+            or not isinstance(revision.get("prompt"), str)
+            or hashlib.sha256(revision["prompt"].encode()).hexdigest() != revision.get("prompt_sha256")
+        ):
+            raise RuntimeError("Invalid thumbnail prompt revision binding")
+        directory = root / f"revision-{number}-{revision['prompt_sha256'][:16]}"
+        saved = directory / "prompt.txt"
+        if not saved.is_file() or saved.read_text(encoding="utf-8").strip() != revision["prompt"]:
+            raise RuntimeError("Saved thumbnail revision prompt is missing or changed")
+    return directory, revisions
+
+
+async def revise_thumbnail_prompt(
+    *, title: str, script: str, prompt: str, provider_error: dict[str, Any],
+    revisions: list[dict[str, Any]], provider_id: int | None,
+    ai_endpoint: str | None, ai_model: str | None, log: LogCallback | None,
+) -> dict[str, str]:
+    """Ask the configured project AI to address the observed terminal response."""
+    editorial = (config.PROMPTS_DIR / "thumbnail.txt").read_text(encoding="utf-8")
+    repair = (config.PROMPTS_DIR / "thumbnail_repair.txt").read_text(encoding="utf-8")
+    endpoint, model, api_key = await _resolve_provider(provider_id, ai_endpoint, ai_model)
+    response = await _chat(
+        editorial + "\n\n" + repair,
+        json.dumps({
+            "video_title": title, "audio_script": script, "failed_prompt": prompt,
+            "provider_error": provider_error, "previous_revisions": revisions,
+        }, ensure_ascii=False, indent=2),
+        endpoint, model, api_key, log, "Thumbnail prompt repair", max_tokens=4096,
+    )
+    value = json.loads(_clean_model_prompt(response))
+    if not isinstance(value, dict):
+        raise RuntimeError("Thumbnail prompt repair must return an object")
+    revised = value.get("prompt")
+    rationale = value.get("rationale")
+    if not isinstance(revised, str) or not revised.strip() or not isinstance(rationale, str) or not rationale.strip():
+        raise RuntimeError("Thumbnail prompt repair requires a prompt and rationale")
+    revised = revised.strip()
+    if re.sub(r"\s+", " ", revised) == re.sub(r"\s+", " ", prompt.strip()):
+        raise RuntimeError("Thumbnail prompt repair did not change the rejected prompt")
+    return {"prompt": revised, "rationale": rationale.strip()}
+
+
+async def _revise_failed_thumbnail(
+    *, task_dir: Path, title: str, script_path: Path, provider_id: int | None,
+    ai_endpoint: str | None, ai_model: str | None, log: LogCallback | None,
+) -> bool:
+    manifest_path = task_dir / "thumbnail" / "manifest.json"
+    manifest = _read_manifest(manifest_path)
+    failure = manifest.get("provider_error")
+    if manifest.get("status") != "failed" or not isinstance(failure, dict):
+        return False  # Timeout, transport uncertainty, or an unowned response.
+    script = script_path.read_text(encoding="utf-8").strip()
+    source_hash = _source_request_hash(title, script)
+    if manifest.get("request_sha256") != source_hash:
+        raise RuntimeError("Thumbnail repair source differs from the failed request")
+    root = task_dir / "thumbnail" / "requests" / source_hash
+    directory, revisions = _prompt_revision_state(root)
+    state_path = directory / "image-request.json"
+    state = _read_manifest(state_path)
+    prompt = (directory / "prompt.txt").read_text(encoding="utf-8").strip()
+    if (
+        failure.get("code") not in _TERMINAL_IMAGE_ERRORS
+        or not failure.get("message")
+        or manifest.get("request_state_path") != str(state_path.resolve())
+        or state.get("prompt") != f"Generate an image of: {prompt}"
+        or state.get("conversationUrl") != failure.get("conversation_url")
+        or manifest.get("conversation_url") != failure.get("conversation_url")
+    ):
+        raise RuntimeError("Thumbnail repair requires the exact rejected request checkpoint")
+    # Preserve the actual response and failed attempt, even when repair fails.
+    _write_manifest(directory / "failure.json", manifest)
+    if len(revisions) >= MAX_PROMPT_REVISIONS:
+        _log(log, "Thumbnail: bounded prompt revisions exhausted; all request evidence retained")
+        return False
+    _log(log, "Thumbnail: confirmed provider error; asking project AI to revise the saved prompt")
+    repair = await revise_thumbnail_prompt(
+        title=title, script=script, prompt=prompt, provider_error=failure,
+        revisions=revisions, provider_id=provider_id, ai_endpoint=ai_endpoint,
+        ai_model=ai_model, log=log,
+    )
+    number = len(revisions) + 1
+    prompt_hash = hashlib.sha256(repair["prompt"].encode()).hexdigest()
+    revision = {
+        "number": number, **repair, "prompt_sha256": prompt_hash,
+        "parent_prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
+        "parent_request_state_path": str(state_path.resolve()),
+        "provider_error": failure, "revised_at": datetime.now(timezone.utc).isoformat(),
+    }
+    target = root / f"revision-{number}-{prompt_hash[:16]}"
+    target.mkdir(parents=True, exist_ok=True)
+    saved = target / "prompt.txt"
+    if saved.exists() and saved.read_text(encoding="utf-8").strip() != repair["prompt"]:
+        raise RuntimeError("Thumbnail revision conflicts with an existing saved prompt")
+    saved.write_text(repair["prompt"] + "\n", encoding="utf-8")
+    # Publish the revision pointer before any new provider submission.
+    _write_manifest(root / "prompt-revisions.json", {"revisions": [*revisions, revision]})
+    _log(log, f"Thumbnail: saved AI prompt revision {number}/{MAX_PROMPT_REVISIONS}: {repair['rationale']}")
+    return True
+
+
 async def generate_thumbnail(
     *,
     task_id: str,
@@ -227,21 +357,31 @@ async def generate_thumbnail(
     resume_conversation_url: str | None = None,
     allow_legacy_regeneration: bool = False,
 ) -> ThumbnailArtifact:
-    """Generate once per script/title, or recover a verified legacy conversation.
+    """Recover an existing request, then revise only a confirmed failed prompt.
 
     ``resume_conversation_url`` explicitly adopts the saved prompt for a legacy
     request. OpenCLI still verifies that conversation's exact submitted prompt
-    before accepting its images; this option never submits a replacement turn.
+    before accepting its images. Uncertain requests are never replaced; an
+    explicit terminal response permits at most two persisted AI prompt revisions.
     Intentional script regeneration may explicitly replace an untracked legacy
     request by setting ``allow_legacy_regeneration``.
     """
     with _thumbnail_lock(task_dir / "thumbnail"):
-        return await _generate_thumbnail_locked(
-            task_id=task_id, task_dir=task_dir, title=title, script_path=script_path,
-            provider_id=provider_id, ai_endpoint=ai_endpoint, ai_model=ai_model,
-            log=log, resume_conversation_url=resume_conversation_url,
-            allow_legacy_regeneration=allow_legacy_regeneration,
-        )
+        while True:
+            try:
+                return await _generate_thumbnail_locked(
+                    task_id=task_id, task_dir=task_dir, title=title, script_path=script_path,
+                    provider_id=provider_id, ai_endpoint=ai_endpoint, ai_model=ai_model,
+                    log=log, resume_conversation_url=resume_conversation_url,
+                    allow_legacy_regeneration=allow_legacy_regeneration,
+                )
+            except OpenCLIError:
+                if not await _revise_failed_thumbnail(
+                    task_dir=task_dir, title=title, script_path=script_path,
+                    provider_id=provider_id, ai_endpoint=ai_endpoint, ai_model=ai_model, log=log,
+                ):
+                    raise
+                resume_conversation_url = None
 
 
 async def _generate_thumbnail_locked(
@@ -266,10 +406,8 @@ async def _generate_thumbnail_locked(
     script = script_path.read_text(encoding="utf-8").strip()
     if not script:
         raise RuntimeError(f"Thumbnail source script is empty at {script_path}")
-    request_sha256 = hashlib.sha256(json.dumps(
-        {"title": title, "script": script}, sort_keys=True, ensure_ascii=False,
-    ).encode("utf-8")).hexdigest()
-    request_dir = thumbnail_dir / "requests" / request_sha256
+    request_sha256 = _source_request_hash(title, script)
+    request_dir, revisions = _prompt_revision_state(thumbnail_dir / "requests" / request_sha256)
     saved_prompt_path = request_dir / "prompt.txt"
     state_path = request_dir / "image-request.json"
     same_request = previous.get("request_sha256") == request_sha256
@@ -344,10 +482,14 @@ async def _generate_thumbnail_locked(
         "source_script": str(script_path),
         "request_sha256": request_sha256,
         "request_state_path": str(state_path.resolve()),
+        "prompt_revision": len(revisions),
         "prompt_path": str(prompt_path),
         "image_path": "",
         "image_paths": [],
-        "conversation_url": resume_conversation_url or (previous.get("conversation_url", "") if same_request else ""),
+        "conversation_url": resume_conversation_url or (
+            previous.get("conversation_url", "")
+            if same_request and previous.get("request_state_path") == str(state_path.resolve()) else ""
+        ),
         "started_at": started_at,
         "completed_at": None,
         "error": None,

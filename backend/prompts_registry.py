@@ -125,6 +125,13 @@ PROMPT_REGISTRY: list[PromptSpec] = [
         variables=[],
     ),
     PromptSpec(
+        key="thumbnail_repair",
+        file="thumbnail_repair.txt",
+        label="Thumbnail Prompt Repair",
+        stage="Thumbnail",
+        description="Revises a rejected thumbnail prompt using the actual provider error and final narration.",
+    ),
+    PromptSpec(
         key="visual_plan",
         file="visual_plan.txt",
         label="Scene Art Direction",

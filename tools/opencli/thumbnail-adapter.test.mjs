@@ -368,19 +368,27 @@ test('observed attempt failure with explanatory prose ends the owned wait', asyn
 
 test('completed guardrail refusal ends only its own idle image turn', async () => {
   const refusal = "We’re so sorry, but the image we created may violate our guardrails around violence. If you think we got it wrong, please retry or edit your prompt."
-  for (const text of [refusal, refusal.replace('We’re', "We're")]) {
+  const similarity = refusal.replace('around violence', 'concerning similarity to third-party content')
+  for (const text of [refusal, refusal.replace('We’re', "We're"), similarity]) {
     const messages = [ownedFailure[0], { Role: 'Assistant', Text: text }]
     const { run, state } = waiter(fixedWait, { messages: () => messages })
-    await assert.rejects(run(420, savedUrl, { prompt: 'exact image prompt' }), /CHATGPT_IMAGE_GENERATION_FAILED/)
+    const diagnostics = []
+    await assert.rejects(run(420, savedUrl, {
+      prompt: 'exact image prompt',
+      onDiagnostic(observation, url) { diagnostics.push({ ...observation, url }) },
+    }), /CHATGPT_IMAGE_GENERATION_FAILED/)
+    assert.deepEqual(diagnostics, [{
+      terminal_error: 'CHATGPT_IMAGE_GENERATION_FAILED', provider_message: text, url: savedUrl,
+    }])
     assert.equal(state.clock, 6000)
     assert.equal(state.progress.at(-1).stage, 'image_generation_failed')
     assert.equal(state.navigations.length, 0)
   }
-  const response = { Role: 'Assistant', Text: refusal }
+  const response = { Role: 'Assistant', Text: similarity }
   for (const options of [
     { messages: () => [{ Role: 'User', Text: 'different prompt' }, response] },
     { messages: () => [response, ownedFailure[0]] },
-    { messages: () => [ownedFailure[0], { ...response, Text: 'The earlier response said: ' + refusal }] },
+    { messages: () => [ownedFailure[0], { ...response, Text: 'The earlier response said: ' + similarity }] },
     { messages: () => [ownedFailure[0], response], generating: () => true },
     { messages: () => [ownedFailure[0], response], images: () => ['data:image/png;base64,preview'] },
   ]) {

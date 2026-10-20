@@ -129,7 +129,7 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
                     const text = String(latest.Text || '').replace(/\s+/g, ' ').trim();
                     if (/^I wasn['’]t able to generate the image due to an error on my side\.$/.test(text)
                         || /^I couldn['’]t generate the (?:new )?(?:image|illustration) in this attempt\.(?:\s|$)/.test(text)
-                        || /^We['’]re so sorry, but the image we created may violate our guardrails around [^.]+\.(?:\s|$)/i.test(text)
+                        || /^We['’]re so sorry, but the image we created may violate our guardrails (?:around|concerning) [^.]+\.(?:\s|$)/i.test(text)
                         || (/^Please upload /i.test(text) && missingInputRequest.test(text))) {
                         terminalText = text;
                     }
@@ -140,6 +140,10 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
             if (failureCount >= 2) {
                 const missingInput = missingInputRequest.test(terminalText);
                 report(missingInput ? 'image_input_missing' : 'image_generation_failed');
+                options.onDiagnostic?.({
+                    terminal_error: missingInput ? 'CHATGPT_IMAGE_INPUT_MISSING' : 'CHATGPT_IMAGE_GENERATION_FAILED',
+                    provider_message: terminalText,
+                }, conversationUrl);
                 throw new CommandExecutionError(
                     `${missingInput ? 'CHATGPT_IMAGE_INPUT_MISSING' : 'CHATGPT_IMAGE_GENERATION_FAILED'}: ${terminalText}`,
                     `Inspect the original request at ${conversationUrl}; the image prompt was not replayed.`,

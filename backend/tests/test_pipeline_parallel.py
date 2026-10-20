@@ -1,4 +1,5 @@
 import asyncio
+import json
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
@@ -108,6 +109,10 @@ def test_worker_reports_parallel_failure_without_waiting_for_sibling(
                 patch.object(orchestrator, 'generate_tts', failing if failed_branch == 'audio' else waiting),
                 patch.object(orchestrator, '_acquire_task_footage', failing if failed_branch == 'footage' else waiting),
                 patch.object(worker, 'get_next_queued_task', AsyncMock(side_effect=[task, asyncio.CancelledError()])),
+                patch.object(worker, 'get_next_priority_morning_task', AsyncMock(return_value=None)),
+                patch.object(worker.explainers, 'priority_suspensions', return_value=[]),
+                patch.object(worker.explainers, 'resume_after_morning_desk'),
+                patch.object(worker, '_run_explainer_with_priority_checks', AsyncMock(return_value=False)),
                 patch.object(worker.explainers, 'production_owner', return_value=None),
                 patch.object(worker, 'compare_and_set_task_status', AsyncMock(return_value=True)),
                 patch.object(worker, 'update_task', update),
@@ -360,4 +365,43 @@ def test_tts_resume_preserves_editorial_artifacts_and_reuses_verified_footage(pi
         assert Path(task.thumbnail_path).read_bytes() == b'saved cover'
         after.assert_awaited_once()
 
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("repair_fails", [False, True])
+def test_tts_resume_recovers_failed_thumbnail_while_speech_continues(pipeline, tmp_path, repair_fails):
+    async def run():
+        task, _, after = pipeline
+        task.config.thumbnail_enabled = True
+        task.generated_title = "Saved title"
+        directory = tmp_path / "thumbnail"
+        directory.mkdir()
+        (directory / "manifest.json").write_text(json.dumps({"status": "failed"}))
+        audio_started = asyncio.Event()
+        order = []
+
+        async def audio(*args, **kwargs):
+            audio_started.set()
+            return "audio.wav"
+
+        async def repair(*args, **kwargs):
+            await asyncio.wait_for(audio_started.wait(), 1)
+            assert kwargs["title"] == "Saved title"
+            order.append("thumbnail")
+            if repair_fails:
+                raise OpenCLIError("saved provider failure")
+
+        async def footage(*args, **kwargs):
+            order.append("footage")
+
+        with (
+            patch.object(orchestrator, "generate_tts", audio),
+            patch.object(orchestrator, "_generate_task_thumbnail", repair),
+            patch.object(orchestrator, "_ensure_task_footage", footage),
+        ):
+            await orchestrator.run_tts_resume(task)
+        assert order == ["thumbnail", "footage"]
+        after.assert_awaited_once()
+
+    from backend.pipeline.opencli import OpenCLIError
     asyncio.run(run())

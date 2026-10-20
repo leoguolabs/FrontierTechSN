@@ -521,6 +521,22 @@ test('known live local route remains in place while its canonical image finishes
   assert.equal(state.navigations.length, 0)
 })
 
+test('a collapsed long prompt is verified before adopting its saved conversation identity', async () => {
+  const prompt = 'Generate an image of: ' + 'owned thumbnail detail '.repeat(700)
+  for (const url of [localUrl, savedUrl]) {
+    const { run, state } = waiter(fixedWait, {
+      url, identity: { conversationUrl: savedUrl, ...(url === localUrl ? { localConversationUrl: localUrl } : {}) },
+      messages: state => [{
+        Role: 'User', Text: state.messageReadOptions.expectedPrompt === prompt ? prompt : prompt.slice(0, 10240),
+      }],
+      images: () => [imageUrl],
+    })
+    assert.deepEqual(Array.from(await run(30, localUrl, { prompt })), [imageUrl])
+    assert.ok(state.progress.some(entry => entry.stage === 'waiting' && entry.url === savedUrl))
+    assert.equal(state.navigations.length, 0)
+  }
+})
+
 test('persist canonical identity even when the owned image URL stays local', async () => {
   const { run, state } = waiter(fixedWait, { url: localUrl,
     identity: { conversationUrl: savedUrl, localConversationUrl: localUrl },

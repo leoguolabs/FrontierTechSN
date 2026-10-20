@@ -190,6 +190,9 @@ image or canvas candidate. Other prose errors still require an idle turn.
 Long prompts are expanded only for exact ownership verification. The adapter
 reports the terminal failure without sending again; a confirmed failed request
 must be retained as evidence before an operator starts its replacement attempt.
+The same long-prompt expansion is required when a submitted local route becomes
+its saved conversation URL; otherwise the collapsed prefix falsely appears to
+be another request. Both route adoption paths retain exact prompt matching.
 
 Thumbnail requests persist their prompt and `--state-file` checkpoint under
 `thumbnail/requests/<script-and-title-hash>/`. Repeating the same request reuses

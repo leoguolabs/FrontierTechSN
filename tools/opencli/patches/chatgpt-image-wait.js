@@ -36,7 +36,7 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
             if (identity?.localConversationUrl
                 && isSameChatGPTConversation(identity.localConversationUrl, currentUrl)
                 && !isLocal(identity.conversationUrl) && !isPending(identity.conversationUrl)) {
-                const messages = await getVisibleMessages(page, { textOnly: true });
+                const messages = await getVisibleMessages(page, { textOnly: true, expectedPrompt: options.prompt });
                 if (Date.now() >= deadline) break;
                 const latestUser = [...messages].reverse().find(message => message.Role === 'User');
                 if (latestUser && chatGPTPromptMatches(latestUser.Text, options.prompt)) {
@@ -56,7 +56,7 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
             if ((isLocal(conversationUrl) || isPending(conversationUrl)) && options.prompt) {
                 identity = await resolveChatGPTConversationIdentity(page, options.prompt);
                 if (Date.now() >= deadline) break;
-                const messages = await getVisibleMessages(page, { textOnly: true });
+                const messages = await getVisibleMessages(page, { textOnly: true, expectedPrompt: options.prompt });
                 if (Date.now() >= deadline) break;
                 const latestUser = [...messages].reverse().find(message => message.Role === 'User');
                 // The saved route can render before its conversation messages.

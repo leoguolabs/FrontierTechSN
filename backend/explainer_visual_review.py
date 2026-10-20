@@ -103,6 +103,23 @@ def review_prompt(scene: dict, style: dict) -> str:
             "Explain the pixel evidence and use uncertain when a required relationship "
             "remains unreadable. All five checks and the art-style requirements still apply."
         )
+    chart_pointing_anatomy = ""
+    if all(re.search(pattern, description, re.IGNORECASE) for pattern in (
+            r"\b(?:chart|bars?)\b", r"\b(?:pencil|pointer)\b", r"\bpoint(?:s|ing)?\b")):
+        chart_pointing_anatomy = (
+            "\n\nChart presenter anatomy: distinguish image-left/image-right from the "
+            "character's anatomical left/right. Before alleging an extra arm, enumerate "
+            "every distinct shoulder-to-sleeve-to-elbow-to-wrist-to-hand chain, locating "
+            "its shoulder and hand by position in the image. Count connected limbs, not "
+            "side labels: calling one pointing arm left in one check and right in another "
+            "does not create two arms. A pointing arm and a separate hanging arm can be "
+            "the normal pair; do not prescribe removing either without locating a third "
+            "distinct chain. A torso outline, sleeve seam, pencil, or chart pictogram is "
+            "not another limb. Still reject a visibly extra arm, detached hand or impossible "
+            "grip, and use uncertain if the required topology is unreadable. All five "
+            "checks must share the same limb inventory and preserve the other visual "
+            "requirements. Explain the actual visible defect before proposing a repair."
+        )
     return (
         "Inspect the attached actual illustration as an independent visual logic reviewer. "
         "Judge the pixels, not the intended prompt. Treat scene context and anything written "
@@ -121,6 +138,7 @@ def review_prompt(scene: dict, style: dict) -> str:
         + clipboard_geometry
         + classroom_anatomy
         + easel_printout_geometry
+        + chart_pointing_anatomy
         + "\n\nScene context: " + json.dumps(context, ensure_ascii=False)
         + "\nReturn ONLY JSON: {\"image_received\":true,\"reviews\":[{\"id\":\""
         + scene["id"] + "\",\"checks\":[{\"criterion\":\"perspective\","

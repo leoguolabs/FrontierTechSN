@@ -225,6 +225,51 @@ def test_easel_printout_correction_preserves_other_review_contracts(description)
     assert "Easel and printout geometry:" not in review.review_prompt(scene, {})
 
 
+def test_chart_presenter_review_rechecks_same_pixels_and_preserves_failure(tmp_path, monkeypatch):
+    scene = {**SCENE, "visual_prompt": "A two-bar chart; a presenter's pencil points at the tall human bar."}
+    image = tmp_path / "image.png"
+    image.write_bytes(b"unchanged chart presenter")
+    rejected = payload()
+    rejected["reviews"][0]["checks"][1].update(
+        verdict="fail", evidence="Three distinct shoulder-to-hand chains are visible.",
+        repair="Remove the third connected arm.")
+    provider = AsyncMock(return_value=OpenCLIResult((), 0, json.dumps(rejected), ""))
+    monkeypatch.setattr(review, "run_opencli", provider)
+    corrected_prompt = review.review_prompt
+    old_prompt = corrected_prompt(SCENE, {})
+
+    async def run():
+        monkeypatch.setattr(review, "review_prompt", lambda *_: old_prompt)
+        before, before_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        original_receipt = before_path.read_bytes()
+        monkeypatch.setattr(review, "review_prompt", corrected_prompt)
+        after, after_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        assert before_path != after_path
+        assert before_path.read_bytes() == original_receipt
+        assert before["image_sha256"] == after["image_sha256"]
+        assert not before["passed"] and not after["passed"]
+        assert provider.await_count == 2
+        assert await review.review_image(image, scene, {}, tmp_path, lambda _: None) == (after, after_path)
+        assert provider.await_count == 2
+
+    asyncio.run(run())
+    prompt = corrected_prompt(scene, {})
+    assert "Count connected limbs, not side labels" in prompt
+    assert "without locating a third distinct chain" in prompt
+    assert "Still reject a visibly extra arm" in prompt
+    assert "use uncertain if the required topology is unreadable" in prompt
+
+
+@pytest.mark.parametrize("description", [
+    "A paper bar chart propped on the easel rail, topped with robot and person icons.",
+    "A pencil rests beside a chart on a desk.",
+    "A presenter points at a chart with an empty hand.",
+    "A pencil points at a notebook.",
+])
+def test_chart_presenter_correction_keeps_unrelated_review_contracts(description):
+    assert "Chart presenter anatomy:" not in review.review_prompt({**SCENE, "visual_prompt": description}, {})
+
+
 def test_rejection_with_omitted_pass_repairs_is_cached_without_fallback(tmp_path, monkeypatch):
     value = payload()
     for check in value["reviews"][0]["checks"]:

@@ -2811,6 +2811,28 @@ def test_adjacent_model_and_initialism_preserve_exact_glyphs(observed):
     assert report['normalized_transcript'] == 'the ddr5 rdimm product launched'
 
 
+@pytest.mark.parametrize('observed', [
+    'PPU810 e', 'PPU810 E', 'PPU810 ee', 'PPU810E', 'PPU 810 E',
+])
+def test_hyphenated_model_can_attach_number_before_separate_final_letter(observed):
+    source = 'The PPU-810E cards are available.'
+    report = chatterbox._pronunciation_report(
+        source, [{'text': f'The {observed} cards are available.'}])
+    assert report['passed']
+    assert report['normalized_transcript'] == 'the ppu 810e cards are available'
+
+
+@pytest.mark.parametrize('observed', [
+    'PPU810', 'PPU810 F', 'PPU811 E', 'PPU0810 E', 'PPU81 E',
+    'PPU810 E E', 'PPU810 E PPU810 E', 'PPPU810 E', 'PPU810 E 810',
+])
+def test_hyphenated_model_spacing_keeps_every_letter_number_and_occurrence(observed):
+    report = chatterbox._pronunciation_report(
+        'The PPU-810E cards are available.',
+        [{'text': f'The {observed} cards are available.'}])
+    assert not report['passed']
+
+
 @pytest.mark.parametrize('source, observed', [
     ('DDR5 RDIMM', 'DDR6RDIMM'),
     ('DDR5 RDIMM', 'DDR05RDIMM'),

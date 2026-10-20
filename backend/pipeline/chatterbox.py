@@ -791,7 +791,7 @@ PRONUNCIATION_TOKEN_RE = re.compile(
     r"(?:[A-Za-z]\.)+[A-Za-z]\.?(?:['’][A-Za-z]+)?|[A-Za-z0-9]+(?:\.\d+)*(?:['’][A-Za-z0-9]+)?"
 )
 
-OBSERVATION_SPELLING_VERSION = 15
+OBSERVATION_SPELLING_VERSION = 16
 
 
 def _match_spoken_letters(tokens: list[str], start: int, end: int, target: str) -> int | None:
@@ -929,6 +929,15 @@ def _pronunciation_report(text: str, words: list[dict], edits: list[dict] | None
                 *embedded.get(left_value, [left_value]),
                 *embedded.get(normalize(right[0]), [normalize(right[0])]),
             ]
+            # PPU-810E can be observed as "PPU810 e". The exact numeric
+            # prefix may join its preceding initialism while the source's
+            # final letter remains separate. Never split a numeral or infer
+            # a missing suffix: normal alignment still requires every part.
+            right_parts = embedded.get(normalize(right[0]), [])
+            if len(right_parts) > 1 and right_parts[0].isdigit():
+                observed_compounds[left_value + right_parts[0]] = [
+                    *embedded.get(left_value, [left_value]), right_parts[0],
+                ]
             model_identifiers.add(token_indexes[right.start()])
     verification_targets = targets | model_identifiers
     observed = []

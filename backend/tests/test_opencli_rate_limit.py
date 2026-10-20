@@ -1,11 +1,73 @@
 import asyncio
+import fcntl
 import json
+import threading
+import time
 from unittest.mock import AsyncMock, patch
 
 import pytest
 
 from backend.pipeline import opencli
 from backend.pipeline import opencli_rate_limit as pacing
+
+
+@pytest.mark.parametrize("action", ["ask", "model"])
+@pytest.mark.parametrize("blocked_on_lock", [False, True])
+def test_cancelled_backend_wait_releases_worker_without_reserving_or_launching(
+        tmp_path, monkeypatch, action, blocked_on_lock):
+    state = tmp_path / "pacing"
+    original = f"{time.time():.6f}\n"
+    state.write_text(original)
+    entered = threading.Event()
+    name = "wait_for_opencli_web_slot" if action == "ask" else "wait_for_opencli_generation_quiet_period"
+    wait = getattr(pacing, name)
+    held = state.open("a+") if blocked_on_lock else None
+    if held:
+        fcntl.flock(held.fileno(), fcntl.LOCK_EX)
+
+    def gate(site, **kwargs):
+        if blocked_on_lock:
+            entered.set()
+        return wait(site, state_path=state, reporter=lambda _: entered.set(), **kwargs)
+
+    launch = AsyncMock(side_effect=AssertionError("Cancelled pacing cannot launch a provider"))
+    monkeypatch.setattr(opencli, name, gate)
+    monkeypatch.setattr(opencli, "runtime_mode", lambda: "bridge")
+    monkeypatch.setattr(opencli, "_environment", lambda **_: {})
+    monkeypatch.setattr(opencli, "opencli_cooldown_remaining", lambda _: 0)
+    monkeypatch.setattr(opencli.asyncio, "create_subprocess_exec", launch)
+
+    async def run():
+        task = asyncio.create_task(opencli.run_opencli(["chatgpt", action, "owned request"]))
+        try:
+            async def ready():
+                while not entered.is_set():
+                    await asyncio.sleep(0.005)
+            await asyncio.wait_for(ready(), 2)
+            task.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await asyncio.wait_for(task, 1)
+        finally:
+            task.cancel()
+            await asyncio.gather(task, return_exceptions=True)
+
+    try:
+        asyncio.run(run())
+    finally:
+        if held:
+            held.close()
+    launch.assert_not_awaited()
+    assert state.read_text() == original
+    # Cleanup is complete when pause returns; a subsequent process gets the lock.
+    with state.open() as probe:
+        fcntl.flock(probe.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    # The next real request still observes the original provider interval.
+    sleeps = []
+    now = float(original)
+    assert pacing.wait_for_opencli_web_slot(
+        "chatgpt", state_path=state, clock=lambda: now + 10, sleeper=sleeps.append,
+    ) == pytest.approx(590)
+    assert sleeps == [pytest.approx(590)]
 
 
 @pytest.fixture

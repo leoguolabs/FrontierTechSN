@@ -8,6 +8,7 @@ import os
 import random
 import re
 import sys
+import threading
 import time
 from pathlib import Path
 from typing import Callable
@@ -29,6 +30,36 @@ PROVIDER_COOLDOWN_SECONDS = 10 * 60.0
 PROVIDER_COOLDOWN_INCREMENT_SECONDS = 10 * 60.0
 MAX_PROVIDER_COOLDOWN_SECONDS = 60 * 60.0
 PROVIDER_COOLDOWN_ESCALATION_WINDOW_SECONDS = 6 * 60 * 60.0
+
+
+class OpenCLIPacingCancelled(RuntimeError):
+    """A cancelled caller must not reserve a future generation slot."""
+
+
+def _check_wait_cancelled(cancel_event: threading.Event | None) -> None:
+    if cancel_event is not None and cancel_event.is_set():
+        raise OpenCLIPacingCancelled("OpenCLI pacing wait cancelled")
+
+
+def _acquire_wait_lock(state, cancel_event: threading.Event | None) -> None:
+    if cancel_event is None:
+        fcntl.flock(state.fileno(), fcntl.LOCK_EX)
+        return
+    while True:
+        _check_wait_cancelled(cancel_event)
+        try:
+            fcntl.flock(state.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            return
+        except BlockingIOError:
+            cancel_event.wait(0.1)
+
+
+def _sleep_for_slot(delay: float, sleeper, cancel_event: threading.Event | None) -> None:
+    if cancel_event is None:
+        sleeper(delay)
+    else:
+        cancel_event.wait(delay)
+    _check_wait_cancelled(cancel_event)
 
 
 def _cooldown_path(site: str, state_path: Path | None = None) -> Path:
@@ -223,6 +254,7 @@ def wait_for_opencli_web_slot(
     clock: Callable[[], float] = time.time,
     sleeper: Callable[[float], None] = time.sleep,
     reporter: Callable[[str], None] | None = None,
+    cancel_event: threading.Event | None = None,
 ) -> float:
     """Wait for and reserve the next provider's web-request start slot.
 
@@ -245,8 +277,9 @@ def wait_for_opencli_web_slot(
     report = reporter or (lambda message: print(message, file=sys.stderr, flush=True))
 
     with path.open("a+", encoding="utf-8") as state:
-        fcntl.flock(state.fileno(), fcntl.LOCK_EX)
+        _acquire_wait_lock(state, cancel_event)
         try:
+            _check_wait_cancelled(cancel_event)
             state.seek(0)
             try:
                 last_started_at = float(state.read().strip() or "0")
@@ -265,8 +298,9 @@ def wait_for_opencli_web_slot(
                     f"OpenCLI pacing: waiting {delay:.1f}s before the next "
                     f"{site} web request (minimum {selected_interval:.1f}s)."
                 )
-                sleeper(delay)
+                _sleep_for_slot(delay, sleeper, cancel_event)
 
+            _check_wait_cancelled(cancel_event)
             started_at = clock()
             state.seek(0)
             state.truncate()
@@ -286,6 +320,7 @@ def wait_for_opencli_generation_quiet_period(
     clock: Callable[[], float] = time.time,
     sleeper: Callable[[float], None] = time.sleep,
     reporter: Callable[[str], None] | None = None,
+    cancel_event: threading.Event | None = None,
 ) -> float:
     """Wait until the last generation slot is old enough without reserving one.
 
@@ -300,8 +335,9 @@ def wait_for_opencli_generation_quiet_period(
     report = reporter or (lambda message: print(message, file=sys.stderr, flush=True))
 
     with path.open("a+", encoding="utf-8") as state:
-        fcntl.flock(state.fileno(), fcntl.LOCK_EX)
+        _acquire_wait_lock(state, cancel_event)
         try:
+            _check_wait_cancelled(cancel_event)
             state.seek(0)
             try:
                 last_started_at = float(state.read().strip() or "0")
@@ -317,7 +353,8 @@ def wait_for_opencli_generation_quiet_period(
                     f"{site} model check (generation quiet period "
                     f"{selected_interval:.1f}s)."
                 )
-                sleeper(delay)
+                _sleep_for_slot(delay, sleeper, cancel_event)
+            _check_wait_cancelled(cancel_event)
             return delay
         finally:
             fcntl.flock(state.fileno(), fcntl.LOCK_UN)

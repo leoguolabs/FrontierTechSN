@@ -7,7 +7,7 @@ import tempfile
 import unittest
 import pytest
 from pathlib import Path
-from unittest.mock import AsyncMock, patch
+from unittest.mock import ANY, AsyncMock, patch
 
 from backend import config, settings_store
 from backend.pipeline import opencli as opencli_module
@@ -469,6 +469,7 @@ class OpenCLIRateLimitIntegrationTests(unittest.IsolatedAsyncioTestCase):
             wait_for_opencli_web_slot,
             "chatgpt",
             interval=900,
+            cancel_event=ANY,
         )
         self.assertEqual(
             create_process.await_args.kwargs["env"][
@@ -531,6 +532,7 @@ class OpenCLIRateLimitIntegrationTests(unittest.IsolatedAsyncioTestCase):
             wait_for_opencli_generation_quiet_period,
             "chatgpt",
             interval=900,
+            cancel_event=ANY,
         )
         self.assertEqual(
             create_process.await_args.kwargs["env"]["OPENCLI_WEB_REQUEST_SLOT_RESERVED"],

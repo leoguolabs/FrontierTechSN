@@ -14,6 +14,7 @@ import os
 import re
 import shutil
 import signal
+import threading
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -25,6 +26,7 @@ from backend.pipeline.desktop_browser import (
     foreground_browser_session,
 )
 from backend.pipeline.opencli_rate_limit import (
+    OpenCLIPacingCancelled,
     is_rate_limited_command,
     needs_generation_quiet_period,
     opencli_cooldown_remaining,
@@ -71,6 +73,31 @@ async def _wait_for_provider_cooldown(site: str) -> None:
             )
             reported = True
         await asyncio.sleep(min(30.0, remaining))
+
+
+async def _wait_for_pacing(function, site: str, *, interval: float) -> None:
+    """Cancel the actual lock/sleep worker before a paused task can resume."""
+    cancel_event = threading.Event()
+    worker = asyncio.create_task(asyncio.to_thread(
+        function, site, interval=interval, cancel_event=cancel_event,
+    ))
+    try:
+        await asyncio.shield(worker)
+    except asyncio.CancelledError:
+        cancel_event.set()
+        # Cancelling to_thread alone leaves its thread asleep, holding the lock
+        # and later reserving a slot despite no provider process being launched.
+        while not worker.done():
+            try:
+                await asyncio.shield(worker)
+            except asyncio.CancelledError:
+                continue
+            except OpenCLIPacingCancelled:
+                break
+        if worker.done() and not worker.cancelled():
+            # Retrieve the exception even if the worker finished before cleanup.
+            worker.exception()
+        raise
 
 
 @dataclass(frozen=True)
@@ -177,7 +204,7 @@ async def run_opencli(
                 if is_rate_limited_command(args):
                     # Pace before starting the subprocess so the provider-command timeout
                     # measures the web operation, not time intentionally spent in queue.
-                    await asyncio.to_thread(
+                    await _wait_for_pacing(
                         wait_for_opencli_web_slot,
                         str(args[0]).lower(),
                         interval=config.OPENCLI_WEB_REQUEST_INTERVAL_SECONDS,
@@ -188,7 +215,7 @@ async def run_opencli(
                     # not reserve the next slot. It still waits behind the prior prompt so
                     # ChatGPT does not receive a model-page access immediately after an
                     # audit response. Recovery reads deliberately remain unpaced here.
-                    await asyncio.to_thread(
+                    await _wait_for_pacing(
                         wait_for_opencli_generation_quiet_period,
                         site,
                         interval=config.OPENCLI_WEB_REQUEST_INTERVAL_SECONDS,

@@ -1,0 +1,70 @@
+Teaching Codex a visual language: an engineering briefing board
+
+Rebuilding an AI-learning explainer from the behavior of a reference film.
+
+I gave Codex a specific challenge: study the Engineering Briefing Board style in LemoLab’s lemo-opuscar, then use it to remake “Does AI Help You Learn—or Just Finish?” Build an independent renderer and a reusable video project. Keep the work outside my existing video application's task system.
+
+The reference was a 40-second film about bridge spans. Its appeal comes from a physical world that stays coherent. Photos, magnets, rulers, annotations, and erased marks occupy one continuous board. The camera moves through that world as the argument develops.
+
+A close-up introduces the object. A pullback reveals the comparison. Blue lines measure what is possible; red marks deliver a judgment. At the end, the camera pulls far enough back to expose the entire chain of reasoning.
+
+That sequence became the foundation of the new film. Copying the cream background and marker colors would have missed most of the design.
+
+Read the reference as motion
+
+The reference contains 960 frames at 24 frames per second. Codex decoded all of them into numbered, consecutive-frame sheets and inspected every sheet. Those sheets make small timing choices visible: a dimension line completes before its number, a label settles before the camera moves, and the verdict gets a hold of its own.
+
+The frame sheets also exposed the material rules. Paper casts a shadow; ink stays flat. Raised props move slightly against the board as the camera changes position. The surface carries faint remnants of previous writing. Fast camera moves blur while settled text stays readable.
+
+This review had two scales. Consecutive thumbnails revealed timing and continuity. Selected full-resolution frames revealed typography, shadows, and small collisions. Both were needed; a contact sheet alone cannot settle every fine-detail question.
+
+Give the new argument a physical layout
+
+The new story asks what remains after AI assistance disappears. Its central example is a randomized mathematics study in Turkey: unrestricted chatbot access improved practice grades by 48% relative to control, while the subsequent unaided exam result was 17% lower. A tutor built around teacher-supplied hints largely removed that penalty.
+
+Those are different assessments. The film labels the comparison as an index with the relevant control set to 100. It does not turn relative effects into percentage-point changes or imply that 148 and 83 were actual grades.
+
+The board also includes a separate college physics study in which a carefully designed tutor produced higher immediate post-test scores than an active classroom lesson. Keeping that study in its own region prevents a convenient but misleading universal verdict about AI.
+
+I also wanted people in the explanation. A teacher points toward a hint; a student attempts a problem; a hand-drawn Turkish flag establishes the study's location. These drawings carry parts of the argument that a bar or arrow cannot.
+
+Build a small studio around the film
+
+The implementation uses a 6400-by-3600 board and a camera that exports 1920-by-1080 frames. The renderer has reusable primitives for paper, magnets, photos, marker writing, dimensions, stamps, people, flags, and erasures. The composition supplies their positions and timing.
+
+Chatterbox generates the narration through the existing speech service. Each request keeps its provider job identity and original WAV. An independent recognizer checks the spoken words and provides timing observations for the captions.
+
+Picture, speech, captions, and material sounds share one frame-based timeline. The score is a restrained original mallet-and-bass pattern. Paper arrivals and marker strokes receive small sounds at their visual event frames.
+
+The project includes a local showcase with the film, chapter navigation, reference comparison, frame stepping, complete frame atlases, and a live view of the composition. It is a starting point for another briefing film, with the source and production instructions alongside the result.
+
+The useful part was the revision
+
+The first preview was not acceptable. One font weight was interpreted as a font size, making the title enormous. Label baselines clipped text. A student's legs overlapped a percentage. The board was too bright compared with the encoded reference.
+
+Those failures led to concrete changes: supported font weights, measured label widths, revised camera framing, a darker enamel base, and separate space for people and numbers. A physics formula moved out of the caption area. The teacher drawing lost remnants of an earlier seated pose.
+
+Another revision replaced the rectangular notebook photo with a transparent photographic cutout. Image generation reconstructed the cropped edges and removed the table. The renderer then supplied the same shadow and magnets as the other props, bringing the object into the board's physical world.
+
+There was an editorial correction too. An early red stamp said “NOT LEARNING.” The evidence supported a narrower statement about unaided performance, so it became “WEAKER ALONE.” A confident visual treatment makes that distinction more consequential, not less.
+
+Speech needed revision as well. Two segments were regenerated after the recognizer found a changed opening word. Another contained an extra phrase after the complete scripted sentence; the accepted version retains an exact prefix of the original audio, ending in the silent gap before that phrase. The original takes and the repair records remain in the working project.
+
+After six picture passes, the finished film runs for 2 minutes 41 seconds: 3,866 frames at 24 fps. Codex inspected every final frame in 194 numbered comparison sheets, with a reference frame beside it, then checked 16 selected final frames at 1080p. The full reference had already been inspected in its own 48 sheets.
+
+That comparison also defines the limits of the result. The new film has more writing and people, longer holds, and a different blur pattern during fast camera moves. It preserves the continuous-board construction and the roles of materials, measurements, and judgments, but I would not call the two films visually identical. The review records show the differences as well as the fixes.
+
+The reusable result is the combination of a visual contract, a deterministic renderer, and a review process that can identify specific defects. The reference remains credited to LemoLab. The new subject, composition, illustrations, sound, and implementation were built independently.
+
+For the film's own question, the test is straightforward: after the assistance is gone, can you explain the method, correct an error, and solve a changed problem? That is the next attempt worth improving.
+
+Sources
+
+Visual reference: LemoLab / lemo-opuscar
+https://github.com/lemomo-ai/lemo-opuscar
+
+Bastani et al., Generative AI without guardrails can harm learning
+https://doi.org/10.1073/pnas.2422633122
+
+Kestin et al., AI tutoring outperforms in-class active learning
+https://www.nature.com/articles/s41598-025-97652-6

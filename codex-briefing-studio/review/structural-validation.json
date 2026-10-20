@@ -1,0 +1,356 @@
+{
+  "frames": 3866,
+  "fps": 24,
+  "labels": 43,
+  "people": 19,
+  "audio_complete": true,
+  "transcription_complete": true,
+  "errors": [],
+  "label_measurements": [
+    {
+      "id": "paper-1",
+      "text": "3x + 6 = 21",
+      "width": 334.70001220703125,
+      "available": 550,
+      "bottom": 95,
+      "height": 185
+    },
+    {
+      "id": "paper-1",
+      "text": "x = 5",
+      "width": 131.5800018310547,
+      "available": 550,
+      "bottom": 172,
+      "height": 185
+    },
+    {
+      "id": "paper-9",
+      "text": "WITH HELP",
+      "width": 353.0199890136719,
+      "available": 576,
+      "bottom": 94.14999999999999,
+      "height": 135
+    },
+    {
+      "id": "paper-12",
+      "text": "ALONE",
+      "width": 223.27999877929688,
+      "available": 576,
+      "bottom": 94.14999999999999,
+      "height": 135
+    },
+    {
+      "id": "paper-16",
+      "text": "LATER",
+      "width": 208.1300048828125,
+      "available": 576,
+      "bottom": 94.14999999999999,
+      "height": 135
+    },
+    {
+      "id": "paper-20",
+      "text": "NEW PROBLEM",
+      "width": 488.4100036621094,
+      "available": 576,
+      "bottom": 94.14999999999999,
+      "height": 135
+    },
+    {
+      "id": "paper-31",
+      "text": "MATHS EXPERIMENT",
+      "width": 492.1000061035156,
+      "available": 628,
+      "bottom": 87,
+      "height": 250
+    },
+    {
+      "id": "paper-31",
+      "text": "Randomized groups",
+      "width": 443.95001220703125,
+      "available": 628,
+      "bottom": 161,
+      "height": 250
+    },
+    {
+      "id": "paper-31",
+      "text": "Bastani et al.",
+      "width": 241.57000732421875,
+      "available": 628,
+      "bottom": 220,
+      "height": 250
+    },
+    {
+      "id": "paper-37",
+      "text": "PRACTICE WITH AI",
+      "width": 615.6699829101562,
+      "available": 701,
+      "bottom": 107.94999999999999,
+      "height": 155
+    },
+    {
+      "id": "paper-38",
+      "text": "3x + 6 = 21",
+      "width": 300.239990234375,
+      "available": 508,
+      "bottom": 95,
+      "height": 180
+    },
+    {
+      "id": "paper-38",
+      "text": "x = 5",
+      "width": 116.4800033569336,
+      "available": 508,
+      "bottom": 170,
+      "height": 180
+    },
+    {
+      "id": "paper-44",
+      "text": "EXAM WITHOUT AI",
+      "width": 602.260009765625,
+      "available": 716,
+      "bottom": 107.94999999999999,
+      "height": 155
+    },
+    {
+      "id": "paper-45",
+      "text": "3x + 6 = 21",
+      "width": 300.239990234375,
+      "available": 483,
+      "bottom": 92,
+      "height": 170
+    },
+    {
+      "id": "paper-45",
+      "text": "x = ?",
+      "width": 118.52999877929688,
+      "available": 483,
+      "bottom": 163,
+      "height": 170
+    },
+    {
+      "id": "paper-53",
+      "text": "TEACHER HINTS",
+      "width": 531.8900146484375,
+      "available": 567,
+      "bottom": 101.05,
+      "height": 145
+    },
+    {
+      "id": "paper-55",
+      "text": "What is the",
+      "width": 278.29998779296875,
+      "available": 418,
+      "bottom": 100,
+      "height": 245
+    },
+    {
+      "id": "paper-55",
+      "text": "first step?",
+      "width": 252.83999633789062,
+      "available": 418,
+      "bottom": 189,
+      "height": 245
+    },
+    {
+      "id": "paper-60",
+      "text": "A DIFFERENT DESIGN",
+      "width": 690.5599975585938,
+      "available": 818,
+      "bottom": 104,
+      "height": 370
+    },
+    {
+      "id": "paper-60",
+      "text": "College physics tutor",
+      "width": 600.969970703125,
+      "available": 818,
+      "bottom": 199,
+      "height": 370
+    },
+    {
+      "id": "paper-60",
+      "text": "Higher immediate scores",
+      "width": 627.6599731445312,
+      "available": 818,
+      "bottom": 282,
+      "height": 370
+    },
+    {
+      "id": "paper-60",
+      "text": "Kestin et al. · 2025",
+      "width": 349.6499938964844,
+      "available": 818,
+      "bottom": 356,
+      "height": 370
+    },
+    {
+      "id": "paper-65",
+      "text": "WHAT THESE TESTS SHOW",
+      "width": 768.7899780273438,
+      "available": 858,
+      "bottom": 96,
+      "height": 340
+    },
+    {
+      "id": "paper-65",
+      "text": "Immediate performance",
+      "width": 655.5599975585938,
+      "available": 858,
+      "bottom": 181,
+      "height": 340
+    },
+    {
+      "id": "paper-65",
+      "text": "Not months of retention",
+      "width": 580.5499877929688,
+      "available": 858,
+      "bottom": 248,
+      "height": 340
+    },
+    {
+      "id": "paper-65",
+      "text": "Not permanent damage",
+      "width": 579.739990234375,
+      "available": 858,
+      "bottom": 332,
+      "height": 340
+    },
+    {
+      "id": "paper-72",
+      "text": "CHOOSE",
+      "width": 287.5,
+      "available": 448,
+      "bottom": 97,
+      "height": 225
+    },
+    {
+      "id": "paper-72",
+      "text": "THE METHOD",
+      "width": 363,
+      "available": 448,
+      "bottom": 174,
+      "height": 225
+    },
+    {
+      "id": "paper-73",
+      "text": "1  GET THE RIGHT HELP",
+      "width": 630.9600219726562,
+      "available": 997,
+      "bottom": 101.05,
+      "height": 145
+    },
+    {
+      "id": "paper-76",
+      "text": "2  HIDE · EXPLAIN · CHECK",
+      "width": 699.489990234375,
+      "available": 997,
+      "bottom": 101.05,
+      "height": 145
+    },
+    {
+      "id": "paper-79",
+      "text": "3  CHANGE IT · RETURN",
+      "width": 624.3099975585938,
+      "available": 997,
+      "bottom": 101.05,
+      "height": 145
+    },
+    {
+      "id": "paper-82",
+      "text": "WORKED EXAMPLE",
+      "width": 486.0799865722656,
+      "available": 598,
+      "bottom": 100,
+      "height": 340
+    },
+    {
+      "id": "paper-82",
+      "text": "3x + 6 = 21",
+      "width": 305.1600036621094,
+      "available": 598,
+      "bottom": 180,
+      "height": 340
+    },
+    {
+      "id": "paper-82",
+      "text": "3x = 15  →  x = 5",
+      "width": 370.57000732421875,
+      "available": 598,
+      "bottom": 260,
+      "height": 340
+    },
+    {
+      "id": "paper-84",
+      "text": "EVIDENCE NOTES",
+      "width": 492.6300048828125,
+      "available": 558,
+      "bottom": 89,
+      "height": 400
+    },
+    {
+      "id": "paper-84",
+      "text": "Practice: 148 / 100",
+      "width": 407.4200134277344,
+      "available": 558,
+      "bottom": 159,
+      "height": 400
+    },
+    {
+      "id": "paper-84",
+      "text": "Exam: 83 / 100",
+      "width": 322.6600036621094,
+      "available": 558,
+      "bottom": 228,
+      "height": 400
+    },
+    {
+      "id": "paper-84",
+      "text": "Relative changes.",
+      "width": 352.42999267578125,
+      "available": 558,
+      "bottom": 302,
+      "height": 400
+    },
+    {
+      "id": "paper-84",
+      "text": "Different tests.",
+      "width": 288.3999938964844,
+      "available": 558,
+      "bottom": 365,
+      "height": 400
+    },
+    {
+      "id": "paper-92",
+      "text": "Does AI Help You Learn—",
+      "width": 1099.52001953125,
+      "available": 1497,
+      "bottom": 191,
+      "height": 610
+    },
+    {
+      "id": "paper-92",
+      "text": "or Just Finish?",
+      "width": 734.1799926757812,
+      "available": 1497,
+      "bottom": 301,
+      "height": 610
+    },
+    {
+      "id": "paper-92",
+      "text": "ENGINEERING BRIEFING BOARD",
+      "width": 826.9000244140625,
+      "available": 1497,
+      "bottom": 426,
+      "height": 610
+    },
+    {
+      "id": "paper-92",
+      "text": "LeoGuoLabs · A film made with Codex",
+      "width": 764.1900024414062,
+      "available": 1497,
+      "bottom": 551,
+      "height": 610
+    }
+  ],
+  "scope": "Geometry and timeline checks; not visual acceptance."
+}

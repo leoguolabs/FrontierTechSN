@@ -1,0 +1,2609 @@
+{
+  "fps": 24,
+  "duration_frames": 3866,
+  "shots": [
+    {
+      "id": "01",
+      "region": "hook",
+      "text": "The formula works. The deadline is saved. Then the answer disappears. Can you build it again?",
+      "claim": "Illustrative scenario",
+      "start": 14,
+      "end": 230,
+      "voiceStart": 20,
+      "voiceEnd": 140,
+      "audio": "media/audio/01-cfbcbd97a504.wav"
+    },
+    {
+      "id": "02",
+      "region": "measures",
+      "text": "Finishing with help, doing it alone, remembering it later, and solving a new problem are four different tests. One successful session cannot answer all four.",
+      "claim": "Learning versus performance; editorial framing",
+      "start": 230,
+      "end": 518,
+      "voiceStart": 236,
+      "voiceEnd": 463,
+      "audio": "media/audio/02-07b1c0661669.wav"
+    },
+    {
+      "id": "03",
+      "region": "practice",
+      "text": "In a randomized study of nearly a thousand high school mathematics students in Turkey, an unrestricted chatbot improved practice grades by forty eight percent, compared with the control group.",
+      "claim": "Bastani et al.",
+      "start": 518,
+      "end": 878,
+      "voiceStart": 524,
+      "voiceEnd": 764,
+      "audio": "media/audio/03-b2457d96b067.wav"
+    },
+    {
+      "id": "04",
+      "region": "exam",
+      "text": "On the exam without the tool, that group scored seventeen percent lower. The improvement during practice had hidden weaker independent performance.",
+      "claim": "Bastani et al.",
+      "start": 878,
+      "end": 1142,
+      "voiceStart": 884,
+      "voiceEnd": 1050,
+      "audio": "media/audio/04-a366708c3995.wav"
+    },
+    {
+      "id": "05",
+      "region": "tutor",
+      "text": "A tutor built around teacher supplied hints largely removed that penalty. It did not produce a statistically significant exam improvement over the control group.",
+      "claim": "Bastani et al.",
+      "start": 1142,
+      "end": 1430,
+      "voiceStart": 1148,
+      "voiceEnd": 1378,
+      "audio": "media/audio/05-c0c9814f075d.wav"
+    },
+    {
+      "id": "06",
+      "region": "scope",
+      "text": "That is one subject, one setting, and a short term exam. It does not establish permanent damage, or that artificial intelligence cannot teach.",
+      "claim": "Study scope",
+      "start": 1430,
+      "end": 1670,
+      "voiceStart": 1436,
+      "voiceEnd": 1623,
+      "audio": "media/audio/06-0d82506cd7e8.wav"
+    },
+    {
+      "id": "07",
+      "region": "physics",
+      "text": "In a separate college physics experiment, a carefully designed tutor produced higher immediate test scores than an active classroom lesson. Design matters. Long term retention remains a separate question.",
+      "claim": "Kestin et al.",
+      "start": 1670,
+      "end": 2006,
+      "voiceStart": 1676,
+      "voiceEnd": 1918,
+      "audio": "media/audio/07-953d4fa7c728.wav"
+    },
+    {
+      "id": "08",
+      "region": "thinking",
+      "text": "What thinking remains yours? If choosing a method is the skill you need, handing over that choice also removes an opportunity to practise.",
+      "claim": "Editorial application",
+      "start": 2006,
+      "end": 2246,
+      "voiceStart": 2012,
+      "voiceEnd": 2204,
+      "audio": "media/candidates/08-seed-1000/08-5d734a273df2.wav"
+    },
+    {
+      "id": "09",
+      "region": "recognition",
+      "text": "An explanation can feel obvious while it is visible. Recognizing the steps is different from producing them with the answer covered.",
+      "claim": "Learning versus performance",
+      "start": 2246,
+      "end": 2462,
+      "voiceStart": 2252,
+      "voiceEnd": 2420,
+      "audio": "media/audio/09-a10340b73662.wav"
+    },
+    {
+      "id": "10",
+      "region": "example",
+      "text": "Beginners still need guidance. A clear worked example can be useful. The support should change as understanding grows.",
+      "claim": "Worked examples; editorial synthesis",
+      "start": 2462,
+      "end": 2678,
+      "voiceStart": 2468,
+      "voiceEnd": 2642,
+      "audio": "media/audio/10-387b7e471783.wav"
+    },
+    {
+      "id": "11",
+      "region": "attempt",
+      "text": "Make a first attempt if you know enough to start. If the topic is new, study one example. Ask for a hint about the step you cannot explain.",
+      "claim": "Practical suggestion",
+      "start": 2678,
+      "end": 2990,
+      "voiceStart": 2684,
+      "voiceEnd": 2899,
+      "audio": "media/candidates/11-seed-1000/11-a8a84d9050ad.wav"
+    },
+    {
+      "id": "12",
+      "region": "recall",
+      "text": "Hide the answer. Explain the method from memory. Check it, and correct the mistake. The check matters as much as the attempt.",
+      "claim": "Practical suggestion",
+      "start": 2990,
+      "end": 3254,
+      "voiceStart": 2996,
+      "voiceEnd": 3166,
+      "audio": "media/audio/12-dc8d5feebe26.wav"
+    },
+    {
+      "id": "13",
+      "region": "transfer",
+      "text": "Change the numbers or the situation. Try again without help. Come back later for another fresh problem. Test transfer and retention separately.",
+      "claim": "Practical suggestion",
+      "start": 3254,
+      "end": 3518,
+      "voiceStart": 3260,
+      "voiceEnd": 3460,
+      "audio": "media/candidates/13-trim-199200/13-742c9c3d47b2.wav"
+    },
+    {
+      "id": "14",
+      "region": "closing",
+      "text": "Use artificial intelligence to make the next independent attempt better. What can you do when the answer is gone?",
+      "claim": "Editorial conclusion",
+      "start": 3518,
+      "end": 3734,
+      "voiceStart": 3524,
+      "voiceEnd": 3672,
+      "audio": "media/audio/14-58199963629b.wav"
+    }
+  ],
+  "elements": [
+    {
+      "type": "photo",
+      "asset": "notebookCutout",
+      "x": 210,
+      "y": 120,
+      "w": 1120,
+      "h": 747,
+      "at": -1,
+      "rot": -3,
+      "alpha": true,
+      "depth": 8,
+      "id": "photo-0"
+    },
+    {
+      "type": "paper",
+      "x": 520,
+      "y": 340,
+      "w": 600,
+      "h": 185,
+      "lines": [
+        {
+          "text": "3x + 6 = 21",
+          "size": 68
+        },
+        {
+          "text": "x = 5",
+          "size": 61
+        }
+      ],
+      "at": -0.5,
+      "depth": 8,
+      "rot": -3,
+      "pad": 32,
+      "leading": 77,
+      "id": "paper-1"
+    },
+    {
+      "type": "marker",
+      "text": "FINISHED",
+      "x": 1450,
+      "y": 340,
+      "size": 145,
+      "at": 0.1,
+      "dur": 0.55,
+      "color": "#1f4fc8",
+      "id": "marker-2"
+    },
+    {
+      "type": "dimension",
+      "x": 1300,
+      "y": 440,
+      "w": 840,
+      "at": 0.05,
+      "dur": 0.28,
+      "id": "dimension-3"
+    },
+    {
+      "type": "person",
+      "x": 1510,
+      "y": 680,
+      "size": 410,
+      "at": 0.8,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-4"
+    },
+    {
+      "type": "marker",
+      "text": "Can you do it alone?",
+      "x": 1600,
+      "y": 590,
+      "size": 90,
+      "at": 3.2,
+      "dur": 0.8999999999999999,
+      "eraseAt": 102.58333333333333,
+      "id": "marker-5"
+    },
+    {
+      "type": "paper",
+      "x": 520,
+      "y": 337,
+      "w": 605,
+      "h": 190,
+      "lines": [],
+      "at": 4.583333333333333,
+      "depth": 8,
+      "rot": -3,
+      "id": "paper-6"
+    },
+    {
+      "type": "marker",
+      "text": "?",
+      "x": 760,
+      "y": 477,
+      "size": 105,
+      "at": 5.083333333333333,
+      "dur": 0.4,
+      "color": "#d33a21",
+      "id": "marker-7"
+    },
+    {
+      "type": "stamp",
+      "x": 2200,
+      "y": 740,
+      "w": 450,
+      "h": 133,
+      "text": "CHECK AGAIN",
+      "size": 50,
+      "at": 5.783333333333333,
+      "rot": -6,
+      "eraseAt": 102.58333333333333,
+      "id": "stamp-8"
+    },
+    {
+      "type": "paper",
+      "x": 330,
+      "y": 1040,
+      "w": 660,
+      "h": 135,
+      "lines": [
+        {
+          "text": "WITH HELP",
+          "size": 65
+        }
+      ],
+      "at": 9.883333333333335,
+      "depth": 8,
+      "tag": true,
+      "pad": 66,
+      "leading": 88,
+      "id": "paper-9"
+    },
+    {
+      "type": "person",
+      "x": 550,
+      "y": 900,
+      "size": 210,
+      "at": 9.683333333333335,
+      "dur": 1.3,
+      "pose": "teacher",
+      "id": "person-10"
+    },
+    {
+      "type": "marker",
+      "text": "performance",
+      "x": 340,
+      "y": 1270,
+      "size": 76,
+      "at": 10.883333333333335,
+      "dur": 0.495,
+      "id": "marker-11"
+    },
+    {
+      "type": "paper",
+      "x": 1130,
+      "y": 1040,
+      "w": 660,
+      "h": 135,
+      "lines": [
+        {
+          "text": "ALONE",
+          "size": 65
+        }
+      ],
+      "at": 10.983333333333334,
+      "depth": 8,
+      "tag": true,
+      "pad": 66,
+      "leading": 88,
+      "id": "paper-12"
+    },
+    {
+      "type": "person",
+      "x": 1350,
+      "y": 900,
+      "size": 210,
+      "at": 10.783333333333335,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-13"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          1020,
+          1010
+        ],
+        [
+          1095,
+          1010
+        ]
+      ],
+      "at": 10.983333333333334,
+      "dur": 0.65,
+      "color": "#1f4fc8",
+      "width": 7,
+      "id": "line-14"
+    },
+    {
+      "type": "marker",
+      "text": "independence",
+      "x": 1140,
+      "y": 1270,
+      "size": 76,
+      "at": 11.983333333333334,
+      "dur": 0.54,
+      "id": "marker-15"
+    },
+    {
+      "type": "paper",
+      "x": 1930,
+      "y": 1040,
+      "w": 660,
+      "h": 135,
+      "lines": [
+        {
+          "text": "LATER",
+          "size": 65
+        }
+      ],
+      "at": 12.083333333333334,
+      "depth": 8,
+      "tag": true,
+      "pad": 66,
+      "leading": 88,
+      "id": "paper-16"
+    },
+    {
+      "type": "person",
+      "x": 2150,
+      "y": 900,
+      "size": 210,
+      "at": 11.883333333333335,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-17"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          1820,
+          1010
+        ],
+        [
+          1895,
+          1010
+        ]
+      ],
+      "at": 12.083333333333334,
+      "dur": 0.65,
+      "color": "#1f4fc8",
+      "width": 7,
+      "id": "line-18"
+    },
+    {
+      "type": "marker",
+      "text": "retention",
+      "x": 1940,
+      "y": 1270,
+      "size": 76,
+      "at": 13.083333333333334,
+      "dur": 0.40499999999999997,
+      "id": "marker-19"
+    },
+    {
+      "type": "paper",
+      "x": 2730,
+      "y": 1040,
+      "w": 660,
+      "h": 135,
+      "lines": [
+        {
+          "text": "NEW PROBLEM",
+          "size": 65
+        }
+      ],
+      "at": 13.183333333333334,
+      "depth": 8,
+      "tag": true,
+      "pad": 66,
+      "leading": 88,
+      "id": "paper-20"
+    },
+    {
+      "type": "person",
+      "x": 2950,
+      "y": 900,
+      "size": 210,
+      "at": 12.983333333333334,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-21"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          2620,
+          1010
+        ],
+        [
+          2695,
+          1010
+        ]
+      ],
+      "at": 13.183333333333334,
+      "dur": 0.65,
+      "color": "#1f4fc8",
+      "width": 7,
+      "id": "line-22"
+    },
+    {
+      "type": "marker",
+      "text": "transfer",
+      "x": 2740,
+      "y": 1270,
+      "size": 76,
+      "at": 14.183333333333334,
+      "dur": 0.4,
+      "id": "marker-23"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          400,
+          1320
+        ],
+        [
+          2960,
+          1320
+        ]
+      ],
+      "at": 15.583333333333334,
+      "dur": 0.65,
+      "color": "#6c727b",
+      "width": 3,
+      "id": "line-24"
+    },
+    {
+      "type": "flag",
+      "x": 2810,
+      "y": 210,
+      "size": 360,
+      "at": 21.883333333333333,
+      "dur": 1.2,
+      "id": "flag-25"
+    },
+    {
+      "type": "marker",
+      "text": "TURKEY",
+      "x": 3200,
+      "y": 315,
+      "size": 100,
+      "at": 22.28333333333333,
+      "dur": 0.4,
+      "id": "marker-26"
+    },
+    {
+      "type": "marker",
+      "text": "~1,000 students",
+      "x": 3200,
+      "y": 440,
+      "size": 88,
+      "at": 23.083333333333332,
+      "dur": 0.6749999999999999,
+      "id": "marker-27"
+    },
+    {
+      "type": "person",
+      "x": 2900,
+      "y": 660,
+      "size": 265,
+      "at": 23.583333333333332,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-28"
+    },
+    {
+      "type": "person",
+      "x": 3240,
+      "y": 660,
+      "size": 265,
+      "at": 23.98333333333333,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-29"
+    },
+    {
+      "type": "person",
+      "x": 3580,
+      "y": 660,
+      "size": 265,
+      "at": 24.383333333333333,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-30"
+    },
+    {
+      "type": "paper",
+      "x": 3380,
+      "y": 790,
+      "w": 680,
+      "h": 250,
+      "lines": [
+        {
+          "text": "MATHS EXPERIMENT",
+          "size": 48
+        },
+        {
+          "text": "Randomized groups",
+          "size": 48
+        },
+        {
+          "text": "Bastani et al.",
+          "size": 41
+        }
+      ],
+      "at": 24.583333333333332,
+      "depth": 8,
+      "rot": 2,
+      "leading": 67,
+      "id": "paper-31"
+    },
+    {
+      "type": "marker",
+      "text": "SAME STUDY. TWO TESTS.",
+      "x": 410,
+      "y": 1480,
+      "size": 112,
+      "at": 25.583333333333332,
+      "dur": 0.99,
+      "id": "marker-32"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          650,
+          1550
+        ],
+        [
+          650,
+          2530
+        ]
+      ],
+      "at": 26.583333333333332,
+      "dur": 1.2,
+      "color": "#1f4fc8",
+      "width": 4,
+      "dash": [
+        25,
+        20
+      ],
+      "id": "line-33"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          1650,
+          1550
+        ],
+        [
+          1650,
+          2530
+        ]
+      ],
+      "at": 26.583333333333332,
+      "dur": 1.2,
+      "color": "#1f4fc8",
+      "width": 4,
+      "dash": [
+        25,
+        20
+      ],
+      "id": "line-34"
+    },
+    {
+      "type": "ruler",
+      "x": 638,
+      "y": 1540,
+      "w": 1220,
+      "at": 27.083333333333332,
+      "depth": 11,
+      "id": "ruler-35"
+    },
+    {
+      "type": "marker",
+      "text": "control index = 100",
+      "x": 1900,
+      "y": 1610,
+      "size": 72,
+      "at": 27.583333333333332,
+      "dur": 0.855,
+      "color": "#6c727b",
+      "id": "marker-36"
+    },
+    {
+      "type": "paper",
+      "x": 450,
+      "y": 1710,
+      "w": 785,
+      "h": 155,
+      "lines": [
+        {
+          "text": "PRACTICE WITH AI",
+          "size": 68
+        }
+      ],
+      "at": 27.983333333333334,
+      "depth": 8,
+      "tag": true,
+      "pad": 66,
+      "leading": 98,
+      "id": "paper-37"
+    },
+    {
+      "type": "paper",
+      "x": 1320,
+      "y": 1690,
+      "w": 560,
+      "h": 180,
+      "lines": [
+        {
+          "text": "3x + 6 = 21",
+          "size": 61
+        },
+        {
+          "text": "x = 5",
+          "size": 54
+        }
+      ],
+      "at": 28.133333333333333,
+      "depth": 8,
+      "rot": -2,
+      "leading": 75,
+      "id": "paper-38"
+    },
+    {
+      "type": "person",
+      "x": 2690,
+      "y": 1660,
+      "size": 210,
+      "at": 28.18333333333333,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-39"
+    },
+    {
+      "type": "dimension",
+      "x": 650,
+      "y": 1945,
+      "w": 1480,
+      "at": 28.233333333333334,
+      "dur": 0.6,
+      "id": "dimension-40"
+    },
+    {
+      "type": "marker",
+      "text": "148",
+      "x": 2160,
+      "y": 1974,
+      "size": 112,
+      "at": 28.883333333333333,
+      "dur": 0.4,
+      "color": "#1f4fc8",
+      "id": "marker-41"
+    },
+    {
+      "type": "marker",
+      "text": "+48%",
+      "x": 2420,
+      "y": 1950,
+      "size": 150,
+      "at": 28.983333333333334,
+      "dur": 0.4,
+      "color": "#1f4fc8",
+      "id": "marker-42"
+    },
+    {
+      "type": "marker",
+      "text": "relative to control",
+      "x": 2410,
+      "y": 2040,
+      "size": 65,
+      "at": 29.78333333333333,
+      "dur": 0.855,
+      "id": "marker-43"
+    },
+    {
+      "type": "paper",
+      "x": 450,
+      "y": 2180,
+      "w": 800,
+      "h": 155,
+      "lines": [
+        {
+          "text": "EXAM WITHOUT AI",
+          "size": 67
+        }
+      ],
+      "at": 36.983333333333334,
+      "depth": 8,
+      "tag": true,
+      "pad": 66,
+      "leading": 98,
+      "id": "paper-44"
+    },
+    {
+      "type": "paper",
+      "x": 1300,
+      "y": 2150,
+      "w": 535,
+      "h": 170,
+      "lines": [
+        {
+          "text": "3x + 6 = 21",
+          "size": 61
+        },
+        {
+          "text": "x = ?",
+          "size": 54
+        }
+      ],
+      "at": 37.28333333333334,
+      "depth": 8,
+      "rot": 2,
+      "leading": 72,
+      "id": "paper-45"
+    },
+    {
+      "type": "person",
+      "x": 2770,
+      "y": 2180,
+      "size": 210,
+      "at": 37.583333333333336,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-46"
+    },
+    {
+      "type": "dimension",
+      "x": 650,
+      "y": 2430,
+      "w": 830,
+      "at": 38.28333333333334,
+      "dur": 1,
+      "id": "dimension-47"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          1480,
+          2430
+        ],
+        [
+          1650,
+          2430
+        ]
+      ],
+      "at": 39.28333333333334,
+      "dur": 0.65,
+      "color": "#d33a21",
+      "width": 7,
+      "dash": [
+        15,
+        13
+      ],
+      "id": "line-48"
+    },
+    {
+      "type": "marker",
+      "text": "83",
+      "x": 1510,
+      "y": 2530,
+      "size": 110,
+      "at": 39.38333333333333,
+      "dur": 0.4,
+      "color": "#1f4fc8",
+      "id": "marker-49"
+    },
+    {
+      "type": "marker",
+      "text": "−17%",
+      "x": 1870,
+      "y": 2470,
+      "size": 160,
+      "at": 39.78333333333334,
+      "dur": 0.4,
+      "color": "#d33a21",
+      "id": "marker-50"
+    },
+    {
+      "type": "stamp",
+      "x": 2410,
+      "y": 2370,
+      "w": 650,
+      "h": 145,
+      "text": "WEAKER ALONE",
+      "size": 61,
+      "at": 40.583333333333336,
+      "rot": -5,
+      "id": "stamp-51"
+    },
+    {
+      "type": "marker",
+      "text": "Better practice ≠ better exam",
+      "x": 450,
+      "y": 2690,
+      "size": 105,
+      "at": 41.583333333333336,
+      "dur": 1.305,
+      "color": "#23272e",
+      "id": "marker-52"
+    },
+    {
+      "type": "paper",
+      "x": 420,
+      "y": 2800,
+      "w": 650,
+      "h": 145,
+      "lines": [
+        {
+          "text": "TEACHER HINTS",
+          "size": 66
+        }
+      ],
+      "at": 47.983333333333334,
+      "depth": 8,
+      "tag": true,
+      "pad": 65,
+      "leading": 94,
+      "id": "paper-53"
+    },
+    {
+      "type": "person",
+      "x": 1190,
+      "y": 2850,
+      "size": 275,
+      "at": 48.28333333333334,
+      "dur": 1.3,
+      "pose": "teacher",
+      "id": "person-54"
+    },
+    {
+      "type": "paper",
+      "x": 1440,
+      "y": 2760,
+      "w": 470,
+      "h": 245,
+      "lines": [
+        {
+          "text": "What is the",
+          "size": 55
+        },
+        {
+          "text": "first step?",
+          "size": 55
+        }
+      ],
+      "at": 49.38333333333333,
+      "depth": 8,
+      "rot": -3,
+      "leading": 80,
+      "id": "paper-55"
+    },
+    {
+      "type": "person",
+      "x": 2110,
+      "y": 2860,
+      "size": 275,
+      "at": 49.983333333333334,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-56"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          1300,
+          2790
+        ],
+        [
+          1430,
+          2790
+        ]
+      ],
+      "at": 49.583333333333336,
+      "dur": 0.65,
+      "color": "#1f4fc8",
+      "id": "line-57"
+    },
+    {
+      "type": "marker",
+      "text": "Penalty largely removed",
+      "x": 2400,
+      "y": 2850,
+      "size": 89,
+      "at": 51.583333333333336,
+      "dur": 1.035,
+      "id": "marker-58"
+    },
+    {
+      "type": "marker",
+      "text": "Exam gain: not established",
+      "x": 2400,
+      "y": 2970,
+      "size": 81,
+      "at": 53.583333333333336,
+      "dur": 1.17,
+      "color": "#6c727b",
+      "id": "marker-59"
+    },
+    {
+      "type": "paper",
+      "x": 3320,
+      "y": 1150,
+      "w": 870,
+      "h": 370,
+      "lines": [
+        {
+          "text": "A DIFFERENT DESIGN",
+          "size": 65
+        },
+        {
+          "text": "College physics tutor",
+          "size": 62
+        },
+        {
+          "text": "Higher immediate scores",
+          "size": 55,
+          "color": "#1f4fc8"
+        },
+        {
+          "text": "Kestin et al. · 2025",
+          "size": 42
+        }
+      ],
+      "at": 70.08333333333333,
+      "depth": 8,
+      "rot": -1.5,
+      "leading": 84,
+      "id": "paper-60"
+    },
+    {
+      "type": "person",
+      "x": 3400,
+      "y": 1730,
+      "size": 270,
+      "at": 71.18333333333332,
+      "dur": 1.3,
+      "pose": "teacher",
+      "id": "person-61"
+    },
+    {
+      "type": "person",
+      "x": 3770,
+      "y": 1730,
+      "size": 270,
+      "at": 71.78333333333333,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-62"
+    },
+    {
+      "type": "marker",
+      "text": "F = ma",
+      "x": 3560,
+      "y": 1600,
+      "size": 68,
+      "at": 73.58333333333333,
+      "dur": 0.4,
+      "color": "#1f4fc8",
+      "id": "marker-63"
+    },
+    {
+      "type": "circle",
+      "x": 3660,
+      "y": 1575,
+      "r": 42,
+      "at": 74.58333333333333,
+      "dur": 0.7,
+      "rx": 2.4,
+      "color": "#1f4fc8",
+      "width": 4,
+      "id": "circle-64"
+    },
+    {
+      "type": "paper",
+      "x": 3290,
+      "y": 2070,
+      "w": 910,
+      "h": 340,
+      "lines": [
+        {
+          "text": "WHAT THESE TESTS SHOW",
+          "size": 58
+        },
+        {
+          "text": "Immediate performance",
+          "size": 60
+        },
+        {
+          "text": "Not months of retention",
+          "size": 54
+        },
+        {
+          "text": "Not permanent damage",
+          "size": 54
+        }
+      ],
+      "at": 59.88333333333333,
+      "depth": 8,
+      "rot": 1.4,
+      "leading": 76,
+      "id": "paper-65"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          3340,
+          2450
+        ],
+        [
+          4140,
+          2450
+        ]
+      ],
+      "at": 61.583333333333336,
+      "dur": 0.65,
+      "color": "#6c727b",
+      "width": 4,
+      "id": "line-66"
+    },
+    {
+      "type": "marker",
+      "text": "Design matters.",
+      "x": 3330,
+      "y": 2590,
+      "size": 125,
+      "at": 76.58333333333333,
+      "dur": 0.6749999999999999,
+      "color": "#23272e",
+      "id": "marker-67"
+    },
+    {
+      "type": "marker",
+      "text": "I can follow it ≠ I know it",
+      "x": 425,
+      "y": 3130,
+      "size": 100,
+      "at": 94.08333333333333,
+      "dur": 1.2149999999999999,
+      "eraseAt": 124.58333333333333,
+      "id": "marker-68"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          430,
+          3160
+        ],
+        [
+          1770,
+          3160
+        ]
+      ],
+      "at": 95.58333333333333,
+      "dur": 0.65,
+      "color": "#d33a21",
+      "width": 6,
+      "eraseAt": 124.58333333333333,
+      "id": "line-69"
+    },
+    {
+      "type": "marker",
+      "text": "Which step is yours?",
+      "x": 2420,
+      "y": 3180,
+      "size": 94,
+      "at": 83.88333333333333,
+      "dur": 0.8999999999999999,
+      "id": "marker-70"
+    },
+    {
+      "type": "person",
+      "x": 3550,
+      "y": 3020,
+      "size": 265,
+      "at": 84.58333333333333,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-71"
+    },
+    {
+      "type": "paper",
+      "x": 3740,
+      "y": 2850,
+      "w": 500,
+      "h": 225,
+      "lines": [
+        {
+          "text": "CHOOSE",
+          "size": 66
+        },
+        {
+          "text": "THE METHOD",
+          "size": 55
+        }
+      ],
+      "at": 85.38333333333333,
+      "depth": 8,
+      "rot": -2,
+      "leading": 77,
+      "id": "paper-72"
+    },
+    {
+      "type": "paper",
+      "x": 420,
+      "y": 3250,
+      "w": 1080,
+      "h": 145,
+      "lines": [
+        {
+          "text": "1  GET THE RIGHT HELP",
+          "size": 55
+        }
+      ],
+      "at": 111.98333333333333,
+      "depth": 8,
+      "tag": true,
+      "pad": 65,
+      "leading": 94,
+      "id": "paper-73"
+    },
+    {
+      "type": "person",
+      "x": 600,
+      "y": 3495,
+      "size": 180,
+      "at": 112.38333333333334,
+      "dur": 1.3,
+      "pose": "teacher",
+      "id": "person-74"
+    },
+    {
+      "type": "marker",
+      "text": "example + hint",
+      "x": 820,
+      "y": 3490,
+      "size": 62,
+      "at": 112.98333333333333,
+      "dur": 0.63,
+      "id": "marker-75"
+    },
+    {
+      "type": "paper",
+      "x": 1570,
+      "y": 3250,
+      "w": 1080,
+      "h": 145,
+      "lines": [
+        {
+          "text": "2  HIDE · EXPLAIN · CHECK",
+          "size": 55
+        }
+      ],
+      "at": 124.98333333333333,
+      "depth": 8,
+      "tag": true,
+      "pad": 65,
+      "leading": 94,
+      "id": "paper-76"
+    },
+    {
+      "type": "person",
+      "x": 1750,
+      "y": 3495,
+      "size": 180,
+      "at": 125.38333333333334,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-77"
+    },
+    {
+      "type": "marker",
+      "text": "memory + feedback",
+      "x": 1970,
+      "y": 3490,
+      "size": 62,
+      "at": 125.98333333333333,
+      "dur": 0.765,
+      "id": "marker-78"
+    },
+    {
+      "type": "paper",
+      "x": 2800,
+      "y": 3250,
+      "w": 1080,
+      "h": 145,
+      "lines": [
+        {
+          "text": "3  CHANGE IT · RETURN",
+          "size": 55
+        }
+      ],
+      "at": 135.98333333333335,
+      "depth": 8,
+      "tag": true,
+      "pad": 65,
+      "leading": 94,
+      "id": "paper-79"
+    },
+    {
+      "type": "person",
+      "x": 2980,
+      "y": 3495,
+      "size": 180,
+      "at": 136.38333333333335,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-80"
+    },
+    {
+      "type": "marker",
+      "text": "new problem + later",
+      "x": 3200,
+      "y": 3490,
+      "size": 62,
+      "at": 136.98333333333335,
+      "dur": 0.855,
+      "id": "marker-81"
+    },
+    {
+      "type": "paper",
+      "x": 1930,
+      "y": 412,
+      "w": 650,
+      "h": 340,
+      "lines": [
+        {
+          "text": "WORKED EXAMPLE",
+          "size": 51
+        },
+        {
+          "text": "3x + 6 = 21",
+          "size": 62
+        },
+        {
+          "text": "3x = 15  →  x = 5",
+          "size": 51
+        }
+      ],
+      "at": 102.98333333333333,
+      "depth": 8,
+      "rot": 2,
+      "leading": 80,
+      "id": "paper-82"
+    },
+    {
+      "type": "photo",
+      "asset": "notebookCutout",
+      "x": 4590,
+      "y": 240,
+      "w": 720,
+      "h": 480,
+      "at": 0,
+      "rot": -4,
+      "alpha": true,
+      "depth": 8,
+      "id": "photo-83"
+    },
+    {
+      "type": "paper",
+      "x": 5460,
+      "y": 260,
+      "w": 610,
+      "h": 400,
+      "lines": [
+        {
+          "text": "EVIDENCE NOTES",
+          "size": 56
+        },
+        {
+          "text": "Practice: 148 / 100",
+          "size": 48,
+          "color": "#1f4fc8"
+        },
+        {
+          "text": "Exam: 83 / 100",
+          "size": 48,
+          "color": "#1f4fc8"
+        },
+        {
+          "text": "Relative changes.",
+          "size": 43
+        },
+        {
+          "text": "Different tests.",
+          "size": 43
+        }
+      ],
+      "at": 0,
+      "depth": 8,
+      "rot": 3,
+      "leading": 69,
+      "id": "paper-84"
+    },
+    {
+      "type": "marker",
+      "text": "LEARN",
+      "x": 4550,
+      "y": 1230,
+      "size": 300,
+      "at": 149.58333333333334,
+      "dur": 0.9,
+      "color": "#d33a21",
+      "id": "marker-85"
+    },
+    {
+      "type": "marker",
+      "text": "WITHOUT",
+      "x": 4550,
+      "y": 1580,
+      "size": 255,
+      "at": 150.28333333333333,
+      "dur": 1,
+      "id": "marker-86"
+    },
+    {
+      "type": "marker",
+      "text": "THE ANSWER.",
+      "x": 4550,
+      "y": 1920,
+      "size": 220,
+      "at": 150.98333333333335,
+      "dur": 1,
+      "id": "marker-87"
+    },
+    {
+      "type": "line",
+      "points": [
+        [
+          4200,
+          3170
+        ],
+        [
+          4350,
+          3170
+        ],
+        [
+          4400,
+          2000
+        ],
+        [
+          4500,
+          1940
+        ]
+      ],
+      "at": 148.58333333333334,
+      "dur": 1.8,
+      "width": 8,
+      "id": "line-88"
+    },
+    {
+      "type": "person",
+      "x": 4900,
+      "y": 2300,
+      "size": 420,
+      "at": 0,
+      "dur": 1.3,
+      "pose": "write",
+      "id": "person-89"
+    },
+    {
+      "type": "marker",
+      "text": "A fresh attempt.",
+      "x": 5240,
+      "y": 2240,
+      "size": 102,
+      "at": 0,
+      "dur": 0.72,
+      "id": "marker-90"
+    },
+    {
+      "type": "marker",
+      "text": "Then come back later.",
+      "x": 5240,
+      "y": 2390,
+      "size": 80,
+      "at": 0,
+      "dur": 0.945,
+      "id": "marker-91"
+    },
+    {
+      "type": "paper",
+      "x": 4500,
+      "y": 2720,
+      "w": 1580,
+      "h": 610,
+      "lines": [
+        {
+          "text": "Does AI Help You Learn—",
+          "size": 94,
+          "weight": 700
+        },
+        {
+          "text": "or Just Finish?",
+          "size": 108,
+          "weight": 700
+        },
+        {
+          "text": "ENGINEERING BRIEFING BOARD",
+          "size": 52
+        },
+        {
+          "text": "LeoGuoLabs · A film made with Codex",
+          "size": 44
+        }
+      ],
+      "at": 0,
+      "depth": 8,
+      "leading": 125,
+      "pad": 65,
+      "rule": 310,
+      "id": "paper-92"
+    }
+  ],
+  "events": [
+    {
+      "id": "marker-2",
+      "frame": 2,
+      "kind": "marker",
+      "duration": 13
+    },
+    {
+      "id": "dimension-3",
+      "frame": 1,
+      "kind": "dimension",
+      "duration": 7
+    },
+    {
+      "id": "person-4",
+      "frame": 19,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "marker-5",
+      "frame": 77,
+      "kind": "marker",
+      "duration": 22
+    },
+    {
+      "id": "paper-6",
+      "frame": 110,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "marker-7",
+      "frame": 122,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "stamp-8",
+      "frame": 139,
+      "kind": "stamp",
+      "duration": 7
+    },
+    {
+      "id": "paper-9",
+      "frame": 237,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-10",
+      "frame": 232,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "marker-11",
+      "frame": 261,
+      "kind": "marker",
+      "duration": 12
+    },
+    {
+      "id": "paper-12",
+      "frame": 264,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-13",
+      "frame": 259,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "line-14",
+      "frame": 264,
+      "kind": "line",
+      "duration": 16
+    },
+    {
+      "id": "marker-15",
+      "frame": 288,
+      "kind": "marker",
+      "duration": 13
+    },
+    {
+      "id": "paper-16",
+      "frame": 290,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-17",
+      "frame": 285,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "line-18",
+      "frame": 290,
+      "kind": "line",
+      "duration": 16
+    },
+    {
+      "id": "marker-19",
+      "frame": 314,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "paper-20",
+      "frame": 316,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-21",
+      "frame": 312,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "line-22",
+      "frame": 316,
+      "kind": "line",
+      "duration": 16
+    },
+    {
+      "id": "marker-23",
+      "frame": 340,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "line-24",
+      "frame": 374,
+      "kind": "line",
+      "duration": 16
+    },
+    {
+      "id": "flag-25",
+      "frame": 525,
+      "kind": "flag",
+      "duration": 29
+    },
+    {
+      "id": "marker-26",
+      "frame": 535,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "marker-27",
+      "frame": 554,
+      "kind": "marker",
+      "duration": 16
+    },
+    {
+      "id": "person-28",
+      "frame": 566,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "person-29",
+      "frame": 576,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "person-30",
+      "frame": 585,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "paper-31",
+      "frame": 590,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "marker-32",
+      "frame": 614,
+      "kind": "marker",
+      "duration": 24
+    },
+    {
+      "id": "line-33",
+      "frame": 638,
+      "kind": "line",
+      "duration": 29
+    },
+    {
+      "id": "line-34",
+      "frame": 638,
+      "kind": "line",
+      "duration": 29
+    },
+    {
+      "id": "ruler-35",
+      "frame": 650,
+      "kind": "ruler",
+      "duration": 7
+    },
+    {
+      "id": "marker-36",
+      "frame": 662,
+      "kind": "marker",
+      "duration": 21
+    },
+    {
+      "id": "paper-37",
+      "frame": 672,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "paper-38",
+      "frame": 675,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-39",
+      "frame": 676,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "dimension-40",
+      "frame": 678,
+      "kind": "dimension",
+      "duration": 14
+    },
+    {
+      "id": "marker-41",
+      "frame": 693,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "marker-42",
+      "frame": 696,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "marker-43",
+      "frame": 715,
+      "kind": "marker",
+      "duration": 21
+    },
+    {
+      "id": "paper-44",
+      "frame": 888,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "paper-45",
+      "frame": 895,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-46",
+      "frame": 902,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "dimension-47",
+      "frame": 919,
+      "kind": "dimension",
+      "duration": 24
+    },
+    {
+      "id": "line-48",
+      "frame": 943,
+      "kind": "line",
+      "duration": 16
+    },
+    {
+      "id": "marker-49",
+      "frame": 945,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "marker-50",
+      "frame": 955,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "stamp-51",
+      "frame": 974,
+      "kind": "stamp",
+      "duration": 7
+    },
+    {
+      "id": "marker-52",
+      "frame": 998,
+      "kind": "marker",
+      "duration": 31
+    },
+    {
+      "id": "paper-53",
+      "frame": 1152,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-54",
+      "frame": 1159,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "paper-55",
+      "frame": 1185,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-56",
+      "frame": 1200,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "line-57",
+      "frame": 1190,
+      "kind": "line",
+      "duration": 16
+    },
+    {
+      "id": "marker-58",
+      "frame": 1238,
+      "kind": "marker",
+      "duration": 25
+    },
+    {
+      "id": "marker-59",
+      "frame": 1286,
+      "kind": "marker",
+      "duration": 28
+    },
+    {
+      "id": "paper-60",
+      "frame": 1682,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-61",
+      "frame": 1708,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "person-62",
+      "frame": 1723,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "marker-63",
+      "frame": 1766,
+      "kind": "marker",
+      "duration": 10
+    },
+    {
+      "id": "circle-64",
+      "frame": 1790,
+      "kind": "circle",
+      "duration": 17
+    },
+    {
+      "id": "paper-65",
+      "frame": 1437,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "line-66",
+      "frame": 1478,
+      "kind": "line",
+      "duration": 16
+    },
+    {
+      "id": "marker-67",
+      "frame": 1838,
+      "kind": "marker",
+      "duration": 16
+    },
+    {
+      "id": "marker-68",
+      "frame": 2258,
+      "kind": "marker",
+      "duration": 29
+    },
+    {
+      "id": "line-69",
+      "frame": 2294,
+      "kind": "line",
+      "duration": 16
+    },
+    {
+      "id": "marker-70",
+      "frame": 2013,
+      "kind": "marker",
+      "duration": 22
+    },
+    {
+      "id": "person-71",
+      "frame": 2030,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "paper-72",
+      "frame": 2049,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "paper-73",
+      "frame": 2688,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-74",
+      "frame": 2697,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "marker-75",
+      "frame": 2712,
+      "kind": "marker",
+      "duration": 15
+    },
+    {
+      "id": "paper-76",
+      "frame": 3000,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-77",
+      "frame": 3009,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "marker-78",
+      "frame": 3024,
+      "kind": "marker",
+      "duration": 18
+    },
+    {
+      "id": "paper-79",
+      "frame": 3264,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "person-80",
+      "frame": 3273,
+      "kind": "person",
+      "duration": 31
+    },
+    {
+      "id": "marker-81",
+      "frame": 3288,
+      "kind": "marker",
+      "duration": 21
+    },
+    {
+      "id": "paper-82",
+      "frame": 2472,
+      "kind": "paper",
+      "duration": 7
+    },
+    {
+      "id": "marker-85",
+      "frame": 3590,
+      "kind": "marker",
+      "duration": 22
+    },
+    {
+      "id": "marker-86",
+      "frame": 3607,
+      "kind": "marker",
+      "duration": 24
+    },
+    {
+      "id": "marker-87",
+      "frame": 3624,
+      "kind": "marker",
+      "duration": 24
+    },
+    {
+      "id": "line-88",
+      "frame": 3566,
+      "kind": "line",
+      "duration": 43
+    }
+  ],
+  "keys": [
+    {
+      "frame": 0,
+      "x": 1330,
+      "y": 440,
+      "z": 2.2,
+      "roll": -3
+    },
+    {
+      "frame": 26,
+      "x": 1170,
+      "y": 520,
+      "z": 1.22,
+      "roll": -1.2
+    },
+    {
+      "frame": 72,
+      "x": 1500,
+      "y": 540,
+      "z": 0.77,
+      "roll": -1.2
+    },
+    {
+      "frame": 196,
+      "x": 1502,
+      "y": 538,
+      "z": 0.775,
+      "roll": -1.15
+    },
+    {
+      "frame": 242,
+      "x": 1900,
+      "y": 1000,
+      "z": 0.55,
+      "roll": 0.4
+    },
+    {
+      "frame": 484,
+      "x": 1905,
+      "y": 998,
+      "z": 0.5555000000000001,
+      "roll": 0.45
+    },
+    {
+      "frame": 506,
+      "x": 3260,
+      "y": 480,
+      "z": 1.15,
+      "roll": -0.8
+    },
+    {
+      "frame": 614,
+      "x": 3260,
+      "y": 480,
+      "z": 1.17,
+      "roll": -0.5
+    },
+    {
+      "frame": 672,
+      "x": 1700,
+      "y": 1780,
+      "z": 0.59,
+      "roll": -0.3
+    },
+    {
+      "frame": 844,
+      "x": 1705,
+      "y": 1778,
+      "z": 0.5959,
+      "roll": -0.25
+    },
+    {
+      "frame": 890,
+      "x": 1710,
+      "y": 2240,
+      "z": 0.59,
+      "roll": 0.3
+    },
+    {
+      "frame": 1108,
+      "x": 1715,
+      "y": 2238,
+      "z": 0.5959,
+      "roll": 0.35
+    },
+    {
+      "frame": 1154,
+      "x": 2150,
+      "y": 2820,
+      "z": 0.53,
+      "roll": 0
+    },
+    {
+      "frame": 1396,
+      "x": 2155,
+      "y": 2818,
+      "z": 0.5353,
+      "roll": 0.05
+    },
+    {
+      "frame": 1442,
+      "x": 3720,
+      "y": 2250,
+      "z": 1.35,
+      "roll": 1
+    },
+    {
+      "frame": 1636,
+      "x": 3725,
+      "y": 2248,
+      "z": 1.3635000000000002,
+      "roll": 1.05
+    },
+    {
+      "frame": 1682,
+      "x": 3710,
+      "y": 1520,
+      "z": 1.17,
+      "roll": -0.8
+    },
+    {
+      "frame": 1972,
+      "x": 3715,
+      "y": 1518,
+      "z": 1.1817,
+      "roll": -0.75
+    },
+    {
+      "frame": 2018,
+      "x": 3310,
+      "y": 3040,
+      "z": 0.94,
+      "roll": 0.5
+    },
+    {
+      "frame": 2212,
+      "x": 3315,
+      "y": 3038,
+      "z": 0.9493999999999999,
+      "roll": 0.55
+    },
+    {
+      "frame": 2258,
+      "x": 1120,
+      "y": 3130,
+      "z": 1.08,
+      "roll": -0.6
+    },
+    {
+      "frame": 2428,
+      "x": 1125,
+      "y": 3128,
+      "z": 1.0908,
+      "roll": -0.5499999999999999
+    },
+    {
+      "frame": 2474,
+      "x": 2220,
+      "y": 550,
+      "z": 1.4,
+      "roll": 1
+    },
+    {
+      "frame": 2644,
+      "x": 2225,
+      "y": 548,
+      "z": 1.414,
+      "roll": 1.05
+    },
+    {
+      "frame": 2690,
+      "x": 1050,
+      "y": 3040,
+      "z": 0.78,
+      "roll": -0.3
+    },
+    {
+      "frame": 2956,
+      "x": 1055,
+      "y": 3038,
+      "z": 0.7878000000000001,
+      "roll": -0.25
+    },
+    {
+      "frame": 3002,
+      "x": 2130,
+      "y": 3040,
+      "z": 0.78,
+      "roll": 0.4
+    },
+    {
+      "frame": 3220,
+      "x": 2135,
+      "y": 3038,
+      "z": 0.7878000000000001,
+      "roll": 0.45
+    },
+    {
+      "frame": 3266,
+      "x": 3350,
+      "y": 3040,
+      "z": 0.78,
+      "roll": -0.3
+    },
+    {
+      "frame": 3484,
+      "x": 3355,
+      "y": 3038,
+      "z": 0.7878000000000001,
+      "roll": -0.25
+    },
+    {
+      "frame": 3530,
+      "x": 3190,
+      "y": 3040,
+      "z": 0.78,
+      "roll": 0
+    },
+    {
+      "frame": 3700,
+      "x": 3195,
+      "y": 3038,
+      "z": 0.7878000000000001,
+      "roll": 0.05
+    },
+    {
+      "frame": 3706,
+      "x": 3190,
+      "y": 3040,
+      "z": 0.78,
+      "roll": 0
+    },
+    {
+      "frame": 3792,
+      "x": 3200,
+      "y": 1790,
+      "z": 0.279,
+      "roll": 0
+    },
+    {
+      "frame": 3866,
+      "x": 3200,
+      "y": 1790,
+      "z": 0.282,
+      "roll": 0
+    }
+  ],
+  "subtitles": [
+    {
+      "start": 20,
+      "end": 48,
+      "text": "The formula works.",
+      "shotId": "01",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 48,
+      "end": 78,
+      "text": "The deadline is saved.",
+      "shotId": "01",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 78,
+      "end": 111,
+      "text": "Then the answer disappears.",
+      "shotId": "01",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 111,
+      "end": 139,
+      "text": "Can you build it again?",
+      "shotId": "01",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 236,
+      "end": 318,
+      "text": "Finishing with help, doing it alone, remembering it later,",
+      "shotId": "02",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 318,
+      "end": 384,
+      "text": "and solving a new problem are four different tests.",
+      "shotId": "02",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 384,
+      "end": 451,
+      "text": "One successful session cannot answer all four.",
+      "shotId": "02",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 524,
+      "end": 580,
+      "text": "In a randomized study of nearly a thousand high school",
+      "shotId": "03",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 580,
+      "end": 655,
+      "text": "mathematics students in Turkey, an unrestricted chatbot",
+      "shotId": "03",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 655,
+      "end": 713,
+      "text": "improved practice grades by forty eight percent, compared",
+      "shotId": "03",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 713,
+      "end": 745,
+      "text": "with the control group.",
+      "shotId": "03",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 884,
+      "end": 934,
+      "text": "On the exam without the tool, that group scored",
+      "shotId": "04",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 934,
+      "end": 965,
+      "text": "seventeen percent lower.",
+      "shotId": "04",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 965,
+      "end": 1010,
+      "text": "The improvement during practice had hidden",
+      "shotId": "04",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1010,
+      "end": 1049,
+      "text": "weaker independent performance.",
+      "shotId": "04",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1148,
+      "end": 1208,
+      "text": "A tutor built around teacher supplied hints largely",
+      "shotId": "05",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1208,
+      "end": 1233,
+      "text": "removed that penalty.",
+      "shotId": "05",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1233,
+      "end": 1311,
+      "text": "It did not produce a statistically significant exam",
+      "shotId": "05",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1311,
+      "end": 1358,
+      "text": "improvement over the control group.",
+      "shotId": "05",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1436,
+      "end": 1503,
+      "text": "That is one subject, one setting, and a short term exam.",
+      "shotId": "06",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1503,
+      "end": 1578,
+      "text": "It does not establish permanent damage, or that artificial",
+      "shotId": "06",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1578,
+      "end": 1619,
+      "text": "intelligence cannot teach.",
+      "shotId": "06",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1676,
+      "end": 1737,
+      "text": "In a separate college physics experiment, a carefully",
+      "shotId": "07",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1737,
+      "end": 1801,
+      "text": "designed tutor produced higher immediate test scores than",
+      "shotId": "07",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1801,
+      "end": 1834,
+      "text": "an active classroom lesson.",
+      "shotId": "07",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1834,
+      "end": 1859,
+      "text": "Design matters.",
+      "shotId": "07",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 1859,
+      "end": 1920,
+      "text": "Long term retention remains a separate question.",
+      "shotId": "07",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2012,
+      "end": 2055,
+      "text": "What thinking remains yours?",
+      "shotId": "08",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2055,
+      "end": 2125,
+      "text": "If choosing a method is the skill you need, handing over",
+      "shotId": "08",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2125,
+      "end": 2197,
+      "text": "that choice also removes an opportunity to practise.",
+      "shotId": "08",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2252,
+      "end": 2327,
+      "text": "An explanation can feel obvious while it is visible.",
+      "shotId": "09",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2327,
+      "end": 2383,
+      "text": "Recognizing the steps is different from producing them",
+      "shotId": "09",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2383,
+      "end": 2419,
+      "text": "with the answer covered.",
+      "shotId": "09",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2468,
+      "end": 2513,
+      "text": "Beginners still need guidance.",
+      "shotId": "10",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2513,
+      "end": 2570,
+      "text": "A clear worked example can be useful.",
+      "shotId": "10",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2570,
+      "end": 2635,
+      "text": "The support should change as understanding grows.",
+      "shotId": "10",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2684,
+      "end": 2740,
+      "text": "Make a first attempt if you know enough to start.",
+      "shotId": "11",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2740,
+      "end": 2804,
+      "text": "If the topic is new, study one example.",
+      "shotId": "11",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2804,
+      "end": 2872,
+      "text": "Ask for a hint about the step you cannot explain.",
+      "shotId": "11",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 2996,
+      "end": 3024,
+      "text": "Hide the answer.",
+      "shotId": "12",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3024,
+      "end": 3063,
+      "text": "Explain the method from memory.",
+      "shotId": "12",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3063,
+      "end": 3100,
+      "text": "Check it, and correct the mistake.",
+      "shotId": "12",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3100,
+      "end": 3152,
+      "text": "The check matters as much as the attempt.",
+      "shotId": "12",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3260,
+      "end": 3313,
+      "text": "Change the numbers or the situation.",
+      "shotId": "13",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3313,
+      "end": 3350,
+      "text": "Try again without help.",
+      "shotId": "13",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3350,
+      "end": 3401,
+      "text": "Come back later for another fresh problem.",
+      "shotId": "13",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3401,
+      "end": 3459,
+      "text": "Test transfer and retention separately.",
+      "shotId": "13",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3524,
+      "end": 3574,
+      "text": "Use artificial intelligence to make the next",
+      "shotId": "14",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3574,
+      "end": 3610,
+      "text": "independent attempt better.",
+      "shotId": "14",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    },
+    {
+      "start": 3610,
+      "end": 3662,
+      "text": "What can you do when the answer is gone?",
+      "shotId": "14",
+      "timing": "Authored text aligned to independently observed word timestamps"
+    }
+  ],
+  "revealStart": 3706,
+  "reference": "LemoLab — The Ship Decides"
+}

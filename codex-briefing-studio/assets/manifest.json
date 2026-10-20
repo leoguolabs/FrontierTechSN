@@ -1,0 +1,14 @@
+[
+  {
+    "path": "reference/briefing-board.mp4",
+    "url": "https://github.com/lemomo-ai/lemo-opuscar/releases/download/films/briefing-board.mp4",
+    "sha256": "cf09a6db65a100fc877d4e7ffee8113aee642e6056822ad2055a48189f7a80cc",
+    "bytes": 30232980
+  },
+  {
+    "path": "assets/photos/notebook.jpg",
+    "url": "https://images.unsplash.com/photo-1483546416237-76fd26bbcdd1?w=5184&q=95&fm=jpg&fit=max",
+    "sha256": "1a1bd9fa29cd4c50b38c73a4dbad83ec0751e05ca347df7637056e465ed4d3dd",
+    "bytes": 2016660
+  }
+]

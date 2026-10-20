@@ -1,0 +1,106 @@
+{
+  "reference_sha256": "cf09a6db65a100fc877d4e7ffee8113aee642e6056822ad2055a48189f7a80cc",
+  "frame_count": 960,
+  "automated_decode": "all 960 frames",
+  "visual_review": {
+    "coverage": [
+      [
+        0,
+        959
+      ]
+    ],
+    "method": "All 48 consecutive-frame atlases opened and visually inspected. Each cell is 384x216; this is not full-resolution inspection of every frame.",
+    "full_resolution_examples": [
+      0,
+      390,
+      610
+    ]
+  },
+  "observations": [
+    {
+      "frames": [
+        0,
+        119
+      ],
+      "finding": "Opening line follow and close detail, enamel falloff, pins snap around four seconds."
+    },
+    {
+      "frames": [
+        120,
+        239
+      ],
+      "finding": "Magnets hold a physical bridge/ship setup; verdict stamp lands at frame 193 before a hold."
+    },
+    {
+      "frames": [
+        240,
+        359
+      ],
+      "finding": "Rule writing, removed magnets, falling ruler, then a fast downward move around 348."
+    },
+    {
+      "frames": [
+        360,
+        479
+      ],
+      "finding": "Beam detail opens into a measured judgment; blue dimension precedes red shortfall; arch enters near 448."
+    },
+    {
+      "frames": [
+        480,
+        539
+      ],
+      "finding": "Arch dimension draws across frames 480–486, label settles 490–499, red shortfall extends 511–524; then hold."
+    },
+    {
+      "frames": [
+        540,
+        599
+      ],
+      "finding": "Downward zoom and detail of cable bridge, then pullback by 576; dimension draws from 583 onward."
+    },
+    {
+      "frames": [
+        600,
+        659
+      ],
+      "finding": "Dimension completes around 611; 1208 and qualification labels land 618–630. A long legible hold follows."
+    },
+    {
+      "frames": [
+        660,
+        719
+      ],
+      "finding": "Subtitles fade; staircase camera moves down at 679 and settles on the next bridge by 695, then pulls back through 714."
+    },
+    {
+      "frames": [
+        720,
+        779
+      ],
+      "finding": "Final bridge measurement grows, 2023 caption and label land 728–739, red circle appears 752–756. Hold before final claim."
+    },
+    {
+      "frames": [
+        780,
+        839
+      ],
+      "finding": "Camera follows the passing ship under the suspension bridge, with temporal blur confined to movement."
+    },
+    {
+      "frames": [
+        840,
+        899
+      ],
+      "finding": "Ship continues across; large pullback begins around 860. Whole-board composition arrives around 894."
+    },
+    {
+      "frames": [
+        900,
+        959
+      ],
+      "finding": "Last headline writes in place through 912, then the full board and tray hold to the end."
+    }
+  ],
+  "comparison_rule": "Pair by visual function, not pixel identity between different stories. Review the final encoded film separately."
+}

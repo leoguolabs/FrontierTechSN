@@ -1,0 +1,15 @@
+{
+  "asset": "assets/photos/notebook-cutout-v1.png",
+  "sha256": "b42a9592cd86f449cf8a1637cc3df0a10b562957c294a38c42ca022ab75adedb",
+  "tool": "Built-in image_gen",
+  "mode": "background-extraction",
+  "source": "assets/photos/notebook.jpg",
+  "prompt": "Use case: background-extraction. Asset type: photographic cutout prop for an engineering whiteboard film. Remove the wooden table completely. Isolate the open cream-paper black-cover notebook and its natural wooden pencil on a genuinely transparent background. Preserve the reference's oblique camera angle, realistic paper edges, black cover and pencil materials. Reconstruct only the notebook edges and pencil ends cropped by the original photo so the complete object is visible, with a small transparent margin on every side. Wide 3:2 composition, notebook fills most of the image, blank pages, no added lettering, no frame, no border, no scene, no magnets, no drop shadow outside the object. The renderer will supply the physical shadow. Keep a photographic, neutral, slightly warm appearance; do not turn it into an illustration.",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "alpha": "Retained unchanged; zero-alpha pixels verified.",
+  "review": "Inspected the generated cutout and its opening and whole-board compositions. No wood rectangle or opaque background remains.",
+  "scope": "Generative derivative reconstructs edges; not an unchanged photograph."
+}

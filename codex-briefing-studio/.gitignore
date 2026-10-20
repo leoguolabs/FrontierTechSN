@@ -1,0 +1,15 @@
+node_modules/
+.venv/
+media/
+delivery/
+reference/
+review/frames/
+review/atlases/
+review/previews/
+review/picture-stills/
+review/final-stills/
+review/*.csv
+review/*.npz
+review/*.png
+assets/photos/
+__pycache__/

@@ -1,0 +1,81 @@
+{
+  "sample_rate": 48000,
+  "samples": 7732000,
+  "music": "Original procedural mallet/bass/percussion",
+  "foley": "Original procedural material sounds",
+  "speech_gains": [
+    {
+      "id": "01",
+      "gain_db": 1.0083283185958862,
+      "start_frame": 20
+    },
+    {
+      "id": "02",
+      "gain_db": 0.7394411563873291,
+      "start_frame": 236
+    },
+    {
+      "id": "03",
+      "gain_db": 1.20002019405365,
+      "start_frame": 524
+    },
+    {
+      "id": "04",
+      "gain_db": 1.0938446521759033,
+      "start_frame": 884
+    },
+    {
+      "id": "05",
+      "gain_db": 1.2753548622131348,
+      "start_frame": 1148
+    },
+    {
+      "id": "06",
+      "gain_db": 0.1957685649394989,
+      "start_frame": 1436
+    },
+    {
+      "id": "07",
+      "gain_db": 0.8641979098320007,
+      "start_frame": 1676
+    },
+    {
+      "id": "08",
+      "gain_db": 0.7859050631523132,
+      "start_frame": 2012
+    },
+    {
+      "id": "09",
+      "gain_db": 0.6510703563690186,
+      "start_frame": 2252
+    },
+    {
+      "id": "10",
+      "gain_db": 0.1491672396659851,
+      "start_frame": 2468
+    },
+    {
+      "id": "11",
+      "gain_db": 1.1055514812469482,
+      "start_frame": 2684
+    },
+    {
+      "id": "12",
+      "gain_db": 2.0875298976898193,
+      "start_frame": 2996
+    },
+    {
+      "id": "13",
+      "gain_db": 0.9792649745941162,
+      "start_frame": 3260
+    },
+    {
+      "id": "14",
+      "gain_db": 1.485426902770996,
+      "start_frame": 3524
+    }
+  ],
+  "target_lufs": -16,
+  "target_true_peak": -1.5,
+  "perceptual_listening": "Not established by this automated mix"
+}

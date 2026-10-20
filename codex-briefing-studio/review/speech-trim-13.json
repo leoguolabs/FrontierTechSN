@@ -1,0 +1,15 @@
+{
+  "id": "13",
+  "source_audio_sha256": "eafc2ea696be2dc23bfaa6365fced3701eb6689f3ce86621f0b7c56cf819f5c6",
+  "candidate_audio_sha256": "996523d5b7280ebe7ad02848a7039b059a0c40fa3173323f8ab2ad55e3830e8e",
+  "retained_samples": 199200,
+  "sample_rate": 24000,
+  "pcm_prefix_identical": true,
+  "cut_seconds": 8.3,
+  "observed_pause": {
+    "start_seconds": 8.15,
+    "next_phrase_onset_seconds": 8.6,
+    "rms_at_8_15_to_8_20": 0.0002
+  },
+  "fresh_transcription_differences": []
+}

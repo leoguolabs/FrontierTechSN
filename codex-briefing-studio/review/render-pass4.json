@@ -1,0 +1,10 @@
+{
+  "output": "media/picture-v1.mp4",
+  "frames": 3866,
+  "duration": 161.08333333333334,
+  "elapsedSeconds": 193.228160416,
+  "subframeSamples": 3,
+  "pictureOnly": true,
+  "retained_output": "media/picture-pass4.mp4",
+  "sha256": "4a97ffd730f1b0c336012ace3029577b06bf4c8f476cdc04570715b3ea396002"
+}

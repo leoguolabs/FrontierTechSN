@@ -1,0 +1,96 @@
+{
+  "segments": [
+    {
+      "id": "01",
+      "audio_sha256": "de5f8c535d1fdf778f97c288a97bfbc898678a860136015f3b71ee4fe568934f",
+      "duration": 4.96,
+      "differences": []
+    },
+    {
+      "id": "02",
+      "audio_sha256": "827855eecaa59209eed8627b6f207f3d09925638f10afb6c65f0d0d120fd9c29",
+      "duration": 9.44,
+      "differences": []
+    },
+    {
+      "id": "03",
+      "audio_sha256": "26e1930f808c076387ee031ce17f86143fe91077e2536433f065a29ad07f3557",
+      "duration": 10.0,
+      "differences": []
+    },
+    {
+      "id": "04",
+      "audio_sha256": "bc2315ae442a5a8e164f377476d61aa23b61a486f6ff004ecd327e804d1b3785",
+      "duration": 6.88,
+      "differences": []
+    },
+    {
+      "id": "05",
+      "audio_sha256": "a264a8fb44124e91991e09357e595c7e43fb279bea7fcae2146b8fd050b2beb2",
+      "duration": 9.56,
+      "differences": []
+    },
+    {
+      "id": "06",
+      "audio_sha256": "dfb1e9b268a4e6a92db77dbc46be898b2394342c11fb6a615e7abb6e4e88819b",
+      "duration": 7.76,
+      "differences": []
+    },
+    {
+      "id": "07",
+      "audio_sha256": "9ec6e23a6e32ec7aea2a55493b80d03504b133667f38c3d7ad969d725d912461",
+      "duration": 10.08,
+      "differences": []
+    },
+    {
+      "id": "08",
+      "audio_sha256": "a446c6549332bf58f6ca41be62cd728ea99061e3e3d54c20611f92e3e8f06ab9",
+      "duration": 8.0,
+      "differences": []
+    },
+    {
+      "id": "09",
+      "audio_sha256": "f0b473180561877ee3d585cf72f3c0ada8f04e187cda98b45da16c1e1a46159a",
+      "duration": 6.96,
+      "differences": []
+    },
+    {
+      "id": "10",
+      "audio_sha256": "7e2998e639d52560b4b817082db9c5f8aaf91eee673d267388e5a776aacf8eee",
+      "duration": 7.24,
+      "differences": []
+    },
+    {
+      "id": "11",
+      "audio_sha256": "fa7e22d2f6a579f8b583b6eeea234f82bb02e7f600fd3539be955de060ed70e6",
+      "duration": 8.92,
+      "differences": []
+    },
+    {
+      "id": "12",
+      "audio_sha256": "a4580727dd8596783878b28c5f2a375e9fbda32ccd36730148b2454766b6056c",
+      "duration": 7.08,
+      "differences": []
+    },
+    {
+      "id": "13",
+      "audio_sha256": "996523d5b7280ebe7ad02848a7039b059a0c40fa3173323f8ab2ad55e3830e8e",
+      "duration": 8.3,
+      "differences": []
+    },
+    {
+      "id": "14",
+      "audio_sha256": "8cf135f872851620de97d877af0d5a3df5269577b6bdc738fdc434f543aaaa45",
+      "duration": 6.16,
+      "differences": []
+    }
+  ],
+  "accepted_repairs": [
+    "08",
+    "11",
+    "13"
+  ],
+  "transcription_model": "mlx-community/whisper-large-v3-turbo-q4",
+  "all_content_checks_passed": true,
+  "scope": "Unprompted independent ASR and WAV identity checks; not a perceptual listening claim."
+}

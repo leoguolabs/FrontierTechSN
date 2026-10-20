@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Briefing Studio — LeoGuoLabs × Codex</title>
+  <meta name="description" content="An independently built engineering briefing film about AI and learning. Watch the film, inspect every frame, and explore the production kit.">
+  <link rel="stylesheet" href="src/studio.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="#film"><span class="brand-mark" aria-hidden="true">B<span>／</span></span>BRIEFING STUDIO</a>
+    <nav aria-label="Main navigation"><a href="#film">Film 01</a><a href="#compare">Frame lab</a><a href="#kit">The kit</a><a href="#essay">Field notes</a></nav>
+    <span class="edition">LEOGUOLABS × CODEX<br>ENGINEERING SERIES / 001</span>
+  </header>
+  <main>
+    <section class="hero" id="film">
+      <div class="hero-copy">
+        <p class="eyebrow">A QUESTION WORTH KEEPING</p>
+        <h1>Learn.<br>Or just <em>finish?</em></h1>
+        <p class="deck">What can you do when the answer is gone? A film about AI assistance, independent performance, and the work of learning.</p>
+        <a href="#screen" class="watch-link">Watch the briefing <span aria-hidden="true">↘</span></a>
+        <div class="hero-spec"><span>ONE CONTINUOUS BOARD</span><span>1920 × 1080 · 24 FPS</span></div>
+      </div>
+      <div class="hero-object" aria-hidden="true">
+        <div class="pin"></div><span class="tiny">EXPERIMENT / TWO MEASURES</span>
+        <div class="sketch-score"><span>with help</span><strong>+48<span>%</span></strong><i></i></div>
+        <div class="sketch-score red"><span>without it</span><strong>−17<span>%</span></strong><i></i></div>
+        <p>Better practice ≠ better exam.</p><small>Bastani et al. · relative to control</small>
+      </div>
+    </section>
+    <section class="screen-section" id="screen" aria-label="Film player">
+      <div class="screen-top"><span>01 / DOES AI HELP YOU LEARN—OR JUST FINISH?</span><span id="film-meta">ENGINEERING BRIEFING BOARD</span></div>
+      <div class="video-wrap">
+        <video id="film-video" controls playsinline preload="metadata" poster="media/poster.jpg">
+          <source src="media/does-ai-help-you-learn.mp4" type="video/mp4">
+          <track kind="captions" label="English" srclang="en" src="media/captions.vtt">
+        </video>
+        <p class="video-message" id="video-message" hidden>The final encode is not available yet. Explore the live frame lab below.</p>
+      </div>
+      <div class="player-footer"><p>English narration · Chatterbox<br><span>Film and independent studio by LeoGuoLabs with Codex.</span></p><a href="media/does-ai-help-you-learn.mp4" download>Download film <span aria-hidden="true">↓</span></a></div>
+      <div class="chapters" id="chapters" aria-label="Jump to a chapter"></div>
+    </section>
+    <section class="lab section" id="compare">
+      <div class="section-intro"><p class="eyebrow">02 / LOOK CLOSER</p><h2>A frame is a<br>decision.</h2><p>Compare material, placement, drawing, and camera movement. Step through either film one frame at a time. Different stories are paired by visual function.</p></div>
+      <div class="lab-tools">
+        <label>Compare a visual moment<select id="moment"><option value="opening">Opening detail</option><option value="measurement">Measured evidence</option><option value="judgment">A held judgment</option><option value="reveal">The full board</option></select></label>
+        <button id="pair-play" class="outline">Play both</button>
+      </div>
+      <div class="compare-grid">
+        <figure><figcaption><span>REFERENCE / LEMOLAB</span><b>The Ship Decides</b></figcaption>
+          <video id="reference-video" src="reference/briefing-board.mp4" muted playsinline preload="metadata"></video>
+          <div class="frame-control"><button data-step="reference:-1" aria-label="Reference previous frame">←</button><input id="reference-frame" aria-label="Reference frame" type="range" min="0" max="959" value="390"><button data-step="reference:1" aria-label="Reference next frame">→</button><output id="reference-label">390 / 959</output></div>
+        </figure>
+        <figure><figcaption><span>INDEPENDENT BUILD / CODEX</span><b>Does AI Help You Learn?</b></figcaption>
+          <video id="compare-video" src="media/does-ai-help-you-learn.mp4" muted playsinline preload="metadata" poster="media/poster.jpg"></video>
+          <div class="frame-control"><button data-step="compare:-1" aria-label="Film previous frame">←</button><input id="compare-frame" aria-label="Film frame" type="range" min="0" max="3865" value="770"><button data-step="compare:1" aria-label="Film next frame">→</button><output id="compare-label">Frame loading</output></div>
+        </figure>
+      </div>
+      <p class="lab-note" id="comparison-note">Blue measures; red judges. Labels and objects share the same board coordinates.</p>
+      <div class="essay-links"><a href="review/frame-comparison.csv" download>Every-frame comparison ↓</a><a href="review/comparison.json">Comparison method ↗</a><a href="review/final-ledger.json">Final inspection ↗</a><a href="review/RESULT.md">Findings & differences ↗</a></div>
+      <details class="atlas"><summary>Open the complete frame atlas <span>Every decoded frame, in order</span></summary>
+        <div class="atlas-tools"><label>Film<select id="atlas-film"><option value="reference">Reference</option><option value="final">Independent film</option><option value="paired">Side-by-side comparison</option></select></label><button id="atlas-prev">Previous sheet</button><output id="atlas-count"></output><button id="atlas-next">Next sheet</button></div>
+        <img id="atlas-image" alt="Twenty consecutive frames, labeled with frame number and time" loading="lazy">
+        <p id="atlas-status"></p>
+      </details>
+    </section>
+    <section class="kit section" id="kit">
+      <div class="section-intro"><p class="eyebrow">03 / BUILT TO BE USED AGAIN</p><h2>The board is<br>the system.</h2><p>A deterministic renderer, a shared timeline, and a small visual vocabulary. Change the story; keep the physical rules.</p></div>
+      <div class="kit-layout">
+        <div class="kit-demo"><div class="pin"></div><span class="tiny">THE VISUAL CONTRACT</span><div class="palette"><i></i><i></i><i></i></div><strong>Facts. Measures.<br><em>Judgment.</em></strong><p>Graphite carries the facts. Blue carries comparisons. Red arrives when the evidence earns it.</p><div class="ruler-art" aria-hidden="true"></div></div>
+        <ol class="kit-steps"><li><span>01</span><div><h3>Write the argument</h3><p>Start with an observable question. Tie numerical claims to primary sources.</p><a href="content/narration.json">Narration ↗</a> <a href="FACTS.md">Research notes ↗</a></div></li><li><span>02</span><div><h3>Build one physical world</h3><p>Place props, marks, people, and labels on one board. Move the camera through the argument.</p><a href="src/engine.mjs">Renderer ↗</a> <a href="src/film.mjs">Film composition ↗</a></div></li><li><span>03</span><div><h3>Render, inspect, revise</h3><p>Retain source audio, render on integer frames, and inspect the encoded output before delivery.</p><a href="STUDIO.md">Production guide ↗</a> <a href="review/reference-ledger.json">Reference review ↗</a></div></li></ol>
+      </div>
+      <div class="essay-links"><a href="delivery/briefing-studio.zip" download>Download the complete studio ↓</a><a href="AGENTS.md">Codex instructions ↗</a><a href="review/delivery-check.json">Encoded delivery checks ↗</a></div>
+      <details class="live-detail"><summary>Explore the live composition <span>Seek the renderer itself</span></summary>
+        <div class="live-header"><label>Board frame<input id="live-frame" type="range" value="770" min="0" max="3865"></label><output id="live-label">770</output><button id="save-frame">Save PNG</button></div>
+        <canvas id="live-canvas" width="1920" height="1080" aria-label="Live deterministic board preview"></canvas>
+        <p id="live-status">Open this panel to initialize the composition.</p>
+      </details>
+    </section>
+    <section class="essay section" id="essay">
+      <p class="eyebrow">04 / FIELD NOTES</p>
+      <p><a href="https://x.com/LeoGuoLabs/article/2112613679405596824">Read the published article on X ↗</a></p>
+      <div class="essay-grid"><h2>What it takes<br>to match a style.</h2><div><p class="essay-lead">The board has a memory. Every measurement, erased line, and pinned object stays somewhere in the scene.</p><p>That observation shaped this build. A reference film became a set of physical and editorial rules: camera movement follows reasoning, annotations appear in sequence, and a final pullback reveals the argument as a whole.</p><p>This project applies those rules to a different question: whether AI helps people learn, or makes the assisted session look better. The film keeps those outcomes separate.</p><a class="watch-link" href="article/process.html">Read the production article <span>↗</span></a><div class="essay-links"><a href="README.md">Run the studio</a><a href="CREDITS.md">Sources & credits</a><a href="review/revisions.md">Revision log</a></div></div></div>
+    </section>
+  </main>
+  <footer><span>LEOGUOLABS × CODEX / BRIEFING STUDIO</span><p>Style reference: <a href="https://github.com/lemomo-ai/lemo-opuscar">LemoLab · lemo-opuscar</a><br>“The Ship Decides” · CC BY 4.0 · independently implemented renderer.</p><a href="#film">Back to the board ↑</a></footer>
+  <script type="module" src="src/studio.mjs"></script>
+</body>
+</html>

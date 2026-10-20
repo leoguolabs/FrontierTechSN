@@ -1,0 +1,43 @@
+{
+  "url": "http://localhost:8249/",
+  "film_playback": {
+    "observed_seconds": [
+      0.615333,
+      6.566991
+    ],
+    "ready_state": 4,
+    "width": 1920,
+    "height": 1080,
+    "duration": 161.083008,
+    "muted": false,
+    "paused": false,
+    "error": null
+  },
+  "frame_step": {
+    "before_frame": 782,
+    "next_frame_time": 32.625999,
+    "expected_frame": 783,
+    "restored_by_previous": true
+  },
+  "pair_selection": {
+    "reference": 925,
+    "final": 3846
+  },
+  "paired_atlas": {
+    "sheet": 2,
+    "total": 194,
+    "frames": [
+      20,
+      39
+    ],
+    "image_width": 1536,
+    "image_height": 2390,
+    "loaded": true
+  },
+  "live_composition": {
+    "initialized": true,
+    "seek_end_frame": 3865
+  },
+  "console_errors": [],
+  "screenshot": "review/showcase-comparison.png"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "codex-briefing-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An independently authored, deterministic engineering briefing film studio.",
+  "scripts": {
+    "render": "node scripts/render.mjs --picture-only",
+    "preview": "python3 scripts/serve.py",
+    "stills": "node scripts/render.mjs --stills",
+    "validate": "node scripts/validate.mjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "1.0.11"
+  }
+}

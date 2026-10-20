@@ -1,0 +1,16 @@
+[
+  {"id":"01","region":"hook","text":"The formula works. The deadline is saved. Then the answer disappears. Can you build it again?","claim":"Illustrative scenario"},
+  {"id":"02","region":"measures","text":"Finishing with help, doing it alone, remembering it later, and solving a new problem are four different tests. One successful session cannot answer all four.","claim":"Learning versus performance; editorial framing"},
+  {"id":"03","region":"practice","text":"In a randomized study of nearly a thousand high school mathematics students in Turkey, an unrestricted chatbot improved practice grades by forty eight percent, compared with the control group.","claim":"Bastani et al."},
+  {"id":"04","region":"exam","text":"On the exam without the tool, that group scored seventeen percent lower. The improvement during practice had hidden weaker independent performance.","claim":"Bastani et al."},
+  {"id":"05","region":"tutor","text":"A tutor built around teacher supplied hints largely removed that penalty. It did not produce a statistically significant exam improvement over the control group.","claim":"Bastani et al."},
+  {"id":"06","region":"scope","text":"That is one subject, one setting, and a short term exam. It does not establish permanent damage, or that artificial intelligence cannot teach.","claim":"Study scope"},
+  {"id":"07","region":"physics","text":"In a separate college physics experiment, a carefully designed tutor produced higher immediate test scores than an active classroom lesson. Design matters. Long term retention remains a separate question.","claim":"Kestin et al."},
+  {"id":"08","region":"thinking","text":"What thinking remains yours? If choosing a method is the skill you need, handing over that choice also removes an opportunity to practise.","claim":"Editorial application"},
+  {"id":"09","region":"recognition","text":"An explanation can feel obvious while it is visible. Recognizing the steps is different from producing them with the answer covered.","claim":"Learning versus performance"},
+  {"id":"10","region":"example","text":"Beginners still need guidance. A clear worked example can be useful. The support should change as understanding grows.","claim":"Worked examples; editorial synthesis"},
+  {"id":"11","region":"attempt","text":"Make a first attempt if you know enough to start. If the topic is new, study one example. Ask for a hint about the step you cannot explain.","claim":"Practical suggestion"},
+  {"id":"12","region":"recall","text":"Hide the answer. Explain the method from memory. Check it, and correct the mistake. The check matters as much as the attempt.","claim":"Practical suggestion"},
+  {"id":"13","region":"transfer","text":"Change the numbers or the situation. Try again without help. Come back later for another fresh problem. Test transfer and retention separately.","claim":"Practical suggestion"},
+  {"id":"14","region":"closing","text":"Use artificial intelligence to make the next independent attempt better. What can you do when the answer is gone?","claim":"Editorial conclusion"}
+]

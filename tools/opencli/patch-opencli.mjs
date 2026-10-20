@@ -950,6 +950,85 @@ utils = replaceWithinFunction(
             }`,
   'Gemini stable owned provider errors do not wait on a stuck stop button',
 )
+utils = replaceWithinFunction(
+  utils,
+  'function getTurnsScript() {',
+  'function prepareComposerScript() {',
+  '        if (!text) return null;',
+  `        // A text request can incorrectly produce an image. Keep that owned
+        // assistant turn so it is not diagnosed as an empty-response timeout.
+        const generatedImages = tag === 'model-response'
+          ? Array.from(el.querySelectorAll('generated-image'))
+            .filter(isVisible)
+            .filter((item) => item.querySelector('download-generated-image-button'))
+            .map((item) => item.querySelector('img'))
+            .filter((img) => img?.complete && img.naturalWidth > 0)
+            .map((img) => img.currentSrc || img.src)
+            .filter(Boolean) : [];
+        if (!text && !generatedImages.length) return null;`,
+  'Gemini preserves completed image-only assistant turns',
+)
+utils = replaceWithinFunction(
+  utils,
+  'function getTurnsScript() {',
+  'function prepareComposerScript() {',
+  '        return role ? { Role: role, Text: text } : null;',
+  `        return role ? { Role: role, Text: text,
+          ...(generatedImages.length ? { GeneratedImages: generatedImages } : {}) } : null;`,
+  'Gemini generated-image evidence belongs to its assistant turn',
+)
+utils = replaceWithinFunction(
+  utils,
+  'export async function waitForGeminiResponse(page, baseline, promptText, timeoutSeconds) {',
+  'function selectModelInMenuScript(modelId) {',
+  '    const maxPolls = Math.max(1, Math.ceil(timeoutSeconds / 2));',
+  `    const pickOwnedGeneratedImages = (current) => {
+        if (!current.structuredTurnsTrusted || current.url !== baseline.snapshot.url)
+            return '';
+        const anchor = findLastMatchingGeminiTurnIndex(current.turns, baseline.userAnchorTurn);
+        let owned;
+        if (anchor !== null) owned = current.turns.slice(anchor + 1);
+        else if (baseline.snapshot.structuredTurnsTrusted
+            && hasGeminiTurnPrefix(baseline.snapshot.turns, current.turns))
+            owned = current.turns.slice(baseline.snapshot.turns.length);
+        else return '';
+        // Never adopt an image generated for a subsequent user request.
+        const nextUser = owned.findIndex((turn) => turn.Role === 'User');
+        if (nextUser >= 0) owned = owned.slice(0, nextUser);
+        const images = owned.filter((turn) => turn.Role === 'Assistant')
+            .flatMap((turn) => Array.isArray(turn.GeneratedImages) ? turn.GeneratedImages : [])
+            .filter((source) => typeof source === 'string' && source);
+        return images.length ? JSON.stringify(images) : '';
+    };
+    let lastGeneratedImages = '';
+    let imageOnlyStableCount = 0;
+    const maxPolls = Math.max(1, Math.ceil(timeoutSeconds / 2));`,
+  'Gemini image-only replies require current-request ownership',
+)
+utils = replaceWithinFunction(
+  utils,
+  'export async function waitForGeminiResponse(page, baseline, promptText, timeoutSeconds) {',
+  'function selectModelInMenuScript(modelId) {',
+  '        const structuredCandidate = pickStructuredReplyCandidate(current);',
+  `        const structuredCandidate = pickStructuredReplyCandidate(current);
+        const generatedImages = structuredCandidate ? '' : pickOwnedGeneratedImages(current);
+        if (generatedImages && !current.isGenerating) {
+            imageOnlyStableCount = generatedImages === lastGeneratedImages ? imageOnlyStableCount + 1 : 1;
+            lastGeneratedImages = generatedImages;
+            if (imageOnlyStableCount >= 3) {
+                throw new CommandExecutionError(
+                    'Gemini returned generated image content instead of the requested text response'
+                );
+            }
+        } else {
+            imageOnlyStableCount = 0;
+            lastGeneratedImages = '';
+        }
+        // Allow text to arrive after the image; do not mistake its UI controls
+        // for a transcript answer while generation or stability is unresolved.
+        if (generatedImages) continue;`,
+  'Gemini stable image-only text replies report the actual response type',
+)
 // Discovery, selection and read-back embed separate picker implementations.
 // Patch every path: the current default can be Argon, whose short label does
 // not match the legacy variant/version fallbacks.

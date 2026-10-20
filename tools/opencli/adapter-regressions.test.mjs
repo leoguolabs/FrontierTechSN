@@ -710,6 +710,122 @@ test('Gemini canonical turns exclude changing prompt summaries and nested speake
   assert.equal((await getGeminiVisibleTurns(page)).length, 1)
 })
 
+test('Gemini retains only completed generated images inside assistant turns', async () => {
+  class Element {
+    constructor(tag, text = '') { this.tagName = tag; this.innerText = text; this.textContent = text }
+    getBoundingClientRect() { return { width: 500, height: 100 } }
+    getAttribute() { return null }
+    querySelector() { return null }
+    querySelectorAll() { return [] }
+    compareDocumentPosition() { return this.tagName === 'USER-QUERY' ? 4 : 2 }
+  }
+  const user = new Element('USER-QUERY', 'Review this attachment.')
+  const model = new Element('MODEL-RESPONSE')
+  const generated = new Element('GENERATED-IMAGE')
+  const img = { complete: true, naturalWidth: 1024, currentSrc: 'https://example.test/generated.png' }
+  let downloadReady = true
+  generated.querySelector = selector => selector === 'img' ? img
+    : selector === 'download-generated-image-button' && downloadReady ? {} : null
+  for (const turn of [user, model]) {
+    turn.querySelectorAll = selector => selector === 'generated-image' ? [generated] : []
+  }
+  const page = { async evaluate(script) {
+    if (script === 'window.location.href') return 'https://gemini.google.com/app/current'
+    return vm.runInNewContext(script, { HTMLElement: Element,
+      Node: { DOCUMENT_POSITION_FOLLOWING: 4, DOCUMENT_POSITION_PRECEDING: 2 },
+      window: { getComputedStyle: () => ({ display: 'block', visibility: 'visible' }) },
+      document: { querySelectorAll: selector => selector === 'user-query, model-response' ? [user, model] : [] },
+    })
+  } }
+  const turns = await getGeminiVisibleTurns(page)
+  assert.equal(turns.length, 2)
+  assert.equal(turns[0].GeneratedImages, undefined)
+  assert.equal(turns[1].Text, '')
+  assert.equal(turns[1].GeneratedImages[0], img.currentSrc)
+  img.complete = false
+  assert.equal((await getGeminiVisibleTurns(page)).length, 1)
+  img.complete = true; img.naturalWidth = 0
+  assert.equal((await getGeminiVisibleTurns(page)).length, 1)
+  img.naturalWidth = 1024; downloadReady = false
+  assert.equal((await getGeminiVisibleTurns(page)).length, 1)
+})
+
+for (const anchored of [true, false]) {
+test(`Gemini reports an owned image-only reply after three idle snapshots (anchored=${anchored})`, async () => {
+  const user = { Role: 'User', Text: 'Review this image as JSON.' }
+  const baseline = { url: 'https://gemini.google.com/app/current', turns: [user],
+    transcriptLines: [], composerHasText: false, isGenerating: false, structuredTurnsTrusted: true }
+  let reads = 0
+  const page = { async wait() {}, async evaluate(script) {
+    if (script === 'window.location.href') return baseline.url
+    if (script.includes('structuredTurnsTrusted')) {
+      reads++
+      return { ...baseline, isGenerating: reads < 3, turns: [user,
+        { Role: 'Assistant', Text: '', GeneratedImages: ['generated.png'] }] }
+    }
+    throw new Error('Unexpected Gemini snapshot script')
+  } }
+  await assert.rejects(waitForGeminiResponse(page, {
+    snapshot: baseline, userAnchorTurn: anchored ? user : null,
+  }, user.Text, 30), /generated image content instead of the requested text/)
+  assert.equal(reads, 5)
+})
+}
+
+for (const scenario of ['previous reply', 'user attachment', 'later request', 'untrusted turns',
+  'different conversation', 'still generating', 'changing images', 'disappearing image']) {
+test(`Gemini does not classify unrelated or unfinished images as a completed reply: ${scenario}`, async () => {
+  const user = { Role: 'User', Text: 'Review this image as JSON.' }
+  const image = { Role: 'Assistant', Text: '', GeneratedImages: ['generated.png'] }
+  const baseline = { url: 'https://gemini.google.com/app/current',
+    turns: scenario === 'previous reply' ? [image, user] : [user],
+    transcriptLines: [], composerHasText: false, isGenerating: false, structuredTurnsTrusted: true }
+  let reads = 0
+  const page = { async wait() {}, async evaluate(script) {
+    if (script === 'window.location.href') return baseline.url
+    if (script.includes('structuredTurnsTrusted')) {
+      reads++
+      const current = { ...baseline, turns: [user, image] }
+      if (scenario === 'previous reply') current.turns = baseline.turns
+      if (scenario === 'user attachment') current.turns = [{ ...user, GeneratedImages: ['attachment.png'] }]
+      if (scenario === 'later request') current.turns = [user, { Role: 'User', Text: 'Draw a cat.' }, image]
+      if (scenario === 'untrusted turns') current.structuredTurnsTrusted = false
+      if (scenario === 'different conversation') current.url = 'https://gemini.google.com/app/other'
+      if (scenario === 'still generating') current.isGenerating = true
+      if (scenario === 'changing images') current.turns = [user, { ...image, GeneratedImages: [`image-${reads}.png`] }]
+      if (scenario === 'disappearing image' && reads % 3 === 0) current.turns = [user]
+      return current
+    }
+    throw new Error('Unexpected Gemini snapshot script')
+  } }
+  assert.equal(await waitForGeminiResponse(page, {
+    snapshot: baseline, userAnchorTurn: user,
+  }, user.Text, 12), '')
+  assert.equal(reads, 6)
+})
+}
+
+test('Gemini accepts review text that arrives after a generated image', async () => {
+  const user = { Role: 'User', Text: 'Review this image as JSON.' }
+  const answer = '{"image_received":true,"reviews":[]}'
+  const baseline = { url: 'https://gemini.google.com/app/current', turns: [user],
+    transcriptLines: [], composerHasText: false, isGenerating: false, structuredTurnsTrusted: true }
+  let reads = 0
+  const page = { async wait() {}, async evaluate(script) {
+    if (script === 'window.location.href') return baseline.url
+    if (script.includes('structuredTurnsTrusted')) {
+      reads++
+      return { ...baseline, turns: [user, { Role: 'Assistant',
+        Text: reads < 3 ? '' : answer, GeneratedImages: ['generated.png'] }] }
+    }
+    throw new Error('Unexpected Gemini snapshot script')
+  } }
+  assert.equal(await waitForGeminiResponse(page, {
+    snapshot: baseline, userAnchorTurn: user,
+  }, user.Text, 20), answer)
+  assert.equal(reads, 4)
+})
+
 test('Gemini rejects whole-page transcript fallback even when the prompt is escaped or collapsed', async () => {
   const prompt = 'Review this image. Return {"image_received":true,"reviews":[]}.'
   const baseline = { url: 'https://gemini.google.com/app/current', turns: [],

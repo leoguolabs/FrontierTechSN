@@ -321,14 +321,6 @@ def _overlay(scene: dict, project: dict, path: Path) -> None:
     overlay.save(path)
 
 
-def _srt_time(value: float) -> str:
-    millis = round(value * 1000)
-    hours, millis = divmod(millis, 3600000)
-    minutes, millis = divmod(millis, 60000)
-    seconds, millis = divmod(millis, 1000)
-    return f"{hours:02}:{minutes:02}:{seconds:02},{millis:03}"
-
-
 async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path, dict]:
     model = project.get("tts_model") or config.EXPLAINER_TTS_DEFAULT_MODEL
     voice = project.get("voice") or config.EXPLAINER_TTS_DEFAULT_VOICE
@@ -996,13 +988,8 @@ async def render_project(project: dict, project_dir: Path,
                     "gemini_scene_count": sum(bool(item["motion_path"]) for item in artifacts),
                     "playback_policy": "play_once_fit_longer_or_hold_shorter", "scenes": artifacts}
         _json(root / "timeline.json", timeline, root)
-        captions = []
-        for index, item in enumerate(artifacts, 1):
-            start = item["start_seconds"] + item["pacing"]["speech_start_seconds"]
-            end = item["start_seconds"] + item["pacing"]["speech_end_seconds"]
-            text = re.sub(r"\s+", " ", item["narration"]).strip()
-            captions.append(f"{index}\n{_srt_time(start)} --> {_srt_time(end)}\n{text}\n")
-        _write(root / "captions.srt", "\n".join(captions), root)
+        from backend.explainer_captions import build_srt
+        _write(root / "captions.srt", build_srt(timeline), root)
         delivery_key = _hash({"version": CONTRACT_VERSION, "timeline": timeline, "delivery_encode_version": 2})
         delivery = _safe(root / "renders" / delivery_key[:24], root)
         delivery.mkdir(parents=True, exist_ok=True)

@@ -64,6 +64,11 @@ async def render_project(project_id: str):
     return studio.public_project(_call(studio.start, project_id, "render"))
 
 
+@router.post("/{project_id}/captions")
+def generate_captions(project_id: str):
+    return studio.public_project(_call(studio.generate_captions, project_id))
+
+
 @router.post("/{project_id}/queue", status_code=202)
 async def queue_project(project_id: str):
     return studio.public_project(_call(studio.start, project_id, "full"))

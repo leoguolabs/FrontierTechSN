@@ -167,6 +167,44 @@ class ExplainerAsyncTests(unittest.IsolatedAsyncioTestCase):
             self.assertTrue(await studio.run_next_queued())
         self.assertEqual(studio.read_project(project["id"])["status"], "script_ready")
 
+    async def test_generate_and_download_subtitles_without_rendering(self):
+        project = studio.create_project(project_input(scenes=[scene()], captions_enabled=False))
+        directory = studio.project_dir(project["id"])
+        (directory / "final.mp4").write_bytes(b"unchanged finished video")
+        timeline = {"duration_seconds": 6, "scenes": [
+            {"narration": "The rendered narration.", "start_seconds": 0, "duration_seconds": 6,
+             "pacing": {"speech_start_seconds": 0.1, "speech_end_seconds": 3.5}},
+        ]}
+        (directory / "timeline.json").write_text(json.dumps(timeline))
+        artifacts = {"video_path": "final.mp4", "timeline_path": "timeline.json",
+                     "duration_seconds": 6, "scene_artifacts": timeline["scenes"]}
+        studio.patch_project(project["id"], {"status": "completed", "artifacts": artifacts})
+        url = f"/api/explainers/{project['id']}/captions"
+        response = await self.client.post(url)
+        self.assertEqual(response.status_code, 200)
+        result = response.json()
+        self.assertEqual(result["status"], "completed")
+        self.assertFalse(result["captions_enabled"])
+        self.assertEqual(result["scenes"], project["scenes"])
+        srt = await self.client.get(result["artifacts"]["captions_url"])
+        self.assertEqual(srt.status_code, 200)
+        self.assertEqual(srt.text, "1\n00:00:00,100 --> 00:00:03,500\nThe rendered narration.\n")
+        (directory / "captions.srt").unlink()
+        self.assertEqual((await self.client.post(url)).status_code, 200)
+        self.assertEqual((directory / "final.mp4").read_bytes(), b"unchanged finished video")
+
+        timeline["scenes"][0]["narration"] = "A stale timeline."
+        (directory / "timeline.json").write_text(json.dumps(timeline))
+        self.assertEqual((await self.client.post(url)).status_code, 422)
+        self.assertEqual((directory / "captions.srt").read_text(), srt.text)
+        for status in ("draft", "rendering", "queued", "waiting_provider"):
+            studio.patch_project(project["id"], {"status": status})
+            self.assertEqual((await self.client.post(url)).status_code, 409)
+        studio.patch_project(project["id"], {"status": "completed"})
+        (directory / "timeline.json").unlink()
+        self.assertEqual((await self.client.post(url)).status_code, 404)
+        self.assertEqual((directory / "captions.srt").read_text(), srt.text)
+
     async def test_watermark_settings_migrate_persist_and_validate_via_api(self):
         project = studio.create_project(project_input())
         path = studio.project_dir(project["id"]) / "project.json"

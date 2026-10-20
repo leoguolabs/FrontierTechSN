@@ -128,7 +128,7 @@ export default function ExplainerStudio({ taskDetail = false }: { taskDetail?: b
     return saved
   }
 
-  async function act(action: 'save' | 'save-next' | 'script' | 'render' | 'queue' | 'dequeue' | 'cancel' | 'defaults' | 'retry-provider') {
+  async function act(action: 'save' | 'save-next' | 'script' | 'render' | 'queue' | 'dequeue' | 'cancel' | 'defaults' | 'retry-provider' | 'captions') {
     setError(null)
     setNotice(null)
     setPending(action)
@@ -143,6 +143,9 @@ export default function ExplainerStudio({ taskDetail = false }: { taskDetail?: b
         await saveExplainerDefaults({ language, target_minutes, tts_model, voice, captions_enabled, style })
         await queryClient.invalidateQueries({ queryKey: ['explainer-defaults'] })
         setNotice('Style, language and voice settings saved as defaults for new projects.')
+      } else if (action === 'captions' && id) {
+        rememberSaved(await runExplainer(id, action))
+        setNotice('SRT subtitles are ready to download and upload to YouTube.')
       } else if ((action === 'cancel' || action === 'dequeue' || action === 'retry-provider') && id) {
         const cancelled = await runExplainer(id, action)
         queryClient.setQueryData(['explainer', id], cancelled)
@@ -320,7 +323,10 @@ export default function ExplainerStudio({ taskDetail = false }: { taskDetail?: b
             <video key={project.artifacts.video_url} src={project.artifacts.video_url} poster={project.artifacts.thumbnail_url} controls preload="metadata" aria-label="Explainer video preview" />
             <div className="explainer-output-links"><a className="explainer-button is-primary" href={project.artifacts.video_url} download>Download video ↓</a>
               {project.artifacts.audio_url && <a className="explainer-button" href={project.artifacts.audio_url} download>Download narration</a>}
+              {project.artifacts.captions_url && <a className="explainer-button" href={project.artifacts.captions_url} download>Download subtitles (SRT) ↓</a>}
+              {project.status === 'completed' && <button type="button" className="explainer-button" disabled={!!pending || dirty} onClick={() => void act('captions')}>{pending === 'captions' ? 'Generating subtitles…' : project.artifacts.captions_url ? 'Regenerate subtitles' : 'Generate subtitles'}</button>}
               {project.artifacts.timeline_url && <a className="explainer-button" href={project.artifacts.timeline_url} target="_blank" rel="noreferrer">View timeline ↗</a>}</div>
+            <p className="explainer-field-help">Subtitles use the finished narration and its timing. Generate or download them without rendering the video again.</p>
           </section>}
 
           <>
@@ -342,6 +348,7 @@ export default function ExplainerStudio({ taskDetail = false }: { taskDetail?: b
               </div>
               {form.language === 'zh' && selectedModel?.language === 'en' && <p className="explainer-small-error">This voice model only supports English. Choose a model that supports Chinese before generating a Chinese video.</p>}
               <label className="explainer-check"><input type="checkbox" checked={form.captions_enabled} onChange={(e) => patch('captions_enabled', e.target.checked)} /><span>Show narration captions in the finished video</span></label>
+              <p className="explainer-field-help">A separate SRT subtitle file is generated with every video, even when captions are not shown in the picture.</p>
               <div className="explainer-topic-actions"><div><strong>Ready when you are.</strong><p>Save this topic for later, or add the full video to Tasks. Missing scripts are written automatically; existing scenes are used as saved.</p></div>
                 <div><button type="button" className="explainer-button" disabled={!form.title.trim() || invalidScenes} onClick={() => void act('save-next')}>{pending === 'save-next' ? 'Saving…' : 'Save & add another'}</button>
                   <button type="button" className="explainer-button is-primary" disabled={!canQueueExplainer(form) || !!queueError || !queue || (form.language === 'zh' && selectedModel?.language === 'en')} onClick={() => void act('queue')}>{pending === 'queue' ? 'Adding to queue…' : 'Add to video queue →'}</button></div>

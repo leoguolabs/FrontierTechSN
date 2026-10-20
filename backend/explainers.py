@@ -951,6 +951,36 @@ def asset_path(project_id: str, relative: str) -> Path:
     return path
 
 
+def generate_captions(project_id: str) -> dict:
+    """Restore an uploadable SRT without changing the finished video or its plan."""
+    from backend.explainer_captions import build_srt
+
+    with _lock:
+        project = read_project(project_id)
+        if project["status"] != "completed" or project.get("production") or project.get("priority_pause"):
+            raise ConflictError("Finish the video before generating subtitles")
+        artifacts = dict(project.get("artifacts") or {})
+        if not artifacts.get("video_path") or not artifacts.get("timeline_path"):
+            raise ValueError("A finished video and its narration timeline are required")
+        asset_path(project_id, artifacts["video_path"])
+        timeline = json.loads(asset_path(project_id, artifacts["timeline_path"]).read_text(encoding="utf-8"))
+        content = build_srt(timeline)
+        if (timeline["duration_seconds"] != artifacts.get("duration_seconds")
+                or (artifacts.get("scene_artifacts") is not None
+                    and timeline["scenes"] != artifacts["scene_artifacts"])):
+            raise ValueError("The narration timeline does not match the finished video")
+        path = project_dir(project_id) / "captions.srt"
+        _safe(path)
+        temporary = path.with_name(f".captions.{uuid.uuid4().hex}.tmp")
+        try:
+            temporary.write_text(content, encoding="utf-8")
+            temporary.replace(path)
+        finally:
+            temporary.unlink(missing_ok=True)
+        artifacts["captions_path"] = "captions.srt"
+        return patch_project(project_id, {"artifacts": artifacts})
+
+
 def public_project(project: dict, positions: dict[str, int] | None = None) -> dict:
     from urllib.parse import quote
     result = dict(project)

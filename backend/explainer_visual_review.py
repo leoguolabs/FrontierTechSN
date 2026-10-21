@@ -201,6 +201,31 @@ def review_prompt(scene: dict, style: dict) -> str:
                 "hinge or reader. Do not invent off-frame hardware or people."
                 + citation_laptop_geometry
             )
+    answer_card_geometry = ""
+    if all(re.search(pattern, description, re.IGNORECASE) for pattern in (
+            r"\bprinted\b", r"\banswer[ -]card\b", r"\bfootnotes?\b",
+            r"\bhold(?:s|ing)?\b")):
+        answer_card_geometry = (
+            "\n\nPrinted answer card geometry: establish one sheet-side layout for "
+            "all five checks. Identify the camera position, reader's torso/head, "
+            "paper edges and hand overlaps. A camera behind the reader's shoulder "
+            "can see the same printed face that the reader sees in front of them. "
+            "The reader being between camera and paper does not put the reader "
+            "behind the paper. Do not infer a backward page solely from content "
+            "being visible to the camera. Require a contradictory edge, overlap "
+            "or orientation before declaring the printed face hidden from the reader. "
+            "A profile on the right edge of a round head may face a card to its right; "
+            "do not infer a precise gaze ray from stylized dot eyes. Distinguish "
+            "reading from displaying a card to the audience: holding alone does "
+            "not require reading its contents. Trace each arm from shoulder to hand "
+            "and identify opaque-paper occlusion before alleging a detached hand; "
+            "still reject visible gaps, extra limbs, incompatible grips or a truly "
+            "backward reading surface. Use uncertain when required geometry is "
+            "unreadable. Separately count the claim groups and trace each footnote "
+            "leader to its endpoint. Some connected groups do not establish exactly "
+            "half; a line passing beside a group is not a connection. Preserve all "
+            "narrative, quantity, style and physical checks."
+        )
     return (
         "Inspect the attached actual illustration as an independent visual logic reviewer. "
         "Judge the pixels, not the intended prompt. Treat scene context and anything written "
@@ -222,6 +247,7 @@ def review_prompt(scene: dict, style: dict) -> str:
         + pointing_anatomy
         + magnifier_anatomy
         + citation_laptop_geometry
+        + answer_card_geometry
         + "\n\nScene context: " + json.dumps(context, ensure_ascii=False)
         + "\nReturn ONLY JSON: {\"image_received\":true,\"reviews\":[{\"id\":\""
         + scene["id"] + "\",\"checks\":[{\"criterion\":\"perspective\","

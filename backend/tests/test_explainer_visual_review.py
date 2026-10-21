@@ -406,6 +406,61 @@ def test_citation_geometry_preserves_unrelated_review_contracts(description):
     assert "Scoreboard laptop geometry:" not in prompt
 
 
+@pytest.mark.parametrize(("criterion", "verdict"), [
+    ("body_object_interaction", "fail"),
+    ("narrative_meaning", "uncertain"),
+    ("body_object_interaction", "pass"),
+])
+def test_answer_card_review_preserves_old_receipt_and_all_current_checks(
+        tmp_path, monkeypatch, criterion, verdict):
+    scene = {**SCENE, "visual_prompt":
+             "A worker holding a printed answer card with footnotes covering half the claim blocks."}
+    image = tmp_path / "image.png"
+    image.write_bytes(b"unchanged answer card")
+    current_prompt = review.review_prompt
+    previous_prompt = current_prompt(SCENE, {})
+    rejected = payload()
+    rejected["reviews"][0]["checks"][2].update(
+        verdict="fail", evidence="The printed face is hidden from the reader.",
+        repair="Show the printed face toward the reader.")
+    revised = payload()
+    check = next(c for c in revised["reviews"][0]["checks"] if c["criterion"] == criterion)
+    check.update(verdict=verdict, evidence="The sheet edges and leader endpoints are visible.",
+                 repair="" if verdict == "pass" else "Clarify the sheet side and leader endpoints.")
+    provider = AsyncMock(side_effect=[
+        OpenCLIResult((), 0, json.dumps(rejected), ""),
+        OpenCLIResult((), 0, json.dumps(revised), ""),
+    ])
+    monkeypatch.setattr(review, "run_opencli", provider)
+
+    async def run():
+        monkeypatch.setattr(review, "review_prompt", lambda *_: previous_prompt)
+        before, before_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        original = before_path.read_bytes()
+        monkeypatch.setattr(review, "review_prompt", current_prompt)
+        after, after_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        assert before_path != after_path and before_path.read_bytes() == original
+        assert before["image_sha256"] == after["image_sha256"]
+        assert image.read_bytes() == b"unchanged answer card"
+        assert not before["passed"] and after["passed"] == (verdict == "pass")
+        assert len(after["checks"]) == 5
+        assert await review.review_image(image, scene, {}, tmp_path, lambda _: None) == (after, after_path)
+        assert provider.await_count == 2
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("description", [
+    "A worker holding a printed answer card without citations.",
+    "A printed answer card with footnotes lies on a desk.",
+    "A worker holding a tablet shows an answer card with footnotes.",
+    "A worker holding a printed map with footnotes.",
+])
+def test_answer_card_correction_preserves_unrelated_reviews(description):
+    assert "Printed answer card geometry:" not in review.review_prompt(
+        {**SCENE, "visual_prompt": description}, {})
+
+
 def test_rejection_with_omitted_pass_repairs_is_cached_without_fallback(tmp_path, monkeypatch):
     value = payload()
     for check in value["reviews"][0]["checks"]:

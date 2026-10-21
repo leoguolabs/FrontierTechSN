@@ -154,7 +154,9 @@ def review_prompt(scene: dict, style: dict) -> str:
     citation_laptop_geometry = ""
     has_footnote = re.search(r"\bfootnotes?\b", description, re.IGNORECASE)
     has_scoreboard = re.search(r"\bscoreboard\b", description, re.IGNORECASE)
-    if re.search(r"\blaptop\b", description, re.IGNORECASE) and (has_footnote or has_scoreboard):
+    has_laptop = re.search(r"\blaptop\b", description, re.IGNORECASE)
+    scoreboard_screen = has_scoreboard and re.search(r"\bscreen\b", description, re.IGNORECASE)
+    if (has_laptop and (has_footnote or has_scoreboard)) or scoreboard_screen:
         citation_laptop_geometry = (
             "\n\nCitation laptop geometry: reconstruct one layout shared by all five "
             "checks. Locate the reader, if visible, then the palm-rest/trackpad edge, "
@@ -188,6 +190,16 @@ def review_prompt(scene: dict, style: dict) -> str:
             ).replace(
                 "Check the footnote and inspection icon relationship",
                 "Check the scoreboard pictograms and separate score rows",
+            )
+        if not has_laptop:
+            # A close-up may inherit a laptop from scene continuity without
+            # naming it. Apply its geometry only when that device is visible.
+            citation_laptop_geometry = (
+                "\n\nFor a scoreboard screen, first identify the visible device. "
+                "Apply the following laptop geometry only if a laptop is depicted; "
+                "a standalone monitor or screen-only crop need not show a keyboard, "
+                "hinge or reader. Do not invent off-frame hardware or people."
+                + citation_laptop_geometry
             )
     return (
         "Inspect the attached actual illustration as an independent visual logic reviewer. "

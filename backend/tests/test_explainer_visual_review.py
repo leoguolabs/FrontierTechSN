@@ -332,6 +332,7 @@ def test_magnifier_anatomy_preserves_unrelated_review_contracts(description):
 @pytest.mark.parametrize("description", [
     "A worker at a laptop checks its footnote line while holding a pencil.",
     "A worker at a laptop checks a scoreboard with separate pictogram columns.",
+    "Close-up of the screen: the same three-column scoreboard, now with filled pictogram rows.",
 ])
 def test_laptop_geometry_review_preserves_old_rejection_and_caches_new_verdict(
         tmp_path, monkeypatch, verdict, description):
@@ -380,6 +381,16 @@ def test_laptop_geometry_review_preserves_old_rejection_and_caches_new_verdict(
         assert "Scoreboard laptop geometry:" in prompt
         assert "Check the scoreboard pictograms and separate score rows" in prompt
         assert "Check the footnote and inspection icon relationship" not in prompt
+    if "laptop" not in description:
+        assert "only if a laptop is depicted" in prompt
+        assert "Do not invent off-frame hardware or people" in prompt
+
+
+def test_scoreboard_screen_review_does_not_require_laptop_hardware():
+    prompt = review.review_prompt({**SCENE, "visual_prompt":
+                                  "A scoreboard fills a standalone monitor screen."}, {})
+    assert "a standalone monitor or screen-only crop need not show a keyboard" in prompt
+    assert "screen-only close-up need not invent an unseen reader" in prompt
 
 
 @pytest.mark.parametrize("description", [

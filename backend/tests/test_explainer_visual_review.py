@@ -328,6 +328,63 @@ def test_magnifier_anatomy_preserves_unrelated_review_contracts(description):
     assert "Handheld magnifier anatomy:" not in prompt
 
 
+@pytest.mark.parametrize("verdict", ["fail", "uncertain", "pass"])
+def test_citation_geometry_review_preserves_old_rejection_and_caches_new_verdict(
+        tmp_path, monkeypatch, verdict):
+    scene = {**SCENE, "visual_prompt":
+             "A worker at a laptop checks its footnote line while holding a pencil."}
+    image = tmp_path / "image.png"
+    image.write_bytes(b"unchanged citation laptop candidate")
+    corrected_prompt = review.review_prompt
+    old_prompt = corrected_prompt(SCENE, {})
+    rejection = payload()
+    rejection["reviews"][0]["checks"][2].update(
+        verdict="fail", evidence="The display faces the camera, away from the reader.",
+        repair="Rotate the laptop toward the reader.")
+    revised = payload()
+    revised["reviews"][0]["checks"][2].update(
+        verdict=verdict,
+        evidence=("Reader and camera share the palm-rest side of the visible hinge."
+                  if verdict == "pass" else "The reader's side of the lid is incompatible or unclear."),
+        repair="" if verdict == "pass" else "Show the reader on the palm-rest side.")
+    provider = AsyncMock(side_effect=[
+        OpenCLIResult((), 0, json.dumps(rejection), ""),
+        OpenCLIResult((), 0, json.dumps(revised), ""),
+    ])
+    monkeypatch.setattr(review, "run_opencli", provider)
+
+    async def run():
+        monkeypatch.setattr(review, "review_prompt", lambda *_: old_prompt)
+        before, before_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        old_receipt = before_path.read_bytes()
+        monkeypatch.setattr(review, "review_prompt", corrected_prompt)
+        after, after_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        assert before_path != after_path and before_path.read_bytes() == old_receipt
+        assert image.read_bytes() == b"unchanged citation laptop candidate"
+        assert before["image_sha256"] == after["image_sha256"]
+        assert not before["passed"] and after["passed"] == (verdict == "pass")
+        assert after["checks"][2]["verdict"] == verdict
+        assert await review.review_image(image, scene, {}, tmp_path, lambda _: None) == (after, after_path)
+        assert provider.await_count == 2
+
+    asyncio.run(run())
+    prompt = corrected_prompt(scene, {})
+    assert "display then faces BOTH reader and camera" in prompt
+    assert "partial profile on a round" in prompt
+    assert "Require visible incompatible orientation" in prompt
+    assert "Preserve genuine backward-display" in prompt
+
+
+@pytest.mark.parametrize("description", [
+    "A worker faces a laptop displaying an answer card.",
+    "A worker reads a footnote on a printed page.",
+    "A tablet shows footnotes beside a pencil.",
+])
+def test_citation_geometry_preserves_unrelated_review_contracts(description):
+    prompt = review.review_prompt({**SCENE, "visual_prompt": description}, {})
+    assert "Citation laptop geometry:" not in prompt
+
+
 def test_rejection_with_omitted_pass_repairs_is_cached_without_fallback(tmp_path, monkeypatch):
     value = payload()
     for check in value["reviews"][0]["checks"]:

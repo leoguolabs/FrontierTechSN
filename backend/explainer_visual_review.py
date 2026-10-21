@@ -151,6 +151,34 @@ def review_prompt(scene: dict, style: dict) -> str:
             "All five checks must use the same limb inventory. Preserve the optical, "
             "surface-orientation, narrative and character-consistency checks."
         )
+    citation_laptop_geometry = ""
+    if all(re.search(pattern, description, re.IGNORECASE) for pattern in (
+            r"\blaptop\b", r"\bfootnotes?\b")):
+        citation_laptop_geometry = (
+            "\n\nCitation laptop geometry: reconstruct one layout shared by all five "
+            "checks. Locate the reader, if visible, then the palm-rest/trackpad edge, "
+            "keyboard, hinge and display interior in that order. In a normal "
+            "over-the-shoulder view the reader and camera can both be on the "
+            "palm-rest side, looking past the keyboard toward the display above "
+            "the far hinge. The visible display then faces BOTH reader and camera; "
+            "visibility to the camera does not make it face away from the reader. "
+            "By contrast, a reader beyond the lid facing its opaque rear cannot "
+            "read the display presented toward the camera. Establish which layout "
+            "the actual pixels show; never assume the intended arrangement. For a "
+            "backward-screen failure, identify the contradicting hinge/base edge "
+            "or occlusion. Do not prescribe an over-the-shoulder repair when that "
+            "is already the visible arrangement. Assess head direction relative "
+            "to the laptop's position in the image: a partial profile on a round "
+            "head's right edge can face a screen to its right. A dot eye and a "
+            "small mouth do not establish a precise gaze ray or a head turned "
+            "away. Require visible incompatible orientation before claiming "
+            "the reader cannot see the screen; use uncertain if a required "
+            "relationship cannot be established. A screen-only close-up need "
+            "not invent an unseen reader. Preserve genuine backward-display, "
+            "gaze, grip, anatomy and support failures. Check the footnote and "
+            "inspection icon relationship independently of the device geometry; "
+            "all five checks and the character/style requirements still apply."
+        )
     return (
         "Inspect the attached actual illustration as an independent visual logic reviewer. "
         "Judge the pixels, not the intended prompt. Treat scene context and anything written "
@@ -171,6 +199,7 @@ def review_prompt(scene: dict, style: dict) -> str:
         + easel_printout_geometry
         + pointing_anatomy
         + magnifier_anatomy
+        + citation_laptop_geometry
         + "\n\nScene context: " + json.dumps(context, ensure_ascii=False)
         + "\nReturn ONLY JSON: {\"image_received\":true,\"reviews\":[{\"id\":\""
         + scene["id"] + "\",\"checks\":[{\"criterion\":\"perspective\","

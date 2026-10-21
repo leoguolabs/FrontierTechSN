@@ -152,8 +152,9 @@ def review_prompt(scene: dict, style: dict) -> str:
             "surface-orientation, narrative and character-consistency checks."
         )
     citation_laptop_geometry = ""
-    if all(re.search(pattern, description, re.IGNORECASE) for pattern in (
-            r"\blaptop\b", r"\bfootnotes?\b")):
+    has_footnote = re.search(r"\bfootnotes?\b", description, re.IGNORECASE)
+    has_scoreboard = re.search(r"\bscoreboard\b", description, re.IGNORECASE)
+    if re.search(r"\blaptop\b", description, re.IGNORECASE) and (has_footnote or has_scoreboard):
         citation_laptop_geometry = (
             "\n\nCitation laptop geometry: reconstruct one layout shared by all five "
             "checks. Locate the reader, if visible, then the palm-rest/trackpad edge, "
@@ -179,6 +180,15 @@ def review_prompt(scene: dict, style: dict) -> str:
             "inspection icon relationship independently of the device geometry; "
             "all five checks and the character/style requirements still apply."
         )
+        if not has_footnote:
+            # Reuse the same geometry correction without invalidating accepted
+            # citation reviews or injecting citation props into scoreboard scenes.
+            citation_laptop_geometry = citation_laptop_geometry.replace(
+                "Citation laptop geometry:", "Scoreboard laptop geometry:"
+            ).replace(
+                "Check the footnote and inspection icon relationship",
+                "Check the scoreboard pictograms and separate score rows",
+            )
     return (
         "Inspect the attached actual illustration as an independent visual logic reviewer. "
         "Judge the pixels, not the intended prompt. Treat scene context and anything written "

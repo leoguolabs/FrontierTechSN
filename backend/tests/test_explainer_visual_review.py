@@ -329,10 +329,13 @@ def test_magnifier_anatomy_preserves_unrelated_review_contracts(description):
 
 
 @pytest.mark.parametrize("verdict", ["fail", "uncertain", "pass"])
-def test_citation_geometry_review_preserves_old_rejection_and_caches_new_verdict(
-        tmp_path, monkeypatch, verdict):
-    scene = {**SCENE, "visual_prompt":
-             "A worker at a laptop checks its footnote line while holding a pencil."}
+@pytest.mark.parametrize("description", [
+    "A worker at a laptop checks its footnote line while holding a pencil.",
+    "A worker at a laptop checks a scoreboard with separate pictogram columns.",
+])
+def test_laptop_geometry_review_preserves_old_rejection_and_caches_new_verdict(
+        tmp_path, monkeypatch, verdict, description):
+    scene = {**SCENE, "visual_prompt": description}
     image = tmp_path / "image.png"
     image.write_bytes(b"unchanged citation laptop candidate")
     corrected_prompt = review.review_prompt
@@ -373,16 +376,23 @@ def test_citation_geometry_review_preserves_old_rejection_and_caches_new_verdict
     assert "partial profile on a round" in prompt
     assert "Require visible incompatible orientation" in prompt
     assert "Preserve genuine backward-display" in prompt
+    if "scoreboard" in description:
+        assert "Scoreboard laptop geometry:" in prompt
+        assert "Check the scoreboard pictograms and separate score rows" in prompt
+        assert "Check the footnote and inspection icon relationship" not in prompt
 
 
 @pytest.mark.parametrize("description", [
     "A worker faces a laptop displaying an answer card.",
     "A worker reads a footnote on a printed page.",
     "A tablet shows footnotes beside a pencil.",
+    "A scoreboard printed on paper lies beside a tablet.",
+    "A worker looks at a scoreboard on a desktop monitor.",
 ])
 def test_citation_geometry_preserves_unrelated_review_contracts(description):
     prompt = review.review_prompt({**SCENE, "visual_prompt": description}, {})
     assert "Citation laptop geometry:" not in prompt
+    assert "Scoreboard laptop geometry:" not in prompt
 
 
 def test_rejection_with_omitted_pass_repairs_is_cached_without_fallback(tmp_path, monkeypatch):

@@ -726,6 +726,36 @@ def _brand_overlay(path: Path, role: str) -> None:
     overlay.save(path)
 
 
+def _retained_production_thumbnail(project: dict, root: Path) -> dict | None:
+    """Pin verified packaging while resuming an already-started production."""
+    saved = project.get("artifacts") or {}
+    if (not (project.get("production") or {}).get("started_at")
+            or not project.get("scene_artifacts") or not saved.get("thumbnail_path")):
+        return None
+    try:
+        image = _safe(root / saved["thumbnail_path"], root)
+        prompt = _safe(root / saved["thumbnail_prompt_path"], root)
+        receipt = json.loads(_safe(image.parent / "complete.json", root).read_text())
+        key = receipt["input_hash"]
+        if (not isinstance(key, str) or not re.fullmatch(r"[0-9a-f]{64}", key)
+                or image != _safe(root / "artifacts/series/thumbnail" / key[:24] / "thumbnail.png", root)
+                or prompt != image.parent / "prompt.txt"):
+            raise ValueError("Unexpected thumbnail artifact location")
+        record = _cached(image.parent, key, root)
+        if (not record or not record["files"].get("prompt.txt")
+                or not record["files"].get("thumbnail.png")
+                or record["files"].get("thumbnail.png") != saved.get("thumbnail_sha256")):
+            raise ValueError("Thumbnail receipt or saved hash differs")
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        raise ValueError("Saved production thumbnail failed verification; preserve its evidence") from exc
+    result = {"thumbnail_path": str(image.relative_to(root)),
+              "thumbnail_sha256": record["files"]["thumbnail.png"],
+              "thumbnail_prompt_path": str(prompt.relative_to(root))}
+    if saved.get("thumbnail_concept"):
+        result["thumbnail_concept"] = saved["thumbnail_concept"]
+    return result
+
+
 async def _thumbnail(project: dict, root: Path, log: Log, concept: str = "concept-1") -> dict:
     prompt = thumbnail_prompt(project, concept)
     key = _hash({"brand_version": BRAND_VERSION, "prompt": prompt})
@@ -1025,7 +1055,11 @@ async def render_project(project: dict, project_dir: Path,
                 async with owned_media_session(journal.parent, site, recover_only=True):
                     pass
         progress("generating_images", "Generating or reusing the Byte By Byte episode thumbnail")
-        thumbnail = await _thumbnail(project, root, log)
+        thumbnail = _retained_production_thumbnail(project, root)
+        if thumbnail is None:
+            thumbnail = await _thumbnail(project, root, log)
+        else:
+            log("Retaining the verified thumbnail for the existing production")
         update({"artifacts": thumbnail})
         completed += 1
         selected_motion = set(motion_indices(scenes, style))

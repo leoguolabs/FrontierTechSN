@@ -252,6 +252,72 @@ def providers(monkeypatch):
     return fixture
 
 
+def _project_with_saved_thumbnail(root):
+    project = _project()
+    prompt = "Previously accepted thumbnail design"
+    key = pipeline._hash({"brand_version": 0, "prompt": prompt})
+    stage = pipeline._stage(root, "series", "thumbnail", key)
+    image = stage / "thumbnail.png"
+    Image.new("RGB", (1280, 720), "#F4EBDD").save(image)
+    (stage / "prompt.txt").write_text(prompt)
+    receipt = pipeline._complete(stage, key, [image, stage / "prompt.txt"], root)
+    project.update(production={"started_at": "2026-10-18T12:00:00+00:00"},
+                   scene_artifacts=[{"id": "scene-001"}],
+                   artifacts={"thumbnail_path": str(image.relative_to(root)),
+                              "thumbnail_sha256": receipt["files"]["thumbnail.png"],
+                              "thumbnail_prompt_path": str((stage / "prompt.txt").relative_to(root))})
+    return project, stage
+
+
+def test_resuming_production_retains_verified_thumbnail_after_default_changes(
+        tmp_path, providers, monkeypatch):
+    from unittest.mock import AsyncMock
+
+    project, stage = _project_with_saved_thumbnail(tmp_path)
+    original = {f.name: f.read_bytes() for f in stage.iterdir() if f.is_file()}
+    generation = AsyncMock(side_effect=AssertionError("do not replace accepted packaging on resume"))
+    monkeypatch.setattr(pipeline, "_thumbnail", generation)
+    updates = []
+    result = asyncio.run(pipeline.render_project(project, tmp_path, updates.append, lambda _: None))
+    generation.assert_not_awaited()
+    assert result["thumbnail_sha256"] == project["artifacts"]["thumbnail_sha256"]
+    assert updates[1]["artifacts"] == project["artifacts"]
+    assert {f.name: f.read_bytes() for f in stage.iterdir() if f.is_file()} == original
+
+
+@pytest.mark.parametrize("damage", ["image", "prompt", "saved_hash", "missing_receipt", "missing_image_hash"])
+def test_saved_production_thumbnail_corruption_does_not_trigger_replacement(
+        tmp_path, providers, monkeypatch, damage):
+    from unittest.mock import AsyncMock
+
+    project, stage = _project_with_saved_thumbnail(tmp_path)
+    if damage == "image":
+        (stage / "thumbnail.png").write_bytes(b"changed image")
+    elif damage == "prompt":
+        (stage / "prompt.txt").write_text("changed prompt")
+    elif damage == "saved_hash":
+        project["artifacts"]["thumbnail_sha256"] = "0" * 64
+    elif damage == "missing_image_hash":
+        receipt = json.loads((stage / "complete.json").read_text())
+        del receipt["files"]["thumbnail.png"]
+        (stage / "complete.json").write_text(json.dumps(receipt))
+        del project["artifacts"]["thumbnail_sha256"]
+    else:
+        (stage / "complete.json").unlink()
+    generation = AsyncMock()
+    monkeypatch.setattr(pipeline, "_thumbnail", generation)
+    with pytest.raises(ValueError, match="Saved production thumbnail failed verification"):
+        asyncio.run(pipeline.render_project(project, tmp_path, lambda _: None, lambda _: None))
+    generation.assert_not_awaited()
+
+
+@pytest.mark.parametrize("cleared", ["production", "scene_artifacts", "artifacts"])
+def test_new_or_invalidated_production_can_use_current_thumbnail_default(tmp_path, cleared):
+    project, _ = _project_with_saved_thumbnail(tmp_path)
+    project.pop(cleared)
+    assert pipeline._retained_production_thumbnail(project, tmp_path) is None
+
+
 def test_image_logic_repair_retains_candidates_and_reuses_verified_result(tmp_path, providers):
     async def run():
         providers.review_failures = 1

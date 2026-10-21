@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An independently built whiteboard film about AI and learning, with a frame-by-frame review desk.">
+  <meta name="description" content="An independently built whiteboard film about AI and learning, with a reusable Codex film project.">
   <title>Codex Whiteboard Studio — Does AI Help You Learn?</title>
-  <link rel="stylesheet" href="showcase.css">
-  <script type="module" src="showcase.mjs"></script>
+  <link rel="stylesheet" href="showcase.css?v=repository-v1">
+  <script type="module" src="showcase.mjs?v=repository-v1"></script>
 </head>
 <body>
   <header class="masthead">
     <a class="brand" href="#film"><span class="brand-mark" aria-hidden="true">↗</span> CODEX<br>WHITEBOARD STUDIO</a>
-    <nav aria-label="Main"><a href="#film">The film</a><a href="#frame-lab">Frame lab</a><a href="#notes">Build notes</a></nav>
+    <nav aria-label="Main"><a href="#film">The film</a><a href="#frame-lab">Make a film</a><a href="#notes">Build notes</a></nav>
     <span class="edition">FIELD NOTE 001 / LEOGUOLABS</span>
   </header>
   <main>
@@ -43,39 +43,20 @@
       <div class="chapter-strip" id="chapters" aria-label="Film chapters"></div>
     </section>
 
-    <section id="frame-lab" class="lab">
-      <div class="section-heading"><div><span class="eyebrow">02 / LOOK CLOSER</span><h2>The frame lab.</h2></div>
-        <p>The same visual language, a new story. Compare the reference and the independent film by visual function. Step through every frame.</p>
+    <section id="frame-lab" class="make-film">
+      <div class="section-heading"><div><span class="eyebrow">02 / MAKE IT YOURS</span><h2>Your story.<br>The same style.</h2></div>
+        <p>Make your own film with Codex Film Studio. Start with this whiteboard style, then bring a subject you want to explain.</p>
       </div>
-      <div class="lab-toolbar">
-        <label>Compare a moment <select id="beat-select" aria-label="Comparison moment"></select></label>
-        <div class="legend"><span class="ink black"></span> explanation <span class="ink blue"></span> support <span class="ink orange"></span> independent work</div>
-      </div>
-      <div class="comparison">
-        <figure><div class="video-label"><b>01</b><span>THE REFERENCE<br><small>LemoLab / Einstein in Your Pocket</small></span></div>
-          <video id="reference-player" muted playsinline preload="metadata" aria-label="Whiteboard style reference"><source src="reference/whiteboard.mp4" type="video/mp4"></video>
-          <figcaption id="reference-frame">REFERENCE FRAME —</figcaption>
-        </figure>
-        <figure><div class="video-label"><b>02</b><span>THE NEW FILM<br><small>Codex Whiteboard Studio / AI & learning</small></span></div>
-          <video id="candidate-player" muted playsinline preload="metadata" aria-label="Independent film comparison"><source src="media/does-ai-help-you-learn-3min.mp4?edition=illustrated-v2" type="video/mp4"></video>
-          <figcaption id="candidate-frame">CANDIDATE FRAME —</figcaption>
-        </figure>
-      </div>
-      <div class="frame-controls">
-        <button id="previous-frame" aria-label="Previous frame">←</button>
-        <button id="play-comparison">Play moment</button>
-        <button id="next-frame" aria-label="Next frame">→</button>
-        <input id="frame-slider" type="range" min="0" max="4319" value="0" step="1" aria-label="Candidate frame">
-        <label class="frame-entry">Frame <input id="frame-number" type="number" min="0" max="4319" value="0" aria-label="Go to candidate frame"></label>
-      </div>
-      <p id="beat-note" class="lab-note">Ink, pen contact, camera, surface and readable holds are reviewed separately.</p>
-      <div class="evidence" id="evidence">
-        <div><strong>2,664</strong><span>reference frames decoded</span></div>
-        <div><strong id="candidate-count">—</strong><span>delivery frames decoded</span></div>
-        <div><strong id="review-state">In review</strong><span>current evidence status</span></div>
-        <div class="review-links"><a id="delivery-review" href="review/visual-review.md">Delivery review ↗</a><a href="review/reference-review.md">Reference review ↗</a></div>
-      </div>
-      <p class="fineprint">The two stories differ in content and duration. Moment mapping supports style inspection; it does not imply pixel identity. Complete-frame measurements, atlas inspection and full-resolution spot checks are recorded as separate evidence.</p>
+      <a class="repository-link" href="https://github.com/visiontrail/codex-film-studio" target="_blank" rel="noopener noreferrer">
+        <span><small>GET THE PROJECT ON GITHUB</small><strong>codex-film-studio</strong><span>Style guides, editable examples and everything to get started.</span></span><b aria-hidden="true">↗</b>
+      </a>
+      <ol class="start-steps">
+        <li><span class="step-number">01</span><h3>Clone the project.</h3><p>Download the repository to your computer.</p><pre><code>git clone https://github.com/visiontrail/codex-film-studio.git
+cd codex-film-studio</code></pre></li>
+        <li><span class="step-number">02</span><h3>Open it in Codex.</h3><p>Choose the cloned folder as your project. Ask Codex to use the whiteboard style.</p><a href="https://github.com/visiontrail/codex-film-studio#make-a-film-with-codex" target="_blank" rel="noopener noreferrer">Read the quick start ↗</a></li>
+        <li><span class="step-number">03</span><h3>Bring your story.</h3><p>Give Codex a topic, audience and running time. It can adapt the drawings, narration and film to your idea.</p><a href="https://github.com/visiontrail/codex-film-studio/blob/main/README.zh-CN.md" target="_blank" rel="noopener noreferrer">中文使用说明 ↗</a></li>
+      </ol>
+      <div class="starter-prompt"><span class="eyebrow">TRY THIS IN CODEX</span><blockquote>Make a three-minute whiteboard film about how solar panels work. Draw people and objects when they help explain an idea. Use English narration and deliver a 1080p video. Inspect and refine the result before showing me.</blockquote><p>To recreate this film first, ask Codex to follow the sample rebuild instructions in the README. The sample includes its recorded narration.</p></div>
     </section>
 
     <section id="notes" class="notes">

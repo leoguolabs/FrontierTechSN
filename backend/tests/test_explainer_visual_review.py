@@ -278,6 +278,56 @@ def test_chart_presenter_correction_keeps_unrelated_review_contracts(description
     assert "Pointer gesture anatomy:" not in prompt
 
 
+@pytest.mark.parametrize("verdict", ["fail", "uncertain"])
+def test_magnifier_review_rechecks_same_pixels_without_overriding_rejection(
+        tmp_path, monkeypatch, verdict):
+    scene = {**SCENE, "visual_prompt":
+             "A seated character grips a magnifying glass above a flat clipboard."}
+    image = tmp_path / "image.png"
+    image.write_bytes(b"unchanged magnifier candidate")
+    rejected = payload()
+    rejected["reviews"][0]["checks"][1].update(
+        verdict=verdict, evidence="A background gap separates the wrist and hand.",
+        repair="Connect the hand to the visible forearm.")
+    provider = AsyncMock(return_value=OpenCLIResult((), 0, json.dumps(rejected), ""))
+    monkeypatch.setattr(review, "run_opencli", provider)
+    corrected_prompt = review.review_prompt
+    old_prompt = corrected_prompt(SCENE, {})
+
+    async def run():
+        monkeypatch.setattr(review, "review_prompt", lambda *_: old_prompt)
+        before, before_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        original_receipt = before_path.read_bytes()
+        monkeypatch.setattr(review, "review_prompt", corrected_prompt)
+        after, after_path = await review.review_image(image, scene, {}, tmp_path, lambda _: None)
+        assert before_path != after_path
+        assert before_path.read_bytes() == original_receipt
+        assert image.read_bytes() == b"unchanged magnifier candidate"
+        assert before["image_sha256"] == after["image_sha256"]
+        assert not before["passed"] and not after["passed"]
+        assert after["checks"][1]["verdict"] == verdict
+        assert provider.await_count == 2
+        assert await review.review_image(image, scene, {}, tmp_path, lambda _: None) == (after, after_path)
+        assert provider.await_count == 2
+
+    asyncio.run(run())
+    prompt = corrected_prompt(scene, {})
+    assert "needs no transverse wrist line" in prompt
+    assert "never assume the requested limb count is correct" in prompt
+    assert "Reject a demonstrable third chain" in prompt
+    assert "use uncertain when required continuity cannot be established" in prompt
+
+
+@pytest.mark.parametrize("description", [
+    "A clipboard and a magnifying-glass icon appear on a screen.",
+    "A character holds a pencil above a clipboard, without a magnifier.",
+    "A character holds a magnifying glass above an open book.",
+])
+def test_magnifier_anatomy_preserves_unrelated_review_contracts(description):
+    prompt = review.review_prompt({**SCENE, "visual_prompt": description}, {})
+    assert "Handheld magnifier anatomy:" not in prompt
+
+
 def test_rejection_with_omitted_pass_repairs_is_cached_without_fallback(tmp_path, monkeypatch):
     value = payload()
     for check in value["reviews"][0]["checks"]:

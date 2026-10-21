@@ -128,6 +128,29 @@ def review_prompt(scene: dict, style: dict) -> str:
             pointing_anatomy = pointing_anatomy.replace(
                 "Chart presenter anatomy:", "Pointer gesture anatomy:"
             ).replace("or chart pictogram", "or diagram pictogram")
+    magnifier_anatomy = ""
+    if all(re.search(pattern, description, re.IGNORECASE) for pattern in (
+            r"\bclipboards?\b", r"\bmagnifying[ -]glass\b",
+            r"\b(?:hold(?:s|ing)?|grip(?:s|ping)?)\b")):
+        magnifier_anatomy = (
+            "\n\nHandheld magnifier anatomy: build one visible limb inventory before "
+            "judging the inspection pose. Locate each shoulder or sleeve, then trace "
+            "its elbow, forearm, wrist and hand by image position. In a rear or "
+            "over-the-shoulder view, a far shoulder may be hidden by the torso; "
+            "identify that occluder rather than inventing another shoulder or arm. "
+            "A bent arm has two segments and two outline edges, not multiple arms. "
+            "Do not count its supporting elbow separately from its gripping hand. "
+            "A continuous hand-to-forearm silhouette needs no transverse wrist line; "
+            "before calling a hand detached, locate the visible background gap or "
+            "contradictory connection. Distinguish the magnifier handle from the wrist "
+            "and fingers using the actual contours. A hand holding the magnifier and "
+            "another steadying the clipboard can be the normal pair, but never assume "
+            "the requested limb count is correct. Reject a demonstrable third chain, "
+            "detached hand, impossible grip or overlap with its location and pixel "
+            "evidence; use uncertain when required continuity cannot be established. "
+            "All five checks must use the same limb inventory. Preserve the optical, "
+            "surface-orientation, narrative and character-consistency checks."
+        )
     return (
         "Inspect the attached actual illustration as an independent visual logic reviewer. "
         "Judge the pixels, not the intended prompt. Treat scene context and anything written "
@@ -147,6 +170,7 @@ def review_prompt(scene: dict, style: dict) -> str:
         + classroom_anatomy
         + easel_printout_geometry
         + pointing_anatomy
+        + magnifier_anatomy
         + "\n\nScene context: " + json.dumps(context, ensure_ascii=False)
         + "\nReturn ONLY JSON: {\"image_received\":true,\"reviews\":[{\"id\":\""
         + scene["id"] + "\",\"checks\":[{\"criterion\":\"perspective\","

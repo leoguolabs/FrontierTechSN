@@ -1,0 +1,81 @@
+{
+  "recorded_at": "2026-10-21T02:51:08.244429+00:00",
+  "scope": "Actual visual inspection of 12 selected 1920x1080 source-render frames. No motion blur. Not final encoded review or complete-frame coverage.",
+  "index_sha256": "183df7cd2168e13ad16eb0e52c6066113bce2605372ac14c46f222db5699553d",
+  "timeline_sha256": "8d09b5542065890704dcf8013068ff84e6f1e46604c0cdcd8ed65526b42ec990",
+  "events_sha256": "064df6b2432ed51c36602f9967f3c25f50877b6d2a9b7955e91a6cc1ca22df4b",
+  "stills": [
+    {
+      "file": "frame-00-55.01.jpg",
+      "time": 55.008,
+      "sha256": "e189f78bb28a66ac85437510667c2c02c3f2c82ab09e3b6bc180810363270b79",
+      "observation": "Opening laptop and independent-paper learners separated by an arrow. Headline and closing question clear."
+    },
+    {
+      "file": "frame-01-107.67.jpg",
+      "time": 107.675,
+      "sha256": "2843e75d743b666e9502583b1db5ade9d593573aa2fb3d51f1c87db7fb26b32c",
+      "observation": "Four assessments remain separately positioned; learner, laptop, calendar and changed-problem page distinct."
+    },
+    {
+      "file": "frame-02-182.30.jpg",
+      "time": 182.3,
+      "sha256": "38704924d1a0fe7e1e505c4ff9a7e13a4264504c5798c1e113f28f725607d930",
+      "observation": "Turkish crescent and star stay white within red hatching. Two seated learners, percentages and study qualifiers remain readable."
+    },
+    {
+      "file": "frame-03-248.88.jpg",
+      "time": 248.883,
+      "sha256": "36a5ce708cb31573c7bdb805b18d53e1684fde5aa04db90aa7462de1725a26b5",
+      "observation": "Physics book and thinking learner are separated. Quality-control statement has its own lower line."
+    },
+    {
+      "file": "frame-04-305.26.jpg",
+      "time": 305.258,
+      "sha256": "435973d0916eb878defd334a79b047c4f423a643fbe214c51750f3e6269146ac",
+      "observation": "Calendar and learner do not touch; delayed-result qualifier is visibly separated from the practice result."
+    },
+    {
+      "file": "frame-05-358.80.jpg",
+      "time": 358.8,
+      "sha256": "4a21868885b077ca6d422551012b38c9bd4871c147c836d6e57fc00222b9e5b5",
+      "observation": "Answer erasure leaves faint board residue. Thinking learner and 704-person preprint label remain clear."
+    },
+    {
+      "file": "frame-06-427.22.jpg",
+      "time": 427.217,
+      "sha256": "2cf17817b6f430bc096c60cefe0f00e62b07577403cf26ce19b79d6fe050995f",
+      "observation": "Book, partial step and independent learner are distinct. Labels do not touch arrows or body contours."
+    },
+    {
+      "file": "frame-07-481.84.jpg",
+      "time": 481.842,
+      "sha256": "9f6d74dfc795dfd1fc871e60fbed6eb9626773f9963df1b76d1c55e86730d936",
+      "observation": "Crossed source page, learner attempt and checked page are separated. Left board border is visible intentionally."
+    },
+    {
+      "file": "frame-08-552.30.jpg",
+      "time": 552.3,
+      "sha256": "d6e4906326d569fe94cb0e1ec8547e4a14a04527067ec8b94f474c2d7fa7c104",
+      "observation": "Original equation remains black. Erased solution is faint. Crossed incorrect expansion and corrected 2x + 6 are distinct."
+    },
+    {
+      "file": "frame-09-606.47.jpg",
+      "time": 606.467,
+      "sha256": "cbc56d98ce9b70d6de1d3580c618f2d8f797325f564984ce7d7ede88c73c22d2",
+      "observation": "Both near-transfer and later equations are readable; y = 7 and z = 4 are correct."
+    },
+    {
+      "file": "frame-10-657.80.jpg",
+      "time": 657.8,
+      "sha256": "a61307a1ea5c9567e5330dabb6098725b51de3a5ba06fa1a03359fd4612e6731",
+      "observation": "Thinking learner is separated from answer, hint and question choices. Scope and feedback lines remain clear."
+    },
+    {
+      "file": "frame-11-711.22.jpg",
+      "time": 711.217,
+      "sha256": "a3114d2a68e8315453cf0bb6ccf55d048a017f54278bedfe78c27ca12819cbf6",
+      "observation": "Closing table headings and contents are clear. Learner, final circle and subtitle do not collide."
+    }
+  ]
+}

@@ -236,7 +236,28 @@ def test_thumbnail_reused_and_invalidated_by_episode_content(isolated, monkeypat
         assert second["thumbnail_path"] != first["thumbnail_path"]
         assert (root / first["thumbnail_path"]).is_file()
         assert generator.await_count == 2
+        alternative = await pipeline._thumbnail(project, root, lambda _: None, concept="concept-2")
+        assert alternative["thumbnail_path"] != second["thumbnail_path"]
+        assert alternative["thumbnail_concept"] == "concept-2"
+        assert await pipeline._thumbnail(project, root, lambda _: None) == second
+        assert generator.await_count == 3
     asyncio.run(run())
     saved = studio.create_project(project_input())
     public = studio.public_project({**saved, "artifacts": {"thumbnail_path": "artifacts/series/cover.png"}})
     assert public["artifacts"]["thumbnail_url"].endswith("/assets/artifacts/series/cover.png")
+
+
+def test_packaging_variants_keep_title_image_pairs_and_escape_asset_paths(isolated):
+    saved = studio.create_project(project_input())
+    variants = [{"id": "A", "title": "A paired title", "concept": "concept-1", "is_default": True,
+                 "thumbnail_path": "packaging/A cover.jpg", "label": "Split-screen comparison"},
+                {"id": "B", "title": "Another title", "concept": "concept-2", "is_default": False,
+                 "thumbnail_path": "packaging/B.jpg", "label": "Data shock"}]
+    project = {**saved, "artifacts": {"packaging_variants": variants}}
+    public = studio.public_project(project)
+    first, second = public["artifacts"]["packaging_variants"]
+    assert first["title"] == "A paired title"
+    assert first["thumbnail_url"].endswith("/assets/packaging/A%20cover.jpg")
+    assert second["title"] == "Another title"
+    assert second["thumbnail_url"].endswith("/assets/packaging/B.jpg")
+    assert "thumbnail_url" not in variants[0]

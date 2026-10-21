@@ -292,7 +292,22 @@ export default function ExplainerStudio({ taskDetail = false }: { taskDetail?: b
             <button type="button" onClick={() => void act('save')} disabled={locked || (!!project && !dirty) || !form.title.trim()}>{pending === 'save' ? 'Saving…' : taskDetail ? 'Save changes' : 'Save topic plan'}</button>
           </div>
 
-          {taskDetail && project?.artifacts.thumbnail_url && <section className="explainer-cover" aria-label="Episode thumbnail">
+          {taskDetail && !!project?.artifacts.packaging_variants?.length && <section className="explainer-packaging" aria-label="Title and thumbnail variants">
+            <div className="explainer-section-heading"><div><p className="explainer-eyebrow">YOUTUBE A/B TEST</p><h2>Title &amp; thumbnail test</h2></div></div>
+            <p className="explainer-muted">Each title stays paired with its thumbnail. Concept 1 is the default; YouTube compares the two options by watch time.</p>
+            <div className="explainer-packaging-grid">{project.artifacts.packaging_variants.map((variant) => <article key={variant.id} className="explainer-packaging-card">
+              <a href={variant.thumbnail_url} target="_blank" rel="noreferrer"><img src={variant.thumbnail_url} alt={`${variant.label} thumbnail`} /></a>
+              <div className="explainer-packaging-copy"><p className="explainer-eyebrow">{variant.id} / {variant.label}{variant.is_default ? ' · Default' : ''}</p>
+                <h3>{variant.title}</h3>
+                <div className="explainer-packaging-actions"><button type="button" onClick={async () => {
+                  try { await navigator.clipboard.writeText(variant.title); setNotice(`Title ${variant.id} copied.`) }
+                  catch { setError('Could not copy the title. Select and copy the text above.') }
+                }}>Copy title</button><a href={variant.thumbnail_url} download>Download thumbnail ↓</a></div>
+              </div>
+            </article>)}</div>
+          </section>}
+
+          {taskDetail && project?.artifacts.thumbnail_url && !project.artifacts.packaging_variants?.length && <section className="explainer-cover" aria-label="Episode thumbnail">
             <a href={project.artifacts.thumbnail_url} target="_blank" rel="noreferrer"><img src={project.artifacts.thumbnail_url} alt={`Byte By Byte episode cover: ${project.title}`} /></a>
             <div><p className="explainer-eyebrow">BYTEFRONT / BYTE BY BYTE</p><h2>Episode thumbnail</h2>
               <p>A little closer to understanding.</p>

@@ -726,8 +726,8 @@ def _brand_overlay(path: Path, role: str) -> None:
     overlay.save(path)
 
 
-async def _thumbnail(project: dict, root: Path, log: Log) -> dict:
-    prompt = thumbnail_prompt(project)
+async def _thumbnail(project: dict, root: Path, log: Log, concept: str = "concept-1") -> dict:
+    prompt = thumbnail_prompt(project, concept)
     key = _hash({"brand_version": BRAND_VERSION, "prompt": prompt})
     stage = _stage(root, "series", "thumbnail", key)
     async with owned_media_session(stage, "chatgpt", recover_only=True):
@@ -746,6 +746,7 @@ async def _thumbnail(project: dict, root: Path, log: Log) -> dict:
                            provider="chatgpt_web_opencli", conversation_url=conversation)
         log("Byte By Byte episode thumbnail is ready")
     return {"thumbnail_path": str((stage / "thumbnail.png").relative_to(root)),
+            "thumbnail_concept": concept,
             "thumbnail_sha256": record["files"]["thumbnail.png"],
             "thumbnail_prompt_path": str((stage / "prompt.txt").relative_to(root))}
 

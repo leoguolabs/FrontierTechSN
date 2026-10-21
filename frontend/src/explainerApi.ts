@@ -58,6 +58,15 @@ export interface ExplainerProject extends ExplainerForm {
   progress: { completed: number; total: number; message: string }
   artifacts: {
     thumbnail_url?: string
+    thumbnail_concept?: 'concept-1' | 'concept-2'
+    packaging_variants?: {
+      id: string
+      concept: 'concept-1' | 'concept-2'
+      label: string
+      title: string
+      thumbnail_url: string
+      is_default: boolean
+    }[]
     video_url?: string
     audio_url?: string
     timeline_url?: string

@@ -989,6 +989,12 @@ def public_project(project: dict, positions: dict[str, int] | None = None) -> di
         relative = artifacts.get(key + "_path")
         if relative:
             artifacts[key + "_url"] = f"/api/explainers/{project['id']}/assets/{quote(relative, safe='/')}"
+    variants = artifacts.get("packaging_variants")
+    if variants:
+        artifacts["packaging_variants"] = [
+            {**variant, "thumbnail_url": f"/api/explainers/{project['id']}/assets/{quote(variant['thumbnail_path'], safe='/')}"}
+            for variant in variants
+        ]
     result["artifacts"] = artifacts
     queue = project.get("queue")
     result["queue"] = None

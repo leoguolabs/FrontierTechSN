@@ -788,7 +788,8 @@ test('unready or wrong-origin composer never records submission or sends a promp
 
 test('image navigation retries the same owned target and remains bounded', async () => {
   const source = fs.readFileSync(path.join(runtime, 'patches/chatgpt-image-request.js'), 'utf8').replaceAll('export ', '')
-  const prepare = vm.runInNewContext(source + '\nprepareChatGPTImageComposer', {})
+  let now = 0
+  const prepare = vm.runInNewContext(source + '\nprepareChatGPTImageComposer', { Date: { now: () => now } })
   const calls = []
   await prepare({
     async goto(url) { calls.push(['goto', url]); if (calls.length === 1) throw new Error('Navigation rejected.') },
@@ -797,12 +798,35 @@ test('image navigation retries the same owned target and remains bounded', async
   assert.deepEqual(calls, [
     ['goto', 'https://chatgpt.com/new'], ['wait', 1], ['goto', 'https://chatgpt.com/new'],
   ])
-  let navigations = 0; let waits = 0
+  now = 0
+  let navigations = 0
+  await prepare({
+    async goto(url) {
+      assert.equal(url, 'https://chatgpt.com/new')
+      navigations++
+      if (now < 5000) throw new Error('Navigation rejected.')
+    },
+    async sleep(seconds) { now += seconds * 1000 },
+  })
+  assert.equal(navigations, 4)
+  assert.equal(now, 6000)
+
+  now = 0; navigations = 0
+  let waits = 0
   await assert.rejects(prepare({
     async goto() { navigations++; throw new Error('Navigation rejected.') },
-    async sleep() { waits++ },
+    async sleep(seconds) { waits++; now += seconds * 1000 },
   }), /Navigation rejected/)
-  assert.equal(navigations, 3); assert.equal(waits, 2)
+  assert.equal(navigations, 8); assert.equal(waits, 7)
+  assert.equal(now, 25000)
+
+  now = 0; navigations = 0; waits = 0
+  await assert.rejects(prepare({
+    async goto() { navigations++; now += 29000; throw new Error('Navigation rejected.') },
+    async sleep(seconds) { waits++; now += seconds * 1000 },
+  }), /Navigation rejected/)
+  assert.equal(navigations, 1); assert.equal(waits, 1)
+  assert.equal(now, 30000)
   await assert.rejects(prepare({
     async goto() { throw new Error('Browser permission denied') },
     async sleep() { assert.fail('Permission failures must not retry') },

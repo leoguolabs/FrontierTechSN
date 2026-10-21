@@ -22,16 +22,22 @@ export async function prepareChatGPTImageComposer(page) {
     // Only used before submission. Never recover an owned turn by opening a new chat.
     const url = 'https://chatgpt.com/new';
     const rejected = error => /Navigation rejected/i.test(String(error?.message || error));
-    // A new automation window can reject its first navigation while its tab
-    // is still registering. Keep the same owned target and let it hydrate;
-    // closing/recreating the window repeats that startup race indefinitely.
-    for (let attempt = 0; attempt < 3; attempt++) {
+    // Registration can take longer than the former two-second retry window.
+    // Keep the same owned target and generation slot while its bridge becomes
+    // ready; recreating the window repeats the startup race. Both the time
+    // budget and attempt cap apply only before any prompt is submitted.
+    const deadline = Date.now() + 30000;
+    let lastError;
+    for (let attempt = 0; attempt < 8; attempt++) {
+        if (lastError && Date.now() >= deadline) throw lastError;
         try {
             await page.goto(url, { settleMs: 2000 });
             return;
         } catch (error) {
-            if (!rejected(error) || attempt === 2) throw error;
-            await page.sleep(1);
+            const remaining = deadline - Date.now();
+            if (!rejected(error) || attempt === 7 || remaining <= 0) throw error;
+            lastError = error;
+            await page.sleep(Math.min(attempt + 1, 5, remaining / 1000));
         }
     }
 }

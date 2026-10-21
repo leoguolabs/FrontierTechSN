@@ -556,6 +556,22 @@ def _existing_image_candidates(stage: Path, prompt: str, root: Path) -> list[tup
     return list(sorted(candidates.values()))
 
 
+def _has_outdated_image_rejection(candidate: Path, prompt_sha: str, root: Path) -> bool:
+    image_sha = _sha(candidate)
+    for path in candidate.parent.glob("visual-review-*.json"):
+        try:
+            report = json.loads(_safe(path, root).read_text())
+            if (isinstance(report, dict) and report.get("passed") is False
+                    and report.get("image_sha256") == image_sha
+                    and isinstance(report.get("prompt_sha256"), str)
+                    and re.fullmatch(r"[0-9a-f]{64}", report["prompt_sha256"])
+                    and (report.get("version"), report["prompt_sha256"]) != (REVIEW_VERSION, prompt_sha)):
+                return True
+        except (OSError, ValueError, TypeError):
+            continue
+    return False
+
+
 async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None, *,
                  reference_image: Path | None = None) -> tuple[Path, dict]:
     prompt = _image_prompt(scene, style)
@@ -711,6 +727,26 @@ async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None
             return accepted
         feedback = [check for check in report["checks"] if check["verdict"] != "pass"]
         log(f"{scene['id']}: visual logic rejection: " + "; ".join(check["evidence"] for check in feedback))
+    # A later repair can introduce a real defect. If reviewer instructions changed,
+    # earlier exact-input candidates may still only have the obsolete rejection.
+    # Evaluate their unchanged pixels through the full current gate, newest first.
+    # review_image caches every current-contract verdict, including rejections, so
+    # another resume neither solicits another vote nor grants another image attempt.
+    prompt_sha = hashlib.sha256(review_prompt(scene, style).encode()).hexdigest()
+    history = _existing_image_candidates(stage, prompt, root)
+    for attempt, directory, _, candidate_key in reversed(history[:-1]):
+        record = _cached(directory, candidate_key, root)
+        candidate = directory / "image.png"
+        if (not record or not record["files"].get("image.png")
+                or not _has_outdated_image_rejection(candidate, prompt_sha, root)):
+            continue
+        log(f"{scene['id']}: rechecking retained candidate {attempt}/{MAX_IMAGE_ATTEMPTS} "
+            "under the current visual review contract")
+        accepted, _ = await accept(candidate, record.get("conversation_url", ""),
+                                   {"kind": "reviewed_existing_candidate",
+                                    "candidate": str(directory.relative_to(root))})
+        if accepted:
+            return accepted
     raise RuntimeError(f"{scene['id']}: visual logic failed after {MAX_IMAGE_ATTEMPTS} image candidates; "
                        "rejected images retained, scene not rendered")
 

@@ -700,6 +700,65 @@ def test_review_revision_reuses_last_candidate_without_resetting_budget(
     asyncio.run(run())
 
 
+@pytest.mark.parametrize("earlier_candidate_passes", [False, True])
+def test_review_revision_rechecks_earlier_candidates_once_without_more_generation(
+        tmp_path, providers, monkeypatch, earlier_candidate_passes):
+    from unittest.mock import AsyncMock
+    from backend import explainer_visual_review as review
+    from backend.pipeline import opencli_session
+    from backend.pipeline.opencli import OpenCLIResult
+
+    scene, style = _project()["scenes"][0], _project()["style"]
+    base_prompt = review.review_prompt(scene, style)
+    revised = False
+    requests = []
+
+    def prompt(*_):
+        return base_prompt + (" Corrected limb tracing." if revised else "")
+
+    async def provider(args, **kwargs):
+        candidate = Path(args[args.index("--file") + 1]).parent.name
+        requests.append((revised, candidate))
+        passed = revised and earlier_candidate_passes and candidate.startswith("attempt-02-")
+        checks = [{"criterion": criterion, "verdict": "pass", "evidence": "Visible coherent geometry.",
+                   "repair": ""} for criterion in review.CHECKS]
+        if not passed:
+            checks[1].update(verdict="fail", evidence="A visible gap disconnects the hand.",
+                             repair="Connect the hand to its arm.")
+        payload = {"image_received": True, "reviews": [{"id": scene["id"], "checks": checks}]}
+        return OpenCLIResult(tuple(args), 0, json.dumps(payload), "")
+
+    monkeypatch.setattr(pipeline, "review_prompt", prompt)
+    monkeypatch.setattr(review, "review_prompt", prompt)
+    monkeypatch.setattr(pipeline, "review_image", review.review_image)
+    monkeypatch.setattr(review, "run_opencli", provider)
+    monkeypatch.setattr(opencli_session, "close_opencli_site_sessions", AsyncMock())
+
+    async def run():
+        nonlocal revised
+        with pytest.raises(RuntimeError, match="visual logic failed after 3"):
+            await pipeline._image(scene, style, tmp_path)
+        assert len(requests) == len(providers.image_calls) == 3
+        originals = {p: p.read_bytes() for p in tmp_path.rglob("*") if p.is_file()
+                     and (p.name in {"image.png", "prompt.txt", "complete.json"}
+                          or p.name.startswith("visual-review-"))}
+        revised = True
+        for _ in range(2):
+            if earlier_candidate_passes:
+                final, record = await pipeline._image(scene, style, tmp_path)
+                assert record["provenance"]["kind"] == "reviewed_existing_candidate"
+                assert "attempt-02-" in record["provenance"]["candidate"]
+                assert final.read_bytes() == (tmp_path / record["provenance"]["candidate"] / "image.png").read_bytes()
+            else:
+                with pytest.raises(RuntimeError, match="visual logic failed after 3"):
+                    await pipeline._image(scene, style, tmp_path)
+        assert len(providers.image_calls) == 3
+        assert len(requests) == (5 if earlier_candidate_passes else 6)
+        assert all(path.read_bytes() == data for path, data in originals.items())
+
+    asyncio.run(run())
+
+
 def test_review_revision_recovers_pending_candidate_in_its_original_directory(tmp_path, providers, monkeypatch):
     scene, style = _project()["scenes"][0], _project()["style"]
     submitted = []

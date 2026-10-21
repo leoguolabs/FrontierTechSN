@@ -1,4 +1,5 @@
 import asyncio
+import hashlib
 import json
 import math
 import shutil
@@ -100,6 +101,84 @@ def test_pocket_decade_repair_preserves_source_and_old_waveform_cache(tmp_path, 
         assert scene["narration"] == source
 
     asyncio.run(run())
+
+
+def _diction_receipt(scene, project, text):
+    return {"version": 1, "source_sha256": hashlib.sha256(scene["narration"].encode()).hexdigest(),
+            "model": project["tts_model"], "voice": project["voice"], "synthesis_text": text}
+
+
+@pytest.mark.parametrize("source, adjusted", [
+    ("They tried a fix: generate two answers, then compare them.",
+     "They TRIED a fix. Generate two answers, then compare them."),
+    ("In early-2020s systems, they tried a fix.", "In early-2020s systems: they TRIED a fix."),
+])
+def test_pocket_diction_take_preserves_source_old_audio_and_other_scenes(tmp_path, providers, source, adjusted):
+    from backend.spoken_numbers import normalize_spoken_decades
+
+    project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
+    scene = {**project["scenes"][0], "narration": source}
+    other = project["scenes"][1]
+
+    async def run():
+        original = await pipeline._audio(scene, project, tmp_path, lambda _: None)
+        unrelated = await pipeline._audio(other, project, tmp_path, lambda _: None)
+        originals = {p: p.read_bytes() for p in tmp_path.rglob("*") if p.is_file()}
+        receipt = _diction_receipt(scene, project, adjusted)
+        request = tmp_path / "audio-inputs" / f"{scene['id']}.json"
+        request.parent.mkdir()
+        request.write_text(json.dumps(receipt))
+        path, record = await pipeline._audio(scene, project, tmp_path, lambda _: None)
+        assert path != original[0]
+        assert (path.parent / "script.txt").read_text() == source
+        assert providers.audio_calls[-1][0] == normalize_spoken_decades(adjusted)
+        assert record["input_policy"] == "source_bound_pocket_diction"
+        assert json.loads((path.parent / "diction-input.json").read_text()) == receipt
+        assert {"script.txt", "provider-script.txt", "diction-input.json"} <= record["files"].keys()
+        assert all(p.read_bytes() == contents for p, contents in originals.items())
+        assert await pipeline._audio(scene, project, tmp_path, lambda _: None) == (path, record)
+        assert await pipeline._audio(other, project, tmp_path, lambda _: None) == unrelated
+        assert len(providers.audio_calls) == 3
+        assert scene["narration"] == source
+        request.unlink()
+        assert await pipeline._audio(scene, project, tmp_path, lambda _: None) == original
+        assert len(providers.audio_calls) == 3
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("changes", [
+    {"version": 2}, {"version": True}, {"source_sha256": "0" * 64}, {"model": "orpheus-en"},
+    {"voice": "jane"}, {"synthesis_text": "They try to fix."}, {"synthesis_text": ""},
+    {"synthesis_text": " " * 17000}, {"unexpected": "field"},
+])
+def test_pocket_diction_rejects_unbound_or_changed_words_before_synthesis(tmp_path, providers, changes):
+    project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
+    scene = {**project["scenes"][0], "narration": "They tried a fix."}
+    receipt = {**_diction_receipt(scene, project, "They TRIED a fix."), **changes}
+    request = tmp_path / "audio-inputs" / f"{scene['id']}.json"
+    request.parent.mkdir()
+    request.write_text(json.dumps(receipt))
+    with pytest.raises(ValueError, match="diction"):
+        asyncio.run(pipeline._audio(scene, project, tmp_path, lambda _: None))
+    assert not providers.audio_calls
+    assert not list(tmp_path.rglob("complete.json"))
+
+
+@pytest.mark.parametrize("source, adjusted", [
+    ("They tried a fix.", "They try to fix."),
+    ("It is 3.1.", "It is 31."),
+    ("We can't do it.", "We cant do it."),
+    ("The right choice.", "The write choice."),
+])
+def test_pocket_diction_does_not_use_asr_equivalence(tmp_path, source, adjusted):
+    project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
+    scene = {**project["scenes"][0], "narration": source}
+    request = tmp_path / "audio-inputs" / f"{scene['id']}.json"
+    request.parent.mkdir()
+    request.write_text(json.dumps(_diction_receipt(scene, project, adjusted)))
+    with pytest.raises(ValueError, match="diction"):
+        pipeline._pocket_diction_input(scene, project["tts_model"], project["voice"], tmp_path)
 
 
 class Providers:

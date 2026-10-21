@@ -321,6 +321,33 @@ def _overlay(scene: dict, project: dict, path: Path) -> None:
     overlay.save(path)
 
 
+def _pocket_diction_input(scene: dict, model: str, voice: str, root: Path) -> dict | None:
+    """Load an optional, source-bound take without ASR's homophone equivalence."""
+    path = _safe(root / "audio-inputs" / f"{scene['id']}.json", root)
+    if not path.exists():
+        return None
+    if path.stat().st_size > 16384:
+        raise ValueError("Pocket diction input exceeds 16 KiB")
+    try:
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, UnicodeError) as exc:
+        raise ValueError("Pocket diction input must be valid JSON") from exc
+    fields = {"version", "source_sha256", "model", "voice", "synthesis_text"}
+    if (not isinstance(receipt, dict) or set(receipt) != fields
+            or type(receipt["version"]) is not int or receipt["version"] != 1
+            or model != "pocket-tts-en" or receipt["model"] != model or receipt["voice"] != voice
+            or receipt["source_sha256"] != hashlib.sha256(scene["narration"].encode()).hexdigest()):
+        raise ValueError("Pocket diction input does not match this source, model and voice")
+    text = receipt["synthesis_text"]
+    # Keep internal apostrophes, decimal points and hyphens; only case, spacing
+    # and sentence punctuation may vary. Do not use the looser ASR tokenizer.
+    tokens = r"\w+(?:['’.-]\w+)*|[^\w\s.,:;!?]"
+    if (not isinstance(text, str) or not text.strip()
+            or re.findall(tokens, text.casefold()) != re.findall(tokens, scene["narration"].casefold())):
+        raise ValueError("Pocket diction input changes the source words")
+    return receipt
+
+
 async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path, dict]:
     model = project.get("tts_model") or config.EXPLAINER_TTS_DEFAULT_MODEL
     voice = project.get("voice") or config.EXPLAINER_TTS_DEFAULT_VOICE
@@ -331,13 +358,17 @@ async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path
                  "provider": provider_model, "seed": config.TTS_RANDOM_SEED,
                  "endpoint": config.ORPHEUS_TTS_URL if model == "orpheus-en" else config.POCKET_TTS_URL if model == "pocket-tts-en" else None,
                  "provider_revision": config.POCKET_TTS_MODEL_REVISION if model == "pocket-tts-en" else None}
-    synthesis_narration = scene["narration"]
+    diction = _pocket_diction_input(scene, model, voice, root)
+    synthesis_narration = diction["synthesis_text"] if diction else scene["narration"]
+    if diction:
+        inputs["pocket_diction"] = diction
     if model == "pocket-tts-en":
         from backend.spoken_numbers import normalize_spoken_decades
         from backend.pipeline.tts import _lexical_tokens
 
-        synthesis_narration = normalize_spoken_decades(scene["narration"])
-        if synthesis_narration != scene["narration"]:
+        before_decades = synthesis_narration
+        synthesis_narration = normalize_spoken_decades(before_decades)
+        if synthesis_narration != before_decades:
             if _lexical_tokens(synthesis_narration) != _lexical_tokens(scene["narration"]):
                 raise ValueError("Pocket decade pronunciation changed the source narration")
             # Invalidate only affected audio, retaining the original waveform,
@@ -391,6 +422,8 @@ async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path
             log(f"{scene['id']}: original narration passed new guards and was reused without synthesis")
             return stage / "narration.wav", record
     _write(stage / "script.txt", scene["narration"], root)
+    if diction:
+        _json(stage / "diction-input.json", diction, root)
     script_path = stage / "script.txt"
     if requires_labels or synthesis_narration != scene["narration"]:
         # Provider-only metadata/readings leave the canonical narration intact.
@@ -427,10 +460,13 @@ async def _audio(scene: dict, project: dict, root: Path, log: Log) -> tuple[Path
     final = stage / "narration.wav"
     temporary.replace(final)
     input_paths = list(dict.fromkeys([stage / "script.txt", script_path]))
+    if diction:
+        input_paths.append(stage / "diction-input.json")
     record = _complete(stage, key, [final, *input_paths], root,
                        narration_duration_seconds=measured, duration_seconds=duration, frames=frames,
                        provider="existing_generate_tts", model=model, voice=voice,
                        input_policy=("speaker_1_metadata" if requires_labels else
+                                     "source_bound_pocket_diction" if diction else
                                      "source_bound_decade_pronunciation" if synthesis_narration != scene["narration"]
                                      else "plain_narration"))
     return final, record

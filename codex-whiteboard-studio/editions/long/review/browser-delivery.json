@@ -1,0 +1,39 @@
+{
+  "checked_at": "2026-10-21T04:16:40.506599+00:00",
+  "video_sha256": "b3990bb14fbae1ce44a8725a1547c8bd40413ce08f9cf28dea9b7711dfc60ee2",
+  "source_git_commit_at_check": "b897cbe67767c096163cd634a91d6fed77dff6ba",
+  "url": "http://127.0.0.1:8247/?edition=long",
+  "edition_selector": "Full-length film",
+  "displayed_duration": "12:00 MIN",
+  "video_duration_seconds": 720.166667,
+  "playback_observations": [
+    {
+      "current_time": 109.345863,
+      "paused": false,
+      "ready_state": 4,
+      "error": null
+    },
+    {
+      "current_time": 121.83335,
+      "paused": false,
+      "ready_state": 4,
+      "error": null
+    }
+  ],
+  "visual_observation": "The playing study scene showed the red Turkish flag, seated learner, blue laptop and moving blue marker. The page displayed the long-edition chapters, 17,284 decoded frames and Frame review complete.",
+  "http_range": {
+    "short": 206,
+    "long": 206,
+    "requested_bytes": "0-1023",
+    "received_bytes_each": 1024
+  },
+  "export_movie_hashes_verified": true,
+  "archived_first_short_preserved": true,
+  "article_observation": "Rendered article includes the completed long-film review figures and local-draft/not-published status.",
+  "subjective_audio_listening_established": false,
+  "screenshot": {
+    "file": "browser-delivery.png",
+    "sha256": "6ba9369687155b9af11fa7a235be14f6af03a7b79e9b27248d8c827a491d2383",
+    "scope": "Showcase page capture; not a frame-accurate playback timestamp record."
+  }
+}

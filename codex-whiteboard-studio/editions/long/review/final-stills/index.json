@@ -1,0 +1,324 @@
+{
+  "video_sha256": "b3990bb14fbae1ce44a8725a1547c8bd40413ce08f9cf28dea9b7711dfc60ee2",
+  "purpose": "Original-resolution spot inspection, separate from complete atlas coverage.",
+  "stills": [
+    {
+      "file": "still-001.png",
+      "frame": 361,
+      "seconds": 15.041666666666666,
+      "sha256": "b59f0665da6ee7ed1685cb87ca06312ca89c19dc2a08f0246585fcc5a9a91b33"
+    },
+    {
+      "file": "still-002.png",
+      "frame": 657,
+      "seconds": 27.375,
+      "sha256": "d6be80607c24a33e9c7148883f1749bf402b2aef7e88c32e0fc0916a5e59c8f2"
+    },
+    {
+      "file": "still-003.png",
+      "frame": 976,
+      "seconds": 40.666666666666664,
+      "sha256": "944fd2bce79157b3c9cb238b72b09f63d7a37f2def82f1aa6b28faea2cea3a14"
+    },
+    {
+      "file": "still-004.png",
+      "frame": 1320,
+      "seconds": 55.0,
+      "sha256": "5d9b1d50357cc69fa16986e6d140092e787b63e539445668d0a4183c16d69bd0"
+    },
+    {
+      "file": "still-005.png",
+      "frame": 1637,
+      "seconds": 68.20833333333333,
+      "sha256": "8d78871a690c51c3890bc8a5cbcd76b48a459480a8fa5f3faf972aa40d7309a1"
+    },
+    {
+      "file": "still-006.png",
+      "frame": 1981,
+      "seconds": 82.54166666666667,
+      "sha256": "1f037c04fcf4caff94f4712051ff7091a48528137297fe1c3f6523356e7c2de8"
+    },
+    {
+      "file": "still-007.png",
+      "frame": 2290,
+      "seconds": 95.41666666666667,
+      "sha256": "013abce20fedc1b7566c33014ce470e5362f4eaadf050b63a96beb4dd80ed536"
+    },
+    {
+      "file": "still-008.png",
+      "frame": 2584,
+      "seconds": 107.66666666666667,
+      "sha256": "0a84bdef9558b1393c06ed4689a29406b872c0d7cd1d42afc069cccaa6b1a9c1"
+    },
+    {
+      "file": "still-009.png",
+      "frame": 2896,
+      "seconds": 120.66666666666667,
+      "sha256": "7121f4a06b05238bde7a6c5103f43affb608b7c104e6d1bc5a08a7a3bb026d8d"
+    },
+    {
+      "file": "still-010.png",
+      "frame": 3349,
+      "seconds": 139.54166666666666,
+      "sha256": "f56632af268ab83b61a6d858caed84248a64f16cc93ecf426c209c0e06b95a85"
+    },
+    {
+      "file": "still-011.png",
+      "frame": 3711,
+      "seconds": 154.625,
+      "sha256": "88bb0421c4b5412a340f88dc033dc78272370cd2b97a97842c570366198e4994"
+    },
+    {
+      "file": "still-012.png",
+      "frame": 4047,
+      "seconds": 168.625,
+      "sha256": "93b4cbc546a2eb0c6d7eba670db88478a6dac8fa960ffca3865e1550cd3b4f23"
+    },
+    {
+      "file": "still-013.png",
+      "frame": 4375,
+      "seconds": 182.29166666666666,
+      "sha256": "fa8eb648dc08d9d8c84753cfb72813203ee6c5ad26e5ec053604a6860b3a0336"
+    },
+    {
+      "file": "still-014.png",
+      "frame": 4680,
+      "seconds": 195.0,
+      "sha256": "68162b26b68058a2ae78acfbb31feec04db616d98917910f9deaf80a8ab02a65"
+    },
+    {
+      "file": "still-015.png",
+      "frame": 5010,
+      "seconds": 208.75,
+      "sha256": "6850261cdc0df81514010b9f9b63113377244ffa8f980e107efb605e3dc61bb0"
+    },
+    {
+      "file": "still-016.png",
+      "frame": 5313,
+      "seconds": 221.375,
+      "sha256": "8090be7e6bbd7e35e1bb9aef5e65937f9374d1425c368b321723640e2a51ff56"
+    },
+    {
+      "file": "still-017.png",
+      "frame": 5655,
+      "seconds": 235.625,
+      "sha256": "1374bd5c742cf95107608ced2a21bea8d995a334a4c597508e937f844335ce6e"
+    },
+    {
+      "file": "still-018.png",
+      "frame": 5973,
+      "seconds": 248.875,
+      "sha256": "83b2c5d6b90744b5add34200c5a0f969dfc903a6f3e7b4e5eec8fc98ba585472"
+    },
+    {
+      "file": "still-019.png",
+      "frame": 6327,
+      "seconds": 263.625,
+      "sha256": "8e97b60f7020378cb82c2a709d0aa0dde5788e6c2d19857f03c289a7b4735ec2"
+    },
+    {
+      "file": "still-020.png",
+      "frame": 6665,
+      "seconds": 277.7083333333333,
+      "sha256": "826c94f8563dbae32274f144463cdb665d59e4ecd7be52d89b0a509c6448c843"
+    },
+    {
+      "file": "still-021.png",
+      "frame": 6978,
+      "seconds": 290.75,
+      "sha256": "294c1b6e68dc06ce47888a974457f561fdc0e8510e605bb8902ac786f6b44b52"
+    },
+    {
+      "file": "still-022.png",
+      "frame": 7326,
+      "seconds": 305.25,
+      "sha256": "23ccd759185dc7f0af664978c965017f196dabdaefa58631b06d535b64433099"
+    },
+    {
+      "file": "still-023.png",
+      "frame": 7639,
+      "seconds": 318.2916666666667,
+      "sha256": "8704f49ca5bb314595215cb618f2b1797c470bbb35d1a5e06c303364ad53336b"
+    },
+    {
+      "file": "still-024.png",
+      "frame": 7962,
+      "seconds": 331.75,
+      "sha256": "a207526075cf347650dd554631e2e5053bfa7d96364f16bc1ee7afa9c7a04ef4"
+    },
+    {
+      "file": "still-025.png",
+      "frame": 8269,
+      "seconds": 344.5416666666667,
+      "sha256": "d617f1af77d833968ce793a52b0bada5bb70f9379f3118542963f78c232c381a"
+    },
+    {
+      "file": "still-026.png",
+      "frame": 8611,
+      "seconds": 358.7916666666667,
+      "sha256": "cacb732ba7a7e10df0791fa0ac5d4470416ff41481e2adc52a05132b87b746a0"
+    },
+    {
+      "file": "still-027.png",
+      "frame": 8911,
+      "seconds": 371.2916666666667,
+      "sha256": "385aff2c9fd9a7a5d602b0fa71871b63ef6c1c5c727c837e0b3d1c0debdcb9f7"
+    },
+    {
+      "file": "still-028.png",
+      "frame": 9236,
+      "seconds": 384.8333333333333,
+      "sha256": "ca420f8bb7ccce3c37ee63942b756a2f2d59ed94d2e6091a2cfeabbc46841a59"
+    },
+    {
+      "file": "still-029.png",
+      "frame": 9595,
+      "seconds": 399.7916666666667,
+      "sha256": "fc1851e9ddc86b5e7f8f0108f2c9212f0d4d2b41ed7567f2834c4e76398c580c"
+    },
+    {
+      "file": "still-030.png",
+      "frame": 9902,
+      "seconds": 412.5833333333333,
+      "sha256": "3e7c3035099d57b22626c2fbeba87ff94a1ab315a60d49dd0ada65339c226c9e"
+    },
+    {
+      "file": "still-031.png",
+      "frame": 10253,
+      "seconds": 427.2083333333333,
+      "sha256": "7106be6b94f80fb0be774cff9f2cba597333929adcb214c6f2b51c81d878c851"
+    },
+    {
+      "file": "still-032.png",
+      "frame": 10565,
+      "seconds": 440.2083333333333,
+      "sha256": "406c3ec8243c1b36a1db6fbf0d9b884d4549c0f7065128f1e7cd39b7d85a71c9"
+    },
+    {
+      "file": "still-033.png",
+      "frame": 10910,
+      "seconds": 454.5833333333333,
+      "sha256": "1c76c01c0577dd706c6c42cadad4f6bf5d13ac2ae5895cac75cea73d9b129c4a"
+    },
+    {
+      "file": "still-034.png",
+      "frame": 11234,
+      "seconds": 468.0833333333333,
+      "sha256": "b2acfc27f2dbfa19005a6028c9710ed087bd72c9c323c735f2edba85730f8d24"
+    },
+    {
+      "file": "still-035.png",
+      "frame": 11564,
+      "seconds": 481.8333333333333,
+      "sha256": "ff3d26de7ee4186f2d847d825ea5d6ed2aec0f6a6fa8727af8cf4b4c499446d6"
+    },
+    {
+      "file": "still-036.png",
+      "frame": 11898,
+      "seconds": 495.75,
+      "sha256": "a8564bb9f62d0b6c62d7e0eac6f29c080b0007f2045a651f8686200ee9aca9a4"
+    },
+    {
+      "file": "still-037.png",
+      "frame": 12206,
+      "seconds": 508.5833333333333,
+      "sha256": "84b1454c934af7163f5159858649d9dd25d2d9a1a2fdffb1f93d569fed30d947"
+    },
+    {
+      "file": "still-038.png",
+      "frame": 12559,
+      "seconds": 523.2916666666666,
+      "sha256": "e5403c0ea8ba34c69177da665267846e46581a63c8ec9393357f161aff45e12e"
+    },
+    {
+      "file": "still-039.png",
+      "frame": 12901,
+      "seconds": 537.5416666666666,
+      "sha256": "d4019d0b0a9b857235a3af63d9a39fb70da1ed2a2971737fbe4f688c17db99fe"
+    },
+    {
+      "file": "still-040.png",
+      "frame": 13255,
+      "seconds": 552.2916666666666,
+      "sha256": "8aedea45c4c9d9f2287faf24be43cb1dc10d0bd8a296634461c52374b48638df"
+    },
+    {
+      "file": "still-041.png",
+      "frame": 13587,
+      "seconds": 566.125,
+      "sha256": "a10f1db47ba6da042bcd790bf66182f61a57475794b19b913cb70a4379e7d667"
+    },
+    {
+      "file": "still-042.png",
+      "frame": 13914,
+      "seconds": 579.75,
+      "sha256": "bf531381005f6198100b5b215f6da0b7e8103d5af141bc7caeec6022b8d2110c"
+    },
+    {
+      "file": "still-043.png",
+      "frame": 14217,
+      "seconds": 592.375,
+      "sha256": "adaa49aa77a4adec694bcff225070bde933c5b642f4a0e9a9b33832630c093c8"
+    },
+    {
+      "file": "still-044.png",
+      "frame": 14555,
+      "seconds": 606.4583333333334,
+      "sha256": "09b98cea84dae739e113e4657c15abbb11e52c26ea1e38346d1f4927b1982171"
+    },
+    {
+      "file": "still-045.png",
+      "frame": 14847,
+      "seconds": 618.625,
+      "sha256": "9add1c33b3bf1e69506737aa2d7b8235d4f11529cd8e40114f8d1b31cdf1ca17"
+    },
+    {
+      "file": "still-046.png",
+      "frame": 15150,
+      "seconds": 631.25,
+      "sha256": "0780e54ea071b67b8d1f89409c50db1ce406fc8c4814e73ce570b7cecb63165d"
+    },
+    {
+      "file": "still-047.png",
+      "frame": 15452,
+      "seconds": 643.8333333333334,
+      "sha256": "f6e355e6feb79f099f7fb75891ef1aed3232df620e2cf0f7e1ac1b5ab927331b"
+    },
+    {
+      "file": "still-048.png",
+      "frame": 15787,
+      "seconds": 657.7916666666666,
+      "sha256": "c192ae018897a327b64f544cf25a9a64d55288a37b562d67814ded1acf8eb5e0"
+    },
+    {
+      "file": "still-049.png",
+      "frame": 16115,
+      "seconds": 671.4583333333334,
+      "sha256": "29440cb855c5689e55cefa7b34a19d66680328f50e92c7d12853a6da9791c64e"
+    },
+    {
+      "file": "still-050.png",
+      "frame": 16429,
+      "seconds": 684.5416666666666,
+      "sha256": "ee312942c9c56bcbdf3c4929feacf4e7dc6ed6613d10080a8782adc9ca763a1f"
+    },
+    {
+      "file": "still-051.png",
+      "frame": 16744,
+      "seconds": 697.6666666666666,
+      "sha256": "72550c371450d947b93e18902a888135f030aa74808819217087c09a2f09c812"
+    },
+    {
+      "file": "still-052.png",
+      "frame": 17069,
+      "seconds": 711.2083333333334,
+      "sha256": "6af6afec72b3b23642bc482438b16c7abfaaa7d4414598f0dde9811d6356c014"
+    },
+    {
+      "file": "still-053.png",
+      "frame": 17283,
+      "seconds": 720.125,
+      "sha256": "d1166b484269f143b9adc56c8050ba283215420307d686f3b9c1398dad82a903"
+    }
+  ]
+}

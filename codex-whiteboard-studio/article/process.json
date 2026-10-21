@@ -1,5 +1,5 @@
 {
-  "status": "Illustrated short reviewed. The twelve-minute edition is rendering; its final frame review is pending. Article not published.",
+  "status": "Illustrated short and twelve-minute edition rendered and frame-reviewed. Long edition awaiting user review. Local article draft; not published.",
   "title": "I asked Codex to rebuild a whiteboard film from scratch",
   "subtitle": "From a three-minute experiment to a twelve-minute explainer, with an editable studio and a record of the revisions.",
   "author": "LeoGuoLabs",
@@ -21,6 +21,7 @@
     "The longer narration has 52 segments. Independent transcripts of several Chatterbox takes disagreed with the script. One included an unrelated sentence after the intended line. Codex kept those recordings, compared additional transcriptions, and either requested another take or rewrote the sentence without changing the claim. For example, a repeatedly unclear phrase about practiced procedures became a clearer description of the same procedures and similar problems.",
     "A local speech run also produced a useful failure. The Apple GPU trial timed out without an accepted recording. A CPU trial using verified model files completed a 12.12-second line in 37.8 seconds, excluding startup. Six of the final 52 source recordings came from the local CPU service; the rest came from the existing remote service. That is one measured run on this machine, not a general speed comparison.",
     "The equation scene exposed a different problem: an eraser built for a small drawing could jump across a tall solution. Codex changed the wipe to eight overlapping passes and checked the rendered motion. Pen handoffs and speech cues were reviewed too, so the answer would finish appearing when the narration reached it.",
+    "The finished long film runs 12 minutes and 0.17 seconds at 1080p and 24 frames per second. Codex inspected all 17,284 encoded frames through 541 consecutive paired atlases, then checked 53 stills at native resolution. That is complete coverage at atlas scale, not a claim that every frame was enlarged to 1080p. The long film holds longer for explanations and its final board is denser than the reference. The review records those differences instead of calling the result a perfect match.",
     "I wanted the result to remain editable after the first viewing. The studio keeps the script, source claims, drawings and speech timing together. It also keeps rejected audio and review observations, so the next revision can start from a known version instead of rebuilding the production from memory."
   ],
   "references": [

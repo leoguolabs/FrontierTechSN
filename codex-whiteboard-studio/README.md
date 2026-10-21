@@ -200,9 +200,12 @@ The final delivery is also copied into the user's lemo-opuscar clone under
 `films/codex-whiteboard-studio/`, with the reference attribution retained.
 
 The three-minute edition was accepted in principle and its illustrated
-refinement has been delivered. The full-length edition is in production.
-Public X delivery has a
-separate publication receipt; a draft article is not a published post.
+refinement has been delivered. The full-length edition is rendered and its
+complete frame review is finished: 17,284 frames in 541 paired atlases, plus
+53 native-resolution stills. See `editions/long/review/visual-review.md` for
+the scope, findings and remaining stylistic differences. Final user review
+of the long film is pending. The process article remains a local draft;
+publication to X is not requested.
 
 ## Illustrated edition
 

@@ -115,6 +115,8 @@ has not been established and is not claimed.
 
 The first short was accepted in principle. This illustrated refinement is
 ready to show; the prior version is preserved in the export's
-`versions/01-reviewed-short/` folder. The 12-minute edition has not started.
+`versions/01-reviewed-short/` folder. At the time of this short-edition review,
+the 12-minute edition had not started. Its subsequent review is recorded
+separately in `editions/long/review/visual-review.md`.
 The English process article includes this refinement and remains local,
 unpublished to X.

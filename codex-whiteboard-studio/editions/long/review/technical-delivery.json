@@ -1,0 +1,287 @@
+{
+  "video_sha256": "b3990bb14fbae1ce44a8725a1547c8bd40413ce08f9cf28dea9b7711dfc60ee2",
+  "checks_passed": true,
+  "errors": [],
+  "decoded_frames": 17284,
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "pixel_format": "yuv420p",
+  "color_range": "tv",
+  "color_space": "bt709",
+  "color_transfer": "bt709",
+  "color_primaries": "bt709",
+  "duration": 720.166667,
+  "audio_duration": 720.166,
+  "timestamp_cadence_max_error_seconds": 3.333333342681044e-07,
+  "full_decode_passed": true,
+  "audio": {
+    "input_i": "-13.99",
+    "input_tp": "-1.39",
+    "input_lra": "4.80"
+  },
+  "voice_placement": [
+    {
+      "id": "01",
+      "active_samples": 266228,
+      "zero_lag_voice_correlation": 0.9958932439702014
+    },
+    {
+      "id": "02",
+      "active_samples": 287969,
+      "zero_lag_voice_correlation": 0.9988847183021586
+    },
+    {
+      "id": "03",
+      "active_samples": 279316,
+      "zero_lag_voice_correlation": 0.9992622643901848
+    },
+    {
+      "id": "04",
+      "active_samples": 351321,
+      "zero_lag_voice_correlation": 0.9994982338257882
+    },
+    {
+      "id": "05",
+      "active_samples": 283227,
+      "zero_lag_voice_correlation": 0.9991099423616774
+    },
+    {
+      "id": "06",
+      "active_samples": 320373,
+      "zero_lag_voice_correlation": 0.9994886479151301
+    },
+    {
+      "id": "07",
+      "active_samples": 283958,
+      "zero_lag_voice_correlation": 0.9990665212185293
+    },
+    {
+      "id": "08",
+      "active_samples": 259149,
+      "zero_lag_voice_correlation": 0.9995418553229712
+    },
+    {
+      "id": "09",
+      "active_samples": 313721,
+      "zero_lag_voice_correlation": 0.9989253077568389
+    },
+    {
+      "id": "10",
+      "active_samples": 314981,
+      "zero_lag_voice_correlation": 0.9992080646573313
+    },
+    {
+      "id": "11",
+      "active_samples": 332844,
+      "zero_lag_voice_correlation": 0.9996239891101635
+    },
+    {
+      "id": "12",
+      "active_samples": 362455,
+      "zero_lag_voice_correlation": 0.9985792551795443
+    },
+    {
+      "id": "13",
+      "active_samples": 324444,
+      "zero_lag_voice_correlation": 0.9996746415372456
+    },
+    {
+      "id": "14",
+      "active_samples": 292809,
+      "zero_lag_voice_correlation": 0.9956746468888621
+    },
+    {
+      "id": "15",
+      "active_samples": 302870,
+      "zero_lag_voice_correlation": 0.9995556403662064
+    },
+    {
+      "id": "16",
+      "active_samples": 301830,
+      "zero_lag_voice_correlation": 0.9994193389026826
+    },
+    {
+      "id": "17",
+      "active_samples": 342791,
+      "zero_lag_voice_correlation": 0.9996702416176196
+    },
+    {
+      "id": "18",
+      "active_samples": 300246,
+      "zero_lag_voice_correlation": 0.9994099892918312
+    },
+    {
+      "id": "19",
+      "active_samples": 338011,
+      "zero_lag_voice_correlation": 0.9991511124230189
+    },
+    {
+      "id": "20",
+      "active_samples": 325048,
+      "zero_lag_voice_correlation": 0.997861393239328
+    },
+    {
+      "id": "21",
+      "active_samples": 325680,
+      "zero_lag_voice_correlation": 0.9981222921371552
+    },
+    {
+      "id": "22",
+      "active_samples": 300704,
+      "zero_lag_voice_correlation": 0.9997086765045853
+    },
+    {
+      "id": "23",
+      "active_samples": 312389,
+      "zero_lag_voice_correlation": 0.9992073868009015
+    },
+    {
+      "id": "24",
+      "active_samples": 331333,
+      "zero_lag_voice_correlation": 0.9987643963074357
+    },
+    {
+      "id": "25",
+      "active_samples": 293601,
+      "zero_lag_voice_correlation": 0.9991688809602404
+    },
+    {
+      "id": "26",
+      "active_samples": 351113,
+      "zero_lag_voice_correlation": 0.9993873491033536
+    },
+    {
+      "id": "27",
+      "active_samples": 297332,
+      "zero_lag_voice_correlation": 0.9994235224191722
+    },
+    {
+      "id": "28",
+      "active_samples": 322875,
+      "zero_lag_voice_correlation": 0.9996155649998224
+    },
+    {
+      "id": "29",
+      "active_samples": 363212,
+      "zero_lag_voice_correlation": 0.9991230736785837
+    },
+    {
+      "id": "30",
+      "active_samples": 278473,
+      "zero_lag_voice_correlation": 0.9995472189497233
+    },
+    {
+      "id": "31",
+      "active_samples": 328944,
+      "zero_lag_voice_correlation": 0.9995201734357978
+    },
+    {
+      "id": "32",
+      "active_samples": 294697,
+      "zero_lag_voice_correlation": 0.9988300211619922
+    },
+    {
+      "id": "33",
+      "active_samples": 345201,
+      "zero_lag_voice_correlation": 0.9992834049073682
+    },
+    {
+      "id": "34",
+      "active_samples": 288705,
+      "zero_lag_voice_correlation": 0.9990356207835064
+    },
+    {
+      "id": "35",
+      "active_samples": 316666,
+      "zero_lag_voice_correlation": 0.9978177679470427
+    },
+    {
+      "id": "36",
+      "active_samples": 313757,
+      "zero_lag_voice_correlation": 0.9993142569948547
+    },
+    {
+      "id": "37",
+      "active_samples": 293430,
+      "zero_lag_voice_correlation": 0.9992685168537355
+    },
+    {
+      "id": "38",
+      "active_samples": 330164,
+      "zero_lag_voice_correlation": 0.999140669541127
+    },
+    {
+      "id": "39",
+      "active_samples": 305149,
+      "zero_lag_voice_correlation": 0.9992687670697461
+    },
+    {
+      "id": "40",
+      "active_samples": 362355,
+      "zero_lag_voice_correlation": 0.9980827187991046
+    },
+    {
+      "id": "41",
+      "active_samples": 327063,
+      "zero_lag_voice_correlation": 0.9982733949665534
+    },
+    {
+      "id": "42",
+      "active_samples": 331788,
+      "zero_lag_voice_correlation": 0.9996070577747255
+    },
+    {
+      "id": "43",
+      "active_samples": 306639,
+      "zero_lag_voice_correlation": 0.9995505493253357
+    },
+    {
+      "id": "44",
+      "active_samples": 332429,
+      "zero_lag_voice_correlation": 0.9985787257760853
+    },
+    {
+      "id": "45",
+      "active_samples": 299592,
+      "zero_lag_voice_correlation": 0.9993289585410141
+    },
+    {
+      "id": "46",
+      "active_samples": 301204,
+      "zero_lag_voice_correlation": 0.999512192253761
+    },
+    {
+      "id": "47",
+      "active_samples": 278486,
+      "zero_lag_voice_correlation": 0.9993953693181786
+    },
+    {
+      "id": "48",
+      "active_samples": 303420,
+      "zero_lag_voice_correlation": 0.9994624599600406
+    },
+    {
+      "id": "49",
+      "active_samples": 329451,
+      "zero_lag_voice_correlation": 0.9980795635173518
+    },
+    {
+      "id": "50",
+      "active_samples": 296667,
+      "zero_lag_voice_correlation": 0.9993912329360338
+    },
+    {
+      "id": "51",
+      "active_samples": 310730,
+      "zero_lag_voice_correlation": 0.9995545270786774
+    },
+    {
+      "id": "52",
+      "active_samples": 298055,
+      "zero_lag_voice_correlation": 0.9978512960003546
+    }
+  ],
+  "visual_review": "Not established by technical checks.",
+  "audio_listening": "Not established by waveform or ASR checks."
+}

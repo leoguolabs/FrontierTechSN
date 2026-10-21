@@ -18,6 +18,12 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
     // A reference can be named ("previous scoreboard or seesaw illustration").
     // Bound those descriptors to a few words within the same sentence.
     const missingInputRequest = /(?:^|[.!?]\s*)Please upload the (?:earlier|original|reference|previous|preceding) (?:[\w-]+\s+){0,6}(?:image|illustration|frame)\b[\s\S]*\bso I can (?:recompose|edit|redraw|correct|preserve|create)\b/i;
+    // "Candidate" is ambiguous on its own. Require an explicit image-tool
+    // reference dependency as well as the request to upload the earlier take.
+    const missingCandidateRequest = /(?:^|[.!?]\s*)Please upload the (?:earlier|original|previous|preceding) candidate\s+so I can (?:recompose|edit|redraw|correct|preserve|create)\b/i;
+    const requiresImageReference = /\bimage tool requires (?:an? (?:existing )?image reference|a reference image)\b/i;
+    const needsInput = text => missingInputRequest.test(text)
+        || (requiresImageReference.test(text) && missingCandidateRequest.test(text));
 
     while (Date.now() < deadline) {
         await page.sleep(Math.min(3, (deadline - Date.now()) / 1000));
@@ -107,16 +113,16 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
                         /^I wasn['’]t able to generate the image due to an error on my side\.$/.test(text)
                         || /^I couldn['’]t generate the (?:new )?(?:image|illustration) in this attempt\.(?:\s|$)/.test(text)
                         || (/^I couldn['’]t generate the (?:image|illustration|frame) because\b/i.test(text)
-                            && missingInputRequest.test(text))
+                            && needsInput(text))
                         || /^We['’]re so sorry, but the image we created may violate our guardrails (?:around|concerning) [^.]+\.(?:\s|$)/i.test(text)
-                        || (/^Please upload /i.test(text) && missingInputRequest.test(text))
+                        || (/^Please upload /i.test(text) && needsInput(text))
                     ))) terminalText = text;
             }
         }
         failureCount = terminalText && terminalText === failureText ? failureCount + 1 : (terminalText ? 1 : 0);
         failureText = terminalText;
         if (failureCount >= 2) {
-            const missingInput = missingInputRequest.test(terminalText);
+            const missingInput = needsInput(terminalText);
             report(missingInput ? 'image_input_missing' : 'image_generation_failed');
             options.onDiagnostic?.({
                 terminal_error: missingInput ? 'CHATGPT_IMAGE_INPUT_MISSING' : 'CHATGPT_IMAGE_GENERATION_FAILED',

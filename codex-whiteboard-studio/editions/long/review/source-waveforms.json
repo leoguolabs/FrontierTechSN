@@ -1,0 +1,422 @@
+{
+  "scope": "Original mono PCM16 24 kHz source WAVs. Peak and RMS are numeric waveform checks; they do not establish subjective listening.",
+  "rows": [
+    {
+      "id": "01",
+      "audio_sha256": "330caef2784876d1c4280db4c5a2635ac01421cd60e7981e6a95a8fd403358c0",
+      "samples": 252480,
+      "peak": 0.613006591796875,
+      "rms": 0.09285394957113738,
+      "clipped_samples": 0
+    },
+    {
+      "id": "02",
+      "audio_sha256": "947778e7c3b8e9b5dfd702f2b98a34423b72e3e08c0407a20148e54dd0bb4f55",
+      "samples": 262080,
+      "peak": 0.769989013671875,
+      "rms": 0.10046634989677374,
+      "clipped_samples": 0
+    },
+    {
+      "id": "03",
+      "audio_sha256": "0b6a9f248f41ac021756f2ff50aed92c62cc851ff4b486fd040fef3849e87b4a",
+      "samples": 285120,
+      "peak": 0.6968994140625,
+      "rms": 0.09791105070680403,
+      "clipped_samples": 0
+    },
+    {
+      "id": "04",
+      "audio_sha256": "158d83a42669790783e635fa083644998563f7d63223313be89da9a2998b694d",
+      "samples": 310080,
+      "peak": 0.683074951171875,
+      "rms": 0.0988254690668751,
+      "clipped_samples": 0
+    },
+    {
+      "id": "05",
+      "audio_sha256": "7bd6fb96b4f19810add868ab3645997b2f833903b6987310005660e8098bdb7b",
+      "samples": 283200,
+      "peak": 0.604461669921875,
+      "rms": 0.0886394232247477,
+      "clipped_samples": 0
+    },
+    {
+      "id": "06",
+      "audio_sha256": "a534dbcad646107e2d7da1b2da6500ca9330e9b0bb65ff1bf79737248f90b131",
+      "samples": 310080,
+      "peak": 0.6451416015625,
+      "rms": 0.10397044391228198,
+      "clipped_samples": 0
+    },
+    {
+      "id": "07",
+      "audio_sha256": "e954c1181f8a816aaad4d9c4fc2260b7d596d7765c9faebe0a63cc6d410390bb",
+      "samples": 274560,
+      "peak": 0.693145751953125,
+      "rms": 0.0946896361332545,
+      "clipped_samples": 0
+    },
+    {
+      "id": "08",
+      "audio_sha256": "ef1ff6a7e5cb4e11256f048264ad042bb4e4ca69ee33769d660f92156bc01a36",
+      "samples": 260160,
+      "peak": 0.637908935546875,
+      "rms": 0.09940869602173937,
+      "clipped_samples": 0
+    },
+    {
+      "id": "09",
+      "audio_sha256": "0c2ef92cc6800e123433ddf715f92cc7be84ddd58e34a4e3546ae5e31beb86a7",
+      "samples": 278400,
+      "peak": 0.707366943359375,
+      "rms": 0.09341031005299807,
+      "clipped_samples": 0
+    },
+    {
+      "id": "10",
+      "audio_sha256": "02bc90dcef5863acec9748558287648ccf5506e50602a27b5be8d535a9d7f26d",
+      "samples": 274560,
+      "peak": 0.714691162109375,
+      "rms": 0.10404057104409464,
+      "clipped_samples": 0
+    },
+    {
+      "id": "11",
+      "audio_sha256": "4ae3dc34ac94146d6eeebd9a69c49471b0b7baaf011f97c63980d68db3d4801a",
+      "samples": 328320,
+      "peak": 0.652130126953125,
+      "rms": 0.10011356817661622,
+      "clipped_samples": 0
+    },
+    {
+      "id": "12",
+      "audio_sha256": "bdba0b07ed6717d72235af24a8d326b1241f90d1d95c7c029d234b6a74aef37f",
+      "samples": 302400,
+      "peak": 0.783111572265625,
+      "rms": 0.1025910121526971,
+      "clipped_samples": 0
+    },
+    {
+      "id": "13",
+      "audio_sha256": "f66df97ba7c681ceb0e9118959c3c5e490445f00e8e7f0f5d8188fafbd19cfc0",
+      "samples": 293760,
+      "peak": 0.59820556640625,
+      "rms": 0.09576450666614059,
+      "clipped_samples": 0
+    },
+    {
+      "id": "14",
+      "audio_sha256": "514d7d8d6c959ea82cbe6ac61c1ff18084353df9560349a18fc1fa17d129c458",
+      "samples": 270720,
+      "peak": 0.82379150390625,
+      "rms": 0.0923608159577876,
+      "clipped_samples": 0
+    },
+    {
+      "id": "15",
+      "audio_sha256": "807683bcb2b810920f1748010d4648420e0ca3d0b5cb95fe776142da4311004c",
+      "samples": 295680,
+      "peak": 0.5943603515625,
+      "rms": 0.0933315557109414,
+      "clipped_samples": 0
+    },
+    {
+      "id": "16",
+      "audio_sha256": "9f8ecedee0deb16c374222124b80f863e6703ebad774740522a384989204846c",
+      "samples": 268800,
+      "peak": 0.679473876953125,
+      "rms": 0.10817362956752741,
+      "clipped_samples": 0
+    },
+    {
+      "id": "17",
+      "audio_sha256": "6b51c82a55a3d370396fae3394974cf6494506eed13b461a120cdc6165f89192",
+      "samples": 308160,
+      "peak": 0.6649169921875,
+      "rms": 0.10491027997760317,
+      "clipped_samples": 0
+    },
+    {
+      "id": "18",
+      "audio_sha256": "dc3ed22962c47ad489ca5f5f240190eb080de68e47b0fdb29c3fcadb9925fe4b",
+      "samples": 284160,
+      "peak": 0.693023681640625,
+      "rms": 0.0974104273549239,
+      "clipped_samples": 0
+    },
+    {
+      "id": "19",
+      "audio_sha256": "bd7eddde292c7fae42df44d8c72515c849a8425c4726f4abb8b5bee618f23d6c",
+      "samples": 319680,
+      "peak": 0.716522216796875,
+      "rms": 0.09673343609892657,
+      "clipped_samples": 0
+    },
+    {
+      "id": "20",
+      "audio_sha256": "a828958c64d7262fbea5c8a8ea4c51864f93a21238ceb3e551fa5ecc74bed5cb",
+      "samples": 304320,
+      "peak": 0.8875732421875,
+      "rms": 0.0952115971595804,
+      "clipped_samples": 0
+    },
+    {
+      "id": "21",
+      "audio_sha256": "66e5aeb35b4965b6b867694fba7c7f20fe11989d82e46e781acd4bdeb9648e24",
+      "samples": 279360,
+      "peak": 0.863006591796875,
+      "rms": 0.10665819853616765,
+      "clipped_samples": 0
+    },
+    {
+      "id": "22",
+      "audio_sha256": "63aa1256483e7af8e65d2b24687da0c4f5f9832542d6d101307ea9d9b08bb2c1",
+      "samples": 313920,
+      "peak": 0.634521484375,
+      "rms": 0.09646096693903006,
+      "clipped_samples": 0
+    },
+    {
+      "id": "23",
+      "audio_sha256": "88020b21980a5dead331827101fa7555406c369473dfafd37e3bae9ffd2c2bc7",
+      "samples": 279360,
+      "peak": 0.694366455078125,
+      "rms": 0.1012601100252415,
+      "clipped_samples": 0
+    },
+    {
+      "id": "24",
+      "audio_sha256": "4c6e8e31b876bca2f43a6dd5f1f7fbbdfa27c772a75ef4db441f630d76daf95a",
+      "samples": 288960,
+      "peak": 0.671051025390625,
+      "rms": 0.09854656472379685,
+      "clipped_samples": 0
+    },
+    {
+      "id": "25",
+      "audio_sha256": "b1f3d04af97ff9bccc66ee117b91e0f9f4ef26f746d038e2a9cc9cd71c76f36c",
+      "samples": 272640,
+      "peak": 0.762420654296875,
+      "rms": 0.10316023352446138,
+      "clipped_samples": 0
+    },
+    {
+      "id": "26",
+      "audio_sha256": "4a3358186ef26d5d92a8f9ebab062c093fd9cf47bb34d3fba1cceb450024fa0d",
+      "samples": 308160,
+      "peak": 0.747314453125,
+      "rms": 0.10551383334155386,
+      "clipped_samples": 0
+    },
+    {
+      "id": "27",
+      "audio_sha256": "95132880616488dbdbc5cebcd0ac74ea7d89caffb18367bb50ffca4a995c8a12",
+      "samples": 265920,
+      "peak": 0.7490234375,
+      "rms": 0.1048960305434438,
+      "clipped_samples": 0
+    },
+    {
+      "id": "28",
+      "audio_sha256": "d0083c50a6bb2f691117ddf7e7b0035d468a10cde2839b2b7cc1a5d516016f95",
+      "samples": 290880,
+      "peak": 0.64215087890625,
+      "rms": 0.10050798279144581,
+      "clipped_samples": 0
+    },
+    {
+      "id": "29",
+      "audio_sha256": "a16d25558f14d526423463b17bb1300cbabe26c53fecfc1cb2798e20fe973615",
+      "samples": 325440,
+      "peak": 0.720611572265625,
+      "rms": 0.09662605053824709,
+      "clipped_samples": 0
+    },
+    {
+      "id": "30",
+      "audio_sha256": "f6a38111756674ed372759fe02e46580a886776593716588363b999cb8fe78ea",
+      "samples": 272640,
+      "peak": 0.6180419921875,
+      "rms": 0.09159718260145543,
+      "clipped_samples": 0
+    },
+    {
+      "id": "31",
+      "audio_sha256": "0ece3f17b48a9f5d4aabaa7f62e664ad02e88ea4713b63d46b9783dd199b468b",
+      "samples": 316800,
+      "peak": 0.687744140625,
+      "rms": 0.10250272623909752,
+      "clipped_samples": 0
+    },
+    {
+      "id": "32",
+      "audio_sha256": "2d4964ba40c7ec4d337c7cf6f38e49f2a6abb3fa61ec7018de64ecc265f2de40",
+      "samples": 278400,
+      "peak": 0.723236083984375,
+      "rms": 0.10183002029781361,
+      "clipped_samples": 0
+    },
+    {
+      "id": "33",
+      "audio_sha256": "9c08eea138d79ccc70660d796edf4d9cdc9bc9ed7166c4ba8565969ecf189a61",
+      "samples": 311040,
+      "peak": 0.692840576171875,
+      "rms": 0.0965895241835918,
+      "clipped_samples": 0
+    },
+    {
+      "id": "34",
+      "audio_sha256": "78ed01d7b9335f880ad3bf9bf1c8089cf10d1058c6bef714221d95a509f4051e",
+      "samples": 289920,
+      "peak": 0.790863037109375,
+      "rms": 0.0936115949507724,
+      "clipped_samples": 0
+    },
+    {
+      "id": "35",
+      "audio_sha256": "895092404ee3ed5528945c4d7f6e1c309ad558561f20c977cbc915157d0178fa",
+      "samples": 295680,
+      "peak": 0.66143798828125,
+      "rms": 0.09507422020532817,
+      "clipped_samples": 0
+    },
+    {
+      "id": "36",
+      "audio_sha256": "cfbecaee4b2a7d276c1969abef7c87d71af74fa4f53e5db00339edda8cd34d20",
+      "samples": 299520,
+      "peak": 0.6700439453125,
+      "rms": 0.09440771233707389,
+      "clipped_samples": 0
+    },
+    {
+      "id": "37",
+      "audio_sha256": "a2c04369b8d3dcfceac8ea77bac4e85c4d2006cae0b42f236b36f43df04e7cf8",
+      "samples": 273600,
+      "peak": 0.7076416015625,
+      "rms": 0.09184105660547158,
+      "clipped_samples": 0
+    },
+    {
+      "id": "38",
+      "audio_sha256": "25c85e0f99eecf2451ddd9cb69b3b98e23b882ea50315826abdc1249fd055abd",
+      "samples": 318720,
+      "peak": 0.819427490234375,
+      "rms": 0.10518065430061219,
+      "clipped_samples": 0
+    },
+    {
+      "id": "39",
+      "audio_sha256": "6d16d8e28efa1e2dd8b418c429a8e16f4ef5bdbb3022dfa10e986c132a700631",
+      "samples": 308160,
+      "peak": 0.69317626953125,
+      "rms": 0.09770153823329923,
+      "clipped_samples": 0
+    },
+    {
+      "id": "40",
+      "audio_sha256": "18afe433479a6238c500ce4b34fd94265e4d3b3cb04b16933c859420840f2251",
+      "samples": 319680,
+      "peak": 0.7177734375,
+      "rms": 0.09954444443347608,
+      "clipped_samples": 0
+    },
+    {
+      "id": "41",
+      "audio_sha256": "a3e62e8b00c16f0456f689710a1f7949ce6c38771f454f6d3735a0fc23025a55",
+      "samples": 297600,
+      "peak": 0.752227783203125,
+      "rms": 0.09701996963292897,
+      "clipped_samples": 0
+    },
+    {
+      "id": "42",
+      "audio_sha256": "c068b58e0f2584f2cb6c052710012bc14ca60bec746f7f69715e0ffc02f4ed93",
+      "samples": 292800,
+      "peak": 0.6842041015625,
+      "rms": 0.10625944469893944,
+      "clipped_samples": 0
+    },
+    {
+      "id": "43",
+      "audio_sha256": "26ac40fb93e159a3fa95ffe8df140061fc46beb796d0b8674420a70e52b6d471",
+      "samples": 268800,
+      "peak": 0.69329833984375,
+      "rms": 0.10196188431651017,
+      "clipped_samples": 0
+    },
+    {
+      "id": "44",
+      "audio_sha256": "551ccfba8e3ccc0f625c23123a4a1df441d5a3e4040b274b9a9fea1791075148",
+      "samples": 304320,
+      "peak": 0.680999755859375,
+      "rms": 0.09741708486285978,
+      "clipped_samples": 0
+    },
+    {
+      "id": "45",
+      "audio_sha256": "2367f88ac56a767f2e10563a80192d1a57e615861f46d1fb0941d2d2ad1eadcd",
+      "samples": 258240,
+      "peak": 0.63873291015625,
+      "rms": 0.09904444822614077,
+      "clipped_samples": 0
+    },
+    {
+      "id": "46",
+      "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+      "samples": 268800,
+      "peak": 0.602752685546875,
+      "rms": 0.09055236177144771,
+      "clipped_samples": 0
+    },
+    {
+      "id": "47",
+      "audio_sha256": "c55a3c162b5e91f9a19fcef654c71928338456b15b2135bd093964abdb54e4ba",
+      "samples": 267840,
+      "peak": 0.651580810546875,
+      "rms": 0.09113282817421205,
+      "clipped_samples": 0
+    },
+    {
+      "id": "48",
+      "audio_sha256": "69863aa972f62bb24faa70f118e236543ea5b7963e48f3517d365d7ff37496c0",
+      "samples": 301440,
+      "peak": 0.655059814453125,
+      "rms": 0.0953791848553543,
+      "clipped_samples": 0
+    },
+    {
+      "id": "49",
+      "audio_sha256": "dec561acb19e28b71df5b3ecebd5dd55dddc588eabd6831b36a8d6839a0b95d7",
+      "samples": 293760,
+      "peak": 0.902313232421875,
+      "rms": 0.10168132141877326,
+      "clipped_samples": 0
+    },
+    {
+      "id": "50",
+      "audio_sha256": "9b317545aeb1679eecb4704fd1b0ee01ed245de0315cd082921cdba2869be01f",
+      "samples": 280320,
+      "peak": 0.729644775390625,
+      "rms": 0.09922140256031238,
+      "clipped_samples": 0
+    },
+    {
+      "id": "51",
+      "audio_sha256": "7d82fcc1148ab01b24675571c1f000b27e8fb5534808553a52b1ffaeb6417bc5",
+      "samples": 281280,
+      "peak": 0.63665771484375,
+      "rms": 0.10965644210895047,
+      "clipped_samples": 0
+    },
+    {
+      "id": "52",
+      "audio_sha256": "bf99c2354842972049317346d97afb2e553d596ea4d2a6c81efcd57a81927849",
+      "samples": 290880,
+      "peak": 0.85015869140625,
+      "rms": 0.09720529234980693,
+      "clipped_samples": 0
+    }
+  ],
+  "clipped_samples": 0
+}

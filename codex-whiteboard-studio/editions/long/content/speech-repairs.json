@@ -12,5 +12,19 @@
     "replaces_audio_sha256": "d7388694386dc0576b3f1b0f72839c28acca3395e588927f27edd888568ed8f4",
     "replaces_job_id": "3d0e22fc7c124175b90c52a2f4841f80",
     "reason": "Unprompted Whisper turbo and small transcribe the source word idea as ID; medium transcribes idea. This disagreement leaves pronunciation clarity unresolved. Retain the original WAV and all three observations, and generate a second natural-speed take without changing the script."
+  },
+  "21": {
+    "source_sha256": "69db4ab08b74fc43e4eac14786604d51d89b7655329cfb346561d21287db1abd",
+    "seed": 1240,
+    "replaces_audio_sha256": "f56b42620b57ccd827b3b6c4e9ab35987978153a80714ea3c65b0edc6ae44a6f",
+    "replaces_job_id": "21a0ce90c6ac44e0ad0a48c6d4d45ae3",
+    "reason": "Turbo, medium and small independently render the source word practiced as practice. Preserve the first WAV and all observations; request a second natural-speed take of the exact source."
+  },
+  "51": {
+    "source_sha256": "3c755d63e81fb65f866cdeb6f1bd0296175588d0e2c7b34a8793ed4bb96349e3",
+    "seed": 1270,
+    "replaces_audio_sha256": "a557945487f8966a8f06451c2ca0ec8058e775a1ef99c732314df3c6be6d1ec9",
+    "replaces_job_id": "4e49fec284e249b989ffd7e6438643ed",
+    "reason": "Three independent recognizers hear a rather than the in the final sentence. Retain the first take and request a second take."
   }
 }

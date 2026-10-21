@@ -302,3 +302,41 @@ alignment patch as the remote service are verified. Model weights are still
 downloading; three interrupted S3 ranges were resumed using their retained
 prefix bytes while the live T3 download continued. No local synthesis or
 speed improvement has yet been established.
+
+## Complete narration and final timeline preparation
+
+All 52 current narration WAVs are now present and match their selected
+unprompted transcripts. Original and superseded takes remain retained.
+Numeric checks now recognize algebraic spelling such as 2x while preserving
+wrong values and variables. Compound spelling variants such as preprint /
+pre print and reread / re-read are normalized without hiding missing past
+tense endings or different words. Line 46 retains its original WAV: medium
+and small both match the source, while turbo changes two singular nouns.
+That timing choice is bound to the exact source and WAV.
+
+Six selected WAVs were produced by a temporary local CPU Chatterbox service,
+using the same pinned source, model, voice reference and alignment patch.
+The MPS pilot reached its five-minute limit without completing. The CPU
+pilot initialized in 19.171 seconds and generated 12.12 seconds of audio in
+37.817 seconds; its unprompted transcript matched and its waveform had no
+clipped samples. This is a single-line measurement, not a general benchmark.
+The pilot WAV was not promoted into the film. Ten local repair/revision jobs
+completed; the idle service was then stopped to release resources for render.
+
+Lines 21 and 51 use matching second takes. Lines 25, 28, 34 and 37 received
+clearer wording after retained second takes remained unclear. Line 25's
+second take also produced an unrelated spoken tail, which was rejected.
+The sample size stays explicitly on the board and in the source ledger;
+the rewritten narration explains the experiment without reciting that
+number. All four revised takes match. The numerical algebra and its
+spoken cue phrases remain unchanged.
+
+The full source-waveform audit covers all 52 mono PCM16 24 kHz WAVs and
+finds zero clipped samples. This is separate from subjective listening.
+The final source timeline currently contains 17,284 frames at 24 fps
+(720.1667 seconds). All 20 declared speech cues have observed word timing
+within their late bounds. Structure validation passes without warnings.
+The exact-frame marker-body scan reports no candidates after adding
+handoffs for book details, checked paper, the expansion correction and the
+closing learner. These last timing changes still require final encoded
+visual review; the checks do not accept the unfinished film.

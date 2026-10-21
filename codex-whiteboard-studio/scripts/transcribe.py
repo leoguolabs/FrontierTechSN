@@ -43,6 +43,11 @@ def words(text):
     text = re.sub(r"(?<=[a-z])['’](?=[a-z])", "", text)
     text = re.sub(r"\bbusywork\b", "busy work", text)
     text = re.sub(r"\bpractise\b", "practice", text)
+    for separate, joined in (("pre registered", "preregistered"),
+                             ("pre print", "preprint"), ("re read", "reread")):
+        text = re.sub(r"\b" + separate.replace(" ", r"[\s-]+") + r"\b", joined, text)
+    # Recognizers may write an algebraic term as 2x rather than "two x".
+    text = re.sub(r"\b(\d+)(?=[xyz]\b)", r"\1 ", text)
     text = re.sub(r"\b\d+(?:,\d{3})*(?:\.\d+)?\b",
                   lambda m: (m[0] if "." in m[0] else
                              NUMBER_WORDS.get(int(m[0].replace(",", "")), m[0])), text)

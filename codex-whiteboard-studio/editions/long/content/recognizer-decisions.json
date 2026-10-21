@@ -16,5 +16,23 @@
         "model": "mlx-community/whisper-small-mlx"
       }
     ]
+  },
+  "46": {
+    "source_sha256": "05ff23726e2031b61ac0ae9e043a1ed9b4d8411f9603a97546d38f9ec2b88195",
+    "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+    "model": "mlx-community/whisper-medium-mlx",
+    "reason": "Turbo pluralizes task and test. Independent medium and small both match the complete source. Use the medium observation for timing; retain the disagreement. No subjective listening claim.",
+    "evidence": [
+      {
+        "file": "media/asr/46-ca4c9030b75c-second-medium.json",
+        "sha256": "f314ae36c70c3d493176bfb0a9490f6866c7369617a8725444c1e24f563f768b",
+        "model": "mlx-community/whisper-medium-mlx"
+      },
+      {
+        "file": "media/asr/46-ca4c9030b75c-third-small.json",
+        "sha256": "b4f29942700c802fbfa07034ae792758feeecacaa8e0bf2f94145bcd16159f36",
+        "model": "mlx-community/whisper-small-mlx"
+      }
+    ]
   }
 }

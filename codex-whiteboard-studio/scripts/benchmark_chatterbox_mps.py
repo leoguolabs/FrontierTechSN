@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Measure an isolated, pinned Chatterbox MPS runtime without accepting its audio."""
+"""Measure an isolated, pinned Chatterbox runtime without accepting its audio."""
 import argparse
 import hashlib
 import importlib.metadata
@@ -53,6 +53,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runtime", type=Path, required=True)
     parser.add_argument("--line", default="52")
+    parser.add_argument("--device", choices=["mps", "cpu"], default="mps")
     args = parser.parse_args()
     runtime = args.runtime.resolve()
     os.environ["HF_HOME"] = str(runtime / "cache/huggingface")
@@ -82,7 +83,7 @@ def main():
     import torch
     from service import Settings, _load_model
 
-    if not torch.backends.mps.is_available():
+    if args.device == "mps" and not torch.backends.mps.is_available():
         raise RuntimeError("MPS is unavailable.")
     rows = json.loads((STUDIO / "editions/long/content/narration.json").read_text())
     index, row = next((i, r) for i, r in enumerate(rows) if r["id"] == args.line)
@@ -94,21 +95,21 @@ def main():
     }
     if len(row["text"]) > 250:
         raise ValueError("Benchmark source exceeds the existing service's request bound.")
-    destination = runtime / "benchmark"
+    destination = runtime / ("benchmark" if args.device == "mps" else "benchmark-cpu")
     destination.mkdir(exist_ok=True)
     record_path = destination / f"{row['id']}.json"
     wav_path = destination / f"{row['id']}.wav"
     if record_path.exists() or wav_path.exists():
         raise FileExistsError("Retain the previous benchmark; choose a fresh runtime directory.")
     record = {
-        "status": "initializing", "device": "mps",
+        "status": "initializing", "device": args.device,
         "scope": "Isolated local speed and output experiment. No production manifest changes or subjective listening claim.",
         "request": request, "source_sha256": hashlib.sha256(row["text"].encode()).hexdigest(),
         "upstream_source": source, "perth_source": perth_source,
         "model_revision": REVISION,
         "model_files": FILES, "reference_sha256": digest(voice),
         "space_alignment": patch, "loader_sha256": digest(runtime / "service.py"),
-        "mps_fallback_enabled": True, "cpu_threads": 4,
+        "mps_fallback_enabled": args.device == "mps", "cpu_threads": 4,
         "runtime_versions": {name: importlib.metadata.version(name) for name in (
             "torch", "torchaudio", "numpy", "transformers", "diffusers",
             "chatterbox-tts", "resemble-perth", "soundfile",
@@ -125,14 +126,15 @@ def main():
     signal.signal(signal.SIGALRM, expired)
     signal.alarm(300)
     try:
-        settings = Settings(api_key="", data_dir=destination, device="mps", cpu_threads=4)
+        settings = Settings(api_key="", data_dir=destination, device=args.device, cpu_threads=4)
         started = time.monotonic()
         model = _load_model(settings)
-        torch.mps.synchronize()
+        if args.device == "mps":
+            torch.mps.synchronize()
         record["initialization_seconds"] = time.monotonic() - started
         record["backbone_device"] = str(next(model.t3.parameters()).device)
-        if not record["backbone_device"].startswith("mps"):
-            raise RuntimeError("The backbone was not loaded on MPS.")
+        if not record["backbone_device"].startswith(args.device):
+            raise RuntimeError("The backbone was not loaded on the requested device.")
         record["status"] = "generating"
         save()
         print(json.dumps({"status": "generating", "initialization_seconds": record["initialization_seconds"]}), flush=True)
@@ -146,7 +148,8 @@ def main():
         started = time.monotonic()
         with torch.inference_mode():
             samples = model.generate(request["text"], audio_prompt_path=str(voice), **kwargs)
-        torch.mps.synchronize()
+        if args.device == "mps":
+            torch.mps.synchronize()
         record["generation_seconds"] = time.monotonic() - started
         samples = samples.detach().cpu().numpy().reshape(-1)
         if not len(samples) or not np.isfinite(samples).all():

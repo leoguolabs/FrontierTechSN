@@ -1,0 +1,84 @@
+{
+  "scope": "Two isolated single-line trials. MPS timed out. CPU produced a matching unprompted transcript and an unclipped waveform. Neither establishes subjective listening. The benchmark WAV was not inserted into the film; a temporary CPU service is used only for bounded narration repairs.",
+  "runtime_record": "review/local-chatterbox-environment.json",
+  "model_files_verified": true,
+  "total_model_bytes": 3208951748,
+  "model_revision": "5bb1f6ee58e50c3b8d408bc82a6d3740c2db6e18",
+  "trials": {
+    "mps": {
+      "record": "media/acceleration/benchmark/52.json",
+      "record_sha256": "dd6f79b79174ab7fc97245838694ed5cb421006abe4d38fda8b5ea05ad2f1c44",
+      "status": "failed",
+      "request": {
+        "text": "Return to the opening spreadsheet. The first formula solved today's problem. Your next independent attempt tells you something about tomorrow. Use artificial intelligence to make that attempt better. What can you do when the answer is gone?",
+        "language_id": "en",
+        "voice": "space-en-f1",
+        "seed": 271,
+        "exaggeration": 0.5,
+        "cfg_weight": 0.5,
+        "temperature": 0.8,
+        "repetition_penalty": 2.0,
+        "min_p": 0.05,
+        "top_p": 1.0,
+        "speed": 1.0
+      },
+      "source_sha256": "25c7474c93acd68f0ef5238490e69fde6b64eb6274481edc625dc2dd04b0865b",
+      "initialization_seconds": 74.21101579105016,
+      "generation_seconds": null,
+      "duration": null,
+      "error": "Bounded local acceleration experiment exceeded five minutes.",
+      "backbone_device": "mps:0",
+      "audio_sha256": null,
+      "generation_seconds_per_audio_second": null
+    },
+    "cpu": {
+      "record": "media/acceleration/benchmark-cpu/52.json",
+      "record_sha256": "bc671fdb4b97c74e7583fdffca9c827559862162e634e3a94cc6b5d768c1202b",
+      "status": "generated_not_accepted",
+      "request": {
+        "text": "Return to the opening spreadsheet. The first formula solved today's problem. Your next independent attempt tells you something about tomorrow. Use artificial intelligence to make that attempt better. What can you do when the answer is gone?",
+        "language_id": "en",
+        "voice": "space-en-f1",
+        "seed": 271,
+        "exaggeration": 0.5,
+        "cfg_weight": 0.5,
+        "temperature": 0.8,
+        "repetition_penalty": 2.0,
+        "min_p": 0.05,
+        "top_p": 1.0,
+        "speed": 1.0
+      },
+      "source_sha256": "25c7474c93acd68f0ef5238490e69fde6b64eb6274481edc625dc2dd04b0865b",
+      "initialization_seconds": 19.17112304107286,
+      "generation_seconds": 37.81687595800031,
+      "duration": 12.12,
+      "error": null,
+      "backbone_device": "cpu",
+      "audio_sha256": "0b0f5b2c01f1ade66e0590dbbeca407bdfd506785092e646306da4f61ee3d90a",
+      "generation_seconds_per_audio_second": 3.1202042869637223,
+      "independent_review": {
+        "file": "media/acceleration/benchmark-cpu/52-review.json",
+        "sha256": "75b808ffe07d035446807378c839880a25fcedd38d1ea150213ca5d18789c3ae",
+        "model": "mlx-community/whisper-large-v3-turbo-q4",
+        "audio_sha256": "0b0f5b2c01f1ade66e0590dbbeca407bdfd506785092e646306da4f61ee3d90a",
+        "normalized_changes": [],
+        "waveform": {
+          "peak": 0.85015869140625,
+          "rms": 0.09720532654873101,
+          "clipped_samples": 0,
+          "finite": true
+        }
+      }
+    }
+  },
+  "local_repair_service": {
+    "fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7",
+    "max_chars": 250,
+    "device": "cpu",
+    "cpu_threads": 4,
+    "voice": "space-en-f1",
+    "service_sha256": "bbc62ef1a4b257bf0c76f8c74fff3b90948adc31bc3655339a7c95187a451137",
+    "binding": "Each request retains its deployment and voice fingerprint, job ID, source hash and original WAV. No FrontierTechSN task was created."
+  },
+  "benchmark_script_sha256": "429579cf4395eb409d815973b3fb9bff97e398a48fc79a53d2bbfe40be97d945"
+}

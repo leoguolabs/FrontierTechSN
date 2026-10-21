@@ -91,6 +91,19 @@ line and source. A local writer lock prevents competing manifest updates.
 Before submitting any selected line, the client checks the whole selection
 against the service's advertised character limit.
 
+For clearer wording, record the old and revised text, source hashes, retained
+requests and preserved claim in `content/narration-revisions.json`. Remove any
+repair override tied to the superseded source. The new wording gets its own
+request identity and must pass transcription again.
+
+The client can use a local service with the same Chatterbox API. Preserve
+the previous capabilities record when changing endpoints: each request's
+deployment and voice fingerprints identify which service produced its WAV.
+The optional `scripts/benchmark_chatterbox_mps.py --runtime /path/to/runtime
+--device cpu` measures one line in an already prepared, verified service
+runtime. Its default device is MPS. Both trials have a five-minute limit,
+retain separate records, and do not insert benchmark audio into a film.
+
 When recognizers disagree, retain each observation. A reviewed choice of
 recognizer can be recorded in `content/recognizer-decisions.json`, bound to
 both source-text and WAV hashes, with its supporting evidence. This changes

@@ -146,7 +146,7 @@
   {
     "id": "25",
     "region": "offload",
-    "text": "A preregistered experiment with seven hundred and four adults studied help with fraction arithmetic. Feedback on help-seeking reduced requests for full answers and improved a later unaided test. Rewarding effort did not show the same effects.",
+    "text": "An experiment on fraction arithmetic involved adults and was registered in advance. Feedback on requests for help reduced full-answer requests and improved a later unaided test. Rewards for effort did not have the same effects.",
     "claim": "C09"
   },
   {
@@ -164,7 +164,7 @@
   {
     "id": "28",
     "region": "guidance",
-    "text": "In a randomized study of novice secondary mathematics students, worked examples beat unguided problem solving on practiced procedures and near transfer, tested just after learning. The task was opening algebraic brackets. Initial guidance helped.",
+    "text": "In a randomized study, novice secondary students learned to open algebraic brackets. Step by step examples beat unguided problem solving on the same procedures and similar problems, tested just after learning. Initial guidance helped.",
     "claim": "C06"
   },
   {
@@ -200,7 +200,7 @@
   {
     "id": "34",
     "region": "retrieval",
-    "text": "After an attempt, check it. Otherwise you may only discover that you can repeat your own error. For a calculation, substitute the result back. For an explanation, compare the missing steps with a reliable worked solution.",
+    "text": "After an attempt, check it. Otherwise you may only discover that you can repeat your own error. For a calculation, substitute the result back. For an explanation, compare the missing steps with a reliable example.",
     "claim": "C07; original editorial application"
   },
   {
@@ -218,7 +218,7 @@
   {
     "id": "37",
     "region": "example",
-    "text": "If you are new to equations, start with a worked solution. Divide both sides by two. That leaves x plus three equal to seven. Subtract three from both sides. Now x equals four. Substitute four into the original equation to check it.",
+    "text": "If you are new to equations, start with a complete solution. Divide both sides by two. That leaves x plus three equal to seven. Subtract three from both sides. Now x equals four. Substitute four into the original equation to check it.",
     "claim": "Original checked mathematical example"
   },
   {

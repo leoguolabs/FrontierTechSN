@@ -54,5 +54,117 @@
     "revised_source_sha256": "1c3b4479c74d6473ea8e88be1f8da28ac135bf99007cf5056ce32c0fc9a53462",
     "reason": "Three independent recognizers omit the initial A. Use the stronger initial Another and tighten the final sentence without changing the research claim.",
     "claim_preserved": "C10"
+  },
+  {
+    "id": "25",
+    "previous_text": "A preregistered experiment with seven hundred and four adults studied help with fraction arithmetic. Feedback on help-seeking reduced requests for full answers and improved a later unaided test. Rewarding effort did not show the same effects.",
+    "previous_source_sha256": "bcf011ef00af085bba48bf220a258cf196a651125a86ab31239e2acb39bad120",
+    "previous_requests": [
+      {
+        "job_id": "4f22e6199f154f47ac8b82a5570c7e7f",
+        "identity": "54fedc30debc15597cdad68410167340304f7f801a5137299fdc3864efa76e7c",
+        "seed": 1244
+      },
+      {
+        "job_id": "b702ab29cbd741cf8f56e2e9498f7b4b",
+        "identity": "77606b460a892f7f291dd1885af53218964a36e2db7e58568929c326c35810de",
+        "seed": 244
+      }
+    ],
+    "previous_repair_plan": {
+      "source_sha256": "bcf011ef00af085bba48bf220a258cf196a651125a86ab31239e2acb39bad120",
+      "seed": 1244,
+      "replaces_audio_sha256": "6a9bcce036574ded4592f1f1a1e6a24a7dc2ddb354aedfefd0dd7d4d8318410b",
+      "replaces_job_id": "b702ab29cbd741cf8f56e2e9498f7b4b",
+      "reason": "Three independent recognizers do not hear hundred and in seven hundred and four. Preserve the original WAV and request a bounded second take."
+    },
+    "revised_text": "An experiment on fraction arithmetic involved adults and was registered in advance. Feedback on requests for help reduced full-answer requests and improved a later unaided test. Rewards for effort did not have the same effects.",
+    "revised_source_sha256": "684a544ffdadec53df68edac565be612a54c3519bf8c5e2c1ad764f988378914",
+    "reason": "The first take obscured the sample size; the second take also generated a long unrelated tail. Rephrase the registration and help-seeking description. Keep the exact sample size, 704 adults, on the board and in the source claim rather than in this sentence. Preserve both old takes.",
+    "claim_preserved": "C09"
+  },
+  {
+    "id": "28",
+    "previous_text": "In a randomized study of novice secondary mathematics students, worked examples beat unguided problem solving on practiced procedures and near transfer, tested just after learning. The task was opening algebraic brackets. Initial guidance helped.",
+    "previous_source_sha256": "d7a816d0a9f16811e8fc02814e3c1804bc3235e6219b2cbb8758ef8800ba285b",
+    "previous_requests": [
+      {
+        "job_id": "7cea5c007a904e4a87b13f73bb893cfb",
+        "identity": "9ce11c2f19c90bb8eb696b0e3f8a258aa931183c807ab6c8809dabb4ce20573e",
+        "seed": 1247
+      },
+      {
+        "job_id": "d6b7d1cf8f4740ba849eff5edb685190",
+        "identity": "c98e4a045e2f532f0669c75eea67ccbebf3595954abe60a051d3baa4c60a61f6",
+        "seed": 247
+      }
+    ],
+    "previous_repair_plan": {
+      "source_sha256": "d7a816d0a9f16811e8fc02814e3c1804bc3235e6219b2cbb8758ef8800ba285b",
+      "seed": 1247,
+      "replaces_audio_sha256": "160791686882b303af2f302bfb609db201e25eec730f523783c00542a303cf1a",
+      "replaces_job_id": "d6b7d1cf8f4740ba849eff5edb685190",
+      "reason": "Three independent recognizers hear practice rather than practiced. Retain the first take and request a second take."
+    },
+    "revised_text": "In a randomized study, novice secondary students learned to open algebraic brackets. Step by step examples beat unguided problem solving on the same procedures and similar problems, tested just after learning. Initial guidance helped.",
+    "revised_source_sha256": "433162437b7fa7b6ced52aaded3c97a651620074d499510acf1a3cd079350d9e",
+    "reason": "All three recognizers render practiced as practice in the original take. The second take is transcribed as unpracticed at the on practiced boundary. Rephrase the treatment and outcome while preserving the tested procedures and near-transfer distinction.",
+    "claim_preserved": "C06"
+  },
+  {
+    "id": "34",
+    "previous_text": "After an attempt, check it. Otherwise you may only discover that you can repeat your own error. For a calculation, substitute the result back. For an explanation, compare the missing steps with a reliable worked solution.",
+    "previous_source_sha256": "1169b3d5d04f52fe8cd520e0ed81284488b20d1d230af0a62798ee8a0bfd407e",
+    "previous_requests": [
+      {
+        "job_id": "6b353b6ffd074120917c23d30254e001",
+        "identity": "ddaf319ebeca617c1e28275bb497ca6aecf8fa4efab7cb25abc254a37d07b37a",
+        "seed": 253
+      },
+      {
+        "job_id": "324ce003d0d04313947b790662a029f8",
+        "identity": "fa77b73eec9fc62b81673ef2ac3d5d7b3332baa66bbcbd7e17af3364a8ff663f",
+        "seed": 1253
+      }
+    ],
+    "previous_repair_plan": {
+      "source_sha256": "1169b3d5d04f52fe8cd520e0ed81284488b20d1d230af0a62798ee8a0bfd407e",
+      "seed": 1253,
+      "replaces_audio_sha256": "d7ffabd7daea72811366bcaa161d3e027d2f01d538cf51c22e6108eb40979276",
+      "replaces_job_id": "6b353b6ffd074120917c23d30254e001",
+      "reason": "Three independent recognizers hear work rather than worked. Retain the first take and request a second take."
+    },
+    "revised_text": "After an attempt, check it. Otherwise you may only discover that you can repeat your own error. For a calculation, substitute the result back. For an explanation, compare the missing steps with a reliable example.",
+    "revised_source_sha256": "8098d9cde9cd3ae4e23ee900b86d1e06a0199097de1100d433a3c1d30152e2af",
+    "reason": "All three original recognizers and the selected second-take recognizer render worked as work. Use reliable example to avoid this consonant boundary while retaining the practical advice.",
+    "claim_preserved": "C07; original editorial application"
+  },
+  {
+    "id": "37",
+    "previous_text": "If you are new to equations, start with a worked solution. Divide both sides by two. That leaves x plus three equal to seven. Subtract three from both sides. Now x equals four. Substitute four into the original equation to check it.",
+    "previous_source_sha256": "96b865dc1880ae453282fa8f9bceb1787b8b2bc5a92dd0c6a9d609ba44866c00",
+    "previous_requests": [
+      {
+        "job_id": "2cc4cc0e0a304d5bab2fd5b01e140374",
+        "identity": "486eec7a0ed1525e0cace47688940ef546cb5d2afb465caeabd8601ad74a686a",
+        "seed": 256
+      },
+      {
+        "job_id": "d55ed33d035f46de95a5e2dc9c775050",
+        "identity": "95999500434a9e3ffc5e7149d048bbb688a432cf5da6dc02ab51982b2c29da06",
+        "seed": 1256
+      }
+    ],
+    "previous_repair_plan": {
+      "source_sha256": "96b865dc1880ae453282fa8f9bceb1787b8b2bc5a92dd0c6a9d609ba44866c00",
+      "seed": 1256,
+      "replaces_audio_sha256": "0592032e2e3179dcaecf5ef73d8bd0aec0d7e092b15d14eec24852628571089f",
+      "replaces_job_id": "2cc4cc0e0a304d5bab2fd5b01e140374",
+      "reason": "Three independent recognizers hear work rather than worked. Retain the first take and request a second take."
+    },
+    "revised_text": "If you are new to equations, start with a complete solution. Divide both sides by two. That leaves x plus three equal to seven. Subtract three from both sides. Now x equals four. Substitute four into the original equation to check it.",
+    "revised_source_sha256": "6afe191156cdb341cd1c53000069e24abee5954f3789c1f214aa33f777d44ff1",
+    "reason": "All three original recognizers and the selected second-take recognizer render worked as work. Use complete solution to preserve the instructional meaning with clearer wording; the exact algebra and cue phrases are unchanged.",
+    "claim_preserved": "Original checked mathematical example"
   }
 ]

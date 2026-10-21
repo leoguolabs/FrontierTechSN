@@ -1,5 +1,5 @@
 {
-  "scope": "Retained provider WAVs and unprompted transcript evidence. current_source identifies whether a row matches the current narration revision. No subjective listening claim. More segments remain in generation.",
+  "scope": "All 52 current Chatterbox WAVs match source-bound independent transcripts. Remote and temporary local CPU service fingerprints are retained. Original takes and revision decisions remain available. No subjective listening claim.",
   "rows": [
     {
       "id": "01",
@@ -10,7 +10,8 @@
       "duration": 10.52,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "02",
@@ -21,7 +22,8 @@
       "duration": 10.92,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "03",
@@ -32,7 +34,8 @@
       "duration": 11.88,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "04",
@@ -43,7 +46,8 @@
       "duration": 12.92,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "05",
@@ -54,7 +58,8 @@
       "duration": 11.8,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "06",
@@ -65,7 +70,8 @@
       "duration": 12.92,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-medium-mlx"
+      "recognizer": "mlx-community/whisper-medium-mlx",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "07",
@@ -76,7 +82,8 @@
       "duration": 11.44,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "08",
@@ -87,7 +94,8 @@
       "duration": 10.84,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "09",
@@ -98,7 +106,8 @@
       "duration": 11.6,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "10",
@@ -109,7 +118,8 @@
       "duration": 11.44,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "11",
@@ -120,7 +130,8 @@
       "duration": 13.68,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "12",
@@ -131,7 +142,8 @@
       "duration": 12.6,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "13",
@@ -142,7 +154,8 @@
       "duration": 12.24,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "14",
@@ -153,7 +166,8 @@
       "duration": 11.28,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "15",
@@ -164,7 +178,8 @@
       "duration": 12.32,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "16",
@@ -175,7 +190,8 @@
       "duration": 11.2,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "17",
@@ -186,7 +202,8 @@
       "duration": 12.84,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "18",
@@ -197,7 +214,8 @@
       "duration": 11.84,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     },
     {
       "id": "19",
@@ -208,7 +226,404 @@
       "duration": 13.32,
       "current_source": true,
       "independent_transcript_matches": true,
-      "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "20",
+      "path": "media/audio/20-7edd04903a15.wav",
+      "job_id": "be1a23a1d10e4eb2b7126353f474a460",
+      "audio_sha256": "a828958c64d7262fbea5c8a8ea4c51864f93a21238ceb3e551fa5ecc74bed5cb",
+      "source_sha256": "359ff84c7a13e5d4e0c868dd3e1b785fa67eaa371a1a6390e8f3e3e21f9ff875",
+      "duration": 12.68,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "21",
+      "path": "media/audio/21-d09fc7170bad.wav",
+      "job_id": "31f1bfe5dee246218248fbad7f169e8f",
+      "audio_sha256": "66e5aeb35b4965b6b867694fba7c7f20fe11989d82e46e781acd4bdeb9648e24",
+      "source_sha256": "69db4ab08b74fc43e4eac14786604d51d89b7655329cfb346561d21287db1abd",
+      "duration": 11.64,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+    },
+    {
+      "id": "22",
+      "path": "media/audio/22-ca4e09d1bce1.wav",
+      "job_id": "3c8851d309ed40b4b2ba576688216884",
+      "audio_sha256": "63aa1256483e7af8e65d2b24687da0c4f5f9832542d6d101307ea9d9b08bb2c1",
+      "source_sha256": "b942e21da2752f63f93a2d715b211be021ac20d16c7d5b96bd655cfcd9a4f52b",
+      "duration": 13.08,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "23",
+      "path": "media/audio/23-7d8ee6e31614.wav",
+      "job_id": "0270ba77dfd943a3b4ed0bc011eca9c1",
+      "audio_sha256": "88020b21980a5dead331827101fa7555406c369473dfafd37e3bae9ffd2c2bc7",
+      "source_sha256": "1766744102dd299830040c92ab635a843df7549280be9130e37fe7e6b78be875",
+      "duration": 11.64,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "24",
+      "path": "media/audio/24-ab1ebb9947c8.wav",
+      "job_id": "b90a9141ba9f437f93d0a9aa85b714ed",
+      "audio_sha256": "4c6e8e31b876bca2f43a6dd5f1f7fbbdfa27c772a75ef4db441f630d76daf95a",
+      "source_sha256": "ae9a54a7937fd4bc424ed5e4aeed6cf5dd181266fc7a4ecbb29a889e03bdfce7",
+      "duration": 12.04,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "25",
+      "path": "media/audio/25-65abce6e3d3e.wav",
+      "job_id": "bfab4cbddf59424aac80666cbaa9268b",
+      "audio_sha256": "b1f3d04af97ff9bccc66ee117b91e0f9f4ef26f746d038e2a9cc9cd71c76f36c",
+      "source_sha256": "684a544ffdadec53df68edac565be612a54c3519bf8c5e2c1ad764f988378914",
+      "duration": 11.36,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+    },
+    {
+      "id": "26",
+      "path": "media/audio/26-4f3a4b33a640.wav",
+      "job_id": "07f7a1a9c47e41a7b0e2bea24ee905d0",
+      "audio_sha256": "4a3358186ef26d5d92a8f9ebab062c093fd9cf47bb34d3fba1cceb450024fa0d",
+      "source_sha256": "5d5b2682d72fd30a2b1c349d1f4a5000acef41f2469829b082e5361b6e2603c6",
+      "duration": 12.84,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "27",
+      "path": "media/audio/27-d6b302a75a2a.wav",
+      "job_id": "d5abd7efadf247fe8e929eb753f05870",
+      "audio_sha256": "95132880616488dbdbc5cebcd0ac74ea7d89caffb18367bb50ffca4a995c8a12",
+      "source_sha256": "64fe05119592cd25daf0a6ca53db2bef576d8fa473076be4453b498349a1b956",
+      "duration": 11.08,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "28",
+      "path": "media/audio/28-59c04d1a0666.wav",
+      "job_id": "bee362ebc0b84e3fb2b705274ec86e56",
+      "audio_sha256": "d0083c50a6bb2f691117ddf7e7b0035d468a10cde2839b2b7cc1a5d516016f95",
+      "source_sha256": "433162437b7fa7b6ced52aaded3c97a651620074d499510acf1a3cd079350d9e",
+      "duration": 12.12,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+    },
+    {
+      "id": "29",
+      "path": "media/audio/29-dcc6900e3712.wav",
+      "job_id": "0dd5cf039b0045e2b21450d3acabd603",
+      "audio_sha256": "a16d25558f14d526423463b17bb1300cbabe26c53fecfc1cb2798e20fe973615",
+      "source_sha256": "77511386c57178d47259be486592c68e62802abbce8e1fafec9d9881307cabf0",
+      "duration": 13.56,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "30",
+      "path": "media/audio/30-5dae947859f6.wav",
+      "job_id": "9c2c04313f3549df8e39d267e44d5ecf",
+      "audio_sha256": "f6a38111756674ed372759fe02e46580a886776593716588363b999cb8fe78ea",
+      "source_sha256": "4524e2af3e7c3efd5ce8e258b589690ca02302f3d26c2794fef5aeca12cd3b50",
+      "duration": 11.36,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "31",
+      "path": "media/audio/31-882af0cac012.wav",
+      "job_id": "24a6a5b1a19a4e43b89b9b51a4d9faca",
+      "audio_sha256": "0ece3f17b48a9f5d4aabaa7f62e664ad02e88ea4713b63d46b9783dd199b468b",
+      "source_sha256": "e30df5893f8c99cbe9c524483398f7ca2239be94e96157444286456a2f270ba8",
+      "duration": 13.2,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "32",
+      "path": "media/audio/32-b0ea41e27922.wav",
+      "job_id": "1b3071b3acc949f3909d8ac42a9c654c",
+      "audio_sha256": "2d4964ba40c7ec4d337c7cf6f38e49f2a6abb3fa61ec7018de64ecc265f2de40",
+      "source_sha256": "ded7cb99da6f51efe912d77f3c2438ea8e8869441b57766ddeca6bb4c9a75ebc",
+      "duration": 11.6,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "33",
+      "path": "media/audio/33-b76328eda885.wav",
+      "job_id": "9332ea6e9cc0422996cfd3b23d8fa406",
+      "audio_sha256": "9c08eea138d79ccc70660d796edf4d9cdc9bc9ed7166c4ba8565969ecf189a61",
+      "source_sha256": "f2b6d23bf69a03e547657a9476573c8cda09fa64f9a6c9459a2c8c51e94a1941",
+      "duration": 12.96,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "34",
+      "path": "media/audio/34-68204c0c1bad.wav",
+      "job_id": "2995bbfeb5e0476c82a32971c0dddfeb",
+      "audio_sha256": "78ed01d7b9335f880ad3bf9bf1c8089cf10d1058c6bef714221d95a509f4051e",
+      "source_sha256": "8098d9cde9cd3ae4e23ee900b86d1e06a0199097de1100d433a3c1d30152e2af",
+      "duration": 12.08,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+    },
+    {
+      "id": "35",
+      "path": "media/audio/35-94e844c02dad.wav",
+      "job_id": "3904fcbccb7149eb9b0521e760d159d7",
+      "audio_sha256": "895092404ee3ed5528945c4d7f6e1c309ad558561f20c977cbc915157d0178fa",
+      "source_sha256": "7a0a39f3f90eb968b4f1fb5419d9bd23dd1e604d24ddffec2211f71bec087cc7",
+      "duration": 12.32,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "36",
+      "path": "media/audio/36-93c90ef051d5.wav",
+      "job_id": "7d94462f4961410493893b202a45865e",
+      "audio_sha256": "cfbecaee4b2a7d276c1969abef7c87d71af74fa4f53e5db00339edda8cd34d20",
+      "source_sha256": "f20bd3a52c1c3b6568ce87ab7241c03d4c8fa712cb7975262d6259e047547bcd",
+      "duration": 12.48,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "37",
+      "path": "media/audio/37-21ac04757d02.wav",
+      "job_id": "fffc3c860fef4e5a9364e5f0929d13d0",
+      "audio_sha256": "a2c04369b8d3dcfceac8ea77bac4e85c4d2006cae0b42f236b36f43df04e7cf8",
+      "source_sha256": "6afe191156cdb341cd1c53000069e24abee5954f3789c1f214aa33f777d44ff1",
+      "duration": 11.4,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+    },
+    {
+      "id": "38",
+      "path": "media/audio/38-bbf974d5deeb.wav",
+      "job_id": "33722d23755f4a679d51d32bd23b6915",
+      "audio_sha256": "25c85e0f99eecf2451ddd9cb69b3b98e23b882ea50315826abdc1249fd055abd",
+      "source_sha256": "bdd6711341804c3123e57976fc728077fd1d27c6dfc7900ee07076ae64a836f3",
+      "duration": 13.28,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "39",
+      "path": "media/audio/39-fd100faad230.wav",
+      "job_id": "1e48ec6a9a33499d8fdce4fd4b5940bc",
+      "audio_sha256": "6d16d8e28efa1e2dd8b418c429a8e16f4ef5bdbb3022dfa10e986c132a700631",
+      "source_sha256": "da101c172b32295907f4038bb7b195a21bb9ca4844891344cb88ac572ee69d03",
+      "duration": 12.84,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "40",
+      "path": "media/audio/40-0a7c405c23ec.wav",
+      "job_id": "bd192d2733764aeea52f401cc2d492f0",
+      "audio_sha256": "18afe433479a6238c500ce4b34fd94265e4d3b3cb04b16933c859420840f2251",
+      "source_sha256": "14d712f2ea891662b70208c372b8225b75026ec793e5e94f4ee67422069dc5cc",
+      "duration": 13.32,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "41",
+      "path": "media/audio/41-8ac0a661f33c.wav",
+      "job_id": "1c107365582e4a52b71b43fd4f124894",
+      "audio_sha256": "a3e62e8b00c16f0456f689710a1f7949ce6c38771f454f6d3735a0fc23025a55",
+      "source_sha256": "c7072ffd045b3682304d2ddc75be8c7769007433bd980126ffa80d34abe3ec10",
+      "duration": 12.4,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "42",
+      "path": "media/audio/42-eb954a7774e0.wav",
+      "job_id": "29b4ccd5c0884339b74cf24940fc4dfe",
+      "audio_sha256": "c068b58e0f2584f2cb6c052710012bc14ca60bec746f7f69715e0ffc02f4ed93",
+      "source_sha256": "102e4b1a634b022549efcb4ad180f7e949732888d866e2d1d8848e96c9caf9dc",
+      "duration": 12.2,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "43",
+      "path": "media/audio/43-61be3e9541a1.wav",
+      "job_id": "029efe04d082400ebdbf43c296a4aee6",
+      "audio_sha256": "26ac40fb93e159a3fa95ffe8df140061fc46beb796d0b8674420a70e52b6d471",
+      "source_sha256": "b8139c4accadca428cd8be7533f21553dea48340f9931fd2ffdbafd45298e79c",
+      "duration": 11.2,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "44",
+      "path": "media/audio/44-0cc4f9095c1d.wav",
+      "job_id": "d7b93d67c7134687828d63494372de77",
+      "audio_sha256": "551ccfba8e3ccc0f625c23123a4a1df441d5a3e4040b274b9a9fea1791075148",
+      "source_sha256": "0a85b7f0a2551f4e4deec132ba53b43125f78293c2603659b6e4f2d97058115e",
+      "duration": 12.68,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "45",
+      "path": "media/audio/45-ac99c41c9d1c.wav",
+      "job_id": "23eeb15eeebf4846a2be80f348ad74f9",
+      "audio_sha256": "2367f88ac56a767f2e10563a80192d1a57e615861f46d1fb0941d2d2ad1eadcd",
+      "source_sha256": "2848dca66cb3fb3f2a7b670fc9000562a985aca946d65eb919ec82b05c1573d5",
+      "duration": 10.76,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "46",
+      "path": "media/audio/46-70c3c23bc1b0.wav",
+      "job_id": "65f6ecd3ce954636881d1a399725fc5d",
+      "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+      "source_sha256": "05ff23726e2031b61ac0ae9e043a1ed9b4d8411f9603a97546d38f9ec2b88195",
+      "duration": 11.2,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-medium-mlx",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "47",
+      "path": "media/audio/47-ded678ded38a.wav",
+      "job_id": "9205d873b5324a3aabdde7d0d1c21568",
+      "audio_sha256": "c55a3c162b5e91f9a19fcef654c71928338456b15b2135bd093964abdb54e4ba",
+      "source_sha256": "c23a53edbd5daeac5d748c91bfcfed251089aae46e6411f88a211f4e5c74b598",
+      "duration": 11.16,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "48",
+      "path": "media/audio/48-865726cd8f82.wav",
+      "job_id": "b90251d9d5724b6da11c1d602c83fc3b",
+      "audio_sha256": "69863aa972f62bb24faa70f118e236543ea5b7963e48f3517d365d7ff37496c0",
+      "source_sha256": "b3b9c68ab9d92956330b5c69db7e0c3ae28197c2e98c89b2b9be939483ac78af",
+      "duration": 12.56,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "49",
+      "path": "media/audio/49-ef82946c678f.wav",
+      "job_id": "9ee42a1b15ec47138ed54124e8fa31fb",
+      "audio_sha256": "dec561acb19e28b71df5b3ecebd5dd55dddc588eabd6831b36a8d6839a0b95d7",
+      "source_sha256": "3c78a63d61ecd0961063fc2e1701cda46bfc7117d19c481fc9139b0175771cac",
+      "duration": 12.24,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "50",
+      "path": "media/audio/50-fe49fb34c56d.wav",
+      "job_id": "3127551909ec403f9e34696d14eaa258",
+      "audio_sha256": "9b317545aeb1679eecb4704fd1b0ee01ed245de0315cd082921cdba2869be01f",
+      "source_sha256": "5c60d5ab3cf2c9221c3bb149e8d7a23b52e2c0d5c8778ead6382d065393420d5",
+      "duration": 11.68,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+    },
+    {
+      "id": "51",
+      "path": "media/audio/51-8259c91ea936.wav",
+      "job_id": "df62f8b7d73648f8857952a18be7f233",
+      "audio_sha256": "7d82fcc1148ab01b24675571c1f000b27e8fb5534808553a52b1ffaeb6417bc5",
+      "source_sha256": "3c755d63e81fb65f866cdeb6f1bd0296175588d0e2c7b34a8793ed4bb96349e3",
+      "duration": 11.72,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+    },
+    {
+      "id": "52",
+      "path": "media/audio/52-2f093569a030.wav",
+      "job_id": "ba87c6cbeea64f83999497c8d17379ce",
+      "audio_sha256": "bf99c2354842972049317346d97afb2e553d596ea4d2a6c81efcd57a81927849",
+      "source_sha256": "25c7474c93acd68f0ef5238490e69fde6b64eb6274481edc625dc2dd04b0865b",
+      "duration": 12.12,
+      "current_source": true,
+      "independent_transcript_matches": true,
+      "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+      "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
     }
   ],
   "pronunciation_rechecks": [
@@ -664,6 +1079,701 @@
         "current_source": true,
         "independent_transcript_matches": true,
         "recognizer": "mlx-community/whisper-large-v3-turbo-q4"
+      }
+    },
+    {
+      "id": "21",
+      "status": "Second take selected; matching unprompted transcript. Original take retained.",
+      "source_sha256": "69db4ab08b74fc43e4eac14786604d51d89b7655329cfb346561d21287db1abd",
+      "original_audio_sha256": "f56b42620b57ccd827b3b6c4e9ab35987978153a80714ea3c65b0edc6ae44a6f",
+      "original_job_id": "21a0ce90c6ac44e0ad0a48c6d4d45ae3",
+      "observations": [
+        {
+          "file": "media/asr/21-f56b42620b57-second-medium.json",
+          "sha256": "a14aeeffa3b5785296114aec473b70f478a3e46a506a0884aa2076abb0ec7f7d",
+          "audio_sha256": "f56b42620b57ccd827b3b6c4e9ab35987978153a80714ea3c65b0edc6ae44a6f",
+          "model": "mlx-community/whisper-medium-mlx",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "practiced"
+              ],
+              "heard": [
+                "practice"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "media/asr/21-f56b42620b57-third-small.json",
+          "sha256": "a5b2d3e26409b5183d9e60ad09573915d6a0e03a69d1ff4398de68df5c4de303",
+          "audio_sha256": "f56b42620b57ccd827b3b6c4e9ab35987978153a80714ea3c65b0edc6ae44a6f",
+          "model": "mlx-community/whisper-small-mlx",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "practiced"
+              ],
+              "heard": [
+                "practice"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "media/asr/21-f56b42620b57.json",
+          "sha256": "886042f9de7f2181c236c50a21fda21d8695ec769524ab128c5b95f9755c11b2",
+          "audio_sha256": "f56b42620b57ccd827b3b6c4e9ab35987978153a80714ea3c65b0edc6ae44a6f",
+          "model": "mlx-community/whisper-large-v3-turbo-q4",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "practiced"
+              ],
+              "heard": [
+                "practice"
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "Three recognizers agree on practice instead of practiced. Keep the source wording and request a bounded second take with seed 1240.",
+      "selected_take": {
+        "id": "21",
+        "path": "media/audio/21-d09fc7170bad.wav",
+        "job_id": "31f1bfe5dee246218248fbad7f169e8f",
+        "audio_sha256": "66e5aeb35b4965b6b867694fba7c7f20fe11989d82e46e781acd4bdeb9648e24",
+        "source_sha256": "69db4ab08b74fc43e4eac14786604d51d89b7655329cfb346561d21287db1abd",
+        "duration": 11.64,
+        "current_source": true,
+        "independent_transcript_matches": true,
+        "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+        "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+      }
+    },
+    {
+      "id": "25",
+      "status": "Clearer revised source selected after the original and second takes; both prior WAVs retained.",
+      "retained_previous_takes": [
+        {
+          "job_id": "4f22e6199f154f47ac8b82a5570c7e7f",
+          "identity": "54fedc30debc15597cdad68410167340304f7f801a5137299fdc3864efa76e7c",
+          "seed": 1244,
+          "path": "media/audio/25-54fedc30debc.wav",
+          "audio_sha256": "f38a2540d0a81674732fd5dc154ca29cda7cbadbbec0a91824f6b2288c403183",
+          "observations": [
+            {
+              "file": "media/asr/25-f38a2540d0a8.json",
+              "sha256": "d6b6f08db6afd0c21992108e7c3da885998a464a2d70d6757cf7c9417291dbc8",
+              "audio_sha256": "f38a2540d0a81674732fd5dc154ca29cda7cbadbbec0a91824f6b2288c403183",
+              "model": "mlx-community/whisper-large-v3-turbo-q4",
+              "normalized_changes": [
+                {
+                  "kind": "delete",
+                  "expected": [
+                    "hundred",
+                    "and"
+                  ],
+                  "heard": []
+                },
+                {
+                  "kind": "insert",
+                  "expected": [],
+                  "heard": [
+                    "asterstedes",
+                    "of",
+                    "righteous",
+                    "four",
+                    "callsterstedes",
+                    "of",
+                    "righteous",
+                    "studies",
+                    "and",
+                    "a",
+                    "take",
+                    "strike"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "job_id": "b702ab29cbd741cf8f56e2e9498f7b4b",
+          "identity": "77606b460a892f7f291dd1885af53218964a36e2db7e58568929c326c35810de",
+          "seed": 244,
+          "path": "media/audio/25-77606b460a89.wav",
+          "audio_sha256": "6a9bcce036574ded4592f1f1a1e6a24a7dc2ddb354aedfefd0dd7d4d8318410b",
+          "observations": [
+            {
+              "file": "media/asr/25-6a9bcce03657-second-medium.json",
+              "sha256": "e6a5bdb5088d600a445028c32cc976f8dc80c04c56d89764156b881db64a901c",
+              "audio_sha256": "6a9bcce036574ded4592f1f1a1e6a24a7dc2ddb354aedfefd0dd7d4d8318410b",
+              "model": "mlx-community/whisper-medium-mlx",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "preregistered"
+                  ],
+                  "heard": [
+                    "pre",
+                    "registered"
+                  ]
+                },
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "hundred",
+                    "and"
+                  ],
+                  "heard": [
+                    "of"
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "media/asr/25-6a9bcce03657-third-small.json",
+              "sha256": "6fb36ed4eb742fa5c7060be3526707ff75299ab3e9247ada80638c9ff8b9f782",
+              "audio_sha256": "6a9bcce036574ded4592f1f1a1e6a24a7dc2ddb354aedfefd0dd7d4d8318410b",
+              "model": "mlx-community/whisper-small-mlx",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "preregistered"
+                  ],
+                  "heard": [
+                    "pre",
+                    "registered"
+                  ]
+                },
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "hundred",
+                    "and"
+                  ],
+                  "heard": [
+                    "or"
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "media/asr/25-6a9bcce03657.json",
+              "sha256": "ca0d84d6ba0588028d1b683596f181ec01eed7d9f4ba61b5750915eb85741c71",
+              "audio_sha256": "6a9bcce036574ded4592f1f1a1e6a24a7dc2ddb354aedfefd0dd7d4d8318410b",
+              "model": "mlx-community/whisper-large-v3-turbo-q4",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "hundred",
+                    "and"
+                  ],
+                  "heard": [
+                    "of"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "The first take obscured the sample size; the second take also generated a long unrelated tail. Rephrase the registration and help-seeking description. Keep the exact sample size, 704 adults, on the board and in the source claim rather than in this sentence. Preserve both old takes.",
+      "revision_record": "content/narration-revisions.json",
+      "selected_revised_source": {
+        "id": "25",
+        "path": "media/audio/25-65abce6e3d3e.wav",
+        "job_id": "bfab4cbddf59424aac80666cbaa9268b",
+        "audio_sha256": "b1f3d04af97ff9bccc66ee117b91e0f9f4ef26f746d038e2a9cc9cd71c76f36c",
+        "source_sha256": "684a544ffdadec53df68edac565be612a54c3519bf8c5e2c1ad764f988378914",
+        "duration": 11.36,
+        "current_source": true,
+        "independent_transcript_matches": true,
+        "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+        "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+      }
+    },
+    {
+      "id": "28",
+      "status": "Clearer revised source selected after the original and second takes; both prior WAVs retained.",
+      "retained_previous_takes": [
+        {
+          "job_id": "7cea5c007a904e4a87b13f73bb893cfb",
+          "identity": "9ce11c2f19c90bb8eb696b0e3f8a258aa931183c807ab6c8809dabb4ce20573e",
+          "seed": 1247,
+          "path": "media/audio/28-9ce11c2f19c9.wav",
+          "audio_sha256": "4c49d6113693c27a7242b0e33b3a33951447d733d29718138584300105101fc4",
+          "observations": [
+            {
+              "file": "media/asr/28-4c49d6113693.json",
+              "sha256": "3b068cf2d6aecdb3786a6bab51f26f4e626ac98ef0639e9184894e9ef72de061",
+              "audio_sha256": "4c49d6113693c27a7242b0e33b3a33951447d733d29718138584300105101fc4",
+              "model": "mlx-community/whisper-large-v3-turbo-q4",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "on",
+                    "practiced"
+                  ],
+                  "heard": [
+                    "unpracticed"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "job_id": "d6b7d1cf8f4740ba849eff5edb685190",
+          "identity": "c98e4a045e2f532f0669c75eea67ccbebf3595954abe60a051d3baa4c60a61f6",
+          "seed": 247,
+          "path": "media/audio/28-c98e4a045e2f.wav",
+          "audio_sha256": "160791686882b303af2f302bfb609db201e25eec730f523783c00542a303cf1a",
+          "observations": [
+            {
+              "file": "media/asr/28-160791686882-second-medium.json",
+              "sha256": "cd141decbc6794c1a4a914714cea4d68f3a9c0df04d20bbc3a32a4c37bbb566f",
+              "audio_sha256": "160791686882b303af2f302bfb609db201e25eec730f523783c00542a303cf1a",
+              "model": "mlx-community/whisper-medium-mlx",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "practiced"
+                  ],
+                  "heard": [
+                    "practice"
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "media/asr/28-160791686882-third-small.json",
+              "sha256": "c2cf817f78a3532c619e88800a04bc3f36f67bb9cc30fe57e09fd3c88785332d",
+              "audio_sha256": "160791686882b303af2f302bfb609db201e25eec730f523783c00542a303cf1a",
+              "model": "mlx-community/whisper-small-mlx",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "practiced"
+                  ],
+                  "heard": [
+                    "practice"
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "media/asr/28-160791686882.json",
+              "sha256": "8cdbcaacc083abd3357cccc0b80bb8d62b4fd64411b1c71d2e3f0de47f29d804",
+              "audio_sha256": "160791686882b303af2f302bfb609db201e25eec730f523783c00542a303cf1a",
+              "model": "mlx-community/whisper-large-v3-turbo-q4",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "practiced"
+                  ],
+                  "heard": [
+                    "practice"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "All three recognizers render practiced as practice in the original take. The second take is transcribed as unpracticed at the on practiced boundary. Rephrase the treatment and outcome while preserving the tested procedures and near-transfer distinction.",
+      "revision_record": "content/narration-revisions.json",
+      "selected_revised_source": {
+        "id": "28",
+        "path": "media/audio/28-59c04d1a0666.wav",
+        "job_id": "bee362ebc0b84e3fb2b705274ec86e56",
+        "audio_sha256": "d0083c50a6bb2f691117ddf7e7b0035d468a10cde2839b2b7cc1a5d516016f95",
+        "source_sha256": "433162437b7fa7b6ced52aaded3c97a651620074d499510acf1a3cd079350d9e",
+        "duration": 12.12,
+        "current_source": true,
+        "independent_transcript_matches": true,
+        "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+        "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+      }
+    },
+    {
+      "id": "34",
+      "status": "Clearer revised source selected after the original and second takes; both prior WAVs retained.",
+      "retained_previous_takes": [
+        {
+          "job_id": "6b353b6ffd074120917c23d30254e001",
+          "identity": "ddaf319ebeca617c1e28275bb497ca6aecf8fa4efab7cb25abc254a37d07b37a",
+          "seed": 253,
+          "path": "media/audio/34-ddaf319ebeca.wav",
+          "audio_sha256": "d7ffabd7daea72811366bcaa161d3e027d2f01d538cf51c22e6108eb40979276",
+          "observations": [
+            {
+              "file": "media/asr/34-d7ffabd7daea-second-medium.json",
+              "sha256": "972526ac6b8a218ac0f75d71f8e1506e8c5b89fb13cc58f62acfdc9a4ba09bd6",
+              "audio_sha256": "d7ffabd7daea72811366bcaa161d3e027d2f01d538cf51c22e6108eb40979276",
+              "model": "mlx-community/whisper-medium-mlx",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "worked"
+                  ],
+                  "heard": [
+                    "work"
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "media/asr/34-d7ffabd7daea-third-small.json",
+              "sha256": "710fc8f2ea65d00428938ea8c1626b9ee2458d37edbe918060e9020e07ac6c25",
+              "audio_sha256": "d7ffabd7daea72811366bcaa161d3e027d2f01d538cf51c22e6108eb40979276",
+              "model": "mlx-community/whisper-small-mlx",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "worked"
+                  ],
+                  "heard": [
+                    "work"
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "media/asr/34-d7ffabd7daea.json",
+              "sha256": "0d833c25d633d182f1dde8e5280487dc0d5ac9a0ed5d5d4c8d8a9f94a4599b2c",
+              "audio_sha256": "d7ffabd7daea72811366bcaa161d3e027d2f01d538cf51c22e6108eb40979276",
+              "model": "mlx-community/whisper-large-v3-turbo-q4",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "worked"
+                  ],
+                  "heard": [
+                    "work"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "job_id": "324ce003d0d04313947b790662a029f8",
+          "identity": "fa77b73eec9fc62b81673ef2ac3d5d7b3332baa66bbcbd7e17af3364a8ff663f",
+          "seed": 1253,
+          "path": "media/audio/34-fa77b73eec9f.wav",
+          "audio_sha256": "e29114812214cc53787bdb28fd218310f8e88ab39f37596382b1ce85e14d64fe",
+          "observations": [
+            {
+              "file": "media/asr/34-e29114812214.json",
+              "sha256": "368a9671250045108dc3c8472f2722a741fcd6e2a855c15ba05e03fe2ead2e5f",
+              "audio_sha256": "e29114812214cc53787bdb28fd218310f8e88ab39f37596382b1ce85e14d64fe",
+              "model": "mlx-community/whisper-large-v3-turbo-q4",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "worked"
+                  ],
+                  "heard": [
+                    "work"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "All three original recognizers and the selected second-take recognizer render worked as work. Use reliable example to avoid this consonant boundary while retaining the practical advice.",
+      "revision_record": "content/narration-revisions.json",
+      "selected_revised_source": {
+        "id": "34",
+        "path": "media/audio/34-68204c0c1bad.wav",
+        "job_id": "2995bbfeb5e0476c82a32971c0dddfeb",
+        "audio_sha256": "78ed01d7b9335f880ad3bf9bf1c8089cf10d1058c6bef714221d95a509f4051e",
+        "source_sha256": "8098d9cde9cd3ae4e23ee900b86d1e06a0199097de1100d433a3c1d30152e2af",
+        "duration": 12.08,
+        "current_source": true,
+        "independent_transcript_matches": true,
+        "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+        "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+      }
+    },
+    {
+      "id": "37",
+      "status": "Clearer revised source selected after the original and second takes; both prior WAVs retained.",
+      "retained_previous_takes": [
+        {
+          "job_id": "2cc4cc0e0a304d5bab2fd5b01e140374",
+          "identity": "486eec7a0ed1525e0cace47688940ef546cb5d2afb465caeabd8601ad74a686a",
+          "seed": 256,
+          "path": "media/audio/37-486eec7a0ed1.wav",
+          "audio_sha256": "0592032e2e3179dcaecf5ef73d8bd0aec0d7e092b15d14eec24852628571089f",
+          "observations": [
+            {
+              "file": "media/asr/37-0592032e2e31-second-medium.json",
+              "sha256": "e2b3fb36b50f2a8e1d0b60da118b62f430fb05ed92ca3372c4d5dd39732296de",
+              "audio_sha256": "0592032e2e3179dcaecf5ef73d8bd0aec0d7e092b15d14eec24852628571089f",
+              "model": "mlx-community/whisper-medium-mlx",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "worked"
+                  ],
+                  "heard": [
+                    "work"
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "media/asr/37-0592032e2e31-third-small.json",
+              "sha256": "945821ad98ec14b9c8e0d7c17b10c68131eb0a1d38ccea08129fc5e96059875d",
+              "audio_sha256": "0592032e2e3179dcaecf5ef73d8bd0aec0d7e092b15d14eec24852628571089f",
+              "model": "mlx-community/whisper-small-mlx",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "worked"
+                  ],
+                  "heard": [
+                    "work"
+                  ]
+                }
+              ]
+            },
+            {
+              "file": "media/asr/37-0592032e2e31.json",
+              "sha256": "6078bff8a4f5e3c61a1eded4d89bd94c8c3e2d7383404ae1bc44c3cc0fc11688",
+              "audio_sha256": "0592032e2e3179dcaecf5ef73d8bd0aec0d7e092b15d14eec24852628571089f",
+              "model": "mlx-community/whisper-large-v3-turbo-q4",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "worked"
+                  ],
+                  "heard": [
+                    "work"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "job_id": "d55ed33d035f46de95a5e2dc9c775050",
+          "identity": "95999500434a9e3ffc5e7149d048bbb688a432cf5da6dc02ab51982b2c29da06",
+          "seed": 1256,
+          "path": "media/audio/37-95999500434a.wav",
+          "audio_sha256": "c73288b013c5db6a1f5291be534c96daae9ed276424fd6e3bcd4d4d9afacf170",
+          "observations": [
+            {
+              "file": "media/asr/37-c73288b013c5.json",
+              "sha256": "19765338f1c148fb10290e64efaef38bbf921a208a7e394aaa4f5a749654a9ac",
+              "audio_sha256": "c73288b013c5db6a1f5291be534c96daae9ed276424fd6e3bcd4d4d9afacf170",
+              "model": "mlx-community/whisper-large-v3-turbo-q4",
+              "normalized_changes": [
+                {
+                  "kind": "replace",
+                  "expected": [
+                    "worked"
+                  ],
+                  "heard": [
+                    "work"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "All three original recognizers and the selected second-take recognizer render worked as work. Use complete solution to preserve the instructional meaning with clearer wording; the exact algebra and cue phrases are unchanged.",
+      "revision_record": "content/narration-revisions.json",
+      "selected_revised_source": {
+        "id": "37",
+        "path": "media/audio/37-21ac04757d02.wav",
+        "job_id": "fffc3c860fef4e5a9364e5f0929d13d0",
+        "audio_sha256": "a2c04369b8d3dcfceac8ea77bac4e85c4d2006cae0b42f236b36f43df04e7cf8",
+        "source_sha256": "6afe191156cdb341cd1c53000069e24abee5954f3789c1f214aa33f777d44ff1",
+        "duration": 11.4,
+        "current_source": true,
+        "independent_transcript_matches": true,
+        "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+        "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
+      }
+    },
+    {
+      "id": "46",
+      "status": "Original take retained. Medium and small both match the complete source; medium timing selected.",
+      "decision": "Turbo pluralizes task and test. Independent medium and small both match the complete source. Use the medium observation for timing; retain the disagreement. No subjective listening claim.",
+      "observations": [
+        {
+          "file": "media/asr/46-ca4c9030b75c-mlx-community-whisper-medium-mlx.json",
+          "sha256": "678d57f25e978ce08a0634924c5fc91013c7e6e5aaee60ac4059edb245e29f0e",
+          "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+          "model": "mlx-community/whisper-medium-mlx",
+          "normalized_changes": []
+        },
+        {
+          "file": "media/asr/46-ca4c9030b75c-second-medium.json",
+          "sha256": "f314ae36c70c3d493176bfb0a9490f6866c7369617a8725444c1e24f563f768b",
+          "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+          "model": "mlx-community/whisper-medium-mlx",
+          "normalized_changes": []
+        },
+        {
+          "file": "media/asr/46-ca4c9030b75c-third-small.json",
+          "sha256": "b4f29942700c802fbfa07034ae792758feeecacaa8e0bf2f94145bcd16159f36",
+          "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+          "model": "mlx-community/whisper-small-mlx",
+          "normalized_changes": []
+        },
+        {
+          "file": "media/asr/46-ca4c9030b75c.json",
+          "sha256": "f8c5944a4e0485953efc6b1d6795de62b90a2847775e0daa3e7498ad8eda5197",
+          "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+          "model": "mlx-community/whisper-large-v3-turbo-q4",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "task"
+              ],
+              "heard": [
+                "tasks"
+              ]
+            },
+            {
+              "kind": "replace",
+              "expected": [
+                "test"
+              ],
+              "heard": [
+                "tests"
+              ]
+            }
+          ]
+        }
+      ],
+      "selected_take": {
+        "id": "46",
+        "path": "media/audio/46-70c3c23bc1b0.wav",
+        "job_id": "65f6ecd3ce954636881d1a399725fc5d",
+        "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+        "source_sha256": "05ff23726e2031b61ac0ae9e043a1ed9b4d8411f9603a97546d38f9ec2b88195",
+        "duration": 11.2,
+        "current_source": true,
+        "independent_transcript_matches": true,
+        "recognizer": "mlx-community/whisper-medium-mlx",
+        "deployment_fingerprint": "d5d1adcf03462accae576565ab8096a283de47c3d4d0b1caf52ade0bf9d04218"
+      },
+      "recognizer_decision": {
+        "source_sha256": "05ff23726e2031b61ac0ae9e043a1ed9b4d8411f9603a97546d38f9ec2b88195",
+        "audio_sha256": "ca4c9030b75c5e8138d36fadbc464acdd09ab3ac477a77e8ae731d89cb8090ac",
+        "model": "mlx-community/whisper-medium-mlx",
+        "reason": "Turbo pluralizes task and test. Independent medium and small both match the complete source. Use the medium observation for timing; retain the disagreement. No subjective listening claim.",
+        "evidence": [
+          {
+            "file": "media/asr/46-ca4c9030b75c-second-medium.json",
+            "sha256": "f314ae36c70c3d493176bfb0a9490f6866c7369617a8725444c1e24f563f768b",
+            "model": "mlx-community/whisper-medium-mlx"
+          },
+          {
+            "file": "media/asr/46-ca4c9030b75c-third-small.json",
+            "sha256": "b4f29942700c802fbfa07034ae792758feeecacaa8e0bf2f94145bcd16159f36",
+            "model": "mlx-community/whisper-small-mlx"
+          }
+        ]
+      }
+    },
+    {
+      "id": "51",
+      "source_sha256": "3c755d63e81fb65f866cdeb6f1bd0296175588d0e2c7b34a8793ed4bb96349e3",
+      "original_audio_sha256": "a557945487f8966a8f06451c2ca0ec8058e775a1ef99c732314df3c6be6d1ec9",
+      "original_job_id": "4e49fec284e249b989ffd7e6438643ed",
+      "observations": [
+        {
+          "file": "media/asr/51-a557945487f8-second-medium.json",
+          "sha256": "d9e3fc3c16099c196be33e6a913022ec64a5b65a8d14c99ed184357f6cd2ef3f",
+          "audio_sha256": "a557945487f8966a8f06451c2ca0ec8058e775a1ef99c732314df3c6be6d1ec9",
+          "model": "mlx-community/whisper-medium-mlx",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "the"
+              ],
+              "heard": [
+                "a"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "media/asr/51-a557945487f8-third-small.json",
+          "sha256": "3b0a87250f613f3619e671b113dcc2865b4f7da4941c4f72f68735b0e6d194bb",
+          "audio_sha256": "a557945487f8966a8f06451c2ca0ec8058e775a1ef99c732314df3c6be6d1ec9",
+          "model": "mlx-community/whisper-small-mlx",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "the"
+              ],
+              "heard": [
+                "a"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "media/asr/51-a557945487f8.json",
+          "sha256": "fc6c95a0abff997c44d09a9a1841ff399b5f9449c16f093adc534071032c838c",
+          "audio_sha256": "a557945487f8966a8f06451c2ca0ec8058e775a1ef99c732314df3c6be6d1ec9",
+          "model": "mlx-community/whisper-large-v3-turbo-q4",
+          "normalized_changes": [
+            {
+              "kind": "replace",
+              "expected": [
+                "the"
+              ],
+              "heard": [
+                "a"
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "Three independent recognizers hear a rather than the in the final sentence. Retain the first take and request a second take.",
+      "status": "Second take selected; matching unprompted transcript. Original take retained.",
+      "selected_take": {
+        "id": "51",
+        "path": "media/audio/51-8259c91ea936.wav",
+        "job_id": "df62f8b7d73648f8857952a18be7f233",
+        "audio_sha256": "7d82fcc1148ab01b24675571c1f000b27e8fb5534808553a52b1ffaeb6417bc5",
+        "source_sha256": "3c755d63e81fb65f866cdeb6f1bd0296175588d0e2c7b34a8793ed4bb96349e3",
+        "duration": 11.72,
+        "current_source": true,
+        "independent_transcript_matches": true,
+        "recognizer": "mlx-community/whisper-large-v3-turbo-q4",
+        "deployment_fingerprint": "aa854fc19269996c50e5a6e1473ecaab1e6e1e3bb27366ba2688872fc926eac7"
       }
     }
   ]

@@ -48,6 +48,18 @@ class RecognizerDecisionTests(unittest.TestCase):
         self.assertEqual(words("12345"), ["12345"])
         self.assertNotEqual(words("1.5"), words("1 5"))
 
+    def test_compound_spellings_preserve_the_same_sounds(self):
+        self.assertEqual(words("preregistered preprint reread"),
+                         words("pre-registered pre print re-read"))
+        self.assertNotEqual(words("reread"), words("read"))
+        self.assertNotEqual(words("practiced worked"), words("practice work"))
+
+    def test_algebraic_number_spelling_keeps_values_and_variables(self):
+        self.assertEqual(words("2x plus 6"), words("two x plus six"))
+        self.assertNotEqual(words("2x plus 6"), words("two x plus three"))
+        self.assertNotEqual(words("2x"), words("2y"))
+        self.assertEqual(words("1.5x"), ["1.5", "x"])
+
 
 if __name__ == "__main__":
     unittest.main()

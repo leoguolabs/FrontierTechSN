@@ -504,6 +504,48 @@ def _image_input_failure(directory: Path, key: str, root: Path) -> dict | None:
     return record
 
 
+def _image_operator_cancellation(directory: Path, key: str, root: Path) -> dict | None:
+    """Consume an explicitly stopped stalled request, never a timeout alone.
+
+    The operator must stop the owned provider turn and verify it is idle after
+    reopening its saved conversation. Keep that evidence beside the unchanged
+    request so a restart cannot replay it or reset the candidate budget.
+    """
+    receipt = _safe(directory / "operator-cancellation.json", root)
+    if not receipt.exists():
+        return None
+    record = json.loads(receipt.read_text())
+    state_path = _safe(directory / "chatgpt-image-request.json", root)
+    prompt_path = _safe(directory / "prompt.txt", root)
+    try:
+        state = json.loads(state_path.read_text())
+        evidence = record["evidence_files"]
+        valid = (
+            record.get("version") == 1
+            and record.get("code") == "CHATGPT_IMAGE_OPERATOR_CANCELLED"
+            and record.get("input_hash") == key
+            and record.get("request_sha256") == _sha(state_path)
+            and record.get("conversation_url") == state.get("conversationUrl")
+            and re.fullmatch(r"https://chatgpt\.com/c/[\w-]+", state.get("conversationUrl", ""))
+            and state.get("prompt") in ("Generate an image of: " + prompt_path.read_text(),
+                                        "Edit the attached image: " + prompt_path.read_text())
+            and isinstance(record.get("observed_wait_seconds"), (int, float))
+            and record["observed_wait_seconds"] >= 1200
+            and record.get("stop_confirmed_after_reload") is True
+            and record.get("generated_image_count") == 0
+            and set(evidence) == {"before.txt", "after.txt"}
+            and all(_sha(_safe(directory / "operator-cancellation" / name, root)) == digest
+                    for name, digest in evidence.items())
+            and not (directory / "image.png").exists()
+            and not any((directory / "stills").glob("*"))
+        )
+    except (OSError, ValueError, KeyError, TypeError):
+        valid = False
+    if not valid:
+        raise RuntimeError("Image cancellation binding differs; recover the original request first")
+    return record
+
+
 def _image_reference(directory: Path, root: Path) -> Path | None:
     receipt = _safe(directory / "reference.json", root)
     if not receipt.exists():
@@ -551,7 +593,8 @@ def _existing_image_candidates(stage: Path, prompt: str, root: Path) -> list[tup
         raise RuntimeError("Existing image attempt history has gaps; reconcile before generation")
     # Do not abandon an unknown outcome from an earlier attempt.
     for _, directory, _, key in list(sorted(candidates.values()))[:-1]:
-        if not _cached(directory, key, root) and not _image_input_failure(directory, key, root):
+        if (not _cached(directory, key, root) and not _image_input_failure(directory, key, root)
+                and not _image_operator_cancellation(directory, key, root)):
             raise RuntimeError("Earlier image attempt is incomplete; recover its original request first")
     return list(sorted(candidates.values()))
 
@@ -675,6 +718,10 @@ async def _image(scene: dict, style: dict, root: Path, log: Log = lambda _: None
         if not record and (candidate_stage / "complete.json").exists():
             raise RuntimeError("Existing image candidate failed hash verification; preserve its evidence")
         if not record:
+            if _image_operator_cancellation(candidate_stage, candidate_key, root):
+                log(f"{scene['id']}: candidate {attempt}/{MAX_IMAGE_ATTEMPTS} was explicitly stopped "
+                    "after a provider stall; request and cancellation evidence retained")
+                continue
             failure = _image_input_failure(candidate_stage, candidate_key, root)
             if failure:
                 feedback = failure["feedback"]

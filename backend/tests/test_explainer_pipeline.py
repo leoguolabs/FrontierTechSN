@@ -477,6 +477,117 @@ def test_repair_prompt_excludes_review_upload_references():
     assert "No earlier image or attachment is available" in prompt
 
 
+def _cancelled_image_candidate(root, scene, style):
+    prompt = pipeline._image_prompt(scene, style)
+    stage_key = pipeline._hash({"version": pipeline.CONTRACT_VERSION, "prompt": prompt,
+                               "review_version": pipeline.REVIEW_VERSION,
+                               "review": pipeline.review_prompt(scene, style)})
+    stage = pipeline._stage(root, scene["id"], "image", stage_key)
+    (stage / "prompt.txt").write_text(prompt)
+    key = pipeline._image_candidate_key(prompt, 1)
+    candidate = stage / f"attempt-01-{key[:12]}"
+    candidate.mkdir()
+    (candidate / "prompt.txt").write_text(prompt)
+    state = candidate / "chatgpt-image-request.json"
+    conversation = "https://chatgpt.com/c/stopped-owned-request"
+    state.write_text(json.dumps({"prompt": "Generate an image of: " + prompt,
+                                 "conversationUrl": conversation, "stage": "waiting"}))
+    evidence = candidate / "operator-cancellation"
+    evidence.mkdir()
+    (evidence / "before.txt").write_text("Owned turn still thinking after 23 minutes; no image.")
+    (evidence / "after.txt").write_text("Stopped owned turn; reopened conversation is idle with no image.")
+    receipt = {"version": 1, "code": "CHATGPT_IMAGE_OPERATOR_CANCELLED", "input_hash": key,
+               "request_sha256": pipeline._sha(state), "conversation_url": conversation,
+               "observed_wait_seconds": 1380, "stop_confirmed_after_reload": True,
+               "generated_image_count": 0,
+               "evidence_files": {p.name: pipeline._sha(p) for p in evidence.iterdir()}}
+    (candidate / "operator-cancellation.json").write_text(json.dumps(receipt))
+    return stage, candidate, prompt, key
+
+
+@pytest.mark.parametrize("final_passes", [True, False])
+def test_stopped_stalled_image_consumes_original_budget_and_preserves_evidence(
+    tmp_path, providers, monkeypatch, final_passes,
+):
+    scene, style = _project()["scenes"][0], _project()["style"]
+    stage, stopped, prompt, _ = _cancelled_image_candidate(tmp_path, scene, style)
+    originals = {p: p.read_bytes() for p in stopped.rglob("*") if p.is_file()}
+    calls = []
+
+    async def generate(request, directory):
+        assert directory != stopped, "The stopped request must not be replayed"
+        calls.append(directory)
+        return await providers.image(request, directory)
+
+    monkeypatch.setattr(pipeline, "_generate_still", generate)
+    providers.review_failures = 0 if final_passes else 100
+    for run in range(2):
+        if run:
+            monkeypatch.setattr(pipeline, "REVIEW_VERSION", pipeline.REVIEW_VERSION + 1)
+        if final_passes:
+            assert asyncio.run(pipeline._image(scene, style, tmp_path))[0].is_file()
+        else:
+            with pytest.raises(RuntimeError, match="after 3 image candidates"):
+                asyncio.run(pipeline._image(scene, style, tmp_path))
+    assert len(calls) == (1 if final_passes else 2)
+    assert len(pipeline._existing_image_candidates(stage, prompt, tmp_path)) == len(calls) + 1
+    assert all(p.read_bytes() == content for p, content in originals.items())
+
+
+@pytest.mark.parametrize("invalid", [
+    "request_hash", "input_hash", "code", "prompt", "conversation", "not_stopped", "too_soon",
+    "image", "raw_image", "evidence", "missing_evidence", "missing_receipt",
+])
+def test_stalled_image_needs_bound_stop_confirmation_before_advancing(tmp_path, providers, monkeypatch, invalid):
+    scene, style = _project()["scenes"][0], _project()["style"]
+    _, stopped, _, _ = _cancelled_image_candidate(tmp_path, scene, style)
+    path = stopped / "operator-cancellation.json"
+    record = json.loads(path.read_text())
+    if invalid == "request_hash":
+        (stopped / "chatgpt-image-request.json").write_text('{}')
+    elif invalid == "input_hash":
+        record["input_hash"] = "0" * 64
+    elif invalid == "code":
+        record["code"] = "IMAGE_TIMED_OUT"
+    elif invalid == "prompt":
+        state_path = stopped / "chatgpt-image-request.json"
+        state = json.loads(state_path.read_text())
+        state["prompt"] = "An unrelated request"
+        state_path.write_text(json.dumps(state))
+        record["request_sha256"] = pipeline._sha(state_path)
+    elif invalid == "conversation":
+        record["conversation_url"] = "https://chatgpt.com/c/different-turn"
+    elif invalid == "not_stopped":
+        record["stop_confirmed_after_reload"] = False
+    elif invalid == "too_soon":
+        record["observed_wait_seconds"] = 419
+    elif invalid == "image":
+        Image.new("RGB", (512, 288)).save(stopped / "image.png")
+    elif invalid == "raw_image":
+        (stopped / "stills").mkdir()
+        Image.new("RGB", (512, 288)).save(stopped / "stills/generated.png")
+    elif invalid == "evidence":
+        (stopped / "operator-cancellation/after.txt").write_text("Changed observation")
+    elif invalid == "missing_evidence":
+        record["evidence_files"].pop("after.txt")
+    path.write_text(json.dumps(record))
+    if invalid == "missing_receipt":
+        path.unlink()
+    calls = []
+
+    async def generate(request, directory):
+        calls.append(directory)
+        assert directory == stopped
+        raise RuntimeError("Original request outcome remains unknown")
+
+    monkeypatch.setattr(pipeline, "_generate_still", generate)
+    expected = "outcome remains unknown" if invalid == "missing_receipt" else "cancellation binding differs"
+    with pytest.raises(RuntimeError, match=expected):
+        asyncio.run(pipeline._image(scene, style, tmp_path))
+    assert calls == ([stopped] if invalid == "missing_receipt" else [])
+    assert not list(stopped.parent.glob("attempt-02-*"))
+
+
 @pytest.mark.parametrize("final_passes", [True, False])
 def test_terminal_missing_input_consumes_candidate_without_replaying_request(
     tmp_path, providers, monkeypatch, final_passes,

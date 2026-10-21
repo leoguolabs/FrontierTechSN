@@ -1,0 +1,37 @@
+{
+  "published_v1": {
+    "commit": "8822a9e",
+    "sha256": "e1408107e6cffdd06569f8274c6187135fcb28478090108d1bd4bb90a03968dd",
+    "file": "media/versions/does-ai-help-you-learn-v1.mp4",
+    "archive": "delivery/briefing-studio-v1.zip",
+    "public_article": "https://x.com/LeoGuoLabs/article/2112613679405596824"
+  },
+  "exposure_only_render": {
+    "status": "stopped_before_completion_to_include_material_fixes",
+    "file": "media/versions/exposure-only-incomplete.mp4",
+    "scope": "Partial encode is not a delivered or reviewed full film."
+  },
+  "revision_2": {
+    "status": "accepted_and_promoted",
+    "changes": [
+      "Adaptive half-frame camera exposure with maximum 0.75 px adjacent sample spacing",
+      "Smooth one-second camera-breath transition at closing pullback",
+      "Matte magnets with restrained directional highlights",
+      "Rounded heavy outer stamp borders and transparent deterministic wear",
+      "Blue and red ink retuned from actual reference color observations"
+    ],
+    "unchanged": [
+      "Authored narration",
+      "Accepted provider WAVs",
+      "Shot timing",
+      "Board layout",
+      "Nineteen people and Turkish flag"
+    ],
+    "sha256": "d1ead2b35803c2a03f7f3bd3768e952f82f13b585fcbf5b95325ea875b715708",
+    "file": "media/does-ai-help-you-learn.mp4",
+    "review": "review/final-ledger.json",
+    "public_update": "article_verified_playback_limited",
+    "public_article": "https://x.com/LeoGuoLabs/article/2112736076549026024",
+    "publication_note": "Opened Edit Article on V1, then resumed the same draft ID 2112586883188576256. X issued a new public status/article ID on republish. Old status URL now displays page does not exist."
+  }
+}

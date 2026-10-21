@@ -6,8 +6,13 @@ The first film is **Does AI Help You Learn—or Just Finish?**
 Delivered: 2:41, 1920 × 1080, 24 fps, 3,866 frames, fourteen Chatterbox
 segments, nineteen line-drawn people, and a hand-drawn Turkish flag.
 Read the [inspection result](review/RESULT.md) for exact coverage and remaining
-style differences. The [English process article](https://x.com/LeoGuoLabs/article/2112613679405596824)
+style differences. The [English process article](https://x.com/LeoGuoLabs/article/2112736076549026024)
 includes the complete film.
+
+The current delivery is revision 2: adaptive camera exposure, matte magnets,
+worn stamps, restrained ink, and a continuous closing pullback. Every encoded
+frame was reviewed again; 24 frames were additionally inspected at 1080p.
+The original published film and ZIP remain in the local revision archive.
 
 Open the local gallery at **http://127.0.0.1:8249** after starting the viewer:
 
@@ -87,6 +92,7 @@ and the waveform's pause; adoption still requires fresh transcription.
 |---|---|
 | `src/engine.mjs` | Reusable physical board renderer |
 | `src/film.mjs` | Original composition, camera, and shared timeline |
+| `src/exposure.mjs` | Adaptive half-frame exposure with bounded sample spacing |
 | `content/narration.json` | Narration with claim boundaries |
 | `scripts/` | Fetch, speech, transcription, rendering, mix, decode, validation |
 | `media/` | Local film, sound, poster, and provider records; ignored |

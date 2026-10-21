@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "method": "Demux the complete AAC stream to ADTS without re-encoding and compare SHA-256.",
+  "published_v1": "cc88dd5834b426d24ecc5c4354b10a7eb00f46ef8e193c52ca93d6728a19d531",
+  "revision_2": "cc88dd5834b426d24ecc5c4354b10a7eb00f46ef8e193c52ca93d6728a19d531",
+  "conclusion": "The complete encoded audio stream is unchanged."
+}

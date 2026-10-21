@@ -103,3 +103,24 @@ uses recognition only for word timestamps and maps those timestamps back to the
 exact authored words, capitalization, and punctuation. Validation compares every
 shot’s concatenated caption text with its narration. The earlier composite is
 retained as `media/final-caption-draft1.mp4`; it is not the delivery.
+
+## Delivered revision 2 — motion and materials
+
+The first publication retained visibly separated outlines during rapid camera
+moves. Full-resolution comparison at frames 633 and 2443 showed that three
+exposure samples were insufficient. Adaptive sampling now integrates the same
+half-frame shutter window with projected adjacent samples at most 0.75 pixels
+apart. Balanced averaging prevents accumulated brightness rounding. All 110
+frames in two focused motion clips were inspected before the complete render.
+
+The same revision reduces magnet highlights, brings blue/red ink toward the
+encoded reference, and replaces squared stamp borders and opaque pits with
+rounded borders and transparent wear. A one-second transition removes the
+closing camera's abrupt change in drift.
+
+The complete revised encode was inspected in 194 paired sheets covering every
+one of its 3,866 frames. Twenty-four actual encoded frames were inspected at
+1920 × 1080. The final ledger records both scales of observation. The extracted
+AAC track is byte-identical to the first delivery; the accepted speech and
+timeline have not been regenerated. Revision 1 remains recoverable in the
+local media and ZIP archive, with its original review and publication records.

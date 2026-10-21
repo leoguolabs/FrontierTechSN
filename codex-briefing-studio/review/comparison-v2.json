@@ -1,0 +1,1206 @@
+{
+  "reference": "cf09a6db65a100fc877d4e7ffee8113aee642e6056822ad2055a48189f7a80cc",
+  "final": "d1ead2b35803c2a03f7f3bd3768e952f82f13b585fcbf5b95325ea875b715708",
+  "final_frames_compared": 3866,
+  "reference_frames_in_normalized_alignment": 960,
+  "reference_frames_in_function_alignment": 932,
+  "functions": {
+    "hook": {
+      "reference": [
+        0,
+        239
+      ],
+      "purpose": "close detail, physical props, delayed verdict"
+    },
+    "measures": {
+      "reference": [
+        240,
+        347
+      ],
+      "purpose": "rule established before the measured examples"
+    },
+    "practice": {
+      "reference": [
+        348,
+        431
+      ],
+      "purpose": "detail opens into blue dimension and result"
+    },
+    "exam": {
+      "reference": [
+        448,
+        539
+      ],
+      "purpose": "measurement followed by red shortfall"
+    },
+    "tutor": {
+      "reference": [
+        576,
+        659
+      ],
+      "purpose": "annotation followed by an extended readable hold"
+    },
+    "scope": {
+      "reference": [
+        618,
+        659
+      ],
+      "purpose": "qualification remains readable"
+    },
+    "physics": {
+      "reference": [
+        540,
+        659
+      ],
+      "purpose": "separate object, measurement, qualification"
+    },
+    "thinking": {
+      "reference": [
+        660,
+        719
+      ],
+      "purpose": "camera reveals the next part of the argument"
+    },
+    "recognition": {
+      "reference": [
+        240,
+        347
+      ],
+      "purpose": "rule and annotation"
+    },
+    "example": {
+      "reference": [
+        0,
+        119
+      ],
+      "purpose": "close physical example"
+    },
+    "attempt": {
+      "reference": [
+        360,
+        431
+      ],
+      "purpose": "first comparison detail and hold"
+    },
+    "recall": {
+      "reference": [
+        480,
+        539
+      ],
+      "purpose": "second comparison detail and hold"
+    },
+    "transfer": {
+      "reference": [
+        720,
+        779
+      ],
+      "purpose": "third comparison and final qualification"
+    },
+    "closing": {
+      "reference": [
+        780,
+        859
+      ],
+      "purpose": "follow the argument before the whole-board reveal"
+    },
+    "intro": {
+      "reference": [
+        0,
+        25
+      ],
+      "purpose": "opening detail"
+    },
+    "outro": {
+      "reference": [
+        860,
+        959
+      ],
+      "purpose": "one whole-board reveal and closing hold"
+    }
+  },
+  "appearance_and_motion_quantiles": {
+    "reference": {
+      "mean_r": {
+        "0": 198.7915,
+        "0.1": 202.24041,
+        "0.5": 214.7939,
+        "0.9": 220.90727,
+        "1": 224.8278
+      },
+      "mean_g": {
+        "0": 196.1107,
+        "0.1": 199.338,
+        "0.5": 211.94205,
+        "0.9": 218.03955,
+        "1": 222.386
+      },
+      "mean_b": {
+        "0": 187.7648,
+        "0.1": 191.43971,
+        "0.5": 203.07225,
+        "0.9": 209.42191,
+        "1": 213.2451
+      },
+      "dark_share": {
+        "0": 0.0,
+        "0.1": 0.01602,
+        "0.5": 0.03345,
+        "0.9": 0.06988,
+        "1": 0.09039
+      },
+      "blue_share": {
+        "0": 7e-05,
+        "0.1": 0.01613,
+        "0.5": 0.02655,
+        "0.9": 0.04854,
+        "1": 0.07557
+      },
+      "red_share": {
+        "0": 0.0,
+        "0.1": 0.0,
+        "0.5": 0.00269,
+        "0.9": 0.03124,
+        "1": 0.06193
+      },
+      "motion_mae": {
+        "0": 0.0,
+        "0.1": 0.31884,
+        "0.5": 3.19215,
+        "0.9": 13.67712,
+        "1": 28.46305
+      }
+    },
+    "final": {
+      "mean_r": {
+        "0": 205.3652,
+        "0.1": 209.4475,
+        "0.5": 217.71025,
+        "0.9": 223.24845,
+        "1": 227.6119
+      },
+      "mean_g": {
+        "0": 203.0176,
+        "0.1": 206.83495,
+        "0.5": 215.45855,
+        "0.9": 221.2248,
+        "1": 224.6337
+      },
+      "mean_b": {
+        "0": 192.4801,
+        "0.1": 195.8362,
+        "0.5": 204.3073,
+        "0.9": 210.85945,
+        "1": 213.3889
+      },
+      "dark_share": {
+        "0": 0.0,
+        "0.1": 0.00861,
+        "0.5": 0.02473,
+        "0.9": 0.03448,
+        "1": 0.06186
+      },
+      "blue_share": {
+        "0": 0.0,
+        "0.1": 0.00119,
+        "0.5": 0.00744,
+        "0.9": 0.02086,
+        "1": 0.03411
+      },
+      "red_share": {
+        "0": 0.0,
+        "0.1": 0.0,
+        "0.5": 0.00587,
+        "0.9": 0.00943,
+        "1": 0.04193
+      },
+      "motion_mae": {
+        "0": 0.0,
+        "0.1": 0.04837,
+        "0.5": 0.11175,
+        "0.9": 7.31226,
+        "1": 20.93132
+      }
+    }
+  },
+  "limitations": [
+    "All frames are decoded and measured at 384x216; metrics are not a perceptual identity score.",
+    "Normalized alignment covers every reference frame but does not equate narrative moments.",
+    "Function alignment compares the observed visual grammar while permitting different story pacing.",
+    "Different subjects, English captions, and added people change pixel occupancy.",
+    "Visual review is recorded separately and must not be inferred from this report."
+  ],
+  "paired_atlases": [
+    {
+      "file": "00000-00019.jpg",
+      "first": 0,
+      "last": 19
+    },
+    {
+      "file": "00020-00039.jpg",
+      "first": 20,
+      "last": 39
+    },
+    {
+      "file": "00040-00059.jpg",
+      "first": 40,
+      "last": 59
+    },
+    {
+      "file": "00060-00079.jpg",
+      "first": 60,
+      "last": 79
+    },
+    {
+      "file": "00080-00099.jpg",
+      "first": 80,
+      "last": 99
+    },
+    {
+      "file": "00100-00119.jpg",
+      "first": 100,
+      "last": 119
+    },
+    {
+      "file": "00120-00139.jpg",
+      "first": 120,
+      "last": 139
+    },
+    {
+      "file": "00140-00159.jpg",
+      "first": 140,
+      "last": 159
+    },
+    {
+      "file": "00160-00179.jpg",
+      "first": 160,
+      "last": 179
+    },
+    {
+      "file": "00180-00199.jpg",
+      "first": 180,
+      "last": 199
+    },
+    {
+      "file": "00200-00219.jpg",
+      "first": 200,
+      "last": 219
+    },
+    {
+      "file": "00220-00239.jpg",
+      "first": 220,
+      "last": 239
+    },
+    {
+      "file": "00240-00259.jpg",
+      "first": 240,
+      "last": 259
+    },
+    {
+      "file": "00260-00279.jpg",
+      "first": 260,
+      "last": 279
+    },
+    {
+      "file": "00280-00299.jpg",
+      "first": 280,
+      "last": 299
+    },
+    {
+      "file": "00300-00319.jpg",
+      "first": 300,
+      "last": 319
+    },
+    {
+      "file": "00320-00339.jpg",
+      "first": 320,
+      "last": 339
+    },
+    {
+      "file": "00340-00359.jpg",
+      "first": 340,
+      "last": 359
+    },
+    {
+      "file": "00360-00379.jpg",
+      "first": 360,
+      "last": 379
+    },
+    {
+      "file": "00380-00399.jpg",
+      "first": 380,
+      "last": 399
+    },
+    {
+      "file": "00400-00419.jpg",
+      "first": 400,
+      "last": 419
+    },
+    {
+      "file": "00420-00439.jpg",
+      "first": 420,
+      "last": 439
+    },
+    {
+      "file": "00440-00459.jpg",
+      "first": 440,
+      "last": 459
+    },
+    {
+      "file": "00460-00479.jpg",
+      "first": 460,
+      "last": 479
+    },
+    {
+      "file": "00480-00499.jpg",
+      "first": 480,
+      "last": 499
+    },
+    {
+      "file": "00500-00519.jpg",
+      "first": 500,
+      "last": 519
+    },
+    {
+      "file": "00520-00539.jpg",
+      "first": 520,
+      "last": 539
+    },
+    {
+      "file": "00540-00559.jpg",
+      "first": 540,
+      "last": 559
+    },
+    {
+      "file": "00560-00579.jpg",
+      "first": 560,
+      "last": 579
+    },
+    {
+      "file": "00580-00599.jpg",
+      "first": 580,
+      "last": 599
+    },
+    {
+      "file": "00600-00619.jpg",
+      "first": 600,
+      "last": 619
+    },
+    {
+      "file": "00620-00639.jpg",
+      "first": 620,
+      "last": 639
+    },
+    {
+      "file": "00640-00659.jpg",
+      "first": 640,
+      "last": 659
+    },
+    {
+      "file": "00660-00679.jpg",
+      "first": 660,
+      "last": 679
+    },
+    {
+      "file": "00680-00699.jpg",
+      "first": 680,
+      "last": 699
+    },
+    {
+      "file": "00700-00719.jpg",
+      "first": 700,
+      "last": 719
+    },
+    {
+      "file": "00720-00739.jpg",
+      "first": 720,
+      "last": 739
+    },
+    {
+      "file": "00740-00759.jpg",
+      "first": 740,
+      "last": 759
+    },
+    {
+      "file": "00760-00779.jpg",
+      "first": 760,
+      "last": 779
+    },
+    {
+      "file": "00780-00799.jpg",
+      "first": 780,
+      "last": 799
+    },
+    {
+      "file": "00800-00819.jpg",
+      "first": 800,
+      "last": 819
+    },
+    {
+      "file": "00820-00839.jpg",
+      "first": 820,
+      "last": 839
+    },
+    {
+      "file": "00840-00859.jpg",
+      "first": 840,
+      "last": 859
+    },
+    {
+      "file": "00860-00879.jpg",
+      "first": 860,
+      "last": 879
+    },
+    {
+      "file": "00880-00899.jpg",
+      "first": 880,
+      "last": 899
+    },
+    {
+      "file": "00900-00919.jpg",
+      "first": 900,
+      "last": 919
+    },
+    {
+      "file": "00920-00939.jpg",
+      "first": 920,
+      "last": 939
+    },
+    {
+      "file": "00940-00959.jpg",
+      "first": 940,
+      "last": 959
+    },
+    {
+      "file": "00960-00979.jpg",
+      "first": 960,
+      "last": 979
+    },
+    {
+      "file": "00980-00999.jpg",
+      "first": 980,
+      "last": 999
+    },
+    {
+      "file": "01000-01019.jpg",
+      "first": 1000,
+      "last": 1019
+    },
+    {
+      "file": "01020-01039.jpg",
+      "first": 1020,
+      "last": 1039
+    },
+    {
+      "file": "01040-01059.jpg",
+      "first": 1040,
+      "last": 1059
+    },
+    {
+      "file": "01060-01079.jpg",
+      "first": 1060,
+      "last": 1079
+    },
+    {
+      "file": "01080-01099.jpg",
+      "first": 1080,
+      "last": 1099
+    },
+    {
+      "file": "01100-01119.jpg",
+      "first": 1100,
+      "last": 1119
+    },
+    {
+      "file": "01120-01139.jpg",
+      "first": 1120,
+      "last": 1139
+    },
+    {
+      "file": "01140-01159.jpg",
+      "first": 1140,
+      "last": 1159
+    },
+    {
+      "file": "01160-01179.jpg",
+      "first": 1160,
+      "last": 1179
+    },
+    {
+      "file": "01180-01199.jpg",
+      "first": 1180,
+      "last": 1199
+    },
+    {
+      "file": "01200-01219.jpg",
+      "first": 1200,
+      "last": 1219
+    },
+    {
+      "file": "01220-01239.jpg",
+      "first": 1220,
+      "last": 1239
+    },
+    {
+      "file": "01240-01259.jpg",
+      "first": 1240,
+      "last": 1259
+    },
+    {
+      "file": "01260-01279.jpg",
+      "first": 1260,
+      "last": 1279
+    },
+    {
+      "file": "01280-01299.jpg",
+      "first": 1280,
+      "last": 1299
+    },
+    {
+      "file": "01300-01319.jpg",
+      "first": 1300,
+      "last": 1319
+    },
+    {
+      "file": "01320-01339.jpg",
+      "first": 1320,
+      "last": 1339
+    },
+    {
+      "file": "01340-01359.jpg",
+      "first": 1340,
+      "last": 1359
+    },
+    {
+      "file": "01360-01379.jpg",
+      "first": 1360,
+      "last": 1379
+    },
+    {
+      "file": "01380-01399.jpg",
+      "first": 1380,
+      "last": 1399
+    },
+    {
+      "file": "01400-01419.jpg",
+      "first": 1400,
+      "last": 1419
+    },
+    {
+      "file": "01420-01439.jpg",
+      "first": 1420,
+      "last": 1439
+    },
+    {
+      "file": "01440-01459.jpg",
+      "first": 1440,
+      "last": 1459
+    },
+    {
+      "file": "01460-01479.jpg",
+      "first": 1460,
+      "last": 1479
+    },
+    {
+      "file": "01480-01499.jpg",
+      "first": 1480,
+      "last": 1499
+    },
+    {
+      "file": "01500-01519.jpg",
+      "first": 1500,
+      "last": 1519
+    },
+    {
+      "file": "01520-01539.jpg",
+      "first": 1520,
+      "last": 1539
+    },
+    {
+      "file": "01540-01559.jpg",
+      "first": 1540,
+      "last": 1559
+    },
+    {
+      "file": "01560-01579.jpg",
+      "first": 1560,
+      "last": 1579
+    },
+    {
+      "file": "01580-01599.jpg",
+      "first": 1580,
+      "last": 1599
+    },
+    {
+      "file": "01600-01619.jpg",
+      "first": 1600,
+      "last": 1619
+    },
+    {
+      "file": "01620-01639.jpg",
+      "first": 1620,
+      "last": 1639
+    },
+    {
+      "file": "01640-01659.jpg",
+      "first": 1640,
+      "last": 1659
+    },
+    {
+      "file": "01660-01679.jpg",
+      "first": 1660,
+      "last": 1679
+    },
+    {
+      "file": "01680-01699.jpg",
+      "first": 1680,
+      "last": 1699
+    },
+    {
+      "file": "01700-01719.jpg",
+      "first": 1700,
+      "last": 1719
+    },
+    {
+      "file": "01720-01739.jpg",
+      "first": 1720,
+      "last": 1739
+    },
+    {
+      "file": "01740-01759.jpg",
+      "first": 1740,
+      "last": 1759
+    },
+    {
+      "file": "01760-01779.jpg",
+      "first": 1760,
+      "last": 1779
+    },
+    {
+      "file": "01780-01799.jpg",
+      "first": 1780,
+      "last": 1799
+    },
+    {
+      "file": "01800-01819.jpg",
+      "first": 1800,
+      "last": 1819
+    },
+    {
+      "file": "01820-01839.jpg",
+      "first": 1820,
+      "last": 1839
+    },
+    {
+      "file": "01840-01859.jpg",
+      "first": 1840,
+      "last": 1859
+    },
+    {
+      "file": "01860-01879.jpg",
+      "first": 1860,
+      "last": 1879
+    },
+    {
+      "file": "01880-01899.jpg",
+      "first": 1880,
+      "last": 1899
+    },
+    {
+      "file": "01900-01919.jpg",
+      "first": 1900,
+      "last": 1919
+    },
+    {
+      "file": "01920-01939.jpg",
+      "first": 1920,
+      "last": 1939
+    },
+    {
+      "file": "01940-01959.jpg",
+      "first": 1940,
+      "last": 1959
+    },
+    {
+      "file": "01960-01979.jpg",
+      "first": 1960,
+      "last": 1979
+    },
+    {
+      "file": "01980-01999.jpg",
+      "first": 1980,
+      "last": 1999
+    },
+    {
+      "file": "02000-02019.jpg",
+      "first": 2000,
+      "last": 2019
+    },
+    {
+      "file": "02020-02039.jpg",
+      "first": 2020,
+      "last": 2039
+    },
+    {
+      "file": "02040-02059.jpg",
+      "first": 2040,
+      "last": 2059
+    },
+    {
+      "file": "02060-02079.jpg",
+      "first": 2060,
+      "last": 2079
+    },
+    {
+      "file": "02080-02099.jpg",
+      "first": 2080,
+      "last": 2099
+    },
+    {
+      "file": "02100-02119.jpg",
+      "first": 2100,
+      "last": 2119
+    },
+    {
+      "file": "02120-02139.jpg",
+      "first": 2120,
+      "last": 2139
+    },
+    {
+      "file": "02140-02159.jpg",
+      "first": 2140,
+      "last": 2159
+    },
+    {
+      "file": "02160-02179.jpg",
+      "first": 2160,
+      "last": 2179
+    },
+    {
+      "file": "02180-02199.jpg",
+      "first": 2180,
+      "last": 2199
+    },
+    {
+      "file": "02200-02219.jpg",
+      "first": 2200,
+      "last": 2219
+    },
+    {
+      "file": "02220-02239.jpg",
+      "first": 2220,
+      "last": 2239
+    },
+    {
+      "file": "02240-02259.jpg",
+      "first": 2240,
+      "last": 2259
+    },
+    {
+      "file": "02260-02279.jpg",
+      "first": 2260,
+      "last": 2279
+    },
+    {
+      "file": "02280-02299.jpg",
+      "first": 2280,
+      "last": 2299
+    },
+    {
+      "file": "02300-02319.jpg",
+      "first": 2300,
+      "last": 2319
+    },
+    {
+      "file": "02320-02339.jpg",
+      "first": 2320,
+      "last": 2339
+    },
+    {
+      "file": "02340-02359.jpg",
+      "first": 2340,
+      "last": 2359
+    },
+    {
+      "file": "02360-02379.jpg",
+      "first": 2360,
+      "last": 2379
+    },
+    {
+      "file": "02380-02399.jpg",
+      "first": 2380,
+      "last": 2399
+    },
+    {
+      "file": "02400-02419.jpg",
+      "first": 2400,
+      "last": 2419
+    },
+    {
+      "file": "02420-02439.jpg",
+      "first": 2420,
+      "last": 2439
+    },
+    {
+      "file": "02440-02459.jpg",
+      "first": 2440,
+      "last": 2459
+    },
+    {
+      "file": "02460-02479.jpg",
+      "first": 2460,
+      "last": 2479
+    },
+    {
+      "file": "02480-02499.jpg",
+      "first": 2480,
+      "last": 2499
+    },
+    {
+      "file": "02500-02519.jpg",
+      "first": 2500,
+      "last": 2519
+    },
+    {
+      "file": "02520-02539.jpg",
+      "first": 2520,
+      "last": 2539
+    },
+    {
+      "file": "02540-02559.jpg",
+      "first": 2540,
+      "last": 2559
+    },
+    {
+      "file": "02560-02579.jpg",
+      "first": 2560,
+      "last": 2579
+    },
+    {
+      "file": "02580-02599.jpg",
+      "first": 2580,
+      "last": 2599
+    },
+    {
+      "file": "02600-02619.jpg",
+      "first": 2600,
+      "last": 2619
+    },
+    {
+      "file": "02620-02639.jpg",
+      "first": 2620,
+      "last": 2639
+    },
+    {
+      "file": "02640-02659.jpg",
+      "first": 2640,
+      "last": 2659
+    },
+    {
+      "file": "02660-02679.jpg",
+      "first": 2660,
+      "last": 2679
+    },
+    {
+      "file": "02680-02699.jpg",
+      "first": 2680,
+      "last": 2699
+    },
+    {
+      "file": "02700-02719.jpg",
+      "first": 2700,
+      "last": 2719
+    },
+    {
+      "file": "02720-02739.jpg",
+      "first": 2720,
+      "last": 2739
+    },
+    {
+      "file": "02740-02759.jpg",
+      "first": 2740,
+      "last": 2759
+    },
+    {
+      "file": "02760-02779.jpg",
+      "first": 2760,
+      "last": 2779
+    },
+    {
+      "file": "02780-02799.jpg",
+      "first": 2780,
+      "last": 2799
+    },
+    {
+      "file": "02800-02819.jpg",
+      "first": 2800,
+      "last": 2819
+    },
+    {
+      "file": "02820-02839.jpg",
+      "first": 2820,
+      "last": 2839
+    },
+    {
+      "file": "02840-02859.jpg",
+      "first": 2840,
+      "last": 2859
+    },
+    {
+      "file": "02860-02879.jpg",
+      "first": 2860,
+      "last": 2879
+    },
+    {
+      "file": "02880-02899.jpg",
+      "first": 2880,
+      "last": 2899
+    },
+    {
+      "file": "02900-02919.jpg",
+      "first": 2900,
+      "last": 2919
+    },
+    {
+      "file": "02920-02939.jpg",
+      "first": 2920,
+      "last": 2939
+    },
+    {
+      "file": "02940-02959.jpg",
+      "first": 2940,
+      "last": 2959
+    },
+    {
+      "file": "02960-02979.jpg",
+      "first": 2960,
+      "last": 2979
+    },
+    {
+      "file": "02980-02999.jpg",
+      "first": 2980,
+      "last": 2999
+    },
+    {
+      "file": "03000-03019.jpg",
+      "first": 3000,
+      "last": 3019
+    },
+    {
+      "file": "03020-03039.jpg",
+      "first": 3020,
+      "last": 3039
+    },
+    {
+      "file": "03040-03059.jpg",
+      "first": 3040,
+      "last": 3059
+    },
+    {
+      "file": "03060-03079.jpg",
+      "first": 3060,
+      "last": 3079
+    },
+    {
+      "file": "03080-03099.jpg",
+      "first": 3080,
+      "last": 3099
+    },
+    {
+      "file": "03100-03119.jpg",
+      "first": 3100,
+      "last": 3119
+    },
+    {
+      "file": "03120-03139.jpg",
+      "first": 3120,
+      "last": 3139
+    },
+    {
+      "file": "03140-03159.jpg",
+      "first": 3140,
+      "last": 3159
+    },
+    {
+      "file": "03160-03179.jpg",
+      "first": 3160,
+      "last": 3179
+    },
+    {
+      "file": "03180-03199.jpg",
+      "first": 3180,
+      "last": 3199
+    },
+    {
+      "file": "03200-03219.jpg",
+      "first": 3200,
+      "last": 3219
+    },
+    {
+      "file": "03220-03239.jpg",
+      "first": 3220,
+      "last": 3239
+    },
+    {
+      "file": "03240-03259.jpg",
+      "first": 3240,
+      "last": 3259
+    },
+    {
+      "file": "03260-03279.jpg",
+      "first": 3260,
+      "last": 3279
+    },
+    {
+      "file": "03280-03299.jpg",
+      "first": 3280,
+      "last": 3299
+    },
+    {
+      "file": "03300-03319.jpg",
+      "first": 3300,
+      "last": 3319
+    },
+    {
+      "file": "03320-03339.jpg",
+      "first": 3320,
+      "last": 3339
+    },
+    {
+      "file": "03340-03359.jpg",
+      "first": 3340,
+      "last": 3359
+    },
+    {
+      "file": "03360-03379.jpg",
+      "first": 3360,
+      "last": 3379
+    },
+    {
+      "file": "03380-03399.jpg",
+      "first": 3380,
+      "last": 3399
+    },
+    {
+      "file": "03400-03419.jpg",
+      "first": 3400,
+      "last": 3419
+    },
+    {
+      "file": "03420-03439.jpg",
+      "first": 3420,
+      "last": 3439
+    },
+    {
+      "file": "03440-03459.jpg",
+      "first": 3440,
+      "last": 3459
+    },
+    {
+      "file": "03460-03479.jpg",
+      "first": 3460,
+      "last": 3479
+    },
+    {
+      "file": "03480-03499.jpg",
+      "first": 3480,
+      "last": 3499
+    },
+    {
+      "file": "03500-03519.jpg",
+      "first": 3500,
+      "last": 3519
+    },
+    {
+      "file": "03520-03539.jpg",
+      "first": 3520,
+      "last": 3539
+    },
+    {
+      "file": "03540-03559.jpg",
+      "first": 3540,
+      "last": 3559
+    },
+    {
+      "file": "03560-03579.jpg",
+      "first": 3560,
+      "last": 3579
+    },
+    {
+      "file": "03580-03599.jpg",
+      "first": 3580,
+      "last": 3599
+    },
+    {
+      "file": "03600-03619.jpg",
+      "first": 3600,
+      "last": 3619
+    },
+    {
+      "file": "03620-03639.jpg",
+      "first": 3620,
+      "last": 3639
+    },
+    {
+      "file": "03640-03659.jpg",
+      "first": 3640,
+      "last": 3659
+    },
+    {
+      "file": "03660-03679.jpg",
+      "first": 3660,
+      "last": 3679
+    },
+    {
+      "file": "03680-03699.jpg",
+      "first": 3680,
+      "last": 3699
+    },
+    {
+      "file": "03700-03719.jpg",
+      "first": 3700,
+      "last": 3719
+    },
+    {
+      "file": "03720-03739.jpg",
+      "first": 3720,
+      "last": 3739
+    },
+    {
+      "file": "03740-03759.jpg",
+      "first": 3740,
+      "last": 3759
+    },
+    {
+      "file": "03760-03779.jpg",
+      "first": 3760,
+      "last": 3779
+    },
+    {
+      "file": "03780-03799.jpg",
+      "first": 3780,
+      "last": 3799
+    },
+    {
+      "file": "03800-03819.jpg",
+      "first": 3800,
+      "last": 3819
+    },
+    {
+      "file": "03820-03839.jpg",
+      "first": 3820,
+      "last": 3839
+    },
+    {
+      "file": "03840-03859.jpg",
+      "first": 3840,
+      "last": 3859
+    },
+    {
+      "file": "03860-03865.jpg",
+      "first": 3860,
+      "last": 3865
+    }
+  ],
+  "paired_directory": "review/atlases/paired-v2",
+  "paired_layout": "20 consecutive final frames per sheet; reference on the left of each pair, final on the right; 384x216 cells."
+}

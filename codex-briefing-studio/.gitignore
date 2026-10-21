@@ -8,6 +8,7 @@ review/atlases/
 review/previews/
 review/picture-stills/
 review/final-stills/
+review/revisions/*/stills/
 review/*.csv
 review/*.npz
 review/*.png

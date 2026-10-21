@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url'
 import path from 'node:path'
 import {BoardRenderer} from '../src/engine.mjs'
 import {makeFilm} from '../src/film.mjs'
+import {ExposureRenderer,EXPOSURE} from '../src/exposure.mjs'
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
 process.chdir(root)
@@ -29,11 +30,12 @@ await mkdir('media',{recursive:true})
 await writeFile('content/timeline.json',JSON.stringify(film,(key,value)=>typeof value==='function'?undefined:value,2)+'\n')
 const canvas=createCanvas(1920,1080)
 const renderer=new BoardRenderer({createCanvas,images})
+const exposure=new ExposureRenderer(renderer,createCanvas)
 const ctx=canvas.getContext('2d')
 if(stills){
   const frames=[0,26,...film.shots.map(s=>Math.min(s.end-30,s.start+Math.round((s.end-s.start)*.7))),film.duration_frames-1]
   for(const frame of frames){
-    renderer.render(ctx,film,frame)
+    exposure.render(ctx,film,frame)
     await writeFile(`review/previews/frame-${String(frame).padStart(5,'0')}.jpg`,canvas.toBuffer('image/jpeg',95))
   }
   await writeFile('review/previews/index.json',JSON.stringify(frames))
@@ -47,24 +49,19 @@ if(stills){
     '-color_range','tv','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709',
     '-movflags','+faststart',output],{stdio:['pipe','inherit','inherit']})
   const start=performance.now()
-  // Sub-frame camera samples: 180 degree shutter. Static text remains sharp.
-  const sample=createCanvas(1920,1080),sc=sample.getContext('2d')
+  const sampleHistogram={}
+  let maximumSampleGap=0,totalSceneSamples=0
   for(let f=0;f<film.duration_frames;f++){
-    const a=film.camera(f-.25),b=film.camera(f+.25)
-    const movement=Math.hypot(a.x-b.x,a.y-b.y)*b.z+Math.abs(a.z-b.z)*1500
-    if(movement>1.2){
-      ctx.clearRect(0,0,1920,1080)
-      for(let j=0;j<3;j++){
-        renderer.render(sc,film,Math.max(0,f+(j-1)/6),{subtitles:false})
-        ctx.globalAlpha=1/(j+1);ctx.drawImage(sample,0,0)
-      }
-      ctx.globalAlpha=1;if(!pictureOnly)renderer.subtitle(ctx,film,f)
-    }else renderer.render(ctx,film,f,{subtitles:!pictureOnly})
+    const plan=exposure.render(ctx,film,f,{subtitles:!pictureOnly})
+    sampleHistogram[plan.count]=(sampleHistogram[plan.count]||0)+1
+    maximumSampleGap=Math.max(maximumSampleGap,plan.maximumGap)
+    totalSceneSamples+=plan.count
     const bytes=canvas.toBuffer('image/jpeg',95)
     if(!ff.stdin.write(bytes))await once(ff.stdin,'drain')
     if(f%120===0)console.log(`${f}/${film.duration_frames} frames; ${((performance.now()-start)/1000).toFixed(1)}s`)
   }
   ff.stdin.end();const [code]=await once(ff,'exit');if(code)throw new Error(`ffmpeg ${code}`)
-  await writeFile('review/render.json',JSON.stringify({output,frames:film.duration_frames,
-    duration:film.duration_frames/film.fps,elapsedSeconds:(performance.now()-start)/1000,subframeSamples:3,pictureOnly},null,2))
+  await writeFile(process.env.RENDER_REPORT||'review/render.json',JSON.stringify({output,frames:film.duration_frames,
+    duration:film.duration_frames/film.fps,elapsedSeconds:(performance.now()-start)/1000,
+    exposure:EXPOSURE,sampleHistogram,maximumSampleGap,totalSceneSamples,pictureOnly},null,2)+'\n')
 }

@@ -1,35 +1,45 @@
 {
-  "status": "publicly_verified",
+  "status": "public_article_verified_playback_limited",
   "account": "LeoGuoLabs",
-  "article_url": "https://x.com/LeoGuoLabs/article/2112613679405596824",
-  "post_url": "https://x.com/LeoGuoLabs/status/2112613679405596824",
+  "article_url": "https://x.com/LeoGuoLabs/article/2112736076549026024",
+  "post_url": "https://x.com/LeoGuoLabs/status/2112736076549026024",
   "article_draft_id": "2112586883188576256",
   "title": "Teaching Codex a visual language: an engineering briefing board",
-  "verified_at": "2026-10-20T18:39:47.469Z",
-  "paragraphs_verified": 24,
+  "verified_at": "2026-10-21T02:47:59.169459+00:00",
+  "paragraphs_verified": 25,
   "missing_paragraphs": [],
-  "video_source_sha256": "e1408107e6cffdd06569f8274c6187135fcb28478090108d1bd4bb90a03968dd",
+  "video_source_sha256": "d1ead2b35803c2a03f7f3bd3768e952f82f13b585fcbf5b95325ea875b715708",
   "playback_observations": [
     {
+      "time": 2.718802,
       "duration": 161.083,
-      "height": 1080,
+      "width": 480,
+      "height": 270,
       "muted": false,
       "paused": false,
-      "time": 0.02322,
-      "width": 1920
+      "error": null
     },
     {
+      "time": 5.699662,
       "duration": 161.083,
-      "height": 1080,
+      "width": 480,
+      "height": 270,
       "muted": false,
       "paused": false,
-      "time": 86.104257,
-      "width": 1920
+      "ready_state": 2,
+      "buffered": [
+        [
+          0,
+          5.994666
+        ]
+      ],
+      "error": null
     }
   ],
   "screenshots": [
-    "review/x-published-article.png",
-    "review/x-public-playback.png"
+    "review/x-published-v2.png"
   ],
-  "scope": "Verified public article account, exact authored paragraphs, embedded 161.083-second video, matching opening visuals, and advancing unmuted 1920x1080 browser playback. X transcodes uploaded media; public bytes are not claimed identical to source."
+  "supersedes": "https://x.com/LeoGuoLabs/article/2112613679405596824",
+  "republish_behavior": "Edit Article led back to the same draft. X assigned a new public ID on republish; the old status URL subsequently displayed page does not exist. Engagement preservation was not observed.",
+  "scope": "Public account, exact 25 authored paragraphs, new cover and embedded 161.083-second video verified. Opening matching visuals and limited advancing playback observed at 480x270, then buffering near six seconds. Full public playback and 1080p rendition are not yet confirmed. Canonical local 1080p playback and full decode passed separately. X transcodes media; public bytes are not claimed identical to source."
 }

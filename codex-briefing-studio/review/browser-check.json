@@ -1,43 +1,30 @@
 {
-  "url": "http://localhost:8249/",
+  "url": "http://127.0.0.1:8249/#screen",
+  "source_sha256": "d1ead2b35803c2a03f7f3bd3768e952f82f13b585fcbf5b95325ea875b715708",
   "film_playback": {
     "observed_seconds": [
-      0.615333,
-      6.566991
+      8.949306,
+      43.521972
     ],
-    "ready_state": 4,
     "width": 1920,
     "height": 1080,
-    "duration": 161.083008,
-    "muted": false,
+    "duration": 161.083333,
     "paused": false,
+    "muted": false,
     "error": null
   },
-  "frame_step": {
-    "before_frame": 782,
-    "next_frame_time": 32.625999,
-    "expected_frame": 783,
-    "restored_by_previous": true
-  },
-  "pair_selection": {
-    "reference": 925,
-    "final": 3846
-  },
-  "paired_atlas": {
-    "sheet": 2,
-    "total": 194,
-    "frames": [
-      20,
-      39
+  "candidate_playback": {
+    "observed_seconds": [
+      17.391494,
+      161.083333
     ],
-    "image_width": 1536,
-    "image_height": 2390,
-    "loaded": true
+    "ended": true,
+    "width": 1920,
+    "height": 1080,
+    "ready_state": 4,
+    "muted": false,
+    "error": null
   },
-  "live_composition": {
-    "initialized": true,
-    "seek_end_frame": 3865
-  },
-  "console_errors": [],
-  "screenshot": "review/showcase-comparison.png"
+  "screenshot": "review/showcase-v2.png",
+  "scope": "Canonical file is byte-identical to fully reviewed candidate. Browser observations establish advancing playback, not perceptual audio listening. Earlier frame-step and live-composition checks remain in revisions/published-v1/browser-check.json; UI code did not change."
 }

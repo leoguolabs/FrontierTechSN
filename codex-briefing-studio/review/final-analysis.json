@@ -1,6 +1,6 @@
 {
-  "video": "codex-briefing-studio/media/does-ai-help-you-learn.mp4",
-  "sha256": "e1408107e6cffdd06569f8274c6187135fcb28478090108d1bd4bb90a03968dd",
+  "video": "media/does-ai-help-you-learn.mp4",
+  "sha256": "d1ead2b35803c2a03f7f3bd3768e952f82f13b585fcbf5b95325ea875b715708",
   "decoded_frames": 3866,
   "fps": 24.0,
   "duration": 161.08333333333334,
@@ -34,9 +34,9 @@
     "time_base": "1/12288",
     "start_pts": 0,
     "start_time": "0.000000",
-    "duration_ts": 1979388,
-    "duration": "161.083008",
-    "bit_rate": "2424854",
+    "duration_ts": 1979392,
+    "duration": "161.083333",
+    "bit_rate": "2115225",
     "bits_per_raw_sample": "8",
     "nb_frames": "3866",
     "extradata_size": 51,
@@ -1247,6 +1247,6 @@
     "review/atlases/paired/03840-03859.jpg",
     "review/atlases/paired/03860-03865.jpg"
   ],
-  "note": "Consecutive-frame coverage is at 384x216 per cell; 16 selected encoded frames were additionally inspected at 1920x1080.",
-  "visual_review_provenance": "All 194 paired sheets were viewed, covering each of the 3866 encoded final frames. The separate final-only atlas was generated but is not represented as independently viewed. See final-ledger.json."
+  "note": "Every encoded frame was visually reviewed in paired sheets (384x216 source cells, displayed approximately 318x179). 24 selected encoded frames were separately inspected at 1920x1080.",
+  "visual_review_provenance": "All 194 paired sheets viewed; separate final-only sheets generated, not independently viewed. See final-ledger.json."
 }

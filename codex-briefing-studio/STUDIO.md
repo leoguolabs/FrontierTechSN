@@ -18,8 +18,16 @@ flag carry meaning alongside the numerical evidence.
 
 The camera moves from an object detail to a readable comparison, then holds for
 the judgment. Adjacent regions should retain enough of a previous mark to make
-the board's geography legible. Large movements use three temporal samples over
-a 180-degree shutter interval. Subtitles are drawn after that motion integration.
+the board's geography legible. `src/exposure.mjs` integrates a 180-degree shutter
+(half a frame) with adaptive temporal sampling. Translation, zoom, roll, and
+raised-object parallax determine the sample count. Adjacent projected samples
+must stay within 0.75 output pixels; fast movement is rejected if 256 samples
+cannot meet that bound. Balanced pairwise averaging avoids accumulated alpha
+rounding. Stationary frames remain sharp; subtitles are drawn after exposure.
+
+Magnet highlights are restrained and directional. Stamps have a heavier rounded
+outer border and transparent wear, so worn areas reveal the real board beneath.
+The material random seeds are fixed; texture must never flicker between frames.
 
 ## The timing contract
 

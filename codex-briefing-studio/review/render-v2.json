@@ -1,0 +1,24 @@
+{
+  "output": "media/candidate-v2-captioned.mp4",
+  "frames": 3866,
+  "duration": 161.08333333333334,
+  "elapsedSeconds": 967.720065083,
+  "exposure": {
+    "shutterFrames": 0.5,
+    "maximumSampleGap": 0.75,
+    "maximumSamples": 256
+  },
+  "sampleHistogram": {
+    "1": 3157,
+    "2": 37,
+    "4": 74,
+    "8": 91,
+    "16": 127,
+    "32": 188,
+    "64": 127,
+    "128": 65
+  },
+  "maximumSampleGap": 0.7491520390373125,
+  "totalSceneSamples": 28751,
+  "pictureOnly": false
+}

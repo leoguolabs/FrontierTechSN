@@ -1,10 +1,11 @@
 {
-  "status": "passed",
-  "archive_files_verified": 545,
-  "fresh_extract": true,
-  "npm_ci": true,
-  "validation": true,
-  "preview_frames_rendered": 17,
+  "status": "source_validation_passed",
+  "revision": 2,
+  "final_sha256": "d1ead2b35803c2a03f7f3bd3768e952f82f13b585fcbf5b95325ea875b715708",
+  "dependencies_unchanged": true,
+  "prior_fresh_install": "review/revisions/published-v1/package-check.json",
+  "validation": "review/revision-2-validation.json",
   "speech_service_contacted": false,
-  "scope": "Portable bundle installation, accepted inputs and still rendering; not a second full video encode."
+  "archive_verification": "delivery/verification.json (written after packaging)",
+  "scope": "V2 uses the unchanged pinned dependencies. Final archive integrity and entry hashes are verified after packaging; no claim of a second full encode from extracted ZIP."
 }

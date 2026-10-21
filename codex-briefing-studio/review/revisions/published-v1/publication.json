@@ -1,0 +1,35 @@
+{
+  "status": "publicly_verified",
+  "account": "LeoGuoLabs",
+  "article_url": "https://x.com/LeoGuoLabs/article/2112613679405596824",
+  "post_url": "https://x.com/LeoGuoLabs/status/2112613679405596824",
+  "article_draft_id": "2112586883188576256",
+  "title": "Teaching Codex a visual language: an engineering briefing board",
+  "verified_at": "2026-10-20T18:39:47.469Z",
+  "paragraphs_verified": 24,
+  "missing_paragraphs": [],
+  "video_source_sha256": "e1408107e6cffdd06569f8274c6187135fcb28478090108d1bd4bb90a03968dd",
+  "playback_observations": [
+    {
+      "duration": 161.083,
+      "height": 1080,
+      "muted": false,
+      "paused": false,
+      "time": 0.02322,
+      "width": 1920
+    },
+    {
+      "duration": 161.083,
+      "height": 1080,
+      "muted": false,
+      "paused": false,
+      "time": 86.104257,
+      "width": 1920
+    }
+  ],
+  "screenshots": [
+    "review/x-published-article.png",
+    "review/x-public-playback.png"
+  ],
+  "scope": "Verified public article account, exact authored paragraphs, embedded 161.083-second video, matching opening visuals, and advancing unmuted 1920x1080 browser playback. X transcodes uploaded media; public bytes are not claimed identical to source."
+}

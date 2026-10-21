@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "archive_files_verified": 545,
+  "fresh_extract": true,
+  "npm_ci": true,
+  "validation": true,
+  "preview_frames_rendered": 17,
+  "speech_service_contacted": false,
+  "scope": "Portable bundle installation, accepted inputs and still rendering; not a second full video encode."
+}

@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "exposure_tests": [
+    "stationary sharpness",
+    "fast pan sampling",
+    "half-frame window",
+    "edge clamping",
+    "balanced exposure brightness",
+    "sharp overlay ordering",
+    "closing camera continuity",
+    "complete camera path"
+  ],
+  "frames": 3866,
+  "maximum_sample_gap_pixels": 0.7491520390373125,
+  "labels": 43,
+  "people": 19,
+  "audio_complete": true,
+  "transcription_complete": true,
+  "structural_errors": [],
+  "commands": [
+    "node scripts/test_exposure.mjs",
+    "npm run validate",
+    "git diff --check -- codex-briefing-studio"
+  ],
+  "scope": "Deterministic code and geometry checks. Observed visual inspection is recorded separately in final-ledger.json."
+}

@@ -1,192 +1,238 @@
 {
-  "status": "all_frames_visually_inspected",
-  "final_sha256": "e1408107e6cffdd06569f8274c6187135fcb28478090108d1bd4bb90a03968dd",
+  "status": "accepted_after_visual_review",
+  "final_sha256": "d1ead2b35803c2a03f7f3bd3768e952f82f13b585fcbf5b95325ea875b715708",
   "frames": 3866,
-  "method": "Every final frame is inspected in a side-by-side function-matched atlas, with 384x216 cells. Selected frames are also inspected at 1920x1080. No perceptual identity percentage is inferred.",
+  "method": "Every encoded frame is reviewed in consecutive, function-matched reference/final pairs. Source cells are 384x216; the viewing tool resizes each 1536x2390 sheet to 1274x1984 (about 318x179 per cell). Selected actual encoded frames are separately inspected at 1920x1080. No percentage of visual identity is inferred.",
+  "paired_directory": "review/atlases/paired",
   "inspected_ranges": [
     {
       "first": 0,
-      "last": 79,
-      "finding": "Opening close detail pulls back smoothly; blue line and heading reveal sequentially; student builds from head to desk. Captions enter below content. Initial cropping is intentional camera framing; no missing or corrupt frames observed."
+      "last": 119,
+      "finding": "Continuous opening pullback, blue dimension and title reveal, and progressively drawn learner. Matte pins stay fixed to the notebook and paper. Blank paper drops over the solved answer at 110; captions remain clear. No black, corrupt, missing, or unexpectedly cut frame observed. Palette and prop shading are closer to the paired reference; subjects and framing differ."
     },
     {
-      "first": 80,
-      "last": 199,
-      "finding": "Question lettering completes, the answer is covered by a physical paper drop, the question mark writes, and the red stamp arrives before a held judgment. Shadow and pin continuity remain stable; stamp clears the learner. No new visual defects observed."
+      "first": 120,
+      "last": 279,
+      "finding": "Question mark writes on the covered answer; worn CHECK AGAIN stamp lands beside the learner and holds. Its red tone and double border follow the reference stamp treatment. Camera opens into the four-test region continuously; first two labels settle and pin while figures draw above them. Captions and current content stay separated; no flicker or new collision observed."
     },
     {
-      "first": 200,
-      "last": 319,
-      "finding": "Opening hold transitions continuously into the four-test region. Cards drop and settle one at a time with pins; learner and teacher paths build above their cards. Captions remain legible and clear of the drawings. No unintended jump or collision observed."
-    },
-    {
-      "first": 320,
+      "first": 280,
       "last": 439,
-      "finding": "Fourth learner and transfer label finish sequentially, then the four-test layout holds. The grouping line draws below the cards. Caption changes are clean; no paper, pin, or figure discontinuities. Reference and final share restrained blue/graphite drawing with red judgment and physical shadows."
+      "finding": "LATER and NEW PROBLEM cards arrive and pin; the corresponding learners and four outcome labels finish in order. Existing stamp clears the figures. Thin grouping line extends under the completed row, followed by a stable readable hold. The blue/red/graphite hierarchy and shared-board residue remain coherent beside the reference. No new collision, flicker or discontinuity observed."
     },
     {
       "first": 440,
-      "last": 559,
-      "finding": "Held four-test layout clears the caption, then a continuous camera move reveals the next empty board region. The motion exposure shows deliberately separated sub-samples during the fastest movement. Turkey flag is progressively drawn with a clear crescent and star; heading and sample count follow. No black frames or unintended cuts."
+      "last": 599,
+      "finding": "Completed measures hold is stable; camera exits through a continuous directional blur rather than separated triple outlines. The Turkey flag progressively reveals a clear crescent and star, then the country and approximate sample size. Three students draw in sequence. Study card enters from below and briefly passes the caption band before the following camera framing; no unexpected cut or corrupt frame. Reference has the same measured hold-to-pan grammar, with different content and scale."
     },
     {
-      "first": 560,
-      "last": 679,
-      "finding": "Three classroom learners draw head-to-body-to-desk in sequence below the completed Turkey flag and sample label. Study card briefly reaches the lower crop during this close shot, then becomes readable as the camera moves to the ruler and shared axes. Ruler, dashed measures, and pinned practice cards settle consistently with the reference physical-prop grammar."
+      "first": 600,
+      "last": 759,
+      "finding": "Three students complete their desks and devices. Camera moves continuously to the comparison ruler; directional blur is smooth through 620-659 and settles sharply. The study card clears the subtitle strip during the move. Ruler, guides and blue dimension build in a reference-like sequence; 148 and +48% appear with control index 100 and relative-to-control qualification. Stable hold has no texture flicker or separated motion copies."
     },
     {
-      "first": 680,
-      "last": 799,
-      "finding": "Practice measure extends smoothly to illustrative index 148 against control index 100. The +48% annotation and relative-to-control qualifier finish without colliding with the learner or formula card. The result holds after captions clear. Blue measure, physical ruler, and pinned labels closely follow the reference visual roles."
-    },
-    {
-      "first": 800,
+      "first": 760,
       "last": 919,
-      "finding": "Practice result holds, then the camera steps down the same board without resetting the ruler or control axes. Exam-without-AI card and unsolved formula drop into a separate row; a second learner begins drawing. Captions stay fixed to the viewport. No accidental layer resets or missing frames."
+      "finding": "Practice comparison holds without flicker while narration finishes; the camera eases downward to reserve space for the unaided test. The second label and unanswered equation land with slight rotation, shadow and pin, followed by the new learner. Blue dimensions remain consistent with the reference; no unexpected truncation of current labels or caption collision in the settled composition."
     },
     {
       "first": 920,
-      "last": 1039,
-      "finding": "Exam measure ends at index 83 before the control-100 guide. Red -17% and WEAKER ALONE stamp reveal after the blue measurement, followed by the practice-versus-exam sentence. Rows remain visually distinct, learner poses and stamps have clear separation, and the completed judgment holds without flicker."
+      "last": 1079,
+      "finding": "Unaided blue dimension ends below the 100 guide at 83; the red -17% writes clearly and WEAKER ALONE stamp lands beside its learner without covering the result. The Better practice inequality writes below and holds. Muted red, blue measurement, paper/pin shadows and progressive drawing agree with the reference grammar. No corruption or flicker observed across the hold."
     },
     {
-      "first": 1040,
-      "last": 1159,
-      "finding": "Completed exam result holds and the subtitle clears before the camera moves to the teacher-hints row. Tray and markers enter continuously at the board edge. The new pinned label lands while previous evidence remains above, retaining the reference cumulative-board structure."
+      "first": 1080,
+      "last": 1239,
+      "finding": "Exam verdict hold remains stable, then the camera descends smoothly toward the marker tray and teacher-hints example. Teacher and student draw on either side of a pinned first-step prompt. Their gestures connect with the prompt without crossing text. Tray perspective and shadows maintain the physical board; no new jump, flicker or corruption."
     },
     {
-      "first": 1160,
-      "last": 1219,
-      "finding": "Teacher figure draws progressively beside TEACHER HINTS. The first-step hint card drops and pins; the learner then draws to its right. Teacher-supplied hints and removed-penalty captions remain clear. Tray and prior evidence retain continuity without collisions or flicker."
+      "first": 1240,
+      "last": 1399,
+      "finding": "Teacher-hints conclusion writes in two lines: penalty largely removed, exam gain not established. Figures, prompt and qualifiers remain separate and readable at the intended full-size composition. Long narration hold has gentle continuous drift with fixed board texture, pins and marker tray; no transient anomaly appears. Reference verdict similarly resolves a measurement before holding."
     },
     {
-      "first": 1220,
-      "last": 1339,
-      "finding": "Teacher and learner finish; penalty-largely-removed and exam-gain-not-established write in two separate lines. Captions preserve the statistical qualification, and the scene holds with stable shadows, pins, tray and prior result. No overlaps or missing frames observed."
+      "first": 1400,
+      "last": 1559,
+      "finding": "Fast rightward camera travel produces connected directional blur, then settles on the scope card. Card lands with overshoot, rotation and two matte pins. All four lines remain inside the paper and above the subtitle; underlining completes below. Scope limitations are visible, including immediate performance and no claim of permanent damage. No residual triple contours or landing flicker observed."
     },
     {
-      "first": 1340,
-      "last": 1459,
-      "finding": "Teacher-hints result holds after subtitles clear. Camera pans and zooms across the continuous board to the study-scope card. Three-sample motion exposure is visible during fast motion. Scope paper drops, settles and pins with readable text and enough subtitle clearance; no unintended cuts or collisions."
+      "first": 1560,
+      "last": 1719,
+      "finding": "Scope card remains stable through narration and exits downward as the camera travels up the same board. A DIFFERENT DESIGN card enters, pins and settles with the blue higher-immediate-scores line and Kestin 2025 source. Learner head begins below. All current card text fits; background residue remains fixed, and no flash or discontinuous replacement appears."
     },
     {
-      "first": 1460,
-      "last": 1579,
-      "finding": "Scope card stays fully legible with both pins and consistent paper shadow. A thin underline draws below the card; captions change from the study setting to the limits of the evidence. Continuous gentle camera drift preserves the physical board without flicker."
+      "first": 1720,
+      "last": 1879,
+      "finding": "Two physics figures progressively draw, teacher gesture meets the blue F = ma explanation and seated learner completes a desk and device. Formula oval closes cleanly. Study card remains legible through the hold, with immediate-test claim and later-retention qualifier in captions. Stable texture and matte pins show no flicker. Sequence follows the reference measurement-and-hold grammar without unintended collisions."
     },
     {
-      "first": 1580,
-      "last": 1699,
-      "finding": "Scope statement holds, subtitle clears, then camera steps upward to college physics. Old scope card leaves the lower edge continuously; new study card drops and pins with a blue higher-immediate-scores line. Previous transfer label remains partly visible at the periphery, consistent with a single cumulative board."
+      "first": 1880,
+      "last": 2039,
+      "finding": "Physics outcome holds steadily; caption clears after the retention qualifier. Camera descends through earlier evidence with connected blur and no detached contours, reaching the open board above the tray. Which step is yours writes progressively while the next learner begins. Earlier cards remain in world space and no unintended cut, flash or texture change occurs."
     },
     {
-      "first": 1700,
-      "last": 1819,
-      "finding": "College-physics teacher and learner draw progressively below the study card. Teacher points toward the blue F=ma formula, which writes and is circled without crossing either figure. Pinned card, blue evidence line and caption spacing remain stable; no unintended jumps."
+      "first": 2040,
+      "last": 2199,
+      "finding": "Seated learner, desk and blue notebook draw next to Which step is yours; CHOOSE THE METHOD paper settles with two pins. Main label and learner remain separate. Sustained hold uses gentle camera drift with stable textures and clear caption changes. No unintended overlap, flash or motion discontinuity observed."
     },
     {
-      "first": 1820,
-      "last": 1939,
-      "finding": "Completed college-physics composition holds while captions distinguish active-classroom comparison, design and long-term retention. Circled formula clears the figures and card. Caption exits cleanly; pinned-paper lighting and gentle camera movement remain continuous."
+      "first": 2200,
+      "last": 2359,
+      "finding": "Camera pans left along the marker tray with continuous directional blur, settling below teacher hints. I can follow it inequality writes and red underline draws across it. Text remains above captions and marker tray; retained context stays fixed to the board. Paired reference uses red judgment in the same explanatory role. No triple outline, flash or unintended settled collision observed."
     },
     {
-      "first": 1940,
-      "last": 2059,
-      "finding": "Physics hold moves downward past the scope card and Design matters annotation into the thinking section. Which step is yours writes as a learner builds beside it. CHOOSE THE METHOD paper lands beside the desk with no body overlap. Motion exposure is visible during travel, then resolves to crisp type."
+      "first": 2360,
+      "last": 2519,
+      "finding": "Recognition inequality holds cleanly, then upward travel retraces study and measures areas. Previously problematic 2443 transition now has connected exposure blur without three separate copies. Camera settles on worked-example card; preceding question and stamp deliberately fade to ghost residue. New pinned card stays in focus with complete correct algebra. No flash, corruption or unintended settled overlap observed."
     },
     {
-      "first": 2060,
-      "last": 2179,
-      "finding": "Learner desk and book finish; CHOOSE THE METHOD paper is fully pinned. Scene holds with Which step is yours and prior qualifications visible. Captions move from skill choice to lost practice opportunity. Geometry and shadows remain stable without collisions or flicker."
+      "first": 2520,
+      "last": 2679,
+      "finding": "Worked-example paper and matte pins remain sharp during the narration hold. Old judgment remains faint erased residue behind it, with no changing texture noise. Camera then traverses downward across measures and study with smooth continuous exposure blur. No detached triple contours in the 2664 motion region; no flash, lost frame or unexpected cut."
     },
     {
-      "first": 2180,
-      "last": 2299,
-      "finding": "Thinking result holds, then camera pans left along the same tray into recognition. Three-sample exposure separates during travel and resolves at rest. I can follow it does not equal I know it writes progressively below the existing teacher and pinned hint, with ample caption clearance."
+      "first": 2680,
+      "last": 2839,
+      "finding": "Camera settles on lower-left board with left frame and marker tray visible. GET THE RIGHT HELP paper lands and pins above the new teacher gesture and example + hint annotation. Captions remain legible below the active diagram. Stable hold shows no material shimmer, image corruption or discontinuity; paper shadows and pin treatment remain coherent with reference."
     },
     {
-      "first": 2300,
-      "last": 2419,
-      "finding": "Red judgment underline grows under the complete recognition sentence and stops cleanly. Pinned labels, teacher drawing, tray and board ghosts remain stable through the hold. Subtitles distinguish recognizing steps from producing them with the answer covered; no overlaps or unintended discontinuities."
+      "first": 2840,
+      "last": 2999,
+      "finding": "The GET THE RIGHT HELP hold remains stable with gentle drift; its caption clears at frame 2872. The camera begins moving right around frame 2964 along the board tray, retaining the teacher and earlier evidence with continuous directional blur, then reaches the space below Which step is yours? The Hide the answer caption appears at frame 2996. No flash, corrupt frame, or unexpected cut was observed."
     },
     {
-      "first": 2420,
-      "last": 2539,
-      "finding": "Recognition holds after captions clear, then camera travels upward across earlier evidence to the worked example. Existing question and stamp fade into board residue while the example paper drops and pins. Example remains readable; peripheral earlier learner is cropped at bottom and partially covered by subtitle bar, without obscuring current explanatory content."
+      "first": 3000,
+      "last": 3159,
+      "finding": "The HIDE - EXPLAIN - CHECK paper lands, pins remain fixed, and a seated learner plus memory + feedback draws below it. Subtitles change cleanly for hide, explain, check/correct and the importance of checking, then clear at 3152. The board holds with gentle drift and no visible flicker or collision."
     },
     {
-      "first": 2540,
-      "last": 2659,
-      "finding": "Worked-example equation and two pins hold crisply throughout the novice-guidance explanation. Ghosted earlier question and stamp remain subdued behind the paper. Subtitle exits cleanly; camera then descends continuously toward the practice sequence. No corruption, missing frame or sudden layer reset observed."
+      "first": 3160,
+      "last": 3319,
+      "finding": "The recall board holds through 3223; a restrained rightward camera move follows the lower tray and settles below CHOOSE THE METHOD. CHANGE IT - RETURN lands and the learner/new problem + later annotation draws progressively. Captions remain unobstructed; no ghosted outlines or flashes were observed during the pan."
     },
     {
-      "first": 2660,
-      "last": 2779,
-      "finding": "Camera descends across the existing exam and teacher-hints evidence into the first practice step. GET THE RIGHT HELP label drops and pins above the tray; a small pointing teacher and example-plus-hint line draw beneath. Current label, figure and subtitle stay separated; earlier content remains continuous."
+      "first": 3320,
+      "last": 3479,
+      "finding": "Transfer and retention are presented separately in clear captions over a stable board hold. The new problem + later annotation stays aligned with the learner, paper, and tray. Caption clears at 3458; no visible material shimmer, obstruction, or discontinuity was found."
     },
     {
-      "first": 2780,
-      "last": 2899,
-      "finding": "Completed first practice step holds through novice-example and targeted-hint captions. Subtitle clears before departure. Board frame, tray, markers, paper and teacher remain stable. No new visual defect observed in this interval."
+      "first": 3480,
+      "last": 3639,
+      "finding": "The closing sentence starts over the connected board. A graphite bracket draws around CHOOSE THE METHOD, supporting the next-independent-attempt conclusion. Camera motion remains restrained, captions switch cleanly, and existing board geometry stays stable."
     },
     {
-      "first": 2900,
-      "last": 3019,
-      "finding": "First step holds, then camera pans right along the tray. Recognition text erases into residue. HIDE EXPLAIN CHECK paper drops and pins; the learner begins below it. Captions remain clear."
+      "first": 3640,
+      "last": 3799,
+      "finding": "The last question clears at 3662. A smooth pullback reveals the complete physical board and LEARN WITHOUT THE ANSWER conclusion. The previously abrupt breathing change at 3734 is now continuous. The board frame and tray enter without flashes or doubled outlines; the closing composition stays balanced."
     },
     {
-      "first": 3020,
-      "last": 3139,
-      "finding": "Learner, desk and book finish; memory plus feedback writes beside them. Completed composition holds through explain, check and correct captions. Paper, figure, shadows and tray stay stable; no obstruction of current explanatory content."
-    },
-    {
-      "first": 3140,
-      "last": 3259,
-      "finding": "Recall caption clears and completed diagram holds; camera then pans to the right for transfer practice. Three-sample motion exposure is visible during movement. The prior method-choice figure and note remain stable above the new row; no unplanned cut or layer reset."
-    },
-    {
-      "first": 3260,
-      "last": 3379,
-      "finding": "Third practice paper drops, settles and pins. Learner with desk writes progressively under it, followed by new problem plus later. Captions change from changing the problem to trying alone and returning later. Current figure, annotation and subtitle remain separated; no flicker or malformed frame."
-    },
-    {
-      "first": 3380,
-      "last": 3499,
-      "finding": "Transfer composition holds through the separate retention-and-transfer caption, then subtitle clears. Small learner, new problem plus later, pinned heading and earlier method choice remain stable. Camera begins the closing move only after the hold. No new blocking defect observed."
-    },
-    {
-      "first": 3500,
-      "last": 3619,
-      "finding": "Closing camera settles over the completed practice row. A graphite connector starts at right and draws upward toward the final argument area. Closing captions stay below the learner and tray. The composition remains crisp during the hold; reference and final movement timing differ intentionally for longer narration."
-    },
-    {
-      "first": 3620,
-      "last": 3739,
-      "finding": "Final question caption holds and exits cleanly. Completed board area remains still long enough to read, then begins the only full-board pullback. Earlier evidence and the title enter continuously; no abrupt reset, black frame or missing artwork observed."
-    },
-    {
-      "first": 3740,
+      "first": 3800,
       "last": 3865,
-      "finding": "Full-board pullback reveals the complete evidence board, Turkey flag, nineteen people, two notebook cutouts, main judgment and title. It settles into a stable closing hold. Board edges and tray fit the frame; no missing prop, caption collision, corruption or unintended cut. Final density and typography differ from the bridge reference; no pixel-identity claim."
+      "finding": "The full-board composition holds through the final encoded frame with subtle continuous drift. The reference and remake share the physical framed-board overview, hierarchy of blue evidence and red conclusion, and quiet closing hold. No last-frame flash, crop, or material instability was observed."
     }
   ],
   "full_resolution_frames": [
-    120,
-    432,
-    620,
-    770,
-    990,
-    1300,
-    1510,
-    1800,
-    2110,
-    2340,
-    2530,
-    2840,
-    3070,
-    3420,
-    3650,
-    3865
+    {
+      "frame": 0,
+      "finding": "Notebook cutout, paper edge, shadow and matte pin remain clean at the opening close-up."
+    },
+    {
+      "frame": 26,
+      "finding": "Moving opening detail remains readable; partial FINISHED and figure are intentional reveals."
+    },
+    {
+      "frame": 165,
+      "finding": "Worn stamp edges and matte pins are clear; completed composition has no focal obstruction."
+    },
+    {
+      "frame": 432,
+      "finding": "All four outcome labels and captions are legible and separated."
+    },
+    {
+      "frame": 620,
+      "finding": "Turkish flag and three seated learners are clear. Incoming secondary study card passes behind the fixed subtitle during this camera transition; focal flag and sample-size text remain unobstructed and card clears subsequently."
+    },
+    {
+      "frame": 633,
+      "finding": "Fast pan now has connected directional exposure blur instead of three separate displaced outlines; subtitle remains sharp."
+    },
+    {
+      "frame": 770,
+      "finding": "Ruler, index 100, 148 and relative +48% are sharp with muted blue ink."
+    },
+    {
+      "frame": 990,
+      "finding": "Both comparisons, 83 index, relative -17% and worn WEAKER ALONE stamp are readable and well separated."
+    },
+    {
+      "frame": 1063,
+      "finding": "Completed practice-versus-exam comparison and inequality are sharp; muted ink and worn stamp integrate with board."
+    },
+    {
+      "frame": 1300,
+      "finding": "Teacher prompt and learner remain separated; exam-gain qualification is still writing by design."
+    },
+    {
+      "frame": 1445,
+      "finding": "Four-line scope paper fits cleanly with clear caption and matte pins."
+    },
+    {
+      "frame": 1510,
+      "finding": "Scope underline and permanent-damage qualification remain readable without collision."
+    },
+    {
+      "frame": 1800,
+      "finding": "College-physics source label, blue formula, teacher and learner are clear; oval is mid-draw."
+    },
+    {
+      "frame": 2110,
+      "finding": "Which step is yours and CHOOSE THE METHOD are readable, with earlier evidence retained as context."
+    },
+    {
+      "frame": 2340,
+      "finding": "Recognition-versus-production inequality and red underline are sharp above the subtitle."
+    },
+    {
+      "frame": 2443,
+      "finding": "Actual encoded rapid upward pan has continuous directional blur and no separated three-copy outlines; no corrupted geometry."
+    },
+    {
+      "frame": 2530,
+      "finding": "Correct worked algebra (3x + 6 = 21, 3x = 15, x = 5), clean paper and matte pins. Old stamp is intentional faint residue; lower peripheral learner passes behind the subtitle while focal card is clear."
+    },
+    {
+      "frame": 2664,
+      "finding": "Rapid downward travel shows continuous directional blur without detached copies; paper and ruler remain spatially coherent."
+    },
+    {
+      "frame": 2840,
+      "finding": "GET THE RIGHT HELP, example + hint and teacher are clear beside the frame and tray. Earlier right-side learner is cropped as peripheral context."
+    },
+    {
+      "frame": 3070,
+      "finding": "HIDE - EXPLAIN - CHECK, seated learner and memory + feedback remain above captions; earlier inequality is faint erased residue."
+    },
+    {
+      "frame": 3420,
+      "finding": "CHANGE IT - RETURN, new problem + later and CHOOSE labels remain readable; captions occupy separate space."
+    },
+    {
+      "frame": 3650,
+      "finding": "Closing question caption, graphite bracket and CHOOSE card remain clear and stable."
+    },
+    {
+      "frame": 3758,
+      "finding": "Mid-pullback exposure is continuous as the full board emerges. Part of the right-side closing title is intentionally outside the moving viewport."
+    },
+    {
+      "frame": 3865,
+      "finding": "Whole framed board is clean and coherent, with nineteen people, Turkish flag, notebook cutouts, blue 148/83, red -17%, and worn verdict stamps. Final LEARN WITHOUT THE ANSWER conclusion is prominent. English composition is denser than the reference but shares its physical hierarchy."
+    }
   ],
-  "full_resolution_findings": "Actual encoded final frames inspected at 1920x1080. Current explanatory content, markers, Turkish crescent and star, paper shadows and subtitles are legible. Peripheral prior content is intentionally cropped; at frames 620 and 2530 the subtitle covers part of earlier peripheral content. No blocking defect observed. This is not a 100 percent style-identity claim."
+  "assessment": {
+    "core_style_confidence": "high",
+    "identity_percentage": null,
+    "finding": "Continuous physical board, material hierarchy, progressive writing, camera travel and final reveal match the observed reference grammar. Fast-motion triple outlines and abrupt closing drift have been corrected. Different subject, English text, nineteen figures and longer holds preclude a literal identity claim."
+  },
+  "full_resolution_directory": "review/final-stills"
 }

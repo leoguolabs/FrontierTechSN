@@ -18,6 +18,8 @@ def main():
     files.update(p for p in ROOT.iterdir()
                  if p.is_file() and (p.suffix in {".md", ".html", ".json"} or p.name in {".gitignore", "requirements.txt"}))
     files.update(p for p in (ROOT / "review").iterdir() if p.is_file())
+    files.update(p for p in (ROOT / "review/revisions").rglob("*")
+                 if p.is_file() and p.suffix in {".md", ".json"})
     for name in ("reference", "final", "paired"):
         files.update(p for p in (ROOT / "review/atlases" / name).rglob("*") if p.is_file())
     files.update(p for p in (ROOT / "review/final-stills").glob("*.png"))

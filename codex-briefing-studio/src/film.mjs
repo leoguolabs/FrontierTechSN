@@ -216,7 +216,7 @@ export function makeFilm(narration,audio=[],observations=[]) {
     const a=keys[i],b=keys[i+1],u=ease((frame-a.frame)/(b.frame-a.frame))
     const out={}
     for(const k of ['x','y','z','roll'])out[k]=mix(a[k],b[k],u)
-    const breath=frame<cursor?1:.15
+    const breath=mix(1,.15,ease((frame-cursor)/24))
     out.x+=Math.sin(frame*.013)*1.6*breath;out.y+=Math.sin(frame*.017+.4)*1.2*breath
     return out
   }

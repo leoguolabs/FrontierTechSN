@@ -50,9 +50,11 @@ There was an editorial correction too. An early red stamp said â€œNOT LEARNING.â
 
 Speech needed revision as well. Two segments were regenerated after the recognizer found a changed opening word. Another contained an extra phrase after the complete scripted sentence; the accepted version retains an exact prefix of the original audio, ending in the silent gap before that phrase. The original takes and the repair records remain in the working project.
 
-After six picture passes, the finished film runs for 2 minutes 41 seconds: 3,866 frames at 24 fps. Codex inspected every final frame in 194 numbered comparison sheets, with a reference frame beside it, then checked 16 selected final frames at 1080p. The full reference had already been inspected in its own 48 sheets.
+The initial six picture passes produced a 2-minute-41-second film. A further comparison revealed three separated outlines during fast camera moves, overly bright magnets, saturated ink, and a small jump in the final pullback. The renderer now adjusts exposure samples to camera speed, blends them evenly, and keeps adjacent samples less than a pixel apart. Matte highlights, worn stamp edges, muted ink, and a smooth closing drift bring those moments closer to the reference.
 
-That comparison also defines the limits of the result. The new film has more writing and people, longer holds, and a different blur pattern during fast camera moves. It preserves the continuous-board construction and the roles of materials, measurements, and judgments, but I would not call the two films visually identical. The review records show the differences as well as the fixes.
+The revised film contains 3,866 frames at 24 fps. Codex inspected every final frame in 194 numbered comparison sheets, with a reference frame beside it, then checked 24 selected encoded frames at 1080p. The full reference had already been inspected in its own 48 sheets. The accepted narration and final audio track were preserved through this picture revision.
+
+The new film has more writing and people and longer holds than the reference. Its continuous-board construction, material hierarchy, measurements, judgments, and camera transitions now follow the same visual grammar. Different subjects and pacing still produce different images; the review records make those differences explicit.
 
 The reusable result is the combination of a visual contract, a deterministic renderer, and a review process that can identify specific defects. The reference remains credited to LemoLab. The new subject, composition, illustrations, sound, and implementation were built independently.
 

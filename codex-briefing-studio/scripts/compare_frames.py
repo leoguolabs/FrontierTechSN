@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Compare every encoded frame without pretending different stories share pixels."""
+import argparse
 import csv
 import json
 import math
@@ -39,9 +40,9 @@ def quantiles(values):
     return {str(q): round(float(np.quantile(values, q)), 5) for q in (0, .1, .5, .9, 1)}
 
 
-def paired_atlases(rows, reference_count, final_count):
+def paired_atlases(rows, reference_count, final_count, final_name="final", paired_name="paired"):
     """Put every final frame beside its function-matched reference frame."""
-    output = REVIEW / "atlases/paired"
+    output = REVIEW / "atlases" / paired_name
     output.mkdir(parents=True, exist_ok=True)
     cache = {}
 
@@ -66,7 +67,7 @@ def paired_atlases(rows, reference_count, final_count):
             final = row["final_frame"]
             ref = row["reference_function_frame"]
             sheet.paste(cell("reference", ref, reference_count), (x, y))
-            sheet.paste(cell("final", final, final_count), (x + 384, y))
+            sheet.paste(cell(final_name, final, final_count), (x + 384, y))
             draw.text((x + 8, y + 220), f"REFERENCE {ref:04d}", fill="#99b8ff")
             draw.text((x + 392, y + 220), f"FINAL {final:04d}  {row['region']}", fill="white")
         name = f"{start:05d}-{start+len(subset)-1:05d}.jpg"
@@ -78,7 +79,12 @@ def paired_atlases(rows, reference_count, final_count):
 
 
 def main():
-    reference, final = read_frames("reference"), read_frames("final")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--final-name", default="final")
+    parser.add_argument("--paired-name", default="paired")
+    parser.add_argument("--report-name", default="comparison")
+    args = parser.parse_args()
+    reference, final = read_frames("reference"), read_frames(args.final_name)
     timeline = json.loads((ROOT / "content/timeline.json").read_text())
     regions = [{"start": 0, "end": timeline["shots"][0]["start"], "region": "intro"}]
     regions += timeline["shots"]
@@ -107,14 +113,15 @@ def main():
             row[f"reference_{key}"] = ref[key]
             row[f"delta_{key}"] = actual[key] - ref[key]
         rows.append(row)
-    with (REVIEW / "frame-comparison.csv").open("w") as handle:
+    csv_name = "frame-comparison.csv" if args.report_name == "comparison" else f"frame-{args.report_name}.csv"
+    with (REVIEW / csv_name).open("w") as handle:
         writer = csv.DictWriter(handle, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
     names = ("mean_r", "mean_g", "mean_b", "dark_share", "blue_share", "red_share", "motion_mae")
     report = {
         "reference": json.loads((REVIEW / "reference-analysis.json").read_text())["sha256"],
-        "final": json.loads((REVIEW / "final-analysis.json").read_text())["sha256"],
+        "final": json.loads((REVIEW / f"{args.final_name}-analysis.json").read_text())["sha256"],
         "final_frames_compared": len(rows),
         "reference_frames_in_normalized_alignment": len({r["reference_normalized_frame"] for r in rows}),
         "reference_frames_in_function_alignment": len({r["reference_function_frame"] for r in rows}),
@@ -130,10 +137,11 @@ def main():
             "Different subjects, English captions, and added people change pixel occupancy.",
             "Visual review is recorded separately and must not be inferred from this report.",
         ],
-        "paired_atlases": paired_atlases(rows, len(reference), len(final)),
+        "paired_atlases": paired_atlases(rows, len(reference), len(final), args.final_name, args.paired_name),
+        "paired_directory": f"review/atlases/{args.paired_name}",
         "paired_layout": "20 consecutive final frames per sheet; reference on the left of each pair, final on the right; 384x216 cells.",
     }
-    (REVIEW / "comparison.json").write_text(json.dumps(report, indent=2) + "\n")
+    (REVIEW / f"{args.report_name}.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({key: report[key] for key in (
         "final_frames_compared", "reference_frames_in_normalized_alignment",
         "reference_frames_in_function_alignment")}))

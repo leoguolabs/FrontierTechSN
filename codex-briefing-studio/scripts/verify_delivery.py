@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check the actual encoded delivery, separately from visual and listening review."""
+import argparse
 import hashlib
 import json
 from fractions import Fraction
@@ -14,7 +15,11 @@ def run(*args):
 
 
 def main():
-    video = ROOT / "media/does-ai-help-you-learn.mp4"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("video", nargs="?", type=Path, default=Path("media/does-ai-help-you-learn.mp4"))
+    parser.add_argument("--report", default="review/delivery-check.json")
+    args = parser.parse_args()
+    video = ROOT / args.video
     timeline = json.loads((ROOT / "content/timeline.json").read_text())
     info = json.loads(run(
         "ffprobe", "-v", "error", "-count_frames", "-show_streams",
@@ -59,7 +64,7 @@ def main():
         "streams": info["streams"],
         "scope": "Encoded technical checks; visual review and perceptual listening are separate.",
     }
-    (ROOT / "review/delivery-check.json").write_text(json.dumps(report, indent=2) + "\n")
+    (ROOT / args.report).write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({key: report[key] for key in ("passed", "decoded_frames", "audio_measurement")}))
     if not report["passed"]:
         raise SystemExit("Failed: " + ", ".join(k for k, value in checks.items() if not value))

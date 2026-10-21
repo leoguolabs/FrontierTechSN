@@ -1,6 +1,6 @@
 {
   "file": "media/does-ai-help-you-learn.mp4",
-  "sha256": "e1408107e6cffdd06569f8274c6187135fcb28478090108d1bd4bb90a03968dd",
+  "sha256": "d1ead2b35803c2a03f7f3bd3768e952f82f13b585fcbf5b95325ea875b715708",
   "checks": {
     "full_decode": true,
     "frame_count": true,
@@ -54,9 +54,9 @@
       "time_base": "1/12288",
       "start_pts": 0,
       "start_time": "0.000000",
-      "duration_ts": 1979388,
-      "duration": "161.083008",
-      "bit_rate": "2424854",
+      "duration_ts": 1979392,
+      "duration": "161.083333",
+      "bit_rate": "2115225",
       "bits_per_raw_sample": "8",
       "nb_frames": "3866",
       "nb_read_frames": "3866",

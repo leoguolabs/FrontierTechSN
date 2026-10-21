@@ -1,0 +1,74 @@
+{
+  "status": "motion_candidate_visually_accepted",
+  "settings": {
+    "shutterFrames": 0.5,
+    "maximumSampleGap": 0.75,
+    "maximumSamples": 256
+  },
+  "frames_analyzed": 3866,
+  "sample_histogram": {
+    "1": 3157,
+    "2": 37,
+    "4": 74,
+    "8": 91,
+    "16": 127,
+    "32": 188,
+    "64": 127,
+    "128": 65
+  },
+  "maximum_adjacent_sample_gap_pixels": 0.7491520390373125,
+  "total_scene_samples": 28751,
+  "selected_frames": [
+    26,
+    432,
+    633,
+    770,
+    1445,
+    2443,
+    2664,
+    3758,
+    3865
+  ],
+  "clips": [
+    {
+      "file": "review/previews/exposure-v2/transition-615-664.mp4",
+      "first": 615,
+      "last": 664
+    },
+    {
+      "file": "review/previews/exposure-v2/transition-2420-2479.mp4",
+      "first": 2420,
+      "last": 2479
+    }
+  ],
+  "elapsed_seconds": 207.140086167,
+  "scope": "Exposure sampling is measured for all frames. All 110 encoded clip frames and nine full-resolution candidate stills were visually inspected; the final full film needs a separate review.",
+  "visual_review": {
+    "encoded_clips": [
+      {
+        "first": 615,
+        "last": 664,
+        "clip_frames": 50
+      },
+      {
+        "first": 2420,
+        "last": 2479,
+        "clip_frames": 60
+      }
+    ],
+    "sheets_viewed": [
+      "exposure-a/00000-00019.jpg",
+      "exposure-a/00020-00039.jpg",
+      "exposure-a/00040-00049.jpg",
+      "exposure-b/00000-00019.jpg",
+      "exposure-b/00020-00039.jpg",
+      "exposure-b/00040-00059.jpg"
+    ],
+    "cell_size": [
+      384,
+      216
+    ],
+    "finding": "Continuous directional blur replaces the prior three separated outlines. The exposure resolves to sharp lettering at rest; subtitles stay sharp. Full-resolution candidate stills also inspected at all nine listed frames. These clips precede the palette and magnet/stamp material revision."
+  },
+  "subsequent_verification": "Complete V2 encode accepted in review/final-ledger.json; this record describes the preceding exposure study."
+}

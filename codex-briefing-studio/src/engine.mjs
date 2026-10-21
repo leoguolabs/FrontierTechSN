@@ -2,7 +2,7 @@
 export const W = 1920
 export const H = 1080
 export const BOARD = {w: 6400, h: 3600}
-export const C = {paper:'#e4e0d6', ink:'#23272e', blue:'#1f4fc8', red:'#d33a21', grey:'#6c727b'}
+export const C = {paper:'#e4e0d6', ink:'#23272e', blue:'#2d51aa', red:'#ca4c39', grey:'#6c727b'}
 export const clamp = x => Math.max(0, Math.min(1, x))
 export const ease = x => { x=clamp(x); return x*x*x*(x*(x*6-15)+10) }
 export const mix = (a,b,u) => a+(b-a)*u
@@ -33,6 +33,7 @@ export class BoardRenderer {
   constructor({createCanvas,images={},width=W,height=H}) {
     this.createCanvas=createCanvas;this.images=images;this.width=width;this.height=height
     this.photoCache=new Map()
+    this.stampCache=new Map()
     this.material=this.makeMaterial()
   }
   makeMaterial(){
@@ -85,11 +86,13 @@ export class BoardRenderer {
     const bounce=age<.5?Math.exp(-age*10)*Math.cos(age*23)*.3:0
     ctx.save();ctx.translate(x,y);ctx.scale(1+bounce,1+bounce)
     ctx.shadowColor='rgba(26,26,20,.32)';ctx.shadowBlur=13;ctx.shadowOffsetX=9;ctx.shadowOffsetY=16
-    const grad=ctx.createRadialGradient(-r*.3,-r*.4,1,0,0,r)
-    grad.addColorStop(0,color===C.ink?'#747779':color);grad.addColorStop(.5,color);grad.addColorStop(1,color===C.ink?'#11151b':'#86281b')
+    const grad=ctx.createRadialGradient(-r*.25,-r*.32,r*.1,0,0,r*1.1)
+    grad.addColorStop(0,color===C.ink?'#41454a':color)
+    grad.addColorStop(.7,color===C.ink?'#2b2e33':color)
+    grad.addColorStop(1,color===C.ink?'#1e2126':'#86281b')
     ctx.fillStyle=grad;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill()
-    ctx.shadowColor='transparent';ctx.fillStyle='rgba(255,255,255,.23)'
-    ctx.beginPath();ctx.ellipse(-r*.22,-r*.4,r*.33,r*.15,-.4,0,6.28);ctx.fill();ctx.restore()
+    ctx.shadowColor='transparent';ctx.fillStyle='rgba(222,226,225,.30)'
+    ctx.beginPath();ctx.ellipse(-r*.29,-r*.40,r*.34,r*.14,-.58,0,6.28);ctx.fill();ctx.restore()
   }
   paper(ctx,e,age){
     if(age<0)return
@@ -210,13 +213,27 @@ export class BoardRenderer {
     if(age<0)return
     const bounce=age<.4?Math.exp(-age*15)*Math.sin(age*38)*14:0
     ctx.save();ctx.translate(e.x,e.y+bounce);ctx.rotate((e.rot||-7)*Math.PI/180)
-    ctx.strokeStyle=C.red;ctx.lineWidth=5;ctx.fillStyle=C.red
-    ctx.strokeRect(0,0,e.w,e.h);ctx.strokeRect(10,10,e.w-20,e.h-20)
-    ctx.font=`800 ${e.size||67}px Sans`;ctx.textAlign='center';ctx.textBaseline='middle'
-    ctx.fillText(e.text,e.w/2,e.h/2+3)
-    // Small enamel-coloured pits imitate an uneven rubber impression.
-    ctx.fillStyle=C.paper
-    for(let i=0;i<160;i++){const x=rand(i+e.x)*e.w,y=rand(i+e.y)*e.h;ctx.fillRect(x,y,2+rand(i)*4,1+rand(i+2)*3)}
+    const key=JSON.stringify([e.text,e.w,e.h,e.size,e.x,e.y])
+    if(!this.stampCache.has(key)){
+      // A transparent impression preserves the actual enamel under its worn
+      // spots. Render at twice world resolution for close camera views.
+      const pad=8,c=this.createCanvas((e.w+pad*2)*2,(e.h+pad*2)*2),g=c.getContext('2d')
+      g.scale(2,2);g.translate(pad,pad)
+      g.strokeStyle=C.red;g.fillStyle=C.red;g.lineWidth=9
+      rounded(g,0,0,e.w,e.h,10);g.stroke()
+      g.lineWidth=3;rounded(g,13,13,e.w-26,e.h-26,5);g.stroke()
+      g.font=`800 ${e.size||67}px Sans`;g.textAlign='center';g.textBaseline='middle'
+      g.fillText(e.text,e.w/2,e.h/2+3)
+      g.globalCompositeOperation='destination-out'
+      for(let i=0;i<Math.round(e.w*e.h/115);i++){
+        const x=rand(i+e.x)*e.w,y=rand(i+e.y)*e.h
+        g.globalAlpha=.3+rand(i+991)*.7
+        g.beginPath();g.ellipse(x,y,.5+rand(i+17)*2.4,.4+rand(i+47)*1.8,rand(i+73)*3,0,Math.PI*2);g.fill()
+      }
+      this.stampCache.set(key,c)
+    }
+    ctx.globalAlpha*=.91
+    ctx.drawImage(this.stampCache.get(key),-8,-8,e.w+16,e.h+16)
     ctx.restore()
   }
   drawElement(ctx,e,t){

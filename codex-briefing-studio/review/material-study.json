@@ -1,0 +1,50 @@
+{
+  "status": "candidate_material_stills_visually_accepted",
+  "method": "Blue-dominant pixels: B > 1.4R, B > 1.35G, B > 100. Medians are appearance observations, not a similarity percentage. Reference and v1 are actual decoded frames; revision2 is a renderer still pending final-encode verification.",
+  "measurements": {
+    "reference_frame_390": {
+      "path": "review/previews/motion/reference-390.png",
+      "sha256": "a6410594c2d8f38e94f91738c2ed35ab1d51f1a2862a05f84723fd2d8f3dafa2",
+      "selected_blue_pixels": 18902,
+      "median_rgb": [
+        61.0,
+        96.0,
+        175.0
+      ]
+    },
+    "published_v1_frame_770": {
+      "path": "review/revisions/published-v1/stills/00770.png",
+      "sha256": "67767b67ea2da1aa093a8c9cfed3a8b8cc4afdcbe536fe6c55b1b9f31b3ac359",
+      "selected_blue_pixels": 11328,
+      "median_rgb": [
+        55.0,
+        94.0,
+        197.0
+      ]
+    },
+    "revision2_still_frame_770": {
+      "path": "review/previews/frame-00770.jpg",
+      "sha256": "ef2e4219ebeb947e4aa46e3dc5673297c9f3690eeb9fe646a0087b8118e523f2",
+      "selected_blue_pixels": 10605,
+      "median_rgb": [
+        69.0,
+        97.0,
+        169.0
+      ]
+    }
+  },
+  "inspected_frames": [
+    165,
+    770,
+    1063,
+    3865
+  ],
+  "findings": [
+    "Replaced bright spherical magnets with matte dark discs and a directional elliptical highlight.",
+    "Thick rounded outer stamp border and thin inner border match the reference impression more closely.",
+    "Wear uses transparent alpha holes rather than flat background-color rectangles; it remains fixed in board coordinates.",
+    "Muted blue and warm red bring the ink palette closer to the decoded reference.",
+    "No new collisions in the four inspected material stills. The complete encoded film still needs all-frame inspection."
+  ],
+  "subsequent_verification": "Complete V2 encode accepted in review/final-ledger.json; this record describes the preceding material study."
+}

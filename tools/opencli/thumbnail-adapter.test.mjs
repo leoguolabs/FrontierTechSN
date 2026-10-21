@@ -342,6 +342,42 @@ test('a request for the preceding illustration to preserve continuity ends only 
   assert.deepEqual(Array.from(await completed.run(30, savedUrl, { prompt: 'exact image prompt' })), [imageUrl])
 })
 
+test('a named preceding illustration request ends only its owned idle frame wait', async () => {
+  const text = 'I couldn’t generate the frame because the image tool requires a reference image for this request. Please upload the previous scoreboard or seesaw illustration so I can preserve the visual continuity and create the new scene.'
+  for (const variant of [text, text.replace('couldn’t', "couldn't"),
+    text.replace('frame because', 'illustration because'),
+    text + '\nImage generation failed\nTry again']) {
+    const { run, state } = waiter(fixedWait, {
+      messages: () => [ownedFailure[0], { Role: 'Assistant', Text: variant }],
+    })
+    await assert.rejects(run(420, savedUrl, { prompt: 'exact image prompt' }), /CHATGPT_IMAGE_INPUT_MISSING/)
+    assert.equal(state.clock, 6000)
+    assert.equal(state.progress.at(-1).stage, 'image_input_missing')
+    assert.equal(state.navigations.length, 0)
+  }
+  const response = { Role: 'Assistant', Text: text }
+  for (const options of [
+    { messages: () => [{ Role: 'User', Text: 'other prompt' }, response] },
+    { messages: () => [response, ownedFailure[0]] },
+    { messages: () => [ownedFailure[0], { ...response, Text: 'The previous response said: ' + text }] },
+    { messages: () => [ownedFailure[0], response], generating: () => true },
+    { messages: () => [ownedFailure[0], response], images: () => ['data:image/png;base64,preview'] },
+    { messages: () => [ownedFailure[0], { ...response, Text: 'You can optionally upload the previous scoreboard or seesaw illustration so I can preserve visual continuity.' }] },
+    { messages: () => [ownedFailure[0], { ...response, Text: 'I couldn’t generate the frame because the image tool is unavailable. No reference image is required. Please try again later.' }] },
+  ]) {
+    const { run, state } = waiter(fixedWait, options)
+    try { await run(12, savedUrl, { prompt: 'exact image prompt' }) }
+    catch (error) { assert.doesNotMatch(error.message, /CHATGPT_IMAGE_(INPUT_MISSING|GENERATION_FAILED)/) }
+    assert.equal(state.progress.at(-1).stage, 'image_wait_timeout')
+    assert.equal(state.navigations.length, 0)
+  }
+  const completed = waiter(fixedWait, {
+    messages: () => [ownedFailure[0], response],
+    images: state => state.clock >= 6000 ? [imageUrl] : [],
+  })
+  assert.deepEqual(Array.from(await completed.run(30, savedUrl, { prompt: 'exact image prompt' })), [imageUrl])
+})
+
 test('completed image error ends the owned wait after two stable idle readings', async () => {
   const { run, state } = waiter(fixedWait, { messages: () => ownedFailure })
   await assert.rejects(run(420, savedUrl, { prompt: 'exact image prompt' }),

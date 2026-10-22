@@ -21,9 +21,11 @@ export async function waitForChatGPTImages(page, beforeUrls, timeoutSeconds, con
     // "Candidate" is ambiguous on its own. Require an explicit image-tool
     // reference dependency as well as the request to upload the earlier take.
     const missingCandidateRequest = /(?:^|[.!?]\s*)Please upload the (?:earlier|original|previous|preceding) candidate\s+so I can (?:recompose|edit|redraw|correct|preserve|create)\b/i;
-    const requiresImageReference = /\bimage tool requires (?:an? (?:existing )?image reference|a reference image)\b/i;
+    const identifiedReferenceRequest = /(?:^|[.!?]\s*)Please upload or identify the reference (?:image|illustration|frame)\s+so I can (?:recompose|edit|redraw|correct|preserve|create)\b/i;
+    const requiresImageReference = /(?:^|[.!?]\s*)(?:The )?image tool (?:requires|needs) (?:an? (?:existing )?image reference|a reference image)\b/i;
     const needsInput = text => missingInputRequest.test(text)
-        || (requiresImageReference.test(text) && missingCandidateRequest.test(text));
+        || (requiresImageReference.test(text)
+            && (missingCandidateRequest.test(text) || identifiedReferenceRequest.test(text)));
 
     while (Date.now() < deadline) {
         await page.sleep(Math.min(3, (deadline - Date.now()) / 1000));

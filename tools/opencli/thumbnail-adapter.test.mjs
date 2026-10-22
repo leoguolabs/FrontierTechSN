@@ -507,6 +507,45 @@ test('an earlier candidate upload requires explicit image-reference dependency a
   assert.deepEqual(Array.from(await completed.run(30, savedUrl, { prompt: 'exact image prompt' })), [imageUrl])
 })
 
+test('upload-or-identify request requires an explicit reference dependency and an idle owned turn', async () => {
+  const text = 'I couldn’t generate the illustration in this attempt. The image tool needs an image reference to proceed. Please upload or identify the reference frame so I can create the requested scene in the same visual style.'
+  const response = { Role: 'Assistant', Text: text }
+  for (const variant of [text, text.replaceAll(' ', '  '), text.replace('. Please', '.\n\nPlease'),
+    text.replace('needs', 'requires'), text.replace('couldn’t', "couldn't") + '\nImage generation failed\nTry again']) {
+    const { run, state } = waiter(fixedWait, {
+      messages: () => [ownedFailure[0], { ...response, Text: variant }],
+    })
+    await assert.rejects(run(420, savedUrl, { prompt: 'exact image prompt' }), /CHATGPT_IMAGE_INPUT_MISSING/)
+    assert.equal(state.clock, 6000)
+    assert.equal(state.progress.at(-1).stage, 'image_input_missing')
+    assert.equal(state.navigations.length, 0)
+  }
+  for (const options of [
+    { messages: () => [{ Role: 'User', Text: 'other prompt' }, response] },
+    { messages: () => [response, ownedFailure[0]] },
+    { messages: () => [ownedFailure[0], { ...response, Text: 'The previous response said: ' + text }] },
+    { messages: () => [ownedFailure[0], response], generating: () => true },
+    { messages: () => [ownedFailure[0], response], images: () => ['data:image/png;base64,preview'] },
+  ]) {
+    const { run, state } = waiter(fixedWait, options)
+    try { await run(12, savedUrl, { prompt: 'exact image prompt' }) }
+    catch (error) { assert.doesNotMatch(error.message, /CHATGPT_IMAGE_(INPUT_MISSING|GENERATION_FAILED)/) }
+    assert.equal(state.progress.at(-1).stage, 'image_wait_timeout')
+  }
+  for (const variant of [
+    text.replace('The image tool needs an image reference to proceed.', 'No reference image is required.'),
+    text.replace('The image tool needs an image reference', 'The image tool does not need an image reference'),
+    text.replace('Please upload or identify', 'You may optionally upload or identify'),
+  ]) {
+    const { run } = waiter(fixedWait, { messages: () => [ownedFailure[0], { ...response, Text: variant }] })
+    await assert.rejects(run(12, savedUrl, { prompt: 'exact image prompt' }), /CHATGPT_IMAGE_GENERATION_FAILED/)
+  }
+  const completed = waiter(fixedWait, {
+    messages: () => [ownedFailure[0], response], images: state => state.clock >= 6000 ? [imageUrl] : [],
+  })
+  assert.deepEqual(Array.from(await completed.run(30, savedUrl, { prompt: 'exact image prompt' })), [imageUrl])
+})
+
 test('observed attempt failure with explanatory prose ends the owned wait', async () => {
   const text = "I couldn't generate the image in this attempt. Your brief is clear and specifies an original 16:9 editorial collage, so no additional reference image should be necessary."
   for (const variant of [text, text.replace("couldn't", 'couldn’t'), text + '\nImage generation failed\nTry again']) {

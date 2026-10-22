@@ -479,21 +479,35 @@ def _persist_provider_response(
     stdout: str,
     stderr: str,
 ) -> None:
-    """Retain provider output so a structurally bad review is diagnosable."""
+    """Keep the latest receipt readable without losing earlier retry evidence."""
     path = sheet.parent / (
         f"response-{phase}-{batch_index:02d}-attempt-{attempt:02d}-{provider}.json"
     )
+    payload = json.dumps(
+        {"provider": provider, "stdout": stdout, "stderr": stderr},
+        indent=2, ensure_ascii=False,
+    ).encode("utf-8")
+    temporary = path.with_name(f".{path.name}.{uuid.uuid4().hex}.tmp")
     try:
-        path.write_text(
-            json.dumps(
-                {"provider": provider, "stdout": stdout, "stderr": stderr},
-                indent=2,
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
+        if path.exists():
+            previous = path.read_bytes()
+            if previous == payload:
+                return
+            history = path.parent / "response-history"
+            history.mkdir(exist_ok=True)
+            archive = history / f"{path.stem}-{hashlib.sha256(previous).hexdigest()}.json"
+            try:
+                with archive.open("xb") as output:
+                    output.write(previous)
+            except FileExistsError:
+                if archive.read_bytes() != previous:
+                    raise ValueError("Provider response archive does not match its content hash")
+        temporary.write_bytes(payload)
+        temporary.replace(path)
     except OSError:
-        pass
+        logger.warning("Unable to persist provider response %s; retaining prior receipt", path, exc_info=True)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def _score(value: Any) -> int:

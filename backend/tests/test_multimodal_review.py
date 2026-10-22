@@ -1,4 +1,5 @@
 import asyncio
+import hashlib
 import json
 import unittest
 from pathlib import Path
@@ -11,6 +12,36 @@ from PIL import Image
 from backend import config
 from backend.pipeline import multimodal_review
 from backend.pipeline.opencli import OpenCLIError, OpenCLIResult
+
+
+def test_provider_response_retry_archives_error_and_pending_receipts(tmp_path):
+    sheet = tmp_path / "image.png"
+    args = {"phase": "initial", "batch_index": 1, "attempt": 2, "provider": "chatgpt"}
+    current = tmp_path / "response-initial-01-attempt-02-chatgpt.json"
+    previous = []
+    for stdout, stderr in [("", "Browser profile is not connected"),
+                           ('{"url":"https://chatgpt.com/c/original"}', "CHATGPT_TURN_PENDING"),
+                           ('{"reviews":[]}', "")]:
+        multimodal_review._persist_provider_response(sheet, **args, stdout=stdout, stderr=stderr)
+        assert json.loads(current.read_text()) == {"provider": "chatgpt", "stdout": stdout, "stderr": stderr}
+        for content in previous:
+            archived = tmp_path / "response-history" / f"{current.stem}-{hashlib.sha256(content).hexdigest()}.json"
+            assert archived.read_bytes() == content
+        previous.append(current.read_bytes())
+    multimodal_review._persist_provider_response(sheet, **args, stdout='{"reviews":[]}', stderr="")
+    assert len(list((tmp_path / "response-history").glob("*.json"))) == 2
+    assert not list(tmp_path.glob("*.tmp"))
+
+
+def test_response_archive_failure_keeps_previous_receipt(tmp_path):
+    sheet = tmp_path / "image.png"
+    args = {"phase": "initial", "batch_index": 1, "attempt": 1, "provider": "gemini"}
+    multimodal_review._persist_provider_response(sheet, **args, stdout="", stderr="original failure")
+    current = tmp_path / "response-initial-01-attempt-01-gemini.json"
+    previous = current.read_bytes()
+    (tmp_path / "response-history").write_text("not a directory")
+    multimodal_review._persist_provider_response(sheet, **args, stdout="recovered response", stderr="")
+    assert current.read_bytes() == previous
 
 
 def test_bookend_review_uses_spoken_scope_without_dropping_score_thresholds():

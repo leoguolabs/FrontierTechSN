@@ -338,6 +338,17 @@ animation. The default covers the lower-right star in the measured 1280×720
 Gemini explainer sample (roughly x=1120, y=560, 80×81 pixels). Adjust it for a
 different placement; this is a fixed region repair, not automatic detection.
 Fine detail inside that region may soften. Disable it for unmarked clips.
+For mixed productions, a clip can instead retain its original pixels after a
+manual review of every source frame in the configured area. Save
+`watermark-review.json` next to that clip's `motion.mp4`, with version `1`,
+decision `absent_in_configured_region`, `source_sha256`, `source_dimensions`,
+`reviewed_frame_count`, `region_percent`, `reviewed_at`, `notes`, and an
+`evidence` list of `{path, sha256}` records relative to the motion directory.
+Keep the reviewed frame atlas there as evidence. The renderer rejects stale
+source/region/frame bindings and missing or changed evidence. A valid review
+creates a new render cache entry and records the review in its manifest; it
+preserves the original download, previous renders, narration and other scenes.
+This review only covers that area and does not certify the whole video's quality.
 Changing the toggle or area invalidates only the affected scene renders and final
 delivery. Each repaired scene records its method and source-pixel region in the
 manifest and timeline. Still scenes and public-footage news videos are unaffected.

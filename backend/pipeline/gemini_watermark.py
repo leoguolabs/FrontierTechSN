@@ -7,6 +7,7 @@ This is spatial interpolation, not automatic logo detection or lossless recovery
 from __future__ import annotations
 
 import math
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -23,6 +24,27 @@ class WatermarkRegion(BaseModel):
         if self.x + self.width >= 100 or self.y + self.height >= 100:
             raise ValueError("Watermark region must leave a border inside the source frame")
         return self
+
+
+class WatermarkReviewEvidence(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    path: str = Field(min_length=1)
+    sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+
+class WatermarkReview(BaseModel):
+    """Manual review of every source frame in the configured repair area."""
+
+    model_config = ConfigDict(extra="forbid")
+    version: Literal[1]
+    decision: Literal["absent_in_configured_region"]
+    source_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    source_dimensions: tuple[int, int]
+    reviewed_frame_count: int = Field(gt=0, strict=True)
+    region_percent: WatermarkRegion
+    reviewed_at: str = Field(min_length=1)
+    notes: str = Field(min_length=1)
+    evidence: list[WatermarkReviewEvidence] = Field(min_length=1)
 
 
 def repair_plan(width: int, height: int, region: dict | None = None) -> dict:

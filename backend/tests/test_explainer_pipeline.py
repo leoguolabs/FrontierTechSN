@@ -1243,6 +1243,92 @@ def test_watermark_repair_pixels_retry_and_cache_preserve_provider_media(tmp_pat
     asyncio.run(run())
 
 
+def test_reviewed_watermark_absence_restores_pixels_without_replacing_sources(tmp_path, providers, monkeypatch):
+    async def detailed_motion(_prompt, _first, _last, stage, _frame, *, entry):
+        providers.motion_calls.append(_prompt)
+        target = stage / "provider.mp4"
+        await pipeline._command([
+            "ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i",
+            "color=c=0xbbbbbb:s=640x360:r=30:d=0.4",
+            "-vf", "drawbox=x=570:y=290:w=20:h=20:color=black:t=fill",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", str(target),
+        ])
+        return target, "https://gemini.google.com/app/test"
+
+    monkeypatch.setattr(pipeline, "_generate_video", detailed_motion)
+
+    async def run():
+        project = _project()
+        project["captions_enabled"] = False
+        project["style"].update(motion_mode="gemini", gemini_watermark_removal=True)
+        for scene in project["scenes"]:
+            scene["motion"] = True
+        original = await pipeline.render_project(project, tmp_path, lambda _: None, lambda _: None)
+        before = original["scene_artifacts"][0]
+        source = tmp_path / before["motion_path"]
+        old_files = {p: pipeline._sha(p) for p in tmp_path.glob("artifacts/**/*") if p.is_file()}
+        evidence = source.parent / "reviewed-frames.png"
+        await pipeline._command([
+            "ffmpeg", "-v", "error", "-i", str(source), "-vf", "scale=160:90,tile=4x3",
+            "-frames:v", "1", str(evidence),
+        ])
+        receipt = {
+            "version": 1, "decision": "absent_in_configured_region",
+            "source_sha256": pipeline._sha(source), "source_dimensions": [640, 360],
+            "reviewed_frame_count": 12, "region_percent": before["watermark_repair"]["region_percent"],
+            "reviewed_at": "2026-10-22T00:00:00Z", "notes": "Synthetic scene detail, not a watermark.",
+            "evidence": [{"path": evidence.name, "sha256": pipeline._sha(evidence)}],
+        }
+        review_path = source.parent / "watermark-review.json"
+        review_path.write_text(json.dumps(receipt))
+        repaired = await pipeline.render_project(project, tmp_path, lambda _: None, lambda _: None)
+        after = repaired["scene_artifacts"][0]
+        assert after["render_hash"] != before["render_hash"]
+        assert "watermark_repair" not in after
+        assert after["watermark_review"] == receipt
+        assert repaired["scene_artifacts"][1] == original["scene_artifacts"][1]
+        assert repaired["duration_seconds"] == original["duration_seconds"]
+        for key in ("motion_path", "audio_path", "image_path", "source_audio_sha256", "audio_sha256"):
+            assert after[key] == before[key]
+        assert all(pipeline._sha(p) == digest for p, digest in old_files.items())
+        assert await pipeline.render_project(project, tmp_path, lambda _: None, lambda _: None) == repaired
+
+        async def pixel(item):
+            return await pipeline._command([
+                "ffmpeg", "-v", "error", "-i", str(tmp_path / item["clip_path"]),
+                "-vf", "crop=12:12:1734:894,scale=1:1", "-frames:v", "1",
+                "-pix_fmt", "rgb24", "-f", "rawvideo", "-",
+            ])
+
+        assert min(await pixel(before)) > 150
+        assert max(await pixel(after)) < 30
+        scene = {**project["scenes"][0], "_brand_role": "intro"}
+        audio = json.loads((tmp_path / after["audio_path"]).with_name("complete.json").read_text())
+        disabled_project = {**project, "style": {**project["style"], "gemini_watermark_removal": False}}
+        unfiltered, _ = await pipeline._render_scene(
+            scene, disabled_project, tmp_path / after["image_path"], source, audio, tmp_path,
+        )
+        assert pipeline._sha(unfiltered) == pipeline._sha(tmp_path / after["clip_path"])
+        assert len(providers.audio_calls) == len(providers.image_calls) == len(providers.motion_calls) == 2
+
+        # A cached clean render must not make a stale review usable.
+        for field, value in [("source_sha256", "0" * 64), ("source_dimensions", [1280, 720]),
+                             ("reviewed_frame_count", 11),
+                             ("region_percent", {**receipt["region_percent"], "x": 86})]:
+            review_path.write_text(json.dumps({**receipt, field: value}))
+            with pytest.raises(ValueError, match="does not match"):
+                await pipeline._render_scene(scene, project, tmp_path / after["image_path"], source, audio, tmp_path)
+        review_path.write_text(json.dumps(receipt))
+        evidence.write_bytes(b"changed evidence")
+        with pytest.raises(ValueError, match="evidence is missing or changed"):
+            await pipeline._render_scene(scene, project, tmp_path / after["image_path"], source, audio, tmp_path)
+        review_path.write_text(json.dumps({**receipt, "evidence": [{"path": "../escape", "sha256": "0" * 64}]}))
+        with pytest.raises(ValueError, match="traverse"):
+            await pipeline._render_scene(scene, project, tmp_path / after["image_path"], source, audio, tmp_path)
+
+    asyncio.run(run())
+
+
 def test_dialogue_tts_labels_are_provider_metadata_only(tmp_path, providers):
     async def run():
         project = _project()

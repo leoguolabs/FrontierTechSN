@@ -31,7 +31,7 @@ from backend.explainer_visual_review import (
     visual_logic_rules,
 )
 from backend.pipeline.collage_broll import _generate_still, _generate_video
-from backend.pipeline.gemini_watermark import repair_plan
+from backend.pipeline.gemini_watermark import WatermarkReview, repair_plan
 from backend.pipeline.opencli_session import owned_media_session
 from backend.pipeline.tts import generate_tts
 from backend.pipeline.video_format import LANDSCAPE
@@ -987,15 +987,36 @@ async def _paced_audio(scene: dict, path: Path, audio: dict, root: Path, *,
                            duration_seconds=plan["duration_seconds"], frames=plan["frames"])
 
 
+def _reviewed_watermark_absence(motion: Path, root: Path, stream: dict, plan: dict) -> dict | None:
+    path = _safe(motion.parent / "watermark-review.json", root)
+    if not path.exists():
+        return None
+    review = WatermarkReview.model_validate_json(path.read_text(encoding="utf-8"))
+    if (review.source_sha256 != _sha(motion)
+            or list(review.source_dimensions) != plan["source_dimensions"]
+            or review.region_percent.model_dump() != plan["region_percent"]
+            or str(review.reviewed_frame_count) != str(stream.get("nb_frames"))):
+        raise ValueError("Watermark absence review does not match the source, region or full frame count")
+    for item in review.evidence:
+        evidence = _safe(motion.parent / item.path, motion.parent)
+        if not evidence.is_file() or _sha(evidence) != item.sha256:
+            raise ValueError("Watermark absence review evidence is missing or changed")
+    return review.model_dump(mode="json")
+
+
 async def _render_scene(scene: dict, project: dict, image: Path, motion: Path | None,
                         audio: dict, root: Path) -> tuple[Path, dict]:
     style = project.get("style") or {}
     text_layout = _text_layout(scene, project)
     motion_probe = await _probe(motion) if motion else None
     watermark_repair = None
+    watermark_review = None
     if motion and style.get("gemini_watermark_removal", True):
         stream = next(s for s in motion_probe["streams"] if s.get("codec_type") == "video")
         watermark_repair = repair_plan(stream["width"], stream["height"], style.get("gemini_watermark_region"))
+        watermark_review = _reviewed_watermark_absence(motion, root, stream, watermark_repair)
+        if watermark_review:
+            watermark_repair = None
     render_inputs = {"version": CONTRACT_VERSION, "video_encode_version": 2, "image": _sha(image), "motion": _sha(motion) if motion else None,
                  "motion_playback_version": 2 if motion else 1,
                  "frames": audio["frames"], "mode": style.get("motion_mode", "none"),
@@ -1014,6 +1035,8 @@ async def _render_scene(scene: dict, project: dict, image: Path, motion: Path | 
         render_inputs["closing_pixel_format_version"] = 2
     if watermark_repair:
         render_inputs["watermark_repair"] = watermark_repair
+    if watermark_review:
+        render_inputs["watermark_review"] = watermark_review
     key = _hash(render_inputs)
     stage = _stage(root, scene["id"], "render", key)
     cached = _cached(stage, key, root)
@@ -1073,8 +1096,13 @@ async def _render_scene(scene: dict, project: dict, image: Path, motion: Path | 
     await _verify(stage / "clip.partial.mp4", duration=audio["duration_seconds"], video=True, audio=False)
     final = stage / "clip.mp4"
     (stage / "clip.partial.mp4").replace(final)
-    return final, _complete(stage, key, [final, stage / "overlay.png"], root,
+    files = [final, stage / "overlay.png"]
+    if watermark_review:
+        _json(stage / "watermark-review.json", watermark_review, root)
+        files.append(stage / "watermark-review.json")
+    return final, _complete(stage, key, files, root,
                             motion_playback=motion_playback, watermark_repair=watermark_repair,
+                            **({"watermark_review": watermark_review} if watermark_review else {}),
                             text_layout_version=TEXT_LAYOUT_VERSION, text_layout=text_layout)
 
 
@@ -1169,9 +1197,11 @@ async def render_project(project: dict, project_dir: Path,
                 motion_path, motion = await _motion(scene, style, image_path, root)
             completed += 1
             progress("rendering", f"{prefix}: composing measured narration and illustration")
-            if motion_path and style.get("gemini_watermark_removal", True):
-                log(f"{prefix}: repairing visible Gemini watermark locally before titles and captions")
             clip, render = await _render_scene(scene, project, image_path, motion_path, audio, root)
+            if render.get("watermark_repair"):
+                log(f"{prefix}: repaired configured Gemini watermark area locally before titles and captions")
+            elif render.get("watermark_review"):
+                log(f"{prefix}: preserved original pixels in reviewed watermark-free area")
             completed += 1
             item = {"id": scene["id"], "chapter": scene.get("chapter", ""), "narration": scene["narration"],
                     "on_screen_text": scene.get("on_screen_text", ""),
@@ -1191,6 +1221,8 @@ async def render_project(project: dict, project_dir: Path,
                     "motion_source_url": motion.get("conversation_url") if motion else None}
             if render.get("watermark_repair"):
                 item["watermark_repair"] = render["watermark_repair"]
+            if render.get("watermark_review"):
+                item["watermark_review"] = render["watermark_review"]
             artifacts.append(item)
             current_frame += audio["frames"]
             save_manifest("rendering")

@@ -344,7 +344,10 @@ def _pocket_spelled_identifiers(source: str, spans: list) -> str:
         if not match or sum(letter.isupper() for letter in match[1]) < 2:
             raise ValueError("Pocket identifier reading is not an explicit initialism")
         letters, number, power = match.groups()
-        spoken = [LETTER_NAMES[letter.upper()][0] for letter in letters]
+        # Pocket reads the spelling "ay" as /aɪ/ in observed identifier takes.
+        # "eigh" keeps A distinct from I without changing the source letter.
+        spoken = ["eigh" if letter.upper() == "A" else LETTER_NAMES[letter.upper()][0]
+                  for letter in letters]
         if number:
             spoken.append(numeric_cue(number))
         if power:

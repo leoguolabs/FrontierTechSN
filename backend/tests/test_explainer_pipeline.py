@@ -112,7 +112,7 @@ def test_pocket_identifier_readings_preserve_script_media_and_unselected_scenes(
     project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
     source = "GPT-5, ELI5, CoDA and SAC³ are identifiers."
     scene = {**project["scenes"][0], "narration": source}
-    spoken = "gee pee tee five, ee el eye five, see oh dee ay and ess ay see cubed are identifiers."
+    spoken = "gee pee tee five, ee el eye five, see oh dee eigh and ess eigh see cubed are identifiers."
     receipt = {**_diction_receipt(scene, project, spoken), "version": 2,
                "spelled_identifiers": [{"start": source.index(token), "end": source.index(token) + len(token)}
                                        for token in ("GPT-5", "ELI5", "CoDA", "SAC³")]}

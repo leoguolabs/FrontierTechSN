@@ -108,6 +108,69 @@ def _diction_receipt(scene, project, text):
             "model": project["tts_model"], "voice": project["voice"], "synthesis_text": text}
 
 
+def test_pocket_identifier_readings_preserve_script_media_and_unselected_scenes(tmp_path, providers):
+    project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
+    source = "GPT-5, ELI5, CoDA and SAC³ are identifiers."
+    scene = {**project["scenes"][0], "narration": source}
+    spoken = "gee pee tee five, ee el eye five, see oh dee ay and ess ay see cubed are identifiers."
+    receipt = {**_diction_receipt(scene, project, spoken), "version": 2,
+               "spelled_identifiers": [{"start": source.index(token), "end": source.index(token) + len(token)}
+                                       for token in ("GPT-5", "ELI5", "CoDA", "SAC³")]}
+
+    async def run():
+        original = await pipeline._audio(scene, project, tmp_path, lambda _: None)
+        other = await pipeline._audio(project["scenes"][1], project, tmp_path, lambda _: None)
+        originals = {p: p.read_bytes() for p in tmp_path.rglob("*") if p.is_file()}
+        request = tmp_path / "audio-inputs" / f"{scene['id']}.json"
+        request.parent.mkdir()
+        request.write_text(json.dumps(receipt))
+        path, record = await pipeline._audio(scene, project, tmp_path, lambda _: None)
+        assert path != original[0]
+        assert providers.audio_calls[-1][0] == spoken
+        assert (path.parent / "script.txt").read_text() == source
+        assert (path.parent / "provider-script.txt").read_text() == spoken
+        assert json.loads((path.parent / "diction-input.json").read_text()) == receipt
+        assert all(p.read_bytes() == data for p, data in originals.items())
+        assert await pipeline._audio(scene, project, tmp_path, lambda _: None) == (path, record)
+        assert await pipeline._audio(project["scenes"][1], project, tmp_path, lambda _: None) == other
+        assert len(providers.audio_calls) == 3
+        assert scene["narration"] == source
+        request.unlink()
+        assert await pipeline._audio(scene, project, tmp_path, lambda _: None) == original
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("source, spans, spoken", [
+    ("GPT-5 works.", [], "gee pee tee five works."),
+    ("GPT-5 works.", [{"start": True, "end": 5}], "gee pee tee five works."),
+    ("GPT-5 works.", [{"start": -1, "end": 5}], "gee pee tee five works."),
+    ("GPT-5 works.", [{"start": 0, "end": 99}], "gee pee tee five works."),
+    ("GPT-5 works.", [{"start": 0, "end": 3}], "gee pee tee-5 works."),
+    ("GPT-5.2 works.", [{"start": 0, "end": 5}], "gee pee tee five.2 works."),
+    ("prefix-GPT works.", [{"start": 7, "end": 10}], "prefix-gee pee tee works."),
+    ("GPT-5 works.", [{"start": 0, "end": 5}, {"start": 0, "end": 5}], "gee pee tee five works."),
+    ("GPT-5 works.", [{"start": 0, "end": 5, "spoken": "wrong"}], "gee pee tee five works."),
+    ("Maya works.", [{"start": 0, "end": 4}], "em ay why ay works."),
+    ("GPT-5 works.", [{"start": 0, "end": 5}], "gee pee tee six works."),
+    ("GPT-5 works.", [{"start": 0, "end": 5}], "gee pee tee five fails."),
+    ("SAC³ works.", [{"start": 0, "end": 4}], "ess ay see works."),
+])
+def test_pocket_identifier_readings_reject_partial_tokens_or_changed_meaning(
+    tmp_path, providers, source, spans, spoken,
+):
+    project = {**_project(), "tts_model": "pocket-tts-en", "voice": "alba"}
+    scene = {**project["scenes"][0], "narration": source}
+    receipt = {**_diction_receipt(scene, project, spoken), "version": 2, "spelled_identifiers": spans}
+    request = tmp_path / "audio-inputs" / f"{scene['id']}.json"
+    request.parent.mkdir()
+    request.write_text(json.dumps(receipt))
+    with pytest.raises(ValueError):
+        asyncio.run(pipeline._audio(scene, project, tmp_path, lambda _: None))
+    assert not providers.audio_calls
+    assert not list(tmp_path.rglob("complete.json"))
+
+
 @pytest.mark.parametrize("source, adjusted", [
     ("They tried a fix: generate two answers, then compare them.",
      "They TRIED a fix. Generate two answers, then compare them."),

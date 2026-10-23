@@ -321,6 +321,39 @@ def _overlay(scene: dict, project: dict, path: Path) -> None:
     overlay.save(path)
 
 
+def _pocket_spelled_identifiers(source: str, spans: list) -> str:
+    """Expand explicitly selected identifier spans without changing their symbols."""
+    from backend.pipeline.tts_pronunciation import LETTER_NAMES, numeric_cue
+
+    if not isinstance(spans, list) or not spans or len(spans) > 32:
+        raise ValueError("Pocket identifier readings require bounded source spans")
+    result, cursor = [], 0
+    for span in spans:
+        if not isinstance(span, dict) or set(span) != {"start", "end"}:
+            raise ValueError("Pocket identifier reading has unexpected fields")
+        start, end = span["start"], span["end"]
+        if (type(start) is not int or type(end) is not int
+                or not cursor <= start < end <= len(source)
+                or (start and (source[start - 1].isalnum() or source[start - 1] == "_"))
+                or (start > 1 and source[start - 1] in ".-" and source[start - 2].isalnum())
+                or (end < len(source) and (source[end].isalnum() or source[end] == "_"))
+                or (end + 1 < len(source) and source[end] in ".-" and source[end + 1].isalnum())):
+            raise ValueError("Pocket identifier reading must cover a complete nonoverlapping token")
+        token = source[start:end]
+        match = re.fullmatch(r"([A-Za-z]{2,10})(?:-?([0-9]{1,4}))?([²³])?", token)
+        if not match or sum(letter.isupper() for letter in match[1]) < 2:
+            raise ValueError("Pocket identifier reading is not an explicit initialism")
+        letters, number, power = match.groups()
+        spoken = [LETTER_NAMES[letter.upper()][0] for letter in letters]
+        if number:
+            spoken.append(numeric_cue(number))
+        if power:
+            spoken.append({"²": "squared", "³": "cubed"}[power])
+        result.extend((source[cursor:start], " ".join(spoken)))
+        cursor = end
+    return "".join(result) + source[cursor:]
+
+
 def _pocket_diction_input(scene: dict, model: str, voice: str, root: Path) -> dict | None:
     """Load an optional, source-bound take without ASR's homophone equivalence."""
     path = _safe(root / "audio-inputs" / f"{scene['id']}.json", root)
@@ -333,12 +366,21 @@ def _pocket_diction_input(scene: dict, model: str, voice: str, root: Path) -> di
     except (ValueError, UnicodeError) as exc:
         raise ValueError("Pocket diction input must be valid JSON") from exc
     fields = {"version", "source_sha256", "model", "voice", "synthesis_text"}
+    if isinstance(receipt, dict) and receipt.get("version") == 2:
+        fields.add("spelled_identifiers")
     if (not isinstance(receipt, dict) or set(receipt) != fields
-            or type(receipt["version"]) is not int or receipt["version"] != 1
+            or type(receipt["version"]) is not int or receipt["version"] not in (1, 2)
             or model != "pocket-tts-en" or receipt["model"] != model or receipt["voice"] != voice
             or receipt["source_sha256"] != hashlib.sha256(scene["narration"].encode()).hexdigest()):
         raise ValueError("Pocket diction input does not match this source, model and voice")
     text = receipt["synthesis_text"]
+    if receipt["version"] == 2:
+        # Only mechanically derived letter, numeric-suffix and exponent readings
+        # are allowed. Every character outside the selected spans stays exact.
+        expected = _pocket_spelled_identifiers(scene["narration"], receipt["spelled_identifiers"])
+        if text != expected:
+            raise ValueError("Pocket identifier reading changes the source symbols or surrounding text")
+        return receipt
     # Keep internal apostrophes, decimal points and hyphens; only case, spacing
     # and sentence punctuation may vary. Do not use the looser ASR tokenizer.
     tokens = r"\w+(?:['’.-]\w+)*|[^\w\s.,:;!?]"

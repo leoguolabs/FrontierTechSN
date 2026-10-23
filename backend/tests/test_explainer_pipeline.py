@@ -1167,11 +1167,11 @@ def test_motion_prompt_upgrade_only_for_safe_new_acquisition(tmp_path, status):
         (stage / "video" / "generation-state.json").write_text(json.dumps({"status": status}))
     (stage / "generation-prompt.txt").write_text("Previous long acquisition prompt")
     scene = _project()["scenes"][0]
-    scene["visual_prompt"] = "Static composition with no movement"
+    scene["visual_prompt"] = "Keep the upper loop motionless. Animate only the lower arrow."
     prompt, path = pipeline._motion_acquisition_prompt(stage, scene, "Canonical intent", tmp_path)
     assert prompt.startswith("Generate a silent 10-second")
     assert scene["narration"] in prompt
-    assert "Static composition" not in prompt
+    assert scene["visual_prompt"] in prompt
     assert path.read_text() == prompt
     assert next((stage / "video" / "history").glob("generation-prompt-*.txt")).read_text() == "Previous long acquisition prompt"
 
@@ -1184,6 +1184,127 @@ def test_motion_prompt_upgrade_rejects_unknown_checkpoint(tmp_path, content):
     with pytest.raises(RuntimeError, match="submission outcome is unknown"):
         pipeline._motion_acquisition_prompt(stage, _project()["scenes"][0], "Canonical", tmp_path)
     assert not (stage / "generation-prompt.txt").exists()
+
+
+def _reject_motion(path, record):
+    evidence = path.parent / "review-frame.jpg"
+    shutil.copyfile(path.parent / "keyframe.jpg", evidence)
+    review = {"version": 1, "input_hash": record["input_hash"],
+              "source_sha256": pipeline._sha(path),
+              "reason": "The upper loop acquired an external arrow; keep it motionless.",
+              "evidence": [{"path": evidence.name, "sha256": pipeline._sha(evidence)}]}
+    (path.parent / "motion-rejection.json").write_text(json.dumps(review))
+    return review
+
+
+def test_motion_review_retries_preserve_originals_and_reuse_audio_images(tmp_path, providers):
+    async def run():
+        project = _project()
+        project["style"]["motion_mode"] = "gemini"
+        project["scenes"][0]["motion"] = True
+        original = await pipeline.render_project(project, tmp_path, lambda _: None, lambda _: None)
+        item = original["scene_artifacts"][0]
+        path = tmp_path / item["motion_path"]
+        record = json.loads((path.parent / "complete.json").read_text())
+        review = _reject_motion(path, record)
+        originals = {f: f.read_bytes() for f in path.parent.rglob("*")
+                     if f.is_file() and not f.name.startswith("browser-session-")}
+        revised = await pipeline.render_project(project, tmp_path, lambda _: None, lambda _: None)
+        new = revised["scene_artifacts"][0]
+        assert new["motion_path"] != item["motion_path"]
+        assert new["source_audio_path"] == item["source_audio_path"]
+        assert new["image_path"] == item["image_path"]
+        assert revised["scene_artifacts"][1] == original["scene_artifacts"][1]
+        assert len(providers.audio_calls) == len(providers.image_calls) == 2
+        assert len(providers.motion_calls) == 2
+        assert project["scenes"][0]["visual_prompt"] in providers.motion_calls[-1]
+        assert review["reason"] in providers.motion_calls[-1]
+        new_record = json.loads((tmp_path / new["motion_path"]).with_name("complete.json").read_text())
+        assert new_record["generation_attempt"] == 2
+        assert new_record["rejected_candidates"][0]["source_sha256"] == review["source_sha256"]
+        assert all(f.read_bytes() == content for f, content in originals.items())
+        await pipeline.render_project(project, tmp_path, lambda _: None, lambda _: None)
+        assert len(providers.motion_calls) == 2
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("damage", ["source_hash", "input_hash", "evidence_hash", "missing_evidence", "traversal", "version"])
+def test_motion_rejection_requires_exact_retained_candidate_and_evidence(tmp_path, providers, damage):
+    async def run():
+        project = _project()
+        scene = project["scenes"][0]
+        image = tmp_path / "image.png"
+        Image.new("RGB", (128, 72)).save(image)
+        path, record = await pipeline._motion(scene, project["style"], image, tmp_path)
+        review = _reject_motion(path, record)
+        if damage == "source_hash":
+            review["source_sha256"] = "0" * 64
+        elif damage == "input_hash":
+            review["input_hash"] = "0" * 64
+        elif damage == "evidence_hash":
+            review["evidence"][0]["sha256"] = "0" * 64
+        elif damage == "missing_evidence":
+            (path.parent / review["evidence"][0]["path"]).unlink()
+        elif damage == "traversal":
+            review["evidence"][0]["path"] = "../review-frame.jpg"
+        else:
+            review["version"] = True
+        (path.parent / "motion-rejection.json").write_text(json.dumps(review))
+        with pytest.raises(ValueError):
+            await pipeline._motion(scene, project["style"], image, tmp_path)
+        assert len(providers.motion_calls) == 1
+        assert pipeline._sha(path) == record["files"]["motion.mp4"]
+    asyncio.run(run())
+
+
+def test_motion_rejection_chain_retains_attempt_limit_across_resumes(tmp_path, providers):
+    async def run():
+        project = _project()
+        scene = project["scenes"][0]
+        image = tmp_path / "image.png"
+        Image.new("RGB", (128, 72)).save(image)
+        originals = {}
+        for attempt in range(1, pipeline.MAX_MOTION_ATTEMPTS + 1):
+            path, record = await pipeline._motion(scene, project["style"], image, tmp_path)
+            assert record["generation_attempt"] == attempt
+            assert len(record["rejected_candidates"]) == attempt - 1
+            _reject_motion(path, record)
+            originals[path] = path.read_bytes()
+        for _ in range(2):
+            with pytest.raises(RuntimeError, match="after 3 retained candidates"):
+                await pipeline._motion(scene, project["style"], image, tmp_path)
+        assert len(providers.motion_calls) == 3
+        assert len(originals) == 3
+        assert all(path.read_bytes() == content for path, content in originals.items())
+    asyncio.run(run())
+
+
+def test_motion_review_edit_cannot_orphan_an_existing_retry(tmp_path, providers):
+    async def run():
+        project = _project()
+        scene = project["scenes"][0]
+        image = tmp_path / "image.png"
+        Image.new("RGB", (128, 72)).save(image)
+        path, record = await pipeline._motion(scene, project["style"], image, tmp_path)
+        review = _reject_motion(path, record)
+        providers.motion_failure = True
+        with pytest.raises(RuntimeError, match="Gemini unavailable"):
+            await pipeline._motion(scene, project["style"], image, tmp_path)
+        retry = next(tmp_path.rglob("rejected-candidates.json")).parent
+        (retry / "video").mkdir()
+        checkpoint = retry / "video" / "generation-state.json"
+        checkpoint.write_text(json.dumps({"status": "submitted", "request_id": "original-retry"}))
+        original_checkpoint = checkpoint.read_bytes()
+        original_prompt = (retry / "generation-prompt.txt").read_bytes()
+        review["reason"] += " A later review changed this wording."
+        (path.parent / "motion-rejection.json").write_text(json.dumps(review))
+        with pytest.raises(ValueError, match="changed after its retry stage"):
+            await pipeline._motion(scene, project["style"], image, tmp_path)
+        assert len(providers.motion_calls) == 2
+        assert checkpoint.read_bytes() == original_checkpoint
+        assert (retry / "generation-prompt.txt").read_bytes() == original_prompt
+        assert len(list(tmp_path.rglob("rejected-candidates.json"))) == 1
+    asyncio.run(run())
 
 
 def test_gemini_failure_is_visible_and_retry_preserves_audio_artwork(tmp_path, providers):

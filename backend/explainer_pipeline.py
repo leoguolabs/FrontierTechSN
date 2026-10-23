@@ -41,6 +41,7 @@ WIDTH, HEIGHT = 1920, 1080
 SAMPLE_RATE = 48000
 CONTRACT_VERSION = 1
 TEXT_LAYOUT_VERSION = 3
+MAX_MOTION_ATTEMPTS = 3
 _SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$")
 _HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
 Log = Callable[[str], None]
@@ -191,13 +192,19 @@ Art direction: {style.get('visual_direction', '')}
 Keep the camera steady and movement subtle. Show a short, complete action with a clear settled endpoint; avoid a long buildup. Do not create a montage or new scene. No typography, subtitles, logos or audio. Play the action once, settle naturally, and hold the final pose. Never restart the action or loop."""
 
 
-def _motion_generation_prompt(scene: dict) -> str:
-    return f"""Generate a silent 10-second landscape 16:9 video from the uploaded picture now.
+def _motion_generation_prompt(scene: dict, feedback: list[str] | None = None) -> str:
+    prompt = f"""Generate a silent 10-second landscape 16:9 video from the uploaded picture now.
 Keep the camera fixed. Animate one small gesture or prop movement that supports this idea: {scene['narration']}
-Use only the people and objects already pictured. Preserve their structure, meaning, positions, drawing style and colors. Make the action once, then settle and hold. No scene changes, looping, added text, speech or music."""
+Use only the people and objects already pictured. Preserve their structure, meaning, positions, drawing style and colors. Make the action once, then settle and hold. No scene changes, looping, added text, speech or music.
+Treat still-image composition descriptions as the initial frame. Follow explicit scene-specific motion restrictions when choosing what may move.
+Scene direction: {scene['visual_prompt']}"""
+    if feedback:
+        prompt += "\nCorrect these observed defects in earlier candidates:\n" + "\n".join(feedback)
+    return prompt
 
 
-def _motion_acquisition_prompt(stage: Path, scene: dict, canonical: str, root: Path) -> tuple[str, Path]:
+def _motion_acquisition_prompt(stage: Path, scene: dict, canonical: str, root: Path, *,
+                               feedback: list[str] | None = None) -> tuple[str, Path]:
     checkpoint = _safe(stage / "video" / "generation-state.json", root)
     path = _safe(stage / "generation-prompt.txt", root)
     state = None
@@ -215,7 +222,7 @@ def _motion_acquisition_prompt(stage: Path, scene: dict, canonical: str, root: P
     if state and state["status"] not in {"new", "failed", "quota_exhausted"}:
         prompt = previous
     else:
-        prompt = _motion_generation_prompt(scene)
+        prompt = _motion_generation_prompt(scene, feedback)
         if path.exists() and previous != prompt:
             digest = hashlib.sha256(previous.encode()).hexdigest()[:24]
             _write(stage / "video" / "history" / f"generation-prompt-{digest}.txt", previous, root)
@@ -909,12 +916,63 @@ async def _thumbnail(project: dict, root: Path, log: Log, concept: str = "concep
             "thumbnail_prompt_path": str((stage / "prompt.txt").relative_to(root))}
 
 
+def _motion_rejection(stage: Path, key: str, root: Path) -> dict | None:
+    path = _safe(stage / "motion-rejection.json", root)
+    if not path.exists():
+        return None
+    if path.stat().st_size > 16384:
+        raise ValueError("Motion rejection exceeds 16 KiB")
+    review = json.loads(path.read_text())
+    cached = _cached(stage, key, root)
+    fields = {"version", "input_hash", "source_sha256", "reason", "evidence"}
+    if (not isinstance(review, dict) or set(review) != fields
+            or type(review["version"]) is not int or review["version"] != 1
+            or review["input_hash"] != key or not cached
+            or not isinstance(review["source_sha256"], str)
+            or not re.fullmatch(r"[0-9a-f]{64}", review["source_sha256"])
+            or review["source_sha256"] != cached["files"].get("motion.mp4")
+            or not isinstance(review["reason"], str) or not review["reason"].strip()
+            or len(review["reason"]) > 2000
+            or not isinstance(review["evidence"], list) or not 1 <= len(review["evidence"]) <= 8):
+        raise ValueError("Motion rejection does not match a retained completed candidate")
+    for item in review["evidence"]:
+        if (not isinstance(item, dict) or set(item) != {"path", "sha256"}
+                or not isinstance(item["path"], str) or not item["path"]):
+            raise ValueError("Motion rejection evidence is invalid")
+        evidence = _safe(stage / item["path"], stage)
+        if not evidence.is_file() or _sha(evidence) != item["sha256"]:
+            raise ValueError("Motion rejection evidence is missing or changed")
+    return {"motion_path": str((stage / "motion.mp4").relative_to(root)),
+            "source_sha256": review["source_sha256"], "reason": review["reason"],
+            "rejection_path": str(path.relative_to(root)), "rejection_sha256": _sha(path)}
+
+
 async def _motion(scene: dict, style: dict, image: Path, root: Path) -> tuple[Path, dict]:
     prompt = _motion_prompt(scene, style)
     key = _hash({"version": CONTRACT_VERSION, "prompt": prompt, "image": _sha(image)})
-    stage = _stage(root, scene["id"], "motion", key)
-    async with owned_media_session(stage, "gemini", recover_only=True):
-        pass
+    base_key = key
+    rejected = []
+    for attempt in range(1, MAX_MOTION_ATTEMPTS + 1):
+        stage = _stage(root, scene["id"], "motion", key)
+        if rejected:
+            lineage = _safe(stage / "rejected-candidates.json", root)
+            if lineage.exists() and json.loads(lineage.read_text()) != rejected:
+                raise ValueError("Motion rejection changed after its retry stage was created")
+            if not lineage.exists():
+                _json(lineage, rejected, root)
+        async with owned_media_session(stage, "gemini", recover_only=True):
+            pass
+        rejection = _motion_rejection(stage, key, root)
+        if rejection is None:
+            break
+        rejected.append(rejection)
+        if attempt == MAX_MOTION_ATTEMPTS:
+            raise RuntimeError(f"Motion failed visual review after {attempt} retained candidates")
+        # Stable candidate identity prevents an edited review from orphaning a
+        # retry that may already have a submitted provider job. Its full review
+        # binding is immutable in the next stage's lineage record above.
+        key = _hash({"base_motion_hash": base_key, "rejected_input_hash": key,
+                     "rejected_source_sha256": rejection["source_sha256"]})
     cached = _cached(stage, key, root)
     if cached:
         return stage / "motion.mp4", cached
@@ -931,7 +989,9 @@ async def _motion(scene: dict, style: dict, image: Path, root: Path) -> tuple[Pa
     wait = pending_gemini_wait()
     if wait:
         raise GeminiVideoDeferred(wait["reason"], wait["evidence"], scene["id"])
-    generation_prompt, generation_prompt_path = _motion_acquisition_prompt(stage, scene, prompt, root)
+    generation_prompt, generation_prompt_path = _motion_acquisition_prompt(
+        stage, scene, prompt, root, feedback=[item["reason"] for item in rejected],
+    )
     try:
         raw, conversation = await _generate_video(generation_prompt, keyframe, None, stage, LANDSCAPE, entry="chat")
     except Exception as exc:
@@ -945,8 +1005,12 @@ async def _motion(scene: dict, style: dict, image: Path, root: Path) -> tuple[Pa
     final = stage / "motion.mp4"
     shutil.copyfile(raw, stage / "motion.partial.mp4")
     (stage / "motion.partial.mp4").replace(final)
-    return final, _complete(stage, key, [final, stage / "prompt.txt", generation_prompt_path, keyframe], root,
+    files = [final, stage / "prompt.txt", generation_prompt_path, keyframe]
+    if rejected:
+        files.append(stage / "rejected-candidates.json")
+    return final, _complete(stage, key, files, root,
                             provider="gemini_web_opencli", conversation_url=conversation,
+                            generation_attempt=attempt, rejected_candidates=rejected,
                             source_duration_seconds=measured,
                             playback_policy="play_once_fit_longer_or_hold_shorter")
 

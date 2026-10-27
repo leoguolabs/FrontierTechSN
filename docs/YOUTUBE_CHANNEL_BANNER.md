@@ -1,6 +1,101 @@
 # Bytefront Studio YouTube branding
 
-## Published configuration — October 16, 2026
+## Published configuration — October 27, 2026
+
+Channel: [Bytefront Studio](https://www.youtube.com/@BytefrontStudio), handle `@BytefrontStudio`.
+
+The current direction is weekly technology-news Shorts under Bytefront Espresso, with Byte by Byte providing deeper explanations of selected major stories and compatible evergreen technology questions. The page promises a weekly Espresso cadence; it does not promise weekly Byte by Byte episodes. The green identity and avatar remain in use.
+
+This update changes the public channel description, banner, playlist metadata and homepage. It does not upload or publish videos, change video metadata or playlist membership, or change production scheduling and automation.
+
+### Current banner
+
+- Upload file: `outputs/channel-branding-20261027/weekly-shorts-banner.jpg`.
+- Export: 2560 × 1440 pixels, 552,670 bytes.
+- SHA-256: `d73aa6d31e219ddad5eb882679d483b8f6c222aee6f5dc525a375ff7a81748f4`.
+- Generated with the built-in `image_gen` tool, using the October 16 green banner as the edit reference. The generated image was 1672 × 941 pixels; `sips` resized and exported the upload JPEG. It is not a native 2560 pixel generation.
+- Exact prompt: `outputs/channel-branding-20261027/banner-prompt.txt`.
+- The YouTube all-device crop preview and public desktop channel header were visually checked. The complete logo, title, tagline and both program labels fit in the all-device area.
+
+Exact copy:
+
+```text
+Bytefront Studio
+Understand technology. See what changes.
+Byte by Byte · Deep dives
+Bytefront Espresso · Weekly news Shorts
+```
+
+### Current channel description
+
+```text
+Weekly tech news Shorts, with deeper explanations of the stories that matter.
+
+Bytefront Espresso — technology news in Shorts, updated weekly. A concise selection of developments in AI, chips, robotics and the business behind them.
+
+Byte by Byte — visual explainers that unpack the context, ideas and consequences behind major stories, and how technology changes the way we work, learn and live.
+
+Start with Espresso for the headlines. Go deeper with Byte by Byte for selected stories.
+
+Subscribe for weekly news Shorts and in-depth explainers.
+```
+
+### Current playlists and homepage
+
+| Public playlist | ID | State verified in Studio |
+| --- | --- | --- |
+| Byte by Byte \| Tech Deep Dives | `PLIaUJHRYBc_I` | Existing playlist renamed; 1 video |
+| Bytefront Espresso \| Weekly News Shorts | `PLaQke_WkCT54` | New playlist; 0 videos |
+| Bytefront Espresso \| News Briefings Archive | `PLZP1y70pG1Uc` | Existing playlist renamed; Studio reports 12 items; membership preserved |
+
+All three playlists use `Date published (newest)`. The private Growth and Reference playlists were not changed or featured. Existing long-form news is labeled as an archive rather than placed in the new Shorts playlist. The existing archive artwork remains appropriate for the historical briefings.
+
+Home is enabled. Both the channel trailer for unsubscribed viewers and the featured video for returning subscribers use the already-public Byte by Byte episode [eSCAIhcwQ-A](https://www.youtube.com/watch?v=eSCAIhcwQ-A), duration 9:33. Studio's video picker displays `The AI Study Trap: Why Easy Practice Can Fool You`; the public channel displays `AI Helped Them Practice. Then They Scored 17% Lower.` for the same video ID. This update did not change its title.
+
+The saved section order below the featured-video slots is:
+
+1. Single playlist: `Byte by Byte | Tech Deep Dives`.
+2. Single playlist: `Bytefront Espresso | Weekly News Shorts`.
+3. Native `Short videos` shelf.
+4. Single playlist: `Bytefront Espresso | News Briefings Archive`.
+
+The old Popular videos shelf was removed from Home. Studio currently shows no uploaded Shorts and says the Short videos shelf will appear after a short video is uploaded. The weekly Shorts playlist is empty; its homepage position is reserved, but it is not yet visible to public visitors. Video-specific routing from a Short to a corresponding Byte by Byte episode still needs to be configured when those Shorts exist.
+
+Byte by Byte playlist description:
+
+```text
+Go beyond the headlines with Byte by Byte, the visual explainer series from Bytefront Studio. We unpack the context, ideas and consequences behind major technology stories, alongside questions about how technology changes the way we work, learn and live.
+
+For a quick weekly news update, watch Bytefront Espresso Shorts. Selected stories get a deeper explanation here.
+```
+
+Weekly News Shorts playlist description:
+
+```text
+Technology news in Shorts from Bytefront Studio, updated weekly. A concise selection of developments in AI, chips, robotics and the business behind them.
+
+For the context, ideas and consequences behind selected major stories, watch Byte by Byte | Tech Deep Dives.
+```
+
+News Briefings Archive playlist description:
+
+```text
+Earlier long-form Bytefront Espresso news briefings, preserved as an archive. These episodes reflect the news and information available at their original publication dates.
+
+Espresso now brings you technology news in Shorts, updated weekly. Find new short updates in Bytefront Espresso | Weekly News Shorts, and explore selected stories in depth with Byte by Byte.
+```
+
+### Verification and retained evidence
+
+- Reloading Studio confirmed both featured-video selections and the exact four-section order above, with Publish disabled.
+- The Studio playlist listing confirmed all three public titles, descriptions and item counts after saving.
+- The public channel showed the new banner and the complete new description. The live channel reported 12 subscribers and 12 public videos; these are observations from October 27, not permanent totals.
+- After propagation and a fresh Home navigation, the public page displayed the featured Byte by Byte episode, its playlist and the news archive in that order; the Popular videos shelf was absent. The empty weekly playlist and native Shorts shelf were hidden.
+- Screenshots and text snapshots are retained in `outputs/channel-branding-20261027/`: `studio-layout-published.jpg`, `studio-layout-published.txt`, `channel-description-published.jpg`, `channel-home-published.jpg`, and `channel-home-published.txt`. Generated artwork and evidence remain in ignored `outputs/`.
+
+## Historical published configuration — October 16, 2026
+
+The following records the October 16 state and is superseded by the October 27 configuration above. Counts and statements about an empty Byte by Byte playlist describe that earlier date.
 
 Channel: [Bytefront Studio](https://www.youtube.com/@BytefrontStudio). The display name is `Bytefront Studio`; the handle remains `@BytefrontStudio`.
 

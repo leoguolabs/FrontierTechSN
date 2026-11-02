@@ -1,5 +1,13 @@
 # Bytefront Studio YouTube branding
 
+## New design and automation decision — November 2, 2026
+
+The user requested a new identity based on the actual Math in AI film's midcentury printed cartoon style, with a fixed, less formal and more endearingly awkward character. The [v03 identity guide](brand/BYTEFRONT_IDENTITY.md) records the character master, avatar, crop-safe banner export, and two static series ID keyframes. These assets are local design drafts; they have not been uploaded. No publication timing or cadence appears in the new artwork.
+
+The user subsequently cancelled scheduling and asked to delete the recurring task. Codex automation `frontiertechsn` was deleted and its file absence checked; legacy daily generation, catch-up and automatic publishing remain disabled. No replacement automation was created. The [on-demand editorial workflow](production/BYTEFRONT_EDITORIAL_WORKFLOW.md) preserves Espresso Shorts and selected same-topic Byte by Byte explanations with two-way routing. It does not convert the legacy daily long-form backend into a Shorts renderer.
+
+The October 27 public configuration below is retained as a dated historical observation, not a fresh verification or a claim that the v03 identity is live.
+
 ## Published configuration — October 27, 2026
 
 Channel: [Bytefront Studio](https://www.youtube.com/@BytefrontStudio), handle `@BytefrontStudio`.

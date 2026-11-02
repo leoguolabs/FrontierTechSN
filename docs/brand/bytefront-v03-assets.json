@@ -1,0 +1,146 @@
+{
+  "identity_version": "bytefront-midcentury-v03",
+  "date": "2026-11-02",
+  "status": "local_design_draft_not_published",
+  "generator": "built-in image_gen",
+  "motion_rendered": false,
+  "prompts": "docs/brand/bytefront-v03-prompts.json",
+  "assets": [
+    {
+      "path": "outputs/channel-identity-20261102/character-master-v03.png",
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 2132411,
+      "sha256": "e3f635e6b410ae20cb07f5687591c77381800363d797b9739b2ab9bcdb7b49a4",
+      "prompt_id": "character-master-v03",
+      "references": [
+        "math-v17-research-desk",
+        "math-v17-switches",
+        "prior-rounded-banner"
+      ]
+    },
+    {
+      "path": "outputs/channel-identity-20261102/avatar-v03.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "bytes": 2258531,
+      "sha256": "ccd5dc85b031fd04659ef1ac273614b0827e77e69cda916cd1321aac4b02ad3e",
+      "prompt_id": "avatar-v03",
+      "references": [
+        "character-master-v03.png",
+        "channel-lockup-v03.png"
+      ]
+    },
+    {
+      "path": "outputs/channel-identity-20261102/channel-lockup-v03.png",
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 1900295,
+      "sha256": "03ef936353364c64696665428f8986f67c62e256b1fdb0d1b4625f906b6b8d1f",
+      "prompt_id": "channel-lockup-v03",
+      "references": [
+        "character-master-v03.png",
+        "math-v17-switches"
+      ]
+    },
+    {
+      "path": "outputs/channel-identity-20261102/channel-banner-v03-source.png",
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 1870061,
+      "sha256": "3bfd09a9e8cc36b8d40020b67c3c89fb1bc9f50d1a57386c6ffd83ba7d43dfb1",
+      "prompt_id": "channel-banner-v03-safe",
+      "references": [
+        "channel-lockup-v03.png"
+      ]
+    },
+    {
+      "path": "outputs/channel-identity-20261102/channel-banner-v03-2560x1440.jpg",
+      "pixels": [
+        2560,
+        1440
+      ],
+      "bytes": 588507,
+      "sha256": "e3ea07205fee7f12e050e520b460e57958ba8d5c9b071cfb104d4129f0109a83",
+      "prompt_id": "channel-banner-v03-safe",
+      "references": [
+        "channel-lockup-v03.png"
+      ]
+    },
+    {
+      "path": "outputs/channel-identity-20261102/channel-banner-v03-safe-area.jpg",
+      "pixels": [
+        1544,
+        423
+      ],
+      "bytes": 102218,
+      "sha256": "85bb14807c0baa633e8a5ce11146b42cfc2e014d4aad4f03e7f348b5c9fe47ec",
+      "prompt_id": "channel-banner-v03-safe",
+      "references": [
+        "channel-lockup-v03.png"
+      ]
+    },
+    {
+      "path": "outputs/channel-identity-20261102/byte-by-byte-id-keyframe-v03.png",
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 1993189,
+      "sha256": "5b33db7bccf8775a8f5f511c37a9d42a213cd0d1136bd79c4bcbd710adf127fb",
+      "prompt_id": "byte-by-byte-id-keyframe-v03",
+      "references": [
+        "character-master-v03.png",
+        "math-v17-research-desk"
+      ]
+    },
+    {
+      "path": "outputs/channel-identity-20261102/espresso-id-keyframe-v03.png",
+      "pixels": [
+        941,
+        1672
+      ],
+      "bytes": 2343347,
+      "sha256": "c8b3bb17214019c5c90ea047066c5a36460026c01f09193943380bd7e7f78af1",
+      "prompt_id": "espresso-id-keyframe-v03",
+      "references": [
+        "character-master-v03.png",
+        "math-v17-switches"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "id": "math-v17-research-desk",
+      "path": "/Volumes/TP-1TB/WorspacePlus/Myself/codex-film-studio-projects/math-in-ai-bilingual-v17/review/encoded-v17/zh/zh-v17-002-encoded.png",
+      "sha256": "5dc7de5f848815251016d3708914fffec6f3a077e0a2e7db1ac344c0d5ce7e16",
+      "role": "visual_reference_only"
+    },
+    {
+      "id": "math-v17-switches",
+      "path": "/Volumes/TP-1TB/WorspacePlus/Myself/codex-film-studio-projects/math-in-ai-bilingual-v17/review/encoded-v17/zh/zh-v17-023-encoded.png",
+      "sha256": "60b5dfc9fdd55120d0b8d087a4bec82d652270764bde7363a1acdb26d97f4896",
+      "role": "visual_reference_only"
+    },
+    {
+      "id": "prior-rounded-banner",
+      "path": "/Users/leoguo/.codex/generated_images/01a14309-6163-71e2-a197-f0c0008528e7/exec-af63f147-b48e-470b-94cf-296a97af95ca.png",
+      "sha256": "d53ee32d4262cb5370d2230059e4967efb588548fce84982851d897f0e04fac0",
+      "role": "visual_reference_only"
+    }
+  ],
+  "checks": {
+    "visual_review": "All generated frames inspected; central banner crop inspected; no schedule copy in v03 assets.",
+    "online_upload": "Not performed",
+    "character_rig": "Not created",
+    "banner_export": "sips resample, not native 2560 generation"
+  }
+}

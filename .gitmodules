@@ -4,3 +4,6 @@
 [submodule "claude-agent-sdk-demos"]
 	path = claude-agent-sdk-demos
 	url = git@github.com:anthropics/claude-agent-sdk-demos.git
+[submodule "codex-film-studio"]
+	path = codex-film-studio
+	url = git@github.com:visiontrail/codex-film-studio.git

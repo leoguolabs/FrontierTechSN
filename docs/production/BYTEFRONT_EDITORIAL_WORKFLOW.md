@@ -1,4 +1,6 @@
-# Bytefront Studio · 按需制作流程
+# Ooh, Lemme See! / 让我捅咕捅咕 · 按需制作流程
+
+身份更新：2026-11-02 用户指定英文名 `Ooh, Lemme See!`、角色 `Goo`，中文名 `让我捅咕捅咕`、角色 `咕仔`。新素材使用[咕仔 v04 规范](../brand/GOO_IDENTITY.md)，同一张 ID/横幅不混排中英文。Byte by Byte 与 Espresso 仍作为栏目；本文旧文件名为兼容历史链接保留。
 
 生效决定：2026-11-02。新闻用 Espresso Shorts，重点新闻配合同题 Byte by Byte 深度解读。用户随后明确“不需要排期，把周期任务也删掉”，因此不设置制作日、发布时间、自动触发或自动发布；周更是此前的内容节奏讨论，不再作为执行器排期或 ID 文案。
 
@@ -13,7 +15,7 @@
 
 ## 每次制作的入口
 
-收到当前一次的选题/制作请求后，建立独立的 Codex Film Studio 工程，选 `midcentury-cartoon`，按[频道 ID 规范](../brand/BYTEFRONT_IDENTITY.md)附上固定角色母版。共享风格库只读，频道特有资产放在独立工程。项目路径以当前 `codex-film-studio` 子模块为库，不使用已经迁移的旧库路径。
+收到当前一次的选题/制作请求后，建立独立的 Codex Film Studio 工程，选 `midcentury-cartoon`，按[频道 ID 规范](../brand/GOO_IDENTITY.md)附上用户指定的咕仔原始角色参考图。从[当前身份入口](../brand/IDENTITY_CURRENT.json)取与该片语言一致的 ID；无文字头像共用。共享风格库只读，频道特有资产放在独立工程。项目路径以当前 `codex-film-studio` 子模块为库，不使用已经迁移的旧库路径。
 
 项目命名建议：`espresso-YYYYMMDD-topic-slug`；对应深度片 `byte-by-byte-YYYYMMDD-topic-slug`。日期标识本次工程，不构成未来排期。同一事件共享 `topic_id` 和证据记录。
 
@@ -26,7 +28,8 @@
   "trigger": "user_request",
   "scheduled_at": null,
   "auto_publish": false,
-  "identity_version": "bytefront-midcentury-v03",
+  "identity_version": "goo-midcentury-v04",
+  "identity_language": "en",
   "short_video_id": null,
   "deep_dive_video_id": null,
   "related_video_verified": false,

@@ -1,5 +1,11 @@
 # Bytefront Studio YouTube branding
 
+## Goo identity and separate language editions — November 2, 2026
+
+The user supplied a new CHARACTER / 04 reference and specified `Ooh, Lemme See!` with character `Goo`, and `让我捅咕捅咕` with character `咕仔`. They explicitly require separate English and Chinese images. The [new v04 guide](brand/GOO_IDENTITY.md) and [current identity entry](brand/IDENTITY_CURRENT.json) supersede the v03 character/name design below. Each language has its own static video ID and banner; the text-free avatar is shared. The temporary bilingual composition is discarded.
+
+These are local design assets. The public channel name, handle, descriptions and published artwork have not been changed by this design revision. The prior deletion of recurring production remains in effect; no automation or publishing schedule was created.
+
 ## New design and automation decision — November 2, 2026
 
 The user requested a new identity based on the actual Math in AI film's midcentury printed cartoon style, with a fixed, less formal and more endearingly awkward character. The [v03 identity guide](brand/BYTEFRONT_IDENTITY.md) records the character master, avatar, crop-safe banner export, and two static series ID keyframes. These assets are local design drafts; they have not been uploaded. No publication timing or cadence appears in the new artwork.

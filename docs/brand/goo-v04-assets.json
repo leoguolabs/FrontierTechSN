@@ -1,0 +1,203 @@
+{
+  "version": "goo-midcentury-v04",
+  "date": "2026-11-02",
+  "status": "design_draft_not_published",
+  "separate_language_images": true,
+  "generator": "built-in image_gen",
+  "names": {
+    "en": {
+      "brand": "Ooh, Lemme See!",
+      "character": "Goo"
+    },
+    "zh": {
+      "brand": "让我捅咕捅咕",
+      "character": "咕仔"
+    }
+  },
+  "avatar_text": null,
+  "assets": [
+    {
+      "path": "outputs/goo-identity-20261102/goo-user-reference-v04.png",
+      "language": "reference",
+      "brand_asset": false,
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 2035122,
+      "sha256": "eb69269ce2bcb1d7483e15b772d1c98080df52f8e0a835a97cedd06de4e70680",
+      "prompt_id": null,
+      "input_paths": []
+    },
+    {
+      "path": "outputs/goo-identity-20261102/id-en-v04.png",
+      "language": "en",
+      "brand_asset": true,
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 1834665,
+      "sha256": "be02d163a147701b8820d54765a175879515d3c6f150150d5b41cf3bfd4eb320",
+      "prompt_id": "english-id",
+      "input_paths": [
+        "outputs/goo-identity-20261102/provenance/superseded-bilingual-bridge.png"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/id-zh-v04.png",
+      "language": "zh",
+      "brand_asset": true,
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 1825804,
+      "sha256": "ba9e1b42f2efe26974083554f50c5defe7bc48a76314b1b7524268c11bf18881",
+      "prompt_id": "chinese-id",
+      "input_paths": [
+        "outputs/goo-identity-20261102/id-en-v04.png"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/avatar-v04.png",
+      "language": "none",
+      "brand_asset": true,
+      "pixels": [
+        1254,
+        1254
+      ],
+      "bytes": 2712195,
+      "sha256": "eecc2cf6373cb1f7c0b29fba750984ac2cfd398cecda18dd5d01cc0c606e88ef",
+      "prompt_id": "shared-avatar",
+      "input_paths": [
+        "outputs/goo-identity-20261102/goo-user-reference-v04.png"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/banner-en-v04-source.png",
+      "language": "en",
+      "brand_asset": true,
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 1615800,
+      "sha256": "eb149d905f80d1f63def3209a8c58d40f606d217f20a6db0ff72285ed0c7a17d",
+      "prompt_id": "english-banner-safe",
+      "input_paths": [
+        "outputs/goo-identity-20261102/provenance/english-banner-before-safe-area.png"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/banner-zh-v04-source.png",
+      "language": "zh",
+      "brand_asset": true,
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 1616111,
+      "sha256": "ecc6362ef22ab870291a4779b75171b69820a17ef458f3db4bed543350dd5a92",
+      "prompt_id": "chinese-banner",
+      "input_paths": [
+        "outputs/goo-identity-20261102/banner-en-v04-source.png",
+        "outputs/goo-identity-20261102/id-zh-v04.png"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/banner-en-v04-2560x1440.jpg",
+      "language": "en",
+      "brand_asset": true,
+      "pixels": [
+        2560,
+        1440
+      ],
+      "bytes": 430227,
+      "sha256": "8d211f632e43df26aa301d107d0aee887186acfa232d10bc787fb12f0cbcb2d3",
+      "prompt_id": null,
+      "input_paths": [
+        "outputs/goo-identity-20261102/banner-en-v04-source.png"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/banner-zh-v04-2560x1440.jpg",
+      "language": "zh",
+      "brand_asset": true,
+      "pixels": [
+        2560,
+        1440
+      ],
+      "bytes": 443414,
+      "sha256": "83ed54e9db48963287b9b49af3a0dee96e3c09a5f171db0e343393351d1d5fe7",
+      "prompt_id": null,
+      "input_paths": [
+        "outputs/goo-identity-20261102/banner-zh-v04-source.png"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/banner-en-v04-safe-area.jpg",
+      "language": "en",
+      "brand_asset": false,
+      "pixels": [
+        1544,
+        423
+      ],
+      "bytes": 98176,
+      "sha256": "c8bdb0eb20a8eeb5fe362f05af940d42b2864661eacbe40ed6fda632c1602b41",
+      "prompt_id": null,
+      "input_paths": [
+        "outputs/goo-identity-20261102/banner-en-v04-2560x1440.jpg"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/banner-zh-v04-safe-area.jpg",
+      "language": "zh",
+      "brand_asset": false,
+      "pixels": [
+        1544,
+        423
+      ],
+      "bytes": 103816,
+      "sha256": "907366454f331763718a8bf0454fcc73b164366964a5902b9eb2720cccd61c2d",
+      "prompt_id": null,
+      "input_paths": [
+        "outputs/goo-identity-20261102/banner-zh-v04-2560x1440.jpg"
+      ]
+    }
+  ],
+  "generation_provenance": [
+    {
+      "path": "outputs/goo-identity-20261102/provenance/superseded-bilingual-bridge.png",
+      "status": "not_delivered",
+      "sha256": "beb17327a33e6f1fa0c291f6bb0eec9a327de88bf58c27ee1dca99d0c17f0a50",
+      "prompt_id": "superseded-bilingual-bridge",
+      "input_paths": [
+        "outputs/goo-identity-20261102/goo-user-reference-v04.png"
+      ]
+    },
+    {
+      "path": "outputs/goo-identity-20261102/provenance/english-banner-before-safe-area.png",
+      "status": "not_delivered",
+      "sha256": "3ca8835ae7a86a7c1796355301ba73f988a78057f4be537e60a1941d6344411b",
+      "prompt_id": "english-banner-initial",
+      "input_paths": [
+        "outputs/goo-identity-20261102/goo-user-reference-v04.png",
+        "outputs/goo-identity-20261102/id-en-v04.png"
+      ]
+    }
+  ],
+  "verification": {
+    "visual": "English-only and Chinese-only ID and banner reviewed separately; shared avatar has no text; reference characters and main hand contact reviewed.",
+    "banner_crop": "Both central 1544x423 crops inspected; lettering, character and name complete.",
+    "native_generated_size": "Landscape 1672x941; avatar 1254x1254",
+    "banner_export": "sips resampled JPEG 2560x1440, not native 2560 generation",
+    "not_performed": [
+      "YouTube upload",
+      "Live device crop verification",
+      "Animation render",
+      "Character rigging",
+      "Audio creation"
+    ]
+  }
+}

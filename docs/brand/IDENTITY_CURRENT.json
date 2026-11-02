@@ -1,0 +1,22 @@
+{
+  "version": "goo-midcentury-v04",
+  "status": "design_draft_not_published",
+  "guide": "docs/brand/GOO_IDENTITY.md",
+  "manifest": "docs/brand/goo-v04-assets.json",
+  "prompts": "docs/brand/goo-v04-prompts.json",
+  "character_reference": "outputs/goo-identity-20261102/goo-user-reference-v04.png",
+  "languages_separate": true,
+  "en": {
+    "brand_name": "Ooh, Lemme See!",
+    "character_name": "Goo",
+    "id": "outputs/goo-identity-20261102/id-en-v04.png",
+    "banner": "outputs/goo-identity-20261102/banner-en-v04-2560x1440.jpg"
+  },
+  "zh": {
+    "brand_name": "让我捅咕捅咕",
+    "character_name": "咕仔",
+    "id": "outputs/goo-identity-20261102/id-zh-v04.png",
+    "banner": "outputs/goo-identity-20261102/banner-zh-v04-2560x1440.jpg"
+  },
+  "shared_avatar": "outputs/goo-identity-20261102/avatar-v04.png"
+}

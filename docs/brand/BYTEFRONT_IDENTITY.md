@@ -1,5 +1,7 @@
 # Bytefront Studio · 复古印刷卡通 ID v03
 
+本页已被 2026-11-02 用户指定的 [Goo / 咕仔 v04 身份规范](GOO_IDENTITY.md)取代。v03 名称与角色只作历史参考；后续制作从 [IDENTITY_CURRENT.json](IDENTITY_CURRENT.json)选择新角色及独立的中英文资产。
+
 更新：2026-11-02。状态：设计稿，尚未替换 YouTube 线上品牌；本次交付静态资产与动作设计，不是已经制作完成的动态片头。
 
 ## 设计依据

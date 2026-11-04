@@ -10,6 +10,13 @@ One independent Nginx container serves both sample catalogues on the LAN:
 Both catalogues support search, groups, individual playback, seeking, continuous
 playback, individual WAV downloads, and a complete WAV/manifest ZIP. The same
 English script is used for both engines. Waveforms come from the actual PCM.
+Every voice card includes a one-click usage prompt with its engine, exact voice
+ID, endpoint, supported parameters and a narration-text placeholder. Kokoro
+prompts refer to the configured Bearer credential without including a secret;
+Pocket prompts use the actual `voice_url` form field and default natural speed.
+Copying uses the Clipboard API in secure contexts and a selection-based fallback
+on the LAN HTTP origin. If browser policy blocks both, a dialog exposes the full
+selected prompt for manual copying. Copying does not submit a synthesis request.
 Samples are already generated: visiting the pages does not call a model or
 require a TTS API key. This service is a listening library, not a synthesis API.
 

@@ -1,0 +1,46 @@
+name: kokoro-tts
+
+services:
+  kokoro:
+    image: kokoro-tts:nr-test-v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    restart: unless-stopped
+    user: "10001:10001"
+    cpus: 8.0
+    cpu_shares: 128
+    mem_limit: 4g
+    pids_limit: 128
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    stop_grace_period: 45s
+    environment:
+      KOKORO_API_KEY: "${KOKORO_API_KEY:?Set KOKORO_API_KEY in the private .env file}"
+      KOKORO_CPU_THREADS: "8"
+      KOKORO_MODEL_DIR: /models
+      KOKORO_DATA_DIR: /data/jobs
+      OMP_NUM_THREADS: "8"
+      OPENBLAS_NUM_THREADS: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    ports:
+      - "10.60.11.3:8094:8000"
+    volumes:
+      - ./models:/models:ro
+      - ./data:/data
+    tmpfs:
+      # Phonemizer makes a private temporary copy of libespeak before dlopen.
+      - /tmp:size=128m,mode=1777,exec
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=4).read()"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 180s

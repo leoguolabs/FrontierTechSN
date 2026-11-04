@@ -1,0 +1,8 @@
+.env
+data
+models
+evidence
+__pycache__
+*.wav
+test_service.py
+README.md

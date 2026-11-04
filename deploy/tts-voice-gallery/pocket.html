@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light"><title>Pocket TTS · 声音试验室</title>
+<link rel="stylesheet" href="/assets/catalog.css">
+</head>
+<body class="pocket">
+<div class="wrap">
+<nav class="engine-nav" aria-label="TTS 引擎"><a href="/">声音图书馆</a><a href="/kokoro/" >Kokoro <span>28</span></a><a href="/pocket/" aria-current="page">Pocket TTS <span>21</span></a></nav>
+<header class="mast"><div class="brand"><svg aria-hidden="true" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13v8M10 7v20M17 2v30M24 9v16M31 14v6"/></svg><span>POCKET TTS<br>LISTENING ROOM</span></div><span class="edition">21 VOICES / ONE SHARED SCRIPT</span><a id="all-download" class="download-all" href="samples.zip" download>下载全部 WAV <span aria-hidden="true">↗</span></a></header>
+<main>
+<section class="hero"><div><p class="eyebrow">SMALL MODEL. MANY PERSONALITIES.</p><h1>Pocket <em>TTS</em><span class="zh">声音，自有性格。</span></h1><p class="deck">从 Alba 到 Vera，逐一听见声音的细节。<br>用同一段英文，比较停顿、重音和叙述感。</p><div class="counts"><div><strong>21</strong><span>英语音色</span></div><div><strong>24</strong><span>kHz 原音</span></div><div><strong>01</strong><span>统一文案</span></div></div></div><div class="specimen"><p class="specimen-label">THE SAME WORDS, EVERY TIME</p><blockquote id="sample-text"></blockquote><p class="note">自然语速 · 24 kHz · 单声道 WAV</p></div></section>
+<section aria-label="选择音色"><div class="toolbar"><div class="filters" role="group" aria-label="音色分类"><button class="filter" data-filter="all" aria-pressed="true">全部 <sup>21</sup></button><button class="filter" data-filter="a-f" aria-pressed="false">A—F <sup>10</sup></button><button class="filter" data-filter="g-m" aria-pressed="false">G—M <sup>7</sup></button><button class="filter" data-filter="p-z" aria-pressed="false">P—Z <sup>4</sup></button></div><label class="search"><span class="sr-only">搜索音色</span><input id="search" type="search" placeholder="搜索 Alba、Marius…" autocomplete="off"><span aria-hidden="true">⌕</span></label></div><div class="list-head"><span id="results-count" aria-live="polite"></span><button id="sequence" class="sequence">顺序试听 <span aria-hidden="true">→</span></button></div><div id="grid" class="grid"></div></section>
+</main>
+<footer class="footer"><div>全部样例由 NR-TEST 上的 Pocket TTS 服务生成。<br>当前英语模型的 21 款内置英语音色，不含背景音乐。</div><div><a href="SAMPLE-TEXT.txt" download>下载试听文本</a> · <a href="manifest.json" download>音频清单</a><br><a href="https://github.com/kyutai-labs/pocket-tts" target="_blank" rel="noopener">Pocket TTS 项目 ↗</a></div></footer>
+</div>
+<div class="player-shell"><div class="player"><div class="now"><div class="now-label">NOW PLAYING</div><span id="now-name" class="now-name">选择一款音色</span><span id="now-id" class="now-id"></span><div id="status" class="status" role="status"></div></div><div class="player-middle"><div class="controls"><button id="previous" class="icon-button" aria-label="上一个音色" disabled>◀</button><button id="main-play" class="main-play" aria-label="播放" disabled></button><button id="next" class="icon-button" aria-label="下一个音色" disabled>▶</button></div><div class="progress"><time id="elapsed">0:00</time><label class="sr-only" for="seek">播放进度</label><input id="seek" type="range" min="0" max="1000" value="0" disabled><time id="duration">0:00</time></div></div><label class="player-options"><input id="continuous" type="checkbox">连续播放</label></div></div>
+<audio id="audio" preload="metadata"></audio>
+<script id="catalog" type="application/json">__DATA__</script>
+<script src="/assets/catalog.js" defer></script>
+</body></html>

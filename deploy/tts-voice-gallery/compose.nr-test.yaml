@@ -1,0 +1,31 @@
+name: tts-voice-gallery
+services:
+  gallery:
+    image: tts-voice-gallery:nr-test-v1
+    build: .
+    restart: unless-stopped
+    user: "101:101"
+    cpus: 0.5
+    cpu_shares: 128
+    mem_limit: 128m
+    pids_limit: 32
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    ports:
+      - "10.60.11.3:9014:8080"
+    volumes:
+      - ./site:/srv/gallery:ro
+    tmpfs:
+      - /tmp:size=16m,mode=1777,noexec,nosuid
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: "2"
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/health]
+      interval: 20s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

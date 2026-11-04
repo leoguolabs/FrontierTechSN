@@ -1,0 +1,378 @@
+{
+  "sha256": "e64e2972ee59f453c013f1da99e506244aa5d7d979a7ceabe9e5ad9e61b2a55e",
+  "text": " The camera records a picture. The microphone records sound. How do you line them up? Watch the top stick. When it meets the board, you can see the exact frame. You can hear the same clap as a short spike in the recording. Slide that spike under the frame where the sticks touch. One clap gives both tracks the same starting mark.",
+  "words": [
+    {
+      "word": " The",
+      "start": 0.0,
+      "end": 0.14,
+      "probability": 0.92138671875
+    },
+    {
+      "word": " camera",
+      "start": 0.14,
+      "end": 0.38,
+      "probability": 0.99658203125
+    },
+    {
+      "word": " records",
+      "start": 0.38,
+      "end": 0.76,
+      "probability": 0.998046875
+    },
+    {
+      "word": " a",
+      "start": 0.76,
+      "end": 0.9,
+      "probability": 0.99267578125
+    },
+    {
+      "word": " picture.",
+      "start": 0.9,
+      "end": 1.16,
+      "probability": 0.998046875
+    },
+    {
+      "word": " The",
+      "start": 1.42,
+      "end": 1.64,
+      "probability": 0.998046875
+    },
+    {
+      "word": " microphone",
+      "start": 1.64,
+      "end": 2.02,
+      "probability": 0.9970703125
+    },
+    {
+      "word": " records",
+      "start": 2.02,
+      "end": 2.46,
+      "probability": 0.9951171875
+    },
+    {
+      "word": " sound.",
+      "start": 2.46,
+      "end": 2.84,
+      "probability": 0.9873046875
+    },
+    {
+      "word": " How",
+      "start": 2.98,
+      "end": 3.06,
+      "probability": 0.9970703125
+    },
+    {
+      "word": " do",
+      "start": 3.06,
+      "end": 3.18,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " you",
+      "start": 3.18,
+      "end": 3.28,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " line",
+      "start": 3.28,
+      "end": 3.46,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " them",
+      "start": 3.46,
+      "end": 3.58,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " up?",
+      "start": 3.58,
+      "end": 3.74,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " Watch",
+      "start": 4.0,
+      "end": 4.18,
+      "probability": 0.9951171875
+    },
+    {
+      "word": " the",
+      "start": 4.18,
+      "end": 4.36,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " top",
+      "start": 4.36,
+      "end": 4.56,
+      "probability": 0.99755859375
+    },
+    {
+      "word": " stick.",
+      "start": 4.56,
+      "end": 4.86,
+      "probability": 0.998046875
+    },
+    {
+      "word": " When",
+      "start": 5.14,
+      "end": 5.5,
+      "probability": 0.9990234375
+    },
+    {
+      "word": " it",
+      "start": 5.5,
+      "end": 5.6,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " meets",
+      "start": 5.6,
+      "end": 5.78,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " the",
+      "start": 5.78,
+      "end": 5.9,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " board,",
+      "start": 5.9,
+      "end": 6.1,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " you",
+      "start": 6.2,
+      "end": 6.26,
+      "probability": 0.9990234375
+    },
+    {
+      "word": " can",
+      "start": 6.26,
+      "end": 6.4,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " see",
+      "start": 6.4,
+      "end": 6.54,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " the",
+      "start": 6.54,
+      "end": 6.68,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " exact",
+      "start": 6.68,
+      "end": 6.94,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " frame.",
+      "start": 6.94,
+      "end": 7.34,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " You",
+      "start": 7.58,
+      "end": 7.84,
+      "probability": 0.9990234375
+    },
+    {
+      "word": " can",
+      "start": 7.84,
+      "end": 7.96,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " hear",
+      "start": 7.96,
+      "end": 8.1,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " the",
+      "start": 8.1,
+      "end": 8.26,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " same",
+      "start": 8.26,
+      "end": 8.48,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " clap",
+      "start": 8.48,
+      "end": 8.76,
+      "probability": 0.9990234375
+    },
+    {
+      "word": " as",
+      "start": 8.76,
+      "end": 8.92,
+      "probability": 0.99560546875
+    },
+    {
+      "word": " a",
+      "start": 8.92,
+      "end": 9.04,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " short",
+      "start": 9.04,
+      "end": 9.24,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " spike",
+      "start": 9.24,
+      "end": 9.52,
+      "probability": 0.9990234375
+    },
+    {
+      "word": " in",
+      "start": 9.52,
+      "end": 9.72,
+      "probability": 0.9990234375
+    },
+    {
+      "word": " the",
+      "start": 9.72,
+      "end": 9.8,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " recording.",
+      "start": 9.8,
+      "end": 10.22,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " Slide",
+      "start": 10.62,
+      "end": 11.06,
+      "probability": 0.99365234375
+    },
+    {
+      "word": " that",
+      "start": 11.06,
+      "end": 11.26,
+      "probability": 0.998046875
+    },
+    {
+      "word": " spike",
+      "start": 11.26,
+      "end": 11.52,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " under",
+      "start": 11.52,
+      "end": 11.72,
+      "probability": 0.99609375
+    },
+    {
+      "word": " the",
+      "start": 11.72,
+      "end": 11.82,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " frame",
+      "start": 11.82,
+      "end": 12.08,
+      "probability": 0.9990234375
+    },
+    {
+      "word": " where",
+      "start": 12.08,
+      "end": 12.24,
+      "probability": 0.99267578125
+    },
+    {
+      "word": " the",
+      "start": 12.24,
+      "end": 12.36,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " sticks",
+      "start": 12.36,
+      "end": 12.6,
+      "probability": 0.998046875
+    },
+    {
+      "word": " touch.",
+      "start": 12.6,
+      "end": 12.96,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " One",
+      "start": 13.28,
+      "end": 13.5,
+      "probability": 0.9990234375
+    },
+    {
+      "word": " clap",
+      "start": 13.5,
+      "end": 13.76,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " gives",
+      "start": 13.76,
+      "end": 13.98,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " both",
+      "start": 13.98,
+      "end": 14.24,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " tracks",
+      "start": 14.24,
+      "end": 14.58,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " the",
+      "start": 14.58,
+      "end": 14.78,
+      "probability": 0.99853515625
+    },
+    {
+      "word": " same",
+      "start": 14.78,
+      "end": 15.02,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " starting",
+      "start": 15.02,
+      "end": 15.36,
+      "probability": 0.99951171875
+    },
+    {
+      "word": " mark.",
+      "start": 15.36,
+      "end": 15.68,
+      "probability": 0.998046875
+    }
+  ]
+}

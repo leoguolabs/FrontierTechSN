@@ -1,0 +1,30 @@
+{
+  "file": "math-in-ai-goo-v29-editable.zip",
+  "bytes": 986367299,
+  "sha256": "fc7c71247924e147087c4c56f0cf3ba2c38279ca1f32f394e13f632acb7d3cf6",
+  "payload_files": 689,
+  "inventory_crc_sha256": "pass",
+  "clean_install_caption_layout": "pass",
+  "restored_native_4k_frames": [
+    {
+      "language": "en",
+      "frame": 7673,
+      "sha256": "273c861245d9f405f149cfda35f4b15c67512d01ffd00901bc1c8431af999412"
+    },
+    {
+      "language": "en",
+      "frame": 590,
+      "sha256": "5c57ccb3e9ee85f1958c83a4f4b1ad727c132e579dfc6c5e63febbf92ad9d66e"
+    },
+    {
+      "language": "en",
+      "frame": 13747,
+      "sha256": "2f4b4918d269286ec13cc24013eb55c4ab30c9ed1fd8ccaa6f6eecd815ce7712"
+    },
+    {
+      "language": "zh",
+      "frame": 16762,
+      "sha256": "0535e96cc7f4c35bfac0b3e266946ce3eb751fe3906315716e47c566171e1935"
+    }
+  ]
+}

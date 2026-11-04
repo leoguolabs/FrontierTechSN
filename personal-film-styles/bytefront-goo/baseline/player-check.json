@@ -1,0 +1,43 @@
+{
+  "browser": "Ego Lite",
+  "opening90": {
+    "time": 90.101322,
+    "duration": 573.458333,
+    "rate": 1,
+    "muted": false,
+    "error": null,
+    "ended": false,
+    "decoded": 2167,
+    "dropped": 1
+  },
+  "zero": {
+    "time": 251.142166,
+    "duration": 573.458333,
+    "rate": 1,
+    "muted": false,
+    "error": null,
+    "ended": false,
+    "decoded": 2536,
+    "dropped": 1
+  },
+  "eth": {
+    "time": 331.776731,
+    "duration": 573.458333,
+    "rate": 1,
+    "muted": false,
+    "error": null,
+    "ended": false,
+    "decoded": 2991,
+    "dropped": 1
+  },
+  "ending": {
+    "time": 573.458333,
+    "duration": 573.458333,
+    "rate": 1,
+    "muted": false,
+    "error": null,
+    "ended": true,
+    "decoded": 3195,
+    "dropped": 1
+  }
+}

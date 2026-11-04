@@ -1,0 +1,12 @@
+{
+  "source_docx_sha256": "4fa0cb5d4585e8782032ea002fc0057b54f5de18a7d0056c88a7582210807651",
+  "script_paragraphs": 89,
+  "match_to_document": "Exact paragraph text for all English requests",
+  "voice": "am_eric",
+  "language": "en-us",
+  "speed": 1.0,
+  "provider": "nr-test Kokoro",
+  "audio_edit": "Exact chapter WAVs; paragraphs are anchors within chapters.",
+  "requests": 12,
+  "score": "Parallel Lines"
+}

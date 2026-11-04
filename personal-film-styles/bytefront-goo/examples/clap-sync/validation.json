@@ -1,0 +1,52 @@
+{
+  "test": "New non-math episode rebuilt in a path containing spaces; installed locked Node dependencies, used pinned production Python runtime",
+  "locale": "en",
+  "runtime": {
+    "node": "v24.15.0",
+    "python": "3.11.9",
+    "pyav": "16.0.1"
+  },
+  "seconds": 18,
+  "frames": 432,
+  "preview_sha256": "71390fe416f6df54f811077041f52179dc0df9ba2024d4951ba9bb12f5326e32",
+  "master_sha256": "41c4595ad34ec8a3f6d7f671d5bd83100dc20f533aa7d87d22fdbb9be5153f79",
+  "master_video": {
+    "codec_name": "h264",
+    "width": 3840,
+    "height": 2160,
+    "pix_fmt": "yuv420p",
+    "r_frame_rate": "24/1",
+    "color_space": "bt709",
+    "nb_frames": "432"
+  },
+  "master_audio": {
+    "codec_name": "aac",
+    "sample_rate": "48000",
+    "channels": 2,
+    "duration": "18.000000"
+  },
+  "decoded": "all video and audio streams, guarded FFmpeg, no reported errors",
+  "aac_lufs": "-16.08",
+  "aac_dbtp": "-1.66",
+  "contact_frame": 146,
+  "foley_frame": 146,
+  "match_frame": 309,
+  "sampled_preview_frames": [
+    0,
+    5,
+    40,
+    80,
+    113,
+    136,
+    146,
+    156,
+    272,
+    299,
+    309,
+    319,
+    415
+  ],
+  "asr": "independent mlx-whisper transcription matched the three script paragraphs in order",
+  "subjective_owner_listening": "unreviewed",
+  "zip_restore": "689 payload files independently rehashed during fresh extraction"
+}

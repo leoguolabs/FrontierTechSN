@@ -1,0 +1,8 @@
+{
+ "id":"bytefront-goo","name":"Bytefront Studio · Goo / 咕仔","version":"1.0.0",
+ "scope":"FrontierTechSN personal film style","character_id":"2026-11-02-v04",
+ "rig":"v23c","english_reference":"Math in AI v29","chinese_reference":"Math in AI v23c",
+ "stage":[1920,1080],"master":[3840,2160],"fps":24,"poses_on_twos":true,
+ "default_voices":{"en":"nr-test Kokoro am_eric 1.0","zh":"Volcengine Doubao TTS 2.0 解说小明 2.0"},
+ "owner_approval":{"v15_main_motion_speed":"explicit","v23b_writing_arm_direction":"explicit","v29_overall_listening":"unconfirmed"}
+}

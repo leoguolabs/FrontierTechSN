@@ -1,0 +1,34 @@
+{
+  "file": "media/math-in-ai-en-4k-rebuild-v29.mp4",
+  "sha256": "02829043839bc47474cb8ee0ddedf5f49ff0a6b7bbefcd5d953cbfce2cf21ef6",
+  "bytes": 983884024,
+  "dimensions": [
+    3840,
+    2160
+  ],
+  "fps": 24,
+  "frames": 13763,
+  "seconds": 573.4583333333334,
+  "audio_seconds": 573.458,
+  "audio_codec": "aac",
+  "sample_rate": 48000,
+  "channels": 2,
+  "video_codec": "h264",
+  "pixel_format": "yuv420p",
+  "color_space": "bt709",
+  "color_range": "tv",
+  "full_audio_video_decode": "pass",
+  "encoded_audio_levels": {
+    "input_i": "-15.99",
+    "input_tp": "-1.63",
+    "input_lra": "2.00",
+    "input_thresh": "-26.28",
+    "output_i": "-15.94",
+    "output_tp": "-1.38",
+    "output_lra": "2.00",
+    "output_thresh": "-26.21",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.06"
+  },
+  "perceptual_review": "separate records; not implied by technical checks"
+}

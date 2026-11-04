@@ -1,0 +1,7 @@
+{
+  "source": "lemomo-ai/lemo-opuscar",
+  "revision": "02dce5b6ff6210622788c15319c082e9cb9e7217",
+  "engine_sha256": "261c79fa7aff5489a98d9e44f91659eae10e90d3bcb13a6e23e84098b709b0bf",
+  "hand_source_sha256": "ba0cc26c92935caaa5a64556e424e7ed5f0cdad616f644de276b365ed4c97d1a",
+  "scope": "Generic print primitives and hand only; new production authors all cast, props, subject and composition."
+}

@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "generation": "exec-2b4d16f8-a9e9-4641-a683-da4f460e3272",
+  "file": "assets/goo-v04/expressions-v19.png",
+  "sha256": "55c0eee13b3b9fd7f857139ba85215496d07cbcf8507b67e37cc8ff5af1f55cd",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "prompt_file": "source/expression-prompt-v19.txt",
+  "prompt_is_verbatim": true,
+  "reference_original": "/Users/leoguo/Pictures/BytefrontStudio/ID/2026-11-02-v04/01-character-sheet-yellow-hoodie.png"
+}

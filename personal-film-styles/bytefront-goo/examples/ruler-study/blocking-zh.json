@@ -1,0 +1,37 @@
+{
+  "fps": 24,
+  "language": "zh",
+  "duration_frames": 80,
+  "shots": [
+    {
+      "paragraph": "hold",
+      "scene": "ruler",
+      "ground": "paper",
+      "kicker": "桌边实验",
+      "title": "松开直尺后，它会停在哪里？",
+      "events": {
+        "contact": 14,
+        "release": 34
+      },
+      "start": 0,
+      "end": 80
+    }
+  ],
+  "captions": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "先把直尺的一头固定好。"
+    },
+    {
+      "start": 14,
+      "end": 34,
+      "text": "按弯尺子，暂时按住它。"
+    },
+    {
+      "start": 34,
+      "end": 80,
+      "text": "松手，尺尖会越过原来的位置。"
+    }
+  ]
+}

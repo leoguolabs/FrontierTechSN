@@ -1,0 +1,40 @@
+{
+  "id": "355a3c1480134c1149d81568faa31ddb39404b61ca07c8d6dbad35b3fb3951a8",
+  "status": "completed",
+  "created_at": 1793780190.788395,
+  "request": {
+    "text": "The camera records a picture. The microphone records sound. How do you line them up? Watch the top stick. When it meets the board, you can see the exact frame. You can hear the same clap as a short spike in the recording. Slide that spike under the frame where the sticks touch. One clap gives both tracks the same starting mark.",
+    "voice": "am_eric",
+    "language": "en-us",
+    "speed": 1.0
+  },
+  "identity": {
+    "service": "nr-test-kokoro-v1",
+    "model": {
+      "kokoro-v1.0.onnx": {
+        "sha256": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "bytes": 325505369,
+        "source": "Retained Kokoro v1.0 cache, checksum matched to the existing production model manifest."
+      },
+      "voices-v1.0.bin": {
+        "sha256": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d",
+        "bytes": 28214398,
+        "source": "Retained Kokoro v1.0 cache, checksum matched to the existing production model manifest."
+      }
+    },
+    "kokoro_onnx": "0.6.1"
+  },
+  "cache_hit": false,
+  "started_at": 1793780190.789537,
+  "duration_seconds": 15.979333333333333,
+  "generation_seconds": 17.59043664857745,
+  "real_time_factor": 1.1008241884461671,
+  "sample_rate": 24000,
+  "channels": 1,
+  "encoding": "PCM_16",
+  "bytes": 767052,
+  "audio_sha256": "e64e2972ee59f453c013f1da99e506244aa5d7d979a7ceabe9e5ad9e61b2a55e",
+  "model_float_peak": 0.40641719102859497,
+  "pcm_gain": 1.0,
+  "finished_at": 1793780208.3857117
+}

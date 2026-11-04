@@ -1,0 +1,1283 @@
+{
+  "captions": [
+    {
+      "start": 18,
+      "end": 53,
+      "text": "Seven hundred and twenty-two math manuscripts.",
+      "narration_id": "en-01-01"
+    },
+    {
+      "start": 56,
+      "end": 102,
+      "text": "That was OpenAI's first release.",
+      "narration_id": "en-01-01"
+    },
+    {
+      "start": 105,
+      "end": 158,
+      "text": "Sounds like a big story about AI getting better.",
+      "narration_id": "en-01-02"
+    },
+    {
+      "start": 158,
+      "end": 203,
+      "text": "Now imagine you're a math PhD student,",
+      "narration_id": "en-01-02"
+    },
+    {
+      "start": 203,
+      "end": 247,
+      "text": "and one of those manuscripts lands on your desk.",
+      "narration_id": "en-01-02"
+    },
+    {
+      "start": 249,
+      "end": 284,
+      "text": "You've spent two years on a problem.",
+      "narration_id": "en-01-03"
+    },
+    {
+      "start": 285,
+      "end": 351,
+      "text": "The first proof is supposed to be the main contribution of your thesis.",
+      "narration_id": "en-01-03"
+    },
+    {
+      "start": 359,
+      "end": 424,
+      "text": "You open the new manuscript and—hang on. That's your problem.",
+      "narration_id": "en-01-03"
+    },
+    {
+      "start": 428,
+      "end": 463,
+      "text": "This paper claims to have a proof.",
+      "narration_id": "en-01-03"
+    },
+    {
+      "start": 465,
+      "end": 520,
+      "text": "Do you celebrate, or call your supervisor first?",
+      "narration_id": "en-01-04"
+    },
+    {
+      "start": 522,
+      "end": 560,
+      "text": "I'm Goo, and this is Ooh, Lemme See!",
+      "narration_id": "en-01-intro-01"
+    },
+    {
+      "start": 563,
+      "end": 643,
+      "text": "More recently, OpenAI and Anthropic, the company behind Claude,",
+      "narration_id": "en-01-05"
+    },
+    {
+      "start": 643,
+      "end": 699,
+      "text": "have also announced research claiming to overturn ETH,",
+      "narration_id": "en-01-05"
+    },
+    {
+      "start": 699,
+      "end": 759,
+      "text": "an important hypothesis about computational difficulty.",
+      "narration_id": "en-01-05"
+    },
+    {
+      "start": 762,
+      "end": 840,
+      "text": "Let's put these stories together. What has AI actually changed?",
+      "narration_id": "en-01-06"
+    },
+    {
+      "start": 842,
+      "end": 907,
+      "text": "And when an answer arrives this quickly, what do you work on next?",
+      "narration_id": "en-01-06"
+    },
+    {
+      "start": 910,
+      "end": 956,
+      "text": "We'll start with a few switches on that desk.",
+      "narration_id": "en-01-07"
+    },
+    {
+      "start": 961,
+      "end": 995,
+      "text": "First, let's sort out that number.",
+      "narration_id": "en-02-01"
+    },
+    {
+      "start": 999,
+      "end": 1107,
+      "text": "The 722 counts the manuscripts OpenAI initially published on October 6.",
+      "narration_id": "en-02-01"
+    },
+    {
+      "start": 1110,
+      "end": 1191,
+      "text": "One gives a main result. Another supplies a supporting argument.",
+      "narration_id": "en-02-02"
+    },
+    {
+      "start": 1195,
+      "end": 1230,
+      "text": "Another offers a different proof.",
+      "narration_id": "en-02-02"
+    },
+    {
+      "start": 1233,
+      "end": 1302,
+      "text": "Several manuscripts can belong to the same piece of research.",
+      "narration_id": "en-02-02"
+    },
+    {
+      "start": 1312,
+      "end": 1406,
+      "text": "OpenAI grouped them into 372 families of related results.",
+      "narration_id": "en-02-02"
+    },
+    {
+      "start": 1408,
+      "end": 1526,
+      "text": "So we can't turn 722 manuscripts into 722 separate problems solved.",
+      "narration_id": "en-02-03"
+    },
+    {
+      "start": 1528,
+      "end": 1616,
+      "text": "For our student, the question is much more specific: which result overlaps",
+      "narration_id": "en-02-04"
+    },
+    {
+      "start": 1616,
+      "end": 1652,
+      "text": "with the problem they've been working on?",
+      "narration_id": "en-02-04"
+    },
+    {
+      "start": 1652,
+      "end": 1731,
+      "text": "ETH came later. We'll use that result to see what can change.",
+      "narration_id": "en-02-05"
+    },
+    {
+      "start": 1734,
+      "end": 1774,
+      "text": "Leave the name aside for a moment.",
+      "narration_id": "en-02-05"
+    },
+    {
+      "start": 1778,
+      "end": 1828,
+      "text": "All we need to start is a switch: on or off.",
+      "narration_id": "en-02-05"
+    },
+    {
+      "start": 1832,
+      "end": 1878,
+      "text": "One switch. On or off. Two settings.",
+      "narration_id": "en-03-01"
+    },
+    {
+      "start": 1879,
+      "end": 1936,
+      "text": "Now add a second. How many have we got? Give it a moment.",
+      "narration_id": "en-03-02"
+    },
+    {
+      "start": 1940,
+      "end": 2019,
+      "text": "Four? Yes—watch. When the first switch is on, the second can be on or off.",
+      "narration_id": "en-03-03"
+    },
+    {
+      "start": 2020,
+      "end": 2093,
+      "text": "When the first is off, we get those two choices again. Four altogether.",
+      "narration_id": "en-03-03"
+    },
+    {
+      "start": 2097,
+      "end": 2146,
+      "text": "A third switch doubles it again. Eight.",
+      "narration_id": "en-03-04"
+    },
+    {
+      "start": 2149,
+      "end": 2219,
+      "text": "Every extra switch gives each existing setting two versions.",
+      "narration_id": "en-03-05"
+    },
+    {
+      "start": 2225,
+      "end": 2254,
+      "text": "That's exponential growth.",
+      "narration_id": "en-03-05"
+    },
+    {
+      "start": 2260,
+      "end": 2357,
+      "text": "Ten switches give 1,024 combinations. Twenty give over a million.",
+      "narration_id": "en-03-06"
+    },
+    {
+      "start": 2362,
+      "end": 2393,
+      "text": "That's with just twenty switches.",
+      "narration_id": "en-03-06"
+    },
+    {
+      "start": 2399,
+      "end": 2471,
+      "text": "Going from ten to twenty gives us over a thousand times as many possible",
+      "narration_id": "en-03-06"
+    },
+    {
+      "start": 2471,
+      "end": 2481,
+      "text": "settings.",
+      "narration_id": "en-03-06"
+    },
+    {
+      "start": 2486,
+      "end": 2525,
+      "text": "Careful, though: possible settings.",
+      "narration_id": "en-03-07"
+    },
+    {
+      "start": 2525,
+      "end": 2607,
+      "text": "How many the computer actually has to try depends on the method it uses.",
+      "narration_id": "en-03-07"
+    },
+    {
+      "start": 2612,
+      "end": 2662,
+      "text": "Before we send it through a million combinations,",
+      "narration_id": "en-03-08"
+    },
+    {
+      "start": 2666,
+      "end": 2707,
+      "text": "we still need to finish setting the problem.",
+      "narration_id": "en-03-08"
+    },
+    {
+      "start": 2714,
+      "end": 2798,
+      "text": "Let's give these switches a rule. A is on, or B is on, or C is off.",
+      "narration_id": "en-04-01"
+    },
+    {
+      "start": 2800,
+      "end": 2852,
+      "text": "At least one of those three conditions has to hold.",
+      "narration_id": "en-04-01"
+    },
+    {
+      "start": 2855,
+      "end": 2923,
+      "text": "Add a second rule, then a third. We can have lots of switches,",
+      "narration_id": "en-04-02"
+    },
+    {
+      "start": 2926,
+      "end": 2975,
+      "text": "but each rule contains at most three conditions.",
+      "narration_id": "en-04-02"
+    },
+    {
+      "start": 2981,
+      "end": 3074,
+      "text": "The task is to find a setting that passes every rule—or establish that none",
+      "narration_id": "en-04-02"
+    },
+    {
+      "start": 3074,
+      "end": 3136,
+      "text": "works. That's the kind of problem called three-SAT.",
+      "narration_id": "en-04-02"
+    },
+    {
+      "start": 3142,
+      "end": 3223,
+      "text": "Try our little example. All three switches on: every rule passes.",
+      "narration_id": "en-04-03"
+    },
+    {
+      "start": 3227,
+      "end": 3304,
+      "text": "Turn the first two off and leave the last one on... now the first rule fails.",
+      "narration_id": "en-04-03"
+    },
+    {
+      "start": 3307,
+      "end": 3384,
+      "text": "Give you a setting, and you can check it against the rules. Finding one,",
+      "narration_id": "en-04-04"
+    },
+    {
+      "start": 3384,
+      "end": 3457,
+      "text": "with a method that handles even the hardest cases, can be much harder.",
+      "narration_id": "en-04-04"
+    },
+    {
+      "start": 3463,
+      "end": 3537,
+      "text": "Clever algorithms can skip many combinations, of course.",
+      "narration_id": "en-04-05"
+    },
+    {
+      "start": 3537,
+      "end": 3640,
+      "text": "ETH—the Exponential Time Hypothesis—conjectures that even the cleverest",
+      "narration_id": "en-04-05"
+    },
+    {
+      "start": 3640,
+      "end": 3726,
+      "text": "algorithm still faces some fixed exponential growth in the worst case.",
+      "narration_id": "en-04-05"
+    },
+    {
+      "start": 3729,
+      "end": 3810,
+      "text": "And that's the limit these two companies say they've found a way past.",
+      "narration_id": "en-04-06"
+    },
+    {
+      "start": 3817,
+      "end": 3901,
+      "text": "So how big a change is that? Suppose each extra switch meant twice as much",
+      "narration_id": "en-05-01"
+    },
+    {
+      "start": 3901,
+      "end": 3978,
+      "text": "work. Change that multiplier from two to one point one. Much slower growth,",
+      "narration_id": "en-05-01"
+    },
+    {
+      "start": 3978,
+      "end": 4025,
+      "text": "right? Yes. Still exponential, though.",
+      "narration_id": "en-05-01"
+    },
+    {
+      "start": 4025,
+      "end": 4072,
+      "text": "The multiplier stays fixed and greater than one.",
+      "narration_id": "en-05-01"
+    },
+    {
+      "start": 4073,
+      "end": 4142,
+      "text": "The teams claim to go further. As problems get larger,",
+      "narration_id": "en-05-02"
+    },
+    {
+      "start": 4143,
+      "end": 4219,
+      "text": "the work their algorithms require eventually grows more slowly than every",
+      "narration_id": "en-05-02"
+    },
+    {
+      "start": 4219,
+      "end": 4258,
+      "text": "fixed exponential rate of that kind.",
+      "narration_id": "en-05-02"
+    },
+    {
+      "start": 4262,
+      "end": 4331,
+      "text": "That growth category is called subexponential time.",
+      "narration_id": "en-05-02"
+    },
+    {
+      "start": 4340,
+      "end": 4401,
+      "text": "OpenAI announced its result on October 26.",
+      "narration_id": "en-05-03"
+    },
+    {
+      "start": 4414,
+      "end": 4470,
+      "text": "Anthropic published similar research soon afterward.",
+      "narration_id": "en-05-03"
+    },
+    {
+      "start": 4470,
+      "end": 4527,
+      "text": "Both date their core discoveries to October 16.",
+      "narration_id": "en-05-03"
+    },
+    {
+      "start": 4534,
+      "end": 4596,
+      "text": "Anthropic says the teams worked independently and in parallel.",
+      "narration_id": "en-05-03"
+    },
+    {
+      "start": 4599,
+      "end": 4661,
+      "text": "At this point you might be thinking, “Great. Can I use it?”",
+      "narration_id": "en-05-04"
+    },
+    {
+      "start": 4661,
+      "end": 4740,
+      "text": "Fair question. But we've been comparing how the work grows as problems get",
+      "narration_id": "en-05-05"
+    },
+    {
+      "start": 4740,
+      "end": 4799,
+      "text": "larger. Your particular problem, on your computer,",
+      "narration_id": "en-05-05"
+    },
+    {
+      "start": 4799,
+      "end": 4845,
+      "text": "today—that needs a separate calculation.",
+      "narration_id": "en-05-05"
+    },
+    {
+      "start": 4854,
+      "end": 4906,
+      "text": "An algorithm can have enormous overheads.",
+      "narration_id": "en-05-06"
+    },
+    {
+      "start": 4910,
+      "end": 4967,
+      "text": "Its advantage might appear only at immense sizes.",
+      "narration_id": "en-05-06"
+    },
+    {
+      "start": 4975,
+      "end": 5058,
+      "text": "Anthropic explicitly says its result makes no claim about practical solving",
+      "narration_id": "en-05-06"
+    },
+    {
+      "start": 5058,
+      "end": 5071,
+      "text": "performance.",
+      "narration_id": "en-05-06"
+    },
+    {
+      "start": 5074,
+      "end": 5117,
+      "text": "An important assumption is being challenged.",
+      "narration_id": "en-05-07"
+    },
+    {
+      "start": 5119,
+      "end": 5179,
+      "text": "Getting from there to useful software still takes research.",
+      "narration_id": "en-05-07"
+    },
+    {
+      "start": 5184,
+      "end": 5252,
+      "text": "Both teams also released papers and Lean proof material.",
+      "narration_id": "en-05-08"
+    },
+    {
+      "start": 5256,
+      "end": 5295,
+      "text": "Before we change that student's plan,",
+      "narration_id": "en-05-08"
+    },
+    {
+      "start": 5297,
+      "end": 5352,
+      "text": "let's establish what the new result actually proves.",
+      "narration_id": "en-05-08"
+    },
+    {
+      "start": 5358,
+      "end": 5436,
+      "text": "Try this with me: every real number, squared, is strictly greater than zero.",
+      "narration_id": "en-06-01"
+    },
+    {
+      "start": 5444,
+      "end": 5512,
+      "text": "If “real number” sounds technical, start with familiar numbers.",
+      "narration_id": "en-06-02"
+    },
+    {
+      "start": 5515,
+      "end": 5572,
+      "text": "Squaring just means multiplying a number by itself.",
+      "narration_id": "en-06-02"
+    },
+    {
+      "start": 5578,
+      "end": 5625,
+      "text": "One times one: one. Two times two: four.",
+      "narration_id": "en-06-03"
+    },
+    {
+      "start": 5625,
+      "end": 5686,
+      "text": "Negative three times negative three: nine. So far, so good.",
+      "narration_id": "en-06-03"
+    },
+    {
+      "start": 5690,
+      "end": 5746,
+      "text": "Suppose I tried a hundred more. A thousand. They all worked.",
+      "narration_id": "en-06-04"
+    },
+    {
+      "start": 5749,
+      "end": 5770,
+      "text": "Would that settle it?",
+      "narration_id": "en-06-04"
+    },
+    {
+      "start": 5771,
+      "end": 5792,
+      "text": "Put zero in.",
+      "narration_id": "en-06-05"
+    },
+    {
+      "start": 5798,
+      "end": 5891,
+      "text": "Ah. Zero times zero is zero. It's not strictly greater than zero.",
+      "narration_id": "en-06-06"
+    },
+    {
+      "start": 5892,
+      "end": 5945,
+      "text": "We only needed one example to defeat the word “every.”",
+      "narration_id": "en-06-06"
+    },
+    {
+      "start": 5955,
+      "end": 6011,
+      "text": "The successful examples can help us spot a pattern.",
+      "narration_id": "en-06-07"
+    },
+    {
+      "start": 6011,
+      "end": 6068,
+      "text": "But this claim covers infinitely many possibilities.",
+      "narration_id": "en-06-07"
+    },
+    {
+      "start": 6078,
+      "end": 6142,
+      "text": "Proving it takes an argument that covers every allowed case.",
+      "narration_id": "en-06-07"
+    },
+    {
+      "start": 6143,
+      "end": 6198,
+      "text": "So when AI gives us a beautifully written answer,",
+      "narration_id": "en-06-08"
+    },
+    {
+      "start": 6199,
+      "end": 6233,
+      "text": "we still have to find that argument.",
+      "narration_id": "en-06-08"
+    },
+    {
+      "start": 6238,
+      "end": 6287,
+      "text": "Where is the step that covers all the cases?",
+      "narration_id": "en-06-08"
+    },
+    {
+      "start": 6296,
+      "end": 6346,
+      "text": "That's where a proof assistant such as Lean can help.",
+      "narration_id": "en-07-01"
+    },
+    {
+      "start": 6350,
+      "end": 6433,
+      "text": "We express the statement and its argument in a form the computer can check",
+      "narration_id": "en-07-01"
+    },
+    {
+      "start": 6433,
+      "end": 6522,
+      "text": "rigorously. Each step must follow from the stated assumptions and logical",
+      "narration_id": "en-07-01"
+    },
+    {
+      "start": 6522,
+      "end": 6532,
+      "text": "rules.",
+      "narration_id": "en-07-01"
+    },
+    {
+      "start": 6540,
+      "end": 6608,
+      "text": "A strict check can catch a gap a human reader might miss.",
+      "narration_id": "en-07-02"
+    },
+    {
+      "start": 6612,
+      "end": 6664,
+      "text": "Now watch what I change. On the right,",
+      "narration_id": "en-07-03"
+    },
+    {
+      "start": 6664,
+      "end": 6739,
+      "text": "write: every nonzero real number has a strictly positive square.",
+      "narration_id": "en-07-03"
+    },
+    {
+      "start": 6745,
+      "end": 6817,
+      "text": "That one's true. A nonzero real number is positive or negative,",
+      "narration_id": "en-07-04"
+    },
+    {
+      "start": 6819,
+      "end": 6889,
+      "text": "and its square is positive either way. It can have a valid proof.",
+      "narration_id": "en-07-04"
+    },
+    {
+      "start": 6894,
+      "end": 6934,
+      "text": "Great—have we proved the original claim?",
+      "narration_id": "en-07-05"
+    },
+    {
+      "start": 6934,
+      "end": 7012,
+      "text": "Look at the left-hand card. It included zero. In our example,",
+      "narration_id": "en-07-06"
+    },
+    {
+      "start": 7013,
+      "end": 7057,
+      "text": "adding “nonzero” changed the task.",
+      "narration_id": "en-07-06"
+    },
+    {
+      "start": 7062,
+      "end": 7141,
+      "text": "A valid machine-checked proof establishes the statement we supplied,",
+      "narration_id": "en-07-07"
+    },
+    {
+      "start": 7141,
+      "end": 7219,
+      "text": "under its assumptions. We still have to match that statement to what the",
+      "narration_id": "en-07-07"
+    },
+    {
+      "start": 7219,
+      "end": 7246,
+      "text": "paper originally claimed.",
+      "narration_id": "en-07-07"
+    },
+    {
+      "start": 7255,
+      "end": 7313,
+      "text": "Anthropic's own documentation makes this distinction.",
+      "narration_id": "en-07-08"
+    },
+    {
+      "start": 7318,
+      "end": 7361,
+      "text": "When you see “machine verified,",
+      "narration_id": "en-07-08"
+    },
+    {
+      "start": 7362,
+      "end": 7412,
+      "text": "” find the conclusion and the assumptions together.",
+      "narration_id": "en-07-08"
+    },
+    {
+      "start": 7415,
+      "end": 7457,
+      "text": "That tells you what the check covers.",
+      "narration_id": "en-07-08"
+    },
+    {
+      "start": 7465,
+      "end": 7541,
+      "text": "Scale that up to a real paper, and there's a lot to examine: definitions,",
+      "narration_id": "en-08-01"
+    },
+    {
+      "start": 7544,
+      "end": 7611,
+      "text": "earlier results it relies on, and whether the written paper and the formal",
+      "narration_id": "en-08-01"
+    },
+    {
+      "start": 7611,
+      "end": 7643,
+      "text": "material say the same thing.",
+      "narration_id": "en-08-01"
+    },
+    {
+      "start": 7649,
+      "end": 7735,
+      "text": "On ETH, researchers organizing the public examination include original",
+      "narration_id": "en-08-02"
+    },
+    {
+      "start": 7735,
+      "end": 7804,
+      "text": "proposers of the hypothesis. They're helping with examination,",
+      "narration_id": "en-08-02"
+    },
+    {
+      "start": 7810,
+      "end": 7856,
+      "text": "explanation and study of the consequences.",
+      "narration_id": "en-08-02"
+    },
+    {
+      "start": 7862,
+      "end": 7955,
+      "text": "But their public statement is clear: taking part does not certify the claim.",
+      "narration_id": "en-08-03"
+    },
+    {
+      "start": 7957,
+      "end": 8027,
+      "text": "Put the materials together. The paper presents the argument.",
+      "narration_id": "en-08-04"
+    },
+    {
+      "start": 8029,
+      "end": 8098,
+      "text": "The formal proof material supports rigorous machine checking.",
+      "narration_id": "en-08-04"
+    },
+    {
+      "start": 8098,
+      "end": 8180,
+      "text": "Public examination can clarify the scope, limits and implications.",
+      "narration_id": "en-08-04"
+    },
+    {
+      "start": 8188,
+      "end": 8272,
+      "text": "Two teams reporting similar conclusions is still no reason to skip checking",
+      "narration_id": "en-08-05"
+    },
+    {
+      "start": 8272,
+      "end": 8288,
+      "text": "either argument.",
+      "narration_id": "en-08-05"
+    },
+    {
+      "start": 8292,
+      "end": 8377,
+      "text": "If a new result holds up and solves the particular problem our student was",
+      "narration_id": "en-08-06"
+    },
+    {
+      "start": 8377,
+      "end": 8450,
+      "text": "working on, then yes—the research plan needs another look.",
+      "narration_id": "en-08-06"
+    },
+    {
+      "start": 8454,
+      "end": 8491,
+      "text": "So what happens to those two years?",
+      "narration_id": "en-09-01"
+    },
+    {
+      "start": 8492,
+      "end": 8575,
+      "text": "For our hypothetical student, if the new proof solves the same problem,",
+      "narration_id": "en-09-02"
+    },
+    {
+      "start": 8575,
+      "end": 8639,
+      "text": "the “first proof” they planned for their thesis needs reassessing.",
+      "narration_id": "en-09-02"
+    },
+    {
+      "start": 8640,
+      "end": 8681,
+      "text": "They sit down with their supervisor.",
+      "narration_id": "en-09-03"
+    },
+    {
+      "start": 8686,
+      "end": 8724,
+      "text": "Does their approach do something different?",
+      "narration_id": "en-09-03"
+    },
+    {
+      "start": 8727,
+      "end": 8781,
+      "text": "Could it handle cases the new result leaves open?",
+      "narration_id": "en-09-03"
+    },
+    {
+      "start": 8784,
+      "end": 8842,
+      "text": "There may be a contribution in the work they've already done.",
+      "narration_id": "en-09-03"
+    },
+    {
+      "start": 8847,
+      "end": 8882,
+      "text": "Their skills haven't disappeared.",
+      "narration_id": "en-09-04"
+    },
+    {
+      "start": 8885,
+      "end": 8944,
+      "text": "The schedule and thesis plan may need to change.",
+      "narration_id": "en-09-04"
+    },
+    {
+      "start": 8955,
+      "end": 9028,
+      "text": "Mathematician Tristan Buckmaster discussed this kind of disruption in a",
+      "narration_id": "en-09-04"
+    },
+    {
+      "start": 9028,
+      "end": 9084,
+      "text": "public interview after the initial manuscript release.",
+      "narration_id": "en-09-04"
+    },
+    {
+      "start": 9093,
+      "end": 9175,
+      "text": "ETH also affects work built on an assumption: if ETH holds,",
+      "narration_id": "en-09-05"
+    },
+    {
+      "start": 9175,
+      "end": 9234,
+      "text": "then another problem cannot be solved that quickly either.",
+      "narration_id": "en-09-05"
+    },
+    {
+      "start": 9237,
+      "end": 9282,
+      "text": "Now that premise is being challenged.",
+      "narration_id": "en-09-06"
+    },
+    {
+      "start": 9285,
+      "end": 9374,
+      "text": "What the work tells us about computational difficulty needs reassessing.",
+      "narration_id": "en-09-06"
+    },
+    {
+      "start": 9375,
+      "end": 9445,
+      "text": "But, hang on—that doesn't make every line of reasoning useless.",
+      "narration_id": "en-09-07"
+    },
+    {
+      "start": 9453,
+      "end": 9521,
+      "text": "The link between the problems, and methods developed along the way,",
+      "narration_id": "en-09-07"
+    },
+    {
+      "start": 9521,
+      "end": 9593,
+      "text": "may still matter. We can't simply throw all those papers away.",
+      "narration_id": "en-09-07"
+    },
+    {
+      "start": 9594,
+      "end": 9671,
+      "text": "A new result can move mathematics forward while someone has to rethink the",
+      "narration_id": "en-09-08"
+    },
+    {
+      "start": 9671,
+      "end": 9753,
+      "text": "next few years of their life. That's the career impact to look at: what",
+      "narration_id": "en-09-08"
+    },
+    {
+      "start": 9753,
+      "end": 9782,
+      "text": "happens to the actual plan?",
+      "narration_id": "en-09-08"
+    },
+    {
+      "start": 9789,
+      "end": 9861,
+      "text": "How might you find the next contribution? Let's go back to zero.",
+      "narration_id": "en-10-01"
+    },
+    {
+      "start": 9864,
+      "end": 9946,
+      "text": "The proof on the right needed a nonzero number. I want zero included again.",
+      "narration_id": "en-10-02"
+    },
+    {
+      "start": 9950,
+      "end": 9994,
+      "text": "Can you change the claim so it still works?",
+      "narration_id": "en-10-02"
+    },
+    {
+      "start": 9998,
+      "end": 10038,
+      "text": "“Greater than or equal to zero.”",
+      "narration_id": "en-10-03"
+    },
+    {
+      "start": 10041,
+      "end": 10114,
+      "text": "There we go. We've included zero and adjusted the conclusion.",
+      "narration_id": "en-10-04"
+    },
+    {
+      "start": 10120,
+      "end": 10203,
+      "text": "It's a tiny example. But you're noticing which condition does the work,",
+      "narration_id": "en-10-05"
+    },
+    {
+      "start": 10203,
+      "end": 10289,
+      "text": "then adapting when the question changes. Research needs that habit.",
+      "narration_id": "en-10-05"
+    },
+    {
+      "start": 10292,
+      "end": 10346,
+      "text": "In an October 22 opinion article in Nature,",
+      "narration_id": "en-10-06"
+    },
+    {
+      "start": 10350,
+      "end": 10440,
+      "text": "Terence Tao argued that AI's mathematical output could outpace people's",
+      "narration_id": "en-10-06"
+    },
+    {
+      "start": 10440,
+      "end": 10465,
+      "text": "ability to understand it.",
+      "narration_id": "en-10-06"
+    },
+    {
+      "start": 10465,
+      "end": 10572,
+      "text": "Take the new ETH algorithms. What's the idea that saves computation?",
+      "narration_id": "en-10-07"
+    },
+    {
+      "start": 10583,
+      "end": 10650,
+      "text": "Once we understand that, we can ask which methods might work elsewhere,",
+      "narration_id": "en-10-07"
+    },
+    {
+      "start": 10650,
+      "end": 10697,
+      "text": "and what would need to change for practical use.",
+      "narration_id": "en-10-07"
+    },
+    {
+      "start": 10702,
+      "end": 10781,
+      "text": "Those answers add knowledge too. Give a student a complete solution,",
+      "narration_id": "en-10-08"
+    },
+    {
+      "start": 10781,
+      "end": 10823,
+      "text": "and they still need room to change conditions,",
+      "narration_id": "en-10-08"
+    },
+    {
+      "start": 10826,
+      "end": 10867,
+      "text": "try approaches and explain their choices.",
+      "narration_id": "en-10-08"
+    },
+    {
+      "start": 10875,
+      "end": 10915,
+      "text": "That's how we find out what they've learned.",
+      "narration_id": "en-10-08"
+    },
+    {
+      "start": 10918,
+      "end": 10989,
+      "text": "Which brings us to a very practical question: who has the time,",
+      "narration_id": "en-10-09"
+    },
+    {
+      "start": 10989,
+      "end": 11012,
+      "text": "and who can get the tools?",
+      "narration_id": "en-10-09"
+    },
+    {
+      "start": 11020,
+      "end": 11106,
+      "text": "Picture two research desks. Same published papers. At one,",
+      "narration_id": "en-11-01"
+    },
+    {
+      "start": 11106,
+      "end": 11182,
+      "text": "a researcher can keep using powerful models to change assumptions and try",
+      "narration_id": "en-11-01"
+    },
+    {
+      "start": 11182,
+      "end": 11260,
+      "text": "new problems. At the other, they first need access to tools and computing",
+      "narration_id": "en-11-01"
+    },
+    {
+      "start": 11260,
+      "end": 11306,
+      "text": "resources to run those same experiments.",
+      "narration_id": "en-11-01"
+    },
+    {
+      "start": 11308,
+      "end": 11399,
+      "text": "The result is public. The ability to explore with those tools is still an",
+      "narration_id": "en-11-02"
+    },
+    {
+      "start": 11399,
+      "end": 11474,
+      "text": "access question. And that affects whose questions get pursued.",
+      "narration_id": "en-11-02"
+    },
+    {
+      "start": 11476,
+      "end": 11562,
+      "text": "The Advisory Group on Mathematics and Artificial Intelligence, AGMAI,",
+      "narration_id": "en-11-03"
+    },
+    {
+      "start": 11568,
+      "end": 11643,
+      "text": "has called for freedom to choose research questions and fair access to",
+      "narration_id": "en-11-03"
+    },
+    {
+      "start": 11643,
+      "end": 11676,
+      "text": "tools and computing resources.",
+      "narration_id": "en-11-03"
+    },
+    {
+      "start": 11685,
+      "end": 11754,
+      "text": "There's a concrete commitment too. On October 15,",
+      "narration_id": "en-11-04"
+    },
+    {
+      "start": 11755,
+      "end": 11833,
+      "text": "the Simons Foundation announced a combined commitment of fifteen million",
+      "narration_id": "en-11-04"
+    },
+    {
+      "start": 11833,
+      "end": 11915,
+      "text": "dollars in funding and resources with Anthropic and OpenAI.",
+      "narration_id": "en-11-04"
+    },
+    {
+      "start": 11920,
+      "end": 11975,
+      "text": "The plan is to support evaluating results,",
+      "narration_id": "en-11-04"
+    },
+    {
+      "start": 11978,
+      "end": 12028,
+      "text": "learning tools and developing shared standards.",
+      "narration_id": "en-11-04"
+    },
+    {
+      "start": 12032,
+      "end": 12072,
+      "text": "The foundation will manage the funding.",
+      "narration_id": "en-11-04"
+    },
+    {
+      "start": 12078,
+      "end": 12136,
+      "text": "The test is what support researchers actually receive.",
+      "narration_id": "en-11-05"
+    },
+    {
+      "start": 12138,
+      "end": 12184,
+      "text": "Somebody has to sit down and understand the proof,",
+      "narration_id": "en-11-05"
+    },
+    {
+      "start": 12186,
+      "end": 12260,
+      "text": "train students and try the method on another problem. That takes time.",
+      "narration_id": "en-11-05"
+    },
+    {
+      "start": 12262,
+      "end": 12311,
+      "text": "So when the next batch of manuscripts arrives,",
+      "narration_id": "en-11-06"
+    },
+    {
+      "start": 12313,
+      "end": 12392,
+      "text": "follow this part too: how do more people get to understand the results and",
+      "narration_id": "en-11-06"
+    },
+    {
+      "start": 12392,
+      "end": 12401,
+      "text": "use them?",
+      "narration_id": "en-11-06"
+    },
+    {
+      "start": 12406,
+      "end": 12469,
+      "text": "Okay. Back to the headlines. Let's try four questions.",
+      "narration_id": "en-12-01"
+    },
+    {
+      "start": 12471,
+      "end": 12557,
+      "text": "What exactly was solved? The 722 figure counts manuscripts.",
+      "narration_id": "en-12-02"
+    },
+    {
+      "start": 12563,
+      "end": 12658,
+      "text": "The new ETH claim concerns how computation grows for this class of logic",
+      "narration_id": "en-12-02"
+    },
+    {
+      "start": 12658,
+      "end": 12669,
+      "text": "problems.",
+      "narration_id": "en-12-02"
+    },
+    {
+      "start": 12671,
+      "end": 12752,
+      "text": "Under what conditions? We're talking about theoretical growth in the worst",
+      "narration_id": "en-12-03"
+    },
+    {
+      "start": 12752,
+      "end": 12843,
+      "text": "case. How long your computer would take on a particular task today needs a",
+      "narration_id": "en-12-03"
+    },
+    {
+      "start": 12843,
+      "end": 12861,
+      "text": "separate assessment.",
+      "narration_id": "en-12-03"
+    },
+    {
+      "start": 12867,
+      "end": 12955,
+      "text": "Who checked which part? Both teams released papers and formal proof material.",
+      "narration_id": "en-12-04"
+    },
+    {
+      "start": 12961,
+      "end": 13004,
+      "text": "Match the evidence to the exact statement,",
+      "narration_id": "en-12-04"
+    },
+    {
+      "start": 13004,
+      "end": 13059,
+      "text": "and check how far public examination has progressed.",
+      "narration_id": "en-12-04"
+    },
+    {
+      "start": 13061,
+      "end": 13132,
+      "text": "And what does the work add? Alongside the claimed new algorithm,",
+      "narration_id": "en-12-05"
+    },
+    {
+      "start": 13132,
+      "end": 13210,
+      "text": "look for its key idea. Can people understand it and build on it?",
+      "narration_id": "en-12-05"
+    },
+    {
+      "start": 13216,
+      "end": 13270,
+      "text": "Result, assumptions, checks, contribution.",
+      "narration_id": "en-12-06"
+    },
+    {
+      "start": 13274,
+      "end": 13346,
+      "text": "Those give you something concrete to follow when a headline makes a very",
+      "narration_id": "en-12-06"
+    },
+    {
+      "start": 13346,
+      "end": 13360,
+      "text": "big claim.",
+      "narration_id": "en-12-06"
+    },
+    {
+      "start": 13364,
+      "end": 13431,
+      "text": "They also help our student: work out what the new result covers,",
+      "narration_id": "en-12-07"
+    },
+    {
+      "start": 13432,
+      "end": 13486,
+      "text": "where they can contribute, and which problem to choose next.",
+      "narration_id": "en-12-07"
+    },
+    {
+      "start": 13492,
+      "end": 13570,
+      "text": "AI has brought some answers to the desk. Checking them, understanding them,",
+      "narration_id": "en-12-08"
+    },
+    {
+      "start": 13570,
+      "end": 13626,
+      "text": "finding the next question—that's the part we'll keep following.",
+      "narration_id": "en-12-08"
+    },
+    {
+      "start": 13636,
+      "end": 13698,
+      "text": "Subscribe to Ooh, Lemme See! I'm Goo—see you next time.",
+      "narration_id": "en-12-09"
+    }
+  ],
+  "source": "verbatim document paragraphs with current audio alignment"
+}

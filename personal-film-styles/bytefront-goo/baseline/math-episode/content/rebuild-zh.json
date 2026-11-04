@@ -1,0 +1,1608 @@
+{
+  "status": "v22_source_v3_male_word_cued",
+  "fps": 24,
+  "end": 16778,
+  "shots": [
+    {
+      "start": 0,
+      "scene": "release",
+      "options": {},
+      "ground": "mustard",
+      "floor": true,
+      "burst": true,
+      "reference_source": "pip",
+      "visual_function": "release",
+      "id": "zh-v18-001",
+      "end": 193,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-01"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 193,
+      "scene": "study",
+      "options": {
+        "arrive": false
+      },
+      "ground": "mustard",
+      "floor": true,
+      "burst": false,
+      "reference_source": "pip",
+      "visual_function": "study",
+      "id": "zh-v18-002",
+      "end": 264,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-02"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 264,
+      "scene": "calendar",
+      "options": {},
+      "ground": "blue",
+      "floor": false,
+      "burst": false,
+      "reference_source": "pip",
+      "visual_function": "calendar",
+      "id": "zh-v18-003",
+      "end": 373,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-02"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 373,
+      "scene": "paperDetail",
+      "options": {
+        "action_origin": 373
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "pip",
+      "visual_function": "paperDetail",
+      "id": "zh-v18-004",
+      "end": 542,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-02"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 542,
+      "scene": "reaction",
+      "options": {},
+      "ground": "mustard",
+      "floor": true,
+      "burst": true,
+      "reference_source": "reference-long",
+      "visual_function": "reaction",
+      "id": "zh-v18-005",
+      "end": 628,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 628,
+      "scene": "identity",
+      "options": {},
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "identity",
+      "id": "zh-v18-006",
+      "end": 683,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-intro-01"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 683,
+      "scene": "claims",
+      "options": {},
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "claims",
+      "id": "zh-v18-007",
+      "end": 875,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-04"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 875,
+      "scene": "openingQuestion",
+      "options": {
+        "second_question": 954
+      },
+      "ground": "mustard",
+      "floor": true,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "openingQuestion",
+      "id": "zh-v18-008",
+      "end": 1042,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-05"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 1042,
+      "scene": "switchIntro",
+      "options": {},
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "switchIntro",
+      "id": "zh-v18-009",
+      "end": 1112,
+      "chapter": 1,
+      "narration_ids": [
+        "zh-01-05"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 1112,
+      "scene": "filing",
+      "options": {
+        "mode": "count"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "filing:count",
+      "id": "zh-v18-010",
+      "end": 1273,
+      "chapter": 2,
+      "narration_ids": [
+        "zh-02-01"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 1273,
+      "scene": "filing",
+      "options": {
+        "mode": "group",
+        "action_origin": 1424,
+        "count_frame": 1509
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "pip",
+      "visual_function": "filing:group",
+      "id": "zh-v18-011",
+      "end": 1547,
+      "chapter": 2,
+      "narration_ids": [
+        "zh-02-02"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 1547,
+      "scene": "filing",
+      "options": {
+        "mode": "units"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "filing:units",
+      "id": "zh-v18-012",
+      "end": 1711,
+      "chapter": 2,
+      "narration_ids": [
+        "zh-02-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 1711,
+      "scene": "filing",
+      "options": {
+        "mode": "overlap"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "filing:overlap",
+      "id": "zh-v18-013",
+      "end": 1873,
+      "chapter": 2,
+      "narration_ids": [
+        "zh-02-04"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 1873,
+      "scene": "claims",
+      "options": {},
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "claims",
+      "id": "zh-v18-014",
+      "end": 2001,
+      "chapter": 2,
+      "narration_ids": [
+        "zh-02-05"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 2001,
+      "scene": "switchIntro",
+      "options": {},
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "switchIntro",
+      "id": "zh-v18-015",
+      "end": 2066,
+      "chapter": 2,
+      "narration_ids": [
+        "zh-02-05"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 2066,
+      "scene": "switchLesson",
+      "options": {
+        "approach_start": 2070,
+        "contact": 2095,
+        "move_end": 2103,
+        "release_end": 2117,
+        "states": 2111
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "pip",
+      "visual_function": "switchLesson",
+      "id": "zh-v18-016",
+      "end": 2132,
+      "chapter": 3,
+      "narration_ids": [
+        "zh-03-01"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 2132,
+      "scene": "branches",
+      "options": {
+        "mode": "tree",
+        "growth_events": {
+          "second": 2132,
+          "four": 2346,
+          "third": 2361,
+          "eight": 2415
+        },
+        "focus_events": [
+          {
+            "frame": 2189,
+            "prefix": [
+              1
+            ]
+          },
+          {
+            "frame": 2270,
+            "prefix": [
+              0
+            ]
+          },
+          {
+            "frame": 2346,
+            "prefix": []
+          }
+        ]
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "branches:tree",
+      "id": "zh-v18-017",
+      "end": 2426,
+      "chapter": 3,
+      "narration_ids": [
+        "zh-03-02",
+        "zh-03-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 2426,
+      "scene": "branches",
+      "options": {
+        "mode": "tree",
+        "n": 3,
+        "count": 8,
+        "summary": true
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "branches:tree",
+      "id": "zh-v18-018",
+      "end": 2581,
+      "chapter": 3,
+      "narration_ids": [
+        "zh-03-04"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 2581,
+      "scene": "branches",
+      "options": {
+        "mode": "large"
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "branches:large",
+      "id": "zh-v18-019",
+      "end": 2788,
+      "chapter": 3,
+      "narration_ids": [
+        "zh-03-05",
+        "zh-03-06"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 2788,
+      "scene": "branches",
+      "options": {
+        "mode": "warning"
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "branches:warning",
+      "id": "zh-v18-020",
+      "end": 3046,
+      "chapter": 3,
+      "narration_ids": [
+        "zh-03-07"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 3046,
+      "scene": "rules",
+      "options": {
+        "mode": "first",
+        "cues": {
+          "b": 3172,
+          "c": 3194,
+          "judge": 3237
+        }
+      },
+      "ground": "blue",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "rules:first",
+      "id": "zh-v18-021",
+      "end": 3293,
+      "chapter": 4,
+      "narration_ids": [
+        "zh-04-01"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 3293,
+      "scene": "rules",
+      "options": {
+        "mode": "all",
+        "phase": "structure",
+        "cues": {
+          "third": 3322,
+          "or": 3372,
+          "and": 3433
+        }
+      },
+      "ground": "blue",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "rules:all",
+      "id": "zh-v18-022",
+      "end": 3433,
+      "chapter": 4,
+      "narration_ids": [
+        "zh-04-02"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 3433,
+      "scene": "rules",
+      "options": {
+        "mode": "all",
+        "phase": "goal",
+        "cues": {
+          "working": 3450,
+          "none": 3526,
+          "name": 3623
+        }
+      },
+      "ground": "blue",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "rules:all",
+      "id": "zh-v18-023",
+      "end": 3648,
+      "chapter": 4,
+      "narration_ids": [
+        "zh-04-02"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 3648,
+      "scene": "rules",
+      "options": {
+        "mode": "test",
+        "operation_shift": 3.958333333333333
+      },
+      "ground": "blue",
+      "floor": false,
+      "burst": false,
+      "reference_source": "pip",
+      "visual_function": "rules:test",
+      "id": "zh-v18-024",
+      "end": 3879,
+      "chapter": 4,
+      "narration_ids": [
+        "zh-04-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 3879,
+      "scene": "rules",
+      "options": {
+        "mode": "find"
+      },
+      "ground": "blue",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "rules:find",
+      "id": "zh-v18-025",
+      "end": 4237,
+      "chapter": 4,
+      "narration_ids": [
+        "zh-04-04",
+        "zh-04-05"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 4237,
+      "scene": "rules",
+      "options": {
+        "mode": "hypothesis"
+      },
+      "ground": "blue",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "rules:hypothesis",
+      "id": "zh-v18-026",
+      "end": 4449,
+      "chapter": 4,
+      "narration_ids": [
+        "zh-04-06"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 4449,
+      "scene": "claims",
+      "options": {},
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "claims",
+      "id": "zh-v18-027",
+      "end": 4545,
+      "chapter": 4,
+      "narration_ids": [
+        "zh-04-07"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 4545,
+      "scene": "growth",
+      "options": {
+        "mode": "rates"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "growth:rates",
+      "id": "zh-v18-028",
+      "end": 4892,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-01",
+        "zh-05-02"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 4892,
+      "scene": "growth",
+      "options": {
+        "mode": "subexp"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "growth:subexp",
+      "id": "zh-v18-029",
+      "end": 5182,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 5182,
+      "scene": "growth",
+      "options": {
+        "mode": "dates"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "growth:dates",
+      "id": "zh-v18-030",
+      "end": 5493,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-04"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 5493,
+      "scene": "growth",
+      "options": {
+        "mode": "laptop"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "growth:laptop",
+      "id": "zh-v18-031",
+      "end": 5626,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-05"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 5626,
+      "scene": "growth",
+      "options": {
+        "mode": "evidence",
+        "comparison_frame": 5663
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "growth:evidence",
+      "id": "zh-v18-032",
+      "end": 5818,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-06"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 5818,
+      "scene": "growth",
+      "options": {
+        "mode": "overheads",
+        "overhead_frame": 5878,
+        "scale_frame": 5942
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "growth:overheads",
+      "id": "zh-v18-033",
+      "end": 5975,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-07"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 5975,
+      "scene": "growth",
+      "options": {
+        "mode": "evidence",
+        "comparison_frame": 6081
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "growth:evidence",
+      "id": "zh-v18-034",
+      "end": 6081,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-07"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 6081,
+      "scene": "revise",
+      "options": {
+        "mode": "algorithm"
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "revise:algorithm",
+      "id": "zh-v18-035",
+      "end": 6265,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-08"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 6265,
+      "scene": "reviewScene",
+      "options": {
+        "mode": "jobs"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "reviewScene:jobs",
+      "id": "zh-v18-036",
+      "end": 6467,
+      "chapter": 5,
+      "narration_ids": [
+        "zh-05-09"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 6467,
+      "scene": "square",
+      "options": {
+        "mode": "claim"
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "square:claim",
+      "id": "zh-v18-037",
+      "end": 6567,
+      "chapter": 6,
+      "narration_ids": [
+        "zh-06-01"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 6567,
+      "scene": "square",
+      "options": {
+        "mode": "examples",
+        "reveal_frames": [
+          6689,
+          6735,
+          6768
+        ]
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "square:examples",
+      "id": "zh-v18-038",
+      "end": 6863,
+      "chapter": 6,
+      "narration_ids": [
+        "zh-06-02",
+        "zh-06-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 6863,
+      "scene": "square",
+      "options": {
+        "mode": "guess"
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "square:guess",
+      "id": "zh-v18-039",
+      "end": 6982,
+      "chapter": 6,
+      "narration_ids": [
+        "zh-06-04"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 6982,
+      "scene": "square",
+      "options": {
+        "mode": "zero"
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "pip",
+      "visual_function": "square:zero",
+      "id": "zh-v18-040",
+      "end": 7226,
+      "chapter": 6,
+      "narration_ids": [
+        "zh-06-05",
+        "zh-06-06"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 7226,
+      "scene": "square",
+      "options": {
+        "mode": "proof"
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "square:proof",
+      "id": "zh-v18-041",
+      "end": 7495,
+      "chapter": 6,
+      "narration_ids": [
+        "zh-06-07"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 7495,
+      "scene": "formal",
+      "options": {
+        "mode": "checklogic",
+        "gap_frame": 7558,
+        "statement_frame": 7582
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "formal:checklogic",
+      "id": "zh-v18-042",
+      "end": 7615,
+      "chapter": 6,
+      "narration_ids": [
+        "zh-06-08"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 7615,
+      "scene": "formal",
+      "options": {
+        "mode": "machine"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "formal:machine",
+      "id": "zh-v18-043",
+      "end": 7922,
+      "chapter": 7,
+      "narration_ids": [
+        "zh-07-01",
+        "zh-07-02"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 7922,
+      "scene": "formal",
+      "options": {
+        "mode": "checklogic",
+        "gap_frame": 7935,
+        "statement_frame": 108003
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "formal:checklogic",
+      "id": "zh-v18-044",
+      "end": 8004,
+      "chapter": 7,
+      "narration_ids": [
+        "zh-07-02"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 8004,
+      "scene": "formal",
+      "options": {
+        "mode": "compare",
+        "condition_frame": 8162,
+        "truth_frame": 8243
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "formal:compare",
+      "id": "zh-v18-045",
+      "end": 8390,
+      "chapter": 7,
+      "narration_ids": [
+        "zh-07-03",
+        "zh-07-04",
+        "zh-07-05"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 8390,
+      "scene": "formal",
+      "options": {
+        "mode": "changed",
+        "include_frame": 8490,
+        "exclude_frame": 8540,
+        "result_frame": 8577
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "formal:changed",
+      "id": "zh-v18-046",
+      "end": 8595,
+      "chapter": 7,
+      "narration_ids": [
+        "zh-07-06"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 8595,
+      "scene": "formal",
+      "options": {
+        "mode": "scope",
+        "checked_frame": 8662,
+        "human_frame": 8683,
+        "claim_frame": 8741,
+        "documentation_frame": 8851
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "formal:scope",
+      "id": "zh-v18-047",
+      "end": 9064,
+      "chapter": 7,
+      "narration_ids": [
+        "zh-07-07",
+        "zh-07-08"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 9064,
+      "scene": "reviewScene",
+      "options": {
+        "mode": "definitions"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "reviewScene:definitions",
+      "id": "zh-v18-048",
+      "end": 9401,
+      "chapter": 8,
+      "narration_ids": [
+        "zh-08-01",
+        "zh-08-02"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 9401,
+      "scene": "reviewScene",
+      "options": {
+        "mode": "public"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "reviewScene:public",
+      "id": "zh-v18-049",
+      "end": 9763,
+      "chapter": 8,
+      "narration_ids": [
+        "zh-08-03",
+        "zh-08-04"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 9763,
+      "scene": "reviewScene",
+      "options": {
+        "mode": "jobs"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "reviewScene:jobs",
+      "id": "zh-v18-050",
+      "end": 10154,
+      "chapter": 8,
+      "narration_ids": [
+        "zh-08-05",
+        "zh-08-06"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 10154,
+      "scene": "direction",
+      "options": {
+        "mode": "desk"
+      },
+      "ground": "mustard",
+      "floor": true,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "direction:desk",
+      "id": "zh-v18-051",
+      "end": 10331,
+      "chapter": 8,
+      "narration_ids": [
+        "zh-08-07"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 10331,
+      "scene": "direction",
+      "options": {
+        "mode": "desk"
+      },
+      "ground": "mustard",
+      "floor": true,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "direction:desk",
+      "id": "zh-v18-052",
+      "end": 10503,
+      "chapter": 9,
+      "narration_ids": [
+        "zh-09-01"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 10503,
+      "scene": "direction",
+      "options": {
+        "mode": "desk",
+        "mentor_focus": true
+      },
+      "ground": "mustard",
+      "floor": true,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "direction:desk",
+      "id": "zh-v18-053",
+      "end": 10828,
+      "chapter": 9,
+      "narration_ids": [
+        "zh-09-02",
+        "zh-09-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 10828,
+      "scene": "direction",
+      "options": {
+        "mode": "toolbox"
+      },
+      "ground": "mustard",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "direction:toolbox",
+      "id": "zh-v18-054",
+      "end": 11165,
+      "chapter": 9,
+      "narration_ids": [
+        "zh-09-04"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 11165,
+      "scene": "direction",
+      "options": {
+        "mode": "conditional"
+      },
+      "ground": "mustard",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "direction:conditional",
+      "id": "zh-v18-055",
+      "end": 11471,
+      "chapter": 9,
+      "narration_ids": [
+        "zh-09-05",
+        "zh-09-06"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 11471,
+      "scene": "direction",
+      "options": {
+        "mode": "retain"
+      },
+      "ground": "mustard",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "direction:retain",
+      "id": "zh-v18-056",
+      "end": 11673,
+      "chapter": 9,
+      "narration_ids": [
+        "zh-09-07"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 11673,
+      "scene": "direction",
+      "options": {
+        "mode": "routes"
+      },
+      "ground": "mustard",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "direction:routes",
+      "id": "zh-v18-057",
+      "end": 11882,
+      "chapter": 9,
+      "narration_ids": [
+        "zh-09-08"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 11882,
+      "scene": "revise",
+      "options": {
+        "mode": "question"
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "revise:question",
+      "id": "zh-v18-058",
+      "end": 12144,
+      "chapter": 10,
+      "narration_ids": [
+        "zh-10-01",
+        "zh-10-02"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 12144,
+      "scene": "revise",
+      "options": {
+        "mode": "stroke",
+        "action_origin": 12148
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "pip",
+      "visual_function": "revise:stroke",
+      "id": "zh-v18-059",
+      "end": 12290,
+      "chapter": 10,
+      "narration_ids": [
+        "zh-10-03"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 12290,
+      "scene": "revise",
+      "options": {
+        "mode": "meaning_detail"
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "revise:meaning_detail",
+      "id": "zh-v18-060",
+      "end": 12429,
+      "chapter": 10,
+      "narration_ids": [
+        "zh-10-04"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 12429,
+      "scene": "reviewScene",
+      "options": {
+        "mode": "understanding"
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "reviewScene:understanding",
+      "id": "zh-v18-061",
+      "end": 12635,
+      "chapter": 10,
+      "narration_ids": [
+        "zh-10-05"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 12635,
+      "scene": "revise",
+      "options": {
+        "mode": "algorithm"
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "revise:algorithm",
+      "id": "zh-v18-062",
+      "end": 13048,
+      "chapter": 10,
+      "narration_ids": [
+        "zh-10-06"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 13048,
+      "scene": "revise",
+      "options": {
+        "mode": "reuse"
+      },
+      "ground": "avocado",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "revise:reuse",
+      "id": "zh-v18-063",
+      "end": 13360,
+      "chapter": 10,
+      "narration_ids": [
+        "zh-10-07"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 13360,
+      "scene": "access",
+      "options": {
+        "mode": "supports",
+        "restage": 2,
+        "move_frame": 13419,
+        "resource_frames": [
+          13436,
+          13457,
+          13488
+        ],
+        "summary_frame": 13495
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "access:supports",
+      "id": "zh-v18-064",
+      "end": 13510,
+      "chapter": 10,
+      "narration_ids": [
+        "zh-10-08"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 13510,
+      "scene": "access",
+      "options": {
+        "mode": "desks"
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "access:desks",
+      "id": "zh-v18-065",
+      "end": 13922,
+      "chapter": 11,
+      "narration_ids": [
+        "zh-11-01",
+        "zh-11-02"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 13922,
+      "scene": "access",
+      "options": {
+        "mode": "autonomy",
+        "restage": 2,
+        "access_part": "policy",
+        "tools_frame": 14213
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "access:autonomy",
+      "id": "zh-v18-066",
+      "end": 14262,
+      "chapter": 11,
+      "narration_ids": [
+        "zh-11-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 14262,
+      "scene": "access",
+      "options": {
+        "mode": "fund",
+        "restage": 2,
+        "foundation_frame": 14348,
+        "amount_frame": 14449,
+        "partner_frames": [
+          14393,
+          14411
+        ],
+        "qualifier_frame": 14480,
+        "manager_frame": 14614
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "access:fund",
+      "id": "zh-v18-067",
+      "end": 14632,
+      "chapter": 11,
+      "narration_ids": [
+        "zh-11-04"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 14632,
+      "scene": "access",
+      "options": {
+        "mode": "autonomy",
+        "restage": 2,
+        "access_part": "activities",
+        "aim_frames": [
+          14632,
+          14632,
+          14632
+        ],
+        "question_frame": 14727,
+        "work_frames": [
+          14791,
+          14825,
+          14852
+        ],
+        "time_frame": 14903
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "access:autonomy",
+      "id": "zh-v18-068",
+      "end": 14931,
+      "chapter": 11,
+      "narration_ids": [
+        "zh-11-05",
+        "zh-11-06"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 14931,
+      "scene": "access",
+      "options": {
+        "mode": "desks"
+      },
+      "ground": "pink",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "access:desks",
+      "id": "zh-v18-069",
+      "end": 15102,
+      "chapter": 11,
+      "narration_ids": [
+        "zh-11-07"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 15102,
+      "scene": "recap",
+      "options": {
+        "active": 0
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "recap",
+      "id": "zh-v18-070",
+      "end": 15194,
+      "chapter": 12,
+      "narration_ids": [
+        "zh-12-01"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 15194,
+      "scene": "recap",
+      "options": {
+        "mode": "card",
+        "restage": 2,
+        "active": 1,
+        "primary_frame": 15278,
+        "secondary_frame": 15338
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "recap:card",
+      "id": "zh-v18-071",
+      "end": 15419,
+      "chapter": 12,
+      "narration_ids": [
+        "zh-12-02"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 15419,
+      "scene": "recap",
+      "options": {
+        "mode": "card",
+        "restage": 2,
+        "active": 2,
+        "primary_frame": 15504,
+        "secondary_frame": 15569
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "recap:card",
+      "id": "zh-v18-072",
+      "end": 15653,
+      "chapter": 12,
+      "narration_ids": [
+        "zh-12-03"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 15653,
+      "scene": "recap",
+      "options": {
+        "mode": "card",
+        "restage": 2,
+        "active": 3,
+        "primary_frame": 15791,
+        "secondary_frame": 15821
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "recap:card",
+      "id": "zh-v18-073",
+      "end": 15890,
+      "chapter": 12,
+      "narration_ids": [
+        "zh-12-04"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 15890,
+      "scene": "recap",
+      "options": {
+        "mode": "card",
+        "restage": 2,
+        "active": 4,
+        "primary_frame": 16031,
+        "secondary_frame": 16089
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "recap:card",
+      "id": "zh-v18-074",
+      "end": 16098,
+      "chapter": 12,
+      "narration_ids": [
+        "zh-12-05"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 16098,
+      "scene": "recap",
+      "options": {
+        "mode": "hold",
+        "restage": 2,
+        "reveal_frames": [
+          16098,
+          16123,
+          16145,
+          16164
+        ]
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "recap:hold",
+      "id": "zh-v18-075",
+      "end": 16271,
+      "chapter": 12,
+      "narration_ids": [
+        "zh-12-06"
+      ],
+      "transition_type": "plane-wipe"
+    },
+    {
+      "start": 16271,
+      "scene": "direction",
+      "options": {
+        "mode": "desk"
+      },
+      "ground": "mustard",
+      "floor": true,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "direction:desk",
+      "id": "zh-v18-076",
+      "end": 16456,
+      "chapter": 12,
+      "narration_ids": [
+        "zh-12-07"
+      ],
+      "transition_type": "iris"
+    },
+    {
+      "start": 16456,
+      "scene": "recap",
+      "options": {
+        "mode": "end",
+        "restage": 3,
+        "arrival_frame": 16479,
+        "check_frame": 16504,
+        "why_frame": 16533,
+        "question_frame": 16553,
+        "brand_frame": 16629
+      },
+      "ground": "paper",
+      "floor": false,
+      "burst": false,
+      "reference_source": "reference-long",
+      "visual_function": "recap:end",
+      "id": "zh-v18-077",
+      "end": 16778,
+      "chapter": 12,
+      "narration_ids": [
+        "zh-12-08"
+      ],
+      "transition_type": "iris"
+    }
+  ]
+}

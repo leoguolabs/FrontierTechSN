@@ -1,0 +1,18 @@
+{
+  "viewed": [
+    "encoded-storyboard-1.jpg",
+    "encoded-storyboard-2.jpg",
+    "encoded-storyboard-3.jpg",
+    "encoded-storyboard-4.jpg",
+    "encoded-opening-sequence.jpg",
+    "encoded-eth-sequence.jpg",
+    "browser-opening.png"
+  ],
+  "observations": [
+    "All 77 encoded shot midpoints were opened. Text and scene layout remained visible at sampled frames.",
+    "Opening sequence transitions from the desk through the channel introduction into the filing and switch scenes.",
+    "ETH scene captions progress through the researchers, their work and the public statement.",
+    "The original brief arm/title overlap during rule-switch manipulation remains visible."
+  ],
+  "scope": "Sampled visual QA and normal-rate player playback; not a subjective whole-film listening signoff."
+}

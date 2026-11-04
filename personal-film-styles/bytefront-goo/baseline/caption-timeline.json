@@ -1,0 +1,21 @@
+{
+  "scope": "Timeline coverage and actual font layout at every caption midpoint; not visual acceptance",
+  "languages": {
+    "en": {
+      "frames": 13763,
+      "seconds": 573.4583333333334,
+      "visual_shots": 77,
+      "narration_segments": 89,
+      "captions": 213,
+      "result": "pass"
+    }
+  },
+  "source_files": {
+    "content/rebuild-en.json": "15ed1f0a29cfcf0900ffc9fa510d2ea125df87f484ad3b9755ad56ca1d2ef15e",
+    "content/rebuild-captions-en.json": "906139c485c8b21679fff0f069e3d393aa9e63e46d06ea5f4a3e9f3220aef36f",
+    "content/timeline-rebuild-en.json": "fb57c00a90a0c23abba3c2e086c09d67df8efd37d36b289792d2460c140d53b4",
+    "content/rebuild-zh.json": "12456ba67a1a04b74080f30324fef981fa2db247c7f533c1cfef4cc056c62d12",
+    "content/rebuild-captions-zh.json": "72777183006d87d5d70e8be5e3ba6e385781b72d8412bf3333f83a8a85c359d0",
+    "content/timeline-rebuild-zh.json": "b6b83e49646a239203a5961d97eefda235a0afac21cd9ab75c4f5bb782ae6204"
+  }
+}

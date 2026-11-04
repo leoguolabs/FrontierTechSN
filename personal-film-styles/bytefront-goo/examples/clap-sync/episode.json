@@ -1,0 +1,15 @@
+{
+  "id":"clap-sync","title":"One clap, two tracks","language":"en",
+  "chapters":[{"id":"slate","activity":0.66,"paragraphs":[
+    {"id":"question","text":"The camera records a picture. The microphone records sound. How do you line them up?"},
+    {"id":"contact","text":"Watch the top stick. When it meets the board, you can see the exact frame. You can hear the same clap as a short spike in the recording."},
+    {"id":"result","text":"Slide that spike under the frame where the sticks touch. One clap gives both tracks the same starting mark."}
+  ]}],
+  "shots":[
+    {"paragraph":"question","scene":"host","ground":"mustard","kicker":"At the edit desk","title":"One clap, two tracks","label":"PICTURE + SOUND","face":"think"},
+    {"paragraph":"contact","scene":"slate","ground":"paper","kicker":"Watch the hinge","title":"Catch the contact","events":{"contact":{"paragraph":"contact","phrase":"meets the board"}}},
+    {"paragraph":"result","scene":"tracks","ground":"blue","kicker":"At the edit desk","title":"Line up the marks","events":{"match":{"paragraph":"result","phrase":"sticks touch"}}}
+  ],
+  "foley":[{"paragraph":"contact","phrase":"meets the board","kind":"clap","gain":0.10}],
+  "music":{"bpm":92,"theme_midi":[58,60,67,65,63],"motifs":[{"seconds":0.4},{"paragraph":"result","phrase":"One clap"}]}
+}

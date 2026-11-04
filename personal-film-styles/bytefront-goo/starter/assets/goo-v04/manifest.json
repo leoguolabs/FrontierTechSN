@@ -1,0 +1,15 @@
+{
+  "identity": "goo-midcentury-v04",
+  "reference": "reference/character-reference.png",
+  "atlas": "assets/goo-v04/rig-atlas.png",
+  "atlas_sha256": "648a21251a5538aa00332bdc35f744e820577f5522ffc7f110a34bc10d51d600",
+  "atlas_dimensions": [
+    1536,
+    1024
+  ],
+  "method": "Built-in image generation edit with the supplied character sheet, transparent background; code-native articulated arms and hand geometry.",
+  "prompt_summary": "Keep the supplied yellow-hoodie Goo character identity and proportions. Transparent landscape animation parts sheet: left armless/headless stocky torso with yellow hoodie, kangaroo pocket/navy patch, navy trousers and cream shoes; right three separate heads, neutral/thinking/surprised; preserve short brown curls, dark round glasses, nose, tooth and textured midcentury ink. No labels or extra characters.",
+  "prompt_summary_is_verbatim": false,
+  "reproduction": "Use this frozen atlas instead of regenerating it; crop coordinates in src/rebuild/goo.mjs.",
+  "generation_artifact_id": "exec-ef14db76-0074-4220-9c1a-f2f39a153c37"
+}

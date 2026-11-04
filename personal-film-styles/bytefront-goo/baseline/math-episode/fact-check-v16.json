@@ -1,0 +1,57 @@
+{
+  "checked_on": "2026-11-02 Asia/Singapore",
+  "source_document_sha256": "1e5c358ea8094a305d49c673f36a09c6b735e8051c9f535bd8b61bb75771ad36",
+  "scope": "Explanatory adaptation of a dated supplied script. Primary announcements checked where listed; no independent reconstruction or certification of the research proofs. The student and toy examples are illustrative.",
+  "claims": [
+    {
+      "claim": "First release: 722 manuscripts, 372 related families",
+      "source": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/README.md",
+      "check": "Checked pinned historical README; current repository counts differ, so the script correctly says initial release."
+    },
+    {
+      "claim": "OpenAI ETH dates and public examination",
+      "source": "https://openai.com/index/building-scientific-understanding-with-academic-communities/",
+      "check": "Read primary announcement; claims remain attributed, not independently certified."
+    },
+    {
+      "claim": "Anthropic asymptotic claim and practical-performance limitation",
+      "source": "https://github.com/anthropics/formal-math/blob/main/eth/README.md",
+      "check": "Read primary documentation; distinguishes checking a supplied statement from meaning correspondence."
+    },
+    {
+      "claim": "Anthropic publication and reported discovery date",
+      "source": "https://hexagonmath.org/2610.00577v1",
+      "check": "Read publication record; discovery 16 October, publication 27 October; independence is attributed to Anthropic."
+    },
+    {
+      "claim": "Public examination is not certification",
+      "source": "https://ethdiscussion.blog/2026/10/26/eth-refutation-examination-and-discussion/",
+      "check": "Read organizers’ statement."
+    },
+    {
+      "claim": "Research autonomy and equitable access",
+      "source": "https://agmai.org/statement-oct6/",
+      "check": "Read advisory statement; its freedom to choose questions and equitable resources support the script’s summary."
+    },
+    {
+      "claim": "Combined $15 million funding and resources",
+      "source": "https://www.simonsfoundation.org/news/simons-foundation-launches-15m-effort-to-help-mathematicians-navigate-ai-era/",
+      "check": "Read foundation announcement; combined commitment of three partners, funding managed by the foundation."
+    },
+    {
+      "claim": "Proof validity and statement meaning",
+      "source": "https://lean-lang.org/doc/reference/latest/ValidatingProofs/",
+      "check": "Read primary proof-validation documentation; conceptual explanation only, no actual research proof compiled."
+    },
+    {
+      "claim": "Tao’s 22 October Nature opinion",
+      "source": "https://www.nature.com/articles/d41586-026-03389-1",
+      "check": "Preserved attributed summary from supplied script. Fresh full-text fetch was blocked by Nature identity redirect; not independently reverified in full."
+    },
+    {
+      "claim": "Buckmaster public interview",
+      "source": "See source/links.json and source/script-v2.docx",
+      "check": "Attribution retained from supplied document; interview not independently listened to this run."
+    }
+  ]
+}

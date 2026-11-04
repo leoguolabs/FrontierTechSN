@@ -1,0 +1,10 @@
+Use case: identity-preserve. Asset type: animation expression atlas for the same Goo character in the attached yellow hoodie reference. Reference image is strict identity, proportions, eyes, glasses, hair, outline, skin colors and illustration technique.
+Create exactly SIX isolated HEAD AND SHORT NECK drawings, in an evenly spaced THREE COLUMN by TWO ROW grid, a wide 3:2 canvas, transparent background. Each cell same head scale and same 3/4 view looking screen right; align ears, nose and base of skull consistently. Draw the full hair, ears, chin AND a short broad natural neck extending below chin, no clothes, no shoulders, no body, no hands, no props, no text. Keep large round dark brown glasses, tight short dark brown curly hair, peach skin with a warm watercolor texture, round protruding nose, plump cheeks, tiny single visible tooth when smiling, midcentury ink illustration. Preserve his stocky adult identity, do not make him a child.
+Order:
+Top left: warm engaged small smile, alert eyes looking right, gentle eyebrows.
+Top middle: curious thinking, one eyebrow raised, eyes glancing up-right, pursed asymmetric mouth.
+Top right: skeptical worried, brows angled inward, eyelids slightly lowered, mouth concerned.
+Bottom left: delighted realization, raised brows, wide eyes, joyful open small smile with tooth.
+Bottom middle: surprised, round open mouth, wide eyes, high eyebrows.
+Bottom right: friendly pleased closed-eye smile, eyes fully shut in gentle curved lids beneath the unchanged round glasses.
+Critical: same head silhouette and neck base in each cell, enough empty transparent margin between all cells and outside. Soft grain within fully opaque colored shapes; no colored haze or glow beyond contours. No floating disconnected neck, no collar, no text.

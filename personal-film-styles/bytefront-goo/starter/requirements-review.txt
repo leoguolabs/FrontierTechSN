@@ -1,0 +1,2 @@
+# Optional transcription on Apple Silicon, in addition to requirements-rebuild.txt.
+mlx-whisper==0.4.3

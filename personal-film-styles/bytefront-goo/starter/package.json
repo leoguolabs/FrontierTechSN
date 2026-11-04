@@ -1,0 +1,15 @@
+{
+  "name": "bytefront-goo-film",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@napi-rs/canvas": "0.1.100"
+  },
+  "scripts": {
+    "proof": "python3 scripts/build.py --width 960 --output media/proof.mp4",
+    "build": "python3 scripts/build.py --width 3840 --output media/master.mp4"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}

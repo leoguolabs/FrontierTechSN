@@ -1,0 +1,12 @@
+{
+  "new_score": "Parallel Lines",
+  "seconds": 573.4583333333334,
+  "source_voice_print_exact": true,
+  "dialogue_bus_before_master_lufs": -30.48769193219651,
+  "music_bus_before_master_lufs": -48.48769210163256,
+  "music_relative_dialogue_lu": -18.000000169436053,
+  "integrated_mix_lufs": -16.01750615733484,
+  "sample_peak_dbfs": -1.6499997589651147,
+  "master_gain_db": 14.432502336215133,
+  "max_limiter_reduction_db": 2.4171254634857178
+}

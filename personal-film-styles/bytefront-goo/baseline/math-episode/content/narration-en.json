@@ -1,0 +1,685 @@
+{
+  "schema_version": 1,
+  "voice": "am_eric",
+  "rate": 1.0,
+  "lines": [
+    {
+      "text": "Seven hundred and twenty-two math manuscripts. That was OpenAI's first release.",
+      "chapter": 1,
+      "paragraph": 162,
+      "id": "en-01-01",
+      "text_sha256": "d96f9b213221e2f7e66d086c12c71dca44bd460841552ffc0365d316534f5ab3"
+    },
+    {
+      "text": "Sounds like a big story about AI getting better. Now imagine you're a math PhD student, and one of those manuscripts lands on your desk.",
+      "chapter": 1,
+      "paragraph": 163,
+      "id": "en-01-02",
+      "text_sha256": "1456b9b5316c677421b48856423f2465f8203bd3e9449bd21d11a4661d9f6e99"
+    },
+    {
+      "text": "You've spent two years on a problem. The first proof is supposed to be the main contribution of your thesis. You open the new manuscript and—hang on. That's your problem. This paper claims to have a proof.",
+      "chapter": 1,
+      "paragraph": 164,
+      "id": "en-01-03",
+      "text_sha256": "afeb519b1a316993e0be8665a8c1fcd83e80428392a88d5c27d4b9191e6392f3"
+    },
+    {
+      "text": "Do you celebrate, or call your supervisor first?",
+      "chapter": 1,
+      "paragraph": 165,
+      "id": "en-01-04",
+      "text_sha256": "78ca506681e5c688477aa45a0ecc0891485ec60a0cec92b38e5b5f31be956eb5"
+    },
+    {
+      "text": "I'm Goo, and this is Ooh, Lemme See!",
+      "chapter": 1,
+      "paragraph": 166,
+      "id": "en-01-intro-01",
+      "text_sha256": "d40a2b3d4dcbeac9ea860ad48f88684d03f22032d822be711177662c1cbefa5a"
+    },
+    {
+      "text": "More recently, OpenAI and Anthropic, the company behind Claude, have also announced research claiming to overturn ETH, an important hypothesis about computational difficulty.",
+      "chapter": 1,
+      "paragraph": 167,
+      "id": "en-01-05",
+      "text_sha256": "1bfb283e2625e2453dec3752d72a307159bd87b018b7e1a6a1d1706404d4e1fa"
+    },
+    {
+      "text": "Let's put these stories together. What has AI actually changed? And when an answer arrives this quickly, what do you work on next?",
+      "chapter": 1,
+      "paragraph": 168,
+      "id": "en-01-06",
+      "text_sha256": "932b06ea9c47bc0bc1a1eac0ce6794a2a00aff2e15c93e2d5d9b1cf0ed1f79ef"
+    },
+    {
+      "text": "We'll start with a few switches on that desk.",
+      "chapter": 1,
+      "paragraph": 169,
+      "id": "en-01-07",
+      "text_sha256": "748e3d01d2bcab073e02602a798b4165380f57ab2320ac2215656e49f637908f"
+    },
+    {
+      "text": "First, let's sort out that number. The 722 counts the manuscripts OpenAI initially published on October 6.",
+      "chapter": 2,
+      "paragraph": 171,
+      "id": "en-02-01",
+      "text_sha256": "5d22a9c7678be36fc90ce0241a1542bf61cbf977837353fada2e704f911b69f2"
+    },
+    {
+      "text": "One gives a main result. Another supplies a supporting argument. Another offers a different proof. Several manuscripts can belong to the same piece of research. OpenAI grouped them into 372 families of related results.",
+      "chapter": 2,
+      "paragraph": 172,
+      "id": "en-02-02",
+      "text_sha256": "e90d1d26a40dc4a4c75559aa2fdbc96da3845ccd0c02df6970363d574cf6648c"
+    },
+    {
+      "text": "So we can't turn 722 manuscripts into 722 separate problems solved.",
+      "chapter": 2,
+      "paragraph": 173,
+      "id": "en-02-03",
+      "text_sha256": "b8b7118d3b1631f3bc15427baa85a31906fadb2f4dcf9327a9b3cfdeffe3855b"
+    },
+    {
+      "text": "For our student, the question is much more specific: which result overlaps with the problem they've been working on?",
+      "chapter": 2,
+      "paragraph": 174,
+      "id": "en-02-04",
+      "text_sha256": "be9a8a7e2d3ff6bbdb5bd05a47e9fd64e68b855c889023fa4edb77f16eca24a8"
+    },
+    {
+      "text": "ETH came later. We'll use that result to see what can change. Leave the name aside for a moment. All we need to start is a switch: on or off.",
+      "chapter": 2,
+      "paragraph": 175,
+      "id": "en-02-05",
+      "text_sha256": "6fbb5fa8bd1be2cd320bc43be17f891a36e88a73cdb2c7cac91f31cc985d1c99"
+    },
+    {
+      "text": "One switch. On or off. Two settings.",
+      "chapter": 3,
+      "paragraph": 177,
+      "id": "en-03-01",
+      "text_sha256": "5600d1248fc14252ab8e6b62aab6d018153fce0b4e392c0df9894e0d3b1fd062"
+    },
+    {
+      "text": "Now add a second. How many have we got? Give it a moment.",
+      "chapter": 3,
+      "paragraph": 178,
+      "id": "en-03-02",
+      "text_sha256": "b2c7bf78c816636284dd6d870ad221c13d2701b2ba4770ba33ceb22df818e257"
+    },
+    {
+      "text": "Four? Yes—watch. When the first switch is on, the second can be on or off. When the first is off, we get those two choices again. Four altogether.",
+      "chapter": 3,
+      "paragraph": 179,
+      "id": "en-03-03",
+      "text_sha256": "8ba82cb6ae601d7633767fe6ad41b39ce58ef9748bca7f974f6501e4e66d3566"
+    },
+    {
+      "text": "A third switch doubles it again. Eight.",
+      "chapter": 3,
+      "paragraph": 180,
+      "id": "en-03-04",
+      "text_sha256": "685f52fe50501ec963eff788a26afc6e61e3c0c46c66a8399915ca1ffa0fa9c8"
+    },
+    {
+      "text": "Every extra switch gives each existing setting two versions. That's exponential growth.",
+      "chapter": 3,
+      "paragraph": 181,
+      "id": "en-03-05",
+      "text_sha256": "f316cf279451dcaae6519cd24f62fd0bac32f657996d06ebb9e705bd8baf84f7"
+    },
+    {
+      "text": "Ten switches give 1,024 combinations. Twenty give over a million. That's with just twenty switches. Going from ten to twenty gives us over a thousand times as many possible settings.",
+      "chapter": 3,
+      "paragraph": 182,
+      "id": "en-03-06",
+      "text_sha256": "411cb5a12231ee3600818c7d25d62f554a60a0e18632d1079d06d11766e6feed"
+    },
+    {
+      "text": "Careful, though: possible settings. How many the computer actually has to try depends on the method it uses.",
+      "chapter": 3,
+      "paragraph": 183,
+      "id": "en-03-07",
+      "text_sha256": "ff1fe24e4f70c2ed6dec77e17b76cdb645b9d2f0497f71e4598737c941d723e9"
+    },
+    {
+      "text": "Before we send it through a million combinations, we still need to finish setting the problem.",
+      "chapter": 3,
+      "paragraph": 184,
+      "id": "en-03-08",
+      "text_sha256": "464e5e49e28a1f41b8790ab4b2dfbcfdeb763defbddbef850951e0b232342d21"
+    },
+    {
+      "text": "Let's give these switches a rule. A is on, or B is on, or C is off. At least one of those three conditions has to hold.",
+      "chapter": 4,
+      "paragraph": 186,
+      "id": "en-04-01",
+      "text_sha256": "abb0718c3a1d92a606f898440c668239473e4820e88a08550afdb185866e6268"
+    },
+    {
+      "text": "Add a second rule, then a third. We can have lots of switches, but each rule contains at most three conditions. The task is to find a setting that passes every rule—or establish that none works. That's the kind of problem called three-SAT.",
+      "chapter": 4,
+      "paragraph": 187,
+      "id": "en-04-02",
+      "text_sha256": "631068beb20fe99828fdb851d5a5ee635311e8e5df6736f529602170867bbf41"
+    },
+    {
+      "text": "Try our little example. All three switches on: every rule passes. Turn the first two off and leave the last one on... now the first rule fails.",
+      "chapter": 4,
+      "paragraph": 188,
+      "id": "en-04-03",
+      "text_sha256": "fae7a45ac4fb589622398a33f521c7d058ce7a7cea2881629ac406abacd8b9b4"
+    },
+    {
+      "text": "Give you a setting, and you can check it against the rules. Finding one, with a method that handles even the hardest cases, can be much harder.",
+      "chapter": 4,
+      "paragraph": 189,
+      "id": "en-04-04",
+      "text_sha256": "436d79066471eab0f9b54dbf56ac7e7387b34a2540eddef0993ab780cfce1d37"
+    },
+    {
+      "text": "Clever algorithms can skip many combinations, of course. ETH—the Exponential Time Hypothesis—conjectures that even the cleverest algorithm still faces some fixed exponential growth in the worst case.",
+      "chapter": 4,
+      "paragraph": 190,
+      "id": "en-04-05",
+      "text_sha256": "caaa6fceb7c369ac7e4ef29424c9e98f0db00325abfc87ae2738ad18e087df4b"
+    },
+    {
+      "text": "And that's the limit these two companies say they've found a way past.",
+      "chapter": 4,
+      "paragraph": 191,
+      "id": "en-04-06",
+      "text_sha256": "5732e4b4a506a8ba68bdece58936aa6c877f2510445a4366098a5ebeb1761102"
+    },
+    {
+      "text": "So how big a change is that? Suppose each extra switch meant twice as much work. Change that multiplier from two to one point one. Much slower growth, right? Yes. Still exponential, though. The multiplier stays fixed and greater than one.",
+      "chapter": 5,
+      "paragraph": 193,
+      "id": "en-05-01",
+      "text_sha256": "99c1ad743e54a410bc4a13f8acb2bf828f50a7144049b03f9c0114dad2644d82"
+    },
+    {
+      "text": "The teams claim to go further. As problems get larger, the work their algorithms require eventually grows more slowly than every fixed exponential rate of that kind. That growth category is called subexponential time.",
+      "chapter": 5,
+      "paragraph": 194,
+      "id": "en-05-02",
+      "text_sha256": "65a261762229416fe25e56057ba5077a1b2eb0ca5dc1b4e9d6eb87b2248576d8"
+    },
+    {
+      "text": "OpenAI announced its result on October 26. Anthropic published similar research soon afterward. Both date their core discoveries to October 16. Anthropic says the teams worked independently and in parallel.",
+      "chapter": 5,
+      "paragraph": 195,
+      "id": "en-05-03",
+      "text_sha256": "a37fdea7d40a8bd091b92781dcd38ac7e18eef34dabb2804c9fedb569106a809"
+    },
+    {
+      "text": "At this point you might be thinking, “Great. Can I use it?”",
+      "chapter": 5,
+      "paragraph": 196,
+      "id": "en-05-04",
+      "text_sha256": "90f54727f65a5f990b31656474c90c323fc661421fe30878afdadabd8a700a23"
+    },
+    {
+      "text": "Fair question. But we've been comparing how the work grows as problems get larger. Your particular problem, on your computer, today—that needs a separate calculation.",
+      "chapter": 5,
+      "paragraph": 197,
+      "id": "en-05-05",
+      "text_sha256": "715fdd9b87bc4f3bd26a1451c0f0be5ab8d919b749827ebe544e0e864cf6a6ec"
+    },
+    {
+      "text": "An algorithm can have enormous overheads. Its advantage might appear only at immense sizes. Anthropic explicitly says its result makes no claim about practical solving performance.",
+      "chapter": 5,
+      "paragraph": 198,
+      "id": "en-05-06",
+      "text_sha256": "97c6cadc5000e039383a425c86b06c2cc9d19fc18dc89fd9c00f5ecb9ae6f1ca"
+    },
+    {
+      "text": "An important assumption is being challenged. Getting from there to useful software still takes research.",
+      "chapter": 5,
+      "paragraph": 199,
+      "id": "en-05-07",
+      "text_sha256": "9044e1402c9c5df75ece444ef3fa5b079c8febf3b16cf359837e5a943560c7ad"
+    },
+    {
+      "text": "Both teams also released papers and Lean proof material. Before we change that student's plan, let's establish what the new result actually proves.",
+      "chapter": 5,
+      "paragraph": 200,
+      "id": "en-05-08",
+      "text_sha256": "2fd2f8f23c9543baf9b76c990a8b85153b980d94a748c62d5891c67266ea3469"
+    },
+    {
+      "text": "Try this with me: every real number, squared, is strictly greater than zero.",
+      "chapter": 6,
+      "paragraph": 202,
+      "id": "en-06-01",
+      "text_sha256": "13fae065e2ec0f03fda2959fe4392a4fc8652c693746f97d92c45fbefe68bfd2"
+    },
+    {
+      "text": "If “real number” sounds technical, start with familiar numbers. Squaring just means multiplying a number by itself.",
+      "chapter": 6,
+      "paragraph": 203,
+      "id": "en-06-02",
+      "text_sha256": "6b821048a2995b081cdb50acca70594ca67c61cb45b3c4bd098d9788f4044557"
+    },
+    {
+      "text": "One times one: one. Two times two: four. Negative three times negative three: nine. So far, so good.",
+      "chapter": 6,
+      "paragraph": 204,
+      "id": "en-06-03",
+      "text_sha256": "d399bc79ccef0ad4c3cd6209ea4c43dc2ee23deaf87df008735a7dabd8109e64"
+    },
+    {
+      "text": "Suppose I tried a hundred more. A thousand. They all worked. Would that settle it?",
+      "chapter": 6,
+      "paragraph": 205,
+      "id": "en-06-04",
+      "text_sha256": "9c84b926e27c31561adea196ba3a79499af7e05c9136c42a53dbb39c442922ec"
+    },
+    {
+      "text": "Put zero in.",
+      "chapter": 6,
+      "paragraph": 206,
+      "id": "en-06-05",
+      "text_sha256": "07d3f144fda63500ad2a4a4885e715a6cbfc65ff3555b9e505fbed99d96c6b6e"
+    },
+    {
+      "text": "Ah. Zero times zero is zero. It's not strictly greater than zero. We only needed one example to defeat the word “every.”",
+      "chapter": 6,
+      "paragraph": 207,
+      "id": "en-06-06",
+      "text_sha256": "788eb35035fd478bc43482078b8dd766b2e81081102792bbb532f0ae5f1e5e7f"
+    },
+    {
+      "text": "The successful examples can help us spot a pattern. But this claim covers infinitely many possibilities. Proving it takes an argument that covers every allowed case.",
+      "chapter": 6,
+      "paragraph": 208,
+      "id": "en-06-07",
+      "text_sha256": "24eb94934a64a613207fcd49c998d5cf1b48053874e66766a8ab765c42d64879"
+    },
+    {
+      "text": "So when AI gives us a beautifully written answer, we still have to find that argument. Where is the step that covers all the cases?",
+      "chapter": 6,
+      "paragraph": 209,
+      "id": "en-06-08",
+      "text_sha256": "dce8ead9702f9d5969b131c2cd54f84740dd20206967363c5eea3755d0c775ff"
+    },
+    {
+      "text": "That's where a proof assistant such as Lean can help. We express the statement and its argument in a form the computer can check rigorously. Each step must follow from the stated assumptions and logical rules.",
+      "chapter": 7,
+      "paragraph": 211,
+      "id": "en-07-01",
+      "text_sha256": "b210f8446e36c1c92432bfcdf20aec66b0231eac18ed4459eb354bf8b4f06545"
+    },
+    {
+      "text": "A strict check can catch a gap a human reader might miss.",
+      "chapter": 7,
+      "paragraph": 212,
+      "id": "en-07-02",
+      "text_sha256": "2bbc210ba7ae0e4a46d0ca98a0e6f804b326354c7f4ee5a3fd6eb0d6bfff1233"
+    },
+    {
+      "text": "Now watch what I change. On the right, write: every nonzero real number has a strictly positive square.",
+      "chapter": 7,
+      "paragraph": 213,
+      "id": "en-07-03",
+      "text_sha256": "797f5513012dffa95afa0d4fcc27cebcc0be9b427abe4a327b178169d0805563"
+    },
+    {
+      "text": "That one's true. A nonzero real number is positive or negative, and its square is positive either way. It can have a valid proof.",
+      "chapter": 7,
+      "paragraph": 214,
+      "id": "en-07-04",
+      "text_sha256": "fb932f42aa82d0ece5a34c41d28e215334e5fddb52635f2b685a4549e8486c61"
+    },
+    {
+      "text": "Great—have we proved the original claim?",
+      "chapter": 7,
+      "paragraph": 215,
+      "id": "en-07-05",
+      "text_sha256": "f8981b63c390982cd9730c5b5849dcddd719214d50e77c0d28ff321bda123f65"
+    },
+    {
+      "text": "Look at the left-hand card. It included zero. In our example, adding “nonzero” changed the task.",
+      "chapter": 7,
+      "paragraph": 216,
+      "id": "en-07-06",
+      "text_sha256": "3172494585ea8a09633dde249d3754eb2fe7437c02610e2f1866b8d3db6bc207"
+    },
+    {
+      "text": "A valid machine-checked proof establishes the statement we supplied, under its assumptions. We still have to match that statement to what the paper originally claimed.",
+      "chapter": 7,
+      "paragraph": 217,
+      "id": "en-07-07",
+      "text_sha256": "7e90b96c16dcb3f22704c52ac0b50076a63e99b4f3fa39cf127fa0adfadd7bee"
+    },
+    {
+      "text": "Anthropic's own documentation makes this distinction. When you see “machine verified,” find the conclusion and the assumptions together. That tells you what the check covers.",
+      "chapter": 7,
+      "paragraph": 218,
+      "id": "en-07-08",
+      "text_sha256": "af89ad7a892d84619032e48f64d61a928c866f806c6aafa9e73cb19e18e03cc5"
+    },
+    {
+      "text": "Scale that up to a real paper, and there's a lot to examine: definitions, earlier results it relies on, and whether the written paper and the formal material say the same thing.",
+      "chapter": 8,
+      "paragraph": 220,
+      "id": "en-08-01",
+      "text_sha256": "cd21aa51c23fc58de9888c0623ac4def6a5f75f2dc9d06d9bb4d70b81ed2676d"
+    },
+    {
+      "text": "On ETH, researchers organizing the public examination include original proposers of the hypothesis. They're helping with examination, explanation and study of the consequences.",
+      "chapter": 8,
+      "paragraph": 221,
+      "id": "en-08-02",
+      "text_sha256": "d7411b460932a0599fecdb4102792a80f6aa39fb1ae27adc2e351523782c87a8"
+    },
+    {
+      "text": "But their public statement is clear: taking part does not certify the claim.",
+      "chapter": 8,
+      "paragraph": 222,
+      "id": "en-08-03",
+      "text_sha256": "41303c23c5da4d062ae8773499362ff7fb23e68ef720e9ff8dc8afcd7d148259"
+    },
+    {
+      "text": "Put the materials together. The paper presents the argument. The formal proof material supports rigorous machine checking. Public examination can clarify the scope, limits and implications.",
+      "chapter": 8,
+      "paragraph": 223,
+      "id": "en-08-04",
+      "text_sha256": "b48298d6349baf67abd5f46556273eead29126387832a12f9dde62d24bc4f7a4"
+    },
+    {
+      "text": "Two teams reporting similar conclusions is still no reason to skip checking either argument.",
+      "chapter": 8,
+      "paragraph": 224,
+      "id": "en-08-05",
+      "text_sha256": "648669ca74cabb36094ff68646438a8efe7179f2bdba7289ce70bfecb5738533"
+    },
+    {
+      "text": "If a new result holds up and solves the particular problem our student was working on, then yes—the research plan needs another look.",
+      "chapter": 8,
+      "paragraph": 225,
+      "id": "en-08-06",
+      "text_sha256": "cb62b60426e15ba2ba2da1d7e43e2de17a413e63e5bfe0bf4d3c1ed9ac57c772"
+    },
+    {
+      "text": "So what happens to those two years?",
+      "chapter": 9,
+      "paragraph": 227,
+      "id": "en-09-01",
+      "text_sha256": "8b836d409ded1241cabd96df8f897463d728bcf46475adc50393e222a24dcc56"
+    },
+    {
+      "text": "For our hypothetical student, if the new proof solves the same problem, the “first proof” they planned for their thesis needs reassessing.",
+      "chapter": 9,
+      "paragraph": 228,
+      "id": "en-09-02",
+      "text_sha256": "8cc01a2098ddef600b871af75003fbe2270e9ffae965a94f33b65d937795a4ab"
+    },
+    {
+      "text": "They sit down with their supervisor. Does their approach do something different? Could it handle cases the new result leaves open? There may be a contribution in the work they've already done.",
+      "chapter": 9,
+      "paragraph": 229,
+      "id": "en-09-03",
+      "text_sha256": "7b3c81172f2dfda13f3ab1754c4bf04f75c80e4df20d4f64768113a75f246214"
+    },
+    {
+      "text": "Their skills haven't disappeared. The schedule and thesis plan may need to change. Mathematician Tristan Buckmaster discussed this kind of disruption in a public interview after the initial manuscript release.",
+      "chapter": 9,
+      "paragraph": 230,
+      "id": "en-09-04",
+      "text_sha256": "f8764d6ad12232c0dea3df567a08f4056ace82d5d1b2926ae56ab3ec68ef526c"
+    },
+    {
+      "text": "ETH also affects work built on an assumption: if ETH holds, then another problem cannot be solved that quickly either.",
+      "chapter": 9,
+      "paragraph": 231,
+      "id": "en-09-05",
+      "text_sha256": "631cee5d4750e97cfd2833eaf46496e77c91cfa14f99d2875896152b8f627f66"
+    },
+    {
+      "text": "Now that premise is being challenged. What the work tells us about computational difficulty needs reassessing.",
+      "chapter": 9,
+      "paragraph": 232,
+      "id": "en-09-06",
+      "text_sha256": "be1c81ae17655c349694b834824122c5d35ec77357252b103b58eae4cc9ac5f1"
+    },
+    {
+      "text": "But, hang on—that doesn't make every line of reasoning useless. The link between the problems, and methods developed along the way, may still matter. We can't simply throw all those papers away.",
+      "chapter": 9,
+      "paragraph": 233,
+      "id": "en-09-07",
+      "text_sha256": "9f80c7c014c297bcc128eddeb4c70ef54cb4a596c9f6a1884e922ca85f55a4c5"
+    },
+    {
+      "text": "A new result can move mathematics forward while someone has to rethink the next few years of their life. That's the career impact to look at: what happens to the actual plan?",
+      "chapter": 9,
+      "paragraph": 234,
+      "id": "en-09-08",
+      "text_sha256": "aa47ac979a1ac32400709cf40b592b5b0d9174f3ff5bf19c272385b45eecd542"
+    },
+    {
+      "text": "How might you find the next contribution? Let's go back to zero.",
+      "chapter": 10,
+      "paragraph": 236,
+      "id": "en-10-01",
+      "text_sha256": "d153a118a3658d8000a1e5ec8701572e966c560a6271cb26ac61a21f7a6c25bd"
+    },
+    {
+      "text": "The proof on the right needed a nonzero number. I want zero included again. Can you change the claim so it still works?",
+      "chapter": 10,
+      "paragraph": 237,
+      "id": "en-10-02",
+      "text_sha256": "8c28b9a48bbc9ee733ab1cee92c05642d9121f02bfa4fa9a7efc8f3dd49bd17d"
+    },
+    {
+      "text": "“Greater than or equal to zero.”",
+      "chapter": 10,
+      "paragraph": 238,
+      "id": "en-10-03",
+      "text_sha256": "c55f8aeb5ff24c2ec0036d8d3cd3529be047f5883989142c7394c3a252e8cb58"
+    },
+    {
+      "text": "There we go. We've included zero and adjusted the conclusion.",
+      "chapter": 10,
+      "paragraph": 239,
+      "id": "en-10-04",
+      "text_sha256": "ff079c7a6b2b794cd39aef25740cc54051505c6d4c1bdf9b6c89f9c806337e47"
+    },
+    {
+      "text": "It's a tiny example. But you're noticing which condition does the work, then adapting when the question changes. Research needs that habit.",
+      "chapter": 10,
+      "paragraph": 240,
+      "id": "en-10-05",
+      "text_sha256": "12ca88f5b0ee9371a130699d9c58de4eb2fe8d5034183fc485550c3a664a21d8"
+    },
+    {
+      "text": "In an October 22 opinion article in Nature, Terence Tao argued that AI's mathematical output could outpace people's ability to understand it.",
+      "chapter": 10,
+      "paragraph": 241,
+      "id": "en-10-06",
+      "text_sha256": "1838b3d5105aca7f3806bd24d4ce305fe2570418a6fbaa2f20c3fa3d78631b15"
+    },
+    {
+      "text": "Take the new ETH algorithms. What's the idea that saves computation? Once we understand that, we can ask which methods might work elsewhere, and what would need to change for practical use.",
+      "chapter": 10,
+      "paragraph": 242,
+      "id": "en-10-07",
+      "text_sha256": "928d8ee472cf1a5655355827454237f3bcb65e9e9c84bcc896b8f21b0a235752"
+    },
+    {
+      "text": "Those answers add knowledge too. Give a student a complete solution, and they still need room to change conditions, try approaches and explain their choices. That's how we find out what they've learned.",
+      "chapter": 10,
+      "paragraph": 243,
+      "id": "en-10-08",
+      "text_sha256": "248b390929ec4b5b04c474d59cd8f621b73dbb12de5ff1abd83d0e82a5c5ea5d"
+    },
+    {
+      "text": "Which brings us to a very practical question: who has the time, and who can get the tools?",
+      "chapter": 10,
+      "paragraph": 244,
+      "id": "en-10-09",
+      "text_sha256": "134f2e1a9e2a666363c10724ed977d01da227d7f2bac891d9e83c8e1b457bb15"
+    },
+    {
+      "text": "Picture two research desks. Same published papers. At one, a researcher can keep using powerful models to change assumptions and try new problems. At the other, they first need access to tools and computing resources to run those same experiments.",
+      "chapter": 11,
+      "paragraph": 246,
+      "id": "en-11-01",
+      "text_sha256": "ad2caa3ea0d5836f32397c77de367f96101788cd17563f48ef78e8a506e635f2"
+    },
+    {
+      "text": "The result is public. The ability to explore with those tools is still an access question. And that affects whose questions get pursued.",
+      "chapter": 11,
+      "paragraph": 247,
+      "id": "en-11-02",
+      "text_sha256": "af878d7c3d052223bf17fb5371f4d6294713212ed5a25a9935bdc9653cb3eeda"
+    },
+    {
+      "text": "The Advisory Group on Mathematics and Artificial Intelligence, AGMAI, has called for freedom to choose research questions and fair access to tools and computing resources.",
+      "chapter": 11,
+      "paragraph": 248,
+      "id": "en-11-03",
+      "text_sha256": "45cb891f947008ad01d177169aa090f94cb1f59892de665ba3230f7442805b21"
+    },
+    {
+      "text": "There's a concrete commitment too. On October 15, the Simons Foundation announced a combined commitment of fifteen million dollars in funding and resources with Anthropic and OpenAI. The plan is to support evaluating results, learning tools and developing shared standards. The foundation will manage the funding.",
+      "chapter": 11,
+      "paragraph": 249,
+      "id": "en-11-04",
+      "text_sha256": "e18fe65c2b3a4b3a5d6a9328005cd0a3c7f4006e9e1648e41b40269f6d830727"
+    },
+    {
+      "text": "The test is what support researchers actually receive. Somebody has to sit down and understand the proof, train students and try the method on another problem. That takes time.",
+      "chapter": 11,
+      "paragraph": 250,
+      "id": "en-11-05",
+      "text_sha256": "1bf009d3ed3df6fa2166ac91f467c9cad0d87b89f0ff0dfb03b0268b29e0b7d4"
+    },
+    {
+      "text": "So when the next batch of manuscripts arrives, follow this part too: how do more people get to understand the results and use them?",
+      "chapter": 11,
+      "paragraph": 251,
+      "id": "en-11-06",
+      "text_sha256": "64bf179ea10abb2849834a13eab12e332675a35b009b7028c74467e2c0f00400"
+    },
+    {
+      "text": "Okay. Back to the headlines. Let's try four questions.",
+      "chapter": 12,
+      "paragraph": 253,
+      "id": "en-12-01",
+      "text_sha256": "4ef7436a24d97585fe6ace5b2a2175e5f179bf5c3100ccbddd15d452e1267001"
+    },
+    {
+      "text": "What exactly was solved? The 722 figure counts manuscripts. The new ETH claim concerns how computation grows for this class of logic problems.",
+      "chapter": 12,
+      "paragraph": 254,
+      "id": "en-12-02",
+      "text_sha256": "e18e97d206dff3ede93dd256dea45a8972f5d544818ad8fadabcc5e3d59c2297"
+    },
+    {
+      "text": "Under what conditions? We're talking about theoretical growth in the worst case. How long your computer would take on a particular task today needs a separate assessment.",
+      "chapter": 12,
+      "paragraph": 255,
+      "id": "en-12-03",
+      "text_sha256": "75452abb4cdcc5f90e0d218e406b86d623cc6d481e2174f1d9562499bd3a779d"
+    },
+    {
+      "text": "Who checked which part? Both teams released papers and formal proof material. Match the evidence to the exact statement, and check how far public examination has progressed.",
+      "chapter": 12,
+      "paragraph": 256,
+      "id": "en-12-04",
+      "text_sha256": "9eb78df8ae2048d6eb1176226ba1604d51c996f926c91fde8cbac8b14b006fd5"
+    },
+    {
+      "text": "And what does the work add? Alongside the claimed new algorithm, look for its key idea. Can people understand it and build on it?",
+      "chapter": 12,
+      "paragraph": 257,
+      "id": "en-12-05",
+      "text_sha256": "957f738d0b6bccda0316688140f48e4b735ea9071b12456edf1ebad00ee81e12"
+    },
+    {
+      "text": "Result, assumptions, checks, contribution. Those give you something concrete to follow when a headline makes a very big claim.",
+      "chapter": 12,
+      "paragraph": 258,
+      "id": "en-12-06",
+      "text_sha256": "46e90e08c65701e3c276726f6878c5f236bfb9fc09f008fd3f47dabc6bf7d07c"
+    },
+    {
+      "text": "They also help our student: work out what the new result covers, where they can contribute, and which problem to choose next.",
+      "chapter": 12,
+      "paragraph": 259,
+      "id": "en-12-07",
+      "text_sha256": "750b060a5337d1493aed165f0098cd434cf76d2e49f72befd2d23777a9382b6a"
+    },
+    {
+      "text": "AI has brought some answers to the desk. Checking them, understanding them, finding the next question—that's the part we'll keep following.",
+      "chapter": 12,
+      "paragraph": 260,
+      "id": "en-12-08",
+      "text_sha256": "5273b1b5aee6ad75f086ce474e40b74347b24aa954a20b7e5bd26f4964d9c7e1"
+    },
+    {
+      "text": "Subscribe to Ooh, Lemme See! I'm Goo—see you next time.",
+      "chapter": 12,
+      "paragraph": 261,
+      "id": "en-12-09",
+      "text_sha256": "b08af820dc8df52b00ac3b85fa663f4cff3f70e4c097b490e4ab477936b56624"
+    }
+  ],
+  "chapters": [
+    {
+      "id": 1,
+      "title": "A new manuscript lands on the desk"
+    },
+    {
+      "id": 2,
+      "title": "What is inside the number 722"
+    },
+    {
+      "id": 3,
+      "title": "What happens when we add a switch"
+    },
+    {
+      "id": 4,
+      "title": "Now add some rules"
+    },
+    {
+      "id": 5,
+      "title": "What does breaking that limit mean"
+    },
+    {
+      "id": 6,
+      "title": "One zero changes everything"
+    },
+    {
+      "id": 7,
+      "title": "What does the machine check"
+    },
+    {
+      "id": 8,
+      "title": "Why mathematicians still need to examine it"
+    },
+    {
+      "id": 9,
+      "title": "What happens to the original plan"
+    },
+    {
+      "id": 10,
+      "title": "What can you add after an answer arrives"
+    },
+    {
+      "id": 11,
+      "title": "Who gets to keep exploring"
+    },
+    {
+      "id": 12,
+      "title": "How to read the next breakthrough headline"
+    }
+  ],
+  "source": "source/script-v3.docx",
+  "scope": "English spoken paragraphs in the supplied third script",
+  "revision": "v27",
+  "language": "en-us",
+  "engine": "Kokoro, nr-test"
+}

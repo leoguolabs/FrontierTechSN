@@ -1,0 +1,676 @@
+{
+  "schema_version": 1,
+  "voice": "en-US-AvaNeural",
+  "rate": "+8%",
+  "lines": [
+    {
+      "text": "OpenAI首批公开了722篇数学手稿。你看这个数字，第一反应可能是：嚯，AI现在连数学都这么厉害了？",
+      "chapter": 1,
+      "paragraph": 43,
+      "id": "zh-01-01",
+      "text_sha256": "8184575e7a485da651d325f916cbd69ec0f652de7e42da79403b0f1a4cb00ad1"
+    },
+    {
+      "text": "咱们换个位置想。假设你是个数学博士生，一道题做了两年，就指着首次证明它，完成自己的论文。今天打开电脑，一篇新手稿来了。你点进去一看，哎？这不就是我正在做的题吗？里面已经给出了证明。",
+      "chapter": 1,
+      "paragraph": 44,
+      "id": "zh-01-02",
+      "text_sha256": "9773dc0cd8873089407ad405c7443359b8fc854cfd48c0069f6e9a3b489c3d8b"
+    },
+    {
+      "text": "你说，这时候该先庆祝，还是赶紧找导师聊聊？",
+      "chapter": 1,
+      "paragraph": 45,
+      "id": "zh-01-03",
+      "text_sha256": "d2ed1423b5236fa25b4127973b38d7942c949f1aff01122975ce5fe7236f0418"
+    },
+    {
+      "text": "我是咕仔，这里是《让我捅咕捅咕》。",
+      "chapter": 1,
+      "paragraph": 46,
+      "id": "zh-01-intro-01",
+      "text_sha256": "20966dcd9541775284116dd8e35ca0e7bddd2baa81468780b4e64f858c595811"
+    },
+    {
+      "text": "而就在最近，OpenAI和Claude的开发商Anthropic，又接连声称推翻了ETH，一个关于计算难度的重要假说。",
+      "chapter": 1,
+      "paragraph": 47,
+      "id": "zh-01-04",
+      "text_sha256": "4ef4da40ad1b881f4d5f9c3a19d2da2cd1994f05c3753444a15db2dcab6a54ed"
+    },
+    {
+      "text": "这回到底突破了什么？又为什么会影响一个人接下来几年怎么过？今天咱们就把这两条新闻连起来看。先拿几个开关，把问题摆在桌上。",
+      "chapter": 1,
+      "paragraph": 48,
+      "id": "zh-01-05",
+      "text_sha256": "cab266090b16ea03030b692d85abe170b14d7c4e4c6822320df72a6840cebc8d"
+    },
+    {
+      "text": "不过啊，722篇手稿，能直接理解成解出了722道难题吗？这个得拆开看。",
+      "chapter": 2,
+      "paragraph": 50,
+      "id": "zh-02-01",
+      "text_sha256": "26b7d3e9843d97fc87419923aaf7da71e8a0c7d7e050c3ae8928c8e3d5af92c1"
+    },
+    {
+      "text": "722，数的是OpenAI在10月6日首次公布的手稿。有的讲主要结果，有的补充论证，还有的换一种证明。官方把它们整理成了372组相关成果。",
+      "chapter": 2,
+      "paragraph": 51,
+      "id": "zh-02-02",
+      "text_sha256": "ddf01cd3bfecb859eb1b0f375fb1a00d1c898f0c77f301c77b1833d7b62874b6"
+    },
+    {
+      "text": "你看，同一组成果，可能就对应好几篇手稿。要是拿篇数直接数独立难题，这个账就对不上了。",
+      "chapter": 2,
+      "paragraph": 52,
+      "id": "zh-02-03",
+      "text_sha256": "8013bc23771970684ef184c440db8fafb22faf89fef9cde092ba6bb1c0bb8a1f"
+    },
+    {
+      "text": "而对刚才那个博士生来说，他最关心的其实是：这里面，有没有一条结论，正好碰上了我做的题？",
+      "chapter": 2,
+      "paragraph": 53,
+      "id": "zh-02-04",
+      "text_sha256": "89260066b0084448dbd418c12099d62d7ef50e57ad9160c54dff899f60ea0af6"
+    },
+    {
+      "text": "咱们接下来看的ETH，是后来另行公布的成果。名字听着挺远，先放一边。你会开灯关灯，就能跟上。",
+      "chapter": 2,
+      "paragraph": 54,
+      "id": "zh-02-05",
+      "text_sha256": "646cb672b9e1b5c455124042e336582b59c5f3715c0f5727417145f7aae15d6a"
+    },
+    {
+      "text": "桌上一个开关，开、关，两种状态。",
+      "chapter": 3,
+      "paragraph": 56,
+      "id": "zh-03-01",
+      "text_sha256": "416c1f6aa57c60b611490010644ba73bd1dcefcdd92d9cf545146d809e405eeb"
+    },
+    {
+      "text": "再加一个呢？你先猜猜，现在有几种？",
+      "chapter": 3,
+      "paragraph": 57,
+      "id": "zh-03-02",
+      "text_sha256": "e7ff9a631ed9f474f39e8a91f65ac0953267b8008290ed2d0e99e70b3cb6369b"
+    },
+    {
+      "text": "第一个开着的时候，第二个可以开，也可以关。第一个关着的时候，第二个同样有两种选择。四种。再加一个，又翻一倍，变成八种。",
+      "chapter": 3,
+      "paragraph": 58,
+      "id": "zh-03-03",
+      "text_sha256": "d6bfb9735db0b2e50009e9d064d0bf148dca4da74e04c25e45f47e414071b644"
+    },
+    {
+      "text": "哎，规律出来了。每多一个开关，前面所有组合，都要再复制一份。这就叫指数增长。",
+      "chapter": 3,
+      "paragraph": 59,
+      "id": "zh-03-04",
+      "text_sha256": "ba2ca7a4d0a205944c3ff556f84d039ee7037559960d66c0c9b654f446048708"
+    },
+    {
+      "text": "十个开关，有1024种组合。二十个呢？超过一百万种。",
+      "chapter": 3,
+      "paragraph": 60,
+      "id": "zh-03-05",
+      "text_sha256": "822a6aeab6bcd8e9c4e6713c005c66c7897807b7a03ea89003d7481035e58f67"
+    },
+    {
+      "text": "才多十个开关啊，可能的摆法就多了一千多倍。",
+      "chapter": 3,
+      "paragraph": 61,
+      "id": "zh-03-06",
+      "text_sha256": "788e3a39b561c459884d29a8849bff652cac747c77d1a23c8c53bc8aa04ad586"
+    },
+    {
+      "text": "那电脑岂不是得试一百多万次？先等等。咱们数的是有多少种摆法，电脑要试多少次，还得看它用什么办法。而且，这道题还没出完呢。",
+      "chapter": 3,
+      "paragraph": 62,
+      "id": "zh-03-07",
+      "text_sha256": "e5ac95fa6291a360b7916127c4afacb70ee205f21c759098abf8b6a30f78251f"
+    },
+    {
+      "text": "光有开关，咱们也不知道要找什么呀。所以，我现在加一条规则：A打开，或者B打开，或者C关闭。三件事里，至少做到一件，这条就算过关。",
+      "chapter": 4,
+      "paragraph": 64,
+      "id": "zh-04-01",
+      "text_sha256": "b828c3d491b4d00c7f5a37de8326368dc3da7ca3c296822104cda69d1daa249c"
+    },
+    {
+      "text": "再加第二条、第三条。开关可以有很多个，每条规则只管其中最多三个条件。我们要找一种摆法，让所有规则同时过关。要是根本找不到呢？算法也得能判断，确实没有。这类问题，叫3-SAT。",
+      "chapter": 4,
+      "paragraph": 65,
+      "id": "zh-04-02",
+      "text_sha256": "40fa0274e2f38e75a3f5253fe7ad4483736afb3f8fd835f733318f6662b48e4a"
+    },
+    {
+      "text": "拿屏幕上这套简单规则试一下。三个开关全打开，每条都能打勾。好，换一下，前两个关、最后一个开。哎，第一条就过不去了。",
+      "chapter": 4,
+      "paragraph": 66,
+      "id": "zh-04-03",
+      "text_sha256": "2ff0e929c253c40439e3f3c2f490e7eb178e57f2383092e0e84fbe18683e5898"
+    },
+    {
+      "text": "你发现没有？给你一种摆法，照着规则检查就行。可让你自己找，而且碰上很难的题也得能处理，那就可能麻烦多了。",
+      "chapter": 4,
+      "paragraph": 67,
+      "id": "zh-04-04",
+      "text_sha256": "85947f95e9ef8f74ba5f86f618457d92a7d501227089e691a3c229e70f1d88aa"
+    },
+    {
+      "text": "你可能会问，那不能想个聪明办法，跳过一些组合吗？当然能。数学家一直在做这个。",
+      "chapter": 4,
+      "paragraph": 68,
+      "id": "zh-04-05",
+      "text_sha256": "5fe62abafec945feb7865f99ecaf9d7b2bb37840087170d2cc4f27946c290d2e"
+    },
+    {
+      "text": "ETH，也就是指数时间假说，猜想的是：即使算法再聪明，在最难的情况下，计算量仍然躲不开某种指数增长。",
+      "chapter": 4,
+      "paragraph": 69,
+      "id": "zh-04-06",
+      "text_sha256": "fbaba9a3ce4bbedef33ae838b5bd6b79e69ed7a1e3654e79f8e9f02251c50922"
+    },
+    {
+      "text": "现在，两家公司的研究都声称，这个限制可以突破。",
+      "chapter": 4,
+      "paragraph": 70,
+      "id": "zh-04-07",
+      "text_sha256": "21f05424131d16b932df38c1ab726317c8e40020b17f40300e6899aa7c74d93e"
+    },
+    {
+      "text": "具体怎么突破呢？咱们先看一个容易混淆的地方。",
+      "chapter": 5,
+      "paragraph": 72,
+      "id": "zh-05-01",
+      "text_sha256": "c63bbd4c3d9848e4018e1f454b2eb433a3744b1d74e826f5a7a5d1dea92a7bb4"
+    },
+    {
+      "text": "假如题目每多一个开关，计算量就乘二。我把这个倍率改成一点一，增长慢多了吧？可你想，它还是每加一个，就乘上同一个数。仍然是指数增长。",
+      "chapter": 5,
+      "paragraph": 73,
+      "id": "zh-05-02",
+      "text_sha256": "f874ee1043deeb50a71ac3f5e5f6f0ee698c1edb0f5f2bd4cae95f0f141a6fa7"
+    },
+    {
+      "text": "这次两家声称，新算法在问题规模足够大以后，计算量增长得比任何固定倍率的指数增长都慢。这里说的倍率，要大于一。这个增长类别，叫次指数时间。",
+      "chapter": 5,
+      "paragraph": 74,
+      "id": "zh-05-03",
+      "text_sha256": "3ce7ae7af0d9383d4cb99841b0275b82b432ce35f3115c4f4c9b0a39e25bb1a4"
+    },
+    {
+      "text": "OpenAI在10月26日公开宣布成果，Anthropic随后也公开了类似研究。巧的是，两家都说，核心结果是在10月16日获得的。Anthropic还称，两项工作是独立、同期完成的。",
+      "chapter": 5,
+      "paragraph": 75,
+      "id": "zh-05-04",
+      "text_sha256": "0edc3b8e6d3e310677dfe70dcf9a8da895bd31bf439abd203558f5e7da613f54"
+    },
+    {
+      "text": "听到这里，你可能已经想问：好，那我今天拿它跑一道题，到底能快多少？",
+      "chapter": 5,
+      "paragraph": 76,
+      "id": "zh-05-05",
+      "text_sha256": "7a8361fbf3c7b323c7be635254c98c0b5f6d8688f53737c776408a22aff3bc5d"
+    },
+    {
+      "text": "这个还真不能直接下结论。咱们刚才比较的，是题目越变越大，计算量怎么长。至于你眼前这道题要跑多久，还得另算。",
+      "chapter": 5,
+      "paragraph": 77,
+      "id": "zh-05-06",
+      "text_sha256": "e409920c57117c1647e543771b92adc89d0d90da351d7addb8d52ffdccd91a31"
+    },
+    {
+      "text": "你想，新算法真正运行起来，开销可能很大。它的优势，也可能到极大的规模才显出来。Anthropic自己就说明了，这项成果没有给出实际解题速度的结论。",
+      "chapter": 5,
+      "paragraph": 78,
+      "id": "zh-05-07",
+      "text_sha256": "248cb85e53c80c182a614419f637be9741c6254d4cb84df244145999eeac99b4"
+    },
+    {
+      "text": "所以，这条关于计算难度的重要判断，确实值得重新审视。可要变成一个好用的程序，后面还有活要干。",
+      "chapter": 5,
+      "paragraph": 79,
+      "id": "zh-05-08",
+      "text_sha256": "61f32f17a779633a0685c15d0ac03c0331f5a22e68c2c977be7488aab8c19a4e"
+    },
+    {
+      "text": "两家也都公开了论文和Lean证明材料。那问题就来了：它究竟证明到了哪一步？咱们先拿一句特别简单的话试试。",
+      "chapter": 5,
+      "paragraph": 80,
+      "id": "zh-05-09",
+      "text_sha256": "782067240d193236d3b7fb1c6c50ab8016ce122af108acb2cc8e6c5bedcd3c6a"
+    },
+    {
+      "text": "我现在说：所有实数，平方以后，都严格大于零。",
+      "chapter": 6,
+      "paragraph": 82,
+      "id": "zh-06-01",
+      "text_sha256": "21138b12215a29ff1dc3c14d5112da5b8c31ef31d608dfaf30b33f51270500aa"
+    },
+    {
+      "text": "这里先拿几个平时常见的数试试。平方呢，就是一个数乘自己。",
+      "chapter": 6,
+      "paragraph": 83,
+      "id": "zh-06-02",
+      "text_sha256": "01861961b7eba6fe7f239095bbd17a6a572ab3a43b45fb28632305cbf8cc6dcb"
+    },
+    {
+      "text": "一乘一，等于一。二乘二，等于四。负三乘负三，等于九。你看，好像都对。",
+      "chapter": 6,
+      "paragraph": 84,
+      "id": "zh-06-03",
+      "text_sha256": "33d5d75429bd6810107a6b8eacc3f0068a8897c6c23aeb75ad2c5dc335a5811f"
+    },
+    {
+      "text": "那我再试一百个、一千个，也都对。行了吧？能算证明了吗？",
+      "chapter": 6,
+      "paragraph": 85,
+      "id": "zh-06-04",
+      "text_sha256": "e58190ba240107284b2a47d643c75e9bd9d68b8362bcbdce7581df7eee13b4de"
+    },
+    {
+      "text": "哎，零呢？",
+      "chapter": 6,
+      "paragraph": 86,
+      "id": "zh-06-05",
+      "text_sha256": "67c35d4e49bc8b77b3ff858f51f988f4b04dcffce746eedbab6daad8c95f2d02"
+    },
+    {
+      "text": "零乘零，还是零。它可没有严格大于零。前面那些例子都对，也挡不住这个反例。就这一个零，把“所有”给推翻了。",
+      "chapter": 6,
+      "paragraph": 87,
+      "id": "zh-06-06",
+      "text_sha256": "1733f9b8b19606597f607f9c9cb47b5023bdf4b2a83276fca0a289d990dce37c"
+    },
+    {
+      "text": "所以啊，多试几个例子，能帮我们猜规律。可这句话包含无限多种情况，你总不能挨个试到最后吧？得有一套推理，能把所有允许的情况都覆盖进去。",
+      "chapter": 6,
+      "paragraph": 88,
+      "id": "zh-06-07",
+      "text_sha256": "540ce590fc437c6456a9caabed08bbcb25fbdb1c59121b7d2417bdc8afff448f"
+    },
+    {
+      "text": "AI的答案写得再漂亮，也得接着问：这套推理，到底在哪里？",
+      "chapter": 6,
+      "paragraph": 89,
+      "id": "zh-06-08",
+      "text_sha256": "6631833e549ef6ed1afe91891ac21d15c46546f40baab3796d55c486e7be4ce2"
+    },
+    {
+      "text": "好，那能不能让电脑来查这套推理？",
+      "chapter": 7,
+      "paragraph": 91,
+      "id": "zh-07-01",
+      "text_sha256": "b8d661608ef952293233e70bec32eb5b6e58e790d70026ec8f5d0bbbb7a40e44"
+    },
+    {
+      "text": "Lean这类证明助手，干的就是这个。把命题和推理写成计算机能严格检查的形式，哪一步用了什么前提，凭什么能往下推，都要交代清楚。人可能看漏的地方，就能交给这种严格的逻辑检查。",
+      "chapter": 7,
+      "paragraph": 92,
+      "id": "zh-07-02",
+      "text_sha256": "ff9ed574930838809ddc4d33b2e6a393387773b35c0fc9a60aed74dfe8e7d528"
+    },
+    {
+      "text": "这不是挺好吗？检查通过，咱们就放心了？",
+      "chapter": 7,
+      "paragraph": 93,
+      "id": "zh-07-03",
+      "text_sha256": "5296e372910a464e6dbcc999e01e3f9823f1b417ffddb30ff0d6096576815acd"
+    },
+    {
+      "text": "先别急，你看我在右边另写一句：所有不等于零的实数，平方都严格大于零。",
+      "chapter": 7,
+      "paragraph": 94,
+      "id": "zh-07-04",
+      "text_sha256": "3d8beae3b7df4948ad9bfff39b7da38451378b9b73ccb0a1accf1926ffe47712"
+    },
+    {
+      "text": "这句话确实对。非零的实数，要么正，要么负，平方以后都为正。它能有一个成立的证明。",
+      "chapter": 7,
+      "paragraph": 95,
+      "id": "zh-07-05",
+      "text_sha256": "a31f55c9dc374638a84114dd1c04df2a7bd235a66c83269684415a5848129418"
+    },
+    {
+      "text": "可你再看看左边，发现没有？原来问的是所有实数，零也算。右边多了一句“不等于零”。哎，题目变了。",
+      "chapter": 7,
+      "paragraph": 96,
+      "id": "zh-07-06",
+      "text_sha256": "7d24d92e6109318e79eb953b99b2c752e120db9faeccc89ea27f396def116a42"
+    },
+    {
+      "text": "机器严格检查的，是你交给它的那句话的证明。我们还得对一对，这句话，跟论文原本要证明的，是不是同一回事？",
+      "chapter": 7,
+      "paragraph": 97,
+      "id": "zh-07-07",
+      "text_sha256": "7eabc0e3bf45e9831c70011df2e62ffc95dc5be2340a86e53f40c2e0730c5649"
+    },
+    {
+      "text": "这只是咱们自编的小例子。Anthropic自己的说明，也提醒要检查这种对应关系。所以读到“机器验证”，顺手把前提也找出来，才知道它验证到了哪里。",
+      "chapter": 7,
+      "paragraph": 98,
+      "id": "zh-07-08",
+      "text_sha256": "423bcd1217b191ad1a8e27c6de5b42badb6c34b47473d69cbd0faaa764ef7517"
+    },
+    {
+      "text": "真到研究里，这个“对一对”，可没刚才那么简单。",
+      "chapter": 8,
+      "paragraph": 100,
+      "id": "zh-08-01",
+      "text_sha256": "e675e1939b28e3c5beaa0eda3adf1b57805b2898f0e25b22b57ec5ce7856d8d6"
+    },
+    {
+      "text": "得先看定义怎么写，借用了哪些结论，再把论文和形式化材料逐一对上。刚才的例子，只多了几个字，任务就变了。真正的材料里，这些细节都得有人检查。",
+      "chapter": 8,
+      "paragraph": 101,
+      "id": "zh-08-02",
+      "text_sha256": "da9265a26edb9d0da7e43d93bc1664764c1e341e9d205fc39274f75491649920"
+    },
+    {
+      "text": "这次ETH的公开讨论，连原假说的提出者也参与了。他们和其他研究者一起，组织检查、解释，以及后果研究。",
+      "chapter": 8,
+      "paragraph": 102,
+      "id": "zh-08-03",
+      "text_sha256": "08a63dd57639abe7580365de3cef554edcf8b1f085db8ed9771039a0fcb641aa"
+    },
+    {
+      "text": "他们也专门说明了：参与这项工作，并不代表已经为主张认证。大家是来一起检查、理解这份结果的。",
+      "chapter": 8,
+      "paragraph": 103,
+      "id": "zh-08-04",
+      "text_sha256": "60c2ca2bcc82112e7b96f784c7420d1a86cfd6dd0276c4ba487278b105d31144"
+    },
+    {
+      "text": "你把几份材料放在桌上看，就容易理解了。论文让人读论证，形式化材料交给机器严格检查，公开讨论再把范围、限制和影响，一点点讲清楚。",
+      "chapter": 8,
+      "paragraph": 104,
+      "id": "zh-08-05",
+      "text_sha256": "6d57f9159d52d561203489db79a3e2cb9bf65877de0e88317cebe2db1e82e8f9"
+    },
+    {
+      "text": "两家公司得出相似结论，当然值得关注。可各自的论证，还是得分别看。",
+      "chapter": 8,
+      "paragraph": 105,
+      "id": "zh-08-06",
+      "text_sha256": "d62881c41c34d65246edfa58956827fae80818661e982eaac8b34212893b95dd"
+    },
+    {
+      "text": "如果新结果经得起检查，又正好解决了那位博士生的题，他那张研究计划，就真得重新翻一翻了。",
+      "chapter": 8,
+      "paragraph": 106,
+      "id": "zh-08-07",
+      "text_sha256": "9d8f165f395e88010652e6cdd0ccbef581803a9bcf8a5b2640d22b961c41632b"
+    },
+    {
+      "text": "咱们回到开头那个假设。你已经做了两年，现在新证明确实把同一道题解决了。那我这两年，白干了？",
+      "chapter": 9,
+      "paragraph": 108,
+      "id": "zh-09-01",
+      "text_sha256": "ae521b7b4fec836c50e443eb6ade16134fbfae5f38ddcc51d14fdb0690828030"
+    },
+    {
+      "text": "这就得跟导师一起，把已经做出来的东西摊开看。",
+      "chapter": 9,
+      "paragraph": 109,
+      "id": "zh-09-02",
+      "text_sha256": "5b36e9fed0988994fb52df2a6a2c4ea4f840ae461407788c17a8377e4c40b92d"
+    },
+    {
+      "text": "原来准备贡献的“首次证明”，要重新评估。可自己的方法有没有不同？新结果没覆盖的情况，我能不能做？已经摸索出来的东西，还有什么用？",
+      "chapter": 9,
+      "paragraph": 110,
+      "id": "zh-09-03",
+      "text_sha256": "a9e250fa49f4fe82145d9bd1c364aef9ebbbf2b8eeedbbe2a5019a4d5ef32693"
+    },
+    {
+      "text": "两年练出来的本事，不会因为一篇新手稿就消失。只是，时间表可能得改，论文原来的主线，也可能要重新找。数学家Tristan Buckmaster，在首批手稿发布后的公开采访里，就谈到了这种冲击。",
+      "chapter": 9,
+      "paragraph": 111,
+      "id": "zh-09-04",
+      "text_sha256": "f2f1b32aee5cdf50564b84fdccc1919ee760141762943f331ac60c68a3af93fe"
+    },
+    {
+      "text": "ETH还会牵动另一类工作。有些旧研究说的是：如果ETH成立，那么另一个问题，也不可能算得那么快。",
+      "chapter": 9,
+      "paragraph": 112,
+      "id": "zh-09-05",
+      "text_sha256": "138d6b471616b6388f9aa4a04f6476cfcbeaf125714c0abe76d948b9c980e9de"
+    },
+    {
+      "text": "现在，前提受到了挑战。那这些论文是不是全没用了？也不能这么算。",
+      "chapter": 9,
+      "paragraph": 113,
+      "id": "zh-09-06",
+      "text_sha256": "c816059956dad1aaac156c0390b9962efe7ec9ca121cfbde90bc5545db469d8f"
+    },
+    {
+      "text": "它们对实际计算难度还能说明多少，确实要重新判断。可连接两个问题的推理，途中发展出来的方法，仍然可能有用。",
+      "chapter": 9,
+      "paragraph": 114,
+      "id": "zh-09-07",
+      "text_sha256": "8ec84cb2f67ed0b1a271a1061eb10ffbbbf27cd1d1fcd465f842f2682c204b45"
+    },
+    {
+      "text": "所以你看，一个新结果出来，对数学当然可能是进展。落到具体的人身上，他就得认真想：我接下来几年，到底往哪走？",
+      "chapter": 9,
+      "paragraph": 115,
+      "id": "zh-09-08",
+      "text_sha256": "9a1b8e3cbacc7f6b6f7c3fccf99a4d7a52ab38e38bbe13aaf8dcf02537554218"
+    },
+    {
+      "text": "那接下来，还能做什么呢？咱们把刚才那个零拿回来。",
+      "chapter": 10,
+      "paragraph": 117,
+      "id": "zh-10-01",
+      "text_sha256": "009adfe22b5112565bf754feca9bc092feeffaeacd0839edae49211110e214e0"
+    },
+    {
+      "text": "右边的证明要求，这个数不等于零。可我现在偏要把零也算进去。你能不能改一句话，让结论还成立？",
+      "chapter": 10,
+      "paragraph": 118,
+      "id": "zh-10-02",
+      "text_sha256": "2b62d05c955004c082b9f722e1b5c59c23ff84824ae74e3ae8876e0ad1522362"
+    },
+    {
+      "text": "哎，把“严格大于零”，改成“大于等于零”，就行了。零放进来了，结论也跟着调整。",
+      "chapter": 10,
+      "paragraph": 119,
+      "id": "zh-10-03",
+      "text_sha256": "3bd050e1e190c568a04d7ae61616837efbaa282e77a1b6a47c55188a2db0bc66"
+    },
+    {
+      "text": "刚才这一改，就让我们看见了：条件在起什么作用，题目变了，哪些地方得跟着改。",
+      "chapter": 10,
+      "paragraph": 120,
+      "id": "zh-10-04",
+      "text_sha256": "bd12b9329f6dbb4f1166a7b256a4dc415825be510334ffe52c3a278c46629617"
+    },
+    {
+      "text": "10月22日，陶哲轩在《Nature》的一篇观点文章里提出，AI产出数学成果的速度，可能超过人理解它们的速度。",
+      "chapter": 10,
+      "paragraph": 121,
+      "id": "zh-10-05",
+      "text_sha256": "035ea5e0ed9ecc16abb21e7682f98c4ee8e50190bf6b005927b72096b82166df"
+    },
+    {
+      "text": "那“理解”到底要做些什么？比如，我想把新的ETH算法里的办法，搬到另一道题上。能直接搬吗？那就得先弄明白，它靠哪一步省下了计算，哪些条件一换，原来的办法就不能直接用了。至于真正跑起来，时间花在哪儿，还得接着研究。",
+      "chapter": 10,
+      "paragraph": 122,
+      "id": "zh-10-06",
+      "text_sha256": "debfca25bb415ac960dfd44407aaf7d2c11e29f3d02c31cefa8f9330e338be4f"
+    },
+    {
+      "text": "这些问题回答出来，都能增加知识。教学生也是一样。答案放在眼前，点头说看懂了，很容易。可要是把条件一改呢？能不能接着做，能不能解释为什么这样做，这才看得出掌握了多少。",
+      "chapter": 10,
+      "paragraph": 123,
+      "id": "zh-10-07",
+      "text_sha256": "3809f1b1b4f4263644bb423424872a75d4250cc57c3419d114df58d96933331c"
+    },
+    {
+      "text": "不过说到这里，还有个很实际的问题：谁有时间做这些事，谁又用得上那些工具？",
+      "chapter": 10,
+      "paragraph": 124,
+      "id": "zh-10-08",
+      "text_sha256": "3742f36f9895f5e5496a3de6a09501ea1a9ad1979c8e32a99da821b27e65538f"
+    },
+    {
+      "text": "你想啊，两张研究桌，两边都拿到了公开论文。其中一边，还能继续调用强大的模型，换条件、试新题。另一边，得先解决工具和算力从哪里来，才能做同样的尝试。",
+      "chapter": 11,
+      "paragraph": 126,
+      "id": "zh-11-01",
+      "text_sha256": "3fd2fac4201068592176e79657f855acab6173ce158a41488458c91a1b83b549"
+    },
+    {
+      "text": "论文都公开了，大家就站在同一个起点了吗？光看这两张桌子，就知道还有别的条件。",
+      "chapter": 11,
+      "paragraph": 127,
+      "id": "zh-11-02",
+      "text_sha256": "8821c60b5f1eb3f085d619705b31064b01d7c97cc976c07fe687ee8d3bea277d"
+    },
+    {
+      "text": "工具怎么开放，算力的钱谁来出，会影响研究者能不能主动选自己的题。数学与人工智能咨询组AGMAI，就在公开声明里强调了研究自主权，以及公平获得工具和计算资源的需要。",
+      "chapter": 11,
+      "paragraph": 128,
+      "id": "zh-11-03",
+      "text_sha256": "7b034424856e07cc072b631e756428d9dd1509bb65c3936eae65675021bcc742"
+    },
+    {
+      "text": "那有没有具体的支持计划呢？有。10月15日，Simons Foundation宣布，与Anthropic、OpenAI合计承诺1500万美元的资金与资源，用来支持评估成果、学习工具、形成共同标准等工作，资助由基金会管理。",
+      "chapter": 11,
+      "paragraph": 129,
+      "id": "zh-11-04",
+      "text_sha256": "e7a9a7527439514ec3ac8a0a49cf236e83d722f2b78ad53f7d56b66cbbd6bbb9"
+    },
+    {
+      "text": "这些投入最后能帮上多大忙，还得看数学家能不能拿到实际支持，继续做自己的研究。",
+      "chapter": 11,
+      "paragraph": 130,
+      "id": "zh-11-05",
+      "text_sha256": "5e97c774d37f4888f9173c3448d3381f98596abeee26c0de7cdc02e884aafb0a"
+    },
+    {
+      "text": "毕竟，新证明得有人读，学生得有人带，方法也得有人拿去试。这个时间，总得有人花。",
+      "chapter": 11,
+      "paragraph": 131,
+      "id": "zh-11-06",
+      "text_sha256": "ca442f1006d977b07faa314c71cd37d726e4834a7d4b2565b36ba348aa217cdf"
+    },
+    {
+      "text": "所以咱们继续追这件事，除了看又出了多少篇，也得看看，后来有多少人用它做出了新的东西。",
+      "chapter": 11,
+      "paragraph": 132,
+      "id": "zh-11-07",
+      "text_sha256": "9d875abe88d932d781127dd101777c72289e65bff900d31aed7cc97bf1129b78"
+    },
+    {
+      "text": "好，咱们把刚才这些问题，放回新闻标题里试一遍。",
+      "chapter": 12,
+      "paragraph": 134,
+      "id": "zh-12-01",
+      "text_sha256": "f42e10098047c3f9c14d054ead1ea509d4d8d0b77355d2467e399ddcaf3b0d48"
+    },
+    {
+      "text": "先问，它到底解决了什么？咱们刚才就拆过，722数的是手稿。新的ETH主张，讲的是这类逻辑题的计算量怎样增长。",
+      "chapter": 12,
+      "paragraph": 135,
+      "id": "zh-12-02",
+      "text_sha256": "a55756df98da14c046499c55606c12f519dfdabe552b58fbef2b81c1341cdfd1"
+    },
+    {
+      "text": "然后看，在哪些条件下成立？这里谈的是最坏情况下的理论增长。至于我今天这台电脑跑一道实际难题，需要多久，还得另外评估。",
+      "chapter": 12,
+      "paragraph": 136,
+      "id": "zh-12-03",
+      "text_sha256": "ca8d0373d329c6d5e3a1b7945d662fca847094e44853f3de1cd48206a4ce082a"
+    },
+    {
+      "text": "再往下，谁检查过哪一部分？两家都公开了论文和形式化材料。可具体命题对上没有，公开检查到哪一步了，还要顺着材料看。",
+      "chapter": 12,
+      "paragraph": 137,
+      "id": "zh-12-04",
+      "text_sha256": "d07f19742b52648d937469414fae5dee67af69594c2b39565f5977ae4b098e8c"
+    },
+    {
+      "text": "最后呢，这项工作增加了什么？新算法当然值得看，咱们还可以接着追：关键想法，能不能被理解、被别人接着用？",
+      "chapter": 12,
+      "paragraph": 138,
+      "id": "zh-12-05",
+      "text_sha256": "622f12f14801808c36594da6044031dc17abf1ded0f92161a09215a5fb95b893"
+    },
+    {
+      "text": "具体结论、成立条件、核查范围、新增贡献。带着这四个问题，你就能往标题里面多走几步。",
+      "chapter": 12,
+      "paragraph": 139,
+      "id": "zh-12-06",
+      "text_sha256": "c9bca4a9c7e8fec7656ec7dd375a9acee3ef124057893cd32fe390a134cfe2b0"
+    },
+    {
+      "text": "开头那位博士生，其实也得问这些。他接下来选哪道题，哪些方法值得保留，都得先看清楚新结果到底做到了哪里。",
+      "chapter": 12,
+      "paragraph": 140,
+      "id": "zh-12-07",
+      "text_sha256": "012887618e085d2ac46e67fd61bfaa0dae6b75e76a0514f72e4224ca0b5412e8"
+    },
+    {
+      "text": "AI把一些答案带到了桌上。那接下来，我们还能从这里问出什么新问题？这件事，咱们会继续跟。欢迎订阅《让我捅咕捅咕》。我是咕仔，咱们下期接着聊。",
+      "chapter": 12,
+      "paragraph": 141,
+      "id": "zh-12-08",
+      "text_sha256": "97735177049f5f10c19f1f79d4d413a04223e45efc8a241b20ea82fd7eedcc74"
+    }
+  ],
+  "chapters": [
+    {
+      "id": 1,
+      "title": "一篇新手稿落到研究桌上"
+    },
+    {
+      "id": 2,
+      "title": "722这个数字装了什么"
+    },
+    {
+      "id": 3,
+      "title": "多放一个开关会怎样"
+    },
+    {
+      "id": 4,
+      "title": "给开关加上规则"
+    },
+    {
+      "id": 5,
+      "title": "突破增长限制意味着什么"
+    },
+    {
+      "id": 6,
+      "title": "零就能推翻的一句话"
+    },
+    {
+      "id": 7,
+      "title": "让机器检查那套推理"
+    },
+    {
+      "id": 8,
+      "title": "为什么还要请数学家来看"
+    },
+    {
+      "id": 9,
+      "title": "原来的研究计划怎么改"
+    },
+    {
+      "id": 10,
+      "title": "拿到答案以后还能做什么"
+    },
+    {
+      "id": 11,
+      "title": "谁能用上工具继续研究"
+    },
+    {
+      "id": 12,
+      "title": "下次遇到突破新闻怎么读"
+    }
+  ],
+  "source": "source/script-v3.docx",
+  "scope": "Long-form only; document Shorts and production notes are not spoken",
+  "revision": "v18"
+}

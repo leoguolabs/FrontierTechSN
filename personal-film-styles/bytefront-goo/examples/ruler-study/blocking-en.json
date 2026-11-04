@@ -1,0 +1,37 @@
+{
+  "fps": 24,
+  "language": "en",
+  "duration_frames": 80,
+  "shots": [
+    {
+      "paragraph": "hold",
+      "scene": "ruler",
+      "ground": "paper",
+      "kicker": "At the edge of the desk",
+      "title": "Where will the ruler stop?",
+      "events": {
+        "contact": 14,
+        "release": 34
+      },
+      "start": 0,
+      "end": 80
+    }
+  ],
+  "captions": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "Clamp one end of the ruler."
+    },
+    {
+      "start": 14,
+      "end": 34,
+      "text": "Bend the free end and hold it."
+    },
+    {
+      "start": 34,
+      "end": 80,
+      "text": "Let go. The tip swings past its starting position."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "generation": "exec-30795178-701b-4525-8250-99ff5559e6cb",
+  "source_generation": "exec-ef1127ea-b1eb-489a-bba3-a050ce0112fd",
+  "file": "assets/goo-v04/hands-cuffs-v20.png",
+  "sha256": "f4577c6a8ed9cfb9e838d139c0c393f1d36ac0df23035d919d055403cc2df1af",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "prompt_file": "source/hands-prompts-v20.json",
+  "prompts_are_verbatim": true,
+  "reference": "source/identity/character-reference.png"
+}

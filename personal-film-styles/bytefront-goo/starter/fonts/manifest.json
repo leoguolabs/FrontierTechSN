@@ -1,0 +1,38 @@
+[
+  {
+    "file": "fonts/JostMedium.ttf",
+    "family": "Jost",
+    "license": "fonts/OFL-jost.txt",
+    "sha256": "a50384db8b25d2d3ae107a17fd15f9a7d93566cc0d6c5ff86e45c635cd2e24b3"
+  },
+  {
+    "file": "fonts/OleoScript.ttf",
+    "family": "Oleo Script",
+    "license": "fonts/OFL-oleoscript.txt",
+    "sha256": "7e4843c9d74233f00a2815954177e33758c1c42a08d218b11c131cf7d818f1d5"
+  },
+  {
+    "file": "fonts/AlfaSlabOne.ttf",
+    "family": "Alfa Slab One",
+    "license": "fonts/OFL-alfaslabone.txt",
+    "sha256": "28664afa698a3393bd5a29eec750230a0645c5301d62200e5f2d3a027fb2299d"
+  },
+  {
+    "file": "fonts/NotoSerifSC-VF.ttf",
+    "family": "Noto Serif SC",
+    "sha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+    "license": "fonts/OFL-NotoSerifSC.txt"
+  },
+  {
+    "file": "fonts/NotoSansSC-Medium.ttf",
+    "family": "Noto Sans SC",
+    "sha256": "96bef1b8889e3bda6211ae695a2460458976f4017c878200d8fb6e469d640ac4",
+    "license": "fonts/OFL-notosanssc.txt"
+  },
+  {
+    "file": "fonts/NotoSerifSC-Black.ttf",
+    "family": "Math Serif SC Heavy",
+    "sha256": "d71437868976a03a2b285eeb5b72cfc49e96cd0e497ba79e3c96ae2eb95d4a80",
+    "license": "fonts/OFL-NotoSerifSC.txt"
+  }
+]

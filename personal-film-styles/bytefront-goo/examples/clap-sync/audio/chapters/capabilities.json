@@ -1,0 +1,59 @@
+{
+  "identity": {
+    "service": "nr-test-kokoro-v1",
+    "model": {
+      "kokoro-v1.0.onnx": {
+        "sha256": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+        "bytes": 325505369,
+        "source": "Retained Kokoro v1.0 cache, checksum matched to the existing production model manifest."
+      },
+      "voices-v1.0.bin": {
+        "sha256": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d",
+        "bytes": 28214398,
+        "source": "Retained Kokoro v1.0 cache, checksum matched to the existing production model manifest."
+      }
+    },
+    "kokoro_onnx": "0.6.1"
+  },
+  "voices": [
+    "af_alloy",
+    "af_aoede",
+    "af_bella",
+    "af_heart",
+    "af_jessica",
+    "af_kore",
+    "af_nicole",
+    "af_nova",
+    "af_river",
+    "af_sarah",
+    "af_sky",
+    "am_adam",
+    "am_echo",
+    "am_eric",
+    "am_fenrir",
+    "am_liam",
+    "am_michael",
+    "am_onyx",
+    "am_puck",
+    "am_santa",
+    "bf_alice",
+    "bf_emma",
+    "bf_isabella",
+    "bf_lily",
+    "bm_daniel",
+    "bm_fable",
+    "bm_george",
+    "bm_lewis"
+  ],
+  "languages": [
+    "en-us",
+    "en-gb"
+  ],
+  "max_characters": 2000,
+  "max_queued_jobs": 8,
+  "synthesis_concurrency": 1,
+  "cpu_threads": 8,
+  "sample_rate": 24000,
+  "format": "WAV PCM16 mono",
+  "retention_days": 7
+}

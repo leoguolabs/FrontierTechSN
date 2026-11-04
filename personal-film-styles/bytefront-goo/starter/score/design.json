@@ -1,0 +1,14 @@
+{
+  "title": "Continuous electronic study",
+  "bpm": 92,
+  "sample_rate": 24000,
+  "seed": 29073,
+  "brief": "A continuous modern electronic piece. Shared time grid across all scenes, legato synth bass, overlapping stereo pads, flowing soft sequencer and a five-note theme. Change density smoothly at story turns.",
+  "theme_midi": [
+    58,
+    60,
+    67,
+    65,
+    63
+  ]
+}

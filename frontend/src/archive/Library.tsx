@@ -4,6 +4,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link, useSearchParams } from 'react-router-dom'
 import { archiveApi, assetUrl, requestJson, upload } from './api'
 import type { Result, Topic, TopicDetail } from './api'
+import { dateOptions, filterLibrary, readFilters } from './filters'
+import { SearchSelect } from './SearchSelect'
 
 const dateFormat = new Intl.DateTimeFormat('zh-CN', { dateStyle: 'medium' })
 
@@ -20,6 +22,7 @@ function UploadForm({
 }) {
   const [progress, setProgress] = useState<number | null>(null)
   const [error, setError] = useState('')
+  const [targetTopic, setTargetTopic] = useState(topicId)
   const controller = useRef<AbortController | null>(null)
   const isTopic = section === 'topics'
   const busy = progress !== null
@@ -29,8 +32,7 @@ function UploadForm({
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    const targetTopic = data.get('topic_id')
-    data.delete('topic_id')
+    if (!isTopic && !targetTopic) { setError('请选择关联选题'); return }
     const path = isTopic ? `${archiveApi}/topics` : `${archiveApi}/topics/${targetTopic}/results`
     const request = new AbortController()
     controller.current = request
@@ -51,10 +53,9 @@ function UploadForm({
     <form className="archive-form upload-form" onSubmit={submit} aria-label={isTopic ? '上传选题' : '上传成片'}>
       <h2>{isTopic ? '保存新选题' : '保存成片与封面'}</h2>
       <fieldset disabled={busy}>
-        {!isTopic && <label>关联选题<select name="topic_id" defaultValue={topicId} required>
-          <option value="">请选择已保存的选题</option>
-          {topics.map((topic) => <option key={topic.id} value={topic.id}>{topic.title}</option>)}
-        </select></label>}
+        {!isTopic && <SearchSelect label="关联选题" value={targetTopic} onChange={setTargetTopic}
+          disabled={busy} placeholder="请选择已保存的选题" searchPlaceholder="搜索选题标题或文件名…"
+          options={topics.map((topic) => ({ value: topic.id, label: topic.title, description: topic.document_name }))} />}
         <label>{isTopic ? '选题标题' : '成片标题'}<input name="title" placeholder="可留空，默认使用文件名" maxLength={240} /></label>
         {isTopic
           ? <label>Word 文档 <small>DOCX · 最大 24 MB</small><input type="file" name="document" accept=".docx" required /></label>
@@ -124,7 +125,8 @@ export function Library({ section }: { section: Section }) {
   const indexId = isTopic ? 'topic-index' : 'result-index'
   const indexPreference = `frontier-${indexId}-hidden`
   const [indexHidden, setIndexHidden] = useState(() => localStorage.getItem(indexPreference) === 'true')
-  const topicId = params.get('topic') ?? ''
+  const filters = readFilters(params)
+  const topicId = filters.topic
   const topicQuery = useQuery({
     queryKey: ['library', 'topics'],
     queryFn: ({ signal }) => requestJson<Topic[]>(`${archiveApi}/topics`, { signal }),
@@ -136,9 +138,28 @@ export function Library({ section }: { section: Section }) {
   })
   const topics = topicQuery.data ?? []
   const activeQuery = isTopic ? topicQuery : resultQuery
-  const results = (resultQuery.data ?? []).filter((result) => !topicId || result.topic_id === topicId)
-  const rows = isTopic ? topics : results
+  const allRows: (Topic | Result)[] = isTopic ? topics : (resultQuery.data ?? [])
+  const rows = filterLibrary(allRows, filters)
   const selected = rows.find(({ id }) => id === params.get('id')) ?? rows[0]
+  const hasFilters = !!(filters.name || filters.date || (!isTopic && topicId))
+  const invalidRange = filters.date === 'custom' && !!filters.from && !!filters.to && filters.from > filters.to
+  const names = [...new Set(allRows.map((row) => row.title))]
+
+  function updateFilters(updates: Record<string, string>) {
+    const next = new URLSearchParams(params)
+    next.delete('id')
+    for (const [key, value] of Object.entries(updates)) {
+      if (value) next.set(key, value)
+      else next.delete(key)
+    }
+    setParams(next)
+  }
+
+  function clearFilters() {
+    const next = new URLSearchParams(params)
+    for (const key of ['name', 'date', 'from', 'to', 'topic', 'id']) next.delete(key)
+    setParams(next)
+  }
 
   function select(id: string) {
     const next = new URLSearchParams(params)
@@ -148,6 +169,7 @@ export function Library({ section }: { section: Section }) {
 
   function onSaved(saved: Topic | Result) {
     const next = new URLSearchParams(params)
+    for (const key of ['name', 'date', 'from', 'to']) next.delete(key)
     next.set('id', saved.id)
     if (topicId && 'topic_id' in saved) next.set('topic', saved.topic_id)
     queryClient.setQueryData<(Topic | Result)[]>(['library', section], (items) => [saved, ...(items ?? [])])
@@ -179,18 +201,35 @@ export function Library({ section }: { section: Section }) {
       {!isTopic && topicQuery.isError && <p className="archive-error" role="alert">无法读取关联选题。<button className="text-button" onClick={() => void topicQuery.refetch()}>重试</button></p>}
       {activeQuery.isPending && <p className="archive-status" role="status">正在载入档案…</p>}
       {activeQuery.isError && <p className="archive-error" role="alert">{activeQuery.error.message} <button className="text-button" onClick={() => void activeQuery.refetch()}>重试</button></p>}
+      {activeQuery.isSuccess && <section className="library-filters" aria-label="档案筛选">
+        <div className="library-filter-heading"><span>筛选档案</span><span aria-live="polite">{rows.length} / {allRows.length} 项</span></div>
+        <div className={`library-filter-fields${isTopic ? ' topics-filters' : ''}`}>
+          <SearchSelect label="上传日期" value={filters.date} options={dateOptions}
+            onChange={(date) => updateFilters({ date, from: '', to: '' })} searchPlaceholder="搜索日期范围…" />
+          <SearchSelect label="任务名称" value={filters.name} onChange={(name) => updateFilters({ name })}
+            searchPlaceholder={isTopic ? '输入选题标题关键词…' : '输入成片标题关键词…'}
+            options={[{ value: '', label: '全部任务' }, ...names.map((name) => ({ value: name, label: name }))]} />
+          {!isTopic && <SearchSelect label="关联选题" value={topicId} onChange={(topic) => updateFilters({ topic })}
+            searchPlaceholder="搜索选题标题或文件名…"
+            options={[{ value: '', label: '全部选题' }, ...topics.map((topic) => ({ value: topic.id, label: topic.title, description: topic.document_name }))]} />}
+          <button type="button" className="secondary clear-filters" onClick={clearFilters} disabled={!hasFilters}>清除筛选</button>
+        </div>
+        {filters.date === 'custom' && <div className="library-date-range">
+          <label>开始日期<input type="date" aria-invalid={invalidRange} max={filters.to || undefined}
+            value={filters.from} onChange={(event) => updateFilters({ from: event.target.value })} /></label>
+          <span aria-hidden="true">—</span>
+          <label>结束日期<input type="date" aria-invalid={invalidRange} min={filters.from || undefined}
+            value={filters.to} onChange={(event) => updateFilters({ to: event.target.value })} /></label>
+          <p className={invalidRange ? 'date-range-error' : ''} role={invalidRange ? 'alert' : undefined}>
+            {invalidRange ? '开始日期不能晚于结束日期。' : '包含起止当天，可只填写一端。'}
+          </p>
+        </div>}
+      </section>}
       {activeQuery.isSuccess && (
         <div className={indexHidden ? 'archive-grid index-hidden' : 'archive-grid'}>
           <section className="archive-list" id={indexId} hidden={indexHidden} aria-label={isTopic ? '选题列表' : '成片列表'}>
             <div className="list-label"><span>{isTopic ? '选题索引' : '成片索引'}</span><span>{rows.length} 项</span></div>
-            {!isTopic && <label className="archive-filter">筛选选题<select value={topicId} onChange={(event) => {
-              const next = event.target.value
-              setParams(next ? { topic: next } : {})
-            }}>
-              <option value="">全部选题</option>
-              {topics.map((topic) => <option key={topic.id} value={topic.id}>{topic.title}</option>)}
-            </select></label>}
-            {rows.length === 0 && <p className="archive-status">{isTopic ? '还没有选题。上传一个 DOCX 即可开始。' : '当前没有归档的成片。'}</p>}
+            {rows.length === 0 && <p className="archive-status">{hasFilters ? '没有符合筛选条件的档案。请调整条件或清除筛选。' : isTopic ? '还没有选题。上传一个 DOCX 即可开始。' : '当前没有归档的成片。'}</p>}
             <ul>
               {rows.map((row) => (
                 <li key={row.id}><button className="archive-row" type="button" aria-pressed={row.id === selected?.id} onClick={() => select(row.id)}>
@@ -203,7 +242,7 @@ export function Library({ section }: { section: Section }) {
           {selected ? ('cover_name' in selected
             ? <ResultView key={selected.id} result={selected} />
             : <DocumentView key={selected.id} topic={selected} />)
-            : <div className="archive-empty"><span aria-hidden="true">{isTopic ? '01' : '02'}</span><p>{isTopic ? '文档预览将在这里显示' : '上传后可在这里播放成片'}</p></div>}
+            : <div className="archive-empty"><span aria-hidden="true">{isTopic ? '01' : '02'}</span><p>{hasFilters ? '没有匹配的档案' : isTopic ? '文档预览将在这里显示' : '上传后可在这里播放成片'}</p>{hasFilters && <button type="button" className="secondary" onClick={clearFilters}>清除筛选，查看全部</button>}</div>}
         </div>
       )}
     </main>

@@ -11,6 +11,79 @@ const dateFormat = new Intl.DateTimeFormat('zh-CN', { dateStyle: 'medium' })
 
 type Section = 'topics' | 'results'
 
+function DocumentDropzone({ disabled, onError }: { disabled: boolean; onError: (message: string) => void }) {
+  const input = useRef<HTMLInputElement>(null)
+  const [file, setFile] = useState<File | null>(null)
+  const [dragging, setDragging] = useState(false)
+  const fileSize = file && (file.size < 1024 * 1024
+    ? `${Math.max(1, Math.ceil(file.size / 1024))} KB`
+    : `${(file.size / 1024 / 1024).toFixed(2)} MB`)
+
+  function chooseFiles(files: File[], dropped = false) {
+    if (disabled || !input.current) return
+    const next = files[0]
+    const message = files.length > 1 ? '每次只能上传一个 DOCX 文档。'
+      : next && !next.name.toLowerCase().endsWith('.docx') ? '请选择 DOCX 格式的 Word 文档。'
+      : next && next.size > 24 * 1024 * 1024 ? '文档大小不能超过 24 MB。'
+      : next && next.size === 0 ? '文档为空，请重新选择。' : ''
+    onError(message)
+    if (message) {
+      input.current.value = ''
+      setFile(null)
+      return
+    }
+    if (dropped) {
+      const transfer = new DataTransfer()
+      if (next) transfer.items.add(next)
+      input.current.files = transfer.files
+    }
+    setFile(next ?? null)
+  }
+
+  return (
+    <label className={`document-dropzone${dragging && !disabled ? ' is-dragging' : ''}${file ? ' has-file' : ''}`}
+      onDragOver={(event) => { event.preventDefault(); if (!disabled) setDragging(true) }}
+      onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDragging(false) }}
+      onDrop={(event) => {
+        event.preventDefault()
+        setDragging(false)
+        chooseFiles(Array.from(event.dataTransfer.files), true)
+      }}>
+      <input ref={input} type="file" name="document" accept=".docx" required disabled={disabled}
+        className="document-drop-input" aria-label="选择或拖拽 Word 文档" aria-describedby="document-drop-hint"
+        onChange={(event) => chooseFiles(Array.from(event.currentTarget.files ?? []))} />
+      <svg viewBox="0 0 32 32" width="36" height="36" aria-hidden="true"><path d="M19 3H8a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10Zm0 0v7h7M16 23V14m-4 4 4-4 4 4" /></svg>
+      <strong>{file ? file.name : dragging ? '松开即可选择文档' : '拖拽 Word 文档到这里'}</strong>
+      <span id="document-drop-hint">{file ? `${fileSize} · 点击或拖拽可更换` : '或点击选择文件 · DOCX · 最大 24 MB'}</span>
+    </label>
+  )
+}
+
+function TopicUploadDialog({ onSaved, onClose }: { onSaved: (saved: Topic | Result) => void; onClose: () => void }) {
+  const dialog = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    const element = dialog.current
+    const overflow = document.body.style.overflow
+    const previousFocus = document.activeElement
+    element?.showModal()
+    document.body.style.overflow = 'hidden'
+    return () => {
+      element?.close()
+      document.body.style.overflow = overflow
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus()
+    }
+  }, [])
+
+  return (
+    <dialog ref={dialog} className="topic-upload-dialog" aria-labelledby="topic-upload-title"
+      onCancel={(event) => { event.preventDefault(); onClose() }}>
+      <button type="button" className="upload-dialog-close" aria-label="关闭上传选题" onClick={onClose}>×</button>
+      <UploadForm section="topics" topics={[]} topicId="" onSaved={onSaved} onClose={onClose} />
+    </dialog>
+  )
+}
+
 function UploadForm({
   section, topics, topicId, onSaved, onClose,
 }: {
@@ -51,14 +124,14 @@ function UploadForm({
 
   return (
     <form className="archive-form upload-form" onSubmit={submit} aria-label={isTopic ? '上传选题' : '上传成片'}>
-      <h2>{isTopic ? '保存新选题' : '保存成片与封面'}</h2>
+      <h2 id={isTopic ? 'topic-upload-title' : undefined}>{isTopic ? '上传选题' : '保存成片与封面'}</h2>
       <fieldset disabled={busy}>
         {!isTopic && <SearchSelect label="关联选题" value={targetTopic} onChange={setTargetTopic}
           disabled={busy} placeholder="请选择已保存的选题" searchPlaceholder="搜索选题标题或文件名…"
           options={topics.map((topic) => ({ value: topic.id, label: topic.title, description: topic.document_name }))} />}
         <label>{isTopic ? '选题标题' : '成片标题'}<input name="title" placeholder="可留空，默认使用文件名" maxLength={240} /></label>
         {isTopic
-          ? <label>Word 文档 <small>DOCX · 最大 24 MB</small><input type="file" name="document" accept=".docx" required /></label>
+          ? <DocumentDropzone disabled={busy} onError={setError} />
           : <>
               <label>视频文件 <small>MP4 / WebM · 最大 4 GB</small><input type="file" name="video" accept=".mp4,.webm" required /></label>
               <label>封面图片 <small>PNG / JPEG / WebP · 最大 16 MB</small><input type="file" name="cover" accept=".png,.jpg,.jpeg,.webp" required /></label>
@@ -185,46 +258,50 @@ export function Library({ section }: { section: Section }) {
 
   return (
     <main className="archive-main" aria-label={isTopic ? '选题库' : '成片库'}>
-      <div className="archive-actions library-toolbar">
-        {activeQuery.isSuccess && (
-          <button type="button" className="secondary" aria-controls={indexId} aria-expanded={!indexHidden} onClick={toggleIndex}>
-            {indexHidden ? '显示索引' : '隐藏索引'}
-          </button>
-        )}
-        {!showForm && (isTopic || topics.length > 0
-          ? <button type="button" className="primary" onClick={() => setShowForm(true)}>{isTopic ? '＋ 上传选题' : '＋ 上传成片'}</button>
-          : <Link className="secondary" to="/topics">前往选题库</Link>)}
+      <div className="library-toolbar">
+        {activeQuery.isSuccess && <section className="library-filters" aria-label="档案筛选">
+          <div className={`library-filter-fields${isTopic ? ' topics-filters' : ''}`}>
+            <SearchSelect label="上传日期" value={filters.date} options={dateOptions}
+              onChange={(date) => updateFilters({ date, from: '', to: '' })} searchPlaceholder="搜索日期范围…" />
+            <SearchSelect label="任务名称" value={filters.name} onChange={(name) => updateFilters({ name })}
+              searchPlaceholder={isTopic ? '输入选题标题关键词…' : '输入成片标题关键词…'}
+              options={[{ value: '', label: '全部任务' }, ...names.map((name) => ({ value: name, label: name }))]} />
+            {!isTopic && <SearchSelect label="关联选题" value={topicId} onChange={(topic) => updateFilters({ topic })}
+              searchPlaceholder="搜索选题标题或文件名…"
+              options={[{ value: '', label: '全部选题' }, ...topics.map((topic) => ({ value: topic.id, label: topic.title, description: topic.document_name }))]} />}
+            <button type="button" className="secondary clear-filters" onClick={clearFilters} disabled={!hasFilters}>清除筛选</button>
+          </div>
+          {filters.date === 'custom' && <div className="library-date-range">
+            <label>开始日期<input type="date" aria-invalid={invalidRange} max={filters.to || undefined}
+              value={filters.from} onChange={(event) => updateFilters({ from: event.target.value })} /></label>
+            <span aria-hidden="true">—</span>
+            <label>结束日期<input type="date" aria-invalid={invalidRange} min={filters.from || undefined}
+              value={filters.to} onChange={(event) => updateFilters({ to: event.target.value })} /></label>
+            <p className={invalidRange ? 'date-range-error' : ''} role={invalidRange ? 'alert' : undefined}>
+              {invalidRange ? '开始日期不能晚于结束日期。' : '包含起止当天，可只填写一端。'}
+            </p>
+          </div>}
+        </section>}
+        <div className="archive-actions library-toolbar-actions">
+          {activeQuery.isSuccess && <span className="library-filter-count" aria-live="polite">{rows.length} / {allRows.length} 项</span>}
+          {activeQuery.isSuccess && (
+            <button type="button" className="secondary" aria-controls={indexId} aria-expanded={!indexHidden} onClick={toggleIndex}>
+              {indexHidden ? '显示索引' : '隐藏索引'}
+            </button>
+          )}
+          {(!showForm || isTopic) && (isTopic || topics.length > 0
+            ? <button type="button" className="primary" onClick={() => setShowForm(true)}>{isTopic ? '＋ 上传选题' : '＋ 上传成片'}</button>
+            : <Link className="secondary" to="/topics">前往选题库</Link>)}
+        </div>
       </div>
 
-      {showForm && <UploadForm section={section} topics={topics} topicId={topicId} onSaved={onSaved} onClose={() => setShowForm(false)} />}
+      {showForm && (isTopic
+        ? <TopicUploadDialog onSaved={onSaved} onClose={() => setShowForm(false)} />
+        : <UploadForm section={section} topics={topics} topicId={topicId} onSaved={onSaved} onClose={() => setShowForm(false)} />)}
 
       {!isTopic && topicQuery.isError && <p className="archive-error" role="alert">无法读取关联选题。<button className="text-button" onClick={() => void topicQuery.refetch()}>重试</button></p>}
       {activeQuery.isPending && <p className="archive-status" role="status">正在载入档案…</p>}
       {activeQuery.isError && <p className="archive-error" role="alert">{activeQuery.error.message} <button className="text-button" onClick={() => void activeQuery.refetch()}>重试</button></p>}
-      {activeQuery.isSuccess && <section className="library-filters" aria-label="档案筛选">
-        <div className="library-filter-heading"><span>筛选档案</span><span aria-live="polite">{rows.length} / {allRows.length} 项</span></div>
-        <div className={`library-filter-fields${isTopic ? ' topics-filters' : ''}`}>
-          <SearchSelect label="上传日期" value={filters.date} options={dateOptions}
-            onChange={(date) => updateFilters({ date, from: '', to: '' })} searchPlaceholder="搜索日期范围…" />
-          <SearchSelect label="任务名称" value={filters.name} onChange={(name) => updateFilters({ name })}
-            searchPlaceholder={isTopic ? '输入选题标题关键词…' : '输入成片标题关键词…'}
-            options={[{ value: '', label: '全部任务' }, ...names.map((name) => ({ value: name, label: name }))]} />
-          {!isTopic && <SearchSelect label="关联选题" value={topicId} onChange={(topic) => updateFilters({ topic })}
-            searchPlaceholder="搜索选题标题或文件名…"
-            options={[{ value: '', label: '全部选题' }, ...topics.map((topic) => ({ value: topic.id, label: topic.title, description: topic.document_name }))]} />}
-          <button type="button" className="secondary clear-filters" onClick={clearFilters} disabled={!hasFilters}>清除筛选</button>
-        </div>
-        {filters.date === 'custom' && <div className="library-date-range">
-          <label>开始日期<input type="date" aria-invalid={invalidRange} max={filters.to || undefined}
-            value={filters.from} onChange={(event) => updateFilters({ from: event.target.value })} /></label>
-          <span aria-hidden="true">—</span>
-          <label>结束日期<input type="date" aria-invalid={invalidRange} min={filters.from || undefined}
-            value={filters.to} onChange={(event) => updateFilters({ to: event.target.value })} /></label>
-          <p className={invalidRange ? 'date-range-error' : ''} role={invalidRange ? 'alert' : undefined}>
-            {invalidRange ? '开始日期不能晚于结束日期。' : '包含起止当天，可只填写一端。'}
-          </p>
-        </div>}
-      </section>}
       {activeQuery.isSuccess && (
         <div className={indexHidden ? 'archive-grid index-hidden' : 'archive-grid'}>
           <section className="archive-list" id={indexId} hidden={indexHidden} aria-label={isTopic ? '选题列表' : '成片列表'}>

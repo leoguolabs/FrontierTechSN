@@ -16,3 +16,5 @@ hyperframe/.thumbnails/
 .DS_Store
 data/
 backend/prompts/.defaults/
+
+/wheelhouse/

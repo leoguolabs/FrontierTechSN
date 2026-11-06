@@ -1,0 +1,31 @@
+name: frontier-archive
+
+services:
+  archive:
+    image: frontier-archive:${FRONTIER_ARCHIVE_RELEASE:?Set the release commit}
+    init: true
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 128
+    mem_limit: 1g
+    environment:
+      FRONTIER_ARCHIVE_USER: ${FRONTIER_ARCHIVE_USER:?Set the archive username}
+      FRONTIER_ARCHIVE_PASSWORD_HASH: ${FRONTIER_ARCHIVE_PASSWORD_HASH:?Set the archive password verifier}
+      FRONTIER_ARCHIVE_DIR: /data
+      TMPDIR: /data
+    ports:
+      - "10.60.11.3:8101:8101"
+    volumes:
+      - ./data:/data
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8101/api/health', timeout=4).read()"]
+      interval: 15s
+      timeout: 5s
+      retries: 5

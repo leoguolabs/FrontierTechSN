@@ -20,12 +20,13 @@ def plan():
                 length = math.ceil(f.getnframes()*24/f.getframerate())
             assert sha == read(src.with_suffix('.json'))['audio_sha256']
             clocks[j['id']] = frame
-            audio.append(dict(start=frame, end=frame+length, file=str(src.relative_to(ROOT)), sha256=sha))
+            audio.append(dict(id=j['id'],start=frame, end=frame+length, file=str(src.relative_to(ROOT)), sha256=sha))
             frame += length
         chapters.append(dict(id=ch['id'], title=ch.get('title',ch['id']), start=start, end=frame,
                              activity=ch.get('activity',.65)))
         for p in ch['paragraphs']:
             a = timing[p['id']]
+            assert a['audio_sha256']==next(e['sha256'] for e in audio if e['id']==a['chapter_id']), 'Stale word alignment'
             base = clocks[a['chapter_id']]+24*a['source_start']
             chars = a['chars']
             def cue(i):

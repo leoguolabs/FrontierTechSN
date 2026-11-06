@@ -18,6 +18,15 @@ def prepare():
     episode = read(CONTENT / 'episode.json')
     if episode['language'] not in ('en', 'zh') or not episode['chapters'] or not episode['shots']:
         raise ValueError('Write chapters, paragraphs and shots in content/episode.json; choose en or zh.')
+    profile = read(ROOT/'voice-config.json') if (ROOT/'voice-config.json').exists() else {}
+    def spoken(item):
+        text = item.get('spoken_text', item['text'])
+        if 'spoken_text' not in item:
+            for pattern, replacement in profile.get('pronunciation_replacements', {}).items():
+                text = re.sub(pattern, replacement, text)
+        if not text.strip() or text != text.strip() or len(text) > 2000:
+            raise ValueError('Invalid spoken text: '+item['id'])
+        return text
     jobs, lines, seen = [], [], set()
     def unique(identifier):
         if not re.fullmatch('[a-z0-9]+(?:-[a-z0-9]+)*', identifier) or identifier in seen:
@@ -33,7 +42,7 @@ def prepare():
             text = item['text']
             if text.strip() != text or not text or len(text) > 2000:
                 raise ValueError(f'Edit paragraph {item["id"]} at a meaning boundary (1–2000 characters).')
-            if len(' '.join(x['text'] for x in groups[-1] + [item])) > 2000:
+            if max(len(' '.join(x['text'] for x in groups[-1] + [item])), len(' '.join(spoken(x) for x in groups[-1] + [item]))) > 2000:
                 groups.append([])
             groups[-1].append(item)
             lines.append(item)
@@ -44,7 +53,8 @@ def prepare():
             text = ' '.join(x['text'] for x in group)
             jobs.append(dict(id=key, logical_chapter=chapter['id'], text=text,
                              paragraph_ids=[x['id'] for x in group],
-                             text_sha256=hashlib.sha256(text.encode()).hexdigest()))
+                             text_sha256=hashlib.sha256(text.encode()).hexdigest(),
+                             spoken_text=' '.join(spoken(x) for x in group)))
     write(CONTENT/'chapters.json', {'lines': jobs})
     write(CONTENT/'narration.json', {'lines': lines})
     print(f'{len(lines)} paragraphs, {len(jobs)} continuous requests ({episode["language"]}).')

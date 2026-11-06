@@ -1,0 +1,58 @@
+{
+  "version": "1.1.0",
+  "date": "2026-11-06",
+  "scope": "Local workflow validation using two retained native Tim recordings. No new paid synthesis, no full Tim 1.1 film delivery or subjective listening acceptance claimed.",
+  "input_source": "math-in-ai-goo-tim-suite-20261106/long-en/audio/volcengine-original",
+  "profile": "volcengine-tim-110",
+  "chapters": [
+    {
+      "native_sha256": "d5b63eeedd92a47649fdcb95d36306e2e5349616c581a7493e6bc904c5c5345b",
+      "delivery_sha256": "26a3b6bb6fee029061d5f343e7bd75660d521204038e8acbc8c3a0c31c8db31d",
+      "native_seconds": 54.648,
+      "delivery_seconds": 49.678354166666665,
+      "rate": 1.1,
+      "atempo_passes": 1
+    },
+    {
+      "native_sha256": "7a43164b291a2f006a342578d83e66523a792f8b6454c41dd33b21d28f986715",
+      "delivery_sha256": "753130c0c21afd3a4ca508029dd3db4b188af30c2b667117062e49d3e05f1ec9",
+      "native_seconds": 44.664,
+      "delivery_seconds": 40.60270833333333,
+      "rate": 1.1,
+      "atempo_passes": 1
+    }
+  ],
+  "reimport_rejected_without_change": true,
+  "captions": 36,
+  "timeline_frames": 2216,
+  "word_events": [
+    {
+      "word_contact": 482
+    }
+  ],
+  "chapter_balance_target_lufs": -24,
+  "extra_checks": {
+    "wrong-voice": "rejected before processing",
+    "already-sped": "rejected before processing",
+    "measured_voice_bus_lufs": [
+      -29.193014878650214,
+      -29.193012332932945
+    ],
+    "word_cue_error_seconds": 0.016666666666669272,
+    "continuous_picture_coverage": "pass"
+  },
+  "legacy_clap_replay": {
+    "seconds": 18,
+    "frames": 432,
+    "resolution": [
+      960,
+      540
+    ],
+    "full_decode": "pass",
+    "native_4k_frame": 146,
+    "native_4k_frame_sha256": "3b2b96047e9d81fe2ed329bc02ac1297e8a128b1e15edea05fdcd3ee8e173247",
+    "matches_original": true
+  },
+  "chinese_default": "unchanged",
+  "visual_review": "Viewed Tim word-anchor frame and historical native 4K contact frame."
+}

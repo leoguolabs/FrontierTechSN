@@ -1,0 +1,10 @@
+{
+  "profile_id": "legacy-kokoro-eric",
+  "provider": "nr-test Kokoro",
+  "name": "Eric",
+  "voice_type": "am_eric",
+  "provider_speed": 1.0,
+  "delivery_speed": 1.0,
+  "chapter_balance_lufs": null,
+  "pronunciation_replacements": {}
+}

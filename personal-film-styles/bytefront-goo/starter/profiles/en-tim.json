@@ -1,0 +1,26 @@
+{
+  "provider": "Volcengine official speech synthesis",
+  "model": "Doubao - TTS 2.0",
+  "name": "Tim",
+  "voice_type": "en_male_tim_uranus_bigtts",
+  "language": "American English",
+  "gender": "male",
+  "instruction": "Read in natural American English as an engaging male science presenter. Sound curious, bright and conversational. Keep a steady, lively pace throughout with short natural pauses, clear consonants and gentle emphasis. Do not rush later sentences or add words. Say AI and ETH as separate letters. Read only the supplied narration.",
+  "controls": [
+    0,
+    0,
+    0
+  ],
+  "url": "https://console.volcengine.com/speech/new/experience/tts?projectName=default",
+  "profile_id": "volcengine-tim-110",
+  "provider_speed": 1.0,
+  "delivery_speed": 1.1,
+  "speed_stage": "one pitch-preserving atempo pass per complete chapter before alignment",
+  "chapter_balance_lufs": -24.0,
+  "pronunciation_replacements": {
+    "\\bOpenAI\\b": "Open A I",
+    "\\bAI\\b": "A I",
+    "\\bETH\\b": "E T H",
+    "\\bnonzero\\b": "non-zero"
+  }
+}

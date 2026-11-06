@@ -16,11 +16,22 @@ for ch in chapters:
     if not receipt.is_file(): raise FileNotFoundError(f'Missing chapter receipt {receipt}')
     job=read(receipt);digest=hashlib.sha256(src.read_bytes()).hexdigest()
     assert job['audio_sha256']==digest and job['request']['text']==ch['text']
-    if lang=='en': assert job['request']==dict(text=ch['text'],voice='am_eric',speed=1.,language='en-us')
+    if lang=='en':
+        profile=read(root/'voice-config.json')
+        if profile['profile_id']=='legacy-kokoro-eric':
+            assert job['request']==dict(text=ch['text'],voice='am_eric',speed=1.,language='en-us')
+        else:
+            assert profile['profile_id']=='volcengine-tim-110' and job['provider']=='Volcengine'
+            assert job['request']['voice']==profile['voice_type']
+            assert job['request']['speed']==profile['delivery_speed']==1.1
+            assert job['request']['spoken_text']==ch['spoken_text']
+            assert job['profile_sha256']==hashlib.sha256((root/'voice-config.json').read_bytes()).hexdigest()
+            assert job['processing']['atempo_passes']==1 and job['processing']['provider_speed']==1.0
+            assert hashlib.sha256((root/job['original_file']).read_bytes()).hexdigest()==job['original_sha256']
     else: assert job['provider']=='Volcengine' and job['request']['language']=='zh'
     with wave.open(str(src)) as f:
         rate=f.getframerate()
-        assert (f.getnchannels(),f.getsampwidth())==(1,2) and (lang!='en' or rate==24000)
+        assert (f.getnchannels(),f.getsampwidth())==(1,2) and (lang!='en' or rate==(24000 if profile['profile_id']=='legacy-kokoro-eric' else 48000))
         pcm=np.frombuffer(f.readframes(f.getnframes()),'<i2')
     asr_path=root/'review/asr/chapters'/(key+'.json')
     asr_path.parent.mkdir(parents=True,exist_ok=True)
@@ -46,7 +57,7 @@ for ch in chapters:
         for c in cc:
             c['start']=max(0,c['start']-start)
             c['end']=max(0,c['end']-start)
-        data[pid]={'id':pid,'chapter_id':key,'source_start':start,'source_end':end,'chars':cc,'match_ratio':ratio}
+        data[pid]={'id':pid,'audio_sha256':digest,'chapter_id':key,'source_start':start,'source_end':end,'chars':cc,'match_ratio':ratio}
         offset+=len(txt)+1
     print(key,round(len(pcm)/rate,2),round(score,3),flush=True)
 (root/'content/alignment.json').write_text(json.dumps({lang:data},indent=2,ensure_ascii=False))

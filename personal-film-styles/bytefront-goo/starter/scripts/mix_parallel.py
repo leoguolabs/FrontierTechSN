@@ -1,4 +1,4 @@
-"""Mix the new score against the frozen Eric performance and picture-synchronous Foley."""
+"""Mix the new score against the frozen chapter performance and picture-synchronous Foley."""
 from pathlib import Path
 import hashlib
 import json
@@ -26,6 +26,10 @@ def loud(x):
     return float(pyln.Meter(12000).integrated_loudness(resample_poly(x,1,4,axis=0).astype(np.float64)))
 def amp(db):return 10**(db/20)
 
+profile_path=ROOT/'voice-config.json'
+profile=json.loads(profile_path.read_text()) if profile_path.exists() else {}
+target=profile.get('chapter_balance_lufs')
+levels=[]
 voice=np.zeros(N,np.float32)
 for event in timeline['audio']:
     path=ROOT/event['file']
@@ -34,7 +38,14 @@ for event in timeline['audio']:
     assert wav.shape[1]==1
     speech=resample_poly(wav[:,0],SR,rate).astype(np.float32)
     at=event['start']*2000
-    voice[at:at+len(speech)]+=speech*.55
+    native_lufs=loud(speech)
+    if not math.isfinite(native_lufs):raise ValueError('Silent/invalid narration: '+event['file'])
+    gain_db=0.0 if target is None else float(target)-native_lufs
+    gain=amp(gain_db)
+    voice[at:at+len(speech)]+=speech*.55*gain
+    levels.append({'id':event['id'],'file':event['file'],'audio_sha256':event['sha256'],'input_lufs':native_lufs,'fixed_gain_db':gain_db,'balanced_lufs_before_bus':native_lufs+gain_db})
+(ROOT/'review').mkdir(exist_ok=True)
+(ROOT/'review/dialogue-levels.json').write_text(json.dumps({'target_lufs':target,'method':'One constant gain per full chapter; no time changes','chapters':levels},indent=2))
 write(ROOT/'audio/voice.wav',voice)
 from foley import render_foley
 effects=render_foley(timeline,N,SR)

@@ -49,6 +49,10 @@ if __name__=='__main__':
     parser.add_argument('--endpoint',default='http://10.60.11.3:8094')
     parser.add_argument('--relay',help='Session-local restricted receipt collector')
     opts=parser.parse_args()
+    root=Path(__file__).resolve().parents[1]
+    profile=json.loads((root/'voice-config.json').read_text())
+    if profile.get('profile_id')!='legacy-kokoro-eric':
+        raise SystemExit('Eric is a historical replay option. Current English default is Tim; use guides/tim-workflow.md.')
     if opts.relay:
         with urllib.request.urlopen(opts.relay+'/lines',timeout=20) as response:
             lines=json.load(response)

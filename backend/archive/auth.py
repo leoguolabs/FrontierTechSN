@@ -8,6 +8,7 @@ from collections import deque
 
 from fastapi import HTTPException
 
+API_PREFIX = "/api/frontier-archive"
 COOKIE = "frontier_archive_session"
 SESSION_AGE = 12 * 60 * 60
 ATTEMPT_WINDOW = 60

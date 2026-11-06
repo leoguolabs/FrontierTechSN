@@ -15,9 +15,10 @@ from PIL import Image
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import UploadFile
 
+from backend.archive.auth import API_PREFIX
 from backend.archive.documents import DOCX_LIMIT, render_docx
 
-router = APIRouter(prefix="/api/archive")
+router = APIRouter(prefix=API_PREFIX)
 logger = logging.getLogger(__name__)
 
 MIB = 1024**2

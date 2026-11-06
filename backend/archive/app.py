@@ -12,10 +12,12 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from starlette.concurrency import run_in_threadpool
 
-from backend.archive.auth import COOKIE, SESSION_AGE, ArchiveAuth
+from backend.archive.auth import API_PREFIX, COOKIE, SESSION_AGE, ArchiveAuth
 from backend.archive.library import COVER_LIMIT, DOCX_LIMIT, MIB, VIDEO_LIMIT, router
 
-PUBLIC_API = {"/api/health", "/api/auth/session", "/api/auth/login"}
+LOGIN_PATH = f"{API_PREFIX}/auth/login"
+SESSION_PATH = f"{API_PREFIX}/auth/session"
+PUBLIC_API = {"/api/health", SESSION_PATH, LOGIN_PATH}
 FRONTEND = Path(__file__).resolve().parents[2] / "frontend" / "dist"
 
 
@@ -62,8 +64,8 @@ def create_app(
             ):
                 return JSONResponse({"detail": "仅接受同源请求"}, status_code=403)
 
-        upload = request.method == "POST" and path.startswith("/api/archive/")
-        if upload or (request.method == "POST" and path == "/api/auth/login"):
+        upload = request.method == "POST" and path.startswith(f"{API_PREFIX}/topics")
+        if upload or (request.method == "POST" and path == LOGIN_PATH):
             limit = 16 * 1024
             if upload:
                 limit = (VIDEO_LIMIT + COVER_LIMIT if path.rstrip("/").endswith("/results") else DOCX_LIMIT) + MIB
@@ -99,11 +101,11 @@ def create_app(
     def health():
         return {"status": "ok"}
 
-    @app.get("/api/auth/session")
+    @app.get(SESSION_PATH)
     def session_status(request: Request):
         return {"authenticated": request.app.state.auth.authenticated(request.cookies.get(COOKIE, ""))}
 
-    @app.post("/api/auth/login")
+    @app.post(LOGIN_PATH)
     async def login(credentials: Login, request: Request, response: Response):
         auth = request.app.state.auth
         auth.admit_attempt()
@@ -112,15 +114,17 @@ def create_app(
         auth.revoke(request.cookies.get(COOKIE, ""))
         response.set_cookie(
             COOKIE, auth.create_session(), max_age=SESSION_AGE, httponly=True,
-            samesite="strict", secure=request.url.scheme == "https",
+            path=API_PREFIX, samesite="strict", secure=request.url.scheme == "https",
         )
         return {"authenticated": True}
 
-    @app.post("/api/auth/logout", status_code=204)
+    @app.post(f"{API_PREFIX}/auth/logout", status_code=204)
     def logout(request: Request):
         request.app.state.auth.revoke(request.cookies.get(COOKIE, ""))
         response = Response(status_code=204)
-        response.delete_cookie(COOKIE, httponly=True, samesite="strict", secure=request.url.scheme == "https")
+        response.delete_cookie(
+            COOKIE, path=API_PREFIX, httponly=True, samesite="strict", secure=request.url.scheme == "https",
+        )
         return response
 
     app.mount("/assets", StaticFiles(directory=FRONTEND / "assets", check_dir=False), name="assets")

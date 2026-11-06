@@ -17,7 +17,7 @@ export type Result = {
   cover_name: string
 }
 
-export const archiveApi = '/api/archive'
+export const archiveApi = '/api/frontier-archive'
 export const sessionExpired = 'archive-session-expired'
 
 export function assetUrl(result: Result, asset: 'video' | 'cover') {

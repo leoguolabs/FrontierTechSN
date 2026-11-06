@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link, Navigate, NavLink, Route, Routes } from 'react-router-dom'
-import { requestJson, sessionExpired } from './api'
+import { archiveApi, requestJson, sessionExpired } from './api'
 import { Library } from './Library'
 
 function Brand() {
@@ -19,7 +19,7 @@ function Login({ onLogin }: { onLogin: () => void }) {
     setBusy(true)
     setError('')
     try {
-      await requestJson('/api/auth/login', {
+      await requestJson(`${archiveApi}/auth/login`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(credentials),
       }, false)
       onLogin()
@@ -57,12 +57,14 @@ export default function Archive() {
   const [loggingOut, setLoggingOut] = useState(false)
   const session = useQuery({
     queryKey: ['session'],
-    queryFn: ({ signal }) => requestJson<{ authenticated: boolean }>('/api/auth/session', { signal }),
+    queryFn: ({ signal }) => requestJson<{ authenticated: boolean }>(`${archiveApi}/auth/session`, { signal }),
     staleTime: Infinity,
     refetchOnWindowFocus: 'always',
+    refetchInterval: 60_000,
   })
 
   const updateSession = useCallback((authenticated: boolean) => {
+    void client.cancelQueries({ queryKey: ['session'] })
     if (!authenticated) client.removeQueries({ queryKey: ['library'] })
     client.setQueryData(['session'], { authenticated })
   }, [client])
@@ -77,7 +79,7 @@ export default function Archive() {
     setLoggingOut(true)
     setLogoutError('')
     try {
-      await requestJson('/api/auth/logout', { method: 'POST' })
+      await requestJson(`${archiveApi}/auth/logout`, { method: 'POST' })
       updateSession(false)
     } catch (reason) {
       setLogoutError((reason as Error).message)

@@ -9,6 +9,7 @@ from PIL import Image
 from backend.archive.app import create_app
 from backend.archive.auth import COOKIE, password_hash
 
+API = "/api/frontier-archive"
 PASSWORD = "test-only archive password"
 SALT = b"0123456789abcdef"
 LOGIN = {"username": "test-admin", "password": PASSWORD}
@@ -49,36 +50,37 @@ def client(tmp_path: Path):
 
 def test_archive_authentication_and_logout(client):
     assert client.get("/api/health").status_code == 200
-    assert not client.get("/api/auth/session").json()["authenticated"]
-    assert client.get("/api/archive/topics").status_code == 401
-    assert client.post("/api/archive/topics").status_code == 401
-    assert client.post("/api/auth/login", json={**LOGIN, "password": "wrong"}).status_code == 401
-    assert client.post("/api/auth/login", json=LOGIN, headers={"Origin": "https://elsewhere.test"}).status_code == 403
+    assert not client.get(f"{API}/auth/session").json()["authenticated"]
+    assert client.get(f"{API}/topics").status_code == 401
+    assert client.post(f"{API}/topics").status_code == 401
+    assert client.post(f"{API}/auth/login", json={**LOGIN, "password": "wrong"}).status_code == 401
+    assert client.post(f"{API}/auth/login", json=LOGIN, headers={"Origin": "https://elsewhere.test"}).status_code == 403
 
-    response = client.post("/api/auth/login", json=LOGIN)
+    response = client.post(f"{API}/auth/login", json=LOGIN)
     assert response.status_code == 200
     cookie = response.headers["Set-Cookie"].lower()
     assert "httponly" in cookie and "samesite=strict" in cookie
+    assert "path=/api/frontier-archive" in cookie
     token = client.cookies.get(COOKIE)
-    assert client.get("/api/auth/session").json()["authenticated"]
-    assert client.get("/api/archive/topics").json() == []
+    assert client.get(f"{API}/auth/session").json()["authenticated"]
+    assert client.get(f"{API}/topics").json() == []
 
-    assert client.post("/api/auth/logout").status_code == 204
-    assert client.get("/api/archive/results", headers={"Cookie": f"{COOKIE}={token}"}).status_code == 401
+    assert client.post(f"{API}/auth/logout").status_code == 204
+    assert client.get(f"{API}/results", headers={"Cookie": f"{COOKIE}={token}"}).status_code == 401
 
 
 def test_topic_preview_download_and_video_ranges(client, tmp_path):
-    client.post("/api/auth/login", json=LOGIN)
-    invalid = client.post("/api/archive/topics", files={"document": ("bad.docx", b"invalid")})
+    client.post(f"{API}/auth/login", json=LOGIN)
+    invalid = client.post(f"{API}/topics", files={"document": ("bad.docx", b"invalid")})
     assert invalid.status_code == 422
     assert list(tmp_path.iterdir()) == []
 
     document = docx_bytes()
-    response = client.post("/api/archive/topics", files={"document": ("双语脚本.docx", document)})
+    response = client.post(f"{API}/topics", files={"document": ("双语脚本.docx", document)})
     assert response.status_code == 201, response.text
     topic = response.json()
     assert topic["title"] == "双语脚本"
-    topic_url = f"/api/archive/topics/{topic['id']}"
+    topic_url = f"{API}/topics/{topic['id']}"
     preview = client.get(topic_url).json()["preview_html"]
     assert "选题 Topic" in preview and "<table>" in preview
     assert "Bad link" in preview and "javascript:" not in preview
@@ -89,11 +91,11 @@ def test_topic_preview_download_and_video_ranges(client, tmp_path):
     video = b"\x00\x00\x00\x14ftypisom" + bytes(range(128))
     files = {"video": ("film.mp4", video), "cover": ("cover.png", cover_bytes())}
     assert client.post(f"{topic_url}/results", files={**files, "cover": ("fake.png", b"fake")}).status_code == 422
-    assert client.get("/api/archive/results").json() == []
+    assert client.get(f"{API}/results").json() == []
     result = client.post(f"{topic_url}/results", data={"title": "English long film"}, files=files).json()
     assert result["topic_id"] == topic["id"]
     assert client.post(f"{topic_url}/results", files=files).status_code == 201
-    assert len(client.get("/api/archive/results").json()) == 2
+    assert len(client.get(f"{API}/results").json()) == 2
 
     asset_url = f"{topic_url}/results/{result['id']}"
     partial = client.get(f"{asset_url}/video", headers={"Range": "bytes=10-39"})
@@ -104,6 +106,6 @@ def test_topic_preview_download_and_video_ranges(client, tmp_path):
     assert client.get(f"{asset_url}/video?download=1").headers["Content-Disposition"].startswith("attachment;")
     assert client.get(f"{asset_url}/cover").headers["Content-Type"] == "image/png"
 
-    client.post("/api/auth/logout")
+    client.post(f"{API}/auth/logout")
     for route in (f"{topic_url}/document", f"{asset_url}/cover", f"{asset_url}/video"):
         assert client.get(route, headers={"Range": "bytes=0-8"}).status_code == 401

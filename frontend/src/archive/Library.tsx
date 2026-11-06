@@ -79,7 +79,7 @@ function DocumentView({ topic }: { topic: Topic }) {
     queryFn: ({ signal }) => requestJson<TopicDetail>(`${archiveApi}/topics/${topic.id}`, { signal }),
   })
   return (
-    <section className="archive-detail" aria-label="选题详情">
+    <section className="archive-detail" aria-label="选题详情" tabIndex={0}>
       <div className="detail-header">
         <div><p className="eyebrow">SOURCE DOCUMENT</p><h2>{topic.title}</h2><p className="file-name">{topic.document_name}</p></div>
         <div className="archive-actions">
@@ -120,6 +120,7 @@ export function Library({ section }: { section: Section }) {
   const queryClient = useQueryClient()
   const [params, setParams] = useSearchParams()
   const [showForm, setShowForm] = useState(false)
+  const [indexHidden, setIndexHidden] = useState(() => localStorage.getItem('frontier-topic-index-hidden') === 'true')
   const isTopic = section === 'topics'
   const topicId = params.get('topic') ?? ''
   const topicQuery = useQuery({
@@ -153,17 +154,29 @@ export function Library({ section }: { section: Section }) {
     setShowForm(false)
   }
 
+  function toggleIndex() {
+    localStorage.setItem('frontier-topic-index-hidden', String(!indexHidden))
+    setIndexHidden(!indexHidden)
+  }
+
   return (
-    <main className="archive-main">
+    <main className={isTopic ? 'archive-main topic-library' : 'archive-main'}>
       <section className="library-heading">
         <div>
           <p className="eyebrow">{isTopic ? '01 / TOPIC LIBRARY' : '02 / FILM LIBRARY'}</p>
           <h1>{isTopic ? '选题库' : '成片库'}</h1>
           <p>{isTopic ? '保存研究材料与双语脚本，在网页上直接查阅 Word 正文。' : '把视频和封面归档到选题，按版本查找、播放与下载。'}</p>
         </div>
-        {!showForm && (isTopic || topics.length > 0
-          ? <button type="button" className="primary" onClick={() => setShowForm(true)}>{isTopic ? '＋ 上传选题' : '＋ 上传成片'}</button>
-          : <Link className="secondary" to="/topics">前往选题库</Link>)}
+        <div className="archive-actions">
+          {isTopic && activeQuery.isSuccess && (
+            <button type="button" className="secondary" aria-controls="topic-index" aria-expanded={!indexHidden} onClick={toggleIndex}>
+              {indexHidden ? '显示索引' : '隐藏索引'}
+            </button>
+          )}
+          {!showForm && (isTopic || topics.length > 0
+            ? <button type="button" className="primary" onClick={() => setShowForm(true)}>{isTopic ? '＋ 上传选题' : '＋ 上传成片'}</button>
+            : <Link className="secondary" to="/topics">前往选题库</Link>)}
+        </div>
       </section>
 
       {showForm && <UploadForm section={section} topics={topics} topicId={topicId} onSaved={onSaved} onClose={() => setShowForm(false)} />}
@@ -172,8 +185,8 @@ export function Library({ section }: { section: Section }) {
       {activeQuery.isPending && <p className="archive-status" role="status">正在载入档案…</p>}
       {activeQuery.isError && <p className="archive-error" role="alert">{activeQuery.error.message} <button className="text-button" onClick={() => void activeQuery.refetch()}>重试</button></p>}
       {activeQuery.isSuccess && (
-        <div className="archive-grid">
-          <section className="archive-list" aria-label={isTopic ? '选题列表' : '成片列表'}>
+        <div className={isTopic && indexHidden ? 'archive-grid index-hidden' : 'archive-grid'}>
+          <section className="archive-list" id={isTopic ? 'topic-index' : undefined} hidden={isTopic && indexHidden} aria-label={isTopic ? '选题列表' : '成片列表'}>
             <div className="list-label"><span>{isTopic ? '选题索引' : '成片索引'}</span><span>{rows.length} 项</span></div>
             {!isTopic && <label className="archive-filter">筛选选题<select value={topicId} onChange={(event) => {
               const next = event.target.value

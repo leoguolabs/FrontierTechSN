@@ -1,0 +1,61 @@
+{
+  "profile": "volcengine-tim-native130",
+  "sources": [
+    {
+      "id": "en-a",
+      "native_seconds": 40.584,
+      "delivery_seconds": 40.584,
+      "pcm_sha256": "6deba0e9740c1599b03bb00e04eeb1a71bb5eee3811bc01afcd8b442dc691a1c",
+      "samples": 1948032,
+      "atempo_passes": 0
+    },
+    {
+      "id": "en-b",
+      "native_seconds": 56.544,
+      "delivery_seconds": 56.544,
+      "pcm_sha256": "5513d9815eee93f7b0fa8f0ca7afc07e5cbee0198de59815cbf7f411169fbf0d",
+      "samples": 2714112,
+      "atempo_passes": 0
+    }
+  ],
+  "negative_guards": {
+    "duplicate": true,
+    "wrong_voice": true,
+    "old_rate": true,
+    "processed": true,
+    "wrong_hash": true
+  },
+  "actual_independent_asr": true,
+  "alignment_and_timeline": {
+    "frames": 2381,
+    "captions": 47,
+    "audio_sources": 2
+  },
+  "chinese_configuration_unchanged": true,
+  "legacy_eric_profile_unchanged": true,
+  "production_sources": "math-in-ai-goo-tim-native130-20261108",
+  "ui_control_order": [
+    "pitch",
+    "speech_rate",
+    "loudness_rate"
+  ],
+  "ui_controls": [
+    0,
+    30,
+    0
+  ],
+  "legacy_clap_regression": {
+    "seconds": 18,
+    "frames": 432,
+    "dimensions": [
+      960,
+      540
+    ],
+    "decoded_audio_samples": 864256,
+    "full_audio_video_decode": "pass via PyAV",
+    "preview_sha256": "40e8010d6dbaa4b6e9766fb1a54015887a1eff785b3caf3bf3177ac2879b9141",
+    "native_4k_frame_146_sha256": "3b2b96047e9d81fe2ed329bc02ac1297e8a128b1e15edea05fdcd3ee8e173247",
+    "native_4k_frame_matches_1_0_0": true
+  },
+  "python_compilation": "pass"
+}

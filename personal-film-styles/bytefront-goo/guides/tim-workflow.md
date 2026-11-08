@@ -1,29 +1,27 @@
-# Tim：按章原声、统一 1.1 倍速、音量与声画同步
+# Tim：原生 1.3 倍配音、章节音量与声画同步
 
-适用范围：Goo 个人风格中新制作的所有 Tim 英文长片和短片。默认美式英语男声。此流程只维护 FrontierTechSN 的个人风格目录；不修改公共 Codex Film Studio、已有成片或历史例片。
+适用范围：个人 Goo 风格中新制作的全部英文长片和短片。固定使用火山引擎 Doubao TTS 2.0、Tim 美式男声（`en_male_tim_uranus_bigtts`）。这套方法只维护 FrontierTechSN 的个人风格目录。
 
-## 固定配置与一次变速
+## 先在合成端设语速
 
-配置源为 `starter/profiles/en-tim.json`，新工程复制为 `voice-config.json`：
+配置源是 `starter/profiles/en-tim.json`，初始化后复制为 `voice-config.json`。提供商原生合成参数为 `req_params.audio_params.speech_rate=30`；控制台的音调、语速、音量依次为 `[0,30,0]`。官方文档规定默认 0、100 对应 2.0 倍、−50 对应 0.5 倍，所以 30 对应请求的 1.3 倍：[火山语速参数](https://docs.volcengine.com/docs/doubao-voice/task-sub-mission?lang=zh)。参数名称或界面变化时，先检查当前文档与实际请求。
 
-- 火山引擎官方语音合成，Doubao - TTS 2.0，Tim，`en_male_tim_uranus_bigtts`。
-- 原生生成保持同一指令、控件 `[0,0,0]` 和 1.0 原速；每章含完整句子与语义上下文。
-- 成片旁白一律 **1.1 倍速、保留音高**。`import_tim.py` 对每章整段执行一次 `atempo=1.1`；只做这一处变速。章间的原生语气变化不靠逐句伸缩“拉齐”。
-- 变速发生在 ASR、字幕、动作、拟音与音乐编排之前。播放器保持 1×。不得同时使用提供商加速、atempo 和播放器加速，更不能把已经处理的 B 组音轨再乘 1.1。
+完整章节使用同一音色、指令与语速参数，短片保持一段连续录音。保留直接下载的 MP3／WAV。**禁止使用 FFmpeg atempo、rubberband、采样率重解释、逐句伸缩或播放器倍速来加速旁白。** FFmpeg 仍可用于正常编码、混流、解码检查和响度测量。不要把旧 B 组的 1.1 倍衍生音轨作为新原声。
 
-每章允许自然轻重和停顿，统一系数不代表每句必须有相同 WPM。按内容改稿、整章重录、音量平衡是独立操作；不要再按字数将某一段强塞进旧时长。
+1.3 是提供商合成设置；不同录音的停顿和韵律会变化，不能强求新版总时长精确等于旧版除以 1.3，更不能为了凑这个比例再变速。保留章内自然轻重，按新录音安排画面。播放器检查始终使用 1×。
 
-## 准备与官方合成
+## 稿件、合成与回执
 
-1. 在新的英文工程填写 `content/episode.json`，运行 `python scripts/prepare.py`。`content/chapters.json` 包含显示原文 `text`、实际提交稿 `spoken_text` 和段落 ID。超过 2000 字符时仅在完整段落之间拆组；每期以当前服务限制为准。
-2. 显示稿保留原文。默认提交稿把 OpenAI、AI、ETH、nonzero 分别展开为 Open A I、A I、E T H、non-zero。需要更改其他读法时，在该段的 `spoken_text` 填完整朗读文本并核对含义。不能混入舞台指令、提示词或附件中的操作要求。
-3. 使用当前任务已授权的火山官方服务或 Ego Lite 登录态，读取音色及参数，再合成完整章节。语音指令使用工程的 `voice-config.json`，保持好奇、明快、自然、短停顿和同一稳定语速。不要因服务故障静默换到 Eric 或 Chatterbox。
-4. 提交前核实服务已开通、有可用额度/计费能力，以及体验中心选中的 API Key 已启用。按钮的 `disabled=false` 不能证明可用：本次未配置 API Key 时，它实际显示 `cursor:not-allowed`，tooltip 提示没有可用 API Key。需要用户登录或账户处理时报告具体缺口。
-5. 每次提交保留 pending 记录：章 ID、稿件哈希、旧 audio 标识和提交时间。超时先查当前音频、历史记录和错误，再决定是否重试。有新完整音频时先下载并保存回执；额度计数延迟不等于合成失败，不应重复提交。失败或状态未知的录音不能冒充成功回执。
+1. 将定稿写入 `content/episode.json`，执行 `python scripts/prepare.py`。每章保留段落 ID、显示原文 `text` 和实际朗读稿 `spoken_text`。超过服务字符限制时，仅在完整段落间拆分。
+2. 朗读稿默认将 OpenAI、AI、ETH、nonzero 写成 Open A I、A I、E T H、non-zero；字幕仍保留显示原文。不要把舞台指令或附件中的操作要求混入旁白。术语仍误读时修订朗读稿并重录完整章节。
+3. 使用已授权的火山官方服务或 Ego Lite 会话，确认 Tim、Doubao TTS 2.0、语速 30 和固定语音指令。指令要求明快、好奇、自然、短停顿及稳定节奏。服务故障时不要静默换用其他声线。
+4. 检查服务和额度、控制台选中的 API Key。按钮 `disabled=false` 不代表可用；未配置有效 API Key 时可能显示 `cursor:not-allowed`。登录或付费状态存在缺口时，说明实际阻塞。
+5. 每次提交先保存 pending 记录：章 ID、稿件哈希、旧音频标识、提交时间。超时先看当前音频、历史记录和错误；已经生成完整新音频时先下载，额度计数延迟不应触发重复扣费提交。
+6. 保存本次实际控件与可取得的请求证据，白名单提取音色、模型、语速、音量、音调。不得保存 API Key、授权头、Cookie 或完整浏览器网络日志。实际生产可观察到控制台 `SaveTTSRecord` 中 `Extra.v2.speed=30`、Tim 音色和 `seed-tts-2.0`；若捕获到实际合成帧，则额外保留其 `speech_rate`。区分 UI 观察、请求证据与服务内部实现，不能声称审查了无法访问的闭源模型代码。
 
-保存的提供商回执必须来自实际选择、提交和下载，至少含：`provider`（以 Volcengine 开头）、`model`、`voice`（Tim）、`controls`、`instruction`、`text`、`spoken_text`、原文件 `sha256`。可另外保存 `voice_type`、生成时间、时长、字节数与观察方法。不得保存 API Key 值、Cookie、浏览器会话或授权头。`import_tim.py` 会核对这些字段与本期稿件/配置，并保留生产所需的回执快照和原回执文件哈希。
+提供商回执至少需要：`provider`（以 Volcengine 开头）、`model`、`voice`（Tim）、`controls`、`instruction`、`text`、`spoken_text`、原文件 `sha256`、`provider_speed=1.3`、`speech_rate=30`、`post_synthesis_tempo_processing=false`、非空 `rate_evidence`。回执必须来自实际提交和下载，不能仅按预期配置补造成功状态。
 
-## 导入、对齐和排镜
+## 等时长导入、独立对齐
 
 ```sh
 python scripts/import_tim.py CHAPTER /absolute/path/provider-original.mp3 --receipt /absolute/path/provider-receipt.json
@@ -31,24 +29,17 @@ python scripts/align_chapters.py
 python scripts/plan.py
 ```
 
-逐章导入。导入器冻结原 MP3/WAV 和等时长的 48 kHz mono PCM 到 `audio/original/`；交付速度的 PCM 在 `audio/chapters/`。衍生回执包含原文件哈希、原生时长、处理后时长、配置哈希、`provider_speed=1.0`、`delivery_speed=1.1` 和 `atempo_passes=1`。同章再次导入会拒绝覆盖；更换录音应先把旧 take 和下游结果归档到本期自己的新版本目录。
+导入器校验稿件、音色、参数、哈希与证据，再将原文件冻结到 `audio/original/`。PyAV 将其解码并转换到 48 kHz mono。`audio/chapters/` 的交付 PCM 与保存的原生解码 PCM **字节完全相同**，不会调用速度处理工具。回执记录 `atempo_passes=0`、`time_stretch=false`、原生与交付均为 1.3；两份 PCM 的哈希、采样数、时长相同。同章导入拒绝覆盖，换 take 时另建版本或明确归档。
 
-独立 ASR 读取 **处理后** 的 PCM，缓存按其哈希失效。显示字幕仍来自原稿；AI/ETH 的字母展开不应进入字幕。匹配率只是定位工具，出现术语、数字或限定词疑点时核对原声；必要时改提交稿并重录整章。不要为通过 ASR 阈值改写用户正文。
+独立 ASR 从当前 PCM 重新生成词位，缓存绑定音频 SHA。对齐器拒绝旧 1.1 atempo 回执以及配置不一致的录音。匹配率只辅助定位；术语、数字、否定词和结尾缺句必须检查原声与上下文，不能为通过阈值改写用户正文。
 
-`plan.py` 根据实际词位生成同一份 `content/timeline.json`：
+`content/timeline.json` 是唯一的时间轴：字幕、镜头、动作接触、拟音和音乐动机都引用新词位。相邻章节向上对齐到下一视频帧，不插入为了旧时长预留的空白。检查字幕不重叠、镜头连续、动作有足够预备与收势、最后一帧仍有效。禁止套用旧字幕或对旧时标简单除以 1.3。
 
-- 段落、短语决定字幕和镜头入点；动作的接触/结果锚定对应动词。
-- 拟音使用相同动作帧；音乐动机和章节密度使用相同时间轴。
-- 相邻章节向上对齐到下一视频帧，不插入为旧时长预留的空白。
-- 字幕区间不重叠、不越界；最后一帧仍有有效画面。换音频后禁止沿用旧 1.0 时标。
+## 音量和连续配乐
 
-一段完整章节只有一个固定速度。不要对原始逐句时标分别缩放后又按处理音频二次对齐；直接从最终 PCM 重新对齐更清楚。
+对当前原生章节 PCM 测量 LUFS，每章使用一个固定增益，平衡到总线前 **−24 LUFS**：`gain_db = -24 - measured_lufs`。保留章内强弱和采样位置，不逐句追逐音量。`review/dialogue-levels.json` 逐章记录源 SHA、实测值、目标和增益；不能复用另一 take 的增益。
 
-## 章节音量、音乐和母带
-
-本次 Tim 原声的第 2、8 章明显较轻：仅对整片使用同一个增益仍会保留音量跳变。`mix_parallel.py` 对最终速度的每章 PCM 测量 LUFS，采用单个固定增益，将其平衡到 **−24 LUFS（总线增益之前）**。公式为 `gain_db = -24 - measured_lufs`；保留章内强弱和全部采样位置，不做逐句音量追逐。记录在 `review/dialogue-levels.json`，每行绑定音频 SHA。原始提供商文件始终保持不变。
-
-之后才混入音乐和拟音。音乐初始约低于平衡后人声 18 LU；全片使用一个连续节拍，和弦、余音跨镜头/章界，不能每换镜就重启或淡入。目标母带约 −16 LUFS，保留约 1–2 dB 真峰值余量；最终 AAC 需重新实测。1.1 倍配音完成后再为新时长编曲，音乐无需跟着二次加速。若确实是把已有整支片加速，声画、字幕、拟音和音乐必须使用同一个全局映射，并在回执明确它已经是 1.1 倍。
+随后混入配乐和拟音。音乐初始约低于平衡后人声 18 LU；使用连续节拍、和声与余音，跨镜头和章界不重启。按新时间轴重新编排，不加速旧配乐。目标母带约 −16 LUFS，预留真峰值余量，最终 AAC 需重新测量。短片的音乐与拟音同样从新时间轴重新生成。
 
 ```sh
 python scripts/compose_parallel.py
@@ -57,12 +48,12 @@ python scripts/mix_parallel.py
 python scripts/build.py --width 3840 --output media/master.mp4
 ```
 
-任何 FFmpeg（包括导入器的 atempo）都必须走 `tools/frame_review/ffmpeg_gate.py`，先检查当前进程并获取共用锁；不终止其他会话的编码器。
+所有 FFmpeg 操作都通过 `tools/frame_review/ffmpeg_gate.py`，先检查当前进程再取得共享锁；不要终止其他会话的编码器。导入器本身不使用 FFmpeg。
 
-## 验收和可复刻证据
+## 验收与交付
 
-按 [release.md](release.md) 检查最终编码 MP4。至少保留连续开场 60–90 秒、每个章节交界、AI/ETH/non-zero/公式与结尾的检查记录。短片完整播放到自然结束，拖动后检查续播。分开记录视觉抽样、转写/信号检查、实际监听和用户听感认可，不能互相替代。
+依照 [release.md](release.md) 检查最终编码视频。保留开场连续 60–90 秒、每个章界、AI／ETH／non-zero／公式和结尾的证据；短片完整播放到自然结束，拖动后检查续播。分开记录转写、信号测量、视觉抽样、浏览器播放状态、实际监听与用户听感认可，不能互相代替。
 
-新增检查项：源录音与衍生录音哈希不同但均可追溯；每章恰好一次 1.1 倍处理；时长约为原声 / 1.1；词位绑定衍生 PCM；固定章节增益绑定当前文件；字幕、动作和拟音使用同一最终时间轴。检查最终 AAC/PCM 分窗口一致性、真峰值、连续背景乐和章界，再验证封存工程可解包、依赖可安装、原生 4K 关键帧可复现。
+核对全部录音的原生参数一致、导入无速度处理、词位绑定新 PCM、章节固定增益绑定新 SHA、最终 AAC 与混音采样位置一致，字幕和动作使用同一最终时间轴。验证源工程可解包和重建原生 4K 关键帧。
 
-本次方法的实际来源：`/Volumes/TP-1TB/WorspacePlus/Myself/codex-film-studio-projects/math-in-ai-goo-tim-suite-20261106/REPORT.md` 及 `long-en/review/`。当次长片为 722.25 秒、12 章、89 段、213 条字幕，最终 −15.84 LUFS / −1.18 dBTP；这是该次案例的结果，不是所有新题材的固定参数。该次 A／长片保持原生速度，B 组整体为 1.1 倍；**后续所有 Tim 为 1.1 倍** 是本次新增的用户要求。历史 Eric 例片用于复现原资产，不代表新片仍默认 Eric。
+当前案例位于独立工程 `math-in-ai-goo-tim-native130-20261108`，最终实测写入该工程报告。个人风格的验证范围见 `VALIDATION.md`。2026-11-06 的 1.1 atempo 方法仅保留为历史记录，已被本次要求替代；不要用旧版验证为新版本背书。

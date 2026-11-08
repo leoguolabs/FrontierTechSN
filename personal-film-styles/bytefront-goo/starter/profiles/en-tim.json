@@ -8,19 +8,24 @@
   "instruction": "Read in natural American English as an engaging male science presenter. Sound curious, bright and conversational. Keep a steady, lively pace throughout with short natural pauses, clear consonants and gentle emphasis. Do not rush later sentences or add words. Say AI and ETH as separate letters. Read only the supplied narration.",
   "controls": [
     0,
-    0,
+    30,
     0
   ],
   "url": "https://console.volcengine.com/speech/new/experience/tts?projectName=default",
-  "profile_id": "volcengine-tim-110",
-  "provider_speed": 1.0,
-  "delivery_speed": 1.1,
-  "speed_stage": "one pitch-preserving atempo pass per complete chapter before alignment",
+  "profile_id": "volcengine-tim-native130",
+  "provider_speed": 1.3,
+  "delivery_speed": 1.3,
+  "speed_stage": "Provider synthesis speech_rate=30; format conversion only after generation",
   "chapter_balance_lufs": -24.0,
   "pronunciation_replacements": {
     "\\bOpenAI\\b": "Open A I",
     "\\bAI\\b": "A I",
     "\\bETH\\b": "E T H",
     "\\bnonzero\\b": "non-zero"
+  },
+  "speech_rate": 30,
+  "post_synthesis_tempo_processing": false,
+  "audio_params": {
+    "speech_rate": 30
   }
 }

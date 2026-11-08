@@ -19,7 +19,7 @@
 ### 制作与交付顺序
 
 1. 新建单语言工程；先确认标题字形、角色定妆、手部高风险镜头和两种语言术语。
-2. 在工程中运行 `python scripts/prepare.py`，按 audio.md 取得章节录音（Tim 先统一 1.1 倍速，只做一次），`python scripts/align_chapters.py` 产出字位。遇到识别对不上，回听词句和原始录音。
+2. 在工程中运行 `python scripts/prepare.py`，按 audio.md 取得章节录音（Tim 在合成时使用原生 1.3 倍，导入后不变速），`python scripts/align_chapters.py` 产出字位。遇到识别对不上，回听词句和原始录音。
 3. `python scripts/plan.py` 得出 `content/timeline.json`、两种字幕和章节。动作、拟音、分轨 MIDI 和 mix 读同一时间轴。检查切点会不会盖住刚刚出现的结果。
-4. 先做预览和一张原生 4K 风险帧。动作通过后才批量制作。成片执行 `python scripts/build.py --width 3840 --output media/master.mp4`。每次换稿、换声或改变速率，重跑下游对齐、字幕、画面与混音。Tim 的旧 1.0 词位不能用在新 1.1 音频上。
+4. 先做预览和一张原生 4K 风险帧。动作通过后才批量制作。成片执行 `python scripts/build.py --width 3840 --output media/master.mp4`。每次换稿、换声或改变速率，重跑下游对齐、字幕、画面与混音。Tim 的旧录音词位不能复用到新的 1.3 原生录音上。
 5. 对照 release.md 进行导出后检查，在本期工程写明工具版本、源图、时间轴、音频回执、修改原因、检查样本、结果与未检查部分。

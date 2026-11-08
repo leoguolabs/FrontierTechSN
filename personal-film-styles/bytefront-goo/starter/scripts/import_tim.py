@@ -1,17 +1,13 @@
-"""Import verified native Tim audio; apply the personal 1.1x rate exactly once."""
+"""Import verified native Tim audio; preserve provider-native 1.3x timing without tempo processing."""
 import argparse
 import hashlib
 import json
 import os
 from pathlib import Path
-import sys
 import tempfile
 import wave
 import av
 from prepare import CONTENT, ROOT, read, write
-
-sys.path.insert(0, str(ROOT/'tools/frame_review'))
-from ffmpeg_gate import run
 
 
 def digest(path):
@@ -28,18 +24,20 @@ def main():
     job = next(j for j in read(CONTENT/'chapters.json')['lines'] if j['id'] == args.chapter)
     receipt = read(args.receipt)
     if (read(CONTENT/'episode.json')['language'] != 'en'
-            or profile['profile_id'] != 'volcengine-tim-110'
-            or profile['provider_speed'] != 1.0 or profile['delivery_speed'] != 1.1):
-        raise ValueError('Expected current Tim 1.1x English profile')
+            or profile['profile_id'] != 'volcengine-tim-native130'
+            or profile['provider_speed'] != 1.3 or profile['delivery_speed'] != 1.3
+            or profile['speech_rate'] != 30 or profile['post_synthesis_tempo_processing'] is not False):
+        raise ValueError('Expected provider-native Tim 1.3x English profile')
     expected = {'voice': 'Tim', 'model': profile['model'], 'controls': profile['controls'],
                 'instruction': profile['instruction'], 'text': job['text'],
-                'spoken_text': job['spoken_text'], 'sha256': digest(args.audio)}
+                'spoken_text': job['spoken_text'], 'sha256': digest(args.audio),
+                'provider_speed': 1.3, 'speech_rate': 30, 'post_synthesis_tempo_processing': False}
     if not str(receipt.get('provider', '')).startswith('Volcengine'):
         raise ValueError('Missing Volcengine source provenance')
     for key, value in expected.items():
         if receipt.get(key) != value:
             raise ValueError('Source receipt mismatch: '+key)
-    if receipt.get('processing') or receipt.get('speed', 1.0) != 1.0:
+    if receipt.get('processing') or not receipt.get('rate_evidence'):
         raise ValueError('Import native provider audio, never a previously sped-up derivative')
     if args.audio.suffix.lower() not in ('.mp3', '.wav'):
         raise ValueError('Use the original provider MP3 or WAV')
@@ -71,26 +69,25 @@ def main():
         if native_seconds <= 0:
             raise ValueError('Empty provider audio')
         processed = temp/'delivery.wav'
-        run(['-nostdin', '-hide_banner', '-loglevel', 'error', '-n', '-i', str(decoded),
-             '-af', 'atempo=1.1', '-ar', '48000', '-ac', '1', '-c:a', 'pcm_s16le', str(processed)])
-        with wave.open(str(processed)) as f:
-            seconds = f.getnframes()/f.getframerate()
-        if abs(seconds-native_seconds/1.1) > .12:
-            raise ValueError('Unexpected tempo duration; inspect before importing')
+        # The delivery PCM is byte-identical to the decoded native PCM.
+        # No FFmpeg, atempo, rubberband, rate reinterpretation, or sample stretching.
+        os.link(decoded, processed)
+        seconds = native_seconds
         info = dict(provider='Volcengine', model=profile['model'],
                     request=dict(text=job['text'], spoken_text=job['spoken_text'],
-                                 voice=profile['voice_type'], speed=1.1, language='en-us'),
+                                 voice=profile['voice_type'], speed=1.3, language='en-us'),
                     sample_rate=48000, audio_sha256=digest(processed), duration_seconds=seconds,
                     original_file=native_file.relative_to(ROOT).as_posix(), original_sha256=digest(args.audio),
                     native_pcm_file=native_pcm.relative_to(ROOT).as_posix(), native_pcm_sha256=digest(decoded),
                     native_seconds=native_seconds, provider_receipt_sha256=digest(args.receipt),
                     profile_sha256=digest(ROOT/'voice-config.json'),
-                    processing=dict(provider_speed=1.0, delivery_speed=1.1, atempo_passes=1,
-                                    pitch_preserved=True, stage='before ASR, captions, pictures and score'))
+                    processing=dict(provider_speed=1.3, delivery_speed=1.3, speech_rate=30, atempo_passes=0,
+                                    time_stretch=False, stage='format conversion only; native timing retained'))
         # Freeze the production-relevant receipt fields, without browser/session credentials.
         kept = {k: receipt[k] for k in ('provider', 'model', 'voice', 'controls', 'instruction', 'text',
                 'spoken_text', 'text_sha256', 'spoken_text_sha256', 'sha256', 'bytes', 'duration',
-                'generated_utc', 'method', 'billing_mode') if k in receipt}
+                'generated_utc', 'method', 'billing_mode', 'provider_speed', 'speech_rate',
+                'post_synthesis_tempo_processing', 'rate_evidence') if k in receipt}
         write(temp/'provider.json', kept)
         write(temp/'delivery.json', info)
         (temp/'source').write_bytes(args.audio.read_bytes())
@@ -105,7 +102,7 @@ def main():
                 dst.unlink()
             raise
     print(json.dumps({'chapter': args.chapter, 'native_seconds': native_seconds,
-                      'delivery_seconds': seconds, 'rate': 1.1, 'atempo_passes': 1}))
+                      'delivery_seconds': seconds, 'rate': 1.3, 'atempo_passes': 0}))
 
 
 if __name__ == '__main__':

@@ -36,7 +36,7 @@ def main():
             shutil.copytree(KIT/name,work/name)
         shutil.copyfile(KIT/'scripts/restore_baseline.py',work/'scripts/restore_baseline.py')
         shutil.copyfile(KIT/'style.json',work/'style-lock.json')
-        (work/'AGENTS.md').write_text('Use guides/production.md, character.md and audio.md. New English episodes default to Volcengine Tim at 1.1x, applied once before alignment; inspect voice-config.json. Author this episode in this working directory. Use the shared FFmpeg gate. Review the encoded output before delivery.\n')
+        (work/'AGENTS.md').write_text('Use guides/production.md, character.md and audio.md. New English episodes default to Volcengine Tim at provider-native 1.3x (speech_rate=30), with no post-synthesis tempo processing; inspect voice-config.json. Author this episode in this working directory. Use the shared FFmpeg gate. Review the encoded output before delivery.\n')
         dest.mkdir()  # reserve destination exclusively; concurrent initialization cannot overwrite it
         try:
             for child in work.iterdir(): child.rename(dest/child.name)

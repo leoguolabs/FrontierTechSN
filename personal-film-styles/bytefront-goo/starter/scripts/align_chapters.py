@@ -21,12 +21,14 @@ for ch in chapters:
         if profile['profile_id']=='legacy-kokoro-eric':
             assert job['request']==dict(text=ch['text'],voice='am_eric',speed=1.,language='en-us')
         else:
-            assert profile['profile_id']=='volcengine-tim-110' and job['provider']=='Volcengine'
+            assert profile['profile_id']=='volcengine-tim-native130' and job['provider']=='Volcengine'
             assert job['request']['voice']==profile['voice_type']
-            assert job['request']['speed']==profile['delivery_speed']==1.1
+            assert job['request']['speed']==profile['delivery_speed']==1.3
             assert job['request']['spoken_text']==ch['spoken_text']
             assert job['profile_sha256']==hashlib.sha256((root/'voice-config.json').read_bytes()).hexdigest()
-            assert job['processing']['atempo_passes']==1 and job['processing']['provider_speed']==1.0
+            assert job['processing']['atempo_passes']==0 and job['processing']['provider_speed']==1.3
+            assert job['processing']['time_stretch'] is False and job['processing']['speech_rate']==30
+            assert job['native_pcm_sha256']==digest and job['native_seconds']==job['duration_seconds']
             assert hashlib.sha256((root/job['original_file']).read_bytes()).hexdigest()==job['original_sha256']
     else: assert job['provider']=='Volcengine' and job['request']['language']=='zh'
     with wave.open(str(src)) as f:

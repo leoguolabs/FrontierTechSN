@@ -1,0 +1,34 @@
+{
+  "profile_id": "openai-realtime-cedar-goo",
+  "provider": "OpenAI",
+  "model": "gpt-realtime-2.1-mini",
+  "voice": "cedar",
+  "language": "en-us",
+  "keychain_service": "com.leoguolabs.goo.openai-realtime",
+  "instruction": "Read the user's exact script aloud once, as a brisk, natural male tech host speaking General American English. Use a clearly masculine, medium-to-low speaking register, like talking to a friend, with a light, curious energy. Keep a steady pace around 220 words per minute.",
+  "opening_instruction": "Read I'm Goo and the show name as one connected thought, then flow straight into {transition}.",
+  "reference_transition": "Let's put these stories together",
+  "reading_instruction": "Use very short pauses and natural question intonation. Pronounce Goo with a hard G, rhyming with too. Pronounce Lemme like lem-ee. Speak only the script.",
+  "provider_speed": 1.0,
+  "narration_tempo": 0.974,
+  "final_tempo": 1.0,
+  "delivery_wpm": 237,
+  "delivery_tempo_ceiling": 1.15,
+  "opening_tempo": {
+    "self_introduction": 1.029,
+    "show_title": 1.029
+  },
+  "opening_pause_seconds": {
+    "after_goo": 0.07,
+    "after_title": 0.13
+  },
+  "opening_pause_limit_seconds": 0.105,
+  "pause_limit_seconds": 0.23,
+  "quiet_threshold_db": -41,
+  "chapter_balance_lufs": -24.0,
+  "approved_reference": {
+    "sha256": "ac0f9dfae883ec8be5052585efb542fe3a11c73531ba6fa8af735323f359bf0c",
+    "duration_seconds": 7.85,
+    "approved_on": "2026-11-09"
+  }
+}

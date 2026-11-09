@@ -1,4 +1,4 @@
-"""Generate and finish continuous OpenAI Alloy narration for an English Goo episode."""
+"""Generate and finish continuous OpenAI narration for an English Goo episode."""
 import argparse
 import fcntl
 import hashlib
@@ -15,11 +15,13 @@ import wave
 import numpy as np
 
 from prepare import CONTENT, ROOT, prepare, read, write
+from realtime_speech import PROFILE_ID as REALTIME_PROFILE, fetch_realtime
 
 sys.path.insert(0, str(ROOT / 'tools/frame_review'))
 from ffmpeg_gate import run
 
 PROFILE_ID = 'openai-alloy-goo'
+OPENAI_PROFILES = (PROFILE_ID, REALTIME_PROFILE)
 PROFILE_PATH = ROOT / 'voice-config.json'
 SPEECH_URL = 'https://api.openai.com/v1/audio/speech'
 OPENING = re.compile(r"\bI['’]m\s+(Goo)[,\s]+and\s+this\s+is\s+Ooh[,\s]+Lemme\s+(See)\b", re.I)
@@ -77,6 +79,8 @@ def commit_files(files):
 
 
 def freeze_source(profile, job, raw_dir, temp, imported, receipt_path):
+    realtime = profile['profile_id'] == REALTIME_PROFILE
+    source = 'OpenAI Realtime API' if realtime else 'OpenAI.fm'
     frozen_receipt = raw_dir / (job['id'] + '.provider.json')
     if frozen_receipt.exists():
         if imported:
@@ -86,13 +90,17 @@ def freeze_source(profile, job, raw_dir, temp, imported, receipt_path):
     else:
         raw = temp / ('source' + imported.suffix.lower()) if imported else temp / 'source.wav'
         expected = speech_request(profile, job, raw.suffix[1:])
-        if expected['response_format'] not in ('mp3', 'wav'):
-            raise ValueError('Import an original MP3 or WAV from OpenAI.fm')
+        if expected['response_format'] not in (('wav',) if realtime else ('mp3', 'wav')):
+            raise ValueError(f'Unsupported original audio format for {source}')
         if imported:
             receipt = read(receipt_path)
-            if receipt.get('source') != 'OpenAI.fm':
-                raise ValueError('The imported take must identify its actual OpenAI.fm source')
+            if receipt.get('source') != source:
+                raise ValueError(f'The imported take must identify its actual {source} source')
             raw.write_bytes(imported.read_bytes())
+        elif realtime:
+            content, metadata = fetch_realtime(expected, profile['keychain_service'])
+            raw.write_bytes(content)
+            receipt = dict(source=source, request=expected, sha256=digest(raw), **metadata)
         else:
             content, request_id = fetch_speech(expected)
             raw.write_bytes(content)
@@ -101,11 +109,13 @@ def freeze_source(profile, job, raw_dir, temp, imported, receipt_path):
     expected = speech_request(profile, job, raw.suffix[1:])
     if receipt.get('request') != expected or receipt.get('sha256') != digest(raw):
         raise ValueError(f'Original take or request mismatch for {job["id"]}')
+    if realtime and (receipt.get('source') != source or not receipt.get('transcript')):
+        raise ValueError(f'Missing Realtime source evidence for {job["id"]}')
     if not frozen_receipt.exists():
         raw_target = raw_dir / (job['id'] + raw.suffix)
         metadata = temp / 'provider.json'
-        write(metadata, {key: receipt[key] for key in ('source', 'request', 'sha256', 'request_id')
-                         if key in receipt})
+        kept = ('source', 'request', 'sha256', 'request_id', 'response_id', 'transcript')
+        write(metadata, {key: receipt[key] for key in kept if key in receipt})
         commit_files([(raw, raw_target), (metadata, frozen_receipt)])
         raw = raw_target
     return raw, frozen_receipt
@@ -181,8 +191,12 @@ def finish_audio(raw, target, text, profile):
         tail = min(tail, round((gaps.pop()[0] + 0.075) * RATE))
 
     entry, goo, title, starts_with_title = opening_gaps(text, signal, gaps)
-    separate_opening = (goo is not None and title is not None and goo < title
-                        and (starts_with_title or (entry is not None and entry < goo)))
+    realtime = profile['profile_id'] == REALTIME_PROFILE
+    first_join = goo or title
+    separate_opening = (title is not None and (realtime or (goo is not None and goo < title))
+                        and (starts_with_title or (entry is not None and entry < first_join)))
+    opening_pause_limit = profile.get('opening_pause_limit_seconds', 0.095)
+    pause_limit = profile.get('pause_limit_seconds', 0.245)
     rate = profile['narration_tempo']
     intro_rate = profile['opening_tempo']['self_introduction']
     section_rate = intro_rate if separate_opening and starts_with_title else rate
@@ -195,8 +209,12 @@ def finish_audio(raw, target, text, profile):
             keep = profile['opening_pause_seconds']['after_goo'] * section_rate * profile['final_tempo']
         elif gap == title:
             keep = profile['opening_pause_seconds']['after_title'] * section_rate * profile['final_tempo']
+        elif title is not None and gap < title and (
+            (goo is not None and goo < gap) or (realtime and (starts_with_title or (entry and entry < gap)))
+        ):
+            keep = opening_pause_limit
         else:
-            keep = 0.095 if goo is not None and title is not None and goo < gap < title else 0.245
+            keep = pause_limit
         shortening = right - left > keep
         if not shortening and not switch_rate:
             continue
@@ -220,7 +238,16 @@ def finish_audio(raw, target, text, profile):
                 section_rate = profile['opening_tempo']['show_title'] if gap == goo else rate
     section.append(signal[cursor:tail])
     pieces.append(tempo(np.concatenate(section), section_rate))
-    delivery = tempo(np.concatenate(pieces), profile['final_tempo'])
+    delivery = np.concatenate(pieces)
+    final_tempo = profile['final_tempo']
+    calibrated_tempo = 1.0
+    if profile.get('delivery_wpm'):
+        word_count = len(re.findall(r"\b\w+(?:['’]\w+)*\b", text))
+        if word_count:
+            target_seconds = word_count * 60 / profile['delivery_wpm']
+            calibrated_tempo = max(1.0, min(profile['delivery_tempo_ceiling'],
+                                             len(delivery) / RATE / final_tempo / target_seconds))
+    delivery = tempo(delivery, final_tempo * calibrated_tempo)
     run(['-nostdin', '-v', 'error', *PCM, '-i', 'pipe:0', '-ar', '48000',
          '-c:a', 'pcm_s16le', str(target)], input=delivery.tobytes(), capture_output=True)
     with wave.open(str(target)) as wav:
@@ -228,7 +255,7 @@ def finish_audio(raw, target, text, profile):
     if duration <= 0:
         raise ValueError('Empty processed narration')
     return dict(source_seconds=seconds, duration_seconds=duration, pause_edits=trimmed,
-                opening_retimed=separate_opening)
+                opening_retimed=separate_opening, calibrated_tempo=calibrated_tempo)
 
 
 def validate_delivery(info, profile, job, source, audio):
@@ -240,7 +267,7 @@ def validate_delivery(info, profile, job, source, audio):
             or info['original_sha256'] != digest(source)
             or info['provider_receipt_sha256'] != digest(ROOT / info['provider_receipt_file'])
             or info['processing']['final_tempo'] != profile['final_tempo']):
-        raise ValueError(f'Stale or mismatched Alloy delivery for {job["id"]}; archive the take before replacing it')
+        raise ValueError(f'Stale or mismatched OpenAI delivery for {job["id"]}; archive the take before replacing it')
 
 
 def process_chapter(profile, job, imported, source_receipt):
@@ -282,16 +309,16 @@ def process_chapter(profile, job, imported, source_receipt):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--chapter', help='Process one prepared request ID (default: all chapters)')
-    parser.add_argument('--original', type=Path, help='Original OpenAI.fm MP3 or WAV')
+    parser.add_argument('--original', type=Path, help='Original provider audio matching the selected OpenAI profile')
     parser.add_argument('--receipt', type=Path, help='JSON with source, request and sha256')
     args = parser.parse_args()
     if bool(args.original) != bool(args.receipt) or (args.original and not args.chapter):
         parser.error('Import requires --chapter, --original and --receipt together')
     if read(CONTENT / 'episode.json')['language'] != 'en':
-        parser.error('Alloy is configured for English Goo episodes')
+        parser.error('OpenAI narration is configured for English Goo episodes')
     profile = read(PROFILE_PATH)
-    if profile['profile_id'] != PROFILE_ID:
-        parser.error('Expected the OpenAI Alloy English profile')
+    if profile['profile_id'] not in OPENAI_PROFILES:
+        parser.error('Expected an OpenAI English narration profile')
     with (ROOT / '.alloy.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         prepare()

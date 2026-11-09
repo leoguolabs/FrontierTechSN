@@ -11,3 +11,5 @@
 1.2.0 按 2026-11-08 用户最新要求改为 Tim 提供商原生 1.3 倍，禁止后期倍速。新制作证据保存在独立 `math-in-ai-goo-tim-native130-20261108`；官方参数来源：https://docs.volcengine.com/docs/doubao-voice/task-sub-mission?lang=zh 。旧 1.1 结果保持历史身份。
 
 1.3.0 的英文旁白依据用户于 2026-11-09 确认的 Alloy 试听。原声来自 OpenAI.fm，试听经过短停顿和局部节拍处理，再保留音高提速 8%。本机的参照音频存于仓库忽略目录 `outputs/goo-voice-reference/alloy-approved-20261109.mp3`，文件 SHA-256 在 `starter/profiles/en-alloy.json`。 [制作方法](guides/alloy-workflow.md)
+
+1.5.0 使用 2026-11-09 确认的 Realtime Cedar 美式男声。参照保存在本机忽略目录 `outputs/goo-voice-reference/cedar-approved-20261109.mp3`，SHA-256 记录在 `starter/profiles/en-cedar.json`。 [制作流程](guides/cedar-workflow.md)

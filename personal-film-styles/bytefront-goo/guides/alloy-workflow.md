@@ -1,6 +1,6 @@
 # OpenAI Alloy 英文旁白
 
-适用于《Ooh, Lemme See!》的新英文 Espresso Shorts、Byte by Byte 和咕仔影片。版本 1.3.0 以用户在 2026-11-09 确认的 **7.85 秒 Alloy 试听**为节奏参照。各期按实际稿件和发音确定时长。
+本页用于保留 1.3.0 的历史 Alloy 工程流程。新英文项目使用 Cedar。 [Cedar 制作流程](cedar-workflow.md)版本 1.3.0 以用户在 2026-11-09 确认的 **7.85 秒 Alloy 试听**为节奏参照。各期按实际稿件和发音确定时长。
 
 ## 生成录音
 

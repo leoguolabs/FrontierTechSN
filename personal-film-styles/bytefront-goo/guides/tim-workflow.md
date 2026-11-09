@@ -1,6 +1,6 @@
 # Tim：原生 1.3 倍配音、章节音量与声画同步
 
-本页记录个人 Goo 风格 1.2.0 的英文旁白流程，适用于已有的 Tim 工程。该版本使用火山引擎 Doubao TTS 2.0、Tim 美式男声（`en_male_tim_uranus_bigtts`）。新英文工程参见 Alloy 流程。 [Alloy 制作流程](alloy-workflow.md)
+本页记录个人 Goo 风格 1.2.0 的英文旁白流程，适用于已有的 Tim 工程。该版本使用火山引擎 Doubao TTS 2.0、Tim 美式男声（`en_male_tim_uranus_bigtts`）。新英文工程参见 Cedar 流程。 [Cedar 制作流程](cedar-workflow.md)
 
 ## 先在合成端设语速
 

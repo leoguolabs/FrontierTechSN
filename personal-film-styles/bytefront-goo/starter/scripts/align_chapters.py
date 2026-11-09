@@ -4,7 +4,7 @@ import hashlib,json,time,wave
 import numpy as np
 from scipy.signal import resample_poly
 from word_alignment import aligned
-from synthesize_alloy import PROFILE_ID as ALLOY_PROFILE, validate_delivery
+from synthesize_alloy import OPENAI_PROFILES, validate_delivery
 
 root=Path(__file__).resolve().parents[1]
 def read(p):return json.loads(p.read_text())
@@ -21,7 +21,7 @@ for ch in chapters:
         profile=read(root/'voice-config.json')
         if profile['profile_id']=='legacy-kokoro-eric':
             assert job['request']==dict(text=ch['text'],voice='am_eric',speed=1.,language='en-us')
-        elif profile['profile_id']==ALLOY_PROFILE:
+        elif profile['profile_id'] in OPENAI_PROFILES:
             validate_delivery(job, profile, ch, root/job['original_file'], src)
         else:
             assert profile['profile_id']=='volcengine-tim-native130' and job['provider']=='Volcengine'

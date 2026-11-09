@@ -1,7 +1,7 @@
 {
   "id": "bytefront-goo",
   "name": "Bytefront Studio · Goo / 咕仔",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "scope": "FrontierTechSN personal film style",
   "character_id": "2026-11-02-v04",
   "rig": "v23c",
@@ -18,18 +18,17 @@
   "fps": 24,
   "poses_on_twos": true,
   "default_voices": {
-    "en": "OpenAI gpt-4o-mini-tts / Alloy / brisk American English with a connected opening and 1.08x final tempo",
+    "en": "OpenAI gpt-realtime-2.1-mini / Cedar / brisk General American male narration",
     "zh": "Volcengine Doubao TTS 2.0 解说小明 2.0"
   },
   "owner_approval": {
     "v15_main_motion_speed": "explicit",
     "v23b_writing_arm_direction": "explicit",
     "v29_overall_listening": "unconfirmed",
-    "alloy_english_reference": "explicit, 2026-11-09",
-    "alloy_final_tempo": 1.08
+    "cedar_english_reference": "explicit, 2026-11-09"
   },
-  "english_audio_profile": "starter/profiles/en-alloy.json",
-  "english_audio_case": "User-approved Alloy comparison at 7.85 seconds, 2026-11-09",
+  "english_audio_profile": "starter/profiles/en-cedar.json",
+  "english_audio_case": "User-approved Realtime Cedar comparison at 7.85 seconds, 2026-11-09",
   "evidence_guide": "guides/evidence.md",
   "evidence_policy": {
     "optional": true,

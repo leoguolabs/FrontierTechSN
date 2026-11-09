@@ -19,7 +19,7 @@
 
 项目命名建议：`espresso-YYYYMMDD-topic-slug`；对应深度片 `byte-by-byte-YYYYMMDD-topic-slug`。日期标识本次工程，不构成未来排期。同一事件共享 `topic_id` 和证据记录。
 
-英文 Espresso Shorts 和 Byte by Byte 都使用个人咕仔风格的 **OpenAI Alloy** 旁白预设。可在单独的咕仔英文工程运行 `npm run narrate:en`，将最终章节 WAV 导入本期 Film Studio 工程，再以该 WAV 生成字幕和声画时间轴。开场按用户确认的节奏处理，提速已经写入 WAV。 [Alloy 制作流程](../../personal-film-styles/bytefront-goo/guides/alloy-workflow.md)
+英文 Espresso Shorts 和 Byte by Byte 都使用个人咕仔风格的 **OpenAI Realtime Cedar 美式男声**旁白预设。可在单独的咕仔英文工程运行 `npm run narrate:en`，将最终章节 WAV 导入本期 Film Studio 工程，再以该 WAV 生成字幕和声画时间轴。开场按用户确认的节奏处理，提速已经写入 WAV。 [Cedar 制作流程](../../personal-film-styles/bytefront-goo/guides/cedar-workflow.md)
 
 每期保存以下交付信息，未知值留空，不预造视频 ID 或公开链接：
 

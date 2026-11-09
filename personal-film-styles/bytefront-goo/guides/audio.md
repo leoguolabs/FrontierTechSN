@@ -2,13 +2,13 @@
 
 ### 英文
 
-新制作的英文长片、短片使用 **OpenAI `gpt-4o-mini-tts` / Alloy**。工程的 `voice-config.json` 继承个人风格预设。合成时按章连读，整理开场和句间停顿后保留音高提速 8%。`npm run narrate:en` 生成章节 WAV 和来源回执。 [Alloy 配音、音量与同步](alloy-workflow.md)
+新制作的英文长片、短片使用 **OpenAI `gpt-realtime-2.1-mini` / Cedar**。工程的 `voice-config.json` 继承个人风格预设。按章连读，保留音高并按确认样音收紧开场与句间停顿。`npm run narrate:en` 生成章节 WAV 和来源回执。 [Cedar 配音、音量与同步](cedar-workflow.md)
 
 保留原声和实际请求。以最终 48 kHz mono WAV 重新生成独立词位、字幕、画面、拟音和音乐，在播放器 1× 下验收。
 
 台词显示稿与提交朗读稿分开保存。术语需要更改时，在段落的 `spoken_text` 填写完整朗读文本，字幕保留原文。听到误读后重录整个语义章，并在前后句的上下文中听审。
 
-历史 Tim 工程继续按其冻结配置重建。`--example clap-sync` 使用 `legacy-kokoro-eric` 配置和原始录音。 [Tim 历史制作流程](tim-workflow.md)
+历史 Alloy 和 Tim 工程继续按其冻结配置重建。`--example clap-sync` 使用 `legacy-kokoro-eric` 配置和原始录音。 [Tim 历史制作流程](tim-workflow.md)
 
 ### 中文
 

@@ -1,6 +1,6 @@
 # Bytefront Studio · Goo / 咕仔
 
-**个人风格 `bytefront-goo`，1.5.0。** 新作者从 [SKILL.md](SKILL.md) 开始。英文频道 ID 是 **Ooh, Lemme See! · Goo**，中文是 **让我捅咕捅咕 · 咕仔**。新英文节目使用用户确认的 **OpenAI Realtime Cedar 美式男声**，按 7.85 秒试听校准开场和正文节奏。中文使用解说小明 2.0 男声。这个目录自带角色、绘制代码、字体、音频制作链和例片原料。每期的脚本、道具、音乐主题和交付物归该期自己的目录。 [Cedar 制作流程](guides/cedar-workflow.md)
+**个人风格 `bytefront-goo`，1.6.0。** 新作者从 [SKILL.md](SKILL.md) 开始。英文频道 ID 是 **Ooh, Lemme See! · Goo**，中文是 **让我捅咕捅咕 · 咕仔**。新英文节目使用用户确认的 **OpenAI Realtime Cedar 美式男声**，按 7.85 秒试听校准开场和正文节奏。新中文节目使用用户确认的 **Cedar 标准普通话男声**，语速和停顿沿用第一轮 14.564 秒样音。这个目录自带角色、绘制代码、字体、音频制作链和例片原料。每期的脚本、道具、音乐主题和交付物归该期自己的目录。 [英文 Cedar 流程](guides/cedar-workflow.md) · [中文 Cedar 流程](guides/cedar-zh-workflow.md)
 
 ### 给下一位 agent 的第一句话
 

@@ -1,4 +1,4 @@
-"""Generate and finish continuous OpenAI narration for an English Goo episode."""
+"""Generate and finish continuous OpenAI narration for a Goo episode."""
 import argparse
 import fcntl
 import hashlib
@@ -15,13 +15,13 @@ import wave
 import numpy as np
 
 from prepare import CONTENT, ROOT, prepare, read, write
-from realtime_speech import PROFILE_ID as REALTIME_PROFILE, fetch_realtime
+from realtime_speech import PROFILE_ID as REALTIME_PROFILE, PROFILE_IDS as REALTIME_PROFILES, ZH_PROFILE_ID, fetch_realtime
 
 sys.path.insert(0, str(ROOT / 'tools/frame_review'))
 from ffmpeg_gate import run
 
 PROFILE_ID = 'openai-alloy-goo'
-OPENAI_PROFILES = (PROFILE_ID, REALTIME_PROFILE)
+OPENAI_PROFILES = (PROFILE_ID, *REALTIME_PROFILES)
 PROFILE_PATH = ROOT / 'voice-config.json'
 SPEECH_URL = 'https://api.openai.com/v1/audio/speech'
 OPENING = re.compile(r"\bI['’]m\s+(Goo)[,\s]+and\s+this\s+is\s+Ooh[,\s]+Lemme\s+(See)\b", re.I)
@@ -36,12 +36,13 @@ def digest(path):
 def speech_request(profile, job, audio_format):
     text = job['spoken_text']
     instructions = [profile['instruction']]
-    if OPENING.search(text):
+    if profile['language'].startswith('en') and OPENING.search(text):
         transition = profile['reference_transition']
         if transition.casefold() not in text.casefold():
             transition = 'the next sentence'
         instructions.append(profile['opening_instruction'].format(transition=transition))
-    instructions.append(profile['reading_instruction'])
+    if profile.get('reading_instruction'):
+        instructions.append(profile['reading_instruction'])
     return dict(model=profile['model'], voice=profile['voice'], input=text,
                 instructions=' '.join(instructions), speed=profile['provider_speed'],
                 response_format=audio_format)
@@ -79,7 +80,7 @@ def commit_files(files):
 
 
 def freeze_source(profile, job, raw_dir, temp, imported, receipt_path):
-    realtime = profile['profile_id'] == REALTIME_PROFILE
+    realtime = profile['profile_id'] in REALTIME_PROFILES
     source = 'OpenAI Realtime API' if realtime else 'OpenAI.fm'
     frozen_receipt = raw_dir / (job['id'] + '.provider.json')
     if frozen_receipt.exists():
@@ -171,6 +172,9 @@ def tempo(signal, factor):
 
 
 def finish_audio(raw, target, text, profile):
+    if profile['profile_id'] == ZH_PROFILE_ID:
+        from mandarin_audio import finish_mandarin
+        return finish_mandarin(raw, target, text, profile)
     decoded = run(
         ['-nostdin', '-hide_banner', '-i', str(raw), '-map', '0:a:0',
          '-af', f'silencedetect=noise={profile["quiet_threshold_db"]}dB:d=0.18',
@@ -308,17 +312,19 @@ def process_chapter(profile, job, imported, source_receipt):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--language', choices=('en', 'zh'), help='Require this project language')
     parser.add_argument('--chapter', help='Process one prepared request ID (default: all chapters)')
     parser.add_argument('--original', type=Path, help='Original provider audio matching the selected OpenAI profile')
     parser.add_argument('--receipt', type=Path, help='JSON with source, request and sha256')
     args = parser.parse_args()
     if bool(args.original) != bool(args.receipt) or (args.original and not args.chapter):
         parser.error('Import requires --chapter, --original and --receipt together')
-    if read(CONTENT / 'episode.json')['language'] != 'en':
-        parser.error('OpenAI narration is configured for English Goo episodes')
+    language = read(CONTENT / 'episode.json')['language']
     profile = read(PROFILE_PATH)
     if profile['profile_id'] not in OPENAI_PROFILES:
-        parser.error('Expected an OpenAI English narration profile')
+        parser.error('Expected an OpenAI narration profile')
+    if language != profile['language'].split('-')[0] or (args.language and args.language != language):
+        parser.error('Narration command, project and voice profile languages must match')
     with (ROOT / '.alloy.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         prepare()

@@ -21,6 +21,8 @@
 
 英文 Espresso Shorts 和 Byte by Byte 都使用个人咕仔风格的 **OpenAI Realtime Cedar 美式男声**旁白预设。可在单独的咕仔英文工程运行 `npm run narrate:en`，将最终章节 WAV 导入本期 Film Studio 工程，再以该 WAV 生成字幕和声画时间轴。开场按用户确认的节奏处理，提速已经写入 WAV。 [Cedar 制作流程](../../personal-film-styles/bytefront-goo/guides/cedar-workflow.md)
 
+中文 Espresso Shorts、Byte by Byte 和咕仔长短片默认使用个人风格的 **OpenAI Realtime Cedar 标准普通话男声**。新建中文工程自动继承 `zh-cedar.json`，运行 `npm run narrate:zh`。语速和节奏以用户确认的第一轮 14.564 秒普通话样音为参照，以最终 WAV 重新生成字幕与声画时间轴。 [中文 Cedar 制作流程](../../personal-film-styles/bytefront-goo/guides/cedar-zh-workflow.md)
+
 每期保存以下交付信息，未知值留空，不预造视频 ID 或公开链接：
 
 ```json

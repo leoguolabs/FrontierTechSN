@@ -11,6 +11,8 @@ from urllib.parse import urlencode
 import wave
 
 PROFILE_ID = 'openai-realtime-cedar-goo'
+ZH_PROFILE_ID = 'openai-realtime-cedar-goo-zh'
+PROFILE_IDS = (PROFILE_ID, ZH_PROFILE_ID)
 SAMPLE_RATE = 24000
 REALTIME_URL = 'wss://api.openai.com/v1/realtime'
 

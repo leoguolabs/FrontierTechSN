@@ -32,12 +32,14 @@ def main():
             (work/'content/episode.json').write_text(json.dumps(dict(id=dest.name,title='',language=args.language,chapters=[],shots=[],foley=[],music={}),indent=2)+'\n')
         if args.language == 'en':
             profile = Path('profiles/en-eric-replay.json') if args.example else Path(style['english_audio_profile']).relative_to('starter')
-            shutil.copyfile(work/profile,work/'voice-config.json')
+        else:
+            profile = Path(style['chinese_audio_profile']).relative_to('starter')
+        shutil.copyfile(work/profile,work/'voice-config.json')
         for name in ('guides','reference','baseline'):
             shutil.copytree(KIT/name,work/name)
         shutil.copyfile(KIT/'scripts/restore_baseline.py',work/'scripts/restore_baseline.py')
         shutil.copyfile(KIT/'style.json',work/'style-lock.json')
-        (work/'AGENTS.md').write_text('Use guides/production.md, character.md and audio.md. Read guides/evidence.md before adding news, paper, image or footage cutaways; zero inserts is valid. Read voice-config.json for English narration. New English episodes use OpenAI Realtime Cedar. See guides/cedar-workflow.md. Author this episode in this working directory. Use the shared FFmpeg gate. Review the encoded output before delivery.\n')
+        (work/'AGENTS.md').write_text('Use guides/production.md, character.md and audio.md. Read guides/evidence.md before adding news, paper, image or footage cutaways; zero inserts is valid. Read voice-config.json for narration. New English and Chinese episodes use separate OpenAI Realtime Cedar profiles. Use npm run narrate:en for English or npm run narrate:zh for Standard Mandarin. See guides/cedar-workflow.md and guides/cedar-zh-workflow.md. Author this episode in this working directory. Use the shared FFmpeg gate. Review the encoded output before delivery.\n')
         dest.mkdir()  # reserve destination exclusively; concurrent initialization cannot overwrite it
         try:
             for child in work.iterdir(): child.rename(dest/child.name)

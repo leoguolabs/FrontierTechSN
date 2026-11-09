@@ -13,3 +13,5 @@
 1.3.0 的英文旁白依据用户于 2026-11-09 确认的 Alloy 试听。原声来自 OpenAI.fm，试听经过短停顿和局部节拍处理，再保留音高提速 8%。本机的参照音频存于仓库忽略目录 `outputs/goo-voice-reference/alloy-approved-20261109.mp3`，文件 SHA-256 在 `starter/profiles/en-alloy.json`。 [制作方法](guides/alloy-workflow.md)
 
 1.5.0 使用 2026-11-09 确认的 Realtime Cedar 美式男声。参照保存在本机忽略目录 `outputs/goo-voice-reference/cedar-approved-20261109.mp3`，SHA-256 记录在 `starter/profiles/en-cedar.json`。 [制作流程](guides/cedar-workflow.md)
+
+1.6.0 使用用户于 2026-11-09 最终确认的第一轮 Cedar 普通话样音，时长 14.564 秒。原声直接来自 OpenAI Realtime API；批准 MP3、原始 WAV、处理后 WAV、请求及回执归档于 `outputs/goo-voice-reference/cedar-zh-approved-20261109.*`。配置中的 SHA-256 绑定这份参照；不是台湾口音或后续候选音色。 [中文制作流程](guides/cedar-zh-workflow.md)

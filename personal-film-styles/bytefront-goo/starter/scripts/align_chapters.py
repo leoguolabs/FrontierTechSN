@@ -11,18 +11,19 @@ def read(p):return json.loads(p.read_text())
 chapters=read(root/'content/chapters.json')['lines']
 lines={l['id']:l for l in read(root/'content/narration.json')['lines']}
 lang=read(root/'content/episode.json')['language']
+profile=read(root/'voice-config.json') if (root/'voice-config.json').exists() else {}
 data={}
 for ch in chapters:
     key=ch['id'];src=root/'audio/chapters'/(key+'.wav');receipt=src.with_suffix('.json')
     if not receipt.is_file(): raise FileNotFoundError(f'Missing chapter receipt {receipt}')
     job=read(receipt);digest=hashlib.sha256(src.read_bytes()).hexdigest()
     assert job['audio_sha256']==digest and job['request']['text']==ch['text']
-    if lang=='en':
-        profile=read(root/'voice-config.json')
+    if profile.get('profile_id') in OPENAI_PROFILES:
+        assert profile['language'].split('-')[0]==lang
+        validate_delivery(job, profile, ch, root/job['original_file'], src)
+    elif lang=='en':
         if profile['profile_id']=='legacy-kokoro-eric':
             assert job['request']==dict(text=ch['text'],voice='am_eric',speed=1.,language='en-us')
-        elif profile['profile_id'] in OPENAI_PROFILES:
-            validate_delivery(job, profile, ch, root/job['original_file'], src)
         else:
             assert profile['profile_id']=='volcengine-tim-native130' and job['provider']=='Volcengine'
             assert job['request']['voice']==profile['voice_type']
@@ -36,7 +37,9 @@ for ch in chapters:
     else: assert job['provider']=='Volcengine' and job['request']['language']=='zh'
     with wave.open(str(src)) as f:
         rate=f.getframerate()
-        assert (f.getnchannels(),f.getsampwidth())==(1,2) and (lang!='en' or rate==(24000 if profile['profile_id']=='legacy-kokoro-eric' else 48000))
+        assert (f.getnchannels(),f.getsampwidth())==(1,2)
+        if lang=='en' or profile.get('profile_id') in OPENAI_PROFILES:
+            assert rate==(24000 if profile['profile_id']=='legacy-kokoro-eric' else 48000)
         pcm=np.frombuffer(f.readframes(f.getnframes()),'<i2')
     asr_path=root/'review/asr/chapters'/(key+'.json')
     asr_path.parent.mkdir(parents=True,exist_ok=True)

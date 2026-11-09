@@ -1,7 +1,7 @@
 {
   "id": "bytefront-goo",
   "name": "Bytefront Studio · Goo / 咕仔",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "scope": "FrontierTechSN personal film style",
   "character_id": "2026-11-02-v04",
   "rig": "v23c",
@@ -19,13 +19,14 @@
   "poses_on_twos": true,
   "default_voices": {
     "en": "OpenAI gpt-realtime-2.1-mini / Cedar / brisk General American male narration",
-    "zh": "Volcengine Doubao TTS 2.0 解说小明 2.0"
+    "zh": "OpenAI gpt-realtime-2.1-mini / Cedar / brisk Standard Mandarin male narration"
   },
   "owner_approval": {
     "v15_main_motion_speed": "explicit",
     "v23b_writing_arm_direction": "explicit",
     "v29_overall_listening": "unconfirmed",
-    "cedar_english_reference": "explicit, 2026-11-09"
+    "cedar_english_reference": "explicit, 2026-11-09",
+    "cedar_chinese_reference": "explicit, 2026-11-09"
   },
   "english_audio_profile": "starter/profiles/en-cedar.json",
   "english_audio_case": "User-approved Realtime Cedar comparison at 7.85 seconds, 2026-11-09",
@@ -34,5 +35,7 @@
     "optional": true,
     "review_above_coverage": 0.15,
     "reference_case": "AI math zh evidence-r1, 2026-11-09"
-  }
+  },
+  "chinese_audio_profile": "starter/profiles/zh-cedar.json",
+  "chinese_audio_case": "User-approved first-round Cedar Putonghua comparison at 14.564 seconds, 2026-11-09"
 }

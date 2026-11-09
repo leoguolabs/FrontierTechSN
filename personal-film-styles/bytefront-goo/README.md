@@ -1,6 +1,6 @@
 # Bytefront Studio · Goo / 咕仔
 
-**个人风格 `bytefront-goo`，1.2.0。** 新作者从 [SKILL.md](SKILL.md) 开始。英文频道 ID 是 **Ooh, Lemme See! · Goo**，中文是 **让我捅咕捅咕 · 咕仔**。新制作的英文旁白默认使用 **火山引擎 Tim 美式男声，合成时原生 1.3 倍速（speech_rate=30），禁止后期音频变速**；详见 [Tim 制作流程](guides/tim-workflow.md)。中文沿用解说小明 2.0 男声。这个目录自带角色、绘制代码、字体、音频制作链和例片原料。每期的脚本、道具、音乐主题和交付物归该期自己的目录。
+**个人风格 `bytefront-goo`，1.3.0。** 新作者从 [SKILL.md](SKILL.md) 开始。英文频道 ID 是 **Ooh, Lemme See! · Goo**，中文是 **让我捅咕捅咕 · 咕仔**。新英文节目使用用户确认的 **OpenAI Alloy 美式口语旁白**，收紧开场后保留音高提速 8%。中文使用解说小明 2.0 男声。这个目录自带角色、绘制代码、字体、音频制作链和例片原料。每期的脚本、道具、音乐主题和交付物归该期自己的目录。 [Alloy 制作流程](guides/alloy-workflow.md)
 
 ### 给下一位 agent 的第一句话
 
@@ -41,4 +41,4 @@ python3 scripts/new_project.py "$HOME/Movies/Goo-next-zh" --language zh
 
 **升级风格**：锁定版本跟随每个新工程。以后修改基础角色、节奏或配乐时按 [升级办法](CHANGELOG.md) 留下前后对照与测试。历史基线、新题材小样和用户的主观认可分别记录。
 
-另外两个校准材料可直接用于审片：[原片连续 90 秒声音](reference/opening-90s-v29.m4a)仅用于历史跨段衔接校准（Eric 原声，不是当前 Tim 默认值）；[直尺回弹的中英预演](examples/ruler-study/README.md)演示真实手指压住物体、松开并让物体回弹。打板例的[原生 4K 接触帧](examples/clap-sync/contact-4k.jpg)和[交接验证报告](VALIDATION.md)可用于核对重建结果。
+另外两个校准材料可直接用于审片。原片的连续 90 秒 Eric 录音用于历史跨段衔接校准。直尺回弹预演演示真实手指压住物体、松开并让物体回弹。打板例的原生 4K 接触帧和交接验证报告可用于核对重建结果。 [原片声音](reference/opening-90s-v29.m4a) · [直尺回弹预演](examples/ruler-study/README.md) · [接触帧](examples/clap-sync/contact-4k.jpg) · [验证报告](VALIDATION.md)

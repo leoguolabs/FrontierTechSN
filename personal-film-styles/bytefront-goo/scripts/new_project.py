@@ -14,6 +14,7 @@ def main():
     p.add_argument('--language',choices=['en','zh'],default='en')
     args=p.parse_args()
     dest=args.destination.resolve()
+    style=json.loads((KIT/'style.json').read_text())
     if dest.exists() or dest.is_relative_to(KIT) or 'codex-film-studio' in dest.parts:
         raise SystemExit('Choose a new episode directory outside the style library and Film Studio.')
     dest.parent.mkdir(parents=True,exist_ok=True)
@@ -30,13 +31,13 @@ def main():
         else:
             (work/'content/episode.json').write_text(json.dumps(dict(id=dest.name,title='',language=args.language,chapters=[],shots=[],foley=[],music={}),indent=2)+'\n')
         if args.language == 'en':
-            profile = 'en-eric-replay.json' if args.example else 'en-tim.json'
-            shutil.copyfile(work/'profiles'/profile,work/'voice-config.json')
+            profile = Path('profiles/en-eric-replay.json') if args.example else Path(style['english_audio_profile']).relative_to('starter')
+            shutil.copyfile(work/profile,work/'voice-config.json')
         for name in ('guides','reference','baseline'):
             shutil.copytree(KIT/name,work/name)
         shutil.copyfile(KIT/'scripts/restore_baseline.py',work/'scripts/restore_baseline.py')
         shutil.copyfile(KIT/'style.json',work/'style-lock.json')
-        (work/'AGENTS.md').write_text('Use guides/production.md, character.md and audio.md. New English episodes default to Volcengine Tim at provider-native 1.3x (speech_rate=30), with no post-synthesis tempo processing; inspect voice-config.json. Author this episode in this working directory. Use the shared FFmpeg gate. Review the encoded output before delivery.\n')
+        (work/'AGENTS.md').write_text('Use guides/production.md, character.md and audio.md. Read voice-config.json for English narration. New English episodes use the OpenAI Alloy workflow in guides/alloy-workflow.md. Author this episode in this working directory. Use the shared FFmpeg gate. Review the encoded output before delivery.\n')
         dest.mkdir()  # reserve destination exclusively; concurrent initialization cannot overwrite it
         try:
             for child in work.iterdir(): child.rename(dest/child.name)

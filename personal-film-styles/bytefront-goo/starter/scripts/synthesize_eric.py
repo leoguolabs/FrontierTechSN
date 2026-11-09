@@ -52,7 +52,7 @@ if __name__=='__main__':
     root=Path(__file__).resolve().parents[1]
     profile=json.loads((root/'voice-config.json').read_text())
     if profile.get('profile_id')!='legacy-kokoro-eric':
-        raise SystemExit('Eric is a historical replay option. Current English default is Tim; use guides/tim-workflow.md.')
+        raise SystemExit('Eric is a historical replay option. For the English default, see guides/alloy-workflow.md.')
     if opts.relay:
         with urllib.request.urlopen(opts.relay+'/lines',timeout=20) as response:
             lines=json.load(response)

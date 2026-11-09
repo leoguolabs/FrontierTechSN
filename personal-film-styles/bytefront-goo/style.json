@@ -1,7 +1,7 @@
 {
   "id": "bytefront-goo",
   "name": "Bytefront Studio · Goo / 咕仔",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "scope": "FrontierTechSN personal film style",
   "character_id": "2026-11-02-v04",
   "rig": "v23c",
@@ -18,16 +18,16 @@
   "fps": 24,
   "poses_on_twos": true,
   "default_voices": {
-    "en": "Volcengine Doubao TTS 2.0 / Tim American male / native speech_rate=30 (1.3x)",
+    "en": "OpenAI gpt-4o-mini-tts / Alloy / brisk American English with a connected opening and 1.08x final tempo",
     "zh": "Volcengine Doubao TTS 2.0 解说小明 2.0"
   },
   "owner_approval": {
     "v15_main_motion_speed": "explicit",
     "v23b_writing_arm_direction": "explicit",
     "v29_overall_listening": "unconfirmed",
-    "tim_future_delivery_speed": 1.3,
-    "tim_post_synthesis_tempo_processing": false
+    "alloy_english_reference": "explicit, 2026-11-09",
+    "alloy_final_tempo": 1.08
   },
-  "english_audio_profile": "starter/profiles/en-tim.json",
-  "english_audio_case": "Math in AI native Tim 1.3 revision 2026-11-08; current evidence in VALIDATION.md"
+  "english_audio_profile": "starter/profiles/en-alloy.json",
+  "english_audio_case": "User-approved Alloy comparison at 7.85 seconds, 2026-11-09"
 }

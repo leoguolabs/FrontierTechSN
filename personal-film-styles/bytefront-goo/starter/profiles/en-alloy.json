@@ -1,0 +1,29 @@
+{
+  "profile_id": "openai-alloy-goo",
+  "provider": "OpenAI",
+  "model": "gpt-4o-mini-tts",
+  "voice": "alloy",
+  "language": "en-us",
+  "instruction": "A brisk, natural male tech host with a General American accent, speaking directly to one listener. Keep the same pace, energy, and vocal register throughout, around 220 words per minute.",
+  "opening_instruction": "Say the opening in one connected breath, flowing through I'm Goo and immediately on through the show name. Carry that rhythm straight into {transition}, with only a tiny beat after the show name.",
+  "reference_transition": "Let's put these stories together",
+  "reading_instruction": "Use short sentence gaps and conversational question intonation. Goo has a hard G and rhymes with too. Lemme sounds like lem-ee. Read the script verbatim.",
+  "provider_speed": 1.0,
+  "narration_tempo": 1.08,
+  "final_tempo": 1.08,
+  "opening_tempo": {
+    "self_introduction": 1.16,
+    "show_title": 1.26
+  },
+  "opening_pause_seconds": {
+    "after_goo": 0.066,
+    "after_title": 0.100
+  },
+  "quiet_threshold_db": -41,
+  "chapter_balance_lufs": -24.0,
+  "approved_reference": {
+    "sha256": "ef69bf1b3a3d66323449343987a4cf36496d0a622f4d078fe3f79f028eb6e367",
+    "duration_seconds": 7.85,
+    "approved_on": "2026-11-09"
+  }
+}

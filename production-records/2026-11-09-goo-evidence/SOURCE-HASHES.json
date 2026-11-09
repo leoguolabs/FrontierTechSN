@@ -1,0 +1,55 @@
+{
+  "captured": "2026-11-09",
+  "assets": [
+    {
+      "path": "assets/openai-full.png",
+      "bytes": 313502,
+      "sha256": "36056602ca30d1627ab2af628fffa6237c6bf5d2ba6963ff290a990bd7322957"
+    },
+    {
+      "path": "assets/openai-article.png",
+      "bytes": 118070,
+      "sha256": "a26527f62c7f4ebe826fc95dca0e20f930f0c4ecfd7820de4a6a8d8d5f067610"
+    },
+    {
+      "path": "assets/anthropic-full.png",
+      "bytes": 338888,
+      "sha256": "53a7449caed87166529bf3c0109503f555b07284b6de8113814604d252092b7e"
+    },
+    {
+      "path": "assets/anthropic-article.png",
+      "bytes": 105552,
+      "sha256": "226404ab1f01cf53cb7c72510ae9543b00cbeb745a658f4aca940a6aa4619a05"
+    },
+    {
+      "path": "assets/anthropic-paper.pdf",
+      "bytes": 900337,
+      "sha256": "7af518b09342c967ea371c74b8989806684c5d02aabe5763ca08554aff5025a0"
+    },
+    {
+      "path": "assets/anthropic-paper-p1.png",
+      "bytes": 314630,
+      "sha256": "1922b91bbac1fa2700006769e771c677778b08c8a7b54aa53d4d25e99f04f0d3"
+    },
+    {
+      "path": "assets/anthropic-LICENSE.txt",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "assets/simons-news.png",
+      "bytes": 236840,
+      "sha256": "c40b986e86def9ee3c8f1704cc112aefb2a04072ad633063e62e9626ebbf3470"
+    },
+    {
+      "path": "assets/classroom-pexels-5676142.mp4",
+      "bytes": 6184505,
+      "sha256": "7d771675f0892321e7adaeec4f67c37bb6ce82acdf19e45bd4829211e3c2f9d1"
+    },
+    {
+      "path": "source/base-zh-v23c.mp4",
+      "bytes": 1213613677,
+      "sha256": "1fceb90deb9bc72db3c65b2424a25cd1d025beb8b38faa9988d7f45997653344"
+    }
+  ]
+}

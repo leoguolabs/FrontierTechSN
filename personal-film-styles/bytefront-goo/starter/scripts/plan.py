@@ -4,6 +4,7 @@ import math
 import re
 import wave
 from prepare import CONTENT, ROOT, read, write
+from validate_evidence import validate as validate_evidence
 
 def plan():
     ep = read(CONTENT/'episode.json')
@@ -67,8 +68,11 @@ def plan():
     foley = [dict(f,frame=anchor(f)) for f in ep.get('foley',[])]
     motifs = [anchor(m)/24 for m in ep.get('music',{}).get('motifs',[{'seconds':.4}])]
     assert all(0<=f['frame']<end for f in foley) and all(0<=t<end/24 for t in motifs)
-    write(CONTENT/'timeline.json',dict(language=ep['language'],fps=24,duration_frames=end,chapters=chapters,
-          shots=shots,audio=audio,captions=caps,foley=foley,motifs=motifs))
+    timeline = dict(language=ep['language'],fps=24,duration_frames=end,chapters=chapters,
+          shots=shots,audio=audio,captions=caps,foley=foley,motifs=motifs)
+    evidence_review = validate_evidence(timeline, ROOT)
+    write(CONTENT/'evidence-review.json', evidence_review)
+    write(CONTENT/'timeline.json', timeline)
     media = ROOT/'media'
     media.mkdir(exist_ok=True)
     def stamp(f):

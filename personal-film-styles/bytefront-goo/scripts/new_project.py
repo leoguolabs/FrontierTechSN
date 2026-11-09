@@ -37,7 +37,7 @@ def main():
             shutil.copytree(KIT/name,work/name)
         shutil.copyfile(KIT/'scripts/restore_baseline.py',work/'scripts/restore_baseline.py')
         shutil.copyfile(KIT/'style.json',work/'style-lock.json')
-        (work/'AGENTS.md').write_text('Use guides/production.md, character.md and audio.md. Read voice-config.json for English narration. New English episodes use the OpenAI Alloy workflow in guides/alloy-workflow.md. Author this episode in this working directory. Use the shared FFmpeg gate. Review the encoded output before delivery.\n')
+        (work/'AGENTS.md').write_text('Use guides/production.md, character.md and audio.md. Read guides/evidence.md before adding news, paper, image or footage cutaways; zero inserts is valid. Read voice-config.json for English narration. New English episodes use the OpenAI Alloy workflow in guides/alloy-workflow.md. Author this episode in this working directory. Use the shared FFmpeg gate. Review the encoded output before delivery.\n')
         dest.mkdir()  # reserve destination exclusively; concurrent initialization cannot overwrite it
         try:
             for child in work.iterdir(): child.rename(dest/child.name)

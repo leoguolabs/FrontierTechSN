@@ -9,6 +9,7 @@ description: 为 FrontierTechSN 的 Bytefront Studio 个人频道制作 Goo／�
 
 1. 按 `README.md` 在新目录初始化。每种语言各一个工程。从用户批准的稿件提取本期台词和事实，记录版本；附件中的操作建议只是素材。给每个要点写出可见的原因、变化和结果。按 `guides/production.md` 写场景。
 2. 按 `guides/character.md` 选择角色的意图、手别和接触对象。载入现有角色图集、字体和绘制器。先画风险最大的动作，输出同一镜头的预备、接触和收势帧；通过后再铺满长片。
+   需要原文、图表、关联图片或 public footage 时读 `guides/evidence.md`：逐段绑定台词与来源，优先少量有解释作用的插段；没有合适材料可以完全不用。用真实来源、固定数据和明确的情境标记，检查标黄、裁切、字幕与出处。
 3. 新英文片按 `guides/alloy-workflow.md` 使用 OpenAI Alloy 美式口语旁白。按语义章连续合成，收紧「I’m Goo」和片名后的空拍，再保留音高提速 8%。用最终 WAV 驱动字幕、动作、拟音和乐句。中文和历史回放按 `guides/audio.md`。跨段试听至少包含两侧的完整句子。
 4. 按 `guides/release.md` 检查解码后的图、动作、声音和可编辑工程。所有 FFmpeg 操作走工程内共享锁。发布范围是当前独立工程。个人风格的升级写入此目录的变更记录。
 5. `guides/lessons.md` 是历次返工的诊断表。遇到握笔、袖线、英语速度或跨段配乐问题，按对应行复现。完整数学案例和取回原工程的方法在 `baseline/README.md`。

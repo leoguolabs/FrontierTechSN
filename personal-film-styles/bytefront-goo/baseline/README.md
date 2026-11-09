@@ -22,3 +22,10 @@ python3 scripts/restore_baseline.py "/path/to/math-in-ai-goo-v29-editable.zip" "
 - 明确认可的是 v15 的运动速度、v23b 的握笔方向。v29 的听感保留为待主观评价。原片视觉报告记录规则开关镜头中短暂的手臂与标题重叠；新镜头的文字应避开操作路径。
 
 math-episode 中的 DIRECTOR/METHOD/AUDIO/PRODUCTION/REVIEW 是原档按原样摘留的历史文件，可能描述前期技术或后来淘汰的选择。本版本默认决策以个人风格 guides 和上表记录的实际交付为准。
+
+
+## 2026-11-09 中文证据画面重剪
+
+独立工程：`FrontierTechSN/outputs/goo-evidence-20261109/`。沿用上述中文 v23c 的 16778 帧基线与原 AAC 音轨，在六处加入真实来源、原创计算图、论文实页与课堂情境；共 59.875 秒。完整 4K 和 1080p 片分别为 `media/math-ai-zh-evidence-r2-4k.mp4` 与 `media/math-ai-zh-evidence-r2-1080p.mp4`，可编辑包为 `goo-ai-math-zh-editable-20261109.zip`。
+
+[四段参考逐帧研究与本期对应关系](../../../production-records/2026-11-09-goo-evidence/REFERENCE-ANALYSIS.md) · [来源与剪辑参数](../../../production-records/2026-11-09-goo-evidence/evidence.json)。方法升级到 1.4.0，但本案例沿用冻结的中文录音，不应用英文 Alloy 参数。参考 YouTube 的 840 个取样位置仅用于本地分析，没有进入成片。原片的完整历史动画重建不在本次重新验证范围内，新增插段与本次合成链有独立源码和重建检查。

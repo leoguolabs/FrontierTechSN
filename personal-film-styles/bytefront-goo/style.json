@@ -1,7 +1,7 @@
 {
   "id": "bytefront-goo",
   "name": "Bytefront Studio · Goo / 咕仔",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "scope": "FrontierTechSN personal film style",
   "character_id": "2026-11-02-v04",
   "rig": "v23c",
@@ -29,5 +29,11 @@
     "alloy_final_tempo": 1.08
   },
   "english_audio_profile": "starter/profiles/en-alloy.json",
-  "english_audio_case": "User-approved Alloy comparison at 7.85 seconds, 2026-11-09"
+  "english_audio_case": "User-approved Alloy comparison at 7.85 seconds, 2026-11-09",
+  "evidence_guide": "guides/evidence.md",
+  "evidence_policy": {
+    "optional": true,
+    "review_above_coverage": 0.15,
+    "reference_case": "AI math zh evidence-r1, 2026-11-09"
+  }
 }

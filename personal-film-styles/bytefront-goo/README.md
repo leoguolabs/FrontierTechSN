@@ -1,17 +1,18 @@
 # Bytefront Studio · Goo / 咕仔
 
-**个人风格 `bytefront-goo`，1.3.0。** 新作者从 [SKILL.md](SKILL.md) 开始。英文频道 ID 是 **Ooh, Lemme See! · Goo**，中文是 **让我捅咕捅咕 · 咕仔**。新英文节目使用用户确认的 **OpenAI Alloy 美式口语旁白**，收紧开场后保留音高提速 8%。中文使用解说小明 2.0 男声。这个目录自带角色、绘制代码、字体、音频制作链和例片原料。每期的脚本、道具、音乐主题和交付物归该期自己的目录。 [Alloy 制作流程](guides/alloy-workflow.md)
+**个人风格 `bytefront-goo`，1.4.0。** 新作者从 [SKILL.md](SKILL.md) 开始。英文频道 ID 是 **Ooh, Lemme See! · Goo**，中文是 **让我捅咕捅咕 · 咕仔**。新英文节目使用用户确认的 **OpenAI Alloy 美式口语旁白**，收紧开场后保留音高提速 8%。中文使用解说小明 2.0 男声。这个目录自带角色、绘制代码、字体、音频制作链和例片原料。每期的脚本、道具、音乐主题和交付物归该期自己的目录。 [Alloy 制作流程](guides/alloy-workflow.md)
 
 ### 给下一位 agent 的第一句话
 
 > 读取 FrontierTechSN/personal-film-styles/bytefront-goo/SKILL.md。用咕仔风格做一期《〈新题材〉》，分别制作英文和中文。请在新的制作目录里工作。先选一个需要解释的动作，给我看 12–25 秒连续声画，再扩展到完整影片。
 
-### 三条路径
+### 制作入口
 
 | 想做什么 | 从哪里进入 | 产出 |
 |---|---|---|
 | 第一次认风格 | [定妆](reference/character-reference.png) · [成片逐镜索引](reference/gallery.html) · [18 秒打板小样](examples/clap-sync/preview.mp4) | 看人物、工作台、印刷色和真实节奏 |
 | 换题材 | [制作步骤](guides/production.md) · [角色](guides/character.md) · [声音](guides/audio.md) | 每种语言一份可单独剪辑、导出和复查的工程 |
+| 添加新闻、论文、图片或实拍 | [证据插段方法](guides/evidence.md) | 绑定具体台词、真实来源、可读黄笔与固定数据；允许零插段 |
 | 复原数学原片或调查旧问题 | [原片档案](baseline/README.md) · [返工诊断](guides/lessons.md) · [验收](guides/release.md) | 查原帧号、原声证据、脚本及封存工程 |
 
 ### 从干净目录运行
